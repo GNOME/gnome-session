@@ -53,6 +53,9 @@ struct _GsmSystemInterface
         gboolean (* can_switch_user)  (GsmSystem *system);
         gboolean (* can_stop)         (GsmSystem *system);
         gboolean (* can_restart)      (GsmSystem *system);
+        gboolean (* can_restart_to_firmware_setup) (GsmSystem *system);
+        void     (* set_restart_to_firmware_setup) (GsmSystem *system,
+                                              gboolean   enable);
         gboolean (* can_suspend)      (GsmSystem *system);
         gboolean (* can_hibernate)    (GsmSystem *system);
         void     (* attempt_stop)     (GsmSystem *system);
@@ -89,6 +92,11 @@ gboolean   gsm_system_can_switch_user  (GsmSystem *system);
 gboolean   gsm_system_can_stop         (GsmSystem *system);
 
 gboolean   gsm_system_can_restart      (GsmSystem *system);
+
+gboolean   gsm_system_can_restart_to_firmware_setup (GsmSystem *system);
+
+void       gsm_system_set_restart_to_firmware_setup (GsmSystem *system,
+                                                     gboolean   enable);
 
 gboolean   gsm_system_can_suspend      (GsmSystem *system);
 

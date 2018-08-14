@@ -531,6 +531,65 @@ gsm_systemd_can_restart (GsmSystem *system)
 }
 
 static gboolean
+gsm_systemd_can_restart_to_firmware_setup (GsmSystem *system)
+{
+        GsmSystemd *manager = GSM_SYSTEMD (system);
+        const gchar *rv;
+        GVariant *res;
+        gboolean can_restart;
+        GError *error = NULL;
+
+        res = g_dbus_proxy_call_sync (manager->priv->sd_proxy,
+                                      "CanRebootToFirmwareSetup",
+                                      NULL,
+                                      G_DBUS_CALL_FLAGS_NONE,
+                                      G_MAXINT,
+                                      NULL,
+                                      &error);
+        if (!res) {
+                g_warning ("Calling CanRebootToFirmwareSetup failed. Check that logind is "
+                           "properly installed and pam_systemd is getting used at login: %s",
+                           error->message);
+                g_error_free (error);
+                return FALSE;
+        }
+
+        g_variant_get (res, "(&s)", &rv);
+
+        can_restart = g_strcmp0 (rv, "yes") == 0 ||
+                      g_strcmp0 (rv, "challenge") == 0;
+
+        g_variant_unref (res);
+
+        return can_restart;
+}
+
+static void
+gsm_systemd_set_restart_to_firmware_setup (GsmSystem *system,
+                                           gboolean   enable)
+{
+        GsmSystemd *manager = GSM_SYSTEMD (system);
+        GVariant *res;
+        GError *error = NULL;
+
+        res = g_dbus_proxy_call_sync (manager->priv->sd_proxy,
+                                      "SetRebootToFirmwareSetup",
+                                      g_variant_new ("(b)", enable),
+                                      G_DBUS_CALL_FLAGS_NONE,
+                                      G_MAXINT,
+                                      NULL,
+                                      &error);
+        if (!res) {
+                g_warning ("Calling SetRebootToFirmwareSetup failed. Check that logind is "
+                           "properly installed and pam_systemd is getting used at login: %s",
+                           error->message);
+                g_error_free (error);
+        }
+
+        g_variant_unref (res);
+}
+
+static gboolean
 gsm_systemd_can_stop (GsmSystem *system)
 {
         GsmSystemd *manager = GSM_SYSTEMD (system);
@@ -957,6 +1016,8 @@ gsm_systemd_system_init (GsmSystemInterface *iface)
         iface->can_switch_user = gsm_systemd_can_switch_user;
         iface->can_stop = gsm_systemd_can_stop;
         iface->can_restart = gsm_systemd_can_restart;
+        iface->can_restart_to_firmware_setup = gsm_systemd_can_restart_to_firmware_setup;
+        iface->set_restart_to_firmware_setup = gsm_systemd_set_restart_to_firmware_setup;
         iface->can_suspend = gsm_systemd_can_suspend;
         iface->can_hibernate = gsm_systemd_can_hibernate;
         iface->attempt_stop = gsm_systemd_attempt_stop;
