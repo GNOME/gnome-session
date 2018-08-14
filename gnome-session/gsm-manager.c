@@ -109,6 +109,7 @@ typedef enum
         GSM_MANAGER_LOGOUT_NONE,
         GSM_MANAGER_LOGOUT_LOGOUT,
         GSM_MANAGER_LOGOUT_REBOOT,
+        GSM_MANAGER_LOGOUT_REBOOT_MENU,
         GSM_MANAGER_LOGOUT_REBOOT_INTERACT,
         GSM_MANAGER_LOGOUT_SHUTDOWN,
         GSM_MANAGER_LOGOUT_SHUTDOWN_INTERACT,
@@ -165,6 +166,7 @@ struct GsmManagerPrivate
         guint                   shell_end_session_dialog_confirmed_logout_id;
         guint                   shell_end_session_dialog_confirmed_shutdown_id;
         guint                   shell_end_session_dialog_confirmed_reboot_id;
+        guint                   shell_end_session_dialog_confirmed_reboot_menu_id;
 };
 
 enum {
@@ -478,6 +480,7 @@ gsm_manager_quit (GsmManager *manager)
                 gsm_quit ();
                 break;
         case GSM_MANAGER_LOGOUT_REBOOT:
+        case GSM_MANAGER_LOGOUT_REBOOT_MENU:
         case GSM_MANAGER_LOGOUT_REBOOT_INTERACT:
                 gsm_system_complete_shutdown (manager->priv->system);
                 break;
@@ -1138,6 +1141,7 @@ end_session_or_show_shell_dialog (GsmManager *manager)
                 type = GSM_SHELL_END_SESSION_DIALOG_TYPE_LOGOUT;
                 break;
         case GSM_MANAGER_LOGOUT_REBOOT:
+        case GSM_MANAGER_LOGOUT_REBOOT_MENU:
         case GSM_MANAGER_LOGOUT_REBOOT_INTERACT:
                 type = GSM_SHELL_END_SESSION_DIALOG_TYPE_RESTART;
                 break;
@@ -3288,6 +3292,12 @@ disconnect_shell_dialog_signals (GsmManager *manager)
                 manager->priv->shell_end_session_dialog_confirmed_reboot_id = 0;
         }
 
+        if (manager->priv->shell_end_session_dialog_confirmed_reboot_menu_id != 0) {
+                g_signal_handler_disconnect (manager->priv->shell,
+                                             manager->priv->shell_end_session_dialog_confirmed_reboot_menu_id);
+                manager->priv->shell_end_session_dialog_confirmed_reboot_menu_id = 0;
+        }
+
         if (manager->priv->shell_end_session_dialog_open_failed_id != 0) {
                 g_signal_handler_disconnect (manager->priv->shell,
                                              manager->priv->shell_end_session_dialog_open_failed_id);
@@ -3351,6 +3361,14 @@ on_shell_end_session_dialog_confirmed_reboot (GsmShell   *shell,
 }
 
 static void
+on_shell_end_session_dialog_confirmed_reboot_menu (GsmShell   *shell,
+                                                        GsmManager *manager)
+{
+        _handle_end_session_dialog_response (manager, GSM_MANAGER_LOGOUT_REBOOT_MENU);
+        disconnect_shell_dialog_signals (manager);
+}
+
+static void
 connect_shell_dialog_signals (GsmManager *manager)
 {
         if (manager->priv->shell_end_session_dialog_canceled_id != 0)
@@ -3384,6 +3402,12 @@ connect_shell_dialog_signals (GsmManager *manager)
                 g_signal_connect (manager->priv->shell,
                                   "end-session-dialog-confirmed-reboot",
                                   G_CALLBACK (on_shell_end_session_dialog_confirmed_reboot),
+                                  manager);
+
+        manager->priv->shell_end_session_dialog_confirmed_reboot_menu_id =
+                g_signal_connect (manager->priv->shell,
+                                  "end-session-dialog-confirmed-reboot-menu",
+                                  G_CALLBACK (on_shell_end_session_dialog_confirmed_reboot_menu),
                                   manager);
 }
 
@@ -3656,6 +3680,10 @@ do_query_end_session_exit (GsmManager *manager)
                 break;
         case GSM_MANAGER_LOGOUT_REBOOT:
         case GSM_MANAGER_LOGOUT_REBOOT_INTERACT:
+                reboot = TRUE;
+                break;
+        case GSM_MANAGER_LOGOUT_REBOOT_MENU:
+                /* FIXME tell bootmanager to show menu on next boot */
                 reboot = TRUE;
                 break;
         case GSM_MANAGER_LOGOUT_SHUTDOWN:

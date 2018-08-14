@@ -64,9 +64,10 @@ struct _GsmShellClass
         void (* end_session_dialog_closed)        (GsmShell *shell);
         void (* end_session_dialog_canceled)      (GsmShell *shell);
 
-        void (* end_session_dialog_confirmed_logout)   (GsmShell *shell);
-        void (* end_session_dialog_confirmed_shutdown) (GsmShell *shell);
-        void (* end_session_dialog_confirmed_reboot)   (GsmShell *shell);
+        void (* end_session_dialog_confirmed_logout)      (GsmShell *shell);
+        void (* end_session_dialog_confirmed_shutdown)    (GsmShell *shell);
+        void (* end_session_dialog_confirmed_reboot)      (GsmShell *shell);
+        void (* end_session_dialog_confirmed_reboot_menu) (GsmShell *shell);
 
 };
 
