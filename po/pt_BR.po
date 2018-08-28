@@ -1,5 +1,5 @@
 # Brazilian Portuguese translation of gnome-session.
-# Copyright (C) 1999-2017 Free Software Foundation, Inc.
+# Copyright (C) 1999-2018 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-session package.
 # Elvis Pfützenreuter <epx@netville.com.br>
 # Sandro Nunes Henrique <sandro@conectiva.com.br>
@@ -13,80 +13,124 @@
 # Djavan Fagundes <dnoway@gmail.com>, 2008.
 # André Gondim <In Memorian>, 2009.
 # Flamarion Jorge <jorge.flamarion@gmail.com>, 2011.
-# Rafael Fontenelle <rafaelff@gnome.org>, 2016.
+# Rafael Fontenelle <rafaelff@gnome.org>, 2016, 2018.
 # Enrico Nicoletto <liverig@gmail.com>, 2013, 2015, 2017.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-06-21 22:12+0000\n"
-"PO-Revision-Date: 2017-08-31 10:57-0300\n"
-"Last-Translator: Enrico Nicoletto <liverig@gmail.com>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
+"POT-Creation-Date: 2018-08-28 21:21+0000\n"
+"PO-Revision-Date: 2018-08-28 19:38-0200\n"
+"Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 2.0.3\n"
+"X-Generator: Virtaal 1.0.0-beta1\n"
 "X-Project-Style: gnome\n"
 
-#: ../data/gnome-custom-session.desktop.in.h:1
+#: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
 msgstr "Personalizar"
 
-#: ../data/gnome-custom-session.desktop.in.h:2
+#: data/gnome-custom-session.desktop.in.in:4
 msgid "This entry lets you select a saved session"
 msgstr "Esta entrada permite a você selecionar uma sessão salva"
 
-#: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
+#: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
 msgid "GNOME"
 msgstr "GNOME"
 
-#: ../data/gnome.desktop.in.h:2 ../data/gnome-xorg.desktop.in.h:2
+#: data/gnome.desktop.in.in:4 data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
 msgstr "Essa sessão o leva ao GNOME"
 
-#: ../data/gnome-xorg.desktop.in.h:1
-msgid "GNOME on Xorg"
-msgstr "GNOME sobre Xorg"
-
 # Adotado como GNOME experimental devido a definição de GNOME dummy: "allow to start a dummy gnome-session which does not start anything
 # but the autostart software and the DBus API with gnome-session"
-#: ../data/gnome-dummy.session.desktop.in.in.h:1
+#: data/gnome-dummy.session.desktop.in.in:3
 msgid "GNOME dummy"
 msgstr "GNOME experimental"
 
-#: ../data/session-selector.ui.h:1
+#: data/gnome-xorg.desktop.in.in:3
+msgid "GNOME on Xorg"
+msgstr "GNOME sobre Xorg"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:5
+#| msgid "_Remove Session"
+msgid "Save sessions"
+msgstr "Salvar sessões"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:6
+msgid "If enabled, gnome-session will save the session automatically."
+msgstr "Se habilitado, o gnome-session vai salvar a sessão automaticamente."
+
+#: data/org.gnome.SessionManager.gschema.xml.in:10
+msgid "Save this session"
+msgstr "Salvar essa sessão"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:11
+msgid ""
+"When enabled, gnome-session will automatically save the next session at log "
+"out even if auto saving is disabled."
+msgstr ""
+"Quando habilitado, o gnome-session vai salvar automaticamente a próxima "
+"sessão quando de seu encerramento mesmo se salvamento automático estiver "
+"desabilitado."
+
+#: data/org.gnome.SessionManager.gschema.xml.in:15
+msgid "Logout prompt"
+msgstr "Pergunta ao encerrar"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:16
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr ""
+"Se habilitado, o gnome-session vai perguntar ao usuário antes de terminar "
+"uma sessão."
+
+#: data/org.gnome.SessionManager.gschema.xml.in:20
+#| msgid "Show extension warning"
+msgid "Show the fallback warning"
+msgstr "Mostrar o aviso de reserva"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:21
+msgid ""
+"If enabled, gnome-session will display a warning dialog after login if the "
+"session was automatically fallen back."
+msgstr ""
+"Se habilitado, o gnome-session vai exibir um diálogo de aviso após a "
+"autenticação se a sessão entrou em modo reserva automaticamente."
+
+#: data/session-selector.ui:15
 msgid "Custom Session"
 msgstr "Sessão personalizada"
 
-#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:102
+#: data/session-selector.ui:50 tools/gnome-session-selector.c:102
 msgid "Please select a custom session to run"
 msgstr "Por gentileza selecione uma sessão personalizada a ser executada"
 
-#: ../data/session-selector.ui.h:3
+#: data/session-selector.ui:105
 msgid "_New Session"
 msgstr "_Nova sessão"
 
-#: ../data/session-selector.ui.h:4
+#: data/session-selector.ui:119
 msgid "_Remove Session"
 msgstr "_Remover sessão"
 
-#: ../data/session-selector.ui.h:5
+#: data/session-selector.ui:133
 msgid "Rena_me Session"
 msgstr "Reno_mear sessão"
 
-#: ../data/session-selector.ui.h:6
+#: data/session-selector.ui:168
 msgid "_Continue"
 msgstr "_Continuar"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:313
+#: gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
 msgstr "Oh não! Alguma coisa está errada."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:320
+#: gnome-session/gsm-fail-whale-dialog.c:320
 msgid ""
 "A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
@@ -94,7 +138,7 @@ msgstr ""
 "Ocorreu um problema e o sistema não pôde ser recuperado. Por favor, entre em "
 "contato com um administrador de sistemas"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:322
+#: gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
 "A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
@@ -102,7 +146,7 @@ msgstr ""
 "Ocorreu um problema e o sistema não pôde ser recuperado. Por precaução todas "
 "as extensões foram desativadas."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:324
+#: gnome-session/gsm-fail-whale-dialog.c:324
 msgid ""
 "A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
@@ -110,27 +154,27 @@ msgstr ""
 "Ocorreu um problema e o sistema não pôde ser recuperado.\n"
 "Por favor, encerre a sessão e tente novamente."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:339
+#: gnome-session/gsm-fail-whale-dialog.c:339
 msgid "_Log Out"
 msgstr "_Encerrar sessão"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:281
+#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:279
 msgid "Enable debugging code"
 msgstr "Habilitar código de depuração"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:362
+#: gnome-session/gsm-fail-whale-dialog.c:362
 msgid "Allow logout"
 msgstr "Permitir encerramento de sessão"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:363
+#: gnome-session/gsm-fail-whale-dialog.c:363
 msgid "Show extension warning"
 msgstr "Mostrar alerta de extensão"
 
-#: ../gnome-session/gsm-manager.c:1318 ../gnome-session/gsm-manager.c:1971
+#: gnome-session/gsm-manager.c:1266 gnome-session/gsm-manager.c:1919
 msgid "Not responding"
 msgstr "Não respondendo"
 
-#: ../gnome-session/gsm-util.c:382
+#: gnome-session/gsm-util.c:382
 msgid "_Log out"
 msgstr "_Encerrar sessão"
 
@@ -138,15 +182,15 @@ msgstr "_Encerrar sessão"
 #. * then the XSMP client already has set several XSMP
 #. * properties. But it could still be that SmProgram is not set.
 #.
-#: ../gnome-session/gsm-xsmp-client.c:557
+#: gnome-session/gsm-xsmp-client.c:557
 msgid "Remembered Application"
 msgstr "Lembrar dos aplicativos"
 
-#: ../gnome-session/gsm-xsmp-client.c:1207
+#: gnome-session/gsm-xsmp-client.c:1216
 msgid "This program is blocking logout."
 msgstr "Este programa está bloqueando o encerramento da sessão."
 
-#: ../gnome-session/gsm-xsmp-server.c:340
+#: gnome-session/gsm-xsmp-server.c:338
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
@@ -154,50 +198,49 @@ msgstr ""
 "Recusando a nova conexão do cliente porque a sessão está sendo desligada "
 "neste momento\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:609
+#: gnome-session/gsm-xsmp-server.c:605
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Não foi possível criar o soquete de escuta ICE: %s"
 
-#: ../gnome-session/main.c:279
+#: gnome-session/main.c:277
 msgid "Override standard autostart directories"
 msgstr "Substituir os diretórios padrões de início automático"
 
-#: ../gnome-session/main.c:279
+#: gnome-session/main.c:277
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: ../gnome-session/main.c:280
+#: gnome-session/main.c:278
 msgid "Session to use"
 msgstr "Sessões para usar"
 
-#: ../gnome-session/main.c:280
+#: gnome-session/main.c:278
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: ../gnome-session/main.c:282
+#: gnome-session/main.c:280
 msgid "Do not load user-specified applications"
 msgstr "Não carregar aplicativos especificados pelo usuário"
 
-#: ../gnome-session/main.c:283
+#: gnome-session/main.c:281
 msgid "Version of this application"
 msgstr "Versão deste aplicativo"
 
-# Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong. http://is.gd/Q4XOeq
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:285
+#: gnome-session/main.c:283
 msgid "Show the fail whale dialog for testing"
-msgstr "Mostrar o diálogo da \"falha da baleia\" para teste"
+msgstr "Mostrar o diálogo da “falha da baleia” para teste"
 
-#: ../gnome-session/main.c:286
+#: gnome-session/main.c:284
 msgid "Disable hardware acceleration check"
 msgstr "Desabilita checagem de aceleração de hardware"
 
-#: ../gnome-session/main.c:318
+#: gnome-session/main.c:316
 msgid " — the GNOME session manager"
 msgstr " — gerenciador de sessões do GNOME"
 
-#: ../tools/gnome-session-inhibit.c:108
+#: tools/gnome-session-inhibit.c:108
 #, c-format
 msgid ""
 "%s [OPTION…] COMMAND\n"
@@ -231,69 +274,69 @@ msgstr ""
 "\n"
 "Se nenhuma opção --inhibit for especificada, assume-se como ocioso (idle).\n"
 
-#: ../tools/gnome-session-inhibit.c:146
+#: tools/gnome-session-inhibit.c:146
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Ocorreu falha ao executar %s\n"
 
-#: ../tools/gnome-session-inhibit.c:206 ../tools/gnome-session-inhibit.c:216
-#: ../tools/gnome-session-inhibit.c:226
+#: tools/gnome-session-inhibit.c:206 tools/gnome-session-inhibit.c:216
+#: tools/gnome-session-inhibit.c:226
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s requer um argumento\n"
 
-#: ../tools/gnome-session-selector.c:61
+#: tools/gnome-session-quit.c:50
+msgid "Log out"
+msgstr "Encerrar sessão"
+
+#: tools/gnome-session-quit.c:51
+msgid "Power off"
+msgstr "Desligar"
+
+#: tools/gnome-session-quit.c:52
+msgid "Reboot"
+msgstr "Reiniciar"
+
+#: tools/gnome-session-quit.c:53
+msgid "Ignoring any existing inhibitors"
+msgstr "Ignorar qualquer um inibidor existente"
+
+#: tools/gnome-session-quit.c:54
+msgid "Don’t prompt for user confirmation"
+msgstr "Não pedir confirmação do usuário"
+
+#: tools/gnome-session-quit.c:88 tools/gnome-session-quit.c:102
+msgid "Could not connect to the session manager"
+msgstr "Não foi possível conectar ao gerenciador de sessões"
+
+#: tools/gnome-session-quit.c:198
+msgid "Program called with conflicting options"
+msgstr "Programa chamado com opções conflitantes"
+
+#: tools/gnome-session-selector.c:61
 #, c-format
 msgid "Session %d"
 msgstr "Sessão %d"
 
-#: ../tools/gnome-session-selector.c:107
+#: tools/gnome-session-selector.c:107
 msgid ""
 "Session names are not allowed to start with “.” or contain “/” characters"
 msgstr ""
 "Não são permitidos a nomes de sessões iniciarem com “.” ou conterem "
 "caracteres “/”"
 
-#: ../tools/gnome-session-selector.c:111
+#: tools/gnome-session-selector.c:111
 msgid "Session names are not allowed to start with “.”"
 msgstr "Não são permitidos a nomes de sessões iniciarem com “.”"
 
-#: ../tools/gnome-session-selector.c:115
+#: tools/gnome-session-selector.c:115
 msgid "Session names are not allowed to contain “/” characters"
 msgstr "Não são permitidos a nomes de sessões conterem caracteres “/”"
 
-#: ../tools/gnome-session-selector.c:123
+#: tools/gnome-session-selector.c:123
 #, c-format
 msgid "A session named “%s” already exists"
 msgstr "Uma sessão com nome “%s” já existe"
-
-#: ../tools/gnome-session-quit.c:50
-msgid "Log out"
-msgstr "Encerrar sessão"
-
-#: ../tools/gnome-session-quit.c:51
-msgid "Power off"
-msgstr "Desligar"
-
-#: ../tools/gnome-session-quit.c:52
-msgid "Reboot"
-msgstr "Reiniciar"
-
-#: ../tools/gnome-session-quit.c:53
-msgid "Ignoring any existing inhibitors"
-msgstr "Ignorar qualquer um inibidor existente"
-
-#: ../tools/gnome-session-quit.c:54
-msgid "Don’t prompt for user confirmation"
-msgstr "Não pedir confirmação do usuário"
-
-#: ../tools/gnome-session-quit.c:88 ../tools/gnome-session-quit.c:102
-msgid "Could not connect to the session manager"
-msgstr "Não foi possível conectar ao gerenciador de sessões"
-
-#: ../tools/gnome-session-quit.c:198
-msgid "Program called with conflicting options"
-msgstr "Programa chamado com opções conflitantes"
 
 #~ msgid "Additional startup _programs:"
 #~ msgstr "_Programas iniciais adicionais:"
