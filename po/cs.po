@@ -11,78 +11,119 @@
 # Miloslav Trmac <mitr@volny.cz>, 2004, 2005, 2006.
 # Petr Tomeš <ptomes@gmail.com>, 2006.
 # Petr Kovar <pknbe@volny.cz>, 2007, 2008, 2009, 2010, 2011, 2012, 2013.
-# Marek Černocký <marek@manet.cz>, 2012, 2013, 2015.
+# Marek Černocký <marek@manet.cz>, 2012, 2013, 2015, 2018.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-06-21 22:12+0000\n"
-"PO-Revision-Date: 2015-11-15 12:35+0100\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
+"POT-Creation-Date: 2018-08-28 21:21+0000\n"
+"PO-Revision-Date: 2018-08-29 10:42+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
-"Language-Team: Czech <gnome-cs-list@gnome.org>\n"
+"Language-Team: čeština <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"X-Generator: Gtranslator 2.91.7\n"
 "X-Project-Style: gnome\n"
 
-#: ../data/gnome-custom-session.desktop.in.h:1
+#: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
 msgstr "Vlastní"
 
-#: ../data/gnome-custom-session.desktop.in.h:2
+#: data/gnome-custom-session.desktop.in.in:4
 msgid "This entry lets you select a saved session"
 msgstr "Tato položka umožňuje vybrat uložené sezení"
 
-#: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
+#: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
 msgid "GNOME"
 msgstr "GNOME"
 
-#: ../data/gnome.desktop.in.h:2 ../data/gnome-xorg.desktop.in.h:2
+#: data/gnome.desktop.in.in:4 data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
 msgstr "Toto sezení vás přihlásí do GNOME"
 
-#: ../data/gnome-xorg.desktop.in.h:1
-msgid "GNOME on Xorg"
-msgstr "GNOME na Xorg"
-
-#: ../data/gnome-dummy.session.desktop.in.in.h:1
+#: data/gnome-dummy.session.desktop.in.in:3
 msgid "GNOME dummy"
 msgstr "GNOME dummy"
 
-#: ../data/session-selector.ui.h:1
+#: data/gnome-xorg.desktop.in.in:3
+msgid "GNOME on Xorg"
+msgstr "GNOME na Xorg"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:5
+msgid "Save sessions"
+msgstr "Ukládat sezení"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:6
+msgid "If enabled, gnome-session will save the session automatically."
+msgstr "Když je zapnuto, bude gnome-session automaticky ukládat sezení."
+
+#: data/org.gnome.SessionManager.gschema.xml.in:10
+msgid "Save this session"
+msgstr "Uložit toto sezení"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:11
+msgid ""
+"When enabled, gnome-session will automatically save the next session at log "
+"out even if auto saving is disabled."
+msgstr ""
+"Když je zapnuto, gnome-session při odhlášení automaticky uloží příští "
+"sezení, i když je vypnuté automatické ukládání."
+
+#: data/org.gnome.SessionManager.gschema.xml.in:15
+msgid "Logout prompt"
+msgstr "Dotaz na odhlášení"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:16
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr ""
+"Když je zapnuto, gnome-session se bude před ukončením sezení dotazovat "
+"uživatele."
+
+#: data/org.gnome.SessionManager.gschema.xml.in:20
+msgid "Show the fallback warning"
+msgstr "Zobrazit varování při záložním sezení"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:21
+msgid ""
+"If enabled, gnome-session will display a warning dialog after login if the "
+"session was automatically fallen back."
+msgstr ""
+"Když je zapnuto, gnome-session zobrazí po přihlášení varovné dialogové okno "
+"v situaci, kdy se automaticky použije záložní sezení."
+
+#: data/session-selector.ui:15
 msgid "Custom Session"
 msgstr "Vlastní sezení"
 
-#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:102
+#: data/session-selector.ui:50 tools/gnome-session-selector.c:102
 msgid "Please select a custom session to run"
 msgstr "Vyberte prosím vlastní sezení, které chcete spustit"
 
-#: ../data/session-selector.ui.h:3
+#: data/session-selector.ui:105
 msgid "_New Session"
 msgstr "_Nové sezení"
 
-#: ../data/session-selector.ui.h:4
+#: data/session-selector.ui:119
 msgid "_Remove Session"
 msgstr "Odst_ranit sezení"
 
-#: ../data/session-selector.ui.h:5
+#: data/session-selector.ui:133
 msgid "Rena_me Session"
 msgstr "Přej_menovat sezení"
 
-#: ../data/session-selector.ui.h:6
+#: data/session-selector.ui:168
 msgid "_Continue"
 msgstr "_Pokračovat"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:313
+#: gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
 msgstr "Jejda! Něco se pokazilo."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:320
+#: gnome-session/gsm-fail-whale-dialog.c:320
 msgid ""
 "A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
@@ -90,7 +131,7 @@ msgstr ""
 "Došlo ke komplikacím a systém se nepodařilo obnovit. Kontaktujte prosím "
 "správce systému"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:322
+#: gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
 "A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
@@ -98,7 +139,7 @@ msgstr ""
 "Došlo ke komplikacím a systém se nepodařilo obnovit. Všechna rozšíření byla "
 "preventivně zakázána."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:324
+#: gnome-session/gsm-fail-whale-dialog.c:324
 msgid ""
 "A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
@@ -106,27 +147,27 @@ msgstr ""
 "Došlo ke komplikacím a systém se nepodařilo obnovit.\n"
 "Odhlaste se prosím a zkuste to znovu."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:339
+#: gnome-session/gsm-fail-whale-dialog.c:339
 msgid "_Log Out"
 msgstr "_Odhlásit se"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:281
+#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:279
 msgid "Enable debugging code"
 msgstr "Zapnout ladicí kód"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:362
+#: gnome-session/gsm-fail-whale-dialog.c:362
 msgid "Allow logout"
 msgstr "Umožnit odhlášení"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:363
+#: gnome-session/gsm-fail-whale-dialog.c:363
 msgid "Show extension warning"
 msgstr "Zobrazit varování rozšíření"
 
-#: ../gnome-session/gsm-manager.c:1318 ../gnome-session/gsm-manager.c:1971
+#: gnome-session/gsm-manager.c:1266 gnome-session/gsm-manager.c:1919
 msgid "Not responding"
 msgstr "Neodpovídá"
 
-#: ../gnome-session/gsm-util.c:382
+#: gnome-session/gsm-util.c:382
 msgid "_Log out"
 msgstr "Odh_lásit se"
 
@@ -134,64 +175,64 @@ msgstr "Odh_lásit se"
 #. * then the XSMP client already has set several XSMP
 #. * properties. But it could still be that SmProgram is not set.
 #.
-#: ../gnome-session/gsm-xsmp-client.c:557
+#: gnome-session/gsm-xsmp-client.c:557
 msgid "Remembered Application"
 msgstr "Zapamatovaná aplikace"
 
-#: ../gnome-session/gsm-xsmp-client.c:1207
+#: gnome-session/gsm-xsmp-client.c:1216
 msgid "This program is blocking logout."
 msgstr "Tento program brání odhlášení."
 
-#: ../gnome-session/gsm-xsmp-server.c:340
+#: gnome-session/gsm-xsmp-server.c:338
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr ""
 "Odmítnutí spojení nového klienta, jelikož právě probíhá vypnutí sezení\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:609
+#: gnome-session/gsm-xsmp-server.c:605
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Nelze vytvořit socket naslouchání ICE: %s"
 
-#: ../gnome-session/main.c:279
+#: gnome-session/main.c:277
 msgid "Override standard autostart directories"
 msgstr "Přepsat standardní adresáře automatického spuštění"
 
-#: ../gnome-session/main.c:279
+#: gnome-session/main.c:277
 msgid "AUTOSTART_DIR"
 msgstr "ADR_AUTOSPUŠTĚNÍ"
 
-#: ../gnome-session/main.c:280
+#: gnome-session/main.c:278
 msgid "Session to use"
 msgstr "Sezení, které se má použít"
 
-#: ../gnome-session/main.c:280
+#: gnome-session/main.c:278
 msgid "SESSION_NAME"
 msgstr "NÁZEV_SEZENÍ"
 
-#: ../gnome-session/main.c:282
+#: gnome-session/main.c:280
 msgid "Do not load user-specified applications"
 msgstr "Nenahrávat uživatelem zadané aplikace"
 
-#: ../gnome-session/main.c:283
+#: gnome-session/main.c:281
 msgid "Version of this application"
 msgstr "Verze této aplikace"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:285
+#: gnome-session/main.c:283
 msgid "Show the fail whale dialog for testing"
 msgstr "Zobrazit dialogové okno černé barvy pro testování"
 
-#: ../gnome-session/main.c:286
+#: gnome-session/main.c:284
 msgid "Disable hardware acceleration check"
 msgstr "Zakázat kontrolu hardwarové akcelerace"
 
-#: ../gnome-session/main.c:318
+#: gnome-session/main.c:316
 msgid " — the GNOME session manager"
 msgstr " – správce sezení GNOME"
 
-#: ../tools/gnome-session-inhibit.c:108
+#: tools/gnome-session-inhibit.c:108
 #, c-format
 msgid ""
 "%s [OPTION…] COMMAND\n"
@@ -225,65 +266,64 @@ msgstr ""
 "\n"
 "Pokud není zadána volba --inhibit, použije se idle.\n"
 
-#: ../tools/gnome-session-inhibit.c:146
+#: tools/gnome-session-inhibit.c:146
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Nepodařilo se spustit %s\n"
 
-#: ../tools/gnome-session-inhibit.c:206 ../tools/gnome-session-inhibit.c:216
-#: ../tools/gnome-session-inhibit.c:226
+#: tools/gnome-session-inhibit.c:206 tools/gnome-session-inhibit.c:216
+#: tools/gnome-session-inhibit.c:226
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s vyžaduje argument\n"
 
-#: ../tools/gnome-session-selector.c:61
+#: tools/gnome-session-quit.c:50
+msgid "Log out"
+msgstr "Odhlásit se"
+
+#: tools/gnome-session-quit.c:51
+msgid "Power off"
+msgstr "Vypnout"
+
+#: tools/gnome-session-quit.c:52
+msgid "Reboot"
+msgstr "Restartovat"
+
+#: tools/gnome-session-quit.c:53
+msgid "Ignoring any existing inhibitors"
+msgstr "Ignorovat jakékoliv existující inhibitory"
+
+#: tools/gnome-session-quit.c:54
+msgid "Don’t prompt for user confirmation"
+msgstr "Nevyžadovat potvrzení od uživatele"
+
+#: tools/gnome-session-quit.c:88 tools/gnome-session-quit.c:102
+msgid "Could not connect to the session manager"
+msgstr "Nelze se spojit se správcem sezení"
+
+#: tools/gnome-session-quit.c:198
+msgid "Program called with conflicting options"
+msgstr "Program volán s kolidujícími volbami"
+
+#: tools/gnome-session-selector.c:61
 #, c-format
 msgid "Session %d"
 msgstr "Sezení %d"
 
-#: ../tools/gnome-session-selector.c:107
+#: tools/gnome-session-selector.c:107
 msgid ""
 "Session names are not allowed to start with “.” or contain “/” characters"
 msgstr "Názvy sezení nemohou začínat znakem „.“ nebo obsahovat znak „/“"
 
-#: ../tools/gnome-session-selector.c:111
+#: tools/gnome-session-selector.c:111
 msgid "Session names are not allowed to start with “.”"
 msgstr "Názvy sezení nemohou začínat znakem „.“"
 
-#: ../tools/gnome-session-selector.c:115
+#: tools/gnome-session-selector.c:115
 msgid "Session names are not allowed to contain “/” characters"
 msgstr "Názvy sezení nemohou obsahovat znak „/“"
 
-#: ../tools/gnome-session-selector.c:123
+#: tools/gnome-session-selector.c:123
 #, c-format
 msgid "A session named “%s” already exists"
 msgstr "Sezení s názvem „%s“ již existuje"
-
-#: ../tools/gnome-session-quit.c:50
-msgid "Log out"
-msgstr "Odhlásit se"
-
-#: ../tools/gnome-session-quit.c:51
-msgid "Power off"
-msgstr "Vypnout"
-
-#: ../tools/gnome-session-quit.c:52
-msgid "Reboot"
-msgstr "Restartovat"
-
-#: ../tools/gnome-session-quit.c:53
-msgid "Ignoring any existing inhibitors"
-msgstr "Ignorovat jakékoliv existující inhibitory"
-
-#: ../tools/gnome-session-quit.c:54
-msgid "Don’t prompt for user confirmation"
-msgstr "Nevyžadovat potvrzení od uživatele"
-
-#: ../tools/gnome-session-quit.c:88 ../tools/gnome-session-quit.c:102
-msgid "Could not connect to the session manager"
-msgstr "Nelze se spojit se správcem sezení"
-
-#: ../tools/gnome-session-quit.c:198
-msgid "Program called with conflicting options"
-msgstr "Program volán s kolidujícími volbami"
-
