@@ -5,15 +5,14 @@
 # Žygimantas Beručka <zygis@gnome.org>, 2003-2007, 2010.
 # Justina Klingaitė <justina.klingaite@gmail.com>, 2005.
 # Gintautas Miliauskas <gintas@akl.lt>, 2006, 2007, 2008.
-# Aurimas Černius <aurisc4@gmail.com>, 2013, 2015, 2016, 2017.
+# Aurimas Černius <aurisc4@gmail.com>, 2013, 2015, 2016, 2017, 2018.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-06-21 22:12+0000\n"
-"PO-Revision-Date: 2017-07-10 23:16+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
+"POT-Creation-Date: 2018-08-28 21:21+0000\n"
+"PO-Revision-Date: 2018-08-29 22:27+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -24,62 +23,101 @@ msgstr ""
 "%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Gtranslator 2.91.7\n"
 
-#: ../data/gnome-custom-session.desktop.in.h:1
+#: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
 msgstr "Pasirinktinis"
 
-#: ../data/gnome-custom-session.desktop.in.h:2
+#: data/gnome-custom-session.desktop.in.in:4
 msgid "This entry lets you select a saved session"
 msgstr "Šis įvesties laukas leidžia pasirinkti įrašytą seansą"
 
-#: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
+#: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
 msgid "GNOME"
 msgstr "GNOME"
 
-#: ../data/gnome.desktop.in.h:2 ../data/gnome-xorg.desktop.in.h:2
+#: data/gnome.desktop.in.in:4 data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
 msgstr "Šis seansas prijungia jus prie GNOME"
 
-#: ../data/gnome-xorg.desktop.in.h:1
-msgid "GNOME on Xorg"
-msgstr "GNOME Xorg aplinkoje"
-
-#: ../data/gnome-dummy.session.desktop.in.in.h:1
+#: data/gnome-dummy.session.desktop.in.in:3
 msgid "GNOME dummy"
 msgstr "GNOME netikra"
 
-#: ../data/session-selector.ui.h:1
+#: data/gnome-xorg.desktop.in.in:3
+msgid "GNOME on Xorg"
+msgstr "GNOME Xorg aplinkoje"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:5
+#| msgid "_Remove Session"
+msgid "Save sessions"
+msgstr "Įrašyti seansus"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:6
+msgid "If enabled, gnome-session will save the session automatically."
+msgstr "Jei įjungta, gnome-session automatiškai įrašys seansą."
+
+#: data/org.gnome.SessionManager.gschema.xml.in:10
+msgid "Save this session"
+msgstr "Įrašyti šį seansą"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:11
+msgid ""
+"When enabled, gnome-session will automatically save the next session at log "
+"out even if auto saving is disabled."
+msgstr ""
+"Kai įjungta, gnome-session automatiškai įrašys kitą seansą atsijungiant net "
+"jei automatinis įrašymas yra išjungtas."
+
+#: data/org.gnome.SessionManager.gschema.xml.in:15
+msgid "Logout prompt"
+msgstr "Atsijungimo klausimas"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:16
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr "Jei įjungta, gnome-session klaus naudotojo prie užbaigiant seansą."
+
+#: data/org.gnome.SessionManager.gschema.xml.in:20
+#| msgid "Show extension warning"
+msgid "Show the fallback warning"
+msgstr "Rodyti atsarginės veiksenos įspėjimą"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:21
+msgid ""
+"If enabled, gnome-session will display a warning dialog after login if the "
+"session was automatically fallen back."
+msgstr ""
+"Jei įjungta, gnome-session prisijungus parodys įspėjimo dialogą, jei "
+"automatiškai naudojama atsarginė veiksena."
+
+#: data/session-selector.ui:15
 msgid "Custom Session"
 msgstr "Pasirinktinis seansas"
 
-#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:102
+#: data/session-selector.ui:50 tools/gnome-session-selector.c:102
 msgid "Please select a custom session to run"
 msgstr "Pasirinkite pasirinktinį seansą paleidimui"
 
-#: ../data/session-selector.ui.h:3
+#: data/session-selector.ui:105
 msgid "_New Session"
 msgstr "_Naujas seansas"
 
-#: ../data/session-selector.ui.h:4
+#: data/session-selector.ui:119
 msgid "_Remove Session"
 msgstr "_Pašalinti seansą"
 
-#: ../data/session-selector.ui.h:5
+#: data/session-selector.ui:133
 msgid "Rena_me Session"
 msgstr "Per_vadinti seansą"
 
-#: ../data/session-selector.ui.h:6
+#: data/session-selector.ui:168
 msgid "_Continue"
 msgstr "_Tęsti"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:313
+#: gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
 msgstr "O ne! Nutiko kažkas negera."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:320
-#| msgid ""
-#| "A problem has occurred and the system can't recover. Please contact a "
-#| "system administrator"
+#: gnome-session/gsm-fail-whale-dialog.c:320
 msgid ""
 "A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
@@ -87,10 +125,7 @@ msgstr ""
 "Iškilo problema ir sistema negali atsistatyti. Susisiekite su sistemos "
 "administratoriumi"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:322
-#| msgid ""
-#| "A problem has occurred and the system can't recover. All extensions have "
-#| "been disabled as a precaution."
+#: gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
 "A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
@@ -98,10 +133,7 @@ msgstr ""
 "Iškilo problema ir sistema negali atsistatyti. Kaip atsargos priemonė visi "
 "plėtiniai buvo išjungti."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:324
-#| msgid ""
-#| "A problem has occurred and the system can't recover.\n"
-#| "Please log out and try again."
+#: gnome-session/gsm-fail-whale-dialog.c:324
 msgid ""
 "A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
@@ -109,27 +141,27 @@ msgstr ""
 "Iškilo problema ir sistema negali atsistatyti.\n"
 "Atsijunkite ir prisijunkite iš naujo."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:339
+#: gnome-session/gsm-fail-whale-dialog.c:339
 msgid "_Log Out"
 msgstr "_Atsijungti"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:281
+#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:279
 msgid "Enable debugging code"
 msgstr "Įjungti derinimo kodą"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:362
+#: gnome-session/gsm-fail-whale-dialog.c:362
 msgid "Allow logout"
 msgstr "Leisti atsijungimą"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:363
+#: gnome-session/gsm-fail-whale-dialog.c:363
 msgid "Show extension warning"
 msgstr "Rodyti plėtinio įspėjimą"
 
-#: ../gnome-session/gsm-manager.c:1318 ../gnome-session/gsm-manager.c:1971
+#: gnome-session/gsm-manager.c:1266 gnome-session/gsm-manager.c:1919
 msgid "Not responding"
 msgstr "Neatsako"
 
-#: ../gnome-session/gsm-util.c:382
+#: gnome-session/gsm-util.c:382
 msgid "_Log out"
 msgstr "_Atsijungti"
 
@@ -137,80 +169,64 @@ msgstr "_Atsijungti"
 #. * then the XSMP client already has set several XSMP
 #. * properties. But it could still be that SmProgram is not set.
 #.
-#: ../gnome-session/gsm-xsmp-client.c:557
+#: gnome-session/gsm-xsmp-client.c:557
 msgid "Remembered Application"
 msgstr "Atsiminti programą"
 
-#: ../gnome-session/gsm-xsmp-client.c:1207
+#: gnome-session/gsm-xsmp-client.c:1216
 msgid "This program is blocking logout."
 msgstr "Ši programa neleidžia atsijungti."
 
-#: ../gnome-session/gsm-xsmp-server.c:340
+#: gnome-session/gsm-xsmp-server.c:338
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr "Atsisakoma naujo kliento ryšio, kadangi seansas dabar išjungiamas\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:609
+#: gnome-session/gsm-xsmp-server.c:605
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Nepavyko sukurti ICE klausymo lizdo: %s"
 
-#: ../gnome-session/main.c:279
+#: gnome-session/main.c:277
 msgid "Override standard autostart directories"
 msgstr "Nepaisyti standartinių automatinės paleisties aplankų"
 
-#: ../gnome-session/main.c:279
+#: gnome-session/main.c:277
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: ../gnome-session/main.c:280
+#: gnome-session/main.c:278
 msgid "Session to use"
 msgstr "Naudoti sesiją"
 
-#: ../gnome-session/main.c:280
+#: gnome-session/main.c:278
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: ../gnome-session/main.c:282
+#: gnome-session/main.c:280
 msgid "Do not load user-specified applications"
 msgstr "Neįkelti naudotojo nurodytų programų"
 
-#: ../gnome-session/main.c:283
+#: gnome-session/main.c:281
 msgid "Version of this application"
 msgstr "Programos versija"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:285
+#: gnome-session/main.c:283
 msgid "Show the fail whale dialog for testing"
 msgstr "Rodyti visiškos nesėkmės dialogą bandymui"
 
-#: ../gnome-session/main.c:286
+#: gnome-session/main.c:284
 msgid "Disable hardware acceleration check"
 msgstr "Išjungti aparatinio spartinimo tikrinimą"
 
-#: ../gnome-session/main.c:318
-#| msgid " - the GNOME session manager"
+#: gnome-session/main.c:316
 msgid " — the GNOME session manager"
 msgstr " – GNOME seanso tvarkytuvė"
 
-#: ../tools/gnome-session-inhibit.c:108
+#: tools/gnome-session-inhibit.c:108
 #, c-format
-#| msgid ""
-#| "%s [OPTION...] COMMAND\n"
-#| "\n"
-#| "Execute COMMAND while inhibiting some session functionality.\n"
-#| "\n"
-#| "  -h, --help        Show this help\n"
-#| "  --version         Show program version\n"
-#| "  --app-id ID       The application id to use\n"
-#| "                    when inhibiting (optional)\n"
-#| "  --reason REASON   The reason for inhibiting (optional)\n"
-#| "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
-#| "                    logout, switch-user, suspend, idle, automount\n"
-#| "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
-#| "\n"
-#| "If no --inhibit option is specified, idle is assumed.\n"
 msgid ""
 "%s [OPTION…] COMMAND\n"
 "\n"
@@ -242,73 +258,67 @@ msgstr ""
 "\n"
 "Jei nėra parametro --inhibit, naudojama idle.\n"
 
-#: ../tools/gnome-session-inhibit.c:146
+#: tools/gnome-session-inhibit.c:146
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Nepavyko paleisti %s\n"
 
-#: ../tools/gnome-session-inhibit.c:206 ../tools/gnome-session-inhibit.c:216
-#: ../tools/gnome-session-inhibit.c:226
+#: tools/gnome-session-inhibit.c:206 tools/gnome-session-inhibit.c:216
+#: tools/gnome-session-inhibit.c:226
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s reikalauja argumento\n"
 
-#: ../tools/gnome-session-selector.c:61
+#: tools/gnome-session-quit.c:50
+msgid "Log out"
+msgstr "Atsijungti"
+
+#: tools/gnome-session-quit.c:51
+msgid "Power off"
+msgstr "Išjungti"
+
+#: tools/gnome-session-quit.c:52
+msgid "Reboot"
+msgstr "Įkelti iš naujo"
+
+#: tools/gnome-session-quit.c:53
+msgid "Ignoring any existing inhibitors"
+msgstr "Ignoruojami trukdžiai"
+
+#: tools/gnome-session-quit.c:54
+msgid "Don’t prompt for user confirmation"
+msgstr "Nereikalauti naudotojo patvirtinimo"
+
+#: tools/gnome-session-quit.c:88 tools/gnome-session-quit.c:102
+msgid "Could not connect to the session manager"
+msgstr "Nepavyko prisijungti prie seansų tvarkytuvės"
+
+#: tools/gnome-session-quit.c:198
+msgid "Program called with conflicting options"
+msgstr "Programa iškviesta, naudojant konfliktuojančius parametrus"
+
+#: tools/gnome-session-selector.c:61
 #, c-format
 msgid "Session %d"
 msgstr "Seansas %d"
 
-#: ../tools/gnome-session-selector.c:107
-#| msgid ""
-#| "Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
+#: tools/gnome-session-selector.c:107
 msgid ""
 "Session names are not allowed to start with “.” or contain “/” characters"
 msgstr "Seansų pavadinimai negali prasidėti „.“ ar turėti simbolių „/“"
 
-#: ../tools/gnome-session-selector.c:111
-#| msgid "Session names are not allowed to start with ‘.’"
+#: tools/gnome-session-selector.c:111
 msgid "Session names are not allowed to start with “.”"
 msgstr "Seansų pavadinimai negali prasidėti „.“"
 
-#: ../tools/gnome-session-selector.c:115
-#| msgid "Session names are not allowed to contain ‘/’ characters"
+#: tools/gnome-session-selector.c:115
 msgid "Session names are not allowed to contain “/” characters"
 msgstr "Seansų pavadinimai negali turėti simbolių „/“"
 
-#: ../tools/gnome-session-selector.c:123
+#: tools/gnome-session-selector.c:123
 #, c-format
-#| msgid "A session named ‘%s’ already exists"
 msgid "A session named “%s” already exists"
 msgstr "Jau yra seansas pavadinimu „%s“"
-
-#: ../tools/gnome-session-quit.c:50
-msgid "Log out"
-msgstr "Atsijungti"
-
-#: ../tools/gnome-session-quit.c:51
-msgid "Power off"
-msgstr "Išjungti"
-
-#: ../tools/gnome-session-quit.c:52
-msgid "Reboot"
-msgstr "Įkelti iš naujo"
-
-#: ../tools/gnome-session-quit.c:53
-msgid "Ignoring any existing inhibitors"
-msgstr "Ignoruojami trukdžiai"
-
-#: ../tools/gnome-session-quit.c:54
-#| msgid "Don't prompt for user confirmation"
-msgid "Don’t prompt for user confirmation"
-msgstr "Nereikalauti naudotojo patvirtinimo"
-
-#: ../tools/gnome-session-quit.c:88 ../tools/gnome-session-quit.c:102
-msgid "Could not connect to the session manager"
-msgstr "Nepavyko prisijungti prie seansų tvarkytuvės"
-
-#: ../tools/gnome-session-quit.c:198
-msgid "Program called with conflicting options"
-msgstr "Programa iškviesta, naudojant konfliktuojančius parametrus"
 
 #~ msgid "Additional startup _programs:"
 #~ msgstr "Papildomos paleidžiamos _programos:"
