@@ -7,10 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session-2.0\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-07-19 16:45+0000\n"
-"PO-Revision-Date: 2017-08-11 20:06+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
+"POT-Creation-Date: 2018-08-28 21:21+0000\n"
+"PO-Revision-Date: 2018-09-03 18:04+0200\n"
 "Last-Translator: Daniel Șerbănescu <daniel [at] serbanescu [dot] dk>\n"
 "Language-Team: Gnome Romanian Translation Team\n"
 "Language: ro\n"
@@ -19,65 +18,105 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);;\n"
-"X-Generator: Virtaal 0.7.1\n"
+"X-Generator: Poedit 2.1.1\n"
 "X-Project-Style: gnome\n"
 
-#: ../data/gnome-custom-session.desktop.in.h:1
+#: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
 msgstr "Personalizat"
 
-#: ../data/gnome-custom-session.desktop.in.h:2
+#: data/gnome-custom-session.desktop.in.in:4
 msgid "This entry lets you select a saved session"
 msgstr "Această opțiune vă permite să selectați o sesiune salvată"
 
-#: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
+#: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
 msgid "GNOME"
 msgstr "GNOME"
 
-#: ../data/gnome.desktop.in.h:2 ../data/gnome-xorg.desktop.in.h:2
+#: data/gnome.desktop.in.in:4 data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
 msgstr "Această sesiune vă va autentifica în GNOME"
 
-#: ../data/gnome-xorg.desktop.in.h:1
-msgid "GNOME on Xorg"
-msgstr "GNOME pe Xorg"
-
-#: ../data/gnome-dummy.session.desktop.in.in.h:1
+#: data/gnome-dummy.session.desktop.in.in:3
 msgid "GNOME dummy"
 msgstr "machetă GNOME"
 
-#: ../data/session-selector.ui.h:1
+#: data/gnome-xorg.desktop.in.in:3
+msgid "GNOME on Xorg"
+msgstr "GNOME pe Xorg"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:5
+msgid "Save sessions"
+msgstr "Salvează sesiuni"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:6
+msgid "If enabled, gnome-session will save the session automatically."
+msgstr "Dacă este activat, gnome-session va salva sesiunea automat."
+
+#: data/org.gnome.SessionManager.gschema.xml.in:10
+msgid "Save this session"
+msgstr "Salvează această sesiune"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:11
+msgid ""
+"When enabled, gnome-session will automatically save the next session at log "
+"out even if auto saving is disabled."
+msgstr ""
+"Când este activată, gnome-session va salva sesiunea automat sesiunea "
+"următoare la deautentificare chiar și dacă salvarea automată este "
+"dezactivată."
+
+#: data/org.gnome.SessionManager.gschema.xml.in:15
+msgid "Logout prompt"
+msgstr "Anunță ieșirea din sesiune"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:16
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr ""
+"Dacă este activat, gnome-session va anunța utilizatorul înainte de "
+"terminarea sesiunii."
+
+#: data/org.gnome.SessionManager.gschema.xml.in:20
+msgid "Show the fallback warning"
+msgstr "Arată avertizarea sesiunii de rezervă"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:21
+msgid ""
+"If enabled, gnome-session will display a warning dialog after login if the "
+"session was automatically fallen back."
+msgstr ""
+"Dacă este activat, gnome-session va afișa un dialog de avertizare după "
+"autentificare dacă sesiunea de rezervă a fost inițiată."
+
+#: data/session-selector.ui:15
 msgid "Custom Session"
 msgstr "Sesiune personalizată"
 
-#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:102
+#: data/session-selector.ui:50 tools/gnome-session-selector.c:102
 msgid "Please select a custom session to run"
 msgstr "Selectați o sesiune personalizată pentru rulare"
 
-#: ../data/session-selector.ui.h:3
+#: data/session-selector.ui:105
 msgid "_New Session"
 msgstr "Sesiune _nouă"
 
-#: ../data/session-selector.ui.h:4
+#: data/session-selector.ui:119
 msgid "_Remove Session"
 msgstr "_Elimină sesiunea"
 
-#: ../data/session-selector.ui.h:5
+#: data/session-selector.ui:133
 msgid "Rena_me Session"
 msgstr "Redenu_mește sesiunea"
 
-#: ../data/session-selector.ui.h:6
+#: data/session-selector.ui:168
 msgid "_Continue"
 msgstr "_Continuă"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:313
+#: gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
 msgstr "Oh, nu! Ceva nu a funcționat corect."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:320
-#| msgid ""
-#| "A problem has occurred and the system can't recover. Please contact a "
-#| "system administrator"
+#: gnome-session/gsm-fail-whale-dialog.c:320
 msgid ""
 "A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
@@ -85,10 +124,7 @@ msgstr ""
 "A intervenit o problemă și sistemul nu se poate recupera. Contactați un "
 "administrator de sistem."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:322
-#| msgid ""
-#| "A problem has occurred and the system can't recover. All extensions have "
-#| "been disabled as a precaution."
+#: gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
 "A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
@@ -96,10 +132,7 @@ msgstr ""
 "A intervenit o problemă și sistemul nu se poate recupera. Toate extensiile "
 "au fost dezactivate preventiv."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:324
-#| msgid ""
-#| "A problem has occurred and the system can't recover.\n"
-#| "Please log out and try again."
+#: gnome-session/gsm-fail-whale-dialog.c:324
 msgid ""
 "A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
@@ -107,27 +140,27 @@ msgstr ""
 "A intervenit o problemă și sistemul nu se poate recupera.\n"
 "Ieșiți din sesiune și încercați din nou."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:339
+#: gnome-session/gsm-fail-whale-dialog.c:339
 msgid "_Log Out"
 msgstr "_Ieșire din sesiune"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:281
+#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:279
 msgid "Enable debugging code"
 msgstr "Activează codul pentru depanare"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:362
+#: gnome-session/gsm-fail-whale-dialog.c:362
 msgid "Allow logout"
 msgstr "Permite ieșierea din sesiune"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:363
+#: gnome-session/gsm-fail-whale-dialog.c:363
 msgid "Show extension warning"
 msgstr "Afișează avertizările pentru extensii"
 
-#: ../gnome-session/gsm-manager.c:1266 ../gnome-session/gsm-manager.c:1919
+#: gnome-session/gsm-manager.c:1266 gnome-session/gsm-manager.c:1919
 msgid "Not responding"
 msgstr "Nu răspunde"
 
-#: ../gnome-session/gsm-util.c:382
+#: gnome-session/gsm-util.c:382
 msgid "_Log out"
 msgstr "În_chide sesiunea"
 
@@ -135,81 +168,65 @@ msgstr "În_chide sesiunea"
 #. * then the XSMP client already has set several XSMP
 #. * properties. But it could still be that SmProgram is not set.
 #.
-#: ../gnome-session/gsm-xsmp-client.c:557
+#: gnome-session/gsm-xsmp-client.c:557
 msgid "Remembered Application"
 msgstr "Aplicație memorată"
 
-#: ../gnome-session/gsm-xsmp-client.c:1207
+#: gnome-session/gsm-xsmp-client.c:1216
 msgid "This program is blocking logout."
 msgstr "Acest program blochează ieșirea din sesiune."
 
-#: ../gnome-session/gsm-xsmp-server.c:340
+#: gnome-session/gsm-xsmp-server.c:338
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr ""
 "Se refuză conexiunea noului client deoarece sesiunea este în curs de oprire\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:609
+#: gnome-session/gsm-xsmp-server.c:605
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Nu s-a putut creea socketul de ascultare ICE: %s"
 
-#: ../gnome-session/main.c:279
+#: gnome-session/main.c:277
 msgid "Override standard autostart directories"
 msgstr "Înlocuiește dosarele standard de pornire automată"
 
-#: ../gnome-session/main.c:279
+#: gnome-session/main.c:277
 msgid "AUTOSTART_DIR"
 msgstr "DIRECTOR_DE_PORNIRE"
 
-#: ../gnome-session/main.c:280
+#: gnome-session/main.c:278
 msgid "Session to use"
 msgstr "Sesiunea de utilizat"
 
-#: ../gnome-session/main.c:280
+#: gnome-session/main.c:278
 msgid "SESSION_NAME"
 msgstr "NUMELE_SESIUNII"
 
-#: ../gnome-session/main.c:282
+#: gnome-session/main.c:280
 msgid "Do not load user-specified applications"
 msgstr "Nu încărca aplicațiile specificate de utilizator"
 
-#: ../gnome-session/main.c:283
+#: gnome-session/main.c:281
 msgid "Version of this application"
 msgstr "Versiunea acestei aplicații"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:285
+#: gnome-session/main.c:283
 msgid "Show the fail whale dialog for testing"
 msgstr "Afișează dialogul de eroare pentru testare"
 
-#: ../gnome-session/main.c:286
+#: gnome-session/main.c:284
 msgid "Disable hardware acceleration check"
 msgstr "Dezactivează verificarea accelerării hardware"
 
-#: ../gnome-session/main.c:318
-#| msgid " - the GNOME session manager"
+#: gnome-session/main.c:316
 msgid " — the GNOME session manager"
 msgstr " — Administratorul de sesiune GNOME"
 
-#: ../tools/gnome-session-inhibit.c:108
+#: tools/gnome-session-inhibit.c:108
 #, c-format
-#| msgid ""
-#| "%s [OPTION...] COMMAND\n"
-#| "\n"
-#| "Execute COMMAND while inhibiting some session functionality.\n"
-#| "\n"
-#| "  -h, --help        Show this help\n"
-#| "  --version         Show program version\n"
-#| "  --app-id ID       The application id to use\n"
-#| "                    when inhibiting (optional)\n"
-#| "  --reason REASON   The reason for inhibiting (optional)\n"
-#| "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
-#| "                    logout, switch-user, suspend, idle, automount\n"
-#| "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
-#| "\n"
-#| "If no --inhibit option is specified, idle is assumed.\n"
 msgid ""
 "%s [OPTION…] COMMAND\n"
 "\n"
@@ -242,75 +259,69 @@ msgstr ""
 "\n"
 "Dacă nicio opțiune --inhibit nu este specificată, se asumă idle.\n"
 
-#: ../tools/gnome-session-inhibit.c:146
+#: tools/gnome-session-inhibit.c:146
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Eroare la executarea %s\n"
 
-#: ../tools/gnome-session-inhibit.c:206 ../tools/gnome-session-inhibit.c:216
-#: ../tools/gnome-session-inhibit.c:226
+#: tools/gnome-session-inhibit.c:206 tools/gnome-session-inhibit.c:216
+#: tools/gnome-session-inhibit.c:226
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s necesită un argument\n"
 
-#: ../tools/gnome-session-selector.c:61
+#: tools/gnome-session-quit.c:50
+msgid "Log out"
+msgstr "Închide sesiunea"
+
+#: tools/gnome-session-quit.c:51
+msgid "Power off"
+msgstr "Oprește"
+
+#: tools/gnome-session-quit.c:52
+msgid "Reboot"
+msgstr "Repornește"
+
+#: tools/gnome-session-quit.c:53
+msgid "Ignoring any existing inhibitors"
+msgstr "Se ignoră orice inhibator existent"
+
+#: tools/gnome-session-quit.c:54
+msgid "Don’t prompt for user confirmation"
+msgstr "Nu solicita confirmarea utilizatorului"
+
+#: tools/gnome-session-quit.c:88 tools/gnome-session-quit.c:102
+msgid "Could not connect to the session manager"
+msgstr "Nu s-a putut realiza conectarea la administratorul de sesiuni"
+
+#: tools/gnome-session-quit.c:198
+msgid "Program called with conflicting options"
+msgstr "Program apelat cu opțiuni care intră în conflict"
+
+#: tools/gnome-session-selector.c:61
 #, c-format
 msgid "Session %d"
 msgstr "Sesiunea %d"
 
-#: ../tools/gnome-session-selector.c:107
-#| msgid ""
-#| "Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
+#: tools/gnome-session-selector.c:107
 msgid ""
 "Session names are not allowed to start with “.” or contain “/” characters"
 msgstr ""
 "Nu este permis ca numele sesiunilor să înceapă cu „.” sau să conțină "
 "caracterul „/”"
 
-#: ../tools/gnome-session-selector.c:111
-#| msgid "Session names are not allowed to start with ‘.’"
+#: tools/gnome-session-selector.c:111
 msgid "Session names are not allowed to start with “.”"
 msgstr "Nu este permis ca numele sesiunilor să înceapă cu „.”"
 
-#: ../tools/gnome-session-selector.c:115
-#| msgid "Session names are not allowed to contain ‘/’ characters"
+#: tools/gnome-session-selector.c:115
 msgid "Session names are not allowed to contain “/” characters"
 msgstr "Nu este permis ca numele sesiunilor să conțină caracterul „/”"
 
-#: ../tools/gnome-session-selector.c:123
+#: tools/gnome-session-selector.c:123
 #, c-format
-#| msgid "A session named ‘%s’ already exists"
 msgid "A session named “%s” already exists"
 msgstr "O sesiune numită „%s” există deja"
-
-#: ../tools/gnome-session-quit.c:50
-msgid "Log out"
-msgstr "Închide sesiunea"
-
-#: ../tools/gnome-session-quit.c:51
-msgid "Power off"
-msgstr "Oprește"
-
-#: ../tools/gnome-session-quit.c:52
-msgid "Reboot"
-msgstr "Repornește"
-
-#: ../tools/gnome-session-quit.c:53
-msgid "Ignoring any existing inhibitors"
-msgstr "Se ignoră orice inhibator existent"
-
-#: ../tools/gnome-session-quit.c:54
-#| msgid "Don't prompt for user confirmation"
-msgid "Don’t prompt for user confirmation"
-msgstr "Nu solicita confirmarea utilizatorului"
-
-#: ../tools/gnome-session-quit.c:88 ../tools/gnome-session-quit.c:102
-msgid "Could not connect to the session manager"
-msgstr "Nu s-a putut realiza conectarea la administratorul de sesiuni"
-
-#: ../tools/gnome-session-quit.c:198
-msgid "Program called with conflicting options"
-msgstr "Program apelat cu opțiuni care intră în conflict"
 
 #~| msgid "GNOME fallback"
 #~ msgid "GNOME on Wayland"
@@ -565,15 +576,6 @@ msgstr "Program apelat cu opțiuni care intră în conflict"
 #~ msgid "File Manager"
 #~ msgstr "Administrator de fișiere"
 
-#~ msgid ""
-#~ "If enabled, gnome-session will prompt the user before ending a session."
-#~ msgstr ""
-#~ "Dacă este activat, gnome-session va anunța utilizatorul înainte de "
-#~ "terminarea sesiunii."
-
-#~ msgid "If enabled, gnome-session will save the session automatically."
-#~ msgstr "Dacă este activat, gnome-session va salva sesiunea automat."
-
 #~ msgid "List of applications that are part of the default session."
 #~ msgstr "Lista aplicațiilor care fac parte din sesiunea implicită."
 
@@ -591,9 +593,6 @@ msgstr "Program apelat cu opțiuni care intră în conflict"
 #~ "ca utilizatorii să șteargă o componentă necesară din sesiune, iar "
 #~ "administratorul sesiunii va adăuga automat componentele necesare în cazul "
 #~ "în care vor fi șterse."
-
-#~ msgid "Logout prompt"
-#~ msgstr "Anunță ieșirea din sesiune"
 
 #~ msgid "Panel"
 #~ msgstr "Panou"
@@ -649,9 +648,6 @@ msgstr "Program apelat cu opțiuni care intră în conflict"
 
 #~ msgid "NAME"
 #~ msgstr "NUME"
-
-#~ msgid "Kill session"
-#~ msgstr "Închide forțat sesiunea"
 
 #~ msgid "GNOME Settings Daemon Helper"
 #~ msgstr "Ajutor serviciu configurări GNOME"
