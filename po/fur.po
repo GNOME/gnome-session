@@ -5,10 +5,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.20.x\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2018-01-08 21:39+0000\n"
-"PO-Revision-Date: 2018-02-17 03:34+0100\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
+"POT-Creation-Date: 2018-08-28 21:21+0000\n"
+"PO-Revision-Date: 2018-09-05 22:32+0200\n"
 "Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
 "Language-Team: Friulian <massimo.furlani@libero.it>\n"
 "Language: fur\n"
@@ -16,31 +15,73 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.3\n"
+"X-Generator: Poedit 2.0.7\n"
 
-#: data/gnome-custom-session.desktop.in:3
+#: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
 msgstr "Personalizade"
 
-#: data/gnome-custom-session.desktop.in:4
+#: data/gnome-custom-session.desktop.in.in:4
 msgid "This entry lets you select a saved session"
 msgstr "Ti permet di selezionâ une session salvade"
 
-#: data/gnome.desktop.in:3 data/gnome.session.desktop.in.in:3
+#: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
 msgid "GNOME"
 msgstr "GNOME"
 
-#: data/gnome.desktop.in:4 data/gnome-xorg.desktop.in:4
+#: data/gnome.desktop.in.in:4 data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
-msgstr "Cheste session ti fasarâ jentrâ dentri GNOME"
-
-#: data/gnome-xorg.desktop.in:3
-msgid "GNOME on Xorg"
-msgstr "GNOME su Xorg"
+msgstr "Cheste session ti fasarà jentrâ in GNOME"
 
 #: data/gnome-dummy.session.desktop.in.in:3
 msgid "GNOME dummy"
 msgstr "GNOME dummy"
+
+#: data/gnome-xorg.desktop.in.in:3
+msgid "GNOME on Xorg"
+msgstr "GNOME su Xorg"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:5
+msgid "Save sessions"
+msgstr "Salve sessions"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:6
+msgid "If enabled, gnome-session will save the session automatically."
+msgstr "Se abilitât, gnome-session al salvarà la session in automatic."
+
+#: data/org.gnome.SessionManager.gschema.xml.in:10
+msgid "Save this session"
+msgstr "Salve cheste session"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:11
+msgid ""
+"When enabled, gnome-session will automatically save the next session at log "
+"out even if auto saving is disabled."
+msgstr ""
+"Cuant che al è abilitât, gnome-session al salvarà in automatic la sucessive "
+"session tal moment che si jessarà, ancje se il salvament automatic al è "
+"disabilitât."
+
+#: data/org.gnome.SessionManager.gschema.xml.in:15
+msgid "Logout prompt"
+msgstr "Conferme fin da session"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:16
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr ""
+"Se abilitât, gnome-session al domandarà conferme prin di finî la session."
+
+#: data/org.gnome.SessionManager.gschema.xml.in:20
+msgid "Show the fallback warning"
+msgstr "Mostre l'avîs di rapeç"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:21
+msgid ""
+"If enabled, gnome-session will display a warning dialog after login if the "
+"session was automatically fallen back."
+msgstr ""
+"Se abilitât, gnome-sessions al mostrarà un dialic di avîs daspò l'acès se la "
+"session e je stade rapeçade in automatic."
 
 #: data/session-selector.ui:15
 msgid "Custom Session"
@@ -130,13 +171,13 @@ msgstr "Aplicazion memorizade "
 msgid "This program is blocking logout."
 msgstr "Chest program al sta blocant la jessude."
 
-#: gnome-session/gsm-xsmp-server.c:340
+#: gnome-session/gsm-xsmp-server.c:338
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr "Refudi le gnove conession client parcè che la session si sta studant\n"
 
-#: gnome-session/gsm-xsmp-server.c:609
+#: gnome-session/gsm-xsmp-server.c:605
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Impussibil creâ il socket di scolte ICE: %s"
@@ -222,29 +263,6 @@ msgstr "Falît a eseguî %s\n"
 msgid "%s requires an argument\n"
 msgstr "%s al scugne vê un argoment\n"
 
-#: tools/gnome-session-selector.c:61
-#, c-format
-msgid "Session %d"
-msgstr "Session %d"
-
-#: tools/gnome-session-selector.c:107
-msgid ""
-"Session names are not allowed to start with “.” or contain “/” characters"
-msgstr "I nons di session no puedin tacâ cun “.” o vê il caratar “/”"
-
-#: tools/gnome-session-selector.c:111
-msgid "Session names are not allowed to start with “.”"
-msgstr "I nons di session no puedin tacâ cun “.”"
-
-#: tools/gnome-session-selector.c:115
-msgid "Session names are not allowed to contain “/” characters"
-msgstr "I nons di session no puedin vê il caratar “/”"
-
-#: tools/gnome-session-selector.c:123
-#, c-format
-msgid "A session named “%s” already exists"
-msgstr "Une session clamade “%s” e esist za"
-
 #: tools/gnome-session-quit.c:50
 msgid "Log out"
 msgstr "_Jes"
@@ -272,6 +290,29 @@ msgstr "Impussibil colegasi al ministradôr di session"
 #: tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
 msgstr "Program clamât cun opzions in conflit"
+
+#: tools/gnome-session-selector.c:61
+#, c-format
+msgid "Session %d"
+msgstr "Session %d"
+
+#: tools/gnome-session-selector.c:107
+msgid ""
+"Session names are not allowed to start with “.” or contain “/” characters"
+msgstr "I nons di session no puedin tacâ cun “.” o vê il caratar “/”"
+
+#: tools/gnome-session-selector.c:111
+msgid "Session names are not allowed to start with “.”"
+msgstr "I nons di session no puedin tacâ cun “.”"
+
+#: tools/gnome-session-selector.c:115
+msgid "Session names are not allowed to contain “/” characters"
+msgstr "I nons di session no puedin vê il caratar “/”"
+
+#: tools/gnome-session-selector.c:123
+#, c-format
+msgid "A session named “%s” already exists"
+msgstr "Une session clamade “%s” e esist za"
 
 #~ msgid "Additional startup _programs:"
 #~ msgstr "_Programs di inviament adizionâi:"
@@ -484,22 +525,6 @@ msgstr "Program clamât cun opzions in conflit"
 #~ "remotis (autorizadis). Al coventarâ ognicâs tornâ a inviâ gnome-session "
 #~ "parcè che lis modifichis a vedin efiet."
 
-#~ msgid ""
-#~ "If enabled, gnome-session will prompt the user before ending a session."
-#~ msgstr ""
-#~ "Se abilitât, gnome-session al domandarâ conferme prin di finî la session."
-
-#~ msgid ""
-#~ "If enabled, gnome-session will save the session automatically. Otherwise, "
-#~ "the logout dialog will have an option to save the session."
-#~ msgstr ""
-#~ "Se abilitât, gnome-session al salvarâ la session automaticamentri. Se no "
-#~ "il barcon di dialogo par finî la session al mostrarâ une opzion pal "
-#~ "salvale."
-
-#~ msgid "Logout prompt"
-#~ msgstr "Conferme fin da session"
-
 #~ msgid "Preferred Image to use for login splash screen"
 #~ msgstr "Imagjine preferide di doprâ pa la schermade di inviament"
 
@@ -573,9 +598,6 @@ msgstr "Program clamât cun opzions in conflit"
 
 #~ msgid "Saving"
 #~ msgstr "Salvatagjio"
-
-#~ msgid "Saving session details."
-#~ msgstr "Salvatagjio dai datos da session."
 
 #~ msgid "State not reported within timeout."
 #~ msgstr "Stât no ripuartât in timp util."
@@ -815,9 +837,6 @@ msgstr "Program clamât cun opzions in conflit"
 
 #~ msgid "Use dialog boxes for errors"
 #~ msgstr "Dopre barcons di dialogo pai erôrs"
-
-#~ msgid "- Save the current session"
-#~ msgstr " - Salve la session curint"
 
 #~ msgid "Save changes to the current session before closing?"
 #~ msgstr "Salva i gambiaments a la session curint prime di sierâ?"
