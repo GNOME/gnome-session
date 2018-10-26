@@ -8,102 +8,134 @@
 # Anish A <aneesh.nl@gmail.com>, 2013.
 # Akhilan <akhilkrishnans@gmail.com>, 2013
 # Anish Sheela <aneesh.nl@gmail.com>, 2013, 2017.
+# Ranjith Siji <ranjith.sajeev@gmail.com>, 2018.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.master.ml\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-06-21 22:12+0000\n"
-"PO-Revision-Date: 2017-08-08 01:46+0530\n"
-"Last-Translator: Anish Sheela <aneesh.nl@gmail.com>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
+"POT-Creation-Date: 2018-10-16 21:11+0000\n"
+"PO-Revision-Date: 2018-10-26 13:13+0530\n"
+"Last-Translator: Ranjith Siji <ranjith.sajeev@gmail.com>\n"
 "Language-Team: Swatantra Malayalam Computing <discuss@lists.smc.org.in>\n"
 "Language: ml\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.7.1\n"
+"X-Generator: Poedit 2.2\n"
 "X-Project-Style: gnome\n"
 
-#: ../data/gnome-custom-session.desktop.in.h:1
+#: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
 msgstr "യഥേഷ്ടം"
 
-#: ../data/gnome-custom-session.desktop.in.h:2
+#: data/gnome-custom-session.desktop.in.in:4
 msgid "This entry lets you select a saved session"
 msgstr "സൂക്ഷിച്ച ഒരു പ്രവര്‍ത്തനവേള തെരഞ്ഞെടുക്കാന്‍ ഇതനുവദിക്കുന്നു"
 
-#: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
+#: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
 msgid "GNOME"
 msgstr "ഗ്നോം"
 
-#: ../data/gnome.desktop.in.h:2 ../data/gnome-xorg.desktop.in.h:2
+#: data/gnome.desktop.in.in:4 data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
 msgstr "ഈ പ്രവര്‍ത്തനവേള നിങ്ങളെ ഗ്നോമിലേക്ക് കയറ്റുന്നു"
 
-#: ../data/gnome-xorg.desktop.in.h:1
-#| msgid "GNOME on Wayland"
-msgid "GNOME on Xorg"
-msgstr "ഗ്നോം Xorg ല്‍"
-
-#: ../data/gnome-dummy.session.desktop.in.in.h:1
+#: data/gnome-dummy.session.desktop.in.in:3
 msgid "GNOME dummy"
 msgstr "ഗ്നോം ഡമ്മി"
 
-#: ../data/session-selector.ui.h:1
+#: data/gnome-xorg.desktop.in.in:3
+msgid "GNOME on Xorg"
+msgstr "ഗ്നോം Xorg ല്‍"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:5
+msgid "Save sessions"
+msgstr "പ്രവര്‍ത്തനവേള സൂക്ഷിക്കുക"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:6
+msgid "If enabled, gnome-session will save the session automatically."
+msgstr "പ്രവര്‍ത്തന സജ്ജമാണെങ്കില്‍, gnome-session സ്വയമേ ഈ പ്രവര്‍ത്തനവേള സൂക്ഷിക്കുന്നതാണ്."
+
+#: data/org.gnome.SessionManager.gschema.xml.in:10
+msgid "Save this session"
+msgstr "ഈ സെഷന്‍ സൂക്ഷിക്കുക"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:11
+msgid ""
+"When enabled, gnome-session will automatically save the next session at log "
+"out even if auto saving is disabled."
+msgstr ""
+"പ്രവര്‍ത്തന സജ്ജമാണെങ്കില്‍, സ്വയമേ സൂക്ഷിക്കുക എന്നത് പ്രവര്‍ത്തനരഹിതമാണെങ്കില്‍പോലും ലോഗൗട്ട് "
+"ചെയ്യുമ്പോള്‍ gnome-session സ്വയമേ അടുത്ത പ്രവര്‍ത്തനവേള സൂക്ഷിക്കുന്നതാണു്."
+
+#: data/org.gnome.SessionManager.gschema.xml.in:15
+msgid "Logout prompt"
+msgstr "ലോഗൗട്ട് പ്രോംപ്റ്റ്"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:16
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr ""
+"പ്രവര്‍ത്തന സജ്ജമാണെങ്കില്‍, പ്രവര്‍ത്തനവേള അവസാനിക്കുന്നതിനു് മുമ്പു് gnome-session ഉപയോക്താവിനെ "
+"അറിയിക്കുന്നതാണു്."
+
+#: data/org.gnome.SessionManager.gschema.xml.in:20
+msgid "Show the fallback warning"
+msgstr "ഫാള്‍ബാക്ക് മുന്നറിയിപ്പ് കാണിക്കുക"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:21
+msgid ""
+"If enabled, gnome-session will display a warning dialog after login if the "
+"session was automatically fallen back."
+msgstr ""
+"പ്രവര്‍ത്തന സജ്ജമാണെങ്കി, സെഷന്‍ ഓട്ടോമാറ്റിക്കായി ഫാള്‍ബാക്കായാല്‍, gnome-session ഒരു "
+"മുന്നറിയിപ്പ് ഡയലോഗ് പ്രദര്‍ശിപ്പിക്കും."
+
+#: data/session-selector.ui:15
 msgid "Custom Session"
 msgstr "പ്രവര്‍ത്തനവേള ചിട്ടപ്പെടുത്തുക"
 
-#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:102
+#: data/session-selector.ui:50 tools/gnome-session-selector.c:102
 msgid "Please select a custom session to run"
 msgstr "പ്രവർത്തിപ്പിക്കാനായി ഇഷ്ടമുള്ള ഒരു പ്രവർത്തനവേള തിരഞ്ഞെടുക്കുക"
 
-#: ../data/session-selector.ui.h:3
+#: data/session-selector.ui:105
 msgid "_New Session"
 msgstr "പുതിയ പ്രവര്‍ത്തനവേള  (_N)"
 
-#: ../data/session-selector.ui.h:4
+#: data/session-selector.ui:119
 msgid "_Remove Session"
 msgstr "പ്രവര്‍ത്തനവേള നീക്കം ചെയ്യുക (_R)"
 
-#: ../data/session-selector.ui.h:5
+#: data/session-selector.ui:133
 msgid "Rena_me Session"
 msgstr "പ്രവര്‍ത്തനവേളയുടെ പേര് മാറ്റുക (_m)"
 
-#: ../data/session-selector.ui.h:6
+#: data/session-selector.ui:168
 msgid "_Continue"
 msgstr "തുടരുക (_C)"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:313
+#: gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
 msgstr "അയ്യോ!   എന്തോ പിശക് സംഭവിച്ചിരിയ്ക്കുന്നു."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:320
-#| msgid ""
-#| "A problem has occurred and the system can't recover. Please contact a "
-#| "system administrator"
+#: gnome-session/gsm-fail-whale-dialog.c:320
 msgid ""
 "A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
 msgstr ""
-"എന്തോ പ്രശ്നം കാരണം സിസ്റ്റം വീണ്ടെടുക്കുവാന്‍ സാധ്യമല്ല. ദയവായി ഒരു സിസ്റ്റം"
-" കാര്യനിർവ്വാഹകനുമായി ബന്ധപ്പെടുക."
+"എന്തോ പ്രശ്നം കാരണം സിസ്റ്റം വീണ്ടെടുക്കുവാന്‍ സാധ്യമല്ല. ദയവായി ഒരു സിസ്റ്റം "
+"കാര്യനിർവ്വാഹകനുമായി ബന്ധപ്പെടുക"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:322
-#| msgid ""
-#| "A problem has occurred and the system can't recover. All extensions have "
-#| "been disabled as a precaution."
+#: gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
 "A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
 msgstr ""
-"എന്തോ പ്രശ്നം കാരണം സിസ്റ്റം വീണ്ടെടുക്കുവാന്‍ സാധ്യമല്ല. മുന്‍കരുതലിനായി "
-"എല്ലാ ചേർപ്പുകളും പ്രവര്‍ത്തന രഹിതമാക്കിയിരിയ്ക്കുന്നു."
+"എന്തോ പ്രശ്നം കാരണം സിസ്റ്റം വീണ്ടെടുക്കുവാന്‍ സാധ്യമല്ല. മുന്‍കരുതലിനായി എല്ലാ ചേർപ്പുകളും പ്രവര്‍"
+"ത്തന രഹിതമാക്കിയിരിയ്ക്കുന്നു."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:324
-#| msgid ""
-#| "A problem has occurred and the system can't recover.\n"
-#| "Please log out and try again."
+#: gnome-session/gsm-fail-whale-dialog.c:324
 msgid ""
 "A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
@@ -111,27 +143,27 @@ msgstr ""
 "എന്തോ പ്രശ്നം കാരണം സിസ്റ്റം വീണ്ടെടുക്കുവാന്‍ സാധ്യമല്ല.\n"
 "ദയവായി പുറത്തു് കടന്നു് വീണ്ടും ശ്രമിയ്ക്കുക."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:339
+#: gnome-session/gsm-fail-whale-dialog.c:339
 msgid "_Log Out"
 msgstr "പുറത്തിറങ്ങുക (_L)"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:281
+#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:279
 msgid "Enable debugging code"
 msgstr "പിഴവു് തിരുത്താന്‍ സഹായിയ്ക്കുന്ന കോഡ് പ്രാവര്‍ത്തികമാക്കുക"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:362
+#: gnome-session/gsm-fail-whale-dialog.c:362
 msgid "Allow logout"
 msgstr "പുറത്തിറങ്ങാന്‍ അനുവദിയ്ക്കുക"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:363
+#: gnome-session/gsm-fail-whale-dialog.c:363
 msgid "Show extension warning"
 msgstr "എക്സ്റ്റെന്‍ഷന്‍ മുന്നറിയിപ്പ് കാണിക്കുക"
 
-#: ../gnome-session/gsm-manager.c:1318 ../gnome-session/gsm-manager.c:1971
+#: gnome-session/gsm-manager.c:1266 gnome-session/gsm-manager.c:1919
 msgid "Not responding"
 msgstr "പ്രതികരിയ്ക്കുന്നില്ല"
 
-#: ../gnome-session/gsm-util.c:382
+#: gnome-session/gsm-util.c:382
 msgid "_Log out"
 msgstr "പുറത്തിറങ്ങുക (_L)"
 
@@ -139,80 +171,64 @@ msgstr "പുറത്തിറങ്ങുക (_L)"
 #. * then the XSMP client already has set several XSMP
 #. * properties. But it could still be that SmProgram is not set.
 #.
-#: ../gnome-session/gsm-xsmp-client.c:557
+#: gnome-session/gsm-xsmp-client.c:557
 msgid "Remembered Application"
 msgstr "ഓര്‍ത്തു് വച്ച പ്രയോഗങ്ങള്‍"
 
-#: ../gnome-session/gsm-xsmp-client.c:1207
+#: gnome-session/gsm-xsmp-client.c:1216
 msgid "This program is blocking logout."
 msgstr "ഈ പ്രയോഗം പുറത്തിറങ്ങുന്നതു് തടയുന്നു."
 
-#: ../gnome-session/gsm-xsmp-server.c:340
+#: gnome-session/gsm-xsmp-server.c:338
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr "പുതിയ ക്ലയന്റ് ബന്ധം നിരസിക്കുന്നു കാരണം പ്രവര്‍ത്തനവേള ഇപ്പോള്‍ അടച്ചു പൂട്ടൂകയാണു്\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:609
+#: gnome-session/gsm-xsmp-server.c:605
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "'ഐസ് '(ICE) കേള്‍ക്കാനുള്ള സോക്കറ്റ് ഉണ്ടാക്കാന്‍ കഴിഞ്ഞില്ല: %s"
 
-#: ../gnome-session/main.c:279
+#: gnome-session/main.c:277
 msgid "Override standard autostart directories"
 msgstr "സാധാരണയുള്ള സ്വയം തുടങ്ങാനുള്ള തട്ടുകള്‍ മറികടക്കുക"
 
-#: ../gnome-session/main.c:279
+#: gnome-session/main.c:277
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: ../gnome-session/main.c:280
+#: gnome-session/main.c:278
 msgid "Session to use"
 msgstr "ഉപയോഗിയ്ക്കുവാനുള്ള സെഷന്‍"
 
-#: ../gnome-session/main.c:280
+#: gnome-session/main.c:278
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: ../gnome-session/main.c:282
+#: gnome-session/main.c:280
 msgid "Do not load user-specified applications"
 msgstr "ഉപയോക്താവ് വ്യക്തമാക്കിയ പ്രയോഗങ്ങള്‍ ലോഡ് ചെയ്യേണ്ട"
 
-#: ../gnome-session/main.c:283
+#: gnome-session/main.c:281
 msgid "Version of this application"
 msgstr "ഈ പ്രയോഗത്തിന്റെ പതിപ്പു്"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:285
+#: gnome-session/main.c:283
 msgid "Show the fail whale dialog for testing"
 msgstr "പരീക്ഷണത്തിനായി പരാജയ ഡയലോഗ് കാണിയ്ക്കുക"
 
-#: ../gnome-session/main.c:286
+#: gnome-session/main.c:284
 msgid "Disable hardware acceleration check"
 msgstr "ഹാര്‍ഡ്‍വെയര്‍ ആക്സിലറേഷന്‍ പരിശോധന ഒഴിവാക്കുക"
 
-#: ../gnome-session/main.c:318
-#| msgid " - the GNOME session manager"
+#: gnome-session/main.c:316
 msgid " — the GNOME session manager"
 msgstr " — GNOME പ്രവര്‍ത്തനവേള നടത്തിപ്പുകാരന്‍"
 
-#: ../tools/gnome-session-inhibit.c:108
+#: tools/gnome-session-inhibit.c:108
 #, c-format
-#| msgid ""
-#| "%s [OPTION...] COMMAND\n"
-#| "\n"
-#| "Execute COMMAND while inhibiting some session functionality.\n"
-#| "\n"
-#| "  -h, --help        Show this help\n"
-#| "  --version         Show program version\n"
-#| "  --app-id ID       The application id to use\n"
-#| "                    when inhibiting (optional)\n"
-#| "  --reason REASON   The reason for inhibiting (optional)\n"
-#| "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
-#| "                    logout, switch-user, suspend, idle, automount\n"
-#| "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
-#| "\n"
-#| "If no --inhibit option is specified, idle is assumed.\n"
 msgid ""
 "%s [OPTION…] COMMAND\n"
 "\n"
@@ -236,84 +252,75 @@ msgstr ""
 "  -h, --help        ഈ സഹായം കാണിക്കുക\n"
 "  --version         പ്രോഗ്രാം പതിപ്പ് കാണിക്കുക\n"
 "  --app-id ID       തടസ്സപ്പെടുത്തുമ്പോള്‍ ഉപയോഗിക്കേണ്ട\n"
-"                                             ആപ്ലിക്കേഷന്‍ ഐഡി (വേണമെങ്കില്‍)"
-"\n"
+"                                             ആപ്ലിക്കേഷന്‍ ഐഡി (വേണമെങ്കില്‍)\n"
 "  --reason REASON   തടസ്സപ്പെടുത്താനുള്ള കാരണം (വേണമെങ്കില്‍)\n"
-"  --inhibit ARG     എന്തൊക്കെ തടസ്സപ്പെടുത്തണം, കോളന്‍ കൊണ്ടു തിരിച്ച പട്ടിക:"
-"\n"
+"  --inhibit ARG     എന്തൊക്കെ തടസ്സപ്പെടുത്തണം, കോളന്‍ കൊണ്ടു തിരിച്ച പട്ടിക:\n"
 "                    logout, switch-user, suspend, idle, automount\n"
 "  --inhibit-only    COMMAND തുടങ്ങിയിട്ട് എന്നേക്കുമായി കാത്തിരിക്കേണ്ട\n"
 "\n"
-"--inhibit ഐച്ഛികങ്ങളൊന്നും തെരഞ്ഞെടുത്തിലെങ്കില്‍, ചുമ്മായിരിക്കുന്നതായി "
-"കരുതുന്നു.\n"
+"--inhibit ഐച്ഛികങ്ങളൊന്നും തെരഞ്ഞെടുത്തിലെങ്കില്‍, ചുമ്മായിരിക്കുന്നതായി കരുതുന്നു.\n"
 
-#: ../tools/gnome-session-inhibit.c:146
+#: tools/gnome-session-inhibit.c:146
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "%s നടപ്പിലാക്കുന്നതില്‍ പരാജയപ്പെട്ടു\n"
 
-#: ../tools/gnome-session-inhibit.c:206 ../tools/gnome-session-inhibit.c:216
-#: ../tools/gnome-session-inhibit.c:226
+#: tools/gnome-session-inhibit.c:206 tools/gnome-session-inhibit.c:216
+#: tools/gnome-session-inhibit.c:226
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s ന് ഒരു ആര്‍ഗ്യുമെന്റ് ആവശ്യ‌മുണ്ട്\n"
 
-#: ../tools/gnome-session-selector.c:61
+#: tools/gnome-session-quit.c:50
+msgid "Log out"
+msgstr "പുറത്തിറങ്ങുക"
+
+#: tools/gnome-session-quit.c:51
+msgid "Power off"
+msgstr "പവര്‍ ഓഫ് ചെയ്യുക"
+
+#: tools/gnome-session-quit.c:52
+msgid "Reboot"
+msgstr "വീണ്ടും തുടങ്ങുക"
+
+#: tools/gnome-session-quit.c:53
+msgid "Ignoring any existing inhibitors"
+msgstr "തടസ്സമുണ്ടാക്കുന്നവരെ വക വയ്ക്കുന്നില്ല"
+
+#: tools/gnome-session-quit.c:54
+msgid "Don’t prompt for user confirmation"
+msgstr "ഉറപ്പു വരുത്തുന്നതിനായി ഇനി ചോദിക്കേണ്ട"
+
+#: tools/gnome-session-quit.c:88 tools/gnome-session-quit.c:102
+msgid "Could not connect to the session manager"
+msgstr "പ്രവര്‍ത്തനവേള നടത്തിപ്പുകാരനുമായി ബന്ധപ്പെടാന്‍ കഴിയുന്നില്ല"
+
+#: tools/gnome-session-quit.c:198
+msgid "Program called with conflicting options"
+msgstr "പരസ്പരവിരുദ്ധമായ ഐച്ഛികങ്ങളോടെയാണു് പ്രോഗ്രാമിനെ വിളിച്ചിരിയ്ക്കുന്നതു്"
+
+#: tools/gnome-session-selector.c:61
 #, c-format
 msgid "Session %d"
 msgstr "പ്രവർത്തനവേള %d"
 
-#: ../tools/gnome-session-selector.c:107
-#| msgid ""
-#| "Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
+#: tools/gnome-session-selector.c:107
 msgid ""
 "Session names are not allowed to start with “.” or contain “/” characters"
 msgstr "പ്രവർത്തനവേളയുടെ പേര് “.” വെച്ച് തുടങ്ങാനോ “/” കാണാനോ പാടില്ല"
 
-#: ../tools/gnome-session-selector.c:111
-#| msgid "Session names are not allowed to start with ‘.’"
+#: tools/gnome-session-selector.c:111
 msgid "Session names are not allowed to start with “.”"
 msgstr "“.” വെച്ച് പ്രവർത്തനവേളയുടെ പേര് തുടങ്ങാന്‍ പാടില്ല"
 
-#: ../tools/gnome-session-selector.c:115
-#| msgid "Session names are not allowed to contain ‘/’ characters"
+#: tools/gnome-session-selector.c:115
 msgid "Session names are not allowed to contain “/” characters"
 msgstr "പ്രവർത്തനവേളയുടെ പേരില്‍ “/” കാണാന്‍ പാടില്ല"
 
-#: ../tools/gnome-session-selector.c:123
+#: tools/gnome-session-selector.c:123
 #, c-format
-#| msgid "A session named ‘%s’ already exists"
 msgid "A session named “%s” already exists"
 msgstr "“%s” എന്ന പേരില്‍ ഒരു പ്രവർത്തനവേള നിലവിലുണ്ടു്"
-
-#: ../tools/gnome-session-quit.c:50
-msgid "Log out"
-msgstr "പുറത്തിറങ്ങുക"
-
-#: ../tools/gnome-session-quit.c:51
-msgid "Power off"
-msgstr "പവര്‍ ഓഫ് ചെയ്യുക"
-
-#: ../tools/gnome-session-quit.c:52
-msgid "Reboot"
-msgstr "വീണ്ടും തുടങ്ങുക"
-
-#: ../tools/gnome-session-quit.c:53
-msgid "Ignoring any existing inhibitors"
-msgstr "തടസ്സമുണ്ടാക്കുന്നവരെ വക വയ്ക്കുന്നില്ല"
-
-#: ../tools/gnome-session-quit.c:54
-#| msgid "Don't prompt for user confirmation"
-msgid "Don’t prompt for user confirmation"
-msgstr "ഉറപ്പു വരുത്തുന്നതിനായി ഇനി ചോദിക്കേണ്ട"
-
-#: ../tools/gnome-session-quit.c:88 ../tools/gnome-session-quit.c:102
-msgid "Could not connect to the session manager"
-msgstr "പ്രവര്‍ത്തനവേള നടത്തിപ്പുകാരനുമായി ബന്ധപ്പെടാന്‍ കഴിയുന്നില്ല"
-
-#: ../tools/gnome-session-quit.c:198
-msgid "Program called with conflicting options"
-msgstr "പരസ്പരവിരുദ്ധമായ ഐച്ഛികങ്ങളോടെയാണു് പ്രോഗ്രാമിനെ വിളിച്ചിരിയ്ക്കുന്നതു്"
 
 #~ msgid "This session logs you into GNOME, using Wayland"
 #~ msgstr "ഈ പ്രവര്‍ത്തനവേള നിങ്ങളെ ഗ്നോമിലേക്ക് കയറ്റുന്നു, വേലാന്റ് ഉപയോഗിച്ച്"
@@ -536,8 +543,8 @@ msgstr "പരസ്പരവിരുദ്ധമായ ഐച്ഛികങ�
 #~ "ഗ്നോം 3 ശരിയായി ആരംഭിയ്ക്കുന്നതില്‍ പരാജയപ്പെട്ടു, അതിനാല്‍ <i>ഫോള്‍ബാക്ക് മോഡില്‍</i> "
 #~ "ആരംഭിച്ചിരിയ്ക്കുന്നു.\n"
 #~ "\n"
-#~ "ഇതിനര്‍ത്ഥം ഒരു പക്ഷേ നിങ്ങളുടെ സിസ്റ്റം (ഗ്രാഫിക്സ് ഹാര്‍ഡ്‌വെയര്‍ അല്ലെങ്കില്‍ ഡ്രൈവര്‍) "
-#~ "പൂര്‍ണ്ണമായി ഗ്നോം 3 ആസ്വദിയ്ക്കുന്നതിനു് അനുവദിയ്ക്കുന്നില്ല."
+#~ "ഇതിനര്‍ത്ഥം ഒരു പക്ഷേ നിങ്ങളുടെ സിസ്റ്റം (ഗ്രാഫിക്സ് ഹാര്‍ഡ്‌വെയര്‍ അല്ലെങ്കില്‍ ഡ്രൈവര്‍) പൂര്‍"
+#~ "ണ്ണമായി ഗ്നോം 3 ആസ്വദിയ്ക്കുന്നതിനു് അനുവദിയ്ക്കുന്നില്ല."
 
 #~ msgid "Learn more about GNOME 3"
 #~ msgstr "ഗ്നോം 3-യെപ്പറ്റി കൂടുതല്‍ അറിയുക"
@@ -553,20 +560,6 @@ msgstr "പരസ്പരവിരുദ്ധമായ ഐച്ഛികങ�
 
 #~ msgid "File Manager"
 #~ msgstr "ഫയല്‍ നടത്തിപ്പുകാരന്‍"
-
-#~ msgid ""
-#~ "If enabled, gnome-session will prompt the user before ending a session."
-#~ msgstr ""
-#~ "പ്രവര്‍ത്തന സജ്ജമാണെങ്കില്‍, പ്രവര്‍ത്തനവേള അവസാനിക്കുന്നതിനു് മുമ്പു് gnome-session "
-#~ "ഉപയോക്താവിനെ അറിയിക്കുന്നതാണു്."
-
-#~ msgid ""
-#~ "If enabled, gnome-session will save the session automatically. Otherwise, "
-#~ "the logout dialog will have an option to save the session."
-#~ msgstr ""
-#~ "പ്രവര്‍ത്തന സജ്ജമാണെങ്കില്‍, gnome-session സ്വയമേ ഈ പ്രവര്‍ത്തനവേള സൂക്ഷിക്കുന്നതാണു്. "
-#~ "അല്ലായെങ്കില്‍, പ്രവര്‍ത്തനവേള സൂക്ഷിക്കുവാനുളള ഐച്ഛികം, പുറത്തിറങ്ങുന്നതിനുള്ള ഡയലോഗില്‍ "
-#~ "ഉണ്ടാവുന്നതാണു്."
 
 #~ msgid "List of applications that are part of the default session."
 #~ msgstr "സഹജമായ പ്രവര്‍ത്തനവേളയുടെ ഭാഗമായ പ്രയോഗങ്ങളുടെ പട്ടിക."
