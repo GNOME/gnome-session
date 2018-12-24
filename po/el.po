@@ -34,76 +34,116 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-06-21 22:12+0000\n"
-"PO-Revision-Date: 2017-09-09 12:46+0200\n"
-"Last-Translator: Efstathios Iosifidis <iosifidis@opensuse.org>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
+"POT-Creation-Date: 2018-08-28 21:21+0000\n"
+"PO-Revision-Date: 2018-09-08 11:28+0300\n"
+"Last-Translator: Tom Tryfonidis <tomtryf@gnome.org>\n"
 "Language-Team: team@gnome.gr\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 2.1.1\n"
 "X-Project-Style: gnome\n"
 
-#: ../data/gnome-custom-session.desktop.in.h:1
+#: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
 msgstr "Προσαρμοσμένο"
 
-#: ../data/gnome-custom-session.desktop.in.h:2
+#: data/gnome-custom-session.desktop.in.in:4
 msgid "This entry lets you select a saved session"
 msgstr "Αυτή η καταχώριση επιτρέπει την επιλογή μιας αποθηκευμένης συνεδρίας"
 
-#: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
+#: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
 msgid "GNOME"
 msgstr "GNOME"
 
-#: ../data/gnome.desktop.in.h:2 ../data/gnome-xorg.desktop.in.h:2
+#: data/gnome.desktop.in.in:4 data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
 msgstr "Αυτή η συνεδρία σας συνδέει στο GNOME"
 
-#: ../data/gnome-xorg.desktop.in.h:1
-msgid "GNOME on Xorg"
-msgstr "GNOME σε Xorg"
-
-#: ../data/gnome-dummy.session.desktop.in.in.h:1
+#: data/gnome-dummy.session.desktop.in.in:3
 msgid "GNOME dummy"
 msgstr "Εικονικό GNOME"
 
-#: ../data/session-selector.ui.h:1
+#: data/gnome-xorg.desktop.in.in:3
+msgid "GNOME on Xorg"
+msgstr "GNOME σε Xorg"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:5
+msgid "Save sessions"
+msgstr "Αποθήκευση συνεδρίων"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:6
+msgid "If enabled, gnome-session will save the session automatically."
+msgstr ""
+"Αν ενεργοποιηθεί, η συνεδρία του gnome θα αποθηκεύει αυτόματα τη συνεδρία."
+
+#: data/org.gnome.SessionManager.gschema.xml.in:10
+msgid "Save this session"
+msgstr "Αποθήκευση συνεδρίας"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:11
+msgid ""
+"When enabled, gnome-session will automatically save the next session at log "
+"out even if auto saving is disabled."
+msgstr ""
+"Αν ενεργοποιηθεί, η συνεδρία του gnome θα αποθηκεύει αυτόματα την επόμενη "
+"συνεδρία στην έξοδο ακόμη και αν η αυτόματη αποθήκευση είναι "
+"απενεργοποιημένη."
+
+#: data/org.gnome.SessionManager.gschema.xml.in:15
+msgid "Logout prompt"
+msgstr "Ειδοποίηση αποσύνδεσης"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:16
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr ""
+"Αν ενεργοποιηθεί, η συνεδρία του gnome θα ειδοποιεί το χρήστη πριν το τέλος "
+"της συνεδρίας."
+
+#: data/org.gnome.SessionManager.gschema.xml.in:20
+msgid "Show the fallback warning"
+msgstr "Προβολή προειδοποίησης εφεδρικής συνεδρίας"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:21
+msgid ""
+"If enabled, gnome-session will display a warning dialog after login if the "
+"session was automatically fallen back."
+msgstr ""
+"Αν ενεργοποιηθεί, η συνεδρία του gnome θα εμφανίσει έναν διάλογο "
+"προειδοποίησης μετά την είσοδο αν χρησιμοποιήθηκε η εφεδρική συνεδρία."
+
+#: data/session-selector.ui:15
 msgid "Custom Session"
 msgstr "Προσαρμοσμένη συνεδρία"
 
-#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:102
+#: data/session-selector.ui:50 tools/gnome-session-selector.c:102
 msgid "Please select a custom session to run"
 msgstr "Παρακαλούμε επιλέξτε μια προσαρμοσμένη συνεδρία για να εκτελεστεί"
 
-#: ../data/session-selector.ui.h:3
+#: data/session-selector.ui:105
 msgid "_New Session"
 msgstr "_Νέα συνεδρία"
 
-#: ../data/session-selector.ui.h:4
+#: data/session-selector.ui:119
 msgid "_Remove Session"
 msgstr "_Αφαίρεση συνεδρίας"
 
-#: ../data/session-selector.ui.h:5
+#: data/session-selector.ui:133
 msgid "Rena_me Session"
 msgstr "Με_τονομασία συνεδρίας"
 
-#: ../data/session-selector.ui.h:6
+#: data/session-selector.ui:168
 msgid "_Continue"
 msgstr "_Συνέχεια"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:313
+#: gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
 msgstr "Ωχ όχι! Κάτι πήγε στραβά."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:320
-#| msgid ""
-#| "A problem has occurred and the system can't recover. Please contact a "
-#| "system administrator"
+#: gnome-session/gsm-fail-whale-dialog.c:320
 msgid ""
 "A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
@@ -111,10 +151,7 @@ msgstr ""
 "Προέκυψε ένα πρόβλημα και το σύστημα δε μπορεί να ανακάμψει. Παρακαλούμε "
 "επικοινωνήστε με τον διαχειριστή του συστήματος"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:322
-#| msgid ""
-#| "A problem has occurred and the system can't recover. All extensions have "
-#| "been disabled as a precaution."
+#: gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
 "A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
@@ -122,10 +159,7 @@ msgstr ""
 "Προέκυψε ένα πρόβλημα και το σύστημα δε μπορεί να ανακάμψει. Έχουν "
 "απενεργοποιηθεί όλες οι επεκτάσεις για λόγους προφύλαξης."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:324
-#| msgid ""
-#| "A problem has occurred and the system can't recover.\n"
-#| "Please log out and try again."
+#: gnome-session/gsm-fail-whale-dialog.c:324
 msgid ""
 "A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
@@ -133,27 +167,27 @@ msgstr ""
 "Προέκυψε ένα πρόβλημα και το σύστημα δε μπορεί να ανακάμψει.\n"
 "Παρακαλούμε αποσυνδεθείτε και δοκιμάστε ξανά."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:339
+#: gnome-session/gsm-fail-whale-dialog.c:339
 msgid "_Log Out"
 msgstr "Απο_σύνδεση"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:281
+#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:279
 msgid "Enable debugging code"
 msgstr "Ενεργοποίηση κώδικα αποφαλμάτωσης"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:362
+#: gnome-session/gsm-fail-whale-dialog.c:362
 msgid "Allow logout"
 msgstr "Να επιτρέπεται αποσύνδεση"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:363
+#: gnome-session/gsm-fail-whale-dialog.c:363
 msgid "Show extension warning"
 msgstr "Προβολή προειδοποίησης επέκτασης"
 
-#: ../gnome-session/gsm-manager.c:1318 ../gnome-session/gsm-manager.c:1971
+#: gnome-session/gsm-manager.c:1266 gnome-session/gsm-manager.c:1919
 msgid "Not responding"
 msgstr "Δεν ανταποκρίνεται"
 
-#: ../gnome-session/gsm-util.c:382
+#: gnome-session/gsm-util.c:382
 msgid "_Log out"
 msgstr "_Αποσύνδεση"
 
@@ -161,81 +195,65 @@ msgstr "_Αποσύνδεση"
 #. * then the XSMP client already has set several XSMP
 #. * properties. But it could still be that SmProgram is not set.
 #.
-#: ../gnome-session/gsm-xsmp-client.c:557
+#: gnome-session/gsm-xsmp-client.c:557
 msgid "Remembered Application"
 msgstr "Απομνημόνευση εφαρμογών"
 
-#: ../gnome-session/gsm-xsmp-client.c:1207
+#: gnome-session/gsm-xsmp-client.c:1216
 msgid "This program is blocking logout."
 msgstr "Αυτό το πρόγραμμα εμποδίζει την αποσύνδεση."
 
-#: ../gnome-session/gsm-xsmp-server.c:340
+#: gnome-session/gsm-xsmp-server.c:338
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr ""
 "Άρνηση σύνδεσης νέου πελάτη επειδή το σύστημα τερματίζεται αυτή τη στιγμή\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:609
+#: gnome-session/gsm-xsmp-server.c:605
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Αδυναμία δημιουργίας υποδοχής ακρόασης ICE: %s"
 
-#: ../gnome-session/main.c:279
+#: gnome-session/main.c:277
 msgid "Override standard autostart directories"
 msgstr "Παράκαμψη τυπικών καταλόγων αυτόματης εκκίνησης"
 
-#: ../gnome-session/main.c:279
+#: gnome-session/main.c:277
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: ../gnome-session/main.c:280
+#: gnome-session/main.c:278
 msgid "Session to use"
 msgstr "Συνεδρία για χρήση"
 
-#: ../gnome-session/main.c:280
+#: gnome-session/main.c:278
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: ../gnome-session/main.c:282
+#: gnome-session/main.c:280
 msgid "Do not load user-specified applications"
 msgstr "Να μην φορτώνονται εφαρμογές καθορισμένες από τον χρήστη"
 
-#: ../gnome-session/main.c:283
+#: gnome-session/main.c:281
 msgid "Version of this application"
 msgstr "Η έκδοση αυτής της εφαρμογής"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:285
+#: gnome-session/main.c:283
 msgid "Show the fail whale dialog for testing"
 msgstr "Εμφάνιση του διαλόγου fail whale για δοκιμή"
 
-#: ../gnome-session/main.c:286
+#: gnome-session/main.c:284
 msgid "Disable hardware acceleration check"
 msgstr "Απενεργοποίηση ελέγχου επιτάχυνσης υλικού"
 
-#: ../gnome-session/main.c:318
-#| msgid " - the GNOME session manager"
+#: gnome-session/main.c:316
 msgid " — the GNOME session manager"
 msgstr " — ο διαχειριστής συνεδρίας του GNOME"
 
-#: ../tools/gnome-session-inhibit.c:108
+#: tools/gnome-session-inhibit.c:108
 #, c-format
-#| msgid ""
-#| "%s [OPTION...] COMMAND\n"
-#| "\n"
-#| "Execute COMMAND while inhibiting some session functionality.\n"
-#| "\n"
-#| "  -h, --help        Show this help\n"
-#| "  --version         Show program version\n"
-#| "  --app-id ID       The application id to use\n"
-#| "                    when inhibiting (optional)\n"
-#| "  --reason REASON   The reason for inhibiting (optional)\n"
-#| "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
-#| "                    logout, switch-user, suspend, idle, automount\n"
-#| "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
-#| "\n"
-#| "If no --inhibit option is specified, idle is assumed.\n"
 msgid ""
 "%s [OPTION…] COMMAND\n"
 "\n"
@@ -269,75 +287,69 @@ msgstr ""
 "\n"
 "Εάν δεν έχει οριστεί καμιά επιλογή --inhibit, υποτίθεται αδράνεια.\n"
 
-#: ../tools/gnome-session-inhibit.c:146
+#: tools/gnome-session-inhibit.c:146
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Αποτυχία εκτέλεσης του %s\n"
 
-#: ../tools/gnome-session-inhibit.c:206 ../tools/gnome-session-inhibit.c:216
-#: ../tools/gnome-session-inhibit.c:226
+#: tools/gnome-session-inhibit.c:206 tools/gnome-session-inhibit.c:216
+#: tools/gnome-session-inhibit.c:226
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "Το %s απαιτεί ένα όρισμα\n"
 
-#: ../tools/gnome-session-selector.c:61
+#: tools/gnome-session-quit.c:50
+msgid "Log out"
+msgstr "Αποσύνδεση"
+
+#: tools/gnome-session-quit.c:51
+msgid "Power off"
+msgstr "Τερματισμός"
+
+#: tools/gnome-session-quit.c:52
+msgid "Reboot"
+msgstr "Επανεκκίνηση"
+
+#: tools/gnome-session-quit.c:53
+msgid "Ignoring any existing inhibitors"
+msgstr "Αγνοώντας όποιους υπάρχοντες αναστολείς"
+
+#: tools/gnome-session-quit.c:54
+msgid "Don’t prompt for user confirmation"
+msgstr "Να μη ζητείται επιβεβαίωση από το χρήστη"
+
+#: tools/gnome-session-quit.c:88 tools/gnome-session-quit.c:102
+msgid "Could not connect to the session manager"
+msgstr "Αδυναμία σύνδεσης με το διαχειριστή συνεδρίας"
+
+#: tools/gnome-session-quit.c:198
+msgid "Program called with conflicting options"
+msgstr "Το πρόγραμμα κλήθηκε με συγκρουόμενες επιλογές"
+
+#: tools/gnome-session-selector.c:61
 #, c-format
 msgid "Session %d"
 msgstr "Συνεδρία %d"
 
-#: ../tools/gnome-session-selector.c:107
-#| msgid ""
-#| "Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
+#: tools/gnome-session-selector.c:107
 msgid ""
 "Session names are not allowed to start with “.” or contain “/” characters"
 msgstr ""
 "Τα ονόματα της συνεδρίας δεν επιτρέπεται να ξεκινάνε με «.» ή να περιέχουν "
 "χαρακτήρες «/»"
 
-#: ../tools/gnome-session-selector.c:111
-#| msgid "Session names are not allowed to start with ‘.’"
+#: tools/gnome-session-selector.c:111
 msgid "Session names are not allowed to start with “.”"
 msgstr "Τα ονόματα της συνεδρίας δεν επιτρέπεται να ξεκινούν με «.»"
 
-#: ../tools/gnome-session-selector.c:115
-#| msgid "Session names are not allowed to contain ‘/’ characters"
+#: tools/gnome-session-selector.c:115
 msgid "Session names are not allowed to contain “/” characters"
 msgstr "Τα ονόματα της συνεδρίας δεν επιτρέπεται να περιέχουν χαρακτήρες «/»"
 
-#: ../tools/gnome-session-selector.c:123
+#: tools/gnome-session-selector.c:123
 #, c-format
-#| msgid "A session named ‘%s’ already exists"
 msgid "A session named “%s” already exists"
 msgstr "Υπάρχει ήδη μια συνεδρία με όνομα «%s»"
-
-#: ../tools/gnome-session-quit.c:50
-msgid "Log out"
-msgstr "Αποσύνδεση"
-
-#: ../tools/gnome-session-quit.c:51
-msgid "Power off"
-msgstr "Τερματισμός"
-
-#: ../tools/gnome-session-quit.c:52
-msgid "Reboot"
-msgstr "Επανεκκίνηση"
-
-#: ../tools/gnome-session-quit.c:53
-msgid "Ignoring any existing inhibitors"
-msgstr "Αγνοώντας όποιους υπάρχοντες αναστολείς"
-
-#: ../tools/gnome-session-quit.c:54
-#| msgid "Don't prompt for user confirmation"
-msgid "Don’t prompt for user confirmation"
-msgstr "Να μη ζητείται επιβεβαίωση από το χρήστη"
-
-#: ../tools/gnome-session-quit.c:88 ../tools/gnome-session-quit.c:102
-msgid "Could not connect to the session manager"
-msgstr "Αδυναμία σύνδεσης με το διαχειριστή συνεδρίας"
-
-#: ../tools/gnome-session-quit.c:198
-msgid "Program called with conflicting options"
-msgstr "Το πρόγραμμα κλήθηκε με συγκρουόμενες επιλογές"
 
 #~ msgid "Additional startup _programs:"
 #~ msgstr "Πρόσθετα _προγράμματα εκκίνησης:"
@@ -601,16 +613,6 @@ msgstr "Το πρόγραμμα κλήθηκε με συγκρουόμενες �
 #~ msgid "File Manager"
 #~ msgstr "Διαχειριστής αρχείων"
 
-#~ msgid ""
-#~ "If enabled, gnome-session will prompt the user before ending a session."
-#~ msgstr ""
-#~ "Αν ενεργοποιηθεί, η συνεδρία του gnome θα ειδοποιεί το χρήστη πριν το "
-#~ "τέλος της συνεδρίας."
-
-#~ msgid "If enabled, gnome-session will save the session automatically."
-#~ msgstr ""
-#~ "Αν ενεργοποιηθεί, το gnome-session θα αποθηκεύει αυτόματα τη συνεδρία."
-
 #~ msgid "List of applications that are part of the default session."
 #~ msgstr "Λίστα με εφαρμογές που είναι μέρος της προεπιλεγμένης συνεδρίας."
 
@@ -628,9 +630,6 @@ msgstr "Το πρόγραμμα κλήθηκε με συγκρουόμενες �
 #~ "δεν επιτρέπουν στους χρήστες να αφαιρέσουν αυτά τα στοιχεία. Αν κάποια "
 #~ "απαραίτητα στοιχεία αφαιρεθούν, ο διαχειριστής συνεδρίας θα τα προσθέσει "
 #~ "ξανά κατά την επόμενη είσοδο."
-
-#~ msgid "Logout prompt"
-#~ msgstr "Ειδοποίηση αποσύνδεσης"
 
 #~ msgid "Panel"
 #~ msgstr "Πίνακας εφαρμογών"
@@ -688,9 +687,6 @@ msgstr "Το πρόγραμμα κλήθηκε με συγκρουόμενες �
 
 #~ msgid "NAME"
 #~ msgstr "ΟΝΟΜΑ"
-
-#~ msgid "Kill session"
-#~ msgstr "Τερματισμός συνεδρίας"
 
 #~ msgid "GNOME Settings Daemon Helper"
 #~ msgstr "GNOME Settings Daemon Helper"
