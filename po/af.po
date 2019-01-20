@@ -3,367 +3,189 @@
 # This file is distributed under the same license as the gnome-session package.
 # Zuza Software Foundation <info@translate.org.za>, 2004
 # F Wolff <friedel@translate.org.za>, 2011, 2013.
+# Pieter Schoeman <pieter@sonbesie.co.za>, 2017.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.6-branch\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-09-09 23:10+0000\n"
-"PO-Revision-Date: 2013-09-24 12:21+0200\n"
-"Last-Translator: F Wolff <friedel@translate.org.za>\n"
-"Language-Team: translate-discuss-af@lists.sourceforge.net\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
+"POT-Creation-Date: 2018-06-01 11:05+0000\n"
+"PO-Revision-Date: 2018-02-06 17:39+0200\n"
+"Last-Translator: Pieter Schalk Schoeman <pieter@sonbesie.co.za>\n"
+"Language-Team: Afrikaans <pieter@sonbesie.co.za>\n"
 "Language: af\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.7.1\n"
+"X-Generator: Poedit 2.0.3\n"
 "X-Project-Style: gnome\n"
 
-#: ../capplet/gsm-app-dialog.c:120
-msgid "Select Command"
-msgstr "Kies bevel"
-
-#: ../capplet/gsm-app-dialog.c:193
-msgid "Add Startup Program"
-msgstr "Voeg aanvangsprogram by"
-
-#: ../capplet/gsm-app-dialog.c:197
-msgid "Edit Startup Program"
-msgstr "Redigeer aanvangsprogram"
-
-#: ../capplet/gsm-app-dialog.c:484
-msgid "The startup command cannot be empty"
-msgstr "Die aanvangsbevel kan nie leeg wees nie"
-
-#: ../capplet/gsm-app-dialog.c:490
-msgid "The startup command is not valid"
-msgstr "Die aanvangsbevel is nie geldig nie"
-
-#: ../capplet/gsm-properties-dialog.c:519
-msgid "Enabled"
-msgstr "Geaktiveer"
-
-#: ../capplet/gsm-properties-dialog.c:531
-msgid "Icon"
-msgstr "Ikoon"
-
-#: ../capplet/gsm-properties-dialog.c:543
-msgid "Program"
-msgstr "Program"
-
-#: ../capplet/gsm-properties-dialog.c:747
-msgid "Startup Applications Preferences"
-msgstr "Voorkeure vir aanvangstoepassings"
-
-#: ../capplet/gsp-app.c:276
-msgid "No name"
-msgstr "Geen naam"
-
-#: ../capplet/gsp-app.c:282
-msgid "No description"
-msgstr "Geen beskrywing"
-
-#: ../capplet/main.c:35 ../gnome-session/main.c:309
-msgid "Version of this application"
-msgstr "Weergawe van hierdie program"
-
-#: ../capplet/main.c:61
-msgid "Could not display help document"
-msgstr "Kon nie hulpdokument vertoon nie"
-
-#: ../data/gnome-custom-session.desktop.in.h:1
+#: data/gnome-custom-session.desktop.in:3
 msgid "Custom"
-msgstr "Doelgemaak"
+msgstr "Pasgemaak"
 
-#: ../data/gnome-custom-session.desktop.in.h:2
+#: data/gnome-custom-session.desktop.in:4
 msgid "This entry lets you select a saved session"
-msgstr "Hierdie inskrywing laat mens 'n gestoorde sessie kies"
+msgstr "Die inskrywing laat u 'n gestoorde sessie kies"
 
-#: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
+#: data/gnome.desktop.in:3 data/gnome.session.desktop.in.in:3
 msgid "GNOME"
 msgstr "GNOME"
 
-#: ../data/gnome.desktop.in.h:2
+#: data/gnome.desktop.in:4 data/gnome-xorg.desktop.in:4
 msgid "This session logs you into GNOME"
-msgstr "Hierdie sessie laat mens aanmeld by GNOME"
+msgstr "Die sessie laat u by GNOME aanmeld"
 
-#: ../data/gnome-dummy.session.desktop.in.in.h:1
-#, fuzzy
-#| msgid "GNOME"
+#: data/gnome-xorg.desktop.in:3
+msgid "GNOME on Xorg"
+msgstr "GNOME op Xorg"
+
+#: data/gnome-dummy.session.desktop.in.in:3
 msgid "GNOME dummy"
-msgstr "GNOME"
+msgstr "GNOME dummy"
 
-#: ../data/gnome-session-properties.desktop.in.in.h:1
-msgid "Startup Applications"
-msgstr "Aanvangstoepassings"
-
-#: ../data/gnome-session-properties.desktop.in.in.h:2
-msgid "Choose what applications to start when you log in"
-msgstr "Kies watter toepassings moet begin by aanmelding"
-
-#: ../data/gnome-wayland.desktop.in.h:1
-#: ../data/gnome-wayland.session.desktop.in.in.h:1
-#| msgid "GNOME fallback"
-msgid "GNOME on Wayland"
-msgstr "GNOME op Wayland"
-
-#: ../data/gnome-wayland.desktop.in.h:2
-#| msgid "This session logs you into GNOME"
-msgid "This session logs you into GNOME, using Wayland"
-msgstr "Hierdie sessie laat mens aanmeld by GNOME m.b.v. Wayland"
-
-#: ../data/session-selector.ui.h:1
-#| msgid "Current Session"
+#: data/session-selector.ui:15
 msgid "Custom Session"
-msgstr "Doelgemaakte sessie"
+msgstr "Pasgemaakte sessie"
 
-#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:103
+#: data/session-selector.ui:50 tools/gnome-session-selector.c:102
 msgid "Please select a custom session to run"
 msgstr "Kies asb. 'n pasgemaakte sessie om uit te voer"
 
-#: ../data/session-selector.ui.h:3
-#| msgid "_Sessions:"
+#: data/session-selector.ui:105
 msgid "_New Session"
 msgstr "_Nuwe sessie"
 
-#: ../data/session-selector.ui.h:4
-#| msgid "Save sessions"
+#: data/session-selector.ui:119
 msgid "_Remove Session"
-msgstr "Ve_rwyder sessie"
+msgstr "_Verwyder sessie"
 
-#: ../data/session-selector.ui.h:5
-#| msgid "Current Session"
+#: data/session-selector.ui:133
 msgid "Rena_me Session"
-msgstr "Hernoe_m sessie"
+msgstr "_Hernoem sessie"
 
-#: ../data/session-selector.ui.h:6
+#: data/session-selector.ui:168
 msgid "_Continue"
 msgstr "_Gaan voort"
 
-#: ../data/session-properties.ui.h:1
-msgid "Additional startup _programs:"
-msgstr "Bykomende aanvangs_programme:"
-
-#: ../data/session-properties.ui.h:2
-msgid "Startup Programs"
-msgstr "Aanvangsprogramme"
-
-#: ../data/session-properties.ui.h:3
-msgid "_Automatically remember running applications when logging out"
-msgstr "_Onthou outomaties toepassings wat nog loop by afgemelding"
-
-#: ../data/session-properties.ui.h:4
-#| msgid "_Remember Currently Running Application"
-msgid "_Remember Currently Running Applications"
-msgstr "_Onthou die toepassings wat tans loop"
-
-#: ../data/session-properties.ui.h:5
-msgid "Options"
-msgstr "Opsies"
-
-#: ../data/session-properties.ui.h:6
-msgid "Browse…"
-msgstr "Blaai…"
-
-#: ../data/session-properties.ui.h:7
-msgid "Comm_ent:"
-msgstr "Opm_erking:"
-
-#: ../data/session-properties.ui.h:8
-msgid "Co_mmand:"
-msgstr "Op_drag:"
-
-#: ../data/session-properties.ui.h:9
-msgid "_Name:"
-msgstr "_Naam:"
-
-#: ../egg/eggdesktopfile.c:165
-#, c-format
-msgid "File is not a valid .desktop file"
-msgstr "Lêer is nie 'n geldige .desktop-lêer nie"
-
-#. translators: 'Version' is from a desktop file, and
-#. * should not be translated. '%s' would probably be a
-#. * version number.
-#: ../egg/eggdesktopfile.c:191
-#, c-format
-msgid "Unrecognized desktop file Version '%s'"
-msgstr "Nieherkende \"desktop\"-lêerweergawe '%s'"
-
-#: ../egg/eggdesktopfile.c:974
-#, c-format
-msgid "Starting %s"
-msgstr "Begin tans %s"
-
-#: ../egg/eggdesktopfile.c:1116
-#, c-format
-msgid "Application does not accept documents on command line"
-msgstr "Toepassing aanvaar nie dokumente op die opdraglyn nie"
-
-#: ../egg/eggdesktopfile.c:1184
-#, c-format
-msgid "Unrecognized launch option: %d"
-msgstr "Nieherkende lanseerkeuse: %d"
-
-#. translators: The 'Type=Link' string is found in a
-#. * desktop file, and should not be translated.
-#: ../egg/eggdesktopfile.c:1391
-#, c-format
-msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-msgstr ""
-"Kan nie dokument URI's na 'n 'Type=Link' \"desktop\"-inskrywing aangee nie"
-
-#: ../egg/eggdesktopfile.c:1412
-#, c-format
-msgid "Not a launchable item"
-msgstr "Nie 'n lanseerbare item nie"
-
-#: ../egg/eggsmclient.c:226
-msgid "Disable connection to session manager"
-msgstr "Deaktiveer konneksie na sessiebestuurder"
-
-#: ../egg/eggsmclient.c:229
-msgid "Specify file containing saved configuration"
-msgstr "Spesifiseer lêer wat gestoorde konfigurasie bevat"
-
-#: ../egg/eggsmclient.c:229
-msgid "FILE"
-msgstr "LÊER"
-
-#: ../egg/eggsmclient.c:232
-msgid "Specify session management ID"
-msgstr "Spesifiseer sessiebestuurs-ID"
-
-#: ../egg/eggsmclient.c:232
-msgid "ID"
-msgstr "ID"
-
-#: ../egg/eggsmclient.c:253
-msgid "Session management options:"
-msgstr "Sessiebestuurkeuses:"
-
-#: ../egg/eggsmclient.c:254
-msgid "Show session management options"
-msgstr "Wys keuses vir sessiebestuur"
-
-#: ../gnome-session/gsm-fail-whale-dialog.c:295
+#: gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
 msgstr "Gits!  Iets het verkeerd geloop."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:302
-#| msgid ""
-#| "A problem has occurred and the system can't recover.\n"
-#| "Please log out and try again."
+#: gnome-session/gsm-fail-whale-dialog.c:320
 msgid ""
-"A problem has occurred and the system can't recover. Please contact a system "
+"A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
 msgstr ""
 "'n Fout het voorgekom en die stelsel kan nie daarvan herstel nie. Kontak die "
-"stelseladministrateur."
+"stelseladministrateur"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:304
-#| msgid ""
-#| "A problem has occurred and the system can't recover.\n"
-#| "Please log out and try again."
+#: gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
-"A problem has occurred and the system can't recover. All extensions have "
+"A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
 msgstr ""
 "'n Fout het voorgekom en die stelsel kan nie daarvan herstel nie. Alle "
-"uitbreidings is gedeaktiveer as voorsorgmaatreël."
+"uitbreidings is as voorsorgmaatreël gedeaktiveer."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:306
+#: gnome-session/gsm-fail-whale-dialog.c:324
 msgid ""
-"A problem has occurred and the system can't recover.\n"
+"A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
 msgstr ""
 "'n Fout het voorgekom en die stelsel kan nie herstel daarvan nie.\n"
-"Meld af en probeer gerus weer."
+"Meld af en probeer gerus weer aanmeld."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:321
+#: gnome-session/gsm-fail-whale-dialog.c:339
 msgid "_Log Out"
-msgstr "Me_ld af"
+msgstr "_Meld af"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:343 ../gnome-session/main.c:307
+#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:279
 msgid "Enable debugging code"
 msgstr "Aktiveer ontfoutkode"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:344
+#: gnome-session/gsm-fail-whale-dialog.c:362
 msgid "Allow logout"
 msgstr "Laat afmelding toe"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:345
+#: gnome-session/gsm-fail-whale-dialog.c:363
 msgid "Show extension warning"
 msgstr "Wys uitbreidingwaarskuwing"
 
-#: ../gnome-session/gsm-manager.c:1271 ../gnome-session/gsm-manager.c:2043
+#: gnome-session/gsm-manager.c:1266 gnome-session/gsm-manager.c:1919
 msgid "Not responding"
 msgstr "Reageer nie"
 
-#: ../gnome-session/gsm-util.c:411
-#| msgid "Log out"
+#: gnome-session/gsm-util.c:382
 msgid "_Log out"
-msgstr "Me_ld af"
+msgstr "_Meld af"
 
 #. It'd be really surprising to reach this code: if we're here,
 #. * then the XSMP client already has set several XSMP
 #. * properties. But it could still be that SmProgram is not set.
 #.
-#: ../gnome-session/gsm-xsmp-client.c:559
-#| msgid "_Remember Currently Running Application"
+#: gnome-session/gsm-xsmp-client.c:557
 msgid "Remembered Application"
 msgstr "Onthou die toepassing"
 
-#: ../gnome-session/gsm-xsmp-client.c:1209
+#: gnome-session/gsm-xsmp-client.c:1216
 msgid "This program is blocking logout."
 msgstr "Dié program keer afmelding."
 
-#: ../gnome-session/gsm-xsmp-server.c:341
+#: gnome-session/gsm-xsmp-server.c:338
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr ""
 "Nuwe klientverbinding word geweier omdat die sessie tans afgesluit word\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:610
+#: gnome-session/gsm-xsmp-server.c:605
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Kon nie 'n ICE-luistersok skep nie: %s"
 
-#: ../gnome-session/main.c:305
+#: gnome-session/main.c:277
 msgid "Override standard autostart directories"
 msgstr "Oorheers standaard outobegin gidse"
 
-#: ../gnome-session/main.c:305
+#: gnome-session/main.c:277
 msgid "AUTOSTART_DIR"
-msgstr "OUTOBEGINGIDS"
+msgstr "OUTOBEGIN_GIDS"
 
-#: ../gnome-session/main.c:306
+#: gnome-session/main.c:278
 msgid "Session to use"
 msgstr "Sessie om te gebruik"
 
-#: ../gnome-session/main.c:306
+#: gnome-session/main.c:278
 msgid "SESSION_NAME"
-msgstr "SESSIENAAM"
+msgstr "SESSIE_NAAM"
 
-#: ../gnome-session/main.c:308
+#: gnome-session/main.c:280
 msgid "Do not load user-specified applications"
 msgstr "Moenie gebruiker-gespesifiseerde toepassings laai nie"
 
+#: gnome-session/main.c:281
+msgid "Version of this application"
+msgstr "Weergawe van hierdie program"
+
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:311
+#: gnome-session/main.c:283
 msgid "Show the fail whale dialog for testing"
 msgstr "Wys die dialoog vir ernstige foute (vir toetsdoeleindes)"
 
-#: ../gnome-session/main.c:344
-msgid " - the GNOME session manager"
-msgstr " - die GNOME-sessiebestuurder"
+#: gnome-session/main.c:284
+msgid "Disable hardware acceleration check"
+msgstr "Skakel die hardeware versnelling toets af"
 
-#: ../tools/gnome-session-inhibit.c:110
+#: gnome-session/main.c:316
+msgid " — the GNOME session manager"
+msgstr " — die GNOME-sessiebestuurder"
+
+#: tools/gnome-session-inhibit.c:108
 #, c-format
 msgid ""
-"%s [OPTION...] COMMAND\n"
+"%s [OPTION…] COMMAND\n"
 "\n"
 "Execute COMMAND while inhibiting some session functionality.\n"
 "\n"
@@ -393,70 +215,185 @@ msgstr ""
 "\n"
 "As geen --inhibit-keuse gegee is nie, word \"idle\" aangeneem.\n"
 
-#: ../tools/gnome-session-inhibit.c:148
+#: tools/gnome-session-inhibit.c:146
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Uitvoering van \"%s\" het misluk\n"
 
-#: ../tools/gnome-session-inhibit.c:208 ../tools/gnome-session-inhibit.c:218
-#: ../tools/gnome-session-inhibit.c:228
+#: tools/gnome-session-inhibit.c:206 tools/gnome-session-inhibit.c:216
+#: tools/gnome-session-inhibit.c:226
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "\"%s\" benodig 'n parameter\n"
 
-#: ../tools/gnome-session-selector.c:62
+#: tools/gnome-session-selector.c:61
 #, c-format
-#| msgid "Sessions"
 msgid "Session %d"
 msgstr "Sessie %d"
 
-#: ../tools/gnome-session-selector.c:108
+#: tools/gnome-session-selector.c:107
 msgid ""
-"Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
-msgstr "Sessiename mag nie begin met ‘.’ nie en mag nie ‘/’-karakters bevat nie"
+"Session names are not allowed to start with “.” or contain “/” characters"
+msgstr ""
+"Sessiename mag nie met \".\" begin nie en mag nie \"/\"-karakters bevat nie"
 
-#: ../tools/gnome-session-selector.c:112
-msgid "Session names are not allowed to start with ‘.’"
-msgstr "Sessiename mag nie begin met ‘.’ nie"
+#: tools/gnome-session-selector.c:111
+msgid "Session names are not allowed to start with “.”"
+msgstr "Sessiename mag nie met \".\" begin nie"
 
-#: ../tools/gnome-session-selector.c:116
-msgid "Session names are not allowed to contain ‘/’ characters"
-msgstr "Sessiename mag nie ‘/’-karakters bevat nie"
+#: tools/gnome-session-selector.c:115
+msgid "Session names are not allowed to contain “/” characters"
+msgstr "Sessiename mag nie \"/\"-karakters bevat nie"
 
-#: ../tools/gnome-session-selector.c:124
+#: tools/gnome-session-selector.c:123
 #, c-format
-#| msgid "The session name already exists"
-msgid "A session named ‘%s’ already exists"
-msgstr "'n Sessie met die naam ‘%s’ bestaan reeds"
+msgid "A session named “%s” already exists"
+msgstr "'n Sessie met die naam \"%s\" bestaan reeds"
 
-#: ../tools/gnome-session-quit.c:53
+#: tools/gnome-session-quit.c:50
 msgid "Log out"
 msgstr "Meld af"
 
-#: ../tools/gnome-session-quit.c:54
+#: tools/gnome-session-quit.c:51
 msgid "Power off"
 msgstr "Skakel af"
 
-#: ../tools/gnome-session-quit.c:55
-#| msgid "Reboot Anyway"
+#: tools/gnome-session-quit.c:52
 msgid "Reboot"
 msgstr "Herbegin"
 
-#: ../tools/gnome-session-quit.c:56
+#: tools/gnome-session-quit.c:53
 msgid "Ignoring any existing inhibitors"
 msgstr "Gaan enige bestaande inhibeerders ignoreer"
 
-#: ../tools/gnome-session-quit.c:57
-msgid "Don't prompt for user confirmation"
+#: tools/gnome-session-quit.c:54
+msgid "Don’t prompt for user confirmation"
 msgstr "Moenie vra vir gebruikerbevestiging nie"
 
-#: ../tools/gnome-session-quit.c:91 ../tools/gnome-session-quit.c:101
+#: tools/gnome-session-quit.c:88 tools/gnome-session-quit.c:102
 msgid "Could not connect to the session manager"
 msgstr "Kon nie met sessiebestuurder koppel nie"
 
-#: ../tools/gnome-session-quit.c:203
+#: tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
-msgstr "Program geroep met konflikterende opsies"
+msgstr "Program geroep met botsende opsies"
+
+#~ msgid "Select Command"
+#~ msgstr "Kies bevel"
+
+#~ msgid "Add Startup Program"
+#~ msgstr "Voeg aanvangsprogram by"
+
+#~ msgid "Edit Startup Program"
+#~ msgstr "Redigeer aanvangsprogram"
+
+#~ msgid "The startup command cannot be empty"
+#~ msgstr "Die aanvangsbevel kan nie leeg wees nie"
+
+#~ msgid "The startup command is not valid"
+#~ msgstr "Die aanvangsbevel is nie geldig nie"
+
+#~ msgid "Enabled"
+#~ msgstr "Geaktiveer"
+
+#~ msgid "Icon"
+#~ msgstr "Ikoon"
+
+#~ msgid "Program"
+#~ msgstr "Program"
+
+#~ msgid "Startup Applications Preferences"
+#~ msgstr "Voorkeure vir aanvangstoepassings"
+
+#~ msgid "No name"
+#~ msgstr "Geen naam"
+
+#~ msgid "No description"
+#~ msgstr "Geen beskrywing"
+
+#~ msgid "Could not display help document"
+#~ msgstr "Kon nie hulpdokument vertoon nie"
+
+#~ msgid "Startup Applications"
+#~ msgstr "Aanvangstoepassings"
+
+#~ msgid "Choose what applications to start when you log in"
+#~ msgstr "Kies watter toepassings moet begin by aanmelding"
+
+#~| msgid "This session logs you into GNOME"
+#~ msgid "This session logs you into GNOME, using Wayland"
+#~ msgstr "Hierdie sessie laat mens aanmeld by GNOME m.b.v. Wayland"
+
+#~ msgid "Additional startup _programs:"
+#~ msgstr "Bykomende aanvangs_programme:"
+
+#~ msgid "Startup Programs"
+#~ msgstr "Aanvangsprogramme"
+
+#~ msgid "_Automatically remember running applications when logging out"
+#~ msgstr "_Onthou outomaties toepassings wat nog loop by afgemelding"
+
+#~| msgid "_Remember Currently Running Application"
+#~ msgid "_Remember Currently Running Applications"
+#~ msgstr "_Onthou die toepassings wat tans loop"
+
+#~ msgid "Options"
+#~ msgstr "Opsies"
+
+#~ msgid "Browse…"
+#~ msgstr "Blaai…"
+
+#~ msgid "Comm_ent:"
+#~ msgstr "Opm_erking:"
+
+#~ msgid "Co_mmand:"
+#~ msgstr "Op_drag:"
+
+#~ msgid "_Name:"
+#~ msgstr "_Naam:"
+
+#~ msgid "File is not a valid .desktop file"
+#~ msgstr "Lêer is nie 'n geldige .desktop-lêer nie"
+
+#~ msgid "Unrecognized desktop file Version '%s'"
+#~ msgstr "Nieherkende \"desktop\"-lêerweergawe '%s'"
+
+#~ msgid "Starting %s"
+#~ msgstr "Begin tans %s"
+
+#~ msgid "Application does not accept documents on command line"
+#~ msgstr "Toepassing aanvaar nie dokumente op die opdraglyn nie"
+
+#~ msgid "Unrecognized launch option: %d"
+#~ msgstr "Nieherkende lanseerkeuse: %d"
+
+#~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
+#~ msgstr ""
+#~ "Kan nie dokument URI's na 'n 'Type=Link' \"desktop\"-inskrywing aangee nie"
+
+#~ msgid "Not a launchable item"
+#~ msgstr "Nie 'n lanseerbare item nie"
+
+#~ msgid "Disable connection to session manager"
+#~ msgstr "Deaktiveer konneksie na sessiebestuurder"
+
+#~ msgid "Specify file containing saved configuration"
+#~ msgstr "Spesifiseer lêer wat gestoorde konfigurasie bevat"
+
+#~ msgid "FILE"
+#~ msgstr "LÊER"
+
+#~ msgid "Specify session management ID"
+#~ msgstr "Spesifiseer sessiebestuurs-ID"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Session management options:"
+#~ msgstr "Sessiebestuurkeuses:"
+
+#~ msgid "Show session management options"
+#~ msgstr "Wys keuses vir sessiebestuur"
 
 #~ msgid "<b>Some programs are still running:</b>"
 #~ msgstr "<b>Sommige programme loop steeds:</b>"
