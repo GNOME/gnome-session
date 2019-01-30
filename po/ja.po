@@ -15,14 +15,15 @@
 # Hideki Yamane <henrich@debian.org>, 2011, 2012.
 # Noriko Mizumoto <noriko@fedoraproject.org>, 2012.
 # Hajime Taira <htaira@redhat.com>, 2015.
+# sicklylife <translation@sicklylife.jp>, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
 "POT-Creation-Date: 2018-08-28 21:21+0000\n"
-"PO-Revision-Date: 2019-01-30 20:40+0900\n"
-"Last-Translator: Jiro Matsuzawa <jmatsuzawa@gnome.org>\n"
+"PO-Revision-Date: 2019-01-30 20:43+0900\n"
+"Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -55,38 +56,35 @@ msgid "GNOME on Xorg"
 msgstr "GNOME on Xorg"
 
 #: data/org.gnome.SessionManager.gschema.xml.in:5
-#, fuzzy
-#| msgid "_Remove Session"
 msgid "Save sessions"
-msgstr "セッションを削除(_R)"
+msgstr "セッションを保存する"
 
 #: data/org.gnome.SessionManager.gschema.xml.in:6
 msgid "If enabled, gnome-session will save the session automatically."
-msgstr ""
+msgstr "有効にすると、gnome-session はセッションを自動的に保存します。"
 
 #: data/org.gnome.SessionManager.gschema.xml.in:10
 msgid "Save this session"
-msgstr ""
+msgstr "このセッションを保存する"
 
 #: data/org.gnome.SessionManager.gschema.xml.in:11
 msgid ""
 "When enabled, gnome-session will automatically save the next session at log "
 "out even if auto saving is disabled."
-msgstr ""
+msgstr "有効な場合、セッションの自動保存が無効でも、gnome-session は"
+"ログアウト時にセッションを自動的に保存します。"
 
 #: data/org.gnome.SessionManager.gschema.xml.in:15
 msgid "Logout prompt"
-msgstr ""
+msgstr "ログアウト時に確認する"
 
 #: data/org.gnome.SessionManager.gschema.xml.in:16
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr ""
+msgstr "有効にすると、gnome-session はセッション終了時にユーザーに確認します。"
 
 #: data/org.gnome.SessionManager.gschema.xml.in:20
-#, fuzzy
-#| msgid "Show extension warning"
 msgid "Show the fallback warning"
-msgstr "拡張機能に関する警告を表示する"
+msgstr ""
 
 #: data/org.gnome.SessionManager.gschema.xml.in:21
 msgid ""
@@ -123,10 +121,6 @@ msgid "Oh no!  Something has gone wrong."
 msgstr "あれっ! 何かおかしいです。"
 
 #: gnome-session/gsm-fail-whale-dialog.c:320
-#, fuzzy
-#| msgid ""
-#| "A problem has occurred and the system can't recover. Please contact a "
-#| "system administrator"
 msgid ""
 "A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
@@ -134,10 +128,6 @@ msgstr ""
 "問題が発生して、システムの復帰ができません。システム管理者に連絡してください"
 
 #: gnome-session/gsm-fail-whale-dialog.c:322
-#, fuzzy
-#| msgid ""
-#| "A problem has occurred and the system can't recover. All extensions have "
-#| "been disabled as a precaution."
 msgid ""
 "A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
@@ -146,10 +136,6 @@ msgstr ""
 "ました。"
 
 #: gnome-session/gsm-fail-whale-dialog.c:324
-#, fuzzy
-#| msgid ""
-#| "A problem has occurred and the system can't recover.\n"
-#| "Please log out and try again."
 msgid ""
 "A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
@@ -240,28 +226,11 @@ msgid "Disable hardware acceleration check"
 msgstr "ハードウェアアクセラレーションのチェックを無効化する"
 
 #: gnome-session/main.c:316
-#, fuzzy
-#| msgid " - the GNOME session manager"
 msgid " — the GNOME session manager"
-msgstr "- GNOME セッションマネージャー"
+msgstr " — GNOME セッションマネージャー"
 
 #: tools/gnome-session-inhibit.c:108
-#, fuzzy, c-format
-#| msgid ""
-#| "%s [OPTION...] COMMAND\n"
-#| "\n"
-#| "Execute COMMAND while inhibiting some session functionality.\n"
-#| "\n"
-#| "  -h, --help        Show this help\n"
-#| "  --version         Show program version\n"
-#| "  --app-id ID       The application id to use\n"
-#| "                    when inhibiting (optional)\n"
-#| "  --reason REASON   The reason for inhibiting (optional)\n"
-#| "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
-#| "                    logout, switch-user, suspend, idle, automount\n"
-#| "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
-#| "\n"
-#| "If no --inhibit option is specified, idle is assumed.\n"
+#, c-format
 msgid ""
 "%s [OPTION…] COMMAND\n"
 "\n"
@@ -278,13 +247,13 @@ msgid ""
 "\n"
 "If no --inhibit option is specified, idle is assumed.\n"
 msgstr ""
-"%s [OPTION...] COMMAND\n"
+"%s [OPTION…] COMMAND\n"
 "\n"
 "COMMAND を起動し、その間セッションのいくつかの機能を抑止します。\n"
 "\n"
 "  -h, --help        このヘルプを表示する\n"
 "  --version         プログラムのバージョンを表示する\n"
-"  --app-id ID       抑止時に使用するアプリケーションID (オプション)\n"
+"  --app-id ID       抑止時に使用するアプリケーション ID (オプション)\n"
 "  --reason REASON   抑止する理由を指定する (オプション)\n"
 "  --inhibit ARG     抑止する機能をコロン区切りで以下から指定する:\n"
 "                    logout, switch-user, suspend, idle, automount\n"
@@ -320,10 +289,8 @@ msgid "Ignoring any existing inhibitors"
 msgstr "阻害するプロセスを無視する"
 
 #: tools/gnome-session-quit.c:54
-#, fuzzy
-#| msgid "Don't prompt for user confirmation"
 msgid "Don’t prompt for user confirmation"
-msgstr "ユーザーに確認をしない"
+msgstr "ユーザーに確認しない"
 
 #: tools/gnome-session-quit.c:88 tools/gnome-session-quit.c:102
 msgid "Could not connect to the session manager"
@@ -339,30 +306,22 @@ msgid "Session %d"
 msgstr "セッション %d"
 
 #: tools/gnome-session-selector.c:107
-#, fuzzy
-#| msgid ""
-#| "Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
 msgid ""
 "Session names are not allowed to start with “.” or contain “/” characters"
-msgstr "セッション名は‘.’から始めたり、‘/’を含めることはできません。"
+msgstr "セッション名は“.”から始めたり、“/”を含めることはできません"
 
 #: tools/gnome-session-selector.c:111
-#, fuzzy
-#| msgid "Session names are not allowed to start with ‘.’"
 msgid "Session names are not allowed to start with “.”"
-msgstr "‘.’はセッション名の先頭には使用できません。"
+msgstr "“.”はセッション名の先頭には使用できません"
 
 #: tools/gnome-session-selector.c:115
-#, fuzzy
-#| msgid "Session names are not allowed to contain ‘/’ characters"
 msgid "Session names are not allowed to contain “/” characters"
-msgstr "‘/’はセッション名に含めることができません。"
+msgstr "“/”はセッション名に含めることができません"
 
 #: tools/gnome-session-selector.c:123
-#, fuzzy, c-format
-#| msgid "A session named ‘%s’ already exists"
+#, c-format
 msgid "A session named “%s” already exists"
-msgstr "セッション‘%s’は既に存在します。"
+msgstr "セッション“%s”はすでに存在します"
 
 #~ msgid "Additional startup _programs:"
 #~ msgstr "自動的に起動するプログラムの追加(_P):"
