@@ -523,6 +523,10 @@ gsm_util_export_activation_environment (GError     **error)
                 return FALSE;
         }
 
+        if (child_environment == NULL) {
+                child_environment = g_listenv ();
+        }
+
         g_variant_builder_init (&builder, G_VARIANT_TYPE ("a{ss}"));
         for (entry_names = g_listenv (); entry_names[i] != NULL; i++) {
                 const char *entry_name = entry_names[i];
@@ -540,6 +544,9 @@ gsm_util_export_activation_environment (GError     **error)
                 if (!g_regex_match (value_regex, entry_value, 0, NULL))
                     continue;
 
+                child_environment = g_environ_setenv (child_environment,
+                                                      entry_name, entry_value,
+                                                      TRUE);
                 g_variant_builder_add (&builder, "{ss}", entry_name, entry_value);
         }
         g_regex_unref (name_regex);
