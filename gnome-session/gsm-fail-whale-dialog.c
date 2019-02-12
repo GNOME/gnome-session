@@ -107,15 +107,13 @@ _window_move_resize_window (GsmFailWhaleDialog *window,
 static void
 update_geometry (GsmFailWhaleDialog *fail_dialog)
 {
-        int monitor;
-        GdkScreen *screen;
+        GdkDisplay *display;
+        GdkMonitor *monitor;
 
-        screen = gtk_widget_get_screen (GTK_WIDGET (fail_dialog));
-        monitor = gdk_screen_get_primary_monitor (screen);
+        display = gtk_widget_get_display (GTK_WIDGET (fail_dialog));
+        monitor = gdk_display_get_primary_monitor (display);
 
-        gdk_screen_get_monitor_geometry (screen,
-                                         monitor,
-                                         &fail_dialog->geometry);
+        gdk_monitor_get_geometry (monitor, &fail_dialog->geometry);
 }
 
 static void

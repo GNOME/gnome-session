@@ -94,7 +94,7 @@ glib_req_version = '>= 2.46.0'
 
 gio_dep = dependency('gio-2.0', version: glib_req_version)
 glib_dep = dependency('glib-2.0', version: glib_req_version)
-gtk_dep = dependency('gtk+-3.0', version: '>= 3.18.0')
+gtk_dep = dependency('gtk+-3.0', version: '>= 3.22.0')
 xtrans_dep = dependency('xtrans')
 ice_dep = dependency('ice')
 sm_dep = dependency('sm')
