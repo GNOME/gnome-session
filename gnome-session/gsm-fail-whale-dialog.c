@@ -43,6 +43,7 @@ struct _GsmFailWhaleDialog
         gboolean debug_mode;
         gboolean allow_logout;
         gboolean extensions;
+        GdkMonitor *monitor;
         GdkRectangle geometry;
 };
 
@@ -107,13 +108,7 @@ _window_move_resize_window (GsmFailWhaleDialog *window,
 static void
 update_geometry (GsmFailWhaleDialog *fail_dialog)
 {
-        GdkDisplay *display;
-        GdkMonitor *monitor;
-
-        display = gtk_widget_get_display (GTK_WIDGET (fail_dialog));
-        monitor = gdk_display_get_primary_monitor (display);
-
-        gdk_monitor_get_geometry (monitor, &fail_dialog->geometry);
+        gdk_monitor_get_geometry (fail_dialog->monitor, &fail_dialog->geometry);
 }
 
 static void
@@ -273,7 +268,9 @@ setup_window (GsmFailWhaleDialog *fail_dialog)
         GtkWidget *button_box;
         GtkWidget *button;
         GdkPixbuf *fail_icon;
+        GdkDisplay *display;
         char *markup;
+        int i;
 
         gtk_window_set_title (GTK_WINDOW (fail_dialog), "");
         gtk_window_set_icon_name (GTK_WINDOW (fail_dialog), GSM_ICON_COMPUTER_FAIL);
@@ -282,8 +279,19 @@ setup_window (GsmFailWhaleDialog *fail_dialog)
         gtk_window_set_keep_above (GTK_WINDOW (fail_dialog), TRUE);
         gtk_window_stick (GTK_WINDOW (fail_dialog));
         gtk_window_set_position (GTK_WINDOW (fail_dialog), GTK_WIN_POS_CENTER_ALWAYS);
+
         /* only works if there is a window manager which is unlikely */
-        gtk_window_fullscreen (GTK_WINDOW (fail_dialog));
+        display = gtk_widget_get_display (GTK_WIDGET (fail_dialog));
+        for (i = 0; i < gdk_display_get_n_monitors (display); i++) {
+                if (gdk_display_get_monitor (display, i) == fail_dialog->monitor) {
+                        GdkScreen *screen;
+
+                        screen = gtk_widget_get_screen (GTK_WIDGET (fail_dialog));
+                        gtk_window_fullscreen_on_monitor (GTK_WINDOW (fail_dialog),
+                                                          screen, i);
+                        break;
+                }
+        }
 
         box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 10);
         gtk_widget_set_valign (box, GTK_ALIGN_CENTER);
@@ -347,6 +355,53 @@ gsm_fail_whale_dialog_init (GsmFailWhaleDialog *fail_dialog)
 static gboolean debug_mode = FALSE;
 static gboolean allow_logout = FALSE;
 static gboolean extensions = FALSE;
+static GList *dialogs = NULL;
+
+static void
+create_fail_dialog (GdkMonitor *monitor)
+{
+        GsmFailWhaleDialog *fail_dialog;
+
+        fail_dialog = g_object_new (GSM_TYPE_FAIL_WHALE_DIALOG, NULL);
+        fail_dialog->debug_mode = debug_mode;
+        fail_dialog->allow_logout = allow_logout;
+        fail_dialog->extensions = extensions;
+        fail_dialog->monitor = monitor;
+
+        setup_window (fail_dialog);
+
+        g_signal_connect (fail_dialog, "destroy",
+                          G_CALLBACK (gtk_main_quit), NULL);
+
+        gtk_widget_show (GTK_WIDGET (fail_dialog));
+
+        dialogs = g_list_prepend (dialogs, fail_dialog);
+}
+
+static void
+on_monitor_added (GdkDisplay  *display,
+                  GdkMonitor  *monitor)
+{
+        create_fail_dialog (monitor);
+}
+
+static void
+on_monitor_removed (GdkDisplay  *display,
+                    GdkMonitor  *monitor)
+{
+        GList *l;
+
+        for (l = dialogs; l;) {
+                GList *next = l->next;
+                GsmFailWhaleDialog *fail_dialog = l->data;
+
+                if (fail_dialog->monitor == monitor) {
+                        dialogs = g_list_delete_link (dialogs, l);
+                        gtk_widget_destroy (GTK_WIDGET (fail_dialog));
+                }
+                l = next;
+        }
+}
 
 int main (int argc, char *argv[])
 {
@@ -357,8 +412,9 @@ int main (int argc, char *argv[])
                 { NULL, 0, 0, 0, NULL, NULL, NULL }
         };
 
-        GsmFailWhaleDialog        *fail_dialog;
         GError *error = NULL;
+        GdkDisplay *display;
+        int i;
 
         bindtextdomain (GETTEXT_PACKAGE, LOCALE_DIR);
         bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
@@ -385,17 +441,15 @@ int main (int argc, char *argv[])
         if (g_strcmp0 (g_getenv ("RUNNING_UNDER_GDM"), "true") == 0)
                 allow_logout = FALSE;
 
-        fail_dialog = g_object_new (GSM_TYPE_FAIL_WHALE_DIALOG, NULL);
-        fail_dialog->debug_mode = debug_mode;
-        fail_dialog->allow_logout = allow_logout;
-        fail_dialog->extensions = extensions;
+        display = gdk_display_get_default ();
+        for (i = 0; i < gdk_display_get_n_monitors (display); i++) {
+                create_fail_dialog (gdk_display_get_monitor (display, i));
+        }
 
-        setup_window (fail_dialog);
-
-        g_signal_connect (fail_dialog, "destroy",
-                          G_CALLBACK (gtk_main_quit), NULL);
-
-        gtk_widget_show (GTK_WIDGET (fail_dialog));
+        g_signal_connect (display, "monitor-added",
+                          G_CALLBACK (on_monitor_added), &dialogs);
+        g_signal_connect (display, "monitor-removed",
+                          G_CALLBACK (on_monitor_removed), &dialogs);
 
         gtk_main ();
 
