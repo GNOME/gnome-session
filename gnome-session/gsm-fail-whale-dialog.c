@@ -270,6 +270,7 @@ setup_window (GsmFailWhaleDialog *fail_dialog)
         GdkPixbuf *fail_icon;
         GdkDisplay *display;
         char *markup;
+        int scale_factor;
         int i;
 
         gtk_window_set_title (GTK_WINDOW (fail_dialog), "");
@@ -299,11 +300,13 @@ setup_window (GsmFailWhaleDialog *fail_dialog)
 
         gtk_container_add (GTK_CONTAINER (fail_dialog), box);
 
-        fail_icon = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (),
-                                              GSM_ICON_COMPUTER_FAIL,
-                                              128,
-                                              0,
-                                              NULL);
+        scale_factor = gdk_monitor_get_scale_factor (fail_dialog->monitor);
+        fail_icon = gtk_icon_theme_load_icon_for_scale (gtk_icon_theme_get_default (),
+                                                        GSM_ICON_COMPUTER_FAIL,
+                                                        128,
+                                                        scale_factor,
+                                                        0,
+                                                        NULL);
         if (fail_icon != NULL) {
                 image = gtk_image_new_from_pixbuf (fail_icon);
                 gtk_widget_show (image);
