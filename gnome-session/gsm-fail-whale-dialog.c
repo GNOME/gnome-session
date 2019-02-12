@@ -1,6 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
  *
  * Copyright (C) 2011 Red Hat, Inc.
+ * Copyright (C) 2019 Canonical Ltd.
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -17,6 +18,7 @@
  *
  * Authors:
  *        Colin Walters <walters@verbum.org>
+ *        Marco Trevisan <marco@ubuntu.com>
  */
 
 #include <config.h>
@@ -34,11 +36,10 @@
 
 #include "gsm-icon-names.h"
 
-#define GSM_FAIL_WHALE_DIALOG_GET_PRIVATE(o)                                \
-        (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_FAIL_WHALE_DIALOG, GsmFailWhaleDialogPrivate))
-
-struct _GsmFailWhaleDialogPrivate
+struct _GsmFailWhaleDialog
 {
+        GtkWindow parent;
+
         gboolean debug_mode;
         gboolean allow_logout;
         gboolean extensions;
@@ -81,25 +82,25 @@ _window_move_resize_window (GsmFailWhaleDialog *window,
                             gboolean  move,
                             gboolean  resize)
 {
-        if (window->priv->debug_mode)
+        if (window->debug_mode)
                 return;
 
         g_debug ("Move and/or resize window x=%d y=%d w=%d h=%d",
-                 window->priv->geometry.x,
-                 window->priv->geometry.y,
-                 window->priv->geometry.width,
-                 window->priv->geometry.height);
+                 window->geometry.x,
+                 window->geometry.y,
+                 window->geometry.width,
+                 window->geometry.height);
 
         if (resize) {
                 gtk_window_resize (GTK_WINDOW (window),
-                                   window->priv->geometry.width,
-                                   window->priv->geometry.height);
+                                   window->geometry.width,
+                                   window->geometry.height);
         }
 
         if (move) {
                 gtk_window_move (GTK_WINDOW (window),
-                                 window->priv->geometry.x,
-                                 window->priv->geometry.y);
+                                 window->geometry.x,
+                                 window->geometry.y);
         }
 }
 
@@ -114,7 +115,7 @@ update_geometry (GsmFailWhaleDialog *fail_dialog)
 
         gdk_screen_get_monitor_geometry (screen,
                                          monitor,
-                                         &fail_dialog->priv->geometry);
+                                         &fail_dialog->geometry);
 }
 
 static void
@@ -164,24 +165,24 @@ gsm_fail_whale_dialog_size_request (GtkWidget      *widget,
 
         fail_dialog = GSM_FAIL_WHALE_DIALOG (widget);
 
-        old_geometry = fail_dialog->priv->geometry;
+        old_geometry = fail_dialog->geometry;
 
         update_geometry (fail_dialog);
 
-        requisition->width  = fail_dialog->priv->geometry.width;
-        requisition->height = fail_dialog->priv->geometry.height;
+        requisition->width  = fail_dialog->geometry.width;
+        requisition->height = fail_dialog->geometry.height;
 
         if (!gtk_widget_get_realized (widget)) {
                 return;
         }
 
-        if (old_geometry.width  != fail_dialog->priv->geometry.width ||
-            old_geometry.height != fail_dialog->priv->geometry.height) {
+        if (old_geometry.width  != fail_dialog->geometry.width ||
+            old_geometry.height != fail_dialog->geometry.height) {
                 size_changed = TRUE;
         }
 
-        if (old_geometry.x != fail_dialog->priv->geometry.x ||
-            old_geometry.y != fail_dialog->priv->geometry.y) {
+        if (old_geometry.x != fail_dialog->geometry.x ||
+            old_geometry.y != fail_dialog->geometry.y) {
                 position_changed = TRUE;
         }
 
@@ -252,15 +253,13 @@ gsm_fail_whale_dialog_class_init (GsmFailWhaleDialogClass *klass)
         widget_class->get_preferred_height = gsm_fail_whale_dialog_get_preferred_height;
         widget_class->get_preferred_width_for_height = gsm_fail_whale_dialog_get_preferred_width_for_height;
         widget_class->get_preferred_height_for_width = gsm_fail_whale_dialog_get_preferred_height_for_width;
-
-        g_type_class_add_private (klass, sizeof (GsmFailWhaleDialogPrivate));
 }
 
 static void
 on_logout_clicked (GtkWidget          *button,
                    GsmFailWhaleDialog *fail_dialog)
 {
-        if (!fail_dialog->priv->debug_mode) {
+        if (!fail_dialog->debug_mode) {
                 g_spawn_command_line_async ("gnome-session-quit --force", NULL);
         }
         gtk_main_quit ();
@@ -269,7 +268,6 @@ on_logout_clicked (GtkWidget          *button,
 static void
 setup_window (GsmFailWhaleDialog *fail_dialog)
 {
-        GsmFailWhaleDialogPrivate *priv;
         GtkWidget *box;
         GtkWidget *image;
         GtkWidget *label;
@@ -278,8 +276,6 @@ setup_window (GsmFailWhaleDialog *fail_dialog)
         GtkWidget *button;
         GdkPixbuf *fail_icon;
         char *markup;
-
-        priv = fail_dialog->priv;
 
         gtk_window_set_title (GTK_WINDOW (fail_dialog), "");
         gtk_window_set_icon_name (GTK_WINDOW (fail_dialog), GSM_ICON_COMPUTER_FAIL);
@@ -316,9 +312,9 @@ setup_window (GsmFailWhaleDialog *fail_dialog)
         gtk_widget_show (label);
         gtk_box_pack_start (GTK_BOX (box), label, FALSE, FALSE, 0);
 
-        if (!priv->allow_logout)
+        if (!fail_dialog->allow_logout)
                 message_label = gtk_label_new (_("A problem has occurred and the system can’t recover. Please contact a system administrator"));
-        else if (priv->extensions)
+        else if (fail_dialog->extensions)
                 message_label = gtk_label_new (_("A problem has occurred and the system can’t recover. All extensions have been disabled as a precaution."));
         else
                 message_label = gtk_label_new (_("A problem has occurred and the system can’t recover.\nPlease log out and try again."));
@@ -335,7 +331,7 @@ setup_window (GsmFailWhaleDialog *fail_dialog)
         gtk_box_pack_end (GTK_BOX (box),
                           button_box, FALSE, FALSE, 0);
 
-        if (priv->allow_logout) {
+        if (fail_dialog->allow_logout) {
                 button = gtk_button_new_with_mnemonic (_("_Log Out"));
                 gtk_widget_show (button);
                 gtk_box_pack_end (GTK_BOX (button_box),
@@ -348,7 +344,6 @@ setup_window (GsmFailWhaleDialog *fail_dialog)
 static void
 gsm_fail_whale_dialog_init (GsmFailWhaleDialog *fail_dialog)
 {
-        fail_dialog->priv = GSM_FAIL_WHALE_DIALOG_GET_PRIVATE (fail_dialog);
 }
 
 static gboolean debug_mode = FALSE;
@@ -387,9 +382,9 @@ int main (int argc, char *argv[])
         }
 
         fail_dialog = g_object_new (GSM_TYPE_FAIL_WHALE_DIALOG, NULL);
-        fail_dialog->priv->debug_mode = debug_mode;
-        fail_dialog->priv->allow_logout = allow_logout;
-        fail_dialog->priv->extensions = extensions;
+        fail_dialog->debug_mode = debug_mode;
+        fail_dialog->allow_logout = allow_logout;
+        fail_dialog->extensions = extensions;
 
         setup_window (fail_dialog);
 
