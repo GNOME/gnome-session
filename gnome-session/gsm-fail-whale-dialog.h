@@ -1,6 +1,7 @@
 /* -*- Mode: C; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 8 -*-
  *
  * Copyright (C) 2011 Red Hat, Inc.
+ * Copyright (C) 2019 Canonical Ltd.
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -17,6 +18,7 @@
  *
  * Authors:
  *	Colin Walters <walters@verbum.org>
+ *      Marco Trevisan <marco@ubuntu.com>
  */
 
 #ifndef __GSM_FAIL_WHALE_DIALOG_H__
@@ -27,29 +29,7 @@
 G_BEGIN_DECLS
 
 #define GSM_TYPE_FAIL_WHALE_DIALOG         (gsm_fail_whale_dialog_get_type ())
-#define GSM_FAIL_WHALE_DIALOG(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), GSM_TYPE_FAIL_WHALE_DIALOG, GsmFailWhaleDialog))
-#define GSM_FAIL_WHALE_DIALOG_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), GSM_TYPE_FAIL_WHALE_DIALOG, GsmFailWhaleDialogClass))
-#define GSM_IS_FAIL_WHALE_DIALOG(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), GSM_TYPE_FAIL_WHALE_DIALOG))
-#define GSM_IS_FAIL_WHALE_DIALOG_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), GSM_TYPE_FAIL_WHALE_DIALOG))
-#define GSM_FAIL_WHALE_DIALOG_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), GSM_TYPE_FAIL_WHALE_DIALOG, GsmFailWhaleDialogClass))
-
-typedef struct _GsmFailWhaleDialog         GsmFailWhaleDialog;
-typedef struct _GsmFailWhaleDialogClass    GsmFailWhaleDialogClass;
-typedef struct _GsmFailWhaleDialogPrivate  GsmFailWhaleDialogPrivate;
-
-struct _GsmFailWhaleDialog
-{
-        GtkWindow                  parent;
-
-        GsmFailWhaleDialogPrivate *priv;
-};
-
-struct _GsmFailWhaleDialogClass
-{
-        GtkWindowClass  parent_class;
-};
-
-GType        gsm_fail_whale_dialog_get_type   (void) G_GNUC_CONST;
+G_DECLARE_FINAL_TYPE (GsmFailWhaleDialog, gsm_fail_whale_dialog, GSM, FAIL_WHALE_DIALOG, GtkWindow);
 
 G_END_DECLS
 
