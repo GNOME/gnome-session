@@ -2,14 +2,13 @@
 # Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
 # This file is distributed under the same license as the gnome-session package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
-# GunChleoc <fios@foramnagaidhlig.net>, 2013, 2015, 2016, 2017, 2018.
+# GunChleoc <fios@foramnagaidhlig.net>, 2013, 2015, 2016, 2017, 2018, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2018-03-13 14:46+0000\n"
-"PO-Revision-Date: 2018-02-26 12:22+0100\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
+"POT-Creation-Date: 2019-01-07 18:37+0000\n"
+"PO-Revision-Date: 2019-02-16 09:55+0100\n"
 "Last-Translator: GunChleoc <fios@foramnagaidhlig.net>\n"
 "Language-Team: Fòram na Gàidhlig\n"
 "Language: gd\n"
@@ -22,29 +21,75 @@ msgstr ""
 "X-Launchpad-Export-Date: 2013-09-15 06:24+0000\n"
 "X-Project-Style: gnome\n"
 
-#: data/gnome-custom-session.desktop.in:3
+#: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
 msgstr "Gnàthaichte"
 
-#: data/gnome-custom-session.desktop.in:4
+#: data/gnome-custom-session.desktop.in.in:4
 msgid "This entry lets you select a saved session"
-msgstr "’S urrainn dhut seisean air a shàbhaladh a thaghadh leis an innteart seo"
+msgstr ""
+"’S urrainn dhut seisean air a shàbhaladh a thaghadh leis an innteart seo"
 
-#: data/gnome.desktop.in:3 data/gnome.session.desktop.in.in:3
+#: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
 msgid "GNOME"
 msgstr "GNOME"
 
-#: data/gnome.desktop.in:4 data/gnome-xorg.desktop.in:4
+#: data/gnome.desktop.in.in:4 data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
 msgstr "Clàraidh an seisean seo a-steach gu GNOME thu"
-
-#: data/gnome-xorg.desktop.in:3
-msgid "GNOME on Xorg"
-msgstr "GNOME air Xorg"
 
 #: data/gnome-dummy.session.desktop.in.in:3
 msgid "GNOME dummy"
 msgstr "Caochag GNOME"
+
+#: data/gnome-xorg.desktop.in.in:3
+msgid "GNOME on Xorg"
+msgstr "GNOME air Xorg"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:5
+#| msgid "_Remove Session"
+msgid "Save sessions"
+msgstr "Sàbhail na seiseanan"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:6
+msgid "If enabled, gnome-session will save the session automatically."
+msgstr ""
+"Ma tha seo an comas, sàbhailidh gnome-session an seisean gu fèin-obrachail."
+
+#: data/org.gnome.SessionManager.gschema.xml.in:10
+msgid "Save this session"
+msgstr "Sàbhail an seisean seo"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:11
+msgid ""
+"When enabled, gnome-session will automatically save the next session at log "
+"out even if auto saving is disabled."
+msgstr ""
+"Ma tha seo an comas, sàbhailidh gnome-session an ath-sheisean nuair a "
+"nithear clàradh a-mach fiù ma tha an sàbhaladh fèin-obrachail à comas."
+
+#: data/org.gnome.SessionManager.gschema.xml.in:15
+msgid "Logout prompt"
+msgstr "Dearbhadh a’ chlàraidh a-mach"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:16
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr ""
+"Ma tha seo an comas, cuiridh gnome-session ceist dhan chleachdaiche mus dèid "
+"crìoch a chur air seisean."
+
+#: data/org.gnome.SessionManager.gschema.xml.in:20
+#| msgid "Show extension warning"
+msgid "Show the fallback warning"
+msgstr "Seall an rabhadh èiginneach"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:21
+msgid ""
+"If enabled, gnome-session will display a warning dialog after login if the "
+"session was automatically fallen back."
+msgstr ""
+"Ma tha seo an comas, seallaidh gnome-session còmhradh rabhaidh às dèidh a’ "
+"chlàraidh a-steach ma chaidh an seisean aiseag gu h-èiginneach."
 
 #: data/session-selector.ui:15
 msgid "Custom Session"
@@ -72,13 +117,13 @@ msgstr "_Lean air adhart"
 
 #: gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
-msgstr "Obh Obh! Chaidh rudeigin cearr."
+msgstr "Obh Obh! Chaidh rudeigin ceàrr."
 
 #: gnome-session/gsm-fail-whale-dialog.c:320
 msgid ""
 "A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
-msgstr "Thachair duilgheadas ach nach urrainn dhan t-siostam aiseag. Feuch an cuir thu fiosrachadh gu rianaire an t-siostaim agad."
+msgstr "Thachair duilgheadas ach nach urrainn dhan t-siostam aiseag. Feuch an cuir thu fiosrachadh gu rianaire an t-siostaim agad"
 
 #: gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
@@ -122,30 +167,30 @@ msgstr "C_làraich a-mach"
 #.
 #: gnome-session/gsm-xsmp-client.c:557
 msgid "Remembered Application"
-msgstr "Prògram air a chuimhneachadh"
+msgstr "Aplacaid air a cuimhneachadh"
 
 #: gnome-session/gsm-xsmp-client.c:1216
 msgid "This program is blocking logout."
 msgstr "Tha am prògram seo a’ bacadh a’ chlàraidh a-mach."
 
-#: gnome-session/gsm-xsmp-server.c:340
+#: gnome-session/gsm-xsmp-server.c:338
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
-msgstr "A’ diùltadh ceangal ùr ri cliant on a tha an seisean ’ga dhùnadh sìos an-dràsta.\n"
+msgstr "A’ diùltadh ceangal ùr ri cliant on a tha an seisean ’ga dhùnadh sìos an-dràsta\n"
 
-#: gnome-session/gsm-xsmp-server.c:609
+#: gnome-session/gsm-xsmp-server.c:605
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Cha b’ urrainn dhuinn socaid èisteachd ICE a chruthachadh: %s"
 
 #: gnome-session/main.c:277
 msgid "Override standard autostart directories"
-msgstr "Tar-àithn na pasganan fèin-tòiseachaidh bunaiteach"
+msgstr "Tar-àithn na pasganan fèin-tòiseachaidh stannardach"
 
 #: gnome-session/main.c:277
 msgid "AUTOSTART_DIR"
-msgstr "PASGAN_FÈIN_TOISEACHAIDH"
+msgstr "PASGAN_FÈIN_TÒISEACHAIDH"
 
 #: gnome-session/main.c:278
 msgid "Session to use"
@@ -157,11 +202,11 @@ msgstr "AINM_SEISEIN"
 
 #: gnome-session/main.c:280
 msgid "Do not load user-specified applications"
-msgstr "Cha b’ urrainn dhuinn prògraman gnàthaichte a’ chleachdaiche a luchdadh"
+msgstr "Na luchdaich aplacaidean gnàthaichte a’ chleachdaiche"
 
 #: gnome-session/main.c:281
 msgid "Version of this application"
-msgstr "Tionndadh a’ phrògraim seo"
+msgstr "Tionndadh na h-aplacaid seo"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
 #: gnome-session/main.c:283
@@ -193,12 +238,12 @@ msgid ""
 "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
 "\n"
 "If no --inhibit option is specified, idle is assumed.\n"
-msgstr "%s [ROGHAINN…] ÀITHNE\n\nCuir ÀITHNE an gnìomh fhad ’s a thèid cuid a dh’fhoincseanan seisean a bhacadh.\n\n  -h, --help        Seall a’ chobhair seo\n  --version         Seall an tionndadh dhen phrògram\n  --app-id ID       ID a’ phrògraim a thèid a chleachdadh\n                    leis a’ bhacadh (roghainneil)\n  --reason ADHBHAR  Adhbhar a’ bhacaidh (rogainneil)\n  --inhibit ARG     Nithean ri am bacadh, liosta air a sgaradh le\n                    còileanan de:\n                    logout, switch-user, suspend, idle, automount\n  --inhibit-only    Na tòisich air ÀITHNE is feitheamh gun chrìch\n                    ’na àite\n\nMura deach an roghainn --inhibit a shònrachadh, thathar an dùil\nair idle.\n"
+msgstr "%s [ROGHAINN…] ÀITHNE\n\nRuith ÀITHNE fhad ’s a thèid cuid a dh’fhoincseanan seisein a bhacadh.\n\n  -h, --help        Seall a’ chobhair seo\n  --version         Seall an tionndadh dhen phrògram\n  --app-id ID       ID ana h-aplacaid a thèid a chleachdadh\n                    leis a’ bhacadh (roghainneil)\n  --reason ADHBHAR  Adhbhar a’ bhacaidh (rogainneil)\n  --inhibit ARG     Nithean ri am bacadh, liosta air a sgaradh le\n                    còileanan de:\n                    logout, switch-user, suspend, idle, automount\n  --inhibit-only    Na cuir an ÀITHNE gu dol is dèan feitheamh gun chrìch\n                    ’na àite\n\nMura deach an roghainn --inhibit a shònrachadh, thathar an dùil\nair idle.\n"
 
 #: tools/gnome-session-inhibit.c:146
 #, c-format
 msgid "Failed to execute %s\n"
-msgstr "Cha deach leinn %s a chur an gnìomh\n"
+msgstr "Cha deach leinn %s a ruith\n"
 
 #: tools/gnome-session-inhibit.c:206 tools/gnome-session-inhibit.c:216
 #: tools/gnome-session-inhibit.c:226
@@ -206,40 +251,17 @@ msgstr "Cha deach leinn %s a chur an gnìomh\n"
 msgid "%s requires an argument\n"
 msgstr "Tha argamaid a dhìth air %s\n"
 
-#: tools/gnome-session-selector.c:61
-#, c-format
-msgid "Session %d"
-msgstr "Seisean %d"
-
-#: tools/gnome-session-selector.c:107
-msgid ""
-"Session names are not allowed to start with “.” or contain “/” characters"
-msgstr "Chan eil ainm seisein a thòisicheas le “.” no sa bheil an caractar “/” ceadaichte"
-
-#: tools/gnome-session-selector.c:111
-msgid "Session names are not allowed to start with “.”"
-msgstr "Chan eil ainm seisein a thòisicheas le “.” ceadaichte"
-
-#: tools/gnome-session-selector.c:115
-msgid "Session names are not allowed to contain “/” characters"
-msgstr "Chan eil ainm seisein sa bheil an caractar “/” ceadaichte"
-
-#: tools/gnome-session-selector.c:123
-#, c-format
-msgid "A session named “%s” already exists"
-msgstr "Tha seisean air a bheil “%s” ann mar-thà"
-
 #: tools/gnome-session-quit.c:50
 msgid "Log out"
 msgstr "Clàraich a-mach"
 
 #: tools/gnome-session-quit.c:51
 msgid "Power off"
-msgstr "Dùin sìos"
+msgstr "Cuir dheth"
 
 #: tools/gnome-session-quit.c:52
 msgid "Reboot"
-msgstr "Ath-thòisich an siostam"
+msgstr "Ath-thòisich"
 
 #: tools/gnome-session-quit.c:53
 msgid "Ignoring any existing inhibitors"
@@ -256,6 +278,29 @@ msgstr "Cha b’ urrainn dhuinn ceangal ri manaidsear nan seisean"
 #: tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
 msgstr "Chaidh prògram a ghairm le roghainnean ann an còmhstri"
+
+#: tools/gnome-session-selector.c:61
+#, c-format
+msgid "Session %d"
+msgstr "Seisean %d"
+
+#: tools/gnome-session-selector.c:107
+msgid ""
+"Session names are not allowed to start with “.” or contain “/” characters"
+msgstr "Chan fhaod ainm seisein a thòiseachadh le “.” no caractar “/” a bhith ’na bhroinn"
+
+#: tools/gnome-session-selector.c:111
+msgid "Session names are not allowed to start with “.”"
+msgstr "Chan fhaod ainm seisein a thòiseachadh le “.”"
+
+#: tools/gnome-session-selector.c:115
+msgid "Session names are not allowed to contain “/” characters"
+msgstr "Chan fhaod caractar “/” a bhith am broinn ainm seisein"
+
+#: tools/gnome-session-selector.c:123
+#, c-format
+msgid "A session named “%s” already exists"
+msgstr "Tha seisean air a bheil “%s” ann mu thràth"
 
 #~ msgid "Additional startup _programs:"
 #~ msgstr "_Prògraman tòiseachaidh a bharrachd:"
