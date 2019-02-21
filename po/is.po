@@ -2,14 +2,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # Samúel Jón Gunnarsson <sammi@techattack.nu>, 2003.
 # Richard Allen <ra@ra.is>, 2003.
-# Sveinn í Felli <sv1@fellsnet.is>, 2015, 2017.
+# Sveinn í Felli <sv1@fellsnet.is>, 2015, 2017, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-09-18 14:31+0000\n"
-"PO-Revision-Date: 2017-09-25 15:13+0000\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
+"POT-Creation-Date: 2019-01-07 18:37+0000\n"
+"PO-Revision-Date: 2019-02-21 08:50+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
 "Language: is\n"
@@ -17,64 +16,109 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Lokalize 2.0\n"
 
-#: ../data/gnome-custom-session.desktop.in.h:1
+#: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
 msgstr "Sérsniðið"
 
-#: ../data/gnome-custom-session.desktop.in.h:2
+#: data/gnome-custom-session.desktop.in.in:4
 msgid "This entry lets you select a saved session"
 msgstr "Þessi færsla gerir þér kleift að velja vistaða setu"
 
-#: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
+#: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
 msgid "GNOME"
 msgstr "GNOME"
 
-#: ../data/gnome.desktop.in.h:2 ../data/gnome-xorg.desktop.in.h:2
+#: data/gnome.desktop.in.in:4 data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
 msgstr "Þessi seta skráir þig inn í GNOME"
 
-#: ../data/gnome-xorg.desktop.in.h:1
-msgid "GNOME on Xorg"
-msgstr "GNOME á Xorg"
-
-#: ../data/gnome-dummy.session.desktop.in.in.h:1
+#: data/gnome-dummy.session.desktop.in.in:3
 msgid "GNOME dummy"
 msgstr "GNOME sýnishorn"
 
-#: ../data/session-selector.ui.h:1
+#: data/gnome-xorg.desktop.in.in:3
+msgid "GNOME on Xorg"
+msgstr "GNOME á Xorg"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:5
+#| msgid "Saving session details."
+msgid "Save sessions"
+msgstr "Vista setur"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:6
+#| msgid ""
+#| "If enabled, gnome-session will prompt the user before ending a session."
+msgid "If enabled, gnome-session will save the session automatically."
+msgstr "Ef virkt mun gnome-setan vista setuna sjálkrafa."
+
+#: data/org.gnome.SessionManager.gschema.xml.in:10
+#| msgid "Save Current Session"
+msgid "Save this session"
+msgstr "Vista þessa setu"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:11
+#| msgid ""
+#| "If enabled, gnome-session will save the session automatically. Otherwise, "
+#| "the logout dialog will have an option to save the session."
+msgid ""
+"When enabled, gnome-session will automatically save the next session at log "
+"out even if auto saving is disabled."
+msgstr ""
+"Ef virkt mun gnome-setan vista næstu setu sjálkrafa við útskráningu jafnvel"
+" þótt sjálfvirk vistun á setu sé óvirk."
+
+#: data/org.gnome.SessionManager.gschema.xml.in:15
+msgid "Logout prompt"
+msgstr "Staðfesta útskráningu"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:16
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr "Ef virkt mun gnome-setan spyrja um staðfestingu áður en setu er lokið."
+
+#: data/org.gnome.SessionManager.gschema.xml.in:20
+#| msgid "Show extension warning"
+msgid "Show the fallback warning"
+msgstr "Birta varaaðvörun"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:21
+msgid ""
+"If enabled, gnome-session will display a warning dialog after login if the "
+"session was automatically fallen back."
+msgstr ""
+"Ef virkt mun gnome-setan birta aðvörun eftir innskráningu ef sjálfkrafa var"
+" notuð varaseta."
+
+#: data/session-selector.ui:15
 msgid "Custom Session"
 msgstr "Sérsniðin seta"
 
-#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:102
+#: data/session-selector.ui:50 tools/gnome-session-selector.c:102
 msgid "Please select a custom session to run"
 msgstr "Veldu sérsniðna setu til að keyra"
 
-#: ../data/session-selector.ui.h:3
+#: data/session-selector.ui:105
 msgid "_New Session"
 msgstr "_Ný seta"
 
-#: ../data/session-selector.ui.h:4
+#: data/session-selector.ui:119
 msgid "_Remove Session"
 msgstr "Fja_rlægja setu"
 
-#: ../data/session-selector.ui.h:5
+#: data/session-selector.ui:133
 msgid "Rena_me Session"
 msgstr "Endur_nefna setu"
 
-#: ../data/session-selector.ui.h:6
+#: data/session-selector.ui:168
 msgid "_Continue"
 msgstr "_Áfram"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:313
+#: gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
 msgstr "Úbbs! Eitthvað hefur farið úrskeiðis núna."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:320
-#| msgid ""
-#| "A problem has occurred and the system can't recover. Please contact a "
-#| "system administrator"
+#: gnome-session/gsm-fail-whale-dialog.c:320
 msgid ""
 "A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
@@ -82,10 +126,7 @@ msgstr ""
 "Vandamál kom upp og kerfið nær ekki að vinna sig út úr því. Hafðu samband "
 "við kerfisstjóra"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:322
-#| msgid ""
-#| "A problem has occurred and the system can't recover. All extensions have "
-#| "been disabled as a precaution."
+#: gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
 "A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
@@ -93,10 +134,7 @@ msgstr ""
 "Vandamál kom upp og kerfið nær ekki að vinna sig út úr því. Allar viðbætur "
 "hafa verið gerðar óvirkar í varúðarskyni."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:324
-#| msgid ""
-#| "A problem has occurred and the system can't recover.\n"
-#| "Please log out and try again."
+#: gnome-session/gsm-fail-whale-dialog.c:324
 msgid ""
 "A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
@@ -104,27 +142,27 @@ msgstr ""
 "Vandamál kom upp og kerfið nær ekki að vinna sig út úr því.\n"
 "Skráðu þig út og reyndu aftur."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:339
+#: gnome-session/gsm-fail-whale-dialog.c:339
 msgid "_Log Out"
 msgstr "_Útskrá"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:281
+#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:279
 msgid "Enable debugging code"
 msgstr "Virkja aflúsunarham"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:362
+#: gnome-session/gsm-fail-whale-dialog.c:362
 msgid "Allow logout"
 msgstr "Leyfa að skrá sig út"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:363
+#: gnome-session/gsm-fail-whale-dialog.c:363
 msgid "Show extension warning"
 msgstr "Birta aðvörun vegna skráaendinga"
 
-#: ../gnome-session/gsm-manager.c:1266 ../gnome-session/gsm-manager.c:1919
+#: gnome-session/gsm-manager.c:1266 gnome-session/gsm-manager.c:1919
 msgid "Not responding"
 msgstr "Svarar ekki"
 
-#: ../gnome-session/gsm-util.c:382
+#: gnome-session/gsm-util.c:382
 msgid "_Log out"
 msgstr "S_krá út"
 
@@ -132,15 +170,15 @@ msgstr "S_krá út"
 #. * then the XSMP client already has set several XSMP
 #. * properties. But it could still be that SmProgram is not set.
 #.
-#: ../gnome-session/gsm-xsmp-client.c:557
+#: gnome-session/gsm-xsmp-client.c:557
 msgid "Remembered Application"
 msgstr "Munað forrit"
 
-#: ../gnome-session/gsm-xsmp-client.c:1207
+#: gnome-session/gsm-xsmp-client.c:1216
 msgid "This program is blocking logout."
 msgstr "Þetta forrit hindrar útskráningu."
 
-#: ../gnome-session/gsm-xsmp-server.c:340
+#: gnome-session/gsm-xsmp-server.c:338
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
@@ -148,66 +186,50 @@ msgstr ""
 "Leyfi biðlara ekki að tengjast vegna þess að það er verið að slökkva á "
 "þessari setu\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:609
+#: gnome-session/gsm-xsmp-server.c:605
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Gat ekki búið til ICE hlustunar tengi: %s"
 
-#: ../gnome-session/main.c:279
+#: gnome-session/main.c:277
 msgid "Override standard autostart directories"
 msgstr "Ekki nota sjálfgefna möppu fyrir sjálfvirka ræsingu"
 
-#: ../gnome-session/main.c:279
+#: gnome-session/main.c:277
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: ../gnome-session/main.c:280
+#: gnome-session/main.c:278
 msgid "Session to use"
 msgstr "Setan sem á að nota"
 
-#: ../gnome-session/main.c:280
+#: gnome-session/main.c:278
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: ../gnome-session/main.c:282
+#: gnome-session/main.c:280
 msgid "Do not load user-specified applications"
 msgstr "Ekki hlaða inn forritum völdum að notanda"
 
-#: ../gnome-session/main.c:283
+#: gnome-session/main.c:281
 msgid "Version of this application"
 msgstr "Útgáfa þessa forrits"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:285
+#: gnome-session/main.c:283
 msgid "Show the fail whale dialog for testing"
 msgstr "Birta 'bilaða bilunargluggann' til prófunar"
 
-#: ../gnome-session/main.c:286
+#: gnome-session/main.c:284
 msgid "Disable hardware acceleration check"
 msgstr "Gera prófun á vélbúnaðarhröðun óvirka"
 
-#: ../gnome-session/main.c:318
-#| msgid " - the GNOME session manager"
+#: gnome-session/main.c:316
 msgid " — the GNOME session manager"
 msgstr " — GNOME setustýringin"
 
-#: ../tools/gnome-session-inhibit.c:108
+#: tools/gnome-session-inhibit.c:108
 #, c-format
-#| msgid ""
-#| "%s [OPTION...] COMMAND\n"
-#| "\n"
-#| "Execute COMMAND while inhibiting some session functionality.\n"
-#| "\n"
-#| "  -h, --help        Show this help\n"
-#| "  --version         Show program version\n"
-#| "  --app-id ID       The application id to use\n"
-#| "                    when inhibiting (optional)\n"
-#| "  --reason REASON   The reason for inhibiting (optional)\n"
-#| "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
-#| "                    logout, switch-user, suspend, idle, automount\n"
-#| "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
-#| "\n"
-#| "If no --inhibit option is specified, idle is assumed.\n"
 msgid ""
 "%s [OPTION…] COMMAND\n"
 "\n"
@@ -239,73 +261,67 @@ msgstr ""
 "\n"
 "Ef engin --inhibit kostur er tilgreindur, ganga út frá 'idle' sem vísu.\n"
 
-#: ../tools/gnome-session-inhibit.c:146
+#: tools/gnome-session-inhibit.c:146
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Mistókst að keyra %s\n"
 
-#: ../tools/gnome-session-inhibit.c:206 ../tools/gnome-session-inhibit.c:216
-#: ../tools/gnome-session-inhibit.c:226
+#: tools/gnome-session-inhibit.c:206 tools/gnome-session-inhibit.c:216
+#: tools/gnome-session-inhibit.c:226
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s krefst færibreytu\n"
 
-#: ../tools/gnome-session-selector.c:61
+#: tools/gnome-session-quit.c:50
+msgid "Log out"
+msgstr "Skrá út"
+
+#: tools/gnome-session-quit.c:51
+msgid "Power off"
+msgstr "Slökkva á"
+
+#: tools/gnome-session-quit.c:52
+msgid "Reboot"
+msgstr "Endurræsa"
+
+#: tools/gnome-session-quit.c:53
+msgid "Ignoring any existing inhibitors"
+msgstr "Hunsa allt sem gæti truflað"
+
+#: tools/gnome-session-quit.c:54
+msgid "Don’t prompt for user confirmation"
+msgstr "Ekki spyrja notanda um staðfestingu"
+
+#: tools/gnome-session-quit.c:88 tools/gnome-session-quit.c:102
+msgid "Could not connect to the session manager"
+msgstr "Ekki tókst að tengjast setustjóra"
+
+#: tools/gnome-session-quit.c:198
+msgid "Program called with conflicting options"
+msgstr "Kallað á forrit með röngum stillingum"
+
+#: tools/gnome-session-selector.c:61
 #, c-format
 msgid "Session %d"
 msgstr "Seta %d"
 
-#: ../tools/gnome-session-selector.c:107
-#| msgid ""
-#| "Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
+#: tools/gnome-session-selector.c:107
 msgid ""
 "Session names are not allowed to start with “.” or contain “/” characters"
 msgstr "Heiti setu má ekki byrja á '.' eða innihalda '/' stafi"
 
-#: ../tools/gnome-session-selector.c:111
-#| msgid "Session names are not allowed to start with ‘.’"
+#: tools/gnome-session-selector.c:111
 msgid "Session names are not allowed to start with “.”"
 msgstr "Heiti setu má ekki byrja á '.'"
 
-#: ../tools/gnome-session-selector.c:115
-#| msgid "Session names are not allowed to contain ‘/’ characters"
+#: tools/gnome-session-selector.c:115
 msgid "Session names are not allowed to contain “/” characters"
 msgstr "Heiti setu má ekki innihalda '/' stafi"
 
-#: ../tools/gnome-session-selector.c:123
+#: tools/gnome-session-selector.c:123
 #, c-format
-#| msgid "A session named ‘%s’ already exists"
 msgid "A session named “%s” already exists"
 msgstr "Seta með heitinu '%s' er þegar til"
-
-#: ../tools/gnome-session-quit.c:50
-msgid "Log out"
-msgstr "Skrá út"
-
-#: ../tools/gnome-session-quit.c:51
-msgid "Power off"
-msgstr "Slökkva á"
-
-#: ../tools/gnome-session-quit.c:52
-msgid "Reboot"
-msgstr "Endurræsa"
-
-#: ../tools/gnome-session-quit.c:53
-msgid "Ignoring any existing inhibitors"
-msgstr "Hunsa allt sem gæti truflað"
-
-#: ../tools/gnome-session-quit.c:54
-#| msgid "Don't prompt for user confirmation"
-msgid "Don’t prompt for user confirmation"
-msgstr "Ekki spyrja notanda um staðfestingu"
-
-#: ../tools/gnome-session-quit.c:88 ../tools/gnome-session-quit.c:102
-msgid "Could not connect to the session manager"
-msgstr "Ekki tókst að tengjast setustjóra"
-
-#: ../tools/gnome-session-quit.c:198
-msgid "Program called with conflicting options"
-msgstr "Kallað á forrit með röngum stillingum"
 
 #~ msgid "This session logs you into GNOME, using Wayland"
 #~ msgstr "Þessi seta skráir þig inn í GNOME með Wayland undirkerfinu"
@@ -353,21 +369,6 @@ msgstr "Kallað á forrit með röngum stillingum"
 #~ "(XFree86 kerfi), mun gnome-setan ekki hlusta eftir tengingum á TCP porti. "
 #~ "Þessi valmöguleiki mun leyfa tengingar frá (viðurkenndum) fjarbundnum "
 #~ "tölvum. Endurræsa verður gnome-setuna til þess að stillingar taki gildi."
-
-#~ msgid ""
-#~ "If enabled, gnome-session will prompt the user before ending a session."
-#~ msgstr ""
-#~ "Ef virkt mun gnome-setan spyrja um staðfestingu áður en setu er lokið."
-
-#~ msgid ""
-#~ "If enabled, gnome-session will save the session automatically. Otherwise, "
-#~ "the logout dialog will have an option to save the session."
-#~ msgstr ""
-#~ "Ef virk mun gnome-setan vista setuna sjálkrafa. Annars mun "
-#~ "afskráningarglugginn bjóða upp á vistun á setu."
-
-#~ msgid "Logout prompt"
-#~ msgstr "Staðfesta útskráningu"
 
 #~ msgid ""
 #~ "Preferred Image to use for the splash screen when logging in to the GNOME "
@@ -429,9 +430,6 @@ msgstr "Kallað á forrit með röngum stillingum"
 
 #~ msgid "Saving"
 #~ msgstr "Vista"
-
-#~ msgid "Saving session details."
-#~ msgstr "Vista upplýsingar setu."
 
 #~ msgid "Unknown"
 #~ msgstr "Óþekkt"
@@ -661,9 +659,6 @@ msgstr "Kallað á forrit með röngum stillingum"
 
 #~ msgid "Edit Startup Program"
 #~ msgstr "Breyta ræsiforriti"
-
-#~ msgid "Save Current Session"
-#~ msgstr "Vista núverandi setu"
 
 #~ msgid "Save current state of desktop"
 #~ msgstr "Vista núverandi stöðu skjáborðs"
