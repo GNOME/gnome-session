@@ -12,9 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.3.7\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2018-01-08 21:39+0000\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
+"POT-Creation-Date: 2018-08-28 21:21+0000\n"
 "PO-Revision-Date: 2018-02-22 18:29+0100\n"
 "Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
@@ -25,29 +24,68 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Poedit 2.0.6\n"
 
-#: data/gnome-custom-session.desktop.in:3
+#: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
 msgstr "Personalitzada"
 
-#: data/gnome-custom-session.desktop.in:4
+#: data/gnome-custom-session.desktop.in.in:4
 msgid "This entry lets you select a saved session"
 msgstr "Aquesta entrada us permet seleccionar una sessió desada"
 
-#: data/gnome.desktop.in:3 data/gnome.session.desktop.in.in:3
+#: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
 msgid "GNOME"
 msgstr "GNOME"
 
-#: data/gnome.desktop.in:4 data/gnome-xorg.desktop.in:4
+#: data/gnome.desktop.in.in:4 data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
 msgstr "Aquesta sessió us entra al GNOME"
-
-#: data/gnome-xorg.desktop.in:3
-msgid "GNOME on Xorg"
-msgstr "GNOME damunt Xorg"
 
 #: data/gnome-dummy.session.desktop.in.in:3
 msgid "GNOME dummy"
 msgstr "GNOME de prova"
+
+#: data/gnome-xorg.desktop.in.in:3
+msgid "GNOME on Xorg"
+msgstr "GNOME damunt Xorg"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:5
+msgid "Save sessions"
+msgstr "Desa les sessions"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:6
+msgid "If enabled, gnome-session will save the session automatically."
+msgstr "Si s'habilita, el gnome-session desarà la sessió automàticament."
+
+#: data/org.gnome.SessionManager.gschema.xml.in:10
+msgid "Save this session"
+msgstr "Desa aquesta sessió"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:11
+msgid ""
+"When enabled, gnome-session will automatically save the next session at log "
+"out even if auto saving is disabled."
+msgstr "Si s'habilita, el gnome-session desarà automàticament la propera sessió al registre."
+
+#: data/org.gnome.SessionManager.gschema.xml.in:15
+msgid "Logout prompt"
+msgstr "Indicador de sortida"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:16
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr ""
+"Si s'habilita, el gnome-session preguntarà a l'usuari abans de finalitzar "
+"una sessió."
+
+#: data/org.gnome.SessionManager.gschema.xml.in:20
+msgid "Show the fallback warning"
+msgstr "Mostra l'avís de mode clàssic"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:21
+msgid ""
+"If enabled, gnome-session will display a warning dialog after login if the "
+"session was automatically fallen back."
+msgstr "Si s'habilita, el gnome-session mostrarà un diàleg d'avís després "
+"d'iniciar la sessió si aquesta és en mode clàssic."
 
 #: data/session-selector.ui:15
 msgid "Custom Session"
@@ -137,7 +175,7 @@ msgstr "Aplicació recordada"
 msgid "This program is blocking logout."
 msgstr "Aquest programa està blocant la sortida."
 
-#: gnome-session/gsm-xsmp-server.c:340
+#: gnome-session/gsm-xsmp-server.c:338
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
@@ -145,7 +183,7 @@ msgstr ""
 "Es refusarà la connexió de client nova perquè la sessió s'està aturant\n"
 
 # Nota: ICE -> Inter-Client Exchange (http://en.wikipedia.org/wiki/X_Window_System_protocols_and_architecture#Inter-client_communication)
-#: gnome-session/gsm-xsmp-server.c:609
+#: gnome-session/gsm-xsmp-server.c:605
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "No s'ha pogut crear el sòcol ICE d'escolta: %s"
@@ -233,30 +271,6 @@ msgstr "No s'ha pogut executar %s\n"
 msgid "%s requires an argument\n"
 msgstr "%s requereix un argument\n"
 
-#: tools/gnome-session-selector.c:61
-#, c-format
-msgid "Session %d"
-msgstr "Sessió %d"
-
-#: tools/gnome-session-selector.c:107
-msgid ""
-"Session names are not allowed to start with “.” or contain “/” characters"
-msgstr ""
-"Els noms de sessió no poden començar amb els caràcters «.» ni contenir «/»"
-
-#: tools/gnome-session-selector.c:111
-msgid "Session names are not allowed to start with “.”"
-msgstr "Els noms de sessió no poden començar amb el caràcter «.»"
-
-#: tools/gnome-session-selector.c:115
-msgid "Session names are not allowed to contain “/” characters"
-msgstr "Els noms de sessió no poden contenir el caràcter «/»"
-
-#: tools/gnome-session-selector.c:123
-#, c-format
-msgid "A session named “%s” already exists"
-msgstr "Ja existeix una sessió amb el nom «%s»"
-
 #: tools/gnome-session-quit.c:50
 msgid "Log out"
 msgstr "Surt"
@@ -285,6 +299,30 @@ msgstr "No s'ha pogut connectar al gestor de sessions"
 msgid "Program called with conflicting options"
 msgstr ""
 "El programa s'ha invocat amb opcions que entren en conflicte entre elles"
+
+#: tools/gnome-session-selector.c:61
+#, c-format
+msgid "Session %d"
+msgstr "Sessió %d"
+
+#: tools/gnome-session-selector.c:107
+msgid ""
+"Session names are not allowed to start with “.” or contain “/” characters"
+msgstr ""
+"Els noms de sessió no poden començar amb els caràcters «.» ni contenir «/»"
+
+#: tools/gnome-session-selector.c:111
+msgid "Session names are not allowed to start with “.”"
+msgstr "Els noms de sessió no poden començar amb el caràcter «.»"
+
+#: tools/gnome-session-selector.c:115
+msgid "Session names are not allowed to contain “/” characters"
+msgstr "Els noms de sessió no poden contenir el caràcter «/»"
+
+#: tools/gnome-session-selector.c:123
+#, c-format
+msgid "A session named “%s” already exists"
+msgstr "Ja existeix una sessió amb el nom «%s»"
 
 #~ msgid "GNOME on Wayland"
 #~ msgstr "GNOME sobre Wayland"
@@ -610,15 +648,6 @@ msgstr ""
 #~ msgid "File Manager"
 #~ msgstr "Gestor de fitxers"
 
-#~ msgid ""
-#~ "If enabled, gnome-session will prompt the user before ending a session."
-#~ msgstr ""
-#~ "Si s'habilita, el gnome-session preguntarà a l'usuari abans de finalitzar "
-#~ "una sessió."
-
-#~ msgid "If enabled, gnome-session will save the session automatically."
-#~ msgstr "Si s'habilita, el gnome-session desarà la sessió automàticament."
-
 #~ msgid "List of applications that are part of the default session."
 #~ msgstr "Llista d'aplicacions que formen part de la sessió."
 
@@ -636,9 +665,6 @@ msgstr ""
 #~ "les aplicacions d'inici no permet que els usuaris suprimeixin un "
 #~ "d'aquests elements necessaris de la sessió. El gestor de la sessió els hi "
 #~ "tornarà a afegir automàticament en entrar en cas que s'hagin suprimit."
-
-#~ msgid "Logout prompt"
-#~ msgstr "Indicador de sortida"
 
 #~ msgid "Panel"
 #~ msgstr "Quadre"
@@ -1091,9 +1117,6 @@ msgstr ""
 #~ msgid "Automatically save chan_ges to session"
 #~ msgstr "_Desa automàticament els canvis a la sessió"
 
-#~ msgid "Save the current session"
-#~ msgstr "Desa la sessió actual"
-
 #~ msgid "The session name cannot be empty"
 #~ msgstr "El nom de la sessió no pot estar buit"
 
@@ -1239,6 +1262,3 @@ msgstr ""
 #~ "informació sobre aquest bug).\n"
 #~ "\n"
 #~ "La vostra sessió del GNOME terminarà després de tancar aquest diàleg."
-
-#~ msgid "Start Session"
-#~ msgstr "Inicia la sessió"
