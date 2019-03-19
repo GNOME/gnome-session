@@ -121,8 +121,10 @@ session_tracking = 'null backend'
 
 enable_systemd = get_option('systemd')
 enable_systemd_journal = get_option('systemd_journal')
+enable_elogind = get_option('elogind')
 enable_consolekit = get_option('consolekit')
-if enable_systemd or enable_consolekit
+assert(not (enable_systemd and enable_elogind), 'Can not support systemd and elogind at once')
+if enable_systemd or enable_elogind or enable_consolekit
   session_bin_deps += dependency('gio-unix-2.0', version: glib_req_version)
 
   # Check for systemd
@@ -145,6 +147,10 @@ if enable_systemd or enable_consolekit
     endif
 
     session_tracking = 'systemd'
+  elif enable_elogind
+    libelogind_dep = dependency('libelogind', version: '>= 239.4')
+    session_bin_deps += libelogind_dep
+    session_tracking = 'elogind'
   endif
 
   # Check for ConsoleKit
@@ -154,14 +160,14 @@ if enable_systemd or enable_consolekit
 
     session_bin_deps += dbus_glib_dep
 
-    if enable_systemd
+    if enable_systemd or enable_elogind
       session_tracking += ' (with fallback to ConsoleKit)'
     else
       session_tracking = 'ConsoleKit'
     endif
   endif
 endif
-config_h.set('HAVE_SYSTEMD', enable_systemd)
+config_h.set('HAVE_SYSTEMD', enable_systemd or enable_elogind)
 config_h.set('ENABLE_SYSTEMD_JOURNAL', enable_systemd_journal)
 config_h.set('HAVE_CONSOLEKIT', enable_consolekit)
 
