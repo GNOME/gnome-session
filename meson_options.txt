@@ -1,4 +1,5 @@
 option('deprecation_flags', type: 'boolean', value: false, description: 'use *_DISABLE_DEPRECATED flags')
+option('elogind', type: 'boolean', value: true, description: 'Use elogind')
 option('session_selector', type: 'boolean', value: false, description: 'enable building a custom session selector dialog')
 option('systemd', type: 'boolean', value: true, description: 'Use systemd')
 option('systemd_journal', type: 'boolean', value:'true', description: 'Send log to systemd-journal')
