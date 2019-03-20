@@ -570,7 +570,7 @@ gsm_util_export_activation_environment (GError     **error)
         return environment_updated;
 }
 
-#ifdef HAVE_SYSTEMD
+#ifdef HAVE_LOGIND
 gboolean
 gsm_util_export_user_environment (GError     **error)
 {
@@ -705,7 +705,7 @@ gsm_util_setenv (const char *variable,
                 g_clear_error (&error);
         }
 
-#ifdef HAVE_SYSTEMD
+#ifdef HAVE_LOGIND
         /* If this fails, the system user session won't get the updated environment
          */
         if (!gsm_util_update_user_environment (variable, value, &error)) {

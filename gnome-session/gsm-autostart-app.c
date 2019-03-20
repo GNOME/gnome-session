@@ -28,7 +28,7 @@
 #include <gio/gio.h>
 #include <gio/gdesktopappinfo.h>
 
-#ifdef HAVE_SYSTEMD
+#ifdef HAVE_LOGIND
 #ifdef ENABLE_SYSTEMD_JOURNAL
 #include <systemd/sd-journal.h>
 #endif

@@ -167,7 +167,7 @@ if enable_systemd or enable_elogind or enable_consolekit
     endif
   endif
 endif
-config_h.set('HAVE_SYSTEMD', enable_systemd or enable_elogind)
+config_h.set('HAVE_LOGIND', enable_systemd or enable_elogind)
 config_h.set('ENABLE_SYSTEMD_JOURNAL', enable_systemd_journal)
 config_h.set('HAVE_CONSOLEKIT', enable_consolekit)
 

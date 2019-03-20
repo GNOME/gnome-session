@@ -21,7 +21,7 @@
 #include "config.h"
 #include "gsm-systemd.h"
 
-#ifdef HAVE_SYSTEMD
+#ifdef HAVE_LOGIND
 
 #include <errno.h>
 #include <string.h>
