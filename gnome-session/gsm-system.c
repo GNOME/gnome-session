@@ -99,7 +99,6 @@ gsm_system_null_init_iface (GsmSystemInterface *iface)
         iface->remove_inhibitor  = (void *) do_nothing;
         iface->prepare_shutdown  = (void *) do_nothing;
         iface->complete_shutdown = (void *) do_nothing;
-        iface->is_last_session_for_user = (void *) return_false;
 }
 
 static void
@@ -232,12 +231,6 @@ gboolean
 gsm_system_is_login_session (GsmSystem *system)
 {
         return GSM_SYSTEM_GET_IFACE (system)->is_login_session (system);
-}
-
-gboolean
-gsm_system_is_last_session_for_user (GsmSystem *system)
-{
-        return GSM_SYSTEM_GET_IFACE (system)->is_last_session_for_user (system);
 }
 
 /**
