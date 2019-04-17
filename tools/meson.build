@@ -16,6 +16,10 @@ programs = [
   ['gnome-session-inhibit', session_deps, cflags, session_bindir]
 ]
 
+if enable_systemd_session
+  programs += [['gnome-session-ctl', session_bin_deps, cflags, session_libexecdir]]
+endif
+
 if enable_session_selector
   deps = [
     glib_dep,
