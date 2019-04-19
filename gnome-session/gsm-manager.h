@@ -116,7 +116,7 @@ gboolean            gsm_manager_add_legacy_session_apps        (GsmManager     *
 
 void                gsm_manager_start                          (GsmManager     *manager);
 
-const char *        _gsm_manager_get_default_session           (GsmManager     *manager);
+char *              _gsm_manager_get_default_session           (GsmManager     *manager);
 
 void                _gsm_manager_set_active_session            (GsmManager     *manager,
                                                                 const char     *session_name,

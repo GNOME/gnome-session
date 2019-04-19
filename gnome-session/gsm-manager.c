@@ -1457,10 +1457,16 @@ gsm_manager_start (GsmManager *manager)
         start_phase (manager);
 }
 
-const char *
+char *
 _gsm_manager_get_default_session (GsmManager     *manager)
 {
-        return g_settings_get_string (manager->priv->session_settings,
+        g_autoptr(GSettings) session_settings = NULL;
+
+        if (manager)
+                session_settings = g_object_ref (manager->priv->session_settings);
+        else
+                session_settings  = g_settings_new (SESSION_SCHEMA);
+        return g_settings_get_string (session_settings,
                                       KEY_SESSION_NAME);
 }
 
