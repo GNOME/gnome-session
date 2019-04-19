@@ -1,0 +1,19 @@
+[Unit]
+Description=GNOME Session Manager (session: %i)
+RefuseManualStart=yes
+RefuseManualStop=yes
+OnFailure=gnome-session-shutdown.target
+OnFailureJobMode=replace-irreversibly
+CollectMode=inactive-or-failed
+
+Requisite=gnome-session-pre.target
+After=gnome-session-pre.target
+
+Requires=gnome-session-manager.target
+PartOf=gnome-session-manager.target
+Before=gnome-session-manager.target
+
+[Service]
+Type=notify
+ExecStart=@libexecdir@/gnome-session-binary --debug --systemd --session=%i
+ExecStopPost=-@libexecdir@/gnome-session-ctl --shutdown

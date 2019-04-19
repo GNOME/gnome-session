@@ -1,0 +1,22 @@
+[Unit]
+Description=GNOME X11 Session (session: %i)
+OnFailure=gnome-session-failed.target
+OnFailureJobMode=replace
+DefaultDependencies=no
+# Start happens explicitly
+RefuseManualStart=no
+# Stop happens by starting gnome-session-shutdown.target
+#RefuseManualStop=yes
+
+Conflicts=shutdown.target gnome-session-shutdown.target
+PartOf=graphical-session.target
+
+# As this is the main entry point, pull in the other toplevel gnome-session targets
+BindsTo=gnome-session@.target
+After=gnome-session@.target
+
+BindsTo=gnome-session-x11.target
+After=gnome-session-x11.target
+
+BindsTo=gnome-session.target
+After=gnome-session.target
