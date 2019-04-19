@@ -126,6 +126,8 @@ struct GsmManagerPrivate
 {
         gboolean                failsafe;
         gboolean                systemd_managed;
+        gboolean                systemd_initialized;
+        gboolean                manager_initialized;
         GsmStore               *clients;
         GsmStore               *inhibitors;
         GsmInhibitorFlag        inhibited_actions;
@@ -534,7 +536,15 @@ end_phase (GsmManager *manager)
         case GSM_MANAGER_PHASE_EARLY_INITIALIZATION:
         case GSM_MANAGER_PHASE_PRE_DISPLAY_SERVER:
         case GSM_MANAGER_PHASE_DISPLAY_SERVER:
+                break;
         case GSM_MANAGER_PHASE_INITIALIZATION:
+                manager->priv->manager_initialized = TRUE;
+                /* Wait for systemd if it isn't initialized yet*/
+                if (manager->priv->systemd_managed && !manager->priv->systemd_initialized) {
+                        sd_notify (0, "STATUS=GNOME Session Manager waiting for gnome-session-initialized.target (via signal)");
+                        start_next_phase = FALSE;
+                }
+                break;
         case GSM_MANAGER_PHASE_WINDOW_MANAGER:
         case GSM_MANAGER_PHASE_PANEL:
         case GSM_MANAGER_PHASE_DESKTOP:
@@ -2638,6 +2648,42 @@ gsm_manager_setenv (GsmExportedManager    *skeleton,
 }
 
 static gboolean
+gsm_manager_initialized (GsmExportedManager    *skeleton,
+                         GDBusMethodInvocation *invocation,
+                         GsmManager            *manager)
+{
+        /* Signaled by helper when gnome-session-initialized.target is reached. */
+        if (!manager->priv->systemd_managed) {
+                g_dbus_method_invocation_return_error (invocation,
+                                                       GSM_MANAGER_ERROR,
+                                                       GSM_MANAGER_ERROR_GENERAL,
+                                                       "Initialized interface is only available when gnome-session is managed by systemd");
+        } else if (manager->priv->systemd_initialized) {
+                g_dbus_method_invocation_return_error (invocation,
+                                                       GSM_MANAGER_ERROR,
+                                                       GSM_MANAGER_ERROR_NOT_IN_INITIALIZATION,
+                                                       "Systemd initialization was already signaled");
+        } else if (manager->priv->phase > GSM_MANAGER_PHASE_INITIALIZATION) {
+                g_dbus_method_invocation_return_error (invocation,
+                                                       GSM_MANAGER_ERROR,
+                                                       GSM_MANAGER_ERROR_NOT_IN_INITIALIZATION,
+                                                       "Initialized interface is only available during startup");
+        } else {
+                manager->priv->systemd_initialized = TRUE;
+
+                if (manager->priv->manager_initialized) {
+                        g_assert (manager->priv->phase == GSM_MANAGER_PHASE_INITIALIZATION);
+                        manager->priv->phase++;
+                        start_phase (manager);
+                }
+
+                gsm_exported_manager_complete_initialized (skeleton, invocation);
+        }
+
+        return TRUE;
+}
+
+static gboolean
 is_valid_category (int category)
 {
         int categories[] = {
@@ -3234,6 +3280,8 @@ register_manager (GsmManager *manager)
                           G_CALLBACK (gsm_manager_set_reboot_to_firmware_setup), manager);
         g_signal_connect (skeleton, "handle-setenv",
                           G_CALLBACK (gsm_manager_setenv), manager);
+        g_signal_connect (skeleton, "handle-initialized",
+                          G_CALLBACK (gsm_manager_initialized), manager);
         g_signal_connect (skeleton, "handle-shutdown",
                           G_CALLBACK (gsm_manager_shutdown), manager);
         g_signal_connect (skeleton, "handle-uninhibit",
