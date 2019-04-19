@@ -26,9 +26,11 @@
 #include <locale.h>
 #include <unistd.h>
 #include <errno.h>
+#include <sys/stat.h>
 
 #include <glib/gi18n.h>
 #include <glib.h>
+#include <glib/gstdio.h>
 #include <glib-unix.h>
 #include <gio/gio.h>
 
@@ -262,6 +264,92 @@ initialize_gio (void)
                 g_unsetenv ("GVFS_DISABLE_FUSE");
         }
 }
+
+#ifdef HAVE_SYSTEMD
+static gboolean
+leader_term_or_int_signal_cb (gpointer data)
+{
+        gint fifo_fd = GPOINTER_TO_INT (data);
+
+        /* Start a shutdown explicitly. */
+        gsm_util_start_systemd_unit ("gnome-session-shutdown.target", "replace-irreversibly", NULL);
+
+        /* If we have a fifo, try to signal the other side. */
+        if (fifo_fd >= 0) {
+                /* For good measures, also signal the shutdown. */
+                write (fifo_fd, "S", 1);
+        } else {
+                /* Quit immediately */
+                gsm_quit ();
+        }
+
+        return G_SOURCE_REMOVE;
+}
+
+/**
+ * systemd_leader_run:
+ *
+ * This is the session leader when running under systemd, i.e. it is the only
+ * process that is *not* managed by the systemd user instance, this process
+ * is the one executed by the GDM helpers and is part of the session scope in
+ * the system sytemd instance.
+ *
+ * This process works together with a service running in the user sytemd
+ * instance (currently gnome-session-ctl@monitor.service):
+ *
+ * - It needs to signal shutdown to the user session when receiving SIGTERM
+ *
+ * - It needs to quit just after the user session is done
+ *
+ * - The monitor instance needs to know if this process was killed
+ *
+ * All this is achieved by opening a named fifo in a well known location.
+ * If this process receives SIGTERM or SIGINT then it will write a single byte
+ * causing the monitor service to signal STOPPING=1 to systemd, triggering a
+ * clean shutdown, solving the first item. The other two items are solved by
+ * waiting for EOF/HUP on both sides and quitting immediately when receiving
+ * that signal.
+ *
+ * As an example, a shutdown might look as follows:
+ *
+ * - session-X.scope for user is stopped
+ * - Leader process receive SIGTERM
+ * - Leader sends single byte
+ * - Monitor process receives byte and signals STOPPING=1
+ * - Systemd user instance starts session teardown
+ * - Session is torn down, last job run is stopping monitor process (SIGTERM)
+ * - Monitor process quits, closing FD in the process
+ * - Leader process receives HUP and quits
+ * - GDM shuts down its processes in the users scope
+ *
+ * The result is that the session is stopped cleanly.
+ */
+static void
+systemd_leader_run(void)
+{
+        g_autofree char *fifo_name = NULL;
+        int fifo_fd;
+
+        fifo_name = g_strdup_printf ("%s/gnome-session-leader-fifo",
+                                     g_get_user_runtime_dir ());
+        if (!mkfifo (fifo_name, 0666))
+                g_debug ("Error creating FIFO, it probably already exists!");
+
+        fifo_fd = g_open (fifo_name, O_WRONLY, 0600);
+        if (fifo_fd >= 0) {
+                g_unix_fd_add (fifo_fd, G_IO_HUP, (GUnixFDSourceFunc) gsm_quit, NULL);
+        } else {
+                g_warning ("Could not connect to monitor process");
+        }
+
+        g_unix_signal_add (SIGTERM, leader_term_or_int_signal_cb, GINT_TO_POINTER (fifo_fd));
+        g_unix_signal_add (SIGINT, leader_term_or_int_signal_cb, GINT_TO_POINTER (fifo_fd));
+
+        /* Sleep until we receive HUP or are killed. */
+        gsm_main ();
+        exit(0);
+}
+#endif
 
 int
 main (int argc, char **argv)
