@@ -88,6 +88,52 @@ install_data(
   install_dir: join_paths(session_datadir, 'GConf', 'gsettings')
 )
 
+unit_conf = configuration_data()
+unit_conf.set('libexecdir', session_libexecdir)
+
+# XXX: Once https://github.com/systemd/systemd/issues/9595 is fixed and we can
+# depend on this version, replace with something like:
+#  dep_systemd = dependency('systemd', required: true)
+#  systemd_userunitdir = dep_systemd.get_pkgconfig_variable('systemduserunitdir')
+# and uncomment systemd_dep below
+systemd_userunitdir = join_paths(session_prefix, 'lib', 'systemd', 'user')
+
+systemd_service = ['gnome-session-manager@.service',
+                   'gnome-session-ctl@.service',
+                   'gnome-session-failed.service']
+
+foreach service: systemd_service
+  configure_file(
+    input: service + '.in',
+    output: service,
+    install: true,
+    install_dir: systemd_userunitdir,
+    configuration: unit_conf
+  )
+endforeach
+
+configure_file(
+  input: 'gnome-session-ctl@.service.in',
+  output: 'gnome-session-ctl@.service',
+  install: true,
+  install_dir: systemd_userunitdir,
+  configuration: unit_conf
+)
+
+systemd_target = files('gnome-session@.target',
+                       'gnome-session.target',
+                       'gnome-session-pre.target',
+                       'gnome-session-manager.target',
+                       'gnome-session-initialized.target',
+                       'gnome-session-shutdown.target',
+                       'gnome-session-failed.target',
+                       )
+
+install_data(
+  systemd_target,
+  install_dir: systemd_userunitdir
+)
+
 data = files('hardware-compatibility')
 
 if enable_session_selector
