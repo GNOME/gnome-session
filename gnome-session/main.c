@@ -137,7 +137,7 @@ create_manager (void)
         GsmStore *client_store;
 
         client_store = gsm_store_new ();
-        manager = gsm_manager_new (client_store, failsafe);
+        manager = gsm_manager_new (client_store, failsafe, FALSE);
         g_object_unref (client_store);
 
         g_unix_signal_add (SIGTERM, term_or_int_signal_cb, manager);
