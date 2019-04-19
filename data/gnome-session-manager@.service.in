@@ -1,0 +1,28 @@
+[Unit]
+Description=GNOME Session Manager (session: %i)
+RefuseManualStart=true
+OnFailure=gnome-session-shutdown.target
+
+# Pre-session sync point
+Requires=gnome-session-pre.target
+After=gnome-session-pre.target
+
+# g-s-m sync point, g-s-m is up and stared the initialization XDG targets
+Requires=gnome-session-manager.target
+PartOf=gnome-session-manager.target
+Before=gnome-session-manager.target
+
+# Initialization sync point, shell is up at this point
+Requires=gnome-session-initialized.target
+PartOf=gnome-session-initialized.target
+Before=gnome-session-initialized.target
+
+# Session is up sync point
+Requires=gnome-session.target
+PartOf=gnome-session.target
+Before=gnome-session.target
+
+[Service]
+Type=notify
+ExecStart=@libexecdir@/gnome-session-binary --debug --systemd --session=%i
+ExecStopPost=-@libexecdir@/gnome-session-ctl --shutdown

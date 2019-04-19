@@ -1,0 +1,26 @@
+[Unit]
+Description=GNOME Session (session: %i)
+# gnome-session-ctl@monitor.service will quit with the session leader process
+# gnome-session.target pulls in graphical-session.target
+Requires=gnome-session-ctl@monitor.service
+After=gnome-session-ctl@monitor.service
+
+Requisite=gnome-session.target
+PartOf=gnome-session.target
+Before=gnome-session.target
+
+Requires=gnome-session-pre.target
+After=gnome-session-pre.target
+
+Requires=gnome-session-manager@.service
+After=gnome-session-manager@.service
+
+Requires=gnome-session-initialized.target
+Before=gnome-session-initialized.target
+
+# We really need gnome-shell as part of any gnome-session
+Requires=gnome-shell.target
+
+# We currently start this target explicitly from the gnome-session leader process
+#RefuseManualStart=true
+
