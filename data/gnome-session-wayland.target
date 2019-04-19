@@ -1,0 +1,17 @@
+[Unit]
+Description=GNOME Wayland Session
+# On wayland all is lost, do a shutdown
+OnFailure=gnome-session-shutdown.target
+OnFailureJobMode=replace-irreversibly
+# Avoid default After/Before rules
+DefaultDependencies=no
+
+Before=gnome-session.target
+
+PartOf=graphical-session.target
+RefuseManualStart=yes
+RefuseManualStop=yes
+
+# Always pull in the correct gnome-shell target
+BindsTo=gnome-shell-wayland.target
+After=gnome-shell-wayland.target
