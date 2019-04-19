@@ -1,0 +1,28 @@
+[Unit]
+Description=Shutdown running GNOME Session
+
+# Allow exit.target to start even if this unit is started with replace-irreversibly
+# The same is needed for all (weak) dependencies
+DefaultDependencies=no
+
+Conflicts=graphical-session.target graphical-session-pre.target
+After=graphical-session.target graphical-session-pre.target
+
+# Add explicit conflicts/after lines for gnome-session targets, technically
+# this should not be needed, but is an extra safety measure.
+Conflicts=gnome-session.target gnome-session-manager.target
+After=gnome-session.target gnome-session-manager.target
+
+Conflicts=gnome-session-pre.target gnome-session-initialized.target gnome-session-failed.target
+After=gnome-session-pre.target gnome-session-initialized.target gnome-session-failed.target
+
+# Could we set StopWhenUnneeded=true or would that prevent the service to start?
+
+# We trigger a restart of DBus after reaching the shutdown target this
+# is a workaround so that DBus services that do not connect to the
+# display server are shut down after log-out.
+# This should be removed when the relevant services add a
+# PartOf=graphical-session.target
+# Historic bug: https://bugzilla.gnome.org/show_bug.cgi?id=764029
+Wants=gnome-session-restart-dbus.service
+Before=gnome-session-restart-dbus.service
