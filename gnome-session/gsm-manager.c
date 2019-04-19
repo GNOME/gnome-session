@@ -3542,7 +3542,7 @@ add_autostart_app_internal (GsmManager *manager,
                 }
         }
 
-        app = gsm_autostart_app_new (path, &error);
+        app = gsm_autostart_app_new (path, FALSE, &error);
         if (app == NULL) {
                 g_warning ("%s", error->message);
                 g_clear_error (&error);
