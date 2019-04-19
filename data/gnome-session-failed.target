@@ -1,0 +1,11 @@
+[Unit]
+Description=GNOME Session Failed
+OnFailure=gnome-session-shutdown.target
+
+# We need an initialized session
+Requisite=gnome-session-initialized.target
+After=gnome-session-initialized.target
+BindsTo=gnome-session-initialized.target
+
+Requires=gnome-session-failed.service
+Before=gnome-session-failed.service
