@@ -56,6 +56,7 @@ enum {
 #define GSM_SESSION_CLIENT_DBUS_INTERFACE "org.gnome.SessionClient"
 
 struct _GsmAutostartAppPrivate {
+        gboolean              mask_systemd;
         char                 *desktop_filename;
         char                 *desktop_id;
         char                 *startup_id;
@@ -85,7 +86,8 @@ enum {
 
 enum {
         PROP_0,
-        PROP_DESKTOP_FILENAME
+        PROP_DESKTOP_FILENAME,
+        PROP_MASK_SYSTEMD
 };
 
 static guint signals[LAST_SIGNAL] = { 0 };
@@ -134,6 +136,17 @@ is_disabled (GsmApp *app)
         /* Check OnlyShowIn/NotShowIn/TryExec */
         if (!g_desktop_app_info_get_show_in (priv->app_info, NULL)) {
                 g_debug ("app %s is not for the current desktop",
+                         gsm_app_peek_id (app));
+                return TRUE;
+        }
+
+        /* Check if app is systemd enabled and mask-systemd is set. */
+        if (priv->mask_systemd &&
+            g_desktop_app_info_has_key (priv->app_info,
+                                        GSM_AUTOSTART_APP_SYSTEMD_KEY) &&
+            g_desktop_app_info_get_boolean (priv->app_info,
+                                            GSM_AUTOSTART_APP_SYSTEMD_KEY)) {
+                g_debug ("app %s is disabled by " GSM_AUTOSTART_APP_SYSTEMD_KEY,
                          gsm_app_peek_id (app));
                 return TRUE;
         }
@@ -656,6 +669,9 @@ gsm_autostart_app_set_property (GObject      *object,
         case PROP_DESKTOP_FILENAME:
                 gsm_autostart_app_set_desktop_filename (self, g_value_get_string (value));
                 break;
+        case PROP_MASK_SYSTEMD:
+                self->priv->mask_systemd = g_value_get_boolean (value);
+                break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                 break;
@@ -679,6 +695,9 @@ gsm_autostart_app_get_property (GObject    *object,
                 } else {
                         g_value_set_string (value, NULL);
                 }
+                break;
+        case PROP_MASK_SYSTEMD:
+                g_value_set_boolean (value, self->priv->mask_systemd);
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -1450,6 +1469,13 @@ gsm_autostart_app_class_init (GsmAutostartAppClass *klass)
                                                               "Freedesktop .desktop file",
                                                               NULL,
                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+        g_object_class_install_property (object_class,
+                                         PROP_MASK_SYSTEMD,
+                                         g_param_spec_boolean ("mask-systemd",
+                                                               "Mask if systemd started",
+                                                               "Mask if GNOME systemd flag is set in desktop file",
+                                                               FALSE,
+                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
         signals[CONDITION_CHANGED] =
                 g_signal_new ("condition-changed",
                               G_OBJECT_CLASS_TYPE (object_class),
@@ -1465,9 +1491,11 @@ gsm_autostart_app_class_init (GsmAutostartAppClass *klass)
 
 GsmApp *
 gsm_autostart_app_new (const char *desktop_file,
+                       gboolean    mask_systemd,
                        GError    **error)
 {
         return (GsmApp*) g_initable_new (GSM_TYPE_AUTOSTART_APP, NULL, error,
                                          "desktop-filename", desktop_file,
+                                         "mask-systemd", mask_systemd,
                                          NULL);
 }
