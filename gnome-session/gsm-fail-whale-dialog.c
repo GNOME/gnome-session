@@ -386,6 +386,12 @@ int main (int argc, char *argv[])
             return 0;
         }
 
+        /* Force-off allow_logout when running inside GDM, this is needed
+         * because the systemd service always passes --allow-logout
+         */
+        if (g_strcmp0 (g_getenv ("RUNNING_UNDER_GDM"), "true") == 0)
+                allow_logout = FALSE;
+
         fail_dialog = g_object_new (GSM_TYPE_FAIL_WHALE_DIALOG, NULL);
         fail_dialog->priv->debug_mode = debug_mode;
         fail_dialog->priv->allow_logout = allow_logout;
