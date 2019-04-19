@@ -26,9 +26,11 @@
 #include <locale.h>
 #include <unistd.h>
 #include <errno.h>
+#include <sys/stat.h>
 
 #include <glib/gi18n.h>
 #include <glib.h>
+#include <glib/gstdio.h>
 #include <glib-unix.h>
 #include <gio/gio.h>
 
@@ -262,6 +264,54 @@ initialize_gio (void)
                 g_unsetenv ("GVFS_DISABLE_FUSE");
         }
 }
+
+#ifdef HAVE_SYSTEMD
+static gboolean
+leader_term_or_int_signal_cb (gpointer data)
+{
+        gint fifo_fd = GPOINTER_TO_INT (data);
+
+        /* Start a shutdown explicitly. */
+        gsm_util_start_systemd_unit ("gnome-session-shutdown.target", "replace-irreversibly", NULL);
+
+        /* If we have a fifo, try to signal the other side. */
+        if (fifo_fd >= 0) {
+                /* For good measures, also signal the shutdown. */
+                write (fifo_fd, "S", 1);
+        } else {
+                /* Quit immediately */
+                gsm_quit ();
+        }
+
+        return G_SOURCE_REMOVE;
+}
+
+static void
+systemd_leader_run(void)
+{
+        g_autofree char *fifo_name = NULL;
+        int fifo_fd;
+
+        fifo_name = g_strdup_printf ("%s/gnome-session-leader-fifo",
+                                     g_get_user_runtime_dir ());
+        if (!mkfifo (fifo_name, 0666))
+                g_debug ("Error creating FIFO, it probably already exists!");
+
+        fifo_fd = g_open (fifo_name, O_WRONLY, 0600);
+        if (fifo_fd >= 0) {
+                g_unix_fd_add (fifo_fd, G_IO_HUP, (GUnixFDSourceFunc) gsm_quit, NULL);
+        } else {
+                g_warning ("Could not connect to monitor process");
+        }
+
+        g_unix_signal_add (SIGTERM, leader_term_or_int_signal_cb, GINT_TO_POINTER (fifo_fd));
+        g_unix_signal_add (SIGINT, leader_term_or_int_signal_cb, GINT_TO_POINTER (fifo_fd));
+
+        /* Sleep until we receive HUP or are killed. */
+        gsm_main ();
+        exit(0);
+}
+#endif
 
 int
 main (int argc, char **argv)
