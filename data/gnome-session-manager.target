@@ -1,0 +1,12 @@
+[Unit]
+Description=GNOME Session Manager is ready
+DefaultDependencies=no
+RefuseManualStart=yes
+RefuseManualStop=yes
+
+Requisite=gnome-session-pre.target
+After=gnome-session-pre.target
+
+Requisite=gnome-session-initialized.target
+PartOf=gnome-session-initialized.target
+Before=gnome-session-initialized.target
