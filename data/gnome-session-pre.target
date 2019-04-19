@@ -1,0 +1,14 @@
+[Unit]
+Description=Tasks to be run before GNOME Session starts
+OnFailure=gnome-session-shutdown.target
+OnFailureJobMode=replace-irreversibly
+DefaultDependencies=no
+RefuseManualStart=yes
+RefuseManualStop=yes
+
+Requires=graphical-session-pre.target
+After=graphical-session-pre.target
+
+Requisite=gnome-session-initialized.target
+PartOf=gnome-session-initialized.target
+Before=gnome-session-initialized.target

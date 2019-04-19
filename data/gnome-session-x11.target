@@ -1,0 +1,17 @@
+[Unit]
+Description=GNOME X11 Session
+# On X11, try to show the fail screen
+OnFailure=gnome-session-failed.target
+OnFailureJobMode=replace
+# Avoid default After/Before rules
+DefaultDependencies=no
+
+Before=gnome-session.target
+
+PartOf=graphical-session.target
+RefuseManualStart=yes
+RefuseManualStop=yes
+
+# Always pull in the correct gnome-shell target
+BindsTo=gnome-shell-x11.target
+After=gnome-shell-x11.target
