@@ -1,0 +1,10 @@
+[Unit]
+Description=Tasks to be run before GNOME Session starts
+Requisite=gnome-session.target
+Before=gnome-session.target
+PartOf=gnome-session.target
+
+Requires=graphical-session-pre.target
+Before=graphical-session-pre.target
+PartOf=graphical-session-pre.target
+

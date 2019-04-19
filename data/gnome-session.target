@@ -1,0 +1,7 @@
+[Unit]
+Description=GNOME Session
+Requires=graphical-session.target
+PartOf=graphical-session.target
+Before=graphical-session.target
+
+RefuseManualStart=true
