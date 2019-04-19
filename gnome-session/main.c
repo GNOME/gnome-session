@@ -49,6 +49,7 @@
 
 #define GSM_DBUS_NAME "org.gnome.SessionManager"
 
+static gboolean systemd = FALSE;
 static gboolean failsafe = FALSE;
 static gboolean show_version = FALSE;
 static gboolean debug = FALSE;
@@ -139,7 +140,7 @@ create_manager (void)
         GsmStore *client_store;
 
         client_store = gsm_store_new ();
-        manager = gsm_manager_new (client_store, failsafe, FALSE);
+        manager = gsm_manager_new (client_store, failsafe, systemd);
         g_object_unref (client_store);
 
         g_unix_signal_add (SIGTERM, term_or_int_signal_cb, manager);
@@ -384,6 +385,7 @@ main (int argc, char **argv)
         guint             name_owner_id;
         GOptionContext   *options;
         static GOptionEntry entries[] = {
+                { "systemd", 0, 0, G_OPTION_ARG_NONE, &systemd, N_("Running as systemd service"), NULL },
                 { "autostart", 'a', 0, G_OPTION_ARG_STRING_ARRAY, &override_autostart_dirs, N_("Override standard autostart directories"), N_("AUTOSTART_DIR") },
                 { "session", 0, 0, G_OPTION_ARG_STRING, &opt_session_name, N_("Session to use"), N_("SESSION_NAME") },
                 { "debug", 0, 0, G_OPTION_ARG_NONE, &debug, N_("Enable debugging code"), NULL },
@@ -452,7 +454,12 @@ main (int argc, char **argv)
         gdm_log_init ();
         gdm_log_set_debug (debug);
 
-        if (disable_acceleration_check) {
+        if (systemd) {
+                /* XXX: This is an optimization, but we actually need to do
+                 *      it right now as the DISPLAY environment might leak
+                 *      into the new session from an old run. */
+                g_debug ("hardware acceleration already done if needed");
+        } else if (disable_acceleration_check) {
                 g_debug ("hardware acceleration check is disabled");
         } else {
                 /* Check GL, if it doesn't work out then force software fallback */
@@ -494,8 +501,32 @@ main (int argc, char **argv)
 
         gsm_util_export_activation_environment (NULL);
 
+        session_name = opt_session_name;
+
 #ifdef HAVE_SYSTEMD
         gsm_util_export_user_environment (NULL);
+        if (!systemd) {
+                g_autoptr(GError) error = NULL;
+                g_autofree gchar *gnome_session_target;
+
+                /* We really need to resolve the session name at this point,
+                 * which requires talking to GSettings internally. */
+                if (IS_STRING_EMPTY (session_name)) {
+                        session_name = _gsm_manager_get_default_session (NULL);
+                }
+
+                /* We don't escape the name (i.e. we leave any '-' intact). */
+                gnome_session_target = g_strdup_printf ("gnome-session@%s.target", session_name);
+                if (gsm_util_start_systemd_unit (gnome_session_target, "fail", &error)) {
+                        /* We started the unit, open fifo and sleep forever. */
+                        systemd_leader_run ();
+                        exit(0);
+                }
+
+                /* We could not start the unit, fall back. */
+                 g_warning ("Falling back to non-systemd startup procedure due to error: %s", error->message);
+                 systemd = FALSE;
+        }
 #endif
 
         {
@@ -530,8 +561,6 @@ main (int argc, char **argv)
         } else {
                 gsm_util_set_autostart_dirs (override_autostart_dirs);
         }
-
-        session_name = opt_session_name;
 
         /* Talk to logind before acquiring a name, since it does synchronous
          * calls at initialization time that invoke a main loop and if we
