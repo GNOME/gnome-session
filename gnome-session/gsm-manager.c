@@ -44,6 +44,14 @@
 #include <systemd/sd-journal.h>
 #endif
 
+#ifdef HAVE_SYSTEMD
+#include <systemd/sd-daemon.h>
+#else
+/* So we don't need to add ifdef's everywhere */
+#define sd_notify(u, m)            do {} while (0)
+#define sd_notifyf(u, m, ...)      do {} while (0)
+#endif
+
 #include "gsm-store.h"
 #include "gsm-inhibitor.h"
 #include "gsm-presence.h"
@@ -1342,10 +1350,17 @@ start_phase (GsmManager *manager)
                 manager->priv->phase_timeout_id = 0;
         }
 
+        sd_notifyf (0, "STATUS=GNOME Session Manager phase is %s", phase_num_to_name (manager->priv->phase));
+
         switch (manager->priv->phase) {
         case GSM_MANAGER_PHASE_STARTUP:
         case GSM_MANAGER_PHASE_EARLY_INITIALIZATION:
+                do_phase_startup (manager);
+                break;
         case GSM_MANAGER_PHASE_PRE_DISPLAY_SERVER:
+                sd_notify (0, "READY=1");
+                do_phase_startup (manager);
+                break;
         case GSM_MANAGER_PHASE_DISPLAY_SERVER:
         case GSM_MANAGER_PHASE_INITIALIZATION:
         case GSM_MANAGER_PHASE_WINDOW_MANAGER:
@@ -1374,9 +1389,13 @@ start_phase (GsmManager *manager)
                 do_phase_query_end_session (manager);
                 break;
         case GSM_MANAGER_PHASE_END_SESSION:
+                sd_notify (0, "STOPPING=1");
+
                 do_phase_end_session (manager);
                 break;
         case GSM_MANAGER_PHASE_EXIT:
+                sd_notify (0, "STOPPING=1");
+
                 do_phase_exit (manager);
                 break;
         default:
