@@ -125,6 +125,7 @@ typedef enum
 struct GsmManagerPrivate
 {
         gboolean                failsafe;
+        gboolean                systemd_managed;
         GsmStore               *clients;
         GsmStore               *inhibitors;
         GsmInhibitorFlag        inhibited_actions;
@@ -180,7 +181,8 @@ enum {
         PROP_CLIENT_STORE,
         PROP_SESSION_NAME,
         PROP_FALLBACK,
-        PROP_FAILSAFE
+        PROP_FAILSAFE,
+        PROP_SYSTEMD_MANAGED
 };
 
 enum {
@@ -1764,6 +1766,14 @@ gsm_manager_get_failsafe (GsmManager *manager)
         return manager->priv->failsafe;
 }
 
+gboolean
+gsm_manager_get_systemd_managed (GsmManager *manager)
+{
+        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
+
+        return manager->priv->systemd_managed;
+}
+
 static void
 on_client_disconnected (GsmClient  *client,
                         GsmManager *manager)
@@ -2126,6 +2136,9 @@ gsm_manager_set_property (GObject       *object,
          case PROP_CLIENT_STORE:
                 gsm_manager_set_client_store (self, g_value_get_object (value));
                 break;
+        case PROP_SYSTEMD_MANAGED:
+                self->priv->systemd_managed = g_value_get_boolean (value);
+                break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                 break;
@@ -2381,6 +2394,14 @@ gsm_manager_class_init (GsmManagerClass *klass)
                                                               NULL,
                                                               GSM_TYPE_STORE,
                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+
+        g_object_class_install_property (object_class,
+                                         PROP_SYSTEMD_MANAGED,
+                                         g_param_spec_boolean ("systemd-managed",
+                                                               NULL,
+                                                               NULL,
+                                                               FALSE,
+                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
         g_type_class_add_private (klass, sizeof (GsmManagerPrivate));
 }
@@ -3294,7 +3315,8 @@ gsm_manager_get (void)
 
 GsmManager *
 gsm_manager_new (GsmStore *client_store,
-                 gboolean  failsafe)
+                 gboolean  failsafe,
+                 gboolean  systemd_managed)
 {
         if (manager_object != NULL) {
                 g_object_ref (manager_object);
@@ -3304,6 +3326,7 @@ gsm_manager_new (GsmStore *client_store,
                 manager_object = g_object_new (GSM_TYPE_MANAGER,
                                                "client-store", client_store,
                                                "failsafe", failsafe,
+                                               "systemd-managed", systemd_managed,
                                                NULL);
 
                 g_object_add_weak_pointer (manager_object,
@@ -3563,7 +3586,7 @@ add_autostart_app_internal (GsmManager *manager,
                 }
         }
 
-        app = gsm_autostart_app_new (path, FALSE, &error);
+        app = gsm_autostart_app_new (path, manager->priv->systemd_managed, &error);
         if (app == NULL) {
                 g_warning ("%s", error->message);
                 g_clear_error (&error);
