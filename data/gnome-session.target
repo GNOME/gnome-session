@@ -1,0 +1,18 @@
+[Unit]
+Description=GNOME Session
+OnFailure=gnome-session-failed.target
+OnFailureJobMode=replace
+DefaultDependencies=no
+RefuseManualStart=yes
+RefuseManualStop=yes
+
+BindsTo=graphical-session.target
+Before=graphical-session.target
+
+# gnome-session-monitor.service will quit with the session leader process
+# gnome-session.target pulls in graphical-session.target
+BindsTo=gnome-session-monitor.service
+After=gnome-session-monitor.service
+
+# Pull in timer to mark session as stable (and unstable as long as the timer is active)
+Requires=gnome-session-stable.timer

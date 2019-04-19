@@ -1,0 +1,19 @@
+[Unit]
+Description=GNOME Session is initialized
+OnFailure=gnome-session-shutdown.target
+OnFailureJobMode=replace-irreversibly
+DefaultDependencies=no
+RefuseManualStart=yes
+RefuseManualStop=yes
+
+Requires=gnome-session-pre.target
+After=gnome-session-pre.target
+
+Requisite=gnome-session.target
+PartOf=gnome-session.target
+Before=gnome-session.target
+
+# Signal gnome-session that we reached the initialized target and
+# that it may start applications.
+Requires=gnome-session-signal-init.service
+Before=gnome-session-signal-init.service
