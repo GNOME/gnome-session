@@ -1,0 +1,9 @@
+[Unit]
+Description=GNOME Session Manager controller (task: %i)
+# The watch process which pulls down the session leader should be stopped last.
+Before=graphical-target.target
+
+[Service]
+Type=notify
+ExecStart=@libexecdir@/gnome-session-ctl --%i
+TimeoutStopSec=5
