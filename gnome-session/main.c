@@ -492,6 +492,23 @@ main (int argc, char **argv)
                 exit (1);
         }
 
+        env_override_autostart_dirs = g_getenv ("GNOME_SESSION_AUTOSTART_DIR");
+
+        if (env_override_autostart_dirs != NULL && env_override_autostart_dirs[0] != '\0') {
+                env_override_autostart_dirs_v = g_strsplit (env_override_autostart_dirs, ":", 0);
+                gsm_util_set_autostart_dirs (env_override_autostart_dirs_v);
+        } else {
+                gsm_util_set_autostart_dirs (override_autostart_dirs);
+
+                /* Export the override autostart dirs parameter to the environment
+                 * in case we are running on systemd. */
+                if (override_autostart_dirs) {
+                        g_autofree char *autostart_dirs = NULL;
+                        autostart_dirs = g_strjoinv (":", override_autostart_dirs);
+                        g_setenv ("GNOME_SESSION_AUTOSTART_DIR", autostart_dirs, TRUE);
+                }
+        }
+
         gsm_util_export_activation_environment (NULL);
 
 #ifdef HAVE_SYSTEMD
@@ -521,17 +538,6 @@ main (int argc, char **argv)
         /* We want to use the GNOME menus which has the designed categories.
          */
         gsm_util_setenv ("XDG_MENU_PREFIX", "gnome-");
-
-        env_override_autostart_dirs = g_getenv ("GNOME_SESSION_AUTOSTART_DIR");
-
-        if (env_override_autostart_dirs != NULL && env_override_autostart_dirs[0] != '\0') {
-                env_override_autostart_dirs_v = g_strsplit (env_override_autostart_dirs, ":", 0);
-                gsm_util_set_autostart_dirs (env_override_autostart_dirs_v);
-        } else {
-                gsm_util_set_autostart_dirs (override_autostart_dirs);
-        }
-
-        session_name = opt_session_name;
 
         /* Talk to logind before acquiring a name, since it does synchronous
          * calls at initialization time that invoke a main loop and if we
