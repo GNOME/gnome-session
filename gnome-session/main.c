@@ -365,7 +365,7 @@ main (int argc, char **argv)
         guint             name_owner_id;
         GOptionContext   *options;
         static GOptionEntry entries[] = {
-                { "systemd", 0, 0, G_OPTION_ARG_NONE, &systemd, N_(""), NULL },
+                { "systemd", 0, 0, G_OPTION_ARG_NONE, &systemd, N_("Running as systemd service"), NULL },
                 { "autostart", 'a', 0, G_OPTION_ARG_STRING_ARRAY, &override_autostart_dirs, N_("Override standard autostart directories"), N_("AUTOSTART_DIR") },
                 { "session", 0, 0, G_OPTION_ARG_STRING, &opt_session_name, N_("Session to use"), N_("SESSION_NAME") },
                 { "debug", 0, 0, G_OPTION_ARG_NONE, &debug, N_("Enable debugging code"), NULL },
