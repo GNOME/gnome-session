@@ -492,10 +492,12 @@ gsm_manager_quit (GsmManager *manager)
         case GSM_MANAGER_LOGOUT_REBOOT:
         case GSM_MANAGER_LOGOUT_REBOOT_INTERACT:
                 gsm_system_complete_shutdown (manager->priv->system);
+                gsm_quit ();
                 break;
         case GSM_MANAGER_LOGOUT_SHUTDOWN:
         case GSM_MANAGER_LOGOUT_SHUTDOWN_INTERACT:
                 gsm_system_complete_shutdown (manager->priv->system);
+                gsm_quit ();
                 break;
         default:
                 g_assert_not_reached ();
