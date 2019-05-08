@@ -1605,7 +1605,8 @@ _disconnect_client (GsmManager *manager,
                 }
         }
 
-        if (manager->priv->phase == GSM_MANAGER_PHASE_QUERY_END_SESSION) {
+        switch (manager->priv->phase) {
+        case GSM_MANAGER_PHASE_QUERY_END_SESSION:
                 /* Instead of answering our end session query, the client just exited.
                  * Treat that as an "okay, end the session" answer.
                  *
@@ -1621,6 +1622,30 @@ _disconnect_client (GsmManager *manager,
                                                      "query end session phase "
                                                      "instead of end session "
                                                      "phase");
+                break;
+        case GSM_MANAGER_PHASE_END_SESSION:
+                if (! g_slist_find (manager->priv->query_clients, client)) {
+                        /* the client sent its EndSessionResponse and we already
+                         * processed it.
+                         */
+                        break;
+                }
+
+                /* Client simply exited upon receiving EndSession.
+                 * Some applications would do that because they simply terminate
+                 * as a means of exiting to avoid writing code to stop things.
+                 */
+                _handle_client_end_session_response (manager,
+                                                     client,
+                                                     TRUE,
+                                                     FALSE,
+                                                     FALSE,
+                                                     "Client exited in "
+                                                     "end session phase without "
+                                                     "sending EndSessionResponse");
+        default:
+                /* do nothing */
+                break;
         }
 
         if (manager->priv->dbus_disconnected && GSM_IS_DBUS_CLIENT (client)) {
