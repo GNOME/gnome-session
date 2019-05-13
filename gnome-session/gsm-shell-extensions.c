@@ -184,9 +184,32 @@ gsm_shell_extensions_init (GsmShellExtensions *self)
 gboolean
 gsm_shell_extensions_disable_all (GsmShellExtensions *self)
 {
-  return g_settings_set_boolean (self->priv->settings,
-                                 DISABLE_EXTENSIONS_KEY,
-                                 TRUE);
+  gboolean res;
+
+  res = g_settings_set_boolean (self->priv->settings,
+                                DISABLE_EXTENSIONS_KEY,
+                                TRUE);
+
+  if (res)
+    {
+      g_autofree gchar *path = NULL;
+      g_autoptr(GFile) file = NULL;
+      g_autoptr(GFileOutputStream) output_stream = NULL;
+      g_autoptr(GError) error = NULL;
+
+      path = g_build_path (g_get_user_config_dir (),
+                           "gnome-shell-extensions-disabled-warning",
+                           NULL);
+
+      file = g_file_new_for_path (path);
+      output_stream = g_file_create (file, G_FILE_CREATE_NONE, NULL, &error);
+
+      if (error && !g_error_matches (error, G_IO_ERROR, G_IO_ERROR_EXISTS))
+        g_warning ("Could not create gnome-shell-extensions-disabled-warning: %s",
+                   error->message);
+    }
+
+  return res;
 }
 
 guint
