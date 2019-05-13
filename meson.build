@@ -120,6 +120,7 @@ enable_session_selector = get_option('session_selector')
 session_tracking = 'null backend'
 
 enable_systemd = get_option('systemd')
+enable_systemd_session = get_option('systemd_session')
 enable_systemd_journal = get_option('systemd_journal')
 enable_consolekit = get_option('consolekit')
 if enable_systemd or enable_consolekit
@@ -161,7 +162,11 @@ if enable_systemd or enable_consolekit
     endif
   endif
 endif
+if enable_systemd_session
+  assert(enable_systemd, 'Systemd support must be enabled when using systemd session management')
+endif
 config_h.set('HAVE_SYSTEMD', enable_systemd)
+config_h.set('ENABLE_SYSTEMD_SESSION', enable_systemd_session)
 config_h.set('ENABLE_SYSTEMD_JOURNAL', enable_systemd_journal)
 config_h.set('HAVE_CONSOLEKIT', enable_consolekit)
 
