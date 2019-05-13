@@ -1,6 +1,7 @@
 option('deprecation_flags', type: 'boolean', value: false, description: 'use *_DISABLE_DEPRECATED flags')
 option('session_selector', type: 'boolean', value: false, description: 'enable building a custom session selector dialog')
 option('systemd', type: 'boolean', value: true, description: 'Use systemd')
+option('systemd_session', type: 'combo', choices: ['disable', 'enable', 'default'], value: 'default', description: 'Whether to include systemd session support and use it by default')
 option('systemd_journal', type: 'boolean', value:'true', description: 'Send log to systemd-journal')
 option('consolekit', type: 'boolean', value: false, description: 'Use consolekit')
 option('docbook', type: 'boolean', value: true, description: 'build documentation')
