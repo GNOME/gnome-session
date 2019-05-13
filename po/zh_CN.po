@@ -1,5 +1,5 @@
 # Chinese (China) translation of gnome-session.
-# Copyright (C) 2009, 2010 Free Software Foundation, Inc.
+# Copyright (C) 2009-2018 gnome-session'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-session package.
 # Dillion Chen <dillon.chen@turbolinux.com.cn>
 # Updated and QA by Wang Jian <lark@linux.net.cn>
@@ -14,46 +14,86 @@
 # nhm <572348382@qq.com>, 2013.
 # Wylmer Wang <wantinghard@gmail.com>, 2013.
 # Tong Hui <tonghuix@gmail.com>, 2015.
+# Mingcong Bai <jeffbai@aosc.io>, 2018.
+# Dingzhong Chen <wsxy162@gmail.com>, 2018.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2018-01-08 21:39+0000\n"
-"PO-Revision-Date: 2018-02-03 23:08+0800\n"
-"Last-Translator: Tong Hui <tonghuix@gmail.com>\n"
-"Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
+"POT-Creation-Date: 2018-09-02 19:30+0000\n"
+"PO-Revision-Date: 2018-09-05 18:13+0800\n"
+"Last-Translator: Dingzhong Chen <wsxy162@gmail.com>\n"
+"Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.8.9\n"
+"X-Generator: Gtranslator 2.91.7\n"
 
-#: data/gnome-custom-session.desktop.in:3
+#: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
 msgstr "自定义"
 
-#: data/gnome-custom-session.desktop.in:4
+#: data/gnome-custom-session.desktop.in.in:4
 msgid "This entry lets you select a saved session"
 msgstr "此项允许您选择一个已保存的会话"
 
-#: data/gnome.desktop.in:3 data/gnome.session.desktop.in.in:3
+#: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
 msgid "GNOME"
 msgstr "GNOME"
 
-#: data/gnome.desktop.in:4 data/gnome-xorg.desktop.in:4
+#: data/gnome.desktop.in.in:4 data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
-msgstr "此会话将您登录到 GNOME"
-
-#: data/gnome-xorg.desktop.in:3
-msgid "GNOME on Xorg"
-msgstr "运行于 Xorg 的 GNOME"
+msgstr "此会话将让您登录到 GNOME"
 
 #: data/gnome-dummy.session.desktop.in.in:3
 msgid "GNOME dummy"
 msgstr "GNOME dummy"
+
+#: data/gnome-xorg.desktop.in.in:3
+msgid "GNOME on Xorg"
+msgstr "运行于 Xorg 的 GNOME"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:5
+msgid "Save sessions"
+msgstr "保存会话"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:6
+msgid "If enabled, gnome-session will save the session automatically."
+msgstr "如果启用，gnome-session 将自动保存会话。"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:10
+msgid "Save this session"
+msgstr "保存此会话"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:11
+msgid ""
+"When enabled, gnome-session will automatically save the next session at log "
+"out even if auto saving is disabled."
+msgstr ""
+"启用时，gnome-session 将在下次注销时保存会话，无论自动保存是否已被禁用。"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:15
+msgid "Logout prompt"
+msgstr "注销提示"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:16
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr "如果启用，gnome-session 将在结束会话前提示用户。"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:20
+msgid "Show the fallback warning"
+msgstr "显示回退警告"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:21
+msgid ""
+"If enabled, gnome-session will display a warning dialog after login if the "
+"session was automatically fallen back."
+msgstr ""
+"如果启用，在会话启动失败而自动回退后，gnome-session 将在登录后显示警告对话"
+"框。"
 
 #: data/session-selector.ui:15
 msgid "Custom Session"
@@ -139,13 +179,13 @@ msgstr "记住的应用程序"
 msgid "This program is blocking logout."
 msgstr "此程序正在阻止注销。"
 
-#: gnome-session/gsm-xsmp-server.c:340
+#: gnome-session/gsm-xsmp-server.c:338
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr "拒绝新客户连接，原因是会话正在关闭\n"
 
-#: gnome-session/gsm-xsmp-server.c:609
+#: gnome-session/gsm-xsmp-server.c:605
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "无法创建 ICE 监听套接字：%s"
@@ -211,10 +251,10 @@ msgstr ""
 "\n"
 "  -h, --help        显示此帮助\n"
 "  --version         显示程序版本\n"
-"  --app-id ID       禁用时使用的应用程序 ID(可选)\n"
-"  --reason 原因     禁用原因(可选)\n"
+"  --app-id ID       禁用时使用的应用程序 ID（可选）\n"
+"  --reason 原因     禁用原因（可选）\n"
 "  --inhibit 参数    要禁用的功能，以英文冒号分隔，可包括：\n"
-"                    logout, switch-user, suspend, idle, automount\n"
+"                    logout、switch-user、suspend、idle、automount\n"
 "  --inhibit-only    不启动 命令，而是无限等待\n"
 "\n"
 "若未指定 --inhibit 参数，将假设为 idle。\n"
@@ -229,29 +269,6 @@ msgstr "执行 %s 失败\n"
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s 需要一个参数\n"
-
-#: tools/gnome-session-selector.c:61
-#, c-format
-msgid "Session %d"
-msgstr "会话 %d"
-
-#: tools/gnome-session-selector.c:107
-msgid ""
-"Session names are not allowed to start with “.” or contain “/” characters"
-msgstr "会话名称不允许以“.”开头或包含“/”字符"
-
-#: tools/gnome-session-selector.c:111
-msgid "Session names are not allowed to start with “.”"
-msgstr "会话名称不允许以“.”开头"
-
-#: tools/gnome-session-selector.c:115
-msgid "Session names are not allowed to contain “/” characters"
-msgstr "会话名称不允许包含“/”字符"
-
-#: tools/gnome-session-selector.c:123
-#, c-format
-msgid "A session named “%s” already exists"
-msgstr "名为“%s”的会话已存在"
 
 # gsm/logout.c:248
 #: tools/gnome-session-quit.c:50
@@ -282,6 +299,29 @@ msgstr "无法连接到会话管理器"
 #: tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
 msgstr "调用程序的选项互相冲突"
+
+#: tools/gnome-session-selector.c:61
+#, c-format
+msgid "Session %d"
+msgstr "会话 %d"
+
+#: tools/gnome-session-selector.c:107
+msgid ""
+"Session names are not allowed to start with “.” or contain “/” characters"
+msgstr "会话名称不允许以“.”开头或包含“/”字符"
+
+#: tools/gnome-session-selector.c:111
+msgid "Session names are not allowed to start with “.”"
+msgstr "会话名称不允许以“.”开头"
+
+#: tools/gnome-session-selector.c:115
+msgid "Session names are not allowed to contain “/” characters"
+msgstr "会话名称不允许包含“/”字符"
+
+#: tools/gnome-session-selector.c:123
+#, c-format
+msgid "A session named “%s” already exists"
+msgstr "名为“%s”的会话已存在"
 
 #~ msgid "This session logs you into GNOME, using Wayland"
 #~ msgstr "此会话将您登录到使用 Wayland 的 GNOME"
