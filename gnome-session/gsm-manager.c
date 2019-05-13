@@ -1001,7 +1001,8 @@ do_phase_exit (GsmManager *manager)
         }
 
 #ifdef HAVE_SYSTEMD
-        maybe_restart_user_bus (manager);
+        if (!manager->priv->systemd_managed)
+                maybe_restart_user_bus (manager);
 #endif
 
         end_phase (manager);
