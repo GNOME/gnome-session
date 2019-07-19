@@ -173,10 +173,7 @@ idle_became_idle_cb (GnomeIdleMonitor *idle_monitor,
                      gpointer          user_data)
 {
         GsmPresence *presence = user_data;
-        /* We should already be idle,
-         * see on_screensaver_active_changed() */
-        if (!presence->priv->screensaver_active)
-                set_session_idle (presence, TRUE);
+        set_session_idle (presence, TRUE);
 }
 
 static void
@@ -185,9 +182,7 @@ idle_became_active_cb (GnomeIdleMonitor *idle_monitor,
                        gpointer          user_data)
 {
         GsmPresence *presence = user_data;
-        /* We can only be non-idle if the screensaver is gone */
-        if (!presence->priv->screensaver_active)
-                set_session_idle (presence, FALSE);
+        set_session_idle (presence, FALSE);
 }
 
 static void
