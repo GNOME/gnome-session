@@ -40,7 +40,11 @@ gsm_fail_whale_dialog_we_failed  (gboolean            debug_mode,
 {
         gint i;
         gchar *argv[5];
-        GPid  pid;
+        static GPid pid = 0;
+
+        if (pid != 0) {
+                return;
+        }
 
         i = 0;
         argv[i++] = LIBEXECDIR "/gnome-session-failed";
