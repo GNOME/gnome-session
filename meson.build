@@ -41,7 +41,9 @@ set_defines = [
   ['PACKAGE_VERSION', session_version],
   ['VERSION', session_version],
   # i18n
-  ['GETTEXT_PACKAGE', session_api_name]
+  ['GETTEXT_PACKAGE', session_api_name],
+  ['GNOME_SESSION_SYSTEMD_DIR', join_paths (session_datadir, meson.project_name(), 'systemd-user')],
+  ['DEFAULT_XDG_CONFIG_DIRS', join_paths (session_sysconfdir, 'xdg', 'autostart')]
 ]
 
 foreach define: set_defines

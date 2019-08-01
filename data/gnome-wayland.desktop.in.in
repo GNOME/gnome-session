@@ -1,8 +1,7 @@
 [Desktop Entry]
-Name=GNOME on Xorg
+Name=GNOME
 Comment=This session logs you into GNOME
-Exec=@bindir@/gnome-session-systemd gnome-session-x11.target
+Exec=@bindir@/gnome-session-systemd gnome-session-wayland.target
 TryExec=@bindir@/gnome-session
 Type=Application
 DesktopNames=GNOME
-X-GDM-SessionRegisters=true

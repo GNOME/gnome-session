@@ -53,6 +53,7 @@ static gboolean debug = FALSE;
 static gboolean please_fail = FALSE;
 static gboolean disable_acceleration_check = FALSE;
 static const char *session_name = NULL;
+static gboolean ignore_required_components = FALSE;
 static GsmManager *manager = NULL;
 static char *gl_renderer = NULL;
 
@@ -149,7 +150,7 @@ create_manager (void)
                 session_name = _gsm_manager_get_default_session (manager);
         }
 
-        if (!gsm_session_fill (manager, session_name)) {
+        if (!gsm_session_fill (manager, session_name, ignore_required_components)) {
                 gsm_fail_whale_dialog_we_failed (FALSE, TRUE, NULL);
         }
 
@@ -270,12 +271,15 @@ main (int argc, char **argv)
         static char     **override_autostart_dirs = NULL;
         static char      *opt_session_name = NULL;
         const char       *debug_string = NULL;
+        const char       *env_override_autostart_dirs = NULL;
+        g_auto(GStrv)     env_override_autostart_dirs_v = NULL;
         gboolean          gl_failed = FALSE;
         guint             name_owner_id;
         GOptionContext   *options;
         static GOptionEntry entries[] = {
                 { "autostart", 'a', 0, G_OPTION_ARG_STRING_ARRAY, &override_autostart_dirs, N_("Override standard autostart directories"), N_("AUTOSTART_DIR") },
                 { "session", 0, 0, G_OPTION_ARG_STRING, &opt_session_name, N_("Session to use"), N_("SESSION_NAME") },
+                { "ignore-required-components", 0, 0, G_OPTION_ARG_NONE, &ignore_required_components, N_("Ignore RequiredComponents in the .session file"), NULL },
                 { "debug", 0, 0, G_OPTION_ARG_NONE, &debug, N_("Enable debugging code"), NULL },
                 { "failsafe", 'f', 0, G_OPTION_ARG_NONE, &failsafe, N_("Do not load user-specified applications"), NULL },
                 { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
@@ -412,7 +416,15 @@ main (int argc, char **argv)
          */
         gsm_util_setenv ("XDG_MENU_PREFIX", "gnome-");
 
-        gsm_util_set_autostart_dirs (override_autostart_dirs);
+        env_override_autostart_dirs = g_getenv ("GNOME_SESSION_AUTOSTART_DIR");
+
+        if (env_override_autostart_dirs != NULL && env_override_autostart_dirs[0] != '\0') {
+                env_override_autostart_dirs_v = g_strsplit (env_override_autostart_dirs, ":", 0);
+                gsm_util_set_autostart_dirs (env_override_autostart_dirs_v);
+        } else {
+                gsm_util_set_autostart_dirs (override_autostart_dirs);
+        }
+
         session_name = opt_session_name;
 
         /* Talk to logind before acquiring a name, since it does synchronous
