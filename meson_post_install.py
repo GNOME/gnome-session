@@ -15,12 +15,7 @@ if not os.environ.get('DESTDIR'):
   print('Compile gsettings schemas...')
   subprocess.call(['glib-compile-schemas', schemadir])
 
-# FIXME: this is due to unable to copy a generated target file:
-#        https://groups.google.com/forum/#!topic/mesonbuild/3iIoYPrN4P0
 dst_dir = os.path.join(install_root, 'wayland-sessions')
-if not os.path.exists(dst_dir):
-  os.makedirs(dst_dir)
 
-src = os.path.join(install_root, 'xsessions', 'gnome.desktop')
-dst = os.path.join(dst_dir, 'gnome.desktop')
-shutil.copyfile(src, dst)
+os.rename(os.path.join(dst_dir, 'gnome-wayland.desktop'),
+          os.path.join(dst_dir, 'gnome.desktop'))

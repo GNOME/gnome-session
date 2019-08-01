@@ -1,19 +1,22 @@
-desktop_plain = 'gnome'
-
+# We'd like to have gnome-wayland have output: 'gnome.desktop', but this
+# doesn't work https://github.com/mesonbuild/meson/issues/3759 So this is later
+# renamed in meson_post_install.py
 desktops = [
-  desktop_plain,
-  'gnome-xorg'
+  ['gnome',        'xsessions'],
+  ['gnome-xorg',   'xsessions'],
+  ['gnome-wayland', 'wayland-sessions']
 ]
 
 if enable_session_selector
-  desktops += 'gnome-custom-session'
+  desktops += ['gnome-custom-session', 'xsessions']
 endif
 
 foreach name: desktops
   desktop_conf = configuration_data()
   desktop_conf.set('bindir', session_bindir)
 
-  desktop = name + '.desktop'
+  desktop = name[0] + '.desktop'
+  dir = name[1]
 
   desktop_in = configure_file(
     input: desktop + '.in.in',
@@ -21,25 +24,14 @@ foreach name: desktops
     configuration: desktop_conf
   )
 
-  install_dir = join_paths(session_datadir, 'xsessions')
-  # FIXME: The same target can not be copied into two directories.
-  #        There is a workaround in meson_post_install.py until proper solution arises:
-  #        https://groups.google.com/forum/#!topic/mesonbuild/3iIoYPrN4P0
-  if name == desktop_plain
-    #install_dir: [
-    #  join_paths(session_datadir, 'xsessions'),
-    #  join_paths(session_datadir, 'wayland-sessions')
-    #]
-  endif
-
-  desktop_target = i18n.merge_file(
+  i18n.merge_file(
     desktop,
     type: 'desktop',
     input: desktop_in,
     output: desktop,
     po_dir: po_dir,
     install: true,
-    install_dir: install_dir
+    install_dir: join_paths(session_datadir, dir)
   )
 endforeach
 
@@ -86,6 +78,29 @@ configure_file(
 install_data(
   'gnome-session.convert',
   install_dir: join_paths(session_datadir, 'GConf', 'gsettings')
+)
+
+unit_conf = configuration_data()
+unit_conf.set('libexecdir', session_libexecdir)
+
+dep_systemd = dependency('systemd', required: true)
+systemd_userunitdir = dep_systemd.get_pkgconfig_variable('systemduserunitdir')
+
+configure_file(
+  input: 'gnome-session@.service.in',
+  output: 'gnome-session@.service',
+  install: true,
+  install_dir: systemd_userunitdir,
+  configuration: unit_conf
+)
+
+systemd_target = files('gnome-session-bus.target',
+                       'gnome-session-wayland.target',
+                       'gnome-session-x11.target')
+
+install_data(
+  systemd_target,
+  install_dir: systemd_userunitdir
 )
 
 data = files('hardware-compatibility')

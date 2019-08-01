@@ -46,6 +46,8 @@
 #define SD_SEAT_INTERFACE    "org.freedesktop.login1.Seat"
 #define SD_SESSION_INTERFACE "org.freedesktop.login1.Session"
 
+#define SYSTEMD_SESSION_REQUIRE_ONLINE 0 /* active or online sessions only */
+
 struct _GsmSystemdPrivate
 {
         GSource         *sd_source;
@@ -268,6 +270,104 @@ static void sd_proxy_signal_cb (GDBusProxy  *proxy,
                                 GVariant    *parameters,
                                 gpointer     user_data);
 
+static gboolean
+_systemd_session_is_graphical (const char *session_id)
+{
+        const gchar * const graphical_session_types[] = { "wayland", "x11", "mir", NULL };
+        int saved_errno;
+        g_autofree gchar *type = NULL;
+
+        saved_errno = sd_session_get_type (session_id, &type);
+        if (saved_errno < 0) {
+                g_warning ("Couldn't get type for session '%s': %s",
+                           session_id,
+                           g_strerror (-saved_errno));
+                return FALSE;
+        }
+
+        if (!g_strv_contains (graphical_session_types, type)) {
+                g_debug ("Session '%s' is not a graphical session (type: '%s')",
+                         session_id,
+                         type);
+                return FALSE;
+        }
+
+        return TRUE;
+}
+
+static gboolean
+_systemd_session_is_active (const char *session_id)
+{
+        const gchar * const active_states[] = { "active", "online", NULL };
+        int saved_errno;
+        g_autofree gchar *state = NULL;
+
+        /*
+         * display sessions can be 'closing' if they are logged out but some
+         * processes are lingering; we shouldn't consider these (this is
+         * checking for a race condition since we specified
+         * SYSTEMD_SESSION_REQUIRE_ONLINE)
+         */
+        saved_errno = sd_session_get_state (session_id, &state);
+        if (saved_errno < 0) {
+                g_warning ("Couldn't get state for session '%s': %s",
+                           session_id,
+                           g_strerror (-saved_errno));
+                return FALSE;
+        }
+
+        if (!g_strv_contains (active_states, state)) {
+                g_debug ("Session '%s' is not active or online", session_id);
+                return FALSE;
+        }
+
+        return TRUE;
+}
+
+static gboolean
+gsm_systemd_find_session (char **session_id)
+{
+        char *local_session_id = NULL;
+        g_auto(GStrv) sessions = NULL;
+        int n_sessions;
+
+        g_return_val_if_fail (session_id != NULL, FALSE);
+
+        g_debug ("Finding a graphical session for user %d", getuid ());
+
+        n_sessions = sd_uid_get_sessions (getuid (),
+                                          SYSTEMD_SESSION_REQUIRE_ONLINE,
+                                          &sessions);
+
+        if (n_sessions < 0) {
+                g_critical ("Failed to get sessions for user %d", getuid ());
+                return FALSE;
+        }
+
+        for (int i = 0; i < n_sessions; ++i) {
+                g_debug ("Considering session '%s'", sessions[i]);
+
+                if (!_systemd_session_is_graphical (sessions[i]))
+                        continue;
+
+                if (!_systemd_session_is_active (sessions[i]))
+                        continue;
+
+                /*
+                 * We get the sessions from newest to oldest, so take the last
+                 * one we find that's good
+                 */
+                local_session_id = sessions[i];
+        }
+
+        if (local_session_id == NULL)
+                return FALSE;
+
+        *session_id = g_strdup (local_session_id);
+
+        return TRUE;
+}
+
 static void
 gsm_systemd_init (GsmSystemd *manager)
 {
@@ -304,13 +404,15 @@ gsm_systemd_init (GsmSystemd *manager)
         g_signal_connect (manager->priv->sd_proxy, "g-signal",
                           G_CALLBACK (sd_proxy_signal_cb), manager);
 
-        sd_pid_get_session (getpid (), &manager->priv->session_id);
+        gsm_systemd_find_session (&manager->priv->session_id);
 
         if (manager->priv->session_id == NULL) {
                 g_warning ("Could not get session id for session. Check that logind is "
                            "properly installed and pam_systemd is getting used at login.");
                 return;
         }
+
+        g_debug ("Found session ID: %s", manager->priv->session_id);
 
         res = g_dbus_proxy_call_sync (manager->priv->sd_proxy,
                                       "GetSession",
@@ -956,9 +1058,7 @@ gsm_systemd_is_last_session_for_user (GsmSystem *system)
         gboolean is_last_session;
         int ret, i;
 
-        ret = sd_pid_get_session (getpid (), &session);
-
-        if (ret != 0) {
+        if (!gsm_systemd_find_session (&session)) {
                 return FALSE;
         }
 

@@ -1,0 +1,11 @@
+[Unit]
+Description=GNOME Session Manager (%i session)
+PartOf=graphical-session.target
+After=graphical-session-pre.target
+Before=gnome-settings-daemon.target gnome-session-bus.target
+BindsTo=gnome-session-bus.target
+
+[Service]
+Type=dbus
+ExecStart=@libexecdir@/gnome-session-binary --ignore-required-components --session=%i
+BusName=org.gnome.SessionManager
