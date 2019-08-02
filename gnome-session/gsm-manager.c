@@ -935,7 +935,7 @@ _client_stop (const char *id,
         return FALSE;
 }
 
-#ifdef HAVE_SYSTEMD
+#ifdef HAVE_LOGIND
 static void
 maybe_restart_user_bus (GsmManager *manager)
 {
@@ -978,7 +978,7 @@ do_phase_exit (GsmManager *manager)
                                    NULL);
         }
 
-#ifdef HAVE_SYSTEMD
+#ifdef HAVE_LOGIND
         maybe_restart_user_bus (manager);
 #endif
 

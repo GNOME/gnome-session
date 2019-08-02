@@ -52,7 +52,7 @@ void        gsm_util_setenv                         (const char *variable,
 const char * const * gsm_util_listenv               (void);
 
 gboolean    gsm_util_export_activation_environment  (GError     **error);
-#ifdef HAVE_SYSTEMD
+#ifdef HAVE_LOGIND
 gboolean    gsm_util_export_user_environment        (GError     **error);
 #endif
 
