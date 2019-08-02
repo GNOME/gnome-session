@@ -1,4 +1,18 @@
 ===============
+Version 3.33.90
+===============
+	* Add support to manage the session using the systemd user instance.
+	  A new systemd_session build time option is added to enable/disable
+	  the support and set it as the default (disable/enable/default).
+	  Right now the support is enabled by default. Distributions should
+	  be careful to ensure that other components are updated at the same
+	  time (gnome-settings-daemon, gnome-shell, gdm) as subtle errors
+	  may occur otherwise.
+	  If in doubt, only enable the feature and test it by modifying the
+	  gnome-session launch script to pass --systemd to
+	  gnome-session-binary.
+
+===============
 Version 3.33.4
 ===============
 	* fix warning in log spew with dbus activated services
