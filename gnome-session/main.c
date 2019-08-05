@@ -26,9 +26,11 @@
 #include <locale.h>
 #include <unistd.h>
 #include <errno.h>
+#include <sys/stat.h>
 
 #include <glib/gi18n.h>
 #include <glib.h>
+#include <glib/gstdio.h>
 #include <glib-unix.h>
 #include <gio/gio.h>
 
@@ -47,6 +49,8 @@
 
 #define GSM_DBUS_NAME "org.gnome.SessionManager"
 
+static gboolean systemd_service = FALSE;
+static gboolean use_systemd = USE_SYSTEMD_SESSION;
 static gboolean failsafe = FALSE;
 static gboolean show_version = FALSE;
 static gboolean debug = FALSE;
@@ -137,7 +141,7 @@ create_manager (void)
         GsmStore *client_store;
 
         client_store = gsm_store_new ();
-        manager = gsm_manager_new (client_store, failsafe);
+        manager = gsm_manager_new (client_store, failsafe, systemd_service);
         g_object_unref (client_store);
 
         g_unix_signal_add (SIGTERM, term_or_int_signal_cb, manager);
@@ -263,6 +267,112 @@ initialize_gio (void)
         }
 }
 
+#ifdef ENABLE_SYSTEMD_SESSION
+static gboolean
+leader_term_or_int_signal_cb (gpointer data)
+{
+        gint fifo_fd = GPOINTER_TO_INT (data);
+
+        /* Start a shutdown explicitly. */
+        gsm_util_start_systemd_unit ("gnome-session-shutdown.target", "replace-irreversibly", NULL);
+
+        if (fifo_fd >= 0) {
+                int res;
+
+                /* If we have a fifo, try to signal the other side. */
+                res = write (fifo_fd, "S", 1);
+                if (res < 0) {
+                        g_warning ("Error signaling shutdown to monitoring process: %m");
+                        gsm_quit ();
+                }
+        } else {
+                /* Otherwise quit immediately as we cannot wait on systemd */
+                gsm_quit ();
+        }
+
+        return G_SOURCE_REMOVE;
+}
+
+/**
+ * systemd_leader_run:
+ *
+ * This is the session leader when running under systemd, i.e. it is the only
+ * process that is *not* managed by the systemd user instance, this process
+ * is the one executed by the GDM helpers and is part of the session scope in
+ * the system systemd instance.
+ *
+ * This process works together with a service running in the user systemd
+ * instance (currently gnome-session-ctl@monitor.service):
+ *
+ * - It needs to signal shutdown to the user session when receiving SIGTERM
+ *
+ * - It needs to quit just after the user session is done
+ *
+ * - The monitor instance needs to know if this process was killed
+ *
+ * All this is achieved by opening a named fifo in a well known location.
+ * If this process receives SIGTERM or SIGINT then it will write a single byte
+ * causing the monitor service to signal STOPPING=1 to systemd, triggering a
+ * clean shutdown, solving the first item. The other two items are solved by
+ * waiting for EOF/HUP on both sides and quitting immediately when receiving
+ * that signal.
+ *
+ * As an example, a shutdown might look as follows:
+ *
+ * - session-X.scope for user is stopped
+ * - Leader process receive SIGTERM
+ * - Leader sends single byte
+ * - Monitor process receives byte and signals STOPPING=1
+ * - Systemd user instance starts session teardown
+ * - Session is torn down, last job run is stopping monitor process (SIGTERM)
+ * - Monitor process quits, closing FD in the process
+ * - Leader process receives HUP and quits
+ * - GDM shuts down its processes in the users scope
+ *
+ * The result is that the session is stopped cleanly.
+ */
+static void
+systemd_leader_run(void)
+{
+        g_autofree char *fifo_name = NULL;
+        int res;
+        int fifo_fd;
+
+        fifo_name = g_strdup_printf ("%s/gnome-session-leader-fifo",
+                                     g_get_user_runtime_dir ());
+        res = mkfifo (fifo_name, 0666);
+        if (res < 0 && errno != -EEXIST)
+                g_warning ("Error creating FIFO: %m");
+
+        fifo_fd = g_open (fifo_name, O_WRONLY | O_CLOEXEC, 0666);
+        if (fifo_fd >= 0) {
+                struct stat buf;
+
+                res = fstat (fifo_fd, &buf);
+                if (res < 0) {
+                        g_warning ("Unable to watch systemd session: fstat failed with %m");
+                        close (fifo_fd);
+                        fifo_fd = -1;
+                } else if (!(buf.st_mode & S_IFIFO)) {
+                        g_warning ("Unable to watch systemd session: FD is not a FIFO");
+                        close (fifo_fd);
+                        fifo_fd = -1;
+                } else {
+                        g_unix_fd_add (fifo_fd, G_IO_HUP, (GUnixFDSourceFunc) gsm_quit, NULL);
+                }
+        } else {
+                g_warning ("Unable to watch systemd session: Opening FIFO failed with %m");
+        }
+
+        g_unix_signal_add (SIGTERM, leader_term_or_int_signal_cb, GINT_TO_POINTER (fifo_fd));
+        g_unix_signal_add (SIGINT, leader_term_or_int_signal_cb, GINT_TO_POINTER (fifo_fd));
+
+        /* Sleep until we receive HUP or are killed. */
+        gsm_main ();
+        exit(0);
+}
+#endif /* ENABLE_SYSTEMD_SESSION */
+
 int
 main (int argc, char **argv)
 {
@@ -270,10 +380,17 @@ main (int argc, char **argv)
         static char     **override_autostart_dirs = NULL;
         static char      *opt_session_name = NULL;
         const char       *debug_string = NULL;
+        const char       *env_override_autostart_dirs = NULL;
+        g_auto(GStrv)     env_override_autostart_dirs_v = NULL;
         gboolean          gl_failed = FALSE;
         guint             name_owner_id;
         GOptionContext   *options;
         static GOptionEntry entries[] = {
+#ifdef ENABLE_SYSTEMD_SESSION
+                { "systemd-service", 0, 0, G_OPTION_ARG_NONE, &systemd_service, N_("Running as systemd service"), NULL },
+                { "systemd", 0, 0, G_OPTION_ARG_NONE, &use_systemd, N_("Use systemd session management"), NULL },
+#endif
+                { "builtin", 0, G_OPTION_FLAG_REVERSE, G_OPTION_ARG_NONE, &use_systemd, N_("Use builtin session management (rather than the systemd based one)"), NULL },
                 { "autostart", 'a', 0, G_OPTION_ARG_STRING_ARRAY, &override_autostart_dirs, N_("Override standard autostart directories"), N_("AUTOSTART_DIR") },
                 { "session", 0, 0, G_OPTION_ARG_STRING, &opt_session_name, N_("Session to use"), N_("SESSION_NAME") },
                 { "debug", 0, 0, G_OPTION_ARG_NONE, &debug, N_("Enable debugging code"), NULL },
@@ -342,7 +459,12 @@ main (int argc, char **argv)
         gdm_log_init ();
         gdm_log_set_debug (debug);
 
-        if (disable_acceleration_check) {
+        if (systemd_service) {
+                /* XXX: This is an optimization, but we actually need to do
+                 *      it right now as the DISPLAY environment might leak
+                 *      into the new session from an old run. */
+                g_debug ("hardware acceleration already done if needed");
+        } else if (disable_acceleration_check) {
                 g_debug ("hardware acceleration check is disabled");
         } else {
                 /* Check GL, if it doesn't work out then force software fallback */
@@ -382,11 +504,57 @@ main (int argc, char **argv)
                 exit (1);
         }
 
+        env_override_autostart_dirs = g_getenv ("GNOME_SESSION_AUTOSTART_DIR");
+
+        if (env_override_autostart_dirs != NULL && env_override_autostart_dirs[0] != '\0') {
+                env_override_autostart_dirs_v = g_strsplit (env_override_autostart_dirs, ":", 0);
+                gsm_util_set_autostart_dirs (env_override_autostart_dirs_v);
+        } else {
+                gsm_util_set_autostart_dirs (override_autostart_dirs);
+
+                /* Export the override autostart dirs parameter to the environment
+                 * in case we are running on systemd. */
+                if (override_autostart_dirs) {
+                        g_autofree char *autostart_dirs = NULL;
+                        autostart_dirs = g_strjoinv (":", override_autostart_dirs);
+                        g_setenv ("GNOME_SESSION_AUTOSTART_DIR", autostart_dirs, TRUE);
+                }
+        }
+
         gsm_util_export_activation_environment (NULL);
+
+        session_name = opt_session_name;
 
 #ifdef HAVE_SYSTEMD
         gsm_util_export_user_environment (NULL);
 #endif
+
+#ifdef ENABLE_SYSTEMD_SESSION
+        if (use_systemd && !systemd_service) {
+                g_autoptr(GError) error = NULL;
+                g_autofree gchar *gnome_session_target;
+                const gchar *session_type;
+
+                session_type = g_getenv ("XDG_SESSION_TYPE");
+
+                /* We really need to resolve the session name at this point,
+                 * which requires talking to GSettings internally. */
+                if (IS_STRING_EMPTY (session_name)) {
+                        session_name = _gsm_manager_get_default_session (NULL);
+                }
+
+                /* We don't escape the name (i.e. we leave any '-' intact). */
+                gnome_session_target = g_strdup_printf ("gnome-session-%s@%s.target", session_type, session_name);
+                if (gsm_util_start_systemd_unit (gnome_session_target, "fail", &error)) {
+                        /* We started the unit, open fifo and sleep forever. */
+                        systemd_leader_run ();
+                        exit(0);
+                }
+
+                /* We could not start the unit, fall back. */
+                 g_warning ("Falling back to non-systemd startup procedure due to error: %s", error->message);
+        }
+#endif /* ENABLE_SYSTEMD_SESSION */
 
         {
                 gchar *ibus_path;
@@ -411,9 +579,6 @@ main (int argc, char **argv)
         /* We want to use the GNOME menus which has the designed categories.
          */
         gsm_util_setenv ("XDG_MENU_PREFIX", "gnome-");
-
-        gsm_util_set_autostart_dirs (override_autostart_dirs);
-        session_name = opt_session_name;
 
         /* Talk to logind before acquiring a name, since it does synchronous
          * calls at initialization time that invoke a main loop and if we

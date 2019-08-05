@@ -96,10 +96,12 @@ GQuark              gsm_manager_error_quark                    (void);
 GType               gsm_manager_get_type                       (void);
 
 GsmManager *        gsm_manager_new                            (GsmStore       *client_store,
-                                                                gboolean        failsafe);
+                                                                gboolean        failsafe,
+                                                                gboolean        systemd_managed);
 GsmManager *        gsm_manager_get                            (void);
 
 gboolean            gsm_manager_get_failsafe                   (GsmManager     *manager);
+gboolean            gsm_manager_get_systemd_managed            (GsmManager     *manager);
 
 gboolean            gsm_manager_add_autostart_app              (GsmManager     *manager,
                                                                 const char     *path,
@@ -114,7 +116,7 @@ gboolean            gsm_manager_add_legacy_session_apps        (GsmManager     *
 
 void                gsm_manager_start                          (GsmManager     *manager);
 
-const char *        _gsm_manager_get_default_session           (GsmManager     *manager);
+char *              _gsm_manager_get_default_session           (GsmManager     *manager);
 
 void                _gsm_manager_set_active_session            (GsmManager     *manager,
                                                                 const char     *session_name,

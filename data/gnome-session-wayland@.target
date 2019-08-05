@@ -1,0 +1,20 @@
+[Unit]
+Description=GNOME Wayland Session (session: %i)
+DefaultDependencies=no
+# Start happens explicitly
+RefuseManualStart=no
+# Stop happens by starting gnome-session-shutdown.target
+RefuseManualStop=yes
+
+Conflicts=shutdown.target gnome-session-shutdown.target
+PartOf=graphical-session.target
+
+# As this is the main entry point, pull in the other toplevel gnome-session targets
+Requires=gnome-session@.target
+After=gnome-session@.target
+
+Requires=gnome-session-wayland.target
+After=gnome-session-wayland.target
+
+Requires=gnome-session.target
+After=gnome-session.target

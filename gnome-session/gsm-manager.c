@@ -44,6 +44,14 @@
 #include <systemd/sd-journal.h>
 #endif
 
+#ifdef HAVE_SYSTEMD
+#include <systemd/sd-daemon.h>
+#else
+/* So we don't need to add ifdef's everywhere */
+#define sd_notify(u, m)            do {} while (0)
+#define sd_notifyf(u, m, ...)      do {} while (0)
+#endif
+
 #include "gsm-store.h"
 #include "gsm-inhibitor.h"
 #include "gsm-presence.h"
@@ -117,6 +125,9 @@ typedef enum
 struct GsmManagerPrivate
 {
         gboolean                failsafe;
+        gboolean                systemd_managed;
+        gboolean                systemd_initialized;
+        gboolean                manager_initialized;
         GsmStore               *clients;
         GsmStore               *inhibitors;
         GsmInhibitorFlag        inhibited_actions;
@@ -172,7 +183,8 @@ enum {
         PROP_CLIENT_STORE,
         PROP_SESSION_NAME,
         PROP_FALLBACK,
-        PROP_FAILSAFE
+        PROP_FAILSAFE,
+        PROP_SYSTEMD_MANAGED
 };
 
 enum {
@@ -480,10 +492,12 @@ gsm_manager_quit (GsmManager *manager)
         case GSM_MANAGER_LOGOUT_REBOOT:
         case GSM_MANAGER_LOGOUT_REBOOT_INTERACT:
                 gsm_system_complete_shutdown (manager->priv->system);
+                gsm_quit ();
                 break;
         case GSM_MANAGER_LOGOUT_SHUTDOWN:
         case GSM_MANAGER_LOGOUT_SHUTDOWN_INTERACT:
                 gsm_system_complete_shutdown (manager->priv->system);
+                gsm_quit ();
                 break;
         default:
                 g_assert_not_reached ();
@@ -524,7 +538,15 @@ end_phase (GsmManager *manager)
         case GSM_MANAGER_PHASE_EARLY_INITIALIZATION:
         case GSM_MANAGER_PHASE_PRE_DISPLAY_SERVER:
         case GSM_MANAGER_PHASE_DISPLAY_SERVER:
+                break;
         case GSM_MANAGER_PHASE_INITIALIZATION:
+                manager->priv->manager_initialized = TRUE;
+                /* Wait for systemd if it isn't initialized yet*/
+                if (manager->priv->systemd_managed && !manager->priv->systemd_initialized) {
+                        sd_notify (0, "STATUS=GNOME Session Manager waiting for gnome-session-initialized.target (via signal)");
+                        start_next_phase = FALSE;
+                }
+                break;
         case GSM_MANAGER_PHASE_WINDOW_MANAGER:
         case GSM_MANAGER_PHASE_PANEL:
         case GSM_MANAGER_PHASE_DESKTOP:
@@ -979,7 +1001,8 @@ do_phase_exit (GsmManager *manager)
         }
 
 #ifdef HAVE_SYSTEMD
-        maybe_restart_user_bus (manager);
+        if (!manager->priv->systemd_managed)
+                maybe_restart_user_bus (manager);
 #endif
 
         end_phase (manager);
@@ -1342,11 +1365,18 @@ start_phase (GsmManager *manager)
                 manager->priv->phase_timeout_id = 0;
         }
 
+        sd_notifyf (0, "STATUS=GNOME Session Manager phase is %s", phase_num_to_name (manager->priv->phase));
+
         switch (manager->priv->phase) {
         case GSM_MANAGER_PHASE_STARTUP:
         case GSM_MANAGER_PHASE_EARLY_INITIALIZATION:
         case GSM_MANAGER_PHASE_PRE_DISPLAY_SERVER:
+                do_phase_startup (manager);
+                break;
         case GSM_MANAGER_PHASE_DISPLAY_SERVER:
+                sd_notify (0, "READY=1");
+                do_phase_startup (manager);
+                break;
         case GSM_MANAGER_PHASE_INITIALIZATION:
         case GSM_MANAGER_PHASE_WINDOW_MANAGER:
         case GSM_MANAGER_PHASE_PANEL:
@@ -1374,9 +1404,13 @@ start_phase (GsmManager *manager)
                 do_phase_query_end_session (manager);
                 break;
         case GSM_MANAGER_PHASE_END_SESSION:
+                sd_notify (0, "STOPPING=1");
+
                 do_phase_end_session (manager);
                 break;
         case GSM_MANAGER_PHASE_EXIT:
+                sd_notify (0, "STOPPING=1");
+
                 do_phase_exit (manager);
                 break;
         default:
@@ -1434,10 +1468,16 @@ gsm_manager_start (GsmManager *manager)
         start_phase (manager);
 }
 
-const char *
+char *
 _gsm_manager_get_default_session (GsmManager     *manager)
 {
-        return g_settings_get_string (manager->priv->session_settings,
+        g_autoptr(GSettings) session_settings = NULL;
+
+        if (manager)
+                session_settings = g_object_ref (manager->priv->session_settings);
+        else
+                session_settings  = g_settings_new (SESSION_SCHEMA);
+        return g_settings_get_string (session_settings,
                                       KEY_SESSION_NAME);
 }
 
@@ -1741,6 +1781,14 @@ gsm_manager_get_failsafe (GsmManager *manager)
         g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
 
         return manager->priv->failsafe;
+}
+
+gboolean
+gsm_manager_get_systemd_managed (GsmManager *manager)
+{
+        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
+
+        return manager->priv->systemd_managed;
 }
 
 static void
@@ -2105,6 +2153,9 @@ gsm_manager_set_property (GObject       *object,
          case PROP_CLIENT_STORE:
                 gsm_manager_set_client_store (self, g_value_get_object (value));
                 break;
+        case PROP_SYSTEMD_MANAGED:
+                self->priv->systemd_managed = g_value_get_boolean (value);
+                break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                 break;
@@ -2361,6 +2412,14 @@ gsm_manager_class_init (GsmManagerClass *klass)
                                                               GSM_TYPE_STORE,
                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
+        g_object_class_install_property (object_class,
+                                         PROP_SYSTEMD_MANAGED,
+                                         g_param_spec_boolean ("systemd-managed",
+                                                               NULL,
+                                                               NULL,
+                                                               FALSE,
+                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+
         g_type_class_add_private (klass, sizeof (GsmManagerPrivate));
 }
 
@@ -2584,6 +2643,42 @@ gsm_manager_setenv (GsmExportedManager    *skeleton,
         } else {
                 gsm_util_setenv (variable, value);
                 gsm_exported_manager_complete_setenv (skeleton, invocation);
+        }
+
+        return TRUE;
+}
+
+static gboolean
+gsm_manager_initialized (GsmExportedManager    *skeleton,
+                         GDBusMethodInvocation *invocation,
+                         GsmManager            *manager)
+{
+        /* Signaled by helper when gnome-session-initialized.target is reached. */
+        if (!manager->priv->systemd_managed) {
+                g_dbus_method_invocation_return_error (invocation,
+                                                       GSM_MANAGER_ERROR,
+                                                       GSM_MANAGER_ERROR_GENERAL,
+                                                       "Initialized interface is only available when gnome-session is managed by systemd");
+        } else if (manager->priv->systemd_initialized) {
+                g_dbus_method_invocation_return_error (invocation,
+                                                       GSM_MANAGER_ERROR,
+                                                       GSM_MANAGER_ERROR_NOT_IN_INITIALIZATION,
+                                                       "Systemd initialization was already signaled");
+        } else if (manager->priv->phase > GSM_MANAGER_PHASE_INITIALIZATION) {
+                g_dbus_method_invocation_return_error (invocation,
+                                                       GSM_MANAGER_ERROR,
+                                                       GSM_MANAGER_ERROR_NOT_IN_INITIALIZATION,
+                                                       "Initialized interface is only available during startup");
+        } else {
+                manager->priv->systemd_initialized = TRUE;
+
+                if (manager->priv->manager_initialized) {
+                        g_assert (manager->priv->phase == GSM_MANAGER_PHASE_INITIALIZATION);
+                        manager->priv->phase++;
+                        start_phase (manager);
+                }
+
+                gsm_exported_manager_complete_initialized (skeleton, invocation);
         }
 
         return TRUE;
@@ -3186,6 +3281,8 @@ register_manager (GsmManager *manager)
                           G_CALLBACK (gsm_manager_set_reboot_to_firmware_setup), manager);
         g_signal_connect (skeleton, "handle-setenv",
                           G_CALLBACK (gsm_manager_setenv), manager);
+        g_signal_connect (skeleton, "handle-initialized",
+                          G_CALLBACK (gsm_manager_initialized), manager);
         g_signal_connect (skeleton, "handle-shutdown",
                           G_CALLBACK (gsm_manager_shutdown), manager);
         g_signal_connect (skeleton, "handle-uninhibit",
@@ -3273,7 +3370,8 @@ gsm_manager_get (void)
 
 GsmManager *
 gsm_manager_new (GsmStore *client_store,
-                 gboolean  failsafe)
+                 gboolean  failsafe,
+                 gboolean  systemd_managed)
 {
         if (manager_object != NULL) {
                 g_object_ref (manager_object);
@@ -3283,6 +3381,7 @@ gsm_manager_new (GsmStore *client_store,
                 manager_object = g_object_new (GSM_TYPE_MANAGER,
                                                "client-store", client_store,
                                                "failsafe", failsafe,
+                                               "systemd-managed", systemd_managed,
                                                NULL);
 
                 g_object_add_weak_pointer (manager_object,
@@ -3542,7 +3641,7 @@ add_autostart_app_internal (GsmManager *manager,
                 }
         }
 
-        app = gsm_autostart_app_new (path, &error);
+        app = gsm_autostart_app_new (path, manager->priv->systemd_managed, &error);
         if (app == NULL) {
                 g_warning ("%s", error->message);
                 g_clear_error (&error);

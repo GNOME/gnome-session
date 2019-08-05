@@ -1,0 +1,15 @@
+[Unit]
+Description=Monitor Session leader for GNOME Session
+CollectMode=inactive-or-failed
+
+# All services started after gnome-session-pre.target need to be torn down
+# before the session finish can be signalled back to the display manager.
+PartOf=gnome-session-pre.target
+Before=gnome-session-pre.target
+
+# No After, as we want this to start up immediately
+
+[Service]
+Type=notify
+ExecStart=@libexecdir@/gnome-session-ctl --monitor
+TimeoutStopSec=5
