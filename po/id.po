@@ -6,12 +6,13 @@
 # Dirgita <dirgitadevina@yahoo.co.id>, 2010, 2011, 2012, 2014.
 # Andika Triwidada <andika@gmail.com>, 2010, 2011, 2013, 2014.
 # Bonaventura Aditya Perdana <bonaditya@about.me>, 2012.
+# Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2017, 2018, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2018-08-28 21:21+0000\n"
-"PO-Revision-Date: 2018-08-29 12:32+0700\n"
+"POT-Creation-Date: 2019-08-05 22:13+0000\n"
+"PO-Revision-Date: 2019-08-06 17:54+0700\n"
 "Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
 "Language: id\n"
@@ -19,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.2.3\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -143,7 +144,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "Ke_luar"
 
-#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:279
+#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:396
 msgid "Enable debugging code"
 msgstr "Mengaktifkan kode debug"
 
@@ -155,7 +156,7 @@ msgstr "Izinkan log keluar"
 msgid "Show extension warning"
 msgstr "Tunjukkan peringatan ekstensi"
 
-#: gnome-session/gsm-manager.c:1266 gnome-session/gsm-manager.c:1919
+#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1967
 msgid "Not responding"
 msgstr "Tak merespon"
 
@@ -188,40 +189,52 @@ msgstr ""
 msgid "Could not create ICE listening socket: %s"
 msgstr "Tak dapat membuat soket pendengar ICE: %s"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:390
+msgid "Running as systemd service"
+msgstr "Jalankan sebagai layanan systemd"
+
+#: gnome-session/main.c:391
+msgid "Use systemd session management"
+msgstr "Gunakan manajemen sesi systemd"
+
+#: gnome-session/main.c:393
+msgid "Use builtin session management (rather than the systemd based one)"
+msgstr "Gunakan manajemen sesi tertanam (bukan yang berbasis systemd)"
+
+#: gnome-session/main.c:394
 msgid "Override standard autostart directories"
 msgstr "Menimpa direktori standar autostart"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:394
 msgid "AUTOSTART_DIR"
 msgstr "DIR_MULAI_OTOMATIS"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:395
 msgid "Session to use"
 msgstr "Sesi yang dipakai"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:395
 msgid "SESSION_NAME"
 msgstr "NAMA_SESI"
 
-#: gnome-session/main.c:280
+#: gnome-session/main.c:397
 msgid "Do not load user-specified applications"
 msgstr "Tak memuat aplikasi yang ditentukan oleh pengguna"
 
-#: gnome-session/main.c:281
+#: gnome-session/main.c:398
 msgid "Version of this application"
 msgstr "Versi aplikasi ini"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:283
+#: gnome-session/main.c:400
 msgid "Show the fail whale dialog for testing"
 msgstr "Tampilkan dialog paus gagal untul pengujian"
 
-#: gnome-session/main.c:284
+#: gnome-session/main.c:401
 msgid "Disable hardware acceleration check"
 msgstr "Nonaktifkan pemeriksaan akselerasi perangkat keras"
 
-#: gnome-session/main.c:316
+#: gnome-session/main.c:433
 msgid " — the GNOME session manager"
 msgstr " — manajer sesi GNOME"
 
