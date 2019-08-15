@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.3.7\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2018-08-28 21:21+0000\n"
-"PO-Revision-Date: 2018-02-22 18:29+0100\n"
+"POT-Creation-Date: 2019-08-06 16:59+0000\n"
+"PO-Revision-Date: 2019-08-15 23:30+0200\n"
 "Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "Language: ca\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.2.1\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -33,10 +33,12 @@ msgid "This entry lets you select a saved session"
 msgstr "Aquesta entrada us permet seleccionar una sessió desada"
 
 #: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
+#: data/gnome-wayland.desktop.in.in:3
 msgid "GNOME"
 msgstr "GNOME"
 
-#: data/gnome.desktop.in.in:4 data/gnome-xorg.desktop.in.in:4
+#: data/gnome.desktop.in.in:4 data/gnome-wayland.desktop.in.in:4
+#: data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
 msgstr "Aquesta sessió us entra al GNOME"
 
@@ -64,7 +66,9 @@ msgstr "Desa aquesta sessió"
 msgid ""
 "When enabled, gnome-session will automatically save the next session at log "
 "out even if auto saving is disabled."
-msgstr "Si s'habilita, el gnome-session desarà automàticament la propera sessió al registre."
+msgstr ""
+"Si s'habilita, el gnome-session desarà automàticament la propera sessió al "
+"registre."
 
 #: data/org.gnome.SessionManager.gschema.xml.in:15
 msgid "Logout prompt"
@@ -84,8 +88,9 @@ msgstr "Mostra l'avís de mode clàssic"
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
-msgstr "Si s'habilita, el gnome-session mostrarà un diàleg d'avís després "
-"d'iniciar la sessió si aquesta és en mode clàssic."
+msgstr ""
+"Si s'habilita, el gnome-session mostrarà un diàleg d'avís després d'iniciar "
+"la sessió si aquesta és en mode clàssic."
 
 #: data/session-selector.ui:15
 msgid "Custom Session"
@@ -143,7 +148,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_Surt"
 
-#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:279
+#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:396
 msgid "Enable debugging code"
 msgstr "Habilita el codi de depuració"
 
@@ -155,7 +160,7 @@ msgstr "Permet sortir"
 msgid "Show extension warning"
 msgstr "Mostra l'avís de l'extensió"
 
-#: gnome-session/gsm-manager.c:1266 gnome-session/gsm-manager.c:1919
+#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1967
 msgid "Not responding"
 msgstr "No està responent"
 
@@ -188,42 +193,77 @@ msgstr ""
 msgid "Could not create ICE listening socket: %s"
 msgstr "No s'ha pogut crear el sòcol ICE d'escolta: %s"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:390
+msgid "Running as systemd service"
+msgstr "S'està executant systemd com a servei"
+
+#: gnome-session/main.c:391
+msgid "Use systemd session management"
+msgstr "Usa la gestió de la sessió de systemd"
+
+#: gnome-session/main.c:393
+msgid "Use builtin session management (rather than the systemd based one)"
+msgstr "Usa la gestió de sessió integrada (en comptes de la de systemd)"
+
+#: gnome-session/main.c:394
 msgid "Override standard autostart directories"
 msgstr "Ignora els directoris estàndard d'inici automàtic"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:394
 msgid "AUTOSTART_DIR"
 msgstr "DIRECTORI_INICI_AUTOMÀTIC"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:395
 msgid "Session to use"
 msgstr "Sessió que s'utilitzarà"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:395
 msgid "SESSION_NAME"
 msgstr "NOM_DE_SESSIÓ"
 
-#: gnome-session/main.c:280
+#: gnome-session/main.c:397
 msgid "Do not load user-specified applications"
 msgstr "No carreguis les aplicacions especificades per l'usuari"
 
-#: gnome-session/main.c:281
+#: gnome-session/main.c:398
 msgid "Version of this application"
 msgstr "Versió d'aquesta aplicació"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:283
+#: gnome-session/main.c:400
 msgid "Show the fail whale dialog for testing"
 msgstr "Mostra el diàleg de la balena per fer proves"
 
-#: gnome-session/main.c:284
+#: gnome-session/main.c:401
 msgid "Disable hardware acceleration check"
 msgstr "Inhabilita la comprovació d'acceleració del maquinari"
 
-#: gnome-session/main.c:316
+#: gnome-session/main.c:433
 msgid " — the GNOME session manager"
 msgstr " — el gestor de sessions del GNOME"
+
+#: tools/gnome-session-ctl.c:244
+msgid "Start gnome-session-shutdown.target"
+msgstr "Inicia gnome-session-shutdown.target"
+
+#: tools/gnome-session-ctl.c:245
+msgid ""
+"Start gnome-session-shutdown.target when receiving EOF or a single byte on "
+"stdin"
+msgstr ""
+"Inicia gnome-session-shutdown.target quan es rep EOF o un únic byte a stdin"
+
+#: tools/gnome-session-ctl.c:246
+msgid "Signal initialization done to gnome-session"
+msgstr "S'ha completat el senyal d'inicialització a gnome-session"
+
+#: tools/gnome-session-ctl.c:247
+msgid "Restart dbus.service if it is running"
+msgstr "Reinicia dbus.service si està executant-se"
+
+#: tools/gnome-session-ctl.c:275
+msgid "Program needs exactly one parameter"
+msgstr "El programa necessita exactament un paràmetre"
 
 #: tools/gnome-session-inhibit.c:108
 #, c-format
@@ -433,9 +473,6 @@ msgstr "Ja existeix una sessió amb el nom «%s»"
 
 #~ msgid "FILE"
 #~ msgstr "FITXER"
-
-#~ msgid "Specify session management ID"
-#~ msgstr "Especifiqueu l'identificador de gestió de la sessió"
 
 #~ msgid "ID"
 #~ msgstr "IDENTIFICADOR"
