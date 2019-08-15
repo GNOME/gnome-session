@@ -12,6 +12,9 @@ PartOf=graphical-session.target
 RefuseManualStart=yes
 RefuseManualStop=yes
 
+# Pull in all X11-specific services the session might depend on
+Requires=gnome-session-x11-services.target
+
 # Always pull in the correct gnome-shell target
 BindsTo=gnome-shell-x11.target
 After=gnome-shell-x11.target
