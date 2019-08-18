@@ -1,19 +1,19 @@
 # Swedish messages for gnome-session.
-# Copyright © 1998-2012, 2014-2018 Free Software Foundation, Inc.
+# Copyright © 1998-2012, 2014-2019 Free Software Foundation, Inc.
 # Martin Wahlen <mva@sbbs.se>, 1998.
 # Anders Carlsson <anders.carlsson@tordata.se>, 1999.
 # Andreas Hyden  <a.hyden@cyberpoint.se>, 2000.
 # Martin Norbäck <d95mback@dtek.chalmers.se>, 2000, 2001.
 # Christian Rose <menthos@menthos.com>, 2000, 2001, 2002, 2003, 2004, 2005.
 # Daniel Nylander <po@danielnylander.se>, 2006, 2007, 2008, 2009, 2010, 2011, 2012.
-# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2014, 2015, 2016, 2017, 2018.
+# Anders Jonsson <anders.jonsson@norsjovallen.se>, 2014, 2015, 2016, 2017, 2018, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2018-08-28 21:21+0000\n"
-"PO-Revision-Date: 2018-08-29 22:59+0200\n"
+"POT-Creation-Date: 2019-08-06 16:59+0000\n"
+"PO-Revision-Date: 2019-08-18 21:22+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 2.2.3\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -32,10 +32,12 @@ msgid "This entry lets you select a saved session"
 msgstr "Denna post låter dig välja en sparad session"
 
 #: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
+#: data/gnome-wayland.desktop.in.in:3
 msgid "GNOME"
 msgstr "GNOME"
 
-#: data/gnome.desktop.in.in:4 data/gnome-xorg.desktop.in.in:4
+#: data/gnome.desktop.in.in:4 data/gnome-wayland.desktop.in.in:4
+#: data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
 msgstr "Denna session loggar in dig i GNOME"
 
@@ -148,7 +150,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_Logga ut"
 
-#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:279
+#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:396
 msgid "Enable debugging code"
 msgstr "Aktivera felsökningskod"
 
@@ -160,7 +162,7 @@ msgstr "Tillåt utloggning"
 msgid "Show extension warning"
 msgstr "Visa tilläggsvarning"
 
-#: gnome-session/gsm-manager.c:1266 gnome-session/gsm-manager.c:1919
+#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1967
 msgid "Not responding"
 msgstr "Svarar inte"
 
@@ -193,42 +195,78 @@ msgstr ""
 msgid "Could not create ICE listening socket: %s"
 msgstr "Kunde inte skapa lyssnande ICE-uttag: %s"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:390
+msgid "Running as systemd service"
+msgstr "Körs som systemd-tjänst"
+
+#: gnome-session/main.c:391
+msgid "Use systemd session management"
+msgstr "Använd systemd-sessionshantering"
+
+#: gnome-session/main.c:393
+msgid "Use builtin session management (rather than the systemd based one)"
+msgstr "Använd inbyggd sessionshantering (snarare än den systemd-baserade)"
+
+#: gnome-session/main.c:394
 msgid "Override standard autostart directories"
 msgstr "Åsidosätt standardkataloger för automatisk start"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:394
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTARTKAT"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:395
 msgid "Session to use"
 msgstr "Session att använda"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:395
 msgid "SESSION_NAME"
 msgstr "SESSIONSNAMN"
 
-#: gnome-session/main.c:280
+#: gnome-session/main.c:397
 msgid "Do not load user-specified applications"
 msgstr "Läs inte in användarspecifika program"
 
-#: gnome-session/main.c:281
+#: gnome-session/main.c:398
 msgid "Version of this application"
 msgstr "Version av detta program"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:283
+#: gnome-session/main.c:400
 msgid "Show the fail whale dialog for testing"
 msgstr "Visa den ”felande valen” för testning"
 
-#: gnome-session/main.c:284
+#: gnome-session/main.c:401
 msgid "Disable hardware acceleration check"
 msgstr "Inaktivera kontroll för hårdvaruacceleration"
 
-#: gnome-session/main.c:316
+#: gnome-session/main.c:433
 msgid " — the GNOME session manager"
 msgstr " — GNOME-sessionshanteraren"
+
+#: tools/gnome-session-ctl.c:244
+msgid "Start gnome-session-shutdown.target"
+msgstr "Starta gnome-session-shutdown.target"
+
+#: tools/gnome-session-ctl.c:245
+msgid ""
+"Start gnome-session-shutdown.target when receiving EOF or a single byte on "
+"stdin"
+msgstr ""
+"Starta gnome-session-shutdown.target då EOF eller en ensam byte tas emot på "
+"standard in"
+
+#: tools/gnome-session-ctl.c:246
+msgid "Signal initialization done to gnome-session"
+msgstr "Signalinitiering gjord på gnome-session"
+
+#: tools/gnome-session-ctl.c:247
+msgid "Restart dbus.service if it is running"
+msgstr "Starta om dbus.service om den körs"
+
+#: tools/gnome-session-ctl.c:275
+msgid "Program needs exactly one parameter"
+msgstr "Programmet behöver exakt en parameter"
 
 #: tools/gnome-session-inhibit.c:108
 #, c-format
