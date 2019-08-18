@@ -5,14 +5,14 @@
 # Žygimantas Beručka <zygis@gnome.org>, 2003-2007, 2010.
 # Justina Klingaitė <justina.klingaite@gmail.com>, 2005.
 # Gintautas Miliauskas <gintas@akl.lt>, 2006, 2007, 2008.
-# Aurimas Černius <aurisc4@gmail.com>, 2013, 2015, 2016, 2017, 2018.
+# Aurimas Černius <aurisc4@gmail.com>, 2013-2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2018-08-28 21:21+0000\n"
-"PO-Revision-Date: 2018-08-29 22:27+0300\n"
+"POT-Creation-Date: 2019-08-06 16:59+0000\n"
+"PO-Revision-Date: 2019-08-18 21:57+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
@@ -20,8 +20,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
-"%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Gtranslator 2.91.7\n"
+"%100<10 || n%100>=20) ? 1 : 2)\n"
+"X-Generator: Gtranslator 3.32.1\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -32,10 +32,12 @@ msgid "This entry lets you select a saved session"
 msgstr "Šis įvesties laukas leidžia pasirinkti įrašytą seansą"
 
 #: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
+#: data/gnome-wayland.desktop.in.in:3
 msgid "GNOME"
 msgstr "GNOME"
 
-#: data/gnome.desktop.in.in:4 data/gnome-xorg.desktop.in.in:4
+#: data/gnome.desktop.in.in:4 data/gnome-wayland.desktop.in.in:4
+#: data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
 msgstr "Šis seansas prijungia jus prie GNOME"
 
@@ -48,7 +50,6 @@ msgid "GNOME on Xorg"
 msgstr "GNOME Xorg aplinkoje"
 
 #: data/org.gnome.SessionManager.gschema.xml.in:5
-#| msgid "_Remove Session"
 msgid "Save sessions"
 msgstr "Įrašyti seansus"
 
@@ -77,7 +78,6 @@ msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr "Jei įjungta, gnome-session klaus naudotojo prie užbaigiant seansą."
 
 #: data/org.gnome.SessionManager.gschema.xml.in:20
-#| msgid "Show extension warning"
 msgid "Show the fallback warning"
 msgstr "Rodyti atsarginės veiksenos įspėjimą"
 
@@ -145,7 +145,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_Atsijungti"
 
-#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:279
+#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:396
 msgid "Enable debugging code"
 msgstr "Įjungti derinimo kodą"
 
@@ -157,7 +157,7 @@ msgstr "Leisti atsijungimą"
 msgid "Show extension warning"
 msgstr "Rodyti plėtinio įspėjimą"
 
-#: gnome-session/gsm-manager.c:1266 gnome-session/gsm-manager.c:1919
+#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1967
 msgid "Not responding"
 msgstr "Neatsako"
 
@@ -188,42 +188,78 @@ msgstr "Atsisakoma naujo kliento ryšio, kadangi seansas dabar išjungiamas\n"
 msgid "Could not create ICE listening socket: %s"
 msgstr "Nepavyko sukurti ICE klausymo lizdo: %s"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:390
+msgid "Running as systemd service"
+msgstr "Vykdoma kaip systemd tarnyba"
+
+#: gnome-session/main.c:391
+#| msgid "Specify session management ID"
+msgid "Use systemd session management"
+msgstr "Naudoti systemd seanso valdymą"
+
+#: gnome-session/main.c:393
+msgid "Use builtin session management (rather than the systemd based one)"
+msgstr "Naudoti integruotą seanso valdymą (vietoje systemd)"
+
+#: gnome-session/main.c:394
 msgid "Override standard autostart directories"
 msgstr "Nepaisyti standartinių automatinės paleisties aplankų"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:394
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:395
 msgid "Session to use"
 msgstr "Naudoti sesiją"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:395
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: gnome-session/main.c:280
+#: gnome-session/main.c:397
 msgid "Do not load user-specified applications"
 msgstr "Neįkelti naudotojo nurodytų programų"
 
-#: gnome-session/main.c:281
+#: gnome-session/main.c:398
 msgid "Version of this application"
 msgstr "Programos versija"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:283
+#: gnome-session/main.c:400
 msgid "Show the fail whale dialog for testing"
 msgstr "Rodyti visiškos nesėkmės dialogą bandymui"
 
-#: gnome-session/main.c:284
+#: gnome-session/main.c:401
 msgid "Disable hardware acceleration check"
 msgstr "Išjungti aparatinio spartinimo tikrinimą"
 
-#: gnome-session/main.c:316
+#: gnome-session/main.c:433
 msgid " — the GNOME session manager"
 msgstr " – GNOME seanso tvarkytuvė"
+
+#: tools/gnome-session-ctl.c:244
+msgid "Start gnome-session-shutdown.target"
+msgstr "Paleisti gnome-session-shutdown.target"
+
+#: tools/gnome-session-ctl.c:245
+msgid ""
+"Start gnome-session-shutdown.target when receiving EOF or a single byte on "
+"stdin"
+msgstr ""
+"Paleisti gnome-session-shutdown.target gavus EOF arba vieno baito įvestį"
+
+#: tools/gnome-session-ctl.c:246
+msgid "Signal initialization done to gnome-session"
+msgstr "Pranešti gnome-session apie inicializacijos pabaigą"
+
+#: tools/gnome-session-ctl.c:247
+msgid "Restart dbus.service if it is running"
+msgstr "Perleisti dbus.service, jei jau veikia"
+
+#: tools/gnome-session-ctl.c:275
+msgid "Program needs exactly one parameter"
+msgstr "Programai reikia vienintelio parametro"
 
 #: tools/gnome-session-inhibit.c:108
 #, c-format
@@ -421,9 +457,6 @@ msgstr "Jau yra seansas pavadinimu „%s“"
 
 #~ msgid "FILE"
 #~ msgstr "FAILAS"
-
-#~ msgid "Specify session management ID"
-#~ msgstr "Nurodyti seanso valdymo ID"
 
 #~ msgid "ID"
 #~ msgstr "ID"
