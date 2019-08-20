@@ -13,21 +13,21 @@
 # Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2005, 2006.
 #
 # Jorge González <jorgegonz@svn.gnome.org>, 2007, 2009-2011.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011-2017, 2018.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011-2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2018-08-28 21:21+0000\n"
-"PO-Revision-Date: 2018-09-05 11:12+0200\n"
+"POT-Creation-Date: 2019-08-06 16:59+0000\n"
+"PO-Revision-Date: 2019-08-20 10:02+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
-"Language-Team: es <gnome-es-list@gnome.org>\n"
-"Language: es\n"
+"Language-Team: Spanish - Spain <gnome-es-list@gnome.org>\n"
+"Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Gtranslator 2.91.7\n"
+"X-Generator: Gtranslator 3.32.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
@@ -39,10 +39,12 @@ msgid "This entry lets you select a saved session"
 msgstr "Esta entrada le permite seleccionar una sesión guardada"
 
 #: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
+#: data/gnome-wayland.desktop.in.in:3
 msgid "GNOME"
 msgstr "GNOME"
 
-#: data/gnome.desktop.in.in:4 data/gnome-xorg.desktop.in.in:4
+#: data/gnome.desktop.in.in:4 data/gnome-wayland.desktop.in.in:4
+#: data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
 msgstr "Esta sesión accede a GNOME"
 
@@ -55,7 +57,6 @@ msgid "GNOME on Xorg"
 msgstr "GNOME en Xorg"
 
 #: data/org.gnome.SessionManager.gschema.xml.in:5
-#| msgid "_Remove Session"
 msgid "Save sessions"
 msgstr "Guardar sesiones"
 
@@ -64,12 +65,10 @@ msgid "If enabled, gnome-session will save the session automatically."
 msgstr "Si está activado, gnome-session guardará la sesión automáticamente."
 
 #: data/org.gnome.SessionManager.gschema.xml.in:10
-#| msgid "Kill session"
 msgid "Save this session"
 msgstr "Guardar esta sesión"
 
 #: data/org.gnome.SessionManager.gschema.xml.in:11
-#| msgid "If enabled, gnome-session will save the session automatically."
 msgid ""
 "When enabled, gnome-session will automatically save the next session at log "
 "out even if auto saving is disabled."
@@ -88,12 +87,10 @@ msgstr ""
 "sesión."
 
 #: data/org.gnome.SessionManager.gschema.xml.in:20
-#| msgid "Show extension warning"
 msgid "Show the fallback warning"
 msgstr "Mostrar advertencia del modo alternativo"
 
 #: data/org.gnome.SessionManager.gschema.xml.in:21
-#| msgid "If enabled, gnome-session will save the session automatically."
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
@@ -157,7 +154,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "Ce_rrar la sesión"
 
-#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:279
+#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:396
 msgid "Enable debugging code"
 msgstr "Activar el código de depuración"
 
@@ -169,7 +166,7 @@ msgstr "Permitir cerrar sesión"
 msgid "Show extension warning"
 msgstr "Mostrar advertencias de las extensiones"
 
-#: gnome-session/gsm-manager.c:1266 gnome-session/gsm-manager.c:1919
+#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1967
 msgid "Not responding"
 msgstr "No responde"
 
@@ -202,42 +199,80 @@ msgstr ""
 msgid "Could not create ICE listening socket: %s"
 msgstr "No se pudo crear el socket de escucha ICE: %s"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:390
+msgid "Running as systemd service"
+msgstr "Ejecutándose como servicio de systemd"
+
+#: gnome-session/main.c:391
+#| msgid "Specify session management ID"
+msgid "Use systemd session management"
+msgstr "Usar el gestor de sesión de systemd"
+
+#: gnome-session/main.c:393
+msgid "Use builtin session management (rather than the systemd based one)"
+msgstr ""
+"Usar la gestión de sesiones implementada (en lugar de la basada en systemd)"
+
+#: gnome-session/main.c:394
 msgid "Override standard autostart directories"
 msgstr "Sobrescribir las carpetas de inicio automático estándar"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:394
 msgid "AUTOSTART_DIR"
 msgstr "CARPETA_DE_AUTOINICIO"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:395
 msgid "Session to use"
 msgstr "Sesión que usar"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:395
 msgid "SESSION_NAME"
 msgstr "NOMBRE_DE_LA_SESIÓN"
 
-#: gnome-session/main.c:280
+#: gnome-session/main.c:397
 msgid "Do not load user-specified applications"
 msgstr "No cargar las aplicaciones especificadas por el usuario"
 
-#: gnome-session/main.c:281
+#: gnome-session/main.c:398
 msgid "Version of this application"
 msgstr "Versión de esta aplicación"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:283
+#: gnome-session/main.c:400
 msgid "Show the fail whale dialog for testing"
 msgstr "Mostrar el diálogo de la ballena de pruebas"
 
-#: gnome-session/main.c:284
+#: gnome-session/main.c:401
 msgid "Disable hardware acceleration check"
 msgstr "Desactivar la verificación de aceleración hardware"
 
-#: gnome-session/main.c:316
+#: gnome-session/main.c:433
 msgid " — the GNOME session manager"
 msgstr " - El gestor de sesiones de GNOME"
+
+#: tools/gnome-session-ctl.c:244
+msgid "Start gnome-session-shutdown.target"
+msgstr "Iniciar gnome-session-shutdown.target"
+
+#: tools/gnome-session-ctl.c:245
+msgid ""
+"Start gnome-session-shutdown.target when receiving EOF or a single byte on "
+"stdin"
+msgstr ""
+"Iniciar gnome-session-shutdown.target cuando se reciba un EOF o un único "
+"byte en stdin"
+
+#: tools/gnome-session-ctl.c:246
+msgid "Signal initialization done to gnome-session"
+msgstr "Inicialización de señales hecha para gnome-session"
+
+#: tools/gnome-session-ctl.c:247
+msgid "Restart dbus.service if it is running"
+msgstr "Reiniciar dbus.service si está en ejecución"
+
+#: tools/gnome-session-ctl.c:275
+msgid "Program needs exactly one parameter"
+msgstr "El programa necesita exactamente un parámetro"
 
 #: tools/gnome-session-inhibit.c:108
 #, c-format
@@ -442,9 +477,6 @@ msgstr "Ya existe una sesión llamada «%s»"
 
 #~ msgid "FILE"
 #~ msgstr "ARCHIVO"
-
-#~ msgid "Specify session management ID"
-#~ msgstr "Especifique el ID de gestión de la sesión"
 
 #~ msgid "ID"
 #~ msgstr "ID"
