@@ -7,16 +7,15 @@
 # Meelad Zakaria <meelad@farsiweb.info>, 2006.
 # Mahyar Moghimi <mahyar.moqimi@gmail.com>, 2010.
 # Arash Mousavi <mousavi.arash@gmail.com>, 2011, 2012, 2013, 2015, 2016, 2017.
-# Danial Behzadi <dani.behzi@gmail.com>, 2013.
+# Danial Behzadi <dani.behzi@gmail.com>, 2013, 2014, 2015, 2016, 2017, 2018.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.10.0\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-06-21 22:12+0000\n"
-"PO-Revision-Date: 2017-09-22 22:59+0330\n"
-"Last-Translator: Arash Mousavi <mousavi.arash@gmail.com>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
+"POT-Creation-Date: 2018-08-28 21:21+0000\n"
+"PO-Revision-Date: 2018-11-27 16:57+0330\n"
+"Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
@@ -24,61 +23,101 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 2.0.3\n"
+"X-Generator: Poedit 2.1.1\n"
 
-#: ../data/gnome-custom-session.desktop.in.h:1
+#: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
 msgstr "سفارشی"
 
-#: ../data/gnome-custom-session.desktop.in.h:2
+#: data/gnome-custom-session.desktop.in.in:4
 msgid "This entry lets you select a saved session"
 msgstr "این ورودی به شما اجاره می‌دهد نشست ذخیره شده‌ای را انتخاب کنید"
 
-#: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
+#: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
 msgid "GNOME"
 msgstr "گنوم"
 
-#: ../data/gnome.desktop.in.h:2 ../data/gnome-xorg.desktop.in.h:2
+#: data/gnome.desktop.in.in:4 data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
 msgstr "این نشست شما را به گنوم وارد می‌کند"
 
-#: ../data/gnome-xorg.desktop.in.h:1
-msgid "GNOME on Xorg"
-msgstr "گنوم بر روی Xorg"
-
-#: ../data/gnome-dummy.session.desktop.in.in.h:1
+#: data/gnome-dummy.session.desktop.in.in:3
 msgid "GNOME dummy"
 msgstr "گنوم ساختگی"
 
-#: ../data/session-selector.ui.h:1
+#: data/gnome-xorg.desktop.in.in:3
+msgid "GNOME on Xorg"
+msgstr "گنوم روی زورگ"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:5
+msgid "Save sessions"
+msgstr "_ذخیرهٔ نشست‌ها"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:6
+msgid "If enabled, gnome-session will save the session automatically."
+msgstr "در صورت فعّال بودن، گنوم به صورت خودکار، نسیت را ذخیره می‌کند."
+
+#: data/org.gnome.SessionManager.gschema.xml.in:10
+msgid "Save this session"
+msgstr "ذخیرهٔ این نشست"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:11
+msgid ""
+"When enabled, gnome-session will automatically save the next session at log "
+"out even if auto saving is disabled."
+msgstr ""
+"هنگام فعّال بودن، گنوم به صورت خودکار، نشست بعدی را در خروج ذخیره می‌کند، حتا "
+"اگر ذخیرهٔ خودکار غیرفعّال باشد."
+
+#: data/org.gnome.SessionManager.gschema.xml.in:15
+msgid "Logout prompt"
+msgstr "اعلان خروج"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:16
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr "در صورت فعّال بودن، گنوم پیش از اتمام یک نشست، به کاربر اعلان می‌دهد."
+
+#: data/org.gnome.SessionManager.gschema.xml.in:20
+msgid "Show the fallback warning"
+msgstr "نمایش اخطار به عقب افتادن"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:21
+msgid ""
+"If enabled, gnome-session will display a warning dialog after login if the "
+"session was automatically fallen back."
+msgstr ""
+"در صورت فعّال بودن، اگر نشست به صورت خودکار به عقب افتاده باشد، گنوم یک پنجرهٔ "
+"هشدار پس از ورود نمایش خواهد داد."
+
+#: data/session-selector.ui:15
 msgid "Custom Session"
 msgstr "نشست سفارشی"
 
-#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:102
+#: data/session-selector.ui:50 tools/gnome-session-selector.c:102
 msgid "Please select a custom session to run"
 msgstr "لطفاً یک نشست سفارشی را برای اجرا انتخاب کنید"
 
-#: ../data/session-selector.ui.h:3
+#: data/session-selector.ui:105
 msgid "_New Session"
 msgstr "نشست _جدید"
 
-#: ../data/session-selector.ui.h:4
+#: data/session-selector.ui:119
 msgid "_Remove Session"
 msgstr "_حذف نشست"
 
-#: ../data/session-selector.ui.h:5
+#: data/session-selector.ui:133
 msgid "Rena_me Session"
 msgstr "_تغییرنام نشست"
 
-#: ../data/session-selector.ui.h:6
+#: data/session-selector.ui:168
 msgid "_Continue"
 msgstr "_ادامه"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:313
+#: gnome-session/gsm-fail-whale-dialog.c:313
 msgid "Oh no!  Something has gone wrong."
 msgstr "اُخ نه! یک چیزی اشتباه شد."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:320
+#: gnome-session/gsm-fail-whale-dialog.c:320
 msgid ""
 "A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
@@ -86,7 +125,7 @@ msgstr ""
 "یک مشکل رُخ داده است و سیستم نمی‌تواند بازیابی شود. لطفا با یک مدیر سیستم تماس "
 "بگیرید"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:322
+#: gnome-session/gsm-fail-whale-dialog.c:322
 msgid ""
 "A problem has occurred and the system can’t recover. All extensions have been "
 "disabled as a precaution."
@@ -94,7 +133,7 @@ msgstr ""
 "یک مشکل رُخ داده است و سیستم نمی‌تواند بازیابی شود. تمام افزونه‌ها جهت احتیاط "
 "غیرفعال شده‌اند."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:324
+#: gnome-session/gsm-fail-whale-dialog.c:324
 msgid ""
 "A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
@@ -102,27 +141,27 @@ msgstr ""
 "یک مشکل رُخ داده است و سیستم نمی‌تواند بازیابی شود.\n"
 "لطفا از سیستم خارج شوید و دوباره امتحان کنید."
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:339
+#: gnome-session/gsm-fail-whale-dialog.c:339
 msgid "_Log Out"
 msgstr "_خروج از سیستم"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:361 ../gnome-session/main.c:281
+#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:279
 msgid "Enable debugging code"
 msgstr "کد اشکال‌زدایی به کار انداخته شود"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:362
+#: gnome-session/gsm-fail-whale-dialog.c:362
 msgid "Allow logout"
 msgstr "اجازه خروج از سیستم داده شود"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:363
+#: gnome-session/gsm-fail-whale-dialog.c:363
 msgid "Show extension warning"
 msgstr "اخطار پسوند نشان داده شود"
 
-#: ../gnome-session/gsm-manager.c:1318 ../gnome-session/gsm-manager.c:1971
+#: gnome-session/gsm-manager.c:1266 gnome-session/gsm-manager.c:1919
 msgid "Not responding"
 msgstr "نا پاسخگو"
 
-#: ../gnome-session/gsm-util.c:382
+#: gnome-session/gsm-util.c:382
 msgid "_Log out"
 msgstr "_خروج از سیستم"
 
@@ -130,63 +169,63 @@ msgstr "_خروج از سیستم"
 #. * then the XSMP client already has set several XSMP
 #. * properties. But it could still be that SmProgram is not set.
 #.
-#: ../gnome-session/gsm-xsmp-client.c:557
+#: gnome-session/gsm-xsmp-client.c:557
 msgid "Remembered Application"
 msgstr "بخاطر سپردن برنامه"
 
-#: ../gnome-session/gsm-xsmp-client.c:1207
+#: gnome-session/gsm-xsmp-client.c:1216
 msgid "This program is blocking logout."
 msgstr "این برنامه جلوی خروج از سیستم را گرفته است."
 
-#: ../gnome-session/gsm-xsmp-server.c:340
+#: gnome-session/gsm-xsmp-server.c:338
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr "چون سیستم در حال خاموش شدن است درخواست اتصال کارگیر رَد می‌شود\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:609
+#: gnome-session/gsm-xsmp-server.c:605
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "ایجاد سوکت گوش‌کننده‌ی ICE ممکن نشد: %s"
 
-#: ../gnome-session/main.c:279
+#: gnome-session/main.c:277
 msgid "Override standard autostart directories"
 msgstr "شاخه‌های استاندارد آغاز خودکار، لغو شود"
 
-#: ../gnome-session/main.c:279
+#: gnome-session/main.c:277
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: ../gnome-session/main.c:280
+#: gnome-session/main.c:278
 msgid "Session to use"
 msgstr "نشستی که استفاده شود"
 
-#: ../gnome-session/main.c:280
+#: gnome-session/main.c:278
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: ../gnome-session/main.c:282
+#: gnome-session/main.c:280
 msgid "Do not load user-specified applications"
 msgstr "برنامه‌های مشخص شده توسط کاربر اجرا نشوند"
 
-#: ../gnome-session/main.c:283
+#: gnome-session/main.c:281
 msgid "Version of this application"
 msgstr "نسخه‌ی این برنامه"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:285
+#: gnome-session/main.c:283
 msgid "Show the fail whale dialog for testing"
 msgstr "نمایش بالن محاوره شکست جهت آزمایش کردن"
 
-#: ../gnome-session/main.c:286
+#: gnome-session/main.c:284
 msgid "Disable hardware acceleration check"
 msgstr "غیرفعال‌سازی بررسی شتابدهنده سخت‌افزاری"
 
-#: ../gnome-session/main.c:318
+#: gnome-session/main.c:316
 msgid " — the GNOME session manager"
 msgstr " — مدیر نشست گنوم"
 
-#: ../tools/gnome-session-inhibit.c:108
+#: tools/gnome-session-inhibit.c:108
 #, c-format
 msgid ""
 "%s [OPTION…] COMMAND\n"
@@ -219,66 +258,66 @@ msgstr ""
 "\n"
 "If no --inhibit option is specified, idle is assumed.\n"
 
-#: ../tools/gnome-session-inhibit.c:146
+#: tools/gnome-session-inhibit.c:146
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "اجرای %s شکست خورد\n"
 
-#: ../tools/gnome-session-inhibit.c:206 ../tools/gnome-session-inhibit.c:216
-#: ../tools/gnome-session-inhibit.c:226
+#: tools/gnome-session-inhibit.c:206 tools/gnome-session-inhibit.c:216
+#: tools/gnome-session-inhibit.c:226
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "دستور %s احتیاج به یک آرگومان دارد\n"
 
-#: ../tools/gnome-session-selector.c:61
+#: tools/gnome-session-quit.c:50
+msgid "Log out"
+msgstr "خروج از سامانه"
+
+#: tools/gnome-session-quit.c:51
+msgid "Power off"
+msgstr "خاموش کردن"
+
+#: tools/gnome-session-quit.c:52
+msgid "Reboot"
+msgstr "راه‌اندازی دوباره"
+
+#: tools/gnome-session-quit.c:53
+msgid "Ignoring any existing inhibitors"
+msgstr "هرگونه مهارکننده‌های خروج را نادیده بگیر"
+
+#: tools/gnome-session-quit.c:54
+msgid "Don’t prompt for user confirmation"
+msgstr "برای تایید هویت کاربر هشدار نده"
+
+#: tools/gnome-session-quit.c:88 tools/gnome-session-quit.c:102
+msgid "Could not connect to the session manager"
+msgstr "اتصال به مدیر نشست ممکن نیست"
+
+#: tools/gnome-session-quit.c:198
+msgid "Program called with conflicting options"
+msgstr "برنامه با گزینه‌های ناسازگار فراخوانده شده است"
+
+#: tools/gnome-session-selector.c:61
 #, c-format
 msgid "Session %d"
 msgstr "نشست %Id"
 
-#: ../tools/gnome-session-selector.c:107
+#: tools/gnome-session-selector.c:107
 msgid "Session names are not allowed to start with “.” or contain “/” characters"
 msgstr "نام نشست‌ها نمی‌توانند با «.» شروع شده یا شامل نویسه‌ی «/» باشند"
 
-#: ../tools/gnome-session-selector.c:111
+#: tools/gnome-session-selector.c:111
 msgid "Session names are not allowed to start with “.”"
 msgstr "نام نشست‌ها نمی‌توانند با «.» شروع شوند"
 
-#: ../tools/gnome-session-selector.c:115
+#: tools/gnome-session-selector.c:115
 msgid "Session names are not allowed to contain “/” characters"
 msgstr "نام نشست‌ها نمی‌توانند شامل نویسه‌ی «/» باشند"
 
-#: ../tools/gnome-session-selector.c:123
+#: tools/gnome-session-selector.c:123
 #, c-format
 msgid "A session named “%s” already exists"
 msgstr "نشستی با نام «%s» از پیش وجود دارد"
-
-#: ../tools/gnome-session-quit.c:50
-msgid "Log out"
-msgstr "خروج از سیستم"
-
-#: ../tools/gnome-session-quit.c:51
-msgid "Power off"
-msgstr "خاموش کردن"
-
-#: ../tools/gnome-session-quit.c:52
-msgid "Reboot"
-msgstr "راه‌اندازی مجدد"
-
-#: ../tools/gnome-session-quit.c:53
-msgid "Ignoring any existing inhibitors"
-msgstr "هرگونه مهارکننده‌های خروج را نادیده بگیر"
-
-#: ../tools/gnome-session-quit.c:54
-msgid "Don’t prompt for user confirmation"
-msgstr "برای تایید هویت کاربر هشدار نده"
-
-#: ../tools/gnome-session-quit.c:88 ../tools/gnome-session-quit.c:102
-msgid "Could not connect to the session manager"
-msgstr "اتصال به مدیر نشست ممکن نیست"
-
-#: ../tools/gnome-session-quit.c:198
-msgid "Program called with conflicting options"
-msgstr "برنامه با گزینه‌های ناسازگار فراخوانده شده است"
 
 #~ msgid "This session logs you into GNOME, using Wayland"
 #~ msgstr "این نشست، با استفاده از Wayland شما را به گنوم وارد می‌کند"
