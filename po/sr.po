@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2018-08-28 21:21+0000\n"
-"PO-Revision-Date: 2018-09-26 23:30+0200\n"
+"POT-Creation-Date: 2019-08-06 16:59+0000\n"
+"PO-Revision-Date: 2019-08-21 21:59+0200\n"
 "Last-Translator: Марко М. Костић <marko.m.kostic@gmail.com>\n"
 "Language-Team: српски <gnome-sr@googlegroups.org>\n"
 "Language: sr\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Project-Style: gnome\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.2.3\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -31,10 +31,12 @@ msgid "This entry lets you select a saved session"
 msgstr "Ова ставка вам допушта да изаберете сачувану сесију"
 
 #: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
+#: data/gnome-wayland.desktop.in.in:3
 msgid "GNOME"
 msgstr "Гном"
 
-#: data/gnome.desktop.in.in:4 data/gnome-xorg.desktop.in.in:4
+#: data/gnome.desktop.in.in:4 data/gnome-wayland.desktop.in.in:4
+#: data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
 msgstr "Ова сесија вас пријављује у Гном"
 
@@ -144,7 +146,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_Одјави ме"
 
-#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:279
+#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:396
 msgid "Enable debugging code"
 msgstr "Укључује код за исправљање грешака"
 
@@ -156,7 +158,7 @@ msgstr "Дозвољава одјављивање"
 msgid "Show extension warning"
 msgstr "Приказује упозорење проширења"
 
-#: gnome-session/gsm-manager.c:1266 gnome-session/gsm-manager.c:1919
+#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1967
 msgid "Not responding"
 msgstr "Не даје одзив"
 
@@ -187,42 +189,78 @@ msgstr "Одбацујем везу са новим клијентом јер ј
 msgid "Could not create ICE listening socket: %s"
 msgstr "Не могу да направим прикључак ИЦЕ ослушкивања: %s"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:390
+msgid "Running as systemd service"
+msgstr "Покрени као систем-де услугу"
+
+#: gnome-session/main.c:391
+msgid "Use systemd session management"
+msgstr "Користи систем-де управљање сесијом"
+
+#: gnome-session/main.c:393
+msgid "Use builtin session management (rather than the systemd based one)"
+msgstr "Користи уграђено управљање сесије (уместо оне засноване на систем-деу)"
+
+#: gnome-session/main.c:394
 msgid "Override standard autostart directories"
 msgstr "Заобилази уобичајене директоријуме самопокретања"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:394
 msgid "AUTOSTART_DIR"
 msgstr "ДИРЕКТОРИЈУМ_САМОПОКРЕТАЊА"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:395
 msgid "Session to use"
 msgstr "Сесије које ће бити коришћене"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:395
 msgid "SESSION_NAME"
 msgstr "НАЗИВ_СЕСИЈЕ"
 
-#: gnome-session/main.c:280
+#: gnome-session/main.c:397
 msgid "Do not load user-specified applications"
 msgstr "Не учитава програме које је задао корисник"
 
-#: gnome-session/main.c:281
+#: gnome-session/main.c:398
 msgid "Version of this application"
 msgstr "Издање овог програма"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:283
+#: gnome-session/main.c:400
 msgid "Show the fail whale dialog for testing"
 msgstr "Приказује прозорче неуспеха за испробавање"
 
-#: gnome-session/main.c:284
+#: gnome-session/main.c:401
 msgid "Disable hardware acceleration check"
 msgstr "Искључује проверу хардверског убрзања"
 
-#: gnome-session/main.c:316
+#: gnome-session/main.c:433
 msgid " — the GNOME session manager"
 msgstr " — управник Гномовом сесијом"
+
+#: tools/gnome-session-ctl.c:244
+msgid "Start gnome-session-shutdown.target"
+msgstr "Покрени gnome-session-shutdown.target"
+
+#: tools/gnome-session-ctl.c:245
+msgid ""
+"Start gnome-session-shutdown.target when receiving EOF or a single byte on "
+"stdin"
+msgstr ""
+"Покрени gnome-session-shutdown.target након примања EOF сигнала или примања "
+"једног бајта на стандардном улазу"
+
+#: tools/gnome-session-ctl.c:246
+msgid "Signal initialization done to gnome-session"
+msgstr "Иницијализација сигнала урађено за gnome-session"
+
+#: tools/gnome-session-ctl.c:247
+msgid "Restart dbus.service if it is running"
+msgstr "Поново покрени dbus.service ако је покренут"
+
+#: tools/gnome-session-ctl.c:275
+msgid "Program needs exactly one parameter"
+msgstr "Програму треба тачно један параметар"
 
 #: tools/gnome-session-inhibit.c:108
 #, c-format
@@ -424,9 +462,6 @@ msgstr "Већ постоји сесија под називом „%s“"
 
 #~ msgid "FILE"
 #~ msgstr "ДАТОТЕКА"
-
-#~ msgid "Specify session management ID"
-#~ msgstr "Наводи ИБ управника сесије"
 
 #~ msgid "ID"
 #~ msgstr "ИБ"
