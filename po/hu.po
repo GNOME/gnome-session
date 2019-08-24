@@ -1,5 +1,5 @@
-# Hungarian translation of gnome-session.
-# Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012 Free Software Foundation, Inc.
+# Hungarian translation for gnome-session.
+# Copyright (C) 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2018, 2019 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-session package.
 #
 # Szabolcs Ban <shooby at gnome dot hu>, 1998, 1999, 2000, 2001, 2002.
@@ -8,20 +8,20 @@
 # Laszlo Dvornik <dvornik at gnome dot hu>, 2004.
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2018.
 # Mate ORY <orymate at gmail d0t com>, 2006, 2008.
-# Balázs Úr <urbalazs at gmail dot com>, 2014.
+# Balázs Úr <ur.balazs at fsf dot hu>, 2014, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2018-08-28 21:21+0000\n"
-"PO-Revision-Date: 2018-09-02 19:42+0100\n"
-"Last-Translator: Gabor Kelemen <kelemeng at ubuntu dot com>\n"
-"Language-Team: Hungarian <openscope at googlegroups dot com>\n"
+"POT-Creation-Date: 2019-08-06 16:59+0000\n"
+"PO-Revision-Date: 2019-08-24 21:26+0200\n"
+"Last-Translator: Balázs Úr <ur.balazs at fsf dot hu>\n"
+"Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 2.0\n"
+"X-Generator: Lokalize 18.12.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
@@ -33,10 +33,12 @@ msgid "This entry lets you select a saved session"
 msgstr "Ez a bejegyzés lehetővé teszi mentett munkamenet kiválasztását"
 
 #: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
+#: data/gnome-wayland.desktop.in.in:3
 msgid "GNOME"
 msgstr "GNOME"
 
-#: data/gnome.desktop.in.in:4 data/gnome-xorg.desktop.in.in:4
+#: data/gnome.desktop.in.in:4 data/gnome-wayland.desktop.in.in:4
+#: data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
 msgstr "Bejelentkezés a GNOME környezetbe"
 
@@ -49,7 +51,6 @@ msgid "GNOME on Xorg"
 msgstr "GNOME Xorgon"
 
 #: data/org.gnome.SessionManager.gschema.xml.in:5
-#| msgid "_Remove Session"
 msgid "Save sessions"
 msgstr "Munkamenetek mentése"
 
@@ -81,7 +82,6 @@ msgstr ""
 "munkamenet befejezése előtt."
 
 #: data/org.gnome.SessionManager.gschema.xml.in:20
-#| msgid "Show extension warning"
 msgid "Show the fallback warning"
 msgstr "Tartalék figyelmeztetés megjelenítése"
 
@@ -149,7 +149,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_Kijelentkezés"
 
-#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:279
+#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:396
 msgid "Enable debugging code"
 msgstr "Hibakeresési kód engedélyezése"
 
@@ -161,7 +161,7 @@ msgstr "Kijelentkezés engedélyezése"
 msgid "Show extension warning"
 msgstr "Kiterjesztés figyelmeztetésének megjelenítése"
 
-#: gnome-session/gsm-manager.c:1266 gnome-session/gsm-manager.c:1919
+#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1967
 msgid "Not responding"
 msgstr "Nem válaszol"
 
@@ -192,42 +192,80 @@ msgstr "Új ügyfélkapcsolatok visszautasítása, mivel a rendszer éppen leál
 msgid "Could not create ICE listening socket: %s"
 msgstr "Nem hozható létre az ICE-figyelő foglalat: %s"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:390
+msgid "Running as systemd service"
+msgstr "Futtatás systemd szolgáltatásként"
+
+# gnome-terminal/gnome-terminal.c:2562
+#: gnome-session/main.c:391
+#| msgid "Specify session management ID"
+msgid "Use systemd session management"
+msgstr "Systemd munkamenet-kezelés használata"
+
+#: gnome-session/main.c:393
+msgid "Use builtin session management (rather than the systemd based one)"
+msgstr "Beépített munkamenet-kezelés használata (a systemd alapú helyett)"
+
+#: gnome-session/main.c:394
 msgid "Override standard autostart directories"
 msgstr "Szabványos automatikus indítási könyvtárak felülbírálása"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:394
 msgid "AUTOSTART_DIR"
 msgstr "AUTO_INDÍTÁS_KVT"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:395
 msgid "Session to use"
 msgstr "Használandó munkamenet"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:395
 msgid "SESSION_NAME"
 msgstr "MUNKAMENET_NEVE"
 
-#: gnome-session/main.c:280
+#: gnome-session/main.c:397
 msgid "Do not load user-specified applications"
 msgstr "Ne töltsön be felhasználó által megadott alkalmazásokat"
 
-#: gnome-session/main.c:281
+#: gnome-session/main.c:398
 msgid "Version of this application"
 msgstr "Ezen alkalmazás verziója"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:283
+#: gnome-session/main.c:400
 msgid "Show the fail whale dialog for testing"
 msgstr "A hibaképernyő megjelenítése teszteléshez"
 
-#: gnome-session/main.c:284
+#: gnome-session/main.c:401
 msgid "Disable hardware acceleration check"
 msgstr "A hardveres gyorsítás ellenőrzésének kikapcsolása"
 
-#: gnome-session/main.c:316
+#: gnome-session/main.c:433
 msgid " — the GNOME session manager"
 msgstr " – A GNOME munkamenet-kezelője"
+
+#: tools/gnome-session-ctl.c:244
+msgid "Start gnome-session-shutdown.target"
+msgstr "A gnome-session-shutdown.target indítása"
+
+#: tools/gnome-session-ctl.c:245
+msgid ""
+"Start gnome-session-shutdown.target when receiving EOF or a single byte on "
+"stdin"
+msgstr ""
+"A gnome-session-shutdown.target indítása, ha EOF vagy egyedülálló bájt "
+"érkezik a szabványos bemeneten"
+
+#: tools/gnome-session-ctl.c:246
+msgid "Signal initialization done to gnome-session"
+msgstr "A szignál előkészítése kész a gnome-session munkamenethez"
+
+#: tools/gnome-session-ctl.c:247
+msgid "Restart dbus.service if it is running"
+msgstr "A dbus.service újraindítása, ha fut"
+
+#: tools/gnome-session-ctl.c:275
+msgid "Program needs exactly one parameter"
+msgstr "A programnak pontosan egy paraméterre van szüksége"
 
 #: tools/gnome-session-inhibit.c:108
 #, c-format
@@ -325,243 +363,3 @@ msgstr "A környezetnevek nem tartalmazhatnak „/” karaktert"
 #, c-format
 msgid "A session named “%s” already exists"
 msgstr "Már létezik „%s” nevű környezet"
-
-#~ msgid "Additional startup _programs:"
-#~ msgstr "További elindítandó _programok:"
-
-#~ msgid "Startup Programs"
-#~ msgstr "Automatikusan elinduló programok"
-
-#~ msgid "_Automatically remember running applications when logging out"
-#~ msgstr "_Kijelentkezéskor a futó alkalmazások automatikus megjegyzése"
-
-#~ msgid "_Remember Currently Running Applications"
-#~ msgstr "_Jelenleg futó alkalmazások megjegyzése"
-
-#~ msgid "Options"
-#~ msgstr "Beállítások"
-
-#~ msgid "Browse…"
-#~ msgstr "Tallózás…"
-
-#~ msgid "Comm_ent:"
-#~ msgstr "_Megjegyzés:"
-
-#~ msgid "Co_mmand:"
-#~ msgstr "_Parancs:"
-
-#~ msgid "_Name:"
-#~ msgstr "_Név:"
-
-#~ msgid "This session logs you into GNOME, using Wayland"
-#~ msgstr "Bejelentkezés a GNOME környezetbe Wayland használatával"
-
-#~ msgid "Select Command"
-#~ msgstr "Válasszon parancsot"
-
-#~ msgid "Add Startup Program"
-#~ msgstr "Elindítandó program hozzáadása"
-
-#~ msgid "Edit Startup Program"
-#~ msgstr "Elindítandó program szerkesztése"
-
-#~ msgid "The startup command cannot be empty"
-#~ msgstr "Az elindítandó parancs nem lehet üres"
-
-#~ msgid "The startup command is not valid"
-#~ msgstr "Az elindítandó parancs nem érvényes"
-
-#~ msgid "Enabled"
-#~ msgstr "Engedélyezve"
-
-#~ msgid "Icon"
-#~ msgstr "Ikon"
-
-#~ msgid "Program"
-#~ msgstr "Program"
-
-#~ msgid "Startup Applications Preferences"
-#~ msgstr "Indítópult beállításai"
-
-#~ msgid "No name"
-#~ msgstr "Névtelen"
-
-#~ msgid "No description"
-#~ msgstr "Nincs leírás"
-
-#~ msgid "Could not display help document"
-#~ msgstr "A súgódokumentum nem jeleníthető meg"
-
-#~ msgid "Startup Applications"
-#~ msgstr "Indítópult"
-
-#~ msgid "Choose what applications to start when you log in"
-#~ msgstr "A bejelentkezéskor elindítandó alkalmazások kiválasztása"
-
-#~ msgid "File is not a valid .desktop file"
-#~ msgstr "A fájl nem egy érvényes .desktop fájl"
-
-#~ msgid "Unrecognized desktop file Version '%s'"
-#~ msgstr "Ismeretlen .desktop fájl verzió: „%s”"
-
-#~ msgid "Starting %s"
-#~ msgstr "%s indítása"
-
-#~ msgid "Application does not accept documents on command line"
-#~ msgstr "Az alkalmazás nem fogad el dokumentumokat a parancssorban"
-
-#~ msgid "Unrecognized launch option: %d"
-#~ msgstr "Ismeretlen kapcsoló: %d"
-
-#~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-#~ msgstr ""
-#~ "Nem adhatók dokumentum-URI címek egy „Type=Link” asztali bejegyzésnek"
-
-#~ msgid "Not a launchable item"
-#~ msgstr "Nem futtatható elem"
-
-#~ msgid "Disable connection to session manager"
-#~ msgstr "A munkamenet-kezelővel való kapcsolatfelvétel letiltása"
-
-#~ msgid "Specify file containing saved configuration"
-#~ msgstr "A mentett beállításokat tartalmazó fájl megadása"
-
-#~ msgid "FILE"
-#~ msgstr "FÁJL"
-
-# gnome-terminal/gnome-terminal.c:2562
-#~ msgid "Specify session management ID"
-#~ msgstr "A munkamenet-kezelési azonosító megadása"
-
-#~ msgid "ID"
-#~ msgstr "AZONOSÍTÓ"
-
-#~ msgid "Session management options:"
-#~ msgstr "Munkamenet-kezelés kapcsolói:"
-
-#~ msgid "Show session management options"
-#~ msgstr "Munkamenet-kezelési kapcsolók megjelenítése"
-
-#~ msgid "Some programs are still running:"
-#~ msgstr "Néhány program még fut:"
-
-#~ msgid "Unknown"
-#~ msgstr "Ismeretlen"
-
-#~ msgid "A program is still running:"
-#~ msgstr "Egy program még fut:"
-
-#~| msgid ""
-#~| "Waiting for the program to finish.  Interrupting the program may cause "
-#~| "you to lose work."
-#~ msgid ""
-#~ "Waiting for the program to finish. Interrupting the program may cause you "
-#~ "to lose work."
-#~ msgstr ""
-#~ "Várakozás a program befejeződésére. A program megszakítása adatok "
-#~ "elvesztését okozhatja."
-
-#~| msgid ""
-#~| "Waiting for programs to finish.  Interrupting these programs may cause "
-#~| "you to lose work."
-#~ msgid ""
-#~ "Waiting for programs to finish. Interrupting these programs may cause you "
-#~ "to lose work."
-#~ msgstr ""
-#~ "Várakozás a programok befejeződésére. A programok megszakítása adatok "
-#~ "elvesztését okozhatja."
-
-#~ msgid "Switch User Anyway"
-#~ msgstr "Felhasználóváltás mindenképp"
-
-#~ msgid "Log Out Anyway"
-#~ msgstr "Kijelentkezés mindenképp"
-
-#~ msgid "Suspend Anyway"
-#~ msgstr "Felfüggesztés mindenképp"
-
-#~ msgid "Hibernate Anyway"
-#~ msgstr "Hibernálás mindenképp"
-
-#~ msgid "Shut Down Anyway"
-#~ msgstr "Leállítás mindenképp"
-
-#~ msgid "Restart Anyway"
-#~ msgstr "Újraindítás mindenképp"
-
-#~ msgid "Lock Screen"
-#~ msgstr "Képernyő zárolása"
-
-#~ msgid "Cancel"
-#~ msgstr "Mégse"
-
-#~ msgid "You will be automatically logged out in %d second."
-#~ msgid_plural "You will be automatically logged out in %d seconds."
-#~ msgstr[0] "Automatikusan ki fog jelentkezni %d másodperc múlva."
-#~ msgstr[1] "Automatikusan ki fog jelentkezni %d másodperc múlva."
-
-#~ msgid "This system will be automatically shut down in %d second."
-#~ msgid_plural "This system will be automatically shut down in %d seconds."
-#~ msgstr[0] "A rendszer %d másodperc múlva automatikusan le fog állni."
-#~ msgstr[1] "A rendszer %d másodperc múlva automatikusan le fog állni."
-
-#~ msgid "This system will be automatically restarted in %d second."
-#~ msgid_plural "This system will be automatically restarted in %d seconds."
-#~ msgstr[0] "A rendszer %d másodperc múlva automatikusan újra fog indulni."
-#~ msgstr[1] "A rendszer %d másodperc múlva automatikusan újra fog indulni."
-
-#~ msgid "You are currently logged in as \"%s\"."
-#~ msgstr "Jelenleg „%s” néven van bejelentkezve."
-
-#~ msgid "Log out of this system now?"
-#~ msgstr "Kijelentkezik most?"
-
-#~ msgid "_Switch User"
-#~ msgstr "Felhasználó_váltás"
-
-#~ msgid "Shut down this system now?"
-#~ msgstr "Leállítja a rendszert?"
-
-#~ msgid "S_uspend"
-#~ msgstr "_Felfüggesztés"
-
-#~ msgid "_Hibernate"
-#~ msgstr "_Hibernálás"
-
-#~ msgid "_Restart"
-#~ msgstr "Újr_aindítás"
-
-#~ msgid "_Shut Down"
-#~ msgstr "_Leállítás"
-
-#~ msgid "Restart this system now?"
-#~ msgstr "Újraindítja a rendszert?"
-
-#~ msgid "Icon '%s' not found"
-#~ msgstr "A(z) „%s” ikon nem található"
-
-#~ msgid "GNOME 3 Failed to Load"
-#~ msgstr "A GNOME 3 betöltése meghiúsult"
-
-#~ msgid ""
-#~ "Unfortunately GNOME 3 failed to start properly and started in the "
-#~ "<i>fallback mode</i>.\n"
-#~ "\n"
-#~ "This most likely means your system (graphics hardware or driver) is not "
-#~ "capable of delivering the full GNOME 3 experience."
-#~ msgstr ""
-#~ "A GNOME 3 megfelelő indítása sajnos meghiúsult, és <i>tartalék</i> módban "
-#~ "indult el.\n"
-#~ "\n"
-#~ "Ez valószínűleg azt jelenti, hogy a rendszere (a grafikus hardver vagy "
-#~ "annak illesztőprogramja) nem képes a GNOME 3 környezet megfelelő "
-#~ "működtetésére."
-
-#~ msgid "Learn more about GNOME 3"
-#~ msgstr "Tudjon meg többet a GNOME 3-ról"
-
-#~ msgid ""
-#~ "Unable to start login session (and unable to connect to the X server)"
-#~ msgstr ""
-#~ "A bejelentkező munkamenet indítása sikertelen (és sikertelen a "
-#~ "csatlakozás az X-kiszolgálóhoz)"
