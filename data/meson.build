@@ -119,6 +119,7 @@ if enable_systemd_session
                          'gnome-session-wayland.target',
                          'gnome-session-x11@.target',
                          'gnome-session-x11.target',
+                         'gnome-session-x11-services.target',
                          'gnome-session@.target',
                          'gnome-session.target',
                          'gnome-session-pre.target',
