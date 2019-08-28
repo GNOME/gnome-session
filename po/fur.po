@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.20.x\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2018-08-28 21:21+0000\n"
-"PO-Revision-Date: 2018-09-05 22:32+0200\n"
+"POT-Creation-Date: 2019-08-06 16:59+0000\n"
+"PO-Revision-Date: 2019-08-28 09:12+0200\n"
 "Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
 "Language-Team: Friulian <massimo.furlani@libero.it>\n"
 "Language: fur\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.7\n"
+"X-Generator: Poedit 2.2.3\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -26,10 +26,12 @@ msgid "This entry lets you select a saved session"
 msgstr "Ti permet di selezionâ une session salvade"
 
 #: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
+#: data/gnome-wayland.desktop.in.in:3
 msgid "GNOME"
 msgstr "GNOME"
 
-#: data/gnome.desktop.in.in:4 data/gnome-xorg.desktop.in.in:4
+#: data/gnome.desktop.in.in:4 data/gnome-wayland.desktop.in.in:4
+#: data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
 msgstr "Cheste session ti fasarà jentrâ in GNOME"
 
@@ -139,7 +141,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_Jes"
 
-#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:279
+#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:396
 msgid "Enable debugging code"
 msgstr "Abilite codiç di debug"
 
@@ -151,7 +153,7 @@ msgstr "Permet di jessî"
 msgid "Show extension warning"
 msgstr "Mostre avîs di estension"
 
-#: gnome-session/gsm-manager.c:1266 gnome-session/gsm-manager.c:1919
+#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1967
 msgid "Not responding"
 msgstr "Nol rispuint"
 
@@ -182,42 +184,79 @@ msgstr "Refudi le gnove conession client parcè che la session si sta studant\n"
 msgid "Could not create ICE listening socket: %s"
 msgstr "Impussibil creâ il socket di scolte ICE: %s"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:390
+msgid "Running as systemd service"
+msgstr "In esecuzion come servizi di systemd"
+
+#: gnome-session/main.c:391
+msgid "Use systemd session management"
+msgstr "Dopre la gjestion de session di systemd"
+
+#: gnome-session/main.c:393
+msgid "Use builtin session management (rather than the systemd based one)"
+msgstr ""
+"Dopre la gjestion de session integrade (invezit che chel basât su systemd)"
+
+#: gnome-session/main.c:394
 msgid "Override standard autostart directories"
 msgstr "No'l ten cont des directory standard di inviament automatic"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:394
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:395
 msgid "Session to use"
 msgstr "Session di doprâ"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:395
 msgid "SESSION_NAME"
 msgstr "NON_SESSION"
 
-#: gnome-session/main.c:280
+#: gnome-session/main.c:397
 msgid "Do not load user-specified applications"
 msgstr "Nol cjame lis aplicazions specificadis dal utent"
 
-#: gnome-session/main.c:281
+#: gnome-session/main.c:398
 msgid "Version of this application"
 msgstr "Version di cheste aplicazion"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:283
+#: gnome-session/main.c:400
 msgid "Show the fail whale dialog for testing"
 msgstr "Mostre il dialic \"fail whale\" par fâ un test"
 
-#: gnome-session/main.c:284
+#: gnome-session/main.c:401
 msgid "Disable hardware acceleration check"
 msgstr "Gjave control acelerazion hardware"
 
-#: gnome-session/main.c:316
+#: gnome-session/main.c:433
 msgid " — the GNOME session manager"
 msgstr " — Il gjestôr di session GNOME"
+
+#: tools/gnome-session-ctl.c:244
+msgid "Start gnome-session-shutdown.target"
+msgstr "Fâs partî gnome-session-shutdown.target"
+
+#: tools/gnome-session-ctl.c:245
+msgid ""
+"Start gnome-session-shutdown.target when receiving EOF or a single byte on "
+"stdin"
+msgstr ""
+"Fâs partî gnome-session-shutdown.target cuant che si ricêf EOF o un singul "
+"byte sul stdin"
+
+#: tools/gnome-session-ctl.c:246
+msgid "Signal initialization done to gnome-session"
+msgstr "Inizializazion dal segnâl fate par gnome-session"
+
+#: tools/gnome-session-ctl.c:247
+msgid "Restart dbus.service if it is running"
+msgstr "Torne invie dbus.service se al è in esecuzion"
+
+#: tools/gnome-session-ctl.c:275
+msgid "Program needs exactly one parameter"
+msgstr "Il program al à bisugne di juste un parametri"
 
 #: tools/gnome-session-inhibit.c:108
 #, c-format
@@ -409,10 +448,6 @@ msgstr "Une session clamade “%s” e esist za"
 
 #~ msgid "FILE"
 #~ msgstr "FILE"
-
-#~| msgid "Specify a session name to load"
-#~ msgid "Specify session management ID"
-#~ msgstr "Specifiche un non pe session di cjariâ"
 
 #~ msgid "ID"
 #~ msgstr "ID"
