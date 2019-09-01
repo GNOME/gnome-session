@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2018-08-28 21:21+0000\n"
-"PO-Revision-Date: 2018-08-29 10:42+0200\n"
+"POT-Creation-Date: 2019-08-28 15:00+0000\n"
+"PO-Revision-Date: 2019-08-15 09:23+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: čeština <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Gtranslator 2.91.7\n"
+"X-Generator: Poedit 2.2.3\n"
 "X-Project-Style: gnome\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
@@ -38,10 +38,12 @@ msgid "This entry lets you select a saved session"
 msgstr "Tato položka umožňuje vybrat uložené sezení"
 
 #: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
+#: data/gnome-wayland.desktop.in.in:3
 msgid "GNOME"
 msgstr "GNOME"
 
-#: data/gnome.desktop.in.in:4 data/gnome-xorg.desktop.in.in:4
+#: data/gnome.desktop.in.in:4 data/gnome-wayland.desktop.in.in:4
+#: data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
 msgstr "Toto sezení vás přihlásí do GNOME"
 
@@ -151,7 +153,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_Odhlásit se"
 
-#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:279
+#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:396
 msgid "Enable debugging code"
 msgstr "Zapnout ladicí kód"
 
@@ -163,11 +165,11 @@ msgstr "Umožnit odhlášení"
 msgid "Show extension warning"
 msgstr "Zobrazit varování rozšíření"
 
-#: gnome-session/gsm-manager.c:1266 gnome-session/gsm-manager.c:1919
+#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1994
 msgid "Not responding"
 msgstr "Neodpovídá"
 
-#: gnome-session/gsm-util.c:382
+#: gnome-session/gsm-util.c:389
 msgid "_Log out"
 msgstr "Odh_lásit se"
 
@@ -195,42 +197,78 @@ msgstr ""
 msgid "Could not create ICE listening socket: %s"
 msgstr "Nelze vytvořit socket naslouchání ICE: %s"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:390
+msgid "Running as systemd service"
+msgstr "Běží jako služba systemd"
+
+#: gnome-session/main.c:391
+msgid "Use systemd session management"
+msgstr "Používat správu sezení systemd"
+
+#: gnome-session/main.c:393
+msgid "Use builtin session management (rather than the systemd based one)"
+msgstr "Používat vestavěný systém sezení (místo toho založeného na systemd)"
+
+#: gnome-session/main.c:394
 msgid "Override standard autostart directories"
 msgstr "Přepsat standardní adresáře automatického spuštění"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:394
 msgid "AUTOSTART_DIR"
 msgstr "ADR_AUTOSPUŠTĚNÍ"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:395
 msgid "Session to use"
 msgstr "Sezení, které se má použít"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:395
 msgid "SESSION_NAME"
 msgstr "NÁZEV_SEZENÍ"
 
-#: gnome-session/main.c:280
+#: gnome-session/main.c:397
 msgid "Do not load user-specified applications"
 msgstr "Nenahrávat uživatelem zadané aplikace"
 
-#: gnome-session/main.c:281
+#: gnome-session/main.c:398
 msgid "Version of this application"
 msgstr "Verze této aplikace"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:283
+#: gnome-session/main.c:400
 msgid "Show the fail whale dialog for testing"
 msgstr "Zobrazit dialogové okno černé barvy pro testování"
 
-#: gnome-session/main.c:284
+#: gnome-session/main.c:401
 msgid "Disable hardware acceleration check"
 msgstr "Zakázat kontrolu hardwarové akcelerace"
 
-#: gnome-session/main.c:316
+#: gnome-session/main.c:433
 msgid " — the GNOME session manager"
 msgstr " – správce sezení GNOME"
+
+#: tools/gnome-session-ctl.c:244
+msgid "Start gnome-session-shutdown.target"
+msgstr "Spustit gnome-session-shutdown.target"
+
+#: tools/gnome-session-ctl.c:245
+msgid ""
+"Start gnome-session-shutdown.target when receiving EOF or a single byte on "
+"stdin"
+msgstr ""
+"Spustit gnome-session-shutdown.target při zachycení signálu EOF nebo jednoho "
+"bajtu na standardním vstupu"
+
+#: tools/gnome-session-ctl.c:246
+msgid "Signal initialization done to gnome-session"
+msgstr "Dokončena signálová inicializace vůči gnome-session"
+
+#: tools/gnome-session-ctl.c:247
+msgid "Restart dbus.service if it is running"
+msgstr "Restartovat dbus.service, pokud běží"
+
+#: tools/gnome-session-ctl.c:275
+msgid "Program needs exactly one parameter"
+msgstr "Program potřebuje právě jeden parametr"
 
 #: tools/gnome-session-inhibit.c:108
 #, c-format
