@@ -1,5 +1,7 @@
 # Turkish translation of gnome-session.
 # Copyright (C) 2001-2003, 2004, 2008, 2011 Free Software Foundation, Inc.
+# Copyright (C) 2012-2019 gnome-session's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gnome-session package.
 #
 # Sinan İmamoğlu <sinan@myrealbox.com>, 2002-2003.
 # Ömer Fadıl USTA <omer_fad@hotmail.com>, 2002.
@@ -14,13 +16,14 @@
 # Muhammet Kara <muhammetk@gmail.com>, 2011, 2012, 2013, 2014, 2015.
 # Çağatay Yiğit Şahin <cyigitsahin@outlook.com>, 2017, 2018.
 # Emin Tufan Çetin <etcetin@gmail.com>, 2017, 2018.
+# Sabri Ünal <libreajans@gmail.com>, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2018-08-29 08:46+0000\n"
-"PO-Revision-Date: 2018-08-29 19:31+0300\n"
+"POT-Creation-Date: 2019-08-28 15:00+0000\n"
+"PO-Revision-Date: 2019-09-07 10:26+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
@@ -28,7 +31,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Gtranslator 2.91.7\n"
+"X-Generator: Poedit 2.2.3\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -39,10 +42,12 @@ msgid "This entry lets you select a saved session"
 msgstr "Bu girdi kaydedilmiş bir oturumu seçmenizi sağlar"
 
 #: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
+#: data/gnome-wayland.desktop.in.in:3
 msgid "GNOME"
 msgstr "GNOME"
 
-#: data/gnome.desktop.in.in:4 data/gnome-xorg.desktop.in.in:4
+#: data/gnome.desktop.in.in:4 data/gnome-wayland.desktop.in.in:4
+#: data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
 msgstr "Bu oturum GNOME girişi yapmanızı sağlar"
 
@@ -151,7 +156,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "Çı_kış"
 
-#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:279
+#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:396
 msgid "Enable debugging code"
 msgstr "Hata ayıklama kodunu etkinleştir"
 
@@ -163,11 +168,11 @@ msgstr "Çıkışa izin ver"
 msgid "Show extension warning"
 msgstr "Eklenti uyarısını göster"
 
-#: gnome-session/gsm-manager.c:1266 gnome-session/gsm-manager.c:1919
+#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1994
 msgid "Not responding"
-msgstr "Yanıt vermiyor"
+msgstr "Yanıtlamıyor"
 
-#: gnome-session/gsm-util.c:382
+#: gnome-session/gsm-util.c:389
 msgid "_Log out"
 msgstr "_Çıkış"
 
@@ -194,42 +199,77 @@ msgstr "Oturum şu anda kapatıldığı için yeni istemci bağlantısı reddedi
 msgid "Could not create ICE listening socket: %s"
 msgstr "ICE dinleme soketi oluşturulamadı: %s"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:390
+msgid "Running as systemd service"
+msgstr "systemd servisi olarak çalışıyor"
+
+#: gnome-session/main.c:391
+msgid "Use systemd session management"
+msgstr "systemd oturum yönetimini kullan"
+
+#: gnome-session/main.c:393
+msgid "Use builtin session management (rather than the systemd based one)"
+msgstr "Yerleşik oturum yönetimini kullan (systemd temelli yerine)"
+
+#: gnome-session/main.c:394
 msgid "Override standard autostart directories"
 msgstr "Standart kendiliğinden başlat dizinlerinin yerine geç"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:394
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:395
 msgid "Session to use"
 msgstr "Kullanılacak oturum"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:395
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: gnome-session/main.c:280
+#: gnome-session/main.c:397
 msgid "Do not load user-specified applications"
 msgstr "Kullanıcıya özel programları yükleme"
 
-#: gnome-session/main.c:281
+#: gnome-session/main.c:398
 msgid "Version of this application"
 msgstr "Bu uygulamanın sürümü"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:283
+#: gnome-session/main.c:400
 msgid "Show the fail whale dialog for testing"
 msgstr "Sınama için büyük hata iletişim penceresini göster"
 
-#: gnome-session/main.c:284
+#: gnome-session/main.c:401
 msgid "Disable hardware acceleration check"
 msgstr "Donanım hızlandırma denetimini devre dışı bırak"
 
-#: gnome-session/main.c:316
+#: gnome-session/main.c:433
 msgid " — the GNOME session manager"
 msgstr " — GNOME oturum yöneticisi"
+
+#: tools/gnome-session-ctl.c:244
+msgid "Start gnome-session-shutdown.target"
+msgstr "gnome-session-shutdown.target’ı başlat"
+
+#: tools/gnome-session-ctl.c:245
+msgid ""
+"Start gnome-session-shutdown.target when receiving EOF or a single byte on "
+"stdin"
+msgstr ""
+"stdin’de EOF veya tek bayt alınırken gnome-session-shutdown.target’ı başlat"
+
+#: tools/gnome-session-ctl.c:246
+msgid "Signal initialization done to gnome-session"
+msgstr "Sinyal ilklendirilmesi gnome-session’a tamamlandı"
+
+#: tools/gnome-session-ctl.c:247
+msgid "Restart dbus.service if it is running"
+msgstr "Çalışıyorsa dbus.service’i yeniden başlat"
+
+#: tools/gnome-session-ctl.c:275
+msgid "Program needs exactly one parameter"
+msgstr "Program tam olarak bir parametreye gereksiniyor"
 
 #: tools/gnome-session-inhibit.c:108
 #, c-format
@@ -324,7 +364,7 @@ msgstr "Oturum adları “/” karakterini içeremez"
 #: tools/gnome-session-selector.c:123
 #, c-format
 msgid "A session named “%s” already exists"
-msgstr "Zaten “%s” adında bir oturum var"
+msgstr "Zaten “%s” adında oturum var"
 
 #~ msgid "Additional startup _programs:"
 #~ msgstr "Ek başlangıç _programları:"
