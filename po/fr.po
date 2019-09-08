@@ -1,5 +1,5 @@
 # French translation of gnome-session.
-# Copyright (C) 1998-2018 Free Software Foundation, Inc.
+# Copyright (C) 1998-2019 Free Software Foundation, Inc.
 #
 # Vincent Renardias <vincent@ldsol.com>, 1998-2000.
 # Joaquim Fellmann <joaquim@hrnet.fr>, 2000.
@@ -8,7 +8,7 @@
 # Laurent Richard <laurent.richard@ael.be>, 2006.
 # Damien Durand <splinux@fedoraproject.org>, 2006.
 # Robert-André Mauchin <zebob.m@pengzone.org>, 2006-2008.
-# Claude Paroz <claude@2xlibre.net>, 2007-2010.
+# Claude Paroz <claude@2xlibre.net>, 2007-2010, 2019.
 # Jonathan Ernst <jonathan@ernstfamily.ch>, 2007.
 # Stéphane Raimbault <stephane.raimbault@gmail.com>, 2008.
 # Frédéric Péters <fpeters@0d.be>, 2008.
@@ -20,16 +20,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2018-12-29 14:38+0000\n"
+"POT-Creation-Date: 2019-08-06 16:59+0000\n"
 "PO-Revision-Date: 2019-03-29 09:04+0100\n"
-"Last-Translator: Charles Monzat <charles.monzat@free.fr>\n"
+"Last-Translator: Claude Paroz <claude@2xlibre.net>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Gtranslator 3.32.0\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -40,10 +39,12 @@ msgid "This entry lets you select a saved session"
 msgstr "Ce choix permet d’accéder à une session enregistrée"
 
 #: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
+#: data/gnome-wayland.desktop.in.in:3
 msgid "GNOME"
 msgstr "GNOME"
 
-#: data/gnome.desktop.in.in:4 data/gnome-xorg.desktop.in.in:4
+#: data/gnome.desktop.in.in:4 data/gnome-wayland.desktop.in.in:4
+#: data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
 msgstr "Cette session vous connecte dans GNOME"
 
@@ -153,7 +154,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_Fermer la session"
 
-#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:279
+#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:396
 msgid "Enable debugging code"
 msgstr "Active le code de débogage"
 
@@ -165,7 +166,7 @@ msgstr "Autoriser la déconnexion"
 msgid "Show extension warning"
 msgstr "Afficher l’avertissement pour les extensions"
 
-#: gnome-session/gsm-manager.c:1266 gnome-session/gsm-manager.c:1919
+#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1967
 msgid "Not responding"
 msgstr "Absence de réponse"
 
@@ -198,42 +199,79 @@ msgstr ""
 msgid "Could not create ICE listening socket: %s"
 msgstr "Impossible de créer le connecteur d’écoute ICE : %s"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:390
+msgid "Running as systemd service"
+msgstr "Exécuté en tant que service systemd"
+
+#: gnome-session/main.c:391
+msgid "Use systemd session management"
+msgstr "Utiliser la gestion des sessions systemd"
+
+#: gnome-session/main.c:393
+msgid "Use builtin session management (rather than the systemd based one)"
+msgstr ""
+"Utiliser la gestion des sessions intégrée (plutôt que celle basée sur systemd)"
+
+#: gnome-session/main.c:394
 msgid "Override standard autostart directories"
 msgstr "Remplace les répertoires autostart standards"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:394
 msgid "AUTOSTART_DIR"
 msgstr "RÉP_AUTOSTART"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:395
 msgid "Session to use"
 msgstr "Session à utiliser"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:395
 msgid "SESSION_NAME"
 msgstr "NOM_SESSION"
 
-#: gnome-session/main.c:280
+#: gnome-session/main.c:397
 msgid "Do not load user-specified applications"
 msgstr "Ne charge pas les applications demandées par l’utilisateur"
 
-#: gnome-session/main.c:281
+#: gnome-session/main.c:398
 msgid "Version of this application"
 msgstr "Version de cette application"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:283
+#: gnome-session/main.c:400
 msgid "Show the fail whale dialog for testing"
 msgstr "Afficher le dialogue d’erreur pour le tester"
 
-#: gnome-session/main.c:284
+#: gnome-session/main.c:401
 msgid "Disable hardware acceleration check"
 msgstr "Désactiver la vérification de l’accélération matérielle"
 
-#: gnome-session/main.c:316
+#: gnome-session/main.c:433
 msgid " — the GNOME session manager"
 msgstr " — le gestionnaire de sessions de GNOME"
+
+#: tools/gnome-session-ctl.c:244
+msgid "Start gnome-session-shutdown.target"
+msgstr "Démarrer gnome-session-shutdown.target"
+
+#: tools/gnome-session-ctl.c:245
+msgid ""
+"Start gnome-session-shutdown.target when receiving EOF or a single byte on "
+"stdin"
+msgstr ""
+"Démarrer gnome-session-shutdown.target si réception de fin de fichier (EOF) ou "
+"d’un octet unique sur stdin"
+
+#: tools/gnome-session-ctl.c:246
+msgid "Signal initialization done to gnome-session"
+msgstr "Signaler l’initialisation comme terminée à gnome-session"
+
+#: tools/gnome-session-ctl.c:247
+msgid "Restart dbus.service if it is running"
+msgstr "Redémarrer dbus.service s’il est en cours d’exécution"
+
+#: tools/gnome-session-ctl.c:275
+msgid "Program needs exactly one parameter"
+msgstr "Le programme a besoin d’un et d’un seul paramètre"
 
 #: tools/gnome-session-inhibit.c:108
 #, c-format
