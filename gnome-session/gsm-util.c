@@ -36,6 +36,7 @@ static gchar *_saved_session_dir = NULL;
 static gchar **child_environment;
 
 static const char * const variable_blacklist[] = {
+    "NOTIFY_SOCKET",
     "XDG_SEAT",
     "XDG_SESSION_ID",
     "XDG_VTNR",
