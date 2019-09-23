@@ -35,11 +35,39 @@
 static gchar *_saved_session_dir = NULL;
 static gchar **child_environment;
 
+/* These are variables that will not be passed on to subprocesses
+ * (either directly, via systemd or DBus).
+ * Some of these are blacklisted as they might end up in the wrong session
+ * (e.g. XDG_VTNR), others because they simply must never be passed on
+ * (NOTIFY_SOCKET).
+ */
 static const char * const variable_blacklist[] = {
     "NOTIFY_SOCKET",
     "XDG_SEAT",
     "XDG_SESSION_ID",
     "XDG_VTNR",
+    NULL
+};
+
+/* The following is copied from GDMs spawn_session function.
+ * We install some variables for the graphical session into the systemd user
+ * instance. These are globally visible for all applications started through
+ * systemd (or DBus), and may currently survive the users graphical session.
+ *
+ * This is a bit of a quick hack. It would be better to keep track of these
+ * environment variables in the users $XDG_RUNTIME_DIR and then having a hook
+ * in the session shutdown target to unset them from there.
+ *
+ * The GNOME shell mode variable is the weirdest in the set. It is currently
+ * set by GDM and passed on to the GNOME shell through the environment.
+ * However, GDM will not always set it and therefore we need to unset it.
+ */
+static const char * const variable_unsetlist[] = {
+    "DISPLAY",
+    "XAUTHORITY",
+    "WAYLAND_DISPLAY",
+    "WAYLAND_SOCKET",
+    "GNOME_SHELL_SESSION_MODE",
     NULL
 };
 
@@ -616,10 +644,17 @@ gsm_util_export_user_environment (GError     **error)
 
         entries = g_get_environ ();
 
-        for (; variable_blacklist[i] != NULL; i++)
+        for (i = 0; variable_blacklist[i] != NULL; i++)
                 entries = g_environ_unsetenv (entries, variable_blacklist[i]);
 
-        g_variant_builder_init (&builder, G_VARIANT_TYPE ("as"));
+        g_variant_builder_init (&builder, G_VARIANT_TYPE ("(asas)"));
+
+        g_variant_builder_open (&builder, G_VARIANT_TYPE ("as"));
+        for (i = 0; variable_unsetlist[i] != NULL; i++)
+                g_variant_builder_add (&builder, "s", variable_unsetlist[i]);
+        g_variant_builder_close (&builder);
+
+        g_variant_builder_open (&builder, G_VARIANT_TYPE ("as"));
         for (i = 0; entries[i] != NULL; i++) {
                 const char *entry = entries[i];
 
@@ -631,6 +666,7 @@ gsm_util_export_user_environment (GError     **error)
 
                 g_variant_builder_add (&builder, "s", entry);
         }
+        g_variant_builder_close (&builder);
         g_regex_unref (regex);
 
         g_strfreev (entries);
@@ -639,9 +675,8 @@ gsm_util_export_user_environment (GError     **error)
                                              "org.freedesktop.systemd1",
                                              "/org/freedesktop/systemd1",
                                              "org.freedesktop.systemd1.Manager",
-                                             "SetEnvironment",
-                                             g_variant_new ("(@as)",
-                                                            g_variant_builder_end (&builder)),
+                                             "UnsetAndSetEnvironment",
+                                             g_variant_builder_end (&builder),
                                              NULL,
                                              G_DBUS_CALL_FLAGS_NONE,
                                              -1, NULL, &bus_error);
