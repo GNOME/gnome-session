@@ -43,6 +43,16 @@ static const char * const variable_blacklist[] = {
     NULL
 };
 
+/* The following is copied from GDMs spawn_session function */
+static const char * const variable_unsetlist[] = {
+    "DISPLAY",
+    "XAUTHORITY",
+    "WAYLAND_DISPLAY",
+    "WAYLAND_SOCKET",
+    "GNOME_SHELL_SESSION_MODE",
+    NULL
+};
+
 char *
 gsm_util_find_desktop_file_for_app_name (const char *name,
                                          gboolean    look_in_saved_session,
@@ -619,7 +629,14 @@ gsm_util_export_user_environment (GError     **error)
         for (; variable_blacklist[i] != NULL; i++)
                 entries = g_environ_unsetenv (entries, variable_blacklist[i]);
 
-        g_variant_builder_init (&builder, G_VARIANT_TYPE ("as"));
+        g_variant_builder_init (&builder, G_VARIANT_TYPE ("(asas)"));
+
+        g_variant_builder_open (&builder, G_VARIANT_TYPE ("as"));
+        for (; variable_unsetlist[i] != NULL; i++)
+                g_variant_builder_add (&builder, "s", variable_unsetlist[i]);
+        g_variant_builder_close (&builder);
+
+        g_variant_builder_open (&builder, G_VARIANT_TYPE ("as"));
         for (i = 0; entries[i] != NULL; i++) {
                 const char *entry = entries[i];
 
@@ -631,6 +648,7 @@ gsm_util_export_user_environment (GError     **error)
 
                 g_variant_builder_add (&builder, "s", entry);
         }
+        g_variant_builder_close (&builder);
         g_regex_unref (regex);
 
         g_strfreev (entries);
@@ -639,9 +657,8 @@ gsm_util_export_user_environment (GError     **error)
                                              "org.freedesktop.systemd1",
                                              "/org/freedesktop/systemd1",
                                              "org.freedesktop.systemd1.Manager",
-                                             "SetEnvironment",
-                                             g_variant_new ("(@as)",
-                                                            g_variant_builder_end (&builder)),
+                                             "UnsetAndSetEnvironment",
+                                             g_variant_builder_end (&builder),
                                              NULL,
                                              G_DBUS_CALL_FLAGS_NONE,
                                              -1, NULL, &bus_error);
