@@ -15,5 +15,5 @@ Before=gnome-session-manager.target
 
 [Service]
 Type=notify
-ExecStart=@libexecdir@/gnome-session-binary --debug --systemd-service --session=%i
+ExecStart=@libexecdir@/gnome-session-binary --systemd-service --session=%i
 ExecStopPost=-@libexecdir@/gnome-session-ctl --shutdown
