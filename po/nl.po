@@ -18,22 +18,22 @@
 # Reinout van Schouwen <reinouts@gnome.org>, 2003, 2013. (na 10 jaar!).
 # Tino Meinen <a.t.meinen@chello.nl> 2005, 2006, 2008.
 # Wouter Bolsterlee <wbolster@gnome.org>, 2007–2013.
-# Nathan Follens <nthn@unseen.is>, 2015-2017.
+# Nathan Follens <nthn@unseen.is>, 2015-2017, 2019.
 # Hannie Dumoleyn <hannie@ubuntu-nl.org>, 2015, 2018.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2018-08-28 21:21+0000\n"
-"PO-Revision-Date: 2018-08-31 12:23+0100\n"
-"Last-Translator: Hannie Dumoleyn <hannie@ubuntu-nl.org>\n"
+"POT-Creation-Date: 2019-09-18 13:36+0000\n"
+"PO-Revision-Date: 2019-09-25 13:13+0200\n"
+"Last-Translator: Nathan Follens <nthn@unseen.is>\n"
 "Language-Team: Dutch <gnome-nl-list@gnome.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 2.0\n"
+"X-Generator: Poedit 2.2.3\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -44,10 +44,12 @@ msgid "This entry lets you select a saved session"
 msgstr "Hiermee kunt u een opgeslagen sessie selecteren"
 
 #: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
+#: data/gnome-wayland.desktop.in.in:3
 msgid "GNOME"
 msgstr "Gnome"
 
-#: data/gnome.desktop.in.in:4 data/gnome-xorg.desktop.in.in:4
+#: data/gnome.desktop.in.in:4 data/gnome-wayland.desktop.in.in:4
+#: data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
 msgstr "Deze sessie laat u in Gnome inloggen"
 
@@ -60,7 +62,6 @@ msgid "GNOME on Xorg"
 msgstr "Gnome op Xorg"
 
 #: data/org.gnome.SessionManager.gschema.xml.in:5
-#| msgid "_Remove Session"
 msgid "Save sessions"
 msgstr "Sessies opslaan"
 
@@ -77,8 +78,8 @@ msgid ""
 "When enabled, gnome-session will automatically save the next session at log "
 "out even if auto saving is disabled."
 msgstr ""
-"Indien ingeschakeld, zal gnome-session de volgende sessie automatisch opslaan"
-" bij het afmelden, zelfs wanneer automatisch opslaan is uitgeschakeld."
+"Indien ingeschakeld, zal gnome-session de volgende sessie automatisch "
+"opslaan bij het afmelden, zelfs wanneer automatisch opslaan is uitgeschakeld."
 
 #: data/org.gnome.SessionManager.gschema.xml.in:15
 msgid "Logout prompt"
@@ -87,11 +88,10 @@ msgstr "Afmeldprompt"
 #: data/org.gnome.SessionManager.gschema.xml.in:16
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
-"Indien ingeschakeld, zal gnome-session de gebruiker vragen om een sessie te"
-" beëindigen."
+"Indien ingeschakeld, zal gnome-session de gebruiker vragen om een sessie te "
+"beëindigen."
 
 #: data/org.gnome.SessionManager.gschema.xml.in:20
-#| msgid "Show extension warning"
 msgid "Show the fallback warning"
 msgstr "Fallback-waarschuwing tonen"
 
@@ -100,8 +100,8 @@ msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
 msgstr ""
-"Indien ingeschakeld, zal gnome-session een waarschuwingsdialoog tonen na het"
-" aanmelden als de sessie automatisch is teruggevallen."
+"Indien ingeschakeld, zal gnome-session een waarschuwingsdialoog tonen na het "
+"aanmelden als de sessie automatisch is teruggevallen."
 
 #: data/session-selector.ui:15
 msgid "Custom Session"
@@ -160,7 +160,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_Afmelden"
 
-#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:279
+#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:396
 msgid "Enable debugging code"
 msgstr "Debugging-code inschakelen"
 
@@ -172,11 +172,11 @@ msgstr "Afmelden toestaan"
 msgid "Show extension warning"
 msgstr "Waarschuwingen van uitbreidingen tonen"
 
-#: gnome-session/gsm-manager.c:1266 gnome-session/gsm-manager.c:1919
+#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1994
 msgid "Not responding"
 msgstr "Reageert niet"
 
-#: gnome-session/gsm-util.c:382
+#: gnome-session/gsm-util.c:389
 msgid "_Log out"
 msgstr "_Afmelden"
 
@@ -207,42 +207,79 @@ msgstr ""
 msgid "Could not create ICE listening socket: %s"
 msgstr "Kon geen luister-socket voor ICE aanmaken: %s"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:390
+msgid "Running as systemd service"
+msgstr "Draait als systemd-dienst"
+
+#: gnome-session/main.c:391
+msgid "Use systemd session management"
+msgstr "Systemd-sessiebeheer gebruiken"
+
+#: gnome-session/main.c:393
+msgid "Use builtin session management (rather than the systemd based one)"
+msgstr ""
+"Ingebouwd sessiebeheer gebruiken (in plaats van dat gebaseerd op systemd)"
+
+#: gnome-session/main.c:394
 msgid "Override standard autostart directories"
 msgstr "Map voor automatisch te starten toepassingen"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:394
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_MAP"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:395
 msgid "Session to use"
 msgstr "Te gebruiken sessie"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:395
 msgid "SESSION_NAME"
 msgstr "NAAM_VAN_SESSIE"
 
-#: gnome-session/main.c:280
+#: gnome-session/main.c:397
 msgid "Do not load user-specified applications"
 msgstr "Toepassingen die door de gebruiker opgegeven zijn niet laden"
 
-#: gnome-session/main.c:281
+#: gnome-session/main.c:398
 msgid "Version of this application"
 msgstr "Versie van deze toepassing"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:283
+#: gnome-session/main.c:400
 msgid "Show the fail whale dialog for testing"
 msgstr "Het misvis-venster tonen voor testen"
 
-#: gnome-session/main.c:284
+#: gnome-session/main.c:401
 msgid "Disable hardware acceleration check"
 msgstr "Hardwareversnellingscontrole uitschakelen"
 
-#: gnome-session/main.c:316
+#: gnome-session/main.c:433
 msgid " — the GNOME session manager"
 msgstr " — het Gnome-sessiebeheer"
+
+#: tools/gnome-session-ctl.c:244
+msgid "Start gnome-session-shutdown.target"
+msgstr "Start gnome-session-shutdown.target"
+
+#: tools/gnome-session-ctl.c:245
+msgid ""
+"Start gnome-session-shutdown.target when receiving EOF or a single byte on "
+"stdin"
+msgstr ""
+"Start gnome-session-shutdown.target wanneer EOF of een enkele byte ontvangen "
+"wordt op stdin"
+
+#: tools/gnome-session-ctl.c:246
+msgid "Signal initialization done to gnome-session"
+msgstr "Voltooiing van initialisering doorgeven aan gnome-session"
+
+#: tools/gnome-session-ctl.c:247
+msgid "Restart dbus.service if it is running"
+msgstr "Herstart dbus.dienst indien het draait"
+
+#: tools/gnome-session-ctl.c:275
+msgid "Program needs exactly one parameter"
+msgstr "Programma vereist precies één parameter"
 
 #: tools/gnome-session-inhibit.c:108
 #, c-format
