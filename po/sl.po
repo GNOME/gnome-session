@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the gnome-session package.
 #
 # Andraž Tori <andraz.tori1@guest.arnes.si> 2000.
-# Matej Urbančič <mateju@svn.gnome.org>, 2007–2017.
+# Matej Urbančič <mateju@svn.gnome.org>, 2007–2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2018-09-02 17:43+0000\n"
-"PO-Revision-Date: 2018-09-02 20:33+0200\n"
+"POT-Creation-Date: 2019-09-25 11:15+0000\n"
+"PO-Revision-Date: 2019-09-26 21:23+0200\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.2.1\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -31,10 +31,12 @@ msgid "This entry lets you select a saved session"
 msgstr "Možnost omogoča izbor shranjene seje"
 
 #: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
+#: data/gnome-wayland.desktop.in.in:3
 msgid "GNOME"
 msgstr "GNOME"
 
-#: data/gnome.desktop.in.in:4 data/gnome-xorg.desktop.in.in:4
+#: data/gnome.desktop.in.in:4 data/gnome-wayland.desktop.in.in:4
+#: data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
 msgstr "Seja omogoča prijavo v namizje GNOME."
 
@@ -142,7 +144,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_Odjava"
 
-#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:279
+#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:396
 msgid "Enable debugging code"
 msgstr "Omogoči razhroščevanje kode"
 
@@ -154,11 +156,11 @@ msgstr "Dovoli odjavo"
 msgid "Show extension warning"
 msgstr "Pokaži opozorila razširitev"
 
-#: gnome-session/gsm-manager.c:1266 gnome-session/gsm-manager.c:1919
+#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1994
 msgid "Not responding"
 msgstr "Ni odziva"
 
-#: gnome-session/gsm-util.c:382
+#: gnome-session/gsm-util.c:414
 msgid "_Log out"
 msgstr "_Odjavi"
 
@@ -185,42 +187,78 @@ msgstr "Povezave z odjemalci bodo zavrnjene, ker se trenutna seja izklaplja.\n"
 msgid "Could not create ICE listening socket: %s"
 msgstr "Ni mogoče ustvariti vtiča za prisluh ICE: %s"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:390
+msgid "Running as systemd service"
+msgstr "Zagnano kot storitev systemd"
+
+#: gnome-session/main.c:391
+msgid "Use systemd session management"
+msgstr "Uporabi upravljalnik seje systemd"
+
+#: gnome-session/main.c:393
+msgid "Use builtin session management (rather than the systemd based one)"
+msgstr "Uporabi vgrajen upravljalnik seje (namesto storitev systemd)"
+
+#: gnome-session/main.c:394
 msgid "Override standard autostart directories"
 msgstr "Preskoči običajne mape samodejnega zagona"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:394
 msgid "AUTOSTART_DIR"
 msgstr "ZAČETNA_MAPA"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:395
 msgid "Session to use"
 msgstr "Seja za uporabo"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:395
 msgid "SESSION_NAME"
 msgstr "IME_SEJE"
 
-#: gnome-session/main.c:280
+#: gnome-session/main.c:397
 msgid "Do not load user-specified applications"
 msgstr "Ne naloži uporabniško določenih programov"
 
-#: gnome-session/main.c:281
+#: gnome-session/main.c:398
 msgid "Version of this application"
 msgstr "Različica programa"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:283
+#: gnome-session/main.c:400
 msgid "Show the fail whale dialog for testing"
 msgstr "Pokaži pogovorno okno napak med preizkušanjem."
 
-#: gnome-session/main.c:284
+#: gnome-session/main.c:401
 msgid "Disable hardware acceleration check"
 msgstr "Onemogoči strojno pospeševanje"
 
-#: gnome-session/main.c:316
+#: gnome-session/main.c:433
 msgid " — the GNOME session manager"
 msgstr "– upravljalnik seje GNOME"
+
+#: tools/gnome-session-ctl.c:244
+msgid "Start gnome-session-shutdown.target"
+msgstr "Zaženi ukaz gnome-session-shutdown.target"
+
+#: tools/gnome-session-ctl.c:245
+msgid ""
+"Start gnome-session-shutdown.target when receiving EOF or a single byte on "
+"stdin"
+msgstr ""
+"Zaženi ukaz gnome-session-shutdown.target pri prejetju ukaza konca datoteke "
+"EOF oziroma enobajtni standardni dovod"
+
+#: tools/gnome-session-ctl.c:246
+msgid "Signal initialization done to gnome-session"
+msgstr "Začenjanje signala za gnome-sesion"
+
+#: tools/gnome-session-ctl.c:247
+msgid "Restart dbus.service if it is running"
+msgstr "Ponovno zaženi storitev dbus.service, če je že zagnana"
+
+#: tools/gnome-session-ctl.c:275
+msgid "Program needs exactly one parameter"
+msgstr "Program zahteva natanko en parameter"
 
 #: tools/gnome-session-inhibit.c:108
 #, c-format
@@ -428,9 +466,6 @@ msgstr "Seja z imenom »%s« že obstaja"
 
 #~ msgid "FILE"
 #~ msgstr "DATOTEKA"
-
-#~ msgid "Specify session management ID"
-#~ msgstr "Določi ID upravljanja seje"
 
 #~ msgid "ID"
 #~ msgstr "ID"
