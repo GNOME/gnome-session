@@ -1,6 +1,6 @@
 # translation of gnome-session.HEAD.po to Dansk
 # Danish translation of gnome-session.
-# Copyright (C) 1998-2009, 2015-2018 Free Software Foundation, Inc.
+# Copyright (C) 1998-2009, 2015-2019 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-session package.
 #
 # Kenneth Christiansen <kenneth@ripen.dk>, 1998-2000.
@@ -10,7 +10,7 @@
 # Martin Willemoes Hansen <mwh@sysrq.dk>, 2004, 05.
 # Lasse Bang Mikkelsen <lbm@fatalerror.dk>, 2007.
 # Peter Bach <bach.peter@gmail.com>, 2007.
-# Ask Hjorth Larsen <asklarsen@gmail.com>, 2007, 2015-2018.
+# Ask Hjorth Larsen <asklarsen@gmail.com>, 2007, 2015-2019.
 # Kenneth Nielsen <k.nielsen81@gmail.com>, 2008-2009, 2013.
 # M.P. Rommedahl <Lhademmor@gmail.com>, 2008.
 # Kris Thomsen <lakristho@gmail.com>, 2011, 2013.
@@ -30,8 +30,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2018-08-28 21:21+0000\n"
-"PO-Revision-Date: 2018-08-30 21:12+0200\n"
+"POT-Creation-Date: 2019-08-06 16:59+0000\n"
+"PO-Revision-Date: 2019-09-09 00:51+0200\n"
 "Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
@@ -50,10 +50,12 @@ msgid "This entry lets you select a saved session"
 msgstr "Dette indtastningsfelt lader dig vælge en gemt session"
 
 #: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
+#: data/gnome-wayland.desktop.in.in:3
 msgid "GNOME"
 msgstr "GNOME"
 
-#: data/gnome.desktop.in.in:4 data/gnome-xorg.desktop.in.in:4
+#: data/gnome.desktop.in.in:4 data/gnome-wayland.desktop.in.in:4
+#: data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
 msgstr "Denne session logger dig ind i GNOME"
 
@@ -81,7 +83,9 @@ msgstr "Gem denne session"
 msgid ""
 "When enabled, gnome-session will automatically save the next session at log "
 "out even if auto saving is disabled."
-msgstr "Hvis aktiveret vil gnome-session automatisk gemme næste session ved udlogning, selv når automatisk gemmetilstand er slået fra."
+msgstr ""
+"Hvis aktiveret vil gnome-session automatisk gemme næste session ved "
+"udlogning, selv når automatisk gemmetilstand er slået fra."
 
 #: data/org.gnome.SessionManager.gschema.xml.in:15
 msgid "Logout prompt"
@@ -100,7 +104,9 @@ msgstr "Vis advarsel for reservetilstand"
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
-msgstr "Hvis aktiveret vil gnome-session vise en advarselsdialog efter indlogning, hvis sessionen gik i reservetilstand."
+msgstr ""
+"Hvis aktiveret vil gnome-session vise en advarselsdialog efter indlogning, "
+"hvis sessionen gik i reservetilstand."
 
 #: data/session-selector.ui:15
 msgid "Custom Session"
@@ -158,7 +164,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_Log ud"
 
-#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:279
+#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:396
 msgid "Enable debugging code"
 msgstr "Aktivér fejlfindingskode"
 
@@ -170,7 +176,7 @@ msgstr "Tillad log ud"
 msgid "Show extension warning"
 msgstr "Vis udvidelsesfejl"
 
-#: gnome-session/gsm-manager.c:1266 gnome-session/gsm-manager.c:1919
+#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1967
 msgid "Not responding"
 msgstr "Svarer ikke"
 
@@ -202,42 +208,76 @@ msgstr ""
 msgid "Could not create ICE listening socket: %s"
 msgstr "Kunne ikke oprette ICE-lyttesoklen: %s"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:390
+msgid "Running as systemd service"
+msgstr "Kører som systemd-tjeneste"
+
+#: gnome-session/main.c:391
+msgid "Use systemd session management"
+msgstr "Brug systemd-sessionshåndtering"
+
+#: gnome-session/main.c:393
+msgid "Use builtin session management (rather than the systemd based one)"
+msgstr "Brug indbygget sessionshåndtering (frem for den baseret på systemd)"
+
+#: gnome-session/main.c:394
 msgid "Override standard autostart directories"
 msgstr "Tilsidesæt standard-autostartmapper"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:394
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_KAT"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:395
 msgid "Session to use"
 msgstr "Session som skal bruges"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:395
 msgid "SESSION_NAME"
 msgstr "SESSIONS_NAVN"
 
-#: gnome-session/main.c:280
+#: gnome-session/main.c:397
 msgid "Do not load user-specified applications"
 msgstr "Hent ikke brugerangivne programmer"
 
-#: gnome-session/main.c:281
+#: gnome-session/main.c:398
 msgid "Version of this application"
 msgstr "Version af dette program"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:283
+#: gnome-session/main.c:400
 msgid "Show the fail whale dialog for testing"
 msgstr "Vis dialogen uheldig hval for at gennemføre en test"
 
-#: gnome-session/main.c:284
+#: gnome-session/main.c:401
 msgid "Disable hardware acceleration check"
 msgstr "Slå hardwareaccelerationstjek fra"
 
-#: gnome-session/main.c:316
+#: gnome-session/main.c:433
 msgid " — the GNOME session manager"
 msgstr " — GNOME-sessionshåndteringen"
+
+#: tools/gnome-session-ctl.c:244
+msgid "Start gnome-session-shutdown.target"
+msgstr "Start gnome-session-shutdown.target"
+
+#: tools/gnome-session-ctl.c:245
+msgid ""
+"Start gnome-session-shutdown.target when receiving EOF or a single byte on "
+"stdin"
+msgstr "Start gnome-session-shutdown.target ved modtagelse af EOF eller en enkelt byte på stdin"
+
+#: tools/gnome-session-ctl.c:246
+msgid "Signal initialization done to gnome-session"
+msgstr "Signalinitialisering udført til gnome-session"
+
+#: tools/gnome-session-ctl.c:247
+msgid "Restart dbus.service if it is running"
+msgstr "Genstart dbus.service hvis den kører"
+
+#: tools/gnome-session-ctl.c:275
+msgid "Program needs exactly one parameter"
+msgstr "Programmet kræver én parameter"
 
 #: tools/gnome-session-inhibit.c:108
 #, c-format
@@ -436,9 +476,6 @@ msgstr "Der findes allerede en session med navnet “%s”"
 
 #~ msgid "FILE"
 #~ msgstr "FILE"
-
-#~ msgid "Specify session management ID"
-#~ msgstr "Angiv sessionshåndterings-id"
 
 #~ msgid "ID"
 #~ msgstr "ID"
