@@ -15,5 +15,5 @@ Before=gnome-session.target
 
 # Signal gnome-session that we reached the initialized target and
 # that it may start applications.
-Requires=gnome-session-signal-init.service
-Before=gnome-session-signal-init.service
+Requires=gnome-session-signal-phase@4.service
+Before=gnome-session-signal-phase@4.service

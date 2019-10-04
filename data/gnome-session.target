@@ -14,5 +14,11 @@ Before=graphical-session.target
 BindsTo=gnome-session-monitor.service
 After=gnome-session-monitor.service
 
+# Signal gnome-session that the desktop is fully loaded at this point.
+# Note that this signal is one-way only and prevents XDG autostart
+# applications from loading early.
+Requires=gnome-session-signal-phase@7.service
+Before=gnome-session-signal-phase@7.service
+
 # Pull in timer to mark session as stable (and unstable as long as the timer is active)
 Requires=gnome-session-stable.timer

@@ -59,10 +59,15 @@
       </doc:doc>
     </method>
 
-    <method name="Initialized">
+    <method name="PhaseDone">
+      <arg type="i" name="phase" direction="in">
+        <doc:doc>
+          <doc:summary>The reached phase, must be 4 or 7 for the Initialization or Desktop phases</doc:summary>
+        </doc:doc>
+      </arg>
       <doc:doc>
         <doc:description>
-          <doc:para>Run from systemd to signal that gnome-session-initialized.target has been reached.</doc:para>
+          <doc:para>Run from systemd to signal that gnome-session-initialized.target or gnome-session.target have been reached.</doc:para>
         </doc:description>
       </doc:doc>
     </method>
