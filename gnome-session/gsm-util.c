@@ -41,7 +41,7 @@ static gchar **child_environment;
  * (e.g. XDG_VTNR), others because they simply must never be passed on
  * (NOTIFY_SOCKET).
  */
-static const char * const variable_blacklist[] = {
+const char * const gsm_variable_blacklist[] = {
     "NOTIFY_SOCKET",
     "XDG_SEAT",
     "XDG_SESSION_ID",
@@ -564,7 +564,7 @@ gsm_util_export_activation_environment (GError     **error)
                 const char *entry_name = entry_names[i];
                 const char *entry_value = g_getenv (entry_name);
 
-                if (g_strv_contains (variable_blacklist, entry_name))
+                if (g_strv_contains (gsm_variable_blacklist, entry_name))
                     continue;
 
                 if (!g_utf8_validate (entry_name, -1, NULL))
@@ -640,8 +640,8 @@ gsm_util_export_user_environment (GError     **error)
 
         entries = g_get_environ ();
 
-        for (i = 0; variable_blacklist[i] != NULL; i++)
-                entries = g_environ_unsetenv (entries, variable_blacklist[i]);
+        for (i = 0; gsm_variable_blacklist[i] != NULL; i++)
+                entries = g_environ_unsetenv (entries, gsm_variable_blacklist[i]);
 
         g_variant_builder_init (&builder, G_VARIANT_TYPE ("(asas)"));
 

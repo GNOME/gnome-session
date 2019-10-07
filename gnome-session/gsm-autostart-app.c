@@ -1013,6 +1013,9 @@ autostart_app_start_spawn (GsmAutostartApp *app,
         local_error = NULL;
         ctx = g_app_launch_context_new ();
 
+        for (i = 0; gsm_variable_blacklist[i] != NULL; i++)
+                g_app_launch_context_unsetenv (ctx, gsm_variable_blacklist[i]);
+
         child_environment = gsm_util_listenv ();
         for (i = 0; child_environment[i] != NULL; i++) {
                 char **environment_tuple;
