@@ -61,6 +61,8 @@ gboolean    gsm_util_start_systemd_unit             (const char  *unit,
 
 void        gsm_quit                                (void);
 
+extern const char * const gsm_variable_blacklist[];
+
 G_END_DECLS
 
 #endif /* __GSM_UTIL_H__ */
