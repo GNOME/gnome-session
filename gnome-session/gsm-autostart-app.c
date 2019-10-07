@@ -997,6 +997,7 @@ autostart_app_start_spawn (GsmAutostartApp *app,
         gboolean         success;
         GError          *local_error;
         const char      *startup_id;
+        const char * const *variable_blacklist;
         const char * const *child_environment;
         int i;
         GAppLaunchContext *ctx;
@@ -1012,6 +1013,10 @@ autostart_app_start_spawn (GsmAutostartApp *app,
         g_free (app->priv->startup_id);
         local_error = NULL;
         ctx = g_app_launch_context_new ();
+
+        variable_blacklist = gsm_util_get_variable_blacklist ();
+        for (i = 0; variable_blacklist[i] != NULL; i++)
+                g_app_launch_context_unsetenv (ctx, variable_blacklist[i]);
 
         child_environment = gsm_util_listenv ();
         for (i = 0; child_environment[i] != NULL; i++) {
