@@ -808,3 +808,9 @@ gsm_util_listenv (void)
         return (const char * const *) child_environment;
 
 }
+
+const char * const *
+gsm_util_get_variable_blacklist (void)
+{
+        return variable_blacklist;
+}

@@ -50,6 +50,7 @@ char *      gsm_util_generate_startup_id            (void);
 void        gsm_util_setenv                         (const char *variable,
                                                      const char *value);
 const char * const * gsm_util_listenv               (void);
+const char * const * gsm_util_get_variable_blacklist(void);
 
 gboolean    gsm_util_export_activation_environment  (GError     **error);
 #ifdef HAVE_SYSTEMD
