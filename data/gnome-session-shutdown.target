@@ -16,7 +16,11 @@ After=gnome-session.target gnome-session-manager.target
 Conflicts=gnome-session-pre.target gnome-session-initialized.target gnome-session-failed.target
 After=gnome-session-pre.target gnome-session-initialized.target gnome-session-failed.target
 
-# Could we set StopWhenUnneeded=true or would that prevent the service to start?
+# We need to make sure this unit is stopped; primarily so that the tree of
+# units that we created is completely cleaned.
+# Note that this can also be improved by reversing the conflicts above and
+# not listing them in the shutdown unit.
+StopWhenUnneeded=true
 
 # We trigger a restart of DBus after reaching the shutdown target this
 # is a workaround so that DBus services that do not connect to the
