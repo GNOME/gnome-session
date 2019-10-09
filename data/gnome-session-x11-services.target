@@ -1,3 +1,7 @@
 [Unit]
 Description=GNOME session X11 services
 DefaultDependencies=no
+
+Requisite=gnome-session.target
+PartOf=gnome-session.target
+Before=gnome-session.target
