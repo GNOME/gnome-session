@@ -18,11 +18,15 @@ REGION=${SETTING#\'}
 REGION=${REGION%\'}
 
 if [ -n "$REGION" ]; then
-  export LC_TIME=$REGION
-  export LC_NUMERIC=$REGION
-  export LC_MONETARY=$REGION
-  export LC_MEASUREMENT=$REGION
-  export LC_PAPER=$REGION
+  unset LC_TIME LC_NUMERIC LC_MONETARY LC_MEASUREMENT LC_PAPER
+
+  if [ "$LANG" != "$REGION" ] ; then
+    export LC_TIME=$REGION
+    export LC_NUMERIC=$REGION
+    export LC_MONETARY=$REGION
+    export LC_MEASUREMENT=$REGION
+    export LC_PAPER=$REGION
+  fi
 fi
 
 exec @libexecdir@/gnome-session-binary "$@"
