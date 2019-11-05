@@ -115,12 +115,14 @@ get_gtk_gles_renderer (void)
 static gboolean
 is_discrete_gpu_check (void)
 {
-	const char *dri_prime;
+	const char *dri_prime, *nv_prime, *glx_vendor_name;
 
 	dri_prime = g_getenv ("DRI_PRIME");
-	if (!dri_prime)
-		return FALSE;
-	if (*dri_prime != '1')
+	nv_prime = g_getenv ("__NV_PRIME_RENDER_OFFLOAD");
+	glx_vendor_name = g_getenv ("__GLX_VENDOR_LIBRARY_NAME");
+	if (!dri_prime &&
+	    !nv_prime &&
+	    !glx_vendor_name)
 		return FALSE;
 	return TRUE;
 }
