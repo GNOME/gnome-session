@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2018-09-06 20:11+0000\n"
-"PO-Revision-Date: 2019-02-24 23:30+0300\n"
+"POT-Creation-Date: 2019-09-25 11:15+0000\n"
+"PO-Revision-Date: 2019-11-11 22:01+0300\n"
 "Last-Translator: Stas Solovey <whats_up@tut.by>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.2.4\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -35,10 +35,12 @@ msgid "This entry lets you select a saved session"
 msgstr "Эта запись позволяет вам выбрать сохранённый сеанс"
 
 #: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
+#: data/gnome-wayland.desktop.in.in:3
 msgid "GNOME"
 msgstr "GNOME"
 
-#: data/gnome.desktop.in.in:4 data/gnome-xorg.desktop.in.in:4
+#: data/gnome.desktop.in.in:4 data/gnome-wayland.desktop.in.in:4
+#: data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
 msgstr "Этот сеанс позволяет вам войти в GNOME"
 
@@ -148,7 +150,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_Завершить сеанс"
 
-#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:279
+#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:396
 msgid "Enable debugging code"
 msgstr "Включить отладочный код"
 
@@ -160,11 +162,11 @@ msgstr "Разрешить завершение сеанса"
 msgid "Show extension warning"
 msgstr "Показывать предупреждения от расширений"
 
-#: gnome-session/gsm-manager.c:1266 gnome-session/gsm-manager.c:1919
+#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1994
 msgid "Not responding"
 msgstr "Не отвечает"
 
-#: gnome-session/gsm-util.c:382
+#: gnome-session/gsm-util.c:414
 msgid "_Log out"
 msgstr "_Завершить сеанс"
 
@@ -191,42 +193,79 @@ msgstr "Новые клиентские подключения отклоняю�
 msgid "Could not create ICE listening socket: %s"
 msgstr "Не удалось создать сокет, слушающий ICE: %s"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:390
+msgid "Running as systemd service"
+msgstr "Запущен в качестве службы systemd"
+
+#: gnome-session/main.c:391
+msgid "Use systemd session management"
+msgstr "Использовать менеджер сеансов systemd"
+
+#: gnome-session/main.c:393
+msgid "Use builtin session management (rather than the systemd based one)"
+msgstr ""
+"Используйте встроенное управление сессиями (вместо основанного на systemd)"
+
+#: gnome-session/main.c:394
 msgid "Override standard autostart directories"
 msgstr "Заместить стандартные каталоги автозапуска"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:394
 msgid "AUTOSTART_DIR"
 msgstr "КАТАЛОГ_АВТОЗАПУСКА"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:395
 msgid "Session to use"
 msgstr "Использовать сеанс"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:395
 msgid "SESSION_NAME"
 msgstr "НАЗВАНИЕ_СЕАНСА"
 
-#: gnome-session/main.c:280
+#: gnome-session/main.c:397
 msgid "Do not load user-specified applications"
 msgstr "Не загружать указанные пользователем приложения"
 
-#: gnome-session/main.c:281
+#: gnome-session/main.c:398
 msgid "Version of this application"
 msgstr "Версия этого приложения"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:283
+#: gnome-session/main.c:400
 msgid "Show the fail whale dialog for testing"
 msgstr "Показать для отладки диалог с сообщением об ошибке"
 
-#: gnome-session/main.c:284
+#: gnome-session/main.c:401
 msgid "Disable hardware acceleration check"
 msgstr "Отключить проверку наличия аппаратного ускорения"
 
-#: gnome-session/main.c:316
+#: gnome-session/main.c:433
 msgid " — the GNOME session manager"
 msgstr " — менеджер сеансов GNOME"
+
+#: tools/gnome-session-ctl.c:244
+msgid "Start gnome-session-shutdown.target"
+msgstr "Запустить gnome-session-shutdown.target"
+
+#: tools/gnome-session-ctl.c:245
+msgid ""
+"Start gnome-session-shutdown.target when receiving EOF or a single byte on "
+"stdin"
+msgstr ""
+"Запустить gnome-session-shutdown.target при получении EOF или одного байта "
+"на stdin"
+
+#: tools/gnome-session-ctl.c:246
+msgid "Signal initialization done to gnome-session"
+msgstr "Инициализация сигнала выполнена для gnome-session"
+
+#: tools/gnome-session-ctl.c:247
+msgid "Restart dbus.service if it is running"
+msgstr "Перезапустить dbus.service, если он работает"
+
+#: tools/gnome-session-ctl.c:275
+msgid "Program needs exactly one parameter"
+msgstr "Программе нужен только один параметр"
 
 #: tools/gnome-session-inhibit.c:108
 #, c-format
