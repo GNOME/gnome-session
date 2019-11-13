@@ -100,7 +100,7 @@ if enable_systemd_session
   systemd_userunitdir = join_paths(session_prefix, 'lib', 'systemd', 'user')
 
   systemd_service = ['gnome-session-manager@.service',
-                     'gnome-session-signal-init.service',
+                     'gnome-session-signal-phase@.service',
                      'gnome-session-restart-dbus.service',
                      'gnome-session-monitor.service',
                      'gnome-session-failed.service']

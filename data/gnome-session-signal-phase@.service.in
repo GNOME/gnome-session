@@ -5,4 +5,4 @@ PartOf=gnome-session.target
 
 [Service]
 Type=oneshot
-ExecStart=@libexecdir@/gnome-session-ctl --signal-init
+ExecStart=@libexecdir@/gnome-session-ctl --signal-phase=%I

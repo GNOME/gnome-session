@@ -59,7 +59,7 @@ get_session_bus (void)
 }
 
 static void
-do_signal_init (void)
+do_signal_phase (gint opt_signal_phase)
 {
         g_autoptr(GDBusConnection) connection = NULL;
         g_autoptr(GVariant) reply = NULL;
@@ -73,8 +73,8 @@ do_signal_init (void)
                                              GSM_SERVICE_DBUS,
                                              GSM_PATH_DBUS,
                                              GSM_INTERFACE_DBUS,
-                                             "Initialized",
-                                             NULL,
+                                             "PhaseDone",
+                                             g_variant_new ("(i)", opt_signal_phase),
                                              NULL,
                                              G_DBUS_CALL_FLAGS_NO_AUTO_START,
                                              -1, NULL, &error);
@@ -236,14 +236,14 @@ main (int argc, char *argv[])
         g_autoptr(GError) error = NULL;
         static gboolean   opt_shutdown;
         static gboolean   opt_monitor;
-        static gboolean   opt_signal_init;
+        static gint       opt_signal_phase;
         static gboolean   opt_restart_dbus;
         int     conflicting_options;
         GOptionContext *ctx;
         static const GOptionEntry options[] = {
                 { "shutdown", '\0', 0, G_OPTION_ARG_NONE, &opt_shutdown, N_("Start gnome-session-shutdown.target"), NULL },
                 { "monitor", '\0', 0, G_OPTION_ARG_NONE, &opt_monitor, N_("Start gnome-session-shutdown.target when receiving EOF or a single byte on stdin"), NULL },
-                { "signal-init", '\0', 0, G_OPTION_ARG_NONE, &opt_signal_init, N_("Signal initialization done to gnome-session"), NULL },
+                { "signal-phase", '\0', 0, G_OPTION_ARG_INT, &opt_signal_phase, N_("Signal finished phase to gnome-session"), NULL },
                 { "restart-dbus", '\0', 0, G_OPTION_ARG_NONE, &opt_restart_dbus, N_("Restart dbus.service if it is running"), NULL },
                 { NULL },
         };
@@ -267,7 +267,7 @@ main (int argc, char *argv[])
                 conflicting_options++;
         if (opt_monitor)
                 conflicting_options++;
-        if (opt_signal_init)
+        if (opt_signal_phase)
                 conflicting_options++;
         if (opt_restart_dbus)
                 conflicting_options++;
@@ -278,8 +278,8 @@ main (int argc, char *argv[])
 
         sd_notify (0, "READY=1");
 
-        if (opt_signal_init) {
-                do_signal_init ();
+        if (opt_signal_phase) {
+                do_signal_phase (opt_signal_phase);
         } else if (opt_restart_dbus) {
                 do_restart_dbus ();
         } else if (opt_shutdown) {
