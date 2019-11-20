@@ -40,7 +40,6 @@ typedef void (*GsmFillHandleComponent) (const char *component,
 
 static void
 handle_required_components (GKeyFile               *keyfile,
-                            gboolean                look_in_saved_session,
                             GsmFillHandleComponent  callback,
                             gpointer                user_data)
 {
@@ -62,7 +61,7 @@ handle_required_components (GKeyFile               *keyfile,
                 char *app_path;
 
                 app_path = gsm_util_find_desktop_file_for_app_name (required_components[i],
-                                                                    look_in_saved_session, TRUE);
+                                                                    FALSE, TRUE);
                 callback (required_components[i], app_path, user_data);
                 g_free (app_path);
         }
@@ -90,7 +89,7 @@ check_required (GKeyFile *keyfile)
 
         g_debug ("fill: *** Checking required components");
 
-        handle_required_components (keyfile, FALSE,
+        handle_required_components (keyfile,
                                     check_required_components_helper, &error);
 
         g_debug ("fill: *** Done checking required components");
@@ -133,7 +132,7 @@ load_standard_apps (GsmManager *manager,
                     GKeyFile   *keyfile)
 {
         g_debug ("fill: *** Adding required components");
-        handle_required_components (keyfile, !gsm_manager_get_failsafe (manager),
+        handle_required_components (keyfile,
                                     append_required_components_helper, manager);
         g_debug ("fill: *** Done adding required components");
 
