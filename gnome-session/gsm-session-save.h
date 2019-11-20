@@ -26,6 +26,7 @@ G_BEGIN_DECLS
 
 void      gsm_session_save                 (GsmStore  *client_store,
                                             GsmStore  *app_store,
+                                            GSList    *ignored_apps,
                                             GError   **error);
 void      gsm_session_save_clear           (void);
 

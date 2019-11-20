@@ -40,6 +40,7 @@ typedef struct {
         const char  *dir;
         GHashTable  *discard_hash;
         GsmStore    *app_store;
+        GSList      *ignored_apps;
         GError     **error;
 } SessionSaveData;
 
@@ -60,7 +61,7 @@ save_one_client (char            *id,
                  SessionSaveData *data)
 {
         GsmClient  *client;
-        GKeyFile   *keyfile;
+        GKeyFile   *keyfile = NULL;
         GsmApp     *app = NULL;
         const char *app_id;
         char       *path = NULL;
@@ -87,6 +88,10 @@ save_one_client (char            *id,
                                                 (GsmStoreFunc)_app_has_app_id,
                                                 (char *)app_id);
         }
+        /* Do not save apps in the ignored set (i.e. required components). */
+        if (g_slist_find (data->ignored_apps, app) != NULL)
+                goto out;
+
         keyfile = gsm_client_save (client, app, &local_error);
 
         if (keyfile == NULL || local_error) {
@@ -153,6 +158,7 @@ out:
 void
 gsm_session_save (GsmStore  *client_store,
                   GsmStore  *app_store,
+                  GSList    *ignored_apps,
                   GError   **error)
 {
         GSettings       *settings;
@@ -178,6 +184,7 @@ gsm_session_save (GsmStore  *client_store,
         data.discard_hash = g_hash_table_new_full (g_str_hash, g_str_equal,
                                                    g_free, NULL);
         data.app_store = app_store;
+        data.ignored_apps = ignored_apps;
 
         /* remove old saved session */
         gsm_session_clear_saved_session (save_dir, data.discard_hash);
