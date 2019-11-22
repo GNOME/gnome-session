@@ -1910,6 +1910,11 @@ on_xsmp_client_register_confirmed (GsmXSMPClient *client,
 static gboolean
 auto_save_is_enabled (GsmManager *manager)
 {
+        /* Note that saving/restoring sessions is not really possible on systemd, as
+         * XSMP clients cannot be reliably mapped to .desktop files. */
+        if (manager->priv->systemd_managed)
+                return FALSE;
+
         return g_settings_get_boolean (manager->priv->settings, KEY_AUTOSAVE_ONE_SHOT)
             || g_settings_get_boolean (manager->priv->settings, KEY_AUTOSAVE);
 }
