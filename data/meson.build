@@ -127,8 +127,6 @@ if enable_systemd_session
                          'gnome-session-initialized.target',
                          'gnome-session-shutdown.target',
                          'gnome-session-failed.target',
-                         'gnome-session-stable.target',
-                         'gnome-session-stable.timer',
                          )
 
   install_data(
