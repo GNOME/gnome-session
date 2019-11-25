@@ -103,7 +103,9 @@ if enable_systemd_session
                      'gnome-session-signal-init.service',
                      'gnome-session-restart-dbus.service',
                      'gnome-session-monitor.service',
-                     'gnome-session-failed.service']
+                     'gnome-session-failed.service',
+                     'gnome-session-stable.service',
+                     'gnome-session-stable-delete.service']
 
   foreach service: systemd_service
     configure_file(

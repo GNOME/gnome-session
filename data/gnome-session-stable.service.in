@@ -1,0 +1,10 @@
+[Unit]
+Description=Touch gnome-session-stable flag in runtime directory
+# Note that deletion happens from gnome-session-shutdown.target
+
+Requisite=gnome-session.target
+PartOf=gnome-session.target
+
+[Service]
+Type=oneshot
+ExecStart=touch %t/gnome-session-stable

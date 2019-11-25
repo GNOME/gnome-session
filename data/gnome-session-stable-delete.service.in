@@ -1,0 +1,11 @@
+[Unit]
+Description=Remove gnome-session-stable flag from runtime directory
+# Note this is created from gnome-session-stable.target
+
+# Allow exit.target to start even if this unit is started with replace-irreversibly
+# Also put it into a slice that doesn't have such implicit dependencies
+DefaultDependencies=no
+
+[Service]
+Type=oneshot
+ExecStart=rm -f %t/gnome-session-stable

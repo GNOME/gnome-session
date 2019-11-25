@@ -30,3 +30,8 @@ StopWhenUnneeded=true
 # Historic bug: https://bugzilla.gnome.org/show_bug.cgi?id=764029
 Wants=gnome-session-restart-dbus.service
 Before=gnome-session-restart-dbus.service
+
+# We also delete the gnome-session-stable file in the runtime directory.
+# Make sure gnome-session-shutdown is reached first though.
+Wants=gnome-session-stable-delete.service
+Before=gnome-session-stable-delete.service
