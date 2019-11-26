@@ -132,8 +132,11 @@ static void
 load_standard_apps (GsmManager *manager,
                     GKeyFile   *keyfile)
 {
+        /* Note that saving/restoring sessions is not really possible on systemd, as
+         * XSMP clients cannot be reliably mapped to .desktop files. */
         g_debug ("fill: *** Adding required components");
-        handle_required_components (keyfile, !gsm_manager_get_failsafe (manager),
+        handle_required_components (keyfile,
+                                    !gsm_manager_get_failsafe (manager) && !gsm_manager_get_systemd_managed (manager),
                                     append_required_components_helper, manager);
         g_debug ("fill: *** Done adding required components");
 
@@ -143,7 +146,8 @@ load_standard_apps (GsmManager *manager,
 
                 autostart_dirs = gsm_util_get_autostart_dirs ();
 
-                maybe_load_saved_session_apps (manager);
+                if (!gsm_manager_get_systemd_managed (manager))
+                        maybe_load_saved_session_apps (manager);
 
                 for (i = 0; autostart_dirs[i]; i++) {
                         gsm_manager_add_autostart_apps_from_dir (manager,
