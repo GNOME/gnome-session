@@ -1,9 +1,0 @@
-[Unit]
-Description=Trigger shutdown of a GNOME Session
-CollectMode=inactive-or-failed
-
-PartOf=gnome-session.target
-
-[Service]
-Type=oneshot
-ExecStart=@libexecdir@/gnome-session-ctl --shutdown
