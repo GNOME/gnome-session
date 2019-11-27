@@ -133,6 +133,12 @@ if enable_systemd_session
     systemd_target,
     install_dir: systemd_userunitdir
   )
+
+  install_data(
+    'gnome-launched-override.scope.conf',
+    rename: 'override.conf',
+    install_dir : join_paths(systemd_userunitdir, 'gnome-launched-.scope.d')
+  )
 endif
 
 data = files('hardware-compatibility')
