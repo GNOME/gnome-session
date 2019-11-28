@@ -59,6 +59,9 @@ gboolean    gsm_util_start_systemd_unit             (const char  *unit,
                                                      const char  *mode,
                                                      GError     **error);
 #endif
+gboolean    gsm_util_start_systemd_scope            (const gchar *app_id,
+                                                     gint32       pid,
+                                                     GError     **error);
 
 void        gsm_quit                                (void);
 
