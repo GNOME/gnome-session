@@ -99,11 +99,12 @@ xtrans_dep = dependency('xtrans')
 ice_dep = dependency('ice')
 sm_dep = dependency('sm')
 x11_dep = dependency('x11')
+gnome_desktop_dep = dependency('gnome-desktop-3.0', version: '>= 3.34.2')
 
 session_deps = [
   gio_dep,
   glib_dep,
-  dependency('gnome-desktop-3.0', version: '>= 3.18.0'),
+  gnome_desktop_dep,
   dependency('json-glib-1.0', version: '>= 0.10')
 ]
 
@@ -171,6 +172,8 @@ config_h.set('ENABLE_SYSTEMD_SESSION', enable_systemd_session)
 config_h.set('ENABLE_SYSTEMD_JOURNAL', enable_systemd_journal)
 config_h.set('HAVE_CONSOLEKIT', enable_consolekit)
 config_h.set10('USE_SYSTEMD_SESSION', use_systemd_session)
+# Added in gnome-desktop 3.34.2/3.35.2
+config_h.set('HAVE_GNOME_SYSTEMD', cc.has_header('libgnome-desktop/gnome-systemd.h', dependencies: gnome_desktop_dep))
 
 configure_file(
   output: 'config.h',
