@@ -28,6 +28,11 @@
 #include <gio/gio.h>
 #include <gio/gdesktopappinfo.h>
 
+#ifdef HAVE_GNOME_SYSTEMD
+#define GNOME_DESKTOP_USE_UNSTABLE_API
+#include <libgnome-desktop/gnome-systemd.h>
+#endif
+
 #ifdef HAVE_SYSTEMD
 #ifdef ENABLE_SYSTEMD_JOURNAL
 #include <systemd/sd-journal.h>
@@ -960,6 +965,15 @@ app_launched (GAppLaunchContext *ctx,
         g_variant_lookup (platform_data, "startup-notification-id", "s", &sn_id);
         app->priv->pid = pid;
         app->priv->startup_id = sn_id;
+
+#ifdef HAVE_GNOME_SYSTEMD
+        /* We are not interested in the result. */
+        gnome_start_systemd_scope (app->priv->desktop_id,
+                                   pid,
+                                   NULL,
+                                   NULL,
+                                   NULL, NULL, NULL);
+#endif
 }
 
 #ifdef ENABLE_SYSTEMD_JOURNAL
