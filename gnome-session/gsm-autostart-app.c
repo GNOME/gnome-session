@@ -960,6 +960,10 @@ app_launched (GAppLaunchContext *ctx,
         g_variant_lookup (platform_data, "startup-notification-id", "s", &sn_id);
         app->priv->pid = pid;
         app->priv->startup_id = sn_id;
+
+        /* It is OK to call unconditionally as it has a custom test
+         * to check whether starting a transient unit can work. */
+        gsm_util_start_systemd_scope (g_app_info_get_id (appinfo), pid, NULL);
 }
 
 #ifdef ENABLE_SYSTEMD_JOURNAL
