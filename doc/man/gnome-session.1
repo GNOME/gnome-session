@@ -2,6 +2,7 @@
 .\" gnome-session manual page.
 .\" (C) 2000 Miguel de Icaza (miguel@helixcode.com)
 .\" (C) 2009-2010 Vincent Untz (vuntz@gnome.org)
+.\" (C) 2019 Benjamin Berg (bberg@redhat.com)
 .\"
 .TH GNOME-SESSION 1 "GNOME"
 .SH NAME
@@ -40,6 +41,14 @@ option. Multiple \fI--autostart\fP options can be passed.
 .I "--session=SESSION"
 Use the applications defined in \fBSESSION.session\fP. If not specified,
 \fBgnome.session\fP will be used.
+.TP
+.I "--builtin"
+Use the legacy non-systemd method of managing the user session. This is the
+opposite of the \fI--systemd\fP option.
+.TP
+.I "--systemd"
+Use the systemd method of managing the user session. This is the opposite of
+the \fI--builtin\fP option.
 .TP
 .I "--failsafe"
 Run in fail-safe mode. User-specified applications will not be started.
