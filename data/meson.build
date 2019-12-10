@@ -133,6 +133,12 @@ if enable_systemd_session
     systemd_target,
     install_dir: systemd_userunitdir
   )
+
+  install_data(
+    'gnome.session.conf',
+    rename: join_paths('gnome-session@gnome.target.d', 'session.conf'),
+    install_dir: systemd_userunitdir,
+  )
 endif
 
 data = files('hardware-compatibility')
