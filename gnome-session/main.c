@@ -109,11 +109,13 @@ term_or_int_signal_cb (gpointer data)
         /* let the fatal signals interrupt us */
         g_debug ("Caught SIGINT/SIGTERM, shutting down normally.");
 
-        gsm_manager_logout (manager, GSM_MANAGER_LOGOUT_MODE_FORCE, &error);
+        if (!gsm_manager_logout (manager, GSM_MANAGER_LOGOUT_MODE_FORCE, &error)) {
+                if (g_error_matches (error, GSM_MANAGER_ERROR, GSM_MANAGER_ERROR_NOT_IN_RUNNING)) {
+                    gsm_quit ();
+                    return FALSE;
+                }
 
-        if (error != NULL) {
                 g_critical ("Failed to log out: %s", error->message);
-                gsm_quit ();
         }
 
         return FALSE;
