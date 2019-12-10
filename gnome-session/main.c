@@ -103,12 +103,17 @@ on_name_lost (GDBusConnection *connection,
 static gboolean
 term_or_int_signal_cb (gpointer data)
 {
+        g_autoptr(GError) error = NULL;
         GsmManager *manager = (GsmManager *)data;
 
         /* let the fatal signals interrupt us */
         g_debug ("Caught SIGINT/SIGTERM, shutting down normally.");
 
-        gsm_manager_logout (manager, GSM_MANAGER_LOGOUT_MODE_FORCE, NULL);
+        gsm_manager_logout (manager, GSM_MANAGER_LOGOUT_MODE_FORCE, &error);
+
+        if (error != NULL) {
+                g_critical ("Failed to log out: %s", error->message);
+        }
 
         return FALSE;
 }
