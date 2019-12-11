@@ -92,13 +92,6 @@ if enable_systemd_session
   unit_conf = configuration_data()
   unit_conf.set('libexecdir', session_libexecdir)
 
-  # XXX: Once https://github.com/systemd/systemd/issues/9595 is fixed and we can
-  # depend on this version, replace with something like:
-  #  dep_systemd = dependency('systemd', required: true)
-  #  systemd_userunitdir = dep_systemd.get_pkgconfig_variable('systemduserunitdir')
-  # and uncomment systemd_dep below
-  systemd_userunitdir = join_paths(session_prefix, 'lib', 'systemd', 'user')
-
   systemd_service = ['gnome-session-manager@.service',
                      'gnome-session-signal-init.service',
                      'gnome-session-restart-dbus.service',
