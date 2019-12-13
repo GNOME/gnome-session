@@ -238,6 +238,7 @@ main (int argc, char *argv[])
         static gboolean   opt_monitor;
         static gboolean   opt_signal_init;
         static gboolean   opt_restart_dbus;
+        static gboolean   opt_exec_stop_check;
         int     conflicting_options;
         GOptionContext *ctx;
         static const GOptionEntry options[] = {
@@ -245,6 +246,7 @@ main (int argc, char *argv[])
                 { "monitor", '\0', 0, G_OPTION_ARG_NONE, &opt_monitor, N_("Start gnome-session-shutdown.target when receiving EOF or a single byte on stdin"), NULL },
                 { "signal-init", '\0', 0, G_OPTION_ARG_NONE, &opt_signal_init, N_("Signal initialization done to gnome-session"), NULL },
                 { "restart-dbus", '\0', 0, G_OPTION_ARG_NONE, &opt_restart_dbus, N_("Restart dbus.service if it is running"), NULL },
+                { "exec-stop-check", '\0', 0, G_OPTION_ARG_NONE, &opt_exec_stop_check, N_("Run from ExecStopPost to start gnome-session-failed.target on service failure"), NULL },
                 { NULL },
         };
 
@@ -271,6 +273,8 @@ main (int argc, char *argv[])
                 conflicting_options++;
         if (opt_restart_dbus)
                 conflicting_options++;
+        if (opt_exec_stop_check)
+                conflicting_options++;
         if (conflicting_options != 1) {
                 g_printerr (_("Program needs exactly one parameter"));
                 exit (1);
@@ -287,6 +291,11 @@ main (int argc, char *argv[])
         } else if (opt_monitor) {
                 do_monitor_leader ();
                 do_start_unit ("gnome-session-shutdown.target", "replace-irreversibly");
+        } else if (opt_exec_stop_check) {
+                /* Start failed target if the restart limit was hit */
+                if (g_strcmp0 ("start-limit-hit", g_getenv ("SERVICE_RESULT")) == 0) {
+                        do_start_unit ("gnome-session-failed.target", "fail");
+                }
        } else {
                 g_assert_not_reached ();
         }
