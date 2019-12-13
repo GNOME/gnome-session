@@ -290,6 +290,19 @@
       </doc:doc>
     </method>
 
+    <method name="RebootToUpdate">
+      <arg type="a{sv}" direction="in" name="options">
+        <doc:doc>
+          <doc:summary>Allows the caller to change how updates are presented in the shutdown dialog</doc:summary>
+        </doc:doc>
+      </arg>
+      <doc:doc>
+        <doc:description>
+          <doc:para>Request a reboot dialog for installing updates.</doc:para>
+        </doc:description>
+      </doc:doc>
+    </method>
+
     <method name="CanShutdown">
       <arg name="is_available" direction="out" type="b">
         <doc:doc>

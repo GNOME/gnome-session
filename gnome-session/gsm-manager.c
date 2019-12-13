@@ -118,6 +118,7 @@ typedef enum
         GSM_MANAGER_LOGOUT_LOGOUT,
         GSM_MANAGER_LOGOUT_REBOOT,
         GSM_MANAGER_LOGOUT_REBOOT_INTERACT,
+        GSM_MANAGER_LOGOUT_REBOOT_TO_UPDATE,
         GSM_MANAGER_LOGOUT_SHUTDOWN,
         GSM_MANAGER_LOGOUT_SHUTDOWN_INTERACT,
 } GsmManagerLogoutType;
@@ -171,6 +172,7 @@ struct GsmManagerPrivate
         gboolean                dbus_disconnected : 1;
 
         GsmShell               *shell;
+        GVariant               *shell_end_session_dialog_options;
         guint                   shell_end_session_dialog_canceled_id;
         guint                   shell_end_session_dialog_open_failed_id;
         guint                   shell_end_session_dialog_confirmed_logout_id;
@@ -209,7 +211,8 @@ static void     _handle_client_end_session_response (GsmManager *manager,
                                                      gboolean    cancel,
                                                      const char *reason);
 static void     show_shell_end_session_dialog (GsmManager                   *manager,
-                                               GsmShellEndSessionDialogType  type);
+                                               GsmShellEndSessionDialogType  type,
+                                               GVariant                     *options);
 static gpointer manager_object = NULL;
 
 G_DEFINE_TYPE (GsmManager, gsm_manager, G_TYPE_OBJECT)
@@ -491,6 +494,7 @@ gsm_manager_quit (GsmManager *manager)
                 break;
         case GSM_MANAGER_LOGOUT_REBOOT:
         case GSM_MANAGER_LOGOUT_REBOOT_INTERACT:
+        case GSM_MANAGER_LOGOUT_REBOOT_TO_UPDATE:
                 gsm_system_complete_shutdown (manager->priv->system);
                 gsm_quit ();
                 break;
@@ -1164,6 +1168,9 @@ end_session_or_show_shell_dialog (GsmManager *manager)
         case GSM_MANAGER_LOGOUT_REBOOT_INTERACT:
                 type = GSM_SHELL_END_SESSION_DIALOG_TYPE_RESTART;
                 break;
+        case GSM_MANAGER_LOGOUT_REBOOT_TO_UPDATE:
+                type = GSM_SHELL_END_SESSION_DIALOG_TYPE_RESTART_TO_UPDATE;
+                break;
         case GSM_MANAGER_LOGOUT_SHUTDOWN:
         case GSM_MANAGER_LOGOUT_SHUTDOWN_INTERACT:
                 type = GSM_SHELL_END_SESSION_DIALOG_TYPE_SHUTDOWN;
@@ -1182,7 +1189,7 @@ end_session_or_show_shell_dialog (GsmManager *manager)
         switch (manager->priv->logout_mode) {
         case GSM_MANAGER_LOGOUT_MODE_NORMAL:
                 if (logout_inhibited || logout_prompt) {
-                        show_shell_end_session_dialog (manager, type);
+                        show_shell_end_session_dialog (manager, type, manager->priv->shell_end_session_dialog_options);
                 } else {
                         end_phase (manager);
                 }
@@ -1190,7 +1197,7 @@ end_session_or_show_shell_dialog (GsmManager *manager)
 
         case GSM_MANAGER_LOGOUT_MODE_NO_CONFIRMATION:
                 if (logout_inhibited) {
-                        show_shell_end_session_dialog (manager, type);
+                        show_shell_end_session_dialog (manager, type, manager->priv->shell_end_session_dialog_options);
                 } else {
                         end_phase (manager);
                 }
@@ -2369,6 +2376,7 @@ gsm_manager_dispose (GObject *object)
         g_clear_object (&manager->priv->lockdown_settings);
         g_clear_object (&manager->priv->system);
         g_clear_object (&manager->priv->shell);
+        g_clear_pointer (&manager->priv->shell_end_session_dialog_options, g_variant_unref);
 
         if (manager->priv->skeleton != NULL) {
                 g_dbus_interface_skeleton_unexport_from_connection (G_DBUS_INTERFACE_SKELETON (manager->priv->skeleton),
@@ -2516,6 +2524,21 @@ request_reboot (GsmManager *manager)
 }
 
 static void
+request_reboot_to_update (GsmManager *manager, GVariant *options)
+{
+        g_debug ("GsmManager: requesting reboot to update");
+
+        /* See the comment in request_reboot() for some more details about
+         * what work needs to be done here. */
+        manager->priv->logout_type = GSM_MANAGER_LOGOUT_REBOOT_TO_UPDATE;
+
+        g_clear_pointer (&manager->priv->shell_end_session_dialog_options, g_variant_unref);
+        manager->priv->shell_end_session_dialog_options = g_variant_ref (options);
+
+        end_phase (manager);
+}
+
+static void
 request_shutdown (GsmManager *manager)
 {
         g_debug ("GsmManager: requesting shutdown");
@@ -2604,6 +2627,42 @@ gsm_manager_reboot (GsmExportedManager    *skeleton,
                                                                     task);
 
         request_reboot (manager);
+
+        return TRUE;
+}
+
+static gboolean
+gsm_manager_reboot_to_update (GsmExportedManager    *skeleton,
+                              GDBusMethodInvocation *invocation,
+                              GVariant              *options,
+                              GsmManager            *manager)
+{
+        GTask *task;
+
+        g_debug ("GsmManager: RebootToUpdate called");
+
+        if (manager->priv->phase < GSM_MANAGER_PHASE_RUNNING) {
+                g_dbus_method_invocation_return_error (invocation,
+                                                       GSM_MANAGER_ERROR,
+                                                       GSM_MANAGER_ERROR_NOT_IN_RUNNING,
+                                                       "RebootToUpdate interface is only available after the Running phase starts");
+                return TRUE;
+        }
+
+        if (_log_out_is_locked_down (manager)) {
+                g_dbus_method_invocation_return_error (invocation,
+                                                       GSM_MANAGER_ERROR,
+                                                       GSM_MANAGER_ERROR_LOCKED_DOWN,
+                                                       "Logout has been locked down");
+                return TRUE;
+        }
+
+        task = g_task_new (manager, manager->priv->end_session_cancellable, (GAsyncReadyCallback) complete_end_session_task, invocation);
+
+        manager->priv->pending_end_session_tasks = g_slist_prepend (manager->priv->pending_end_session_tasks,
+                                                                    task);
+
+        request_reboot_to_update (manager, options);
 
         return TRUE;
 }
@@ -3307,6 +3366,8 @@ register_manager (GsmManager *manager)
                           G_CALLBACK (gsm_manager_logout_dbus), manager);
         g_signal_connect (skeleton, "handle-reboot",
                           G_CALLBACK (gsm_manager_reboot), manager);
+        g_signal_connect (skeleton, "handle-reboot-to-update",
+                          G_CALLBACK (gsm_manager_reboot_to_update), manager);
         g_signal_connect (skeleton, "handle-register-client",
                           G_CALLBACK (gsm_manager_register_client), manager);
         g_signal_connect (skeleton, "handle-set-reboot-to-firmware-setup",
@@ -3556,14 +3617,16 @@ connect_shell_dialog_signals (GsmManager *manager)
 
 static void
 show_shell_end_session_dialog (GsmManager                   *manager,
-                               GsmShellEndSessionDialogType  type)
+                               GsmShellEndSessionDialogType  type,
+                               GVariant                     *options)
 {
         if (!gsm_shell_is_running (manager->priv->shell))
                 return;
 
         gsm_shell_open_end_session_dialog (manager->priv->shell,
                                            type,
-                                           manager->priv->inhibitors);
+                                           manager->priv->inhibitors,
+                                           options);
         connect_shell_dialog_signals (manager);
 }
 

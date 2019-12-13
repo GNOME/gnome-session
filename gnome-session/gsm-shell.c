@@ -51,6 +51,7 @@ struct _GsmShellPrivate
 
         gboolean         dialog_is_open;
         GsmShellEndSessionDialogType end_session_dialog_type;
+        GVariant        *end_session_dialog_options;
 
         guint            update_idle_id;
         guint            watch_id;
@@ -236,6 +237,8 @@ gsm_shell_finalize (GObject *object)
 
         g_object_unref (shell->priv->inhibitors);
 
+        g_clear_pointer (&shell->priv->end_session_dialog_options, g_variant_unref);
+
         if (shell->priv->watch_id != 0) {
                 g_bus_unwatch_name (shell->priv->watch_id);
                 shell->priv->watch_id = 0;
@@ -398,7 +401,8 @@ on_need_end_session_dialog_update (GsmShell *shell)
 
         gsm_shell_open_end_session_dialog (shell,
                                            shell->priv->end_session_dialog_type,
-                                           shell->priv->inhibitors);
+                                           shell->priv->inhibitors,
+                                           shell->priv->end_session_dialog_options);
         return FALSE;
 }
 
@@ -415,7 +419,8 @@ queue_end_session_dialog_update (GsmShell *shell)
 gboolean
 gsm_shell_open_end_session_dialog (GsmShell *shell,
                                    GsmShellEndSessionDialogType type,
-                                   GsmStore *inhibitors)
+                                   GsmStore *inhibitors,
+                                   GVariant *options)
 {
         GDBusProxy *proxy;
         GError *error;
@@ -487,6 +492,9 @@ gsm_shell_open_end_session_dialog (GsmShell *shell,
 
         shell->priv->dialog_is_open = TRUE;
         shell->priv->end_session_dialog_type = type;
+
+        g_clear_pointer (&shell->priv->end_session_dialog_options, g_variant_unref);
+        shell->priv->end_session_dialog_options = g_variant_ref (options);
 
         return TRUE;
 }

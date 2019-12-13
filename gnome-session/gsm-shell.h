@@ -46,6 +46,7 @@ typedef enum
     GSM_SHELL_END_SESSION_DIALOG_TYPE_LOGOUT = 0,
     GSM_SHELL_END_SESSION_DIALOG_TYPE_SHUTDOWN,
     GSM_SHELL_END_SESSION_DIALOG_TYPE_RESTART,
+    GSM_SHELL_END_SESSION_DIALOG_TYPE_RESTART_TO_UPDATE,
 } GsmShellEndSessionDialogType;
 
 struct _GsmShell
@@ -79,7 +80,8 @@ gboolean         gsm_shell_is_running         (GsmShell *shell);
 
 gboolean         gsm_shell_open_end_session_dialog (GsmShell *shell,
                                                     GsmShellEndSessionDialogType type,
-                                                    GsmStore *inhibitors);
+                                                    GsmStore *inhibitors,
+                                                    GVariant *options);
 void             gsm_shell_close_end_session_dialog (GsmShell *shell);
 
 G_END_DECLS
