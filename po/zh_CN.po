@@ -1,5 +1,5 @@
 # Chinese (China) translation of gnome-session.
-# Copyright (C) 2009-2018 gnome-session'S COPYRIGHT HOLDER
+# Copyright (C) 2009-2019 gnome-session'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-session package.
 # Dillion Chen <dillon.chen@turbolinux.com.cn>
 # Updated and QA by Wang Jian <lark@linux.net.cn>
@@ -15,14 +15,14 @@
 # Wylmer Wang <wantinghard@gmail.com>, 2013.
 # Tong Hui <tonghuix@gmail.com>, 2015.
 # Mingcong Bai <jeffbai@aosc.io>, 2018.
-# Dingzhong Chen <wsxy162@gmail.com>, 2018.
+# Dingzhong Chen <wsxy162@gmail.com>, 2018-2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2018-09-02 19:30+0000\n"
-"PO-Revision-Date: 2018-09-05 18:13+0800\n"
+"POT-Creation-Date: 2019-12-16 13:18+0000\n"
+"PO-Revision-Date: 2019-09-10 02:31+0800\n"
 "Last-Translator: Dingzhong Chen <wsxy162@gmail.com>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -30,7 +30,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Gtranslator 2.91.7\n"
+"X-Generator: Gtranslator 3.32.1\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -41,10 +41,12 @@ msgid "This entry lets you select a saved session"
 msgstr "此项允许您选择一个已保存的会话"
 
 #: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
+#: data/gnome-wayland.desktop.in.in:3
 msgid "GNOME"
 msgstr "GNOME"
 
-#: data/gnome.desktop.in.in:4 data/gnome-xorg.desktop.in.in:4
+#: data/gnome.desktop.in.in:4 data/gnome-wayland.desktop.in.in:4
+#: data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
 msgstr "此会话将让您登录到 GNOME"
 
@@ -146,7 +148,7 @@ msgstr "系统出错并无法恢复，请尝试注销并重新登录。"
 msgid "_Log Out"
 msgstr "注销(_L)"
 
-#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:279
+#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:404
 msgid "Enable debugging code"
 msgstr "启用调试代码"
 
@@ -158,12 +160,12 @@ msgstr "允许注销"
 msgid "Show extension warning"
 msgstr "显示扩展警告"
 
-#: gnome-session/gsm-manager.c:1266 gnome-session/gsm-manager.c:1919
+#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1999
 msgid "Not responding"
 msgstr "无响应"
 
 # gsm/logout.c:248
-#: gnome-session/gsm-util.c:382
+#: gnome-session/gsm-util.c:414
 msgid "_Log out"
 msgstr "注销(_L)"
 
@@ -190,42 +192,76 @@ msgstr "拒绝新客户连接，原因是会话正在关闭\n"
 msgid "Could not create ICE listening socket: %s"
 msgstr "无法创建 ICE 监听套接字：%s"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:398
+msgid "Running as systemd service"
+msgstr "以 systemd 服务运行"
+
+#: gnome-session/main.c:399
+msgid "Use systemd session management"
+msgstr "使用 systemd 会话管理"
+
+#: gnome-session/main.c:401
+msgid "Use builtin session management (rather than the systemd based one)"
+msgstr "使用内建的会话管理（不基于 systemd 的实现）"
+
+#: gnome-session/main.c:402
 msgid "Override standard autostart directories"
 msgstr "取代默认的自动启动目录"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:402
 msgid "AUTOSTART_DIR"
 msgstr "自动启动目录"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:403
 msgid "Session to use"
 msgstr "要使用的会话"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:403
 msgid "SESSION_NAME"
 msgstr "会话名称"
 
-#: gnome-session/main.c:280
+#: gnome-session/main.c:405
 msgid "Do not load user-specified applications"
 msgstr "不装入用户指定的应用程序"
 
-#: gnome-session/main.c:281
+#: gnome-session/main.c:406
 msgid "Version of this application"
 msgstr "此应用程序的版本"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:283
+#: gnome-session/main.c:408
 msgid "Show the fail whale dialog for testing"
 msgstr "显示用于测试的鲸鱼失败对话框"
 
-#: gnome-session/main.c:284
+#: gnome-session/main.c:409
 msgid "Disable hardware acceleration check"
 msgstr "禁用硬件加速检测"
 
-#: gnome-session/main.c:316
+#: gnome-session/main.c:441
 msgid " — the GNOME session manager"
-msgstr "- GNOME 会话管理器"
+msgstr " — GNOME 会话管理器"
+
+#: tools/gnome-session-ctl.c:244
+msgid "Start gnome-session-shutdown.target"
+msgstr "启动 gnome-session-shutdown.target"
+
+#: tools/gnome-session-ctl.c:245
+msgid ""
+"Start gnome-session-shutdown.target when receiving EOF or a single byte on "
+"stdin"
+msgstr "当在 stdin 收到 EOF 或一个字节时启动 gnome-session-shutdown.target"
+
+#: tools/gnome-session-ctl.c:246
+msgid "Signal initialization done to gnome-session"
+msgstr "gnome-session 已完成信号初始化"
+
+#: tools/gnome-session-ctl.c:247
+msgid "Restart dbus.service if it is running"
+msgstr "如果 dbus.service 正在运行则重启它"
+
+#: tools/gnome-session-ctl.c:275
+msgid "Program needs exactly one parameter"
+msgstr "程序需要一个参数"
 
 #: tools/gnome-session-inhibit.c:108
 #, c-format
@@ -437,9 +473,6 @@ msgstr "名为“%s”的会话已存在"
 
 #~ msgid "FILE"
 #~ msgstr "文件"
-
-#~ msgid "Specify session management ID"
-#~ msgstr "指定会话管理 ID"
 
 #~ msgid "ID"
 #~ msgstr "ID"
