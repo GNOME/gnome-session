@@ -1,5 +1,5 @@
 # gnome-session ja.po.
-# Copyright (C) 1998-2012 Free Software Foundation, Inc.
+# Copyright (C) 1998-2015, 2019-2020 Free Software Foundation, Inc.
 # Yukihiro Nakai <Nakai@abricot.co.jp>, 1998.
 # Yasuyuki Furukawa <yasu@on.cs.keio.ac.jp>, 1999.
 # Eiichiro ITANI <emu@ceres.dti.ne.jp>, 1999.
@@ -15,14 +15,14 @@
 # Hideki Yamane <henrich@debian.org>, 2011, 2012.
 # Noriko Mizumoto <noriko@fedoraproject.org>, 2012.
 # Hajime Taira <htaira@redhat.com>, 2015.
-# sicklylife <translation@sicklylife.jp>, 2019.
+# sicklylife <translation@sicklylife.jp>, 2019-2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
 "POT-Creation-Date: 2019-09-25 11:15+0000\n"
-"PO-Revision-Date: 2019-01-30 20:43+0900\n"
+"PO-Revision-Date: 2020-01-20 00:00+0900\n"
 "Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
@@ -197,7 +197,7 @@ msgstr "ICE の監視ソケットを生成できませんでした: %s"
 
 #: gnome-session/main.c:390
 msgid "Running as systemd service"
-msgstr ""
+msgstr "systemd のサービスとして実行する"
 
 #: gnome-session/main.c:391
 msgid "Use systemd session management"
@@ -246,13 +246,14 @@ msgstr " — GNOME セッションマネージャー"
 
 #: tools/gnome-session-ctl.c:244
 msgid "Start gnome-session-shutdown.target"
-msgstr ""
+msgstr "gnome-session-shutdown.target を実行する"
 
 #: tools/gnome-session-ctl.c:245
 msgid ""
 "Start gnome-session-shutdown.target when receiving EOF or a single byte on "
 "stdin"
 msgstr ""
+"stdin でシングルバイトまたは EOF を受け取ったら gnome-session-shutdown.target を実行する"
 
 #: tools/gnome-session-ctl.c:246
 msgid "Signal initialization done to gnome-session"
@@ -260,11 +261,11 @@ msgstr ""
 
 #: tools/gnome-session-ctl.c:247
 msgid "Restart dbus.service if it is running"
-msgstr ""
+msgstr "dbus.service を再起動する (実行中の場合)"
 
 #: tools/gnome-session-ctl.c:275
 msgid "Program needs exactly one parameter"
-msgstr ""
+msgstr "引数を一つだけ指定してください"
 
 #: tools/gnome-session-inhibit.c:108
 #, c-format
