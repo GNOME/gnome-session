@@ -551,6 +551,16 @@ main (int argc, char **argv)
                         session_name = _gsm_manager_get_default_session (NULL);
                 }
 
+                /* Reset all failed units; we are going to start a lof ot things and
+                 * really do not want to run into errors because units have failed
+                 * in a previous session
+                 */
+                gsm_util_systemd_reset_failed (&error);
+                if (error) {
+                        g_warning ("Failed to reset failed state of units: %s", error->message);
+                        g_clear_error (&error);
+                }
+
                 /* We don't escape the name (i.e. we leave any '-' intact). */
                 gnome_session_target = g_strdup_printf ("gnome-session-%s@%s.target", session_type, session_name);
                 if (gsm_util_start_systemd_unit (gnome_session_target, "fail", &error)) {
