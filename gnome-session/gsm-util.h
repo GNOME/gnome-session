@@ -58,6 +58,8 @@ gboolean    gsm_util_export_user_environment        (GError     **error);
 gboolean    gsm_util_start_systemd_unit             (const char  *unit,
                                                      const char  *mode,
                                                      GError     **error);
+gboolean    gsm_util_systemd_reset_failed           (GError     **error);
+
 #endif
 
 void        gsm_quit                                (void);
