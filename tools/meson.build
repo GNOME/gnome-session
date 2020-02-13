@@ -18,6 +18,7 @@ programs = [
 
 if enable_systemd_session
   programs += [['gnome-session-ctl', session_bin_deps, cflags, session_libexecdir]]
+  programs += [['gnome-session-config-generator', session_bin_deps, cflags, systemd_usergeneratordir]]
 endif
 
 if enable_session_selector
