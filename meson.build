@@ -133,6 +133,8 @@ if enable_systemd or enable_consolekit
     systemd_dep = dependency('systemd', version: '>= 242', required: true)
     systemd_userunitdir = systemd_dep.get_pkgconfig_variable('systemduserunitdir',
                                                              define_variable: ['prefix', prefix])
+    systemd_usergeneratordir = systemd_dep.get_pkgconfig_variable('systemdusergeneratordir',
+                                                                  define_variable: ['prefix', prefix])
 
     libsystemd_dep = dependency('libsystemd', version: '>= 209', required: false)
     session_bin_deps += libsystemd_dep
