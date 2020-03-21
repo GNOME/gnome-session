@@ -64,6 +64,7 @@ static const char * const variable_unsetlist[] = {
     "WAYLAND_DISPLAY",
     "WAYLAND_SOCKET",
     "GNOME_SHELL_SESSION_MODE",
+    "GNOME_SETUP_DISPLAY",
     NULL
 };
 
