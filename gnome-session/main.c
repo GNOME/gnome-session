@@ -599,6 +599,10 @@ main (int argc, char **argv)
 
         gsm_main ();
 
+#ifdef HAVE_SYSTEMD
+        gsm_util_export_user_environment (NULL);
+#endif
+
         g_clear_object (&manager);
         g_free (gl_renderer);
 
