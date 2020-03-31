@@ -1,8 +1,5 @@
 [Unit]
 Description=GNOME X11 Session
-# On X11, try to show the fail screen
-OnFailure=gnome-session-failed.target
-OnFailureJobMode=replace
 # Avoid default After/Before rules
 DefaultDependencies=no
 
