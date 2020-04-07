@@ -206,16 +206,8 @@ gsm_util_get_saved_session_dir (void)
         return _saved_session_dir;
 }
 
-static char ** autostart_dirs;
-
-void
-gsm_util_set_autostart_dirs (char ** dirs)
-{
-        autostart_dirs = g_strdupv (dirs);
-}
-
-static char **
-gsm_util_get_standard_autostart_dirs (void)
+char **
+gsm_util_get_autostart_dirs ()
 {
         GPtrArray          *dirs;
         const char * const *system_config_dirs;
@@ -245,16 +237,6 @@ gsm_util_get_standard_autostart_dirs (void)
         g_ptr_array_add (dirs, NULL);
 
         return (char **) g_ptr_array_free (dirs, FALSE);
-}
-
-char **
-gsm_util_get_autostart_dirs ()
-{
-        if (autostart_dirs) {
-                return g_strdupv ((char **)autostart_dirs);
-        }
-
-        return gsm_util_get_standard_autostart_dirs ();
 }
 
 char **
@@ -290,7 +272,6 @@ gsm_util_get_desktop_dirs (gboolean include_saved_session,
 {
         char **apps;
         char **autostart;
-        char **standard_autostart;
         char **result;
         int    size;
         int    i;
@@ -298,18 +279,9 @@ gsm_util_get_desktop_dirs (gboolean include_saved_session,
         apps = gsm_util_get_app_dirs ();
         autostart = gsm_util_get_autostart_dirs ();
 
-        /* Still, check the standard autostart dirs for things like fulfilling session reqs,
-         * if using a non-standard autostart dir for autostarting */
-        if (autostart_dirs != NULL)
-                standard_autostart = gsm_util_get_standard_autostart_dirs ();
-        else
-                standard_autostart = NULL;
-
         size = 0;
         for (i = 0; apps[i] != NULL; i++) { size++; }
         for (i = 0; autostart[i] != NULL; i++) { size++; }
-        if (autostart_dirs != NULL)
-                for (i = 0; standard_autostart[i] != NULL; i++) { size++; }
         if (include_saved_session)
                 size += 1;
 
@@ -324,22 +296,12 @@ gsm_util_get_desktop_dirs (gboolean include_saved_session,
                 for (i = 0; autostart[i] != NULL; i++, size++) {
                         result[size] = autostart[i];
                 }
-                if (standard_autostart != NULL) {
-                        for (i = 0; standard_autostart[i] != NULL; i++, size++) {
-                                result[size] = standard_autostart[i];
-                        }
-                }
                 for (i = 0; apps[i] != NULL; i++, size++) {
                         result[size] = apps[i];
                 }
         } else {
                 for (i = 0; apps[i] != NULL; i++, size++) {
                         result[size] = apps[i];
-                }
-                if (standard_autostart != NULL) {
-                        for (i = 0; standard_autostart[i] != NULL; i++, size++) {
-                                result[size] = standard_autostart[i];
-                        }
                 }
                 for (i = 0; autostart[i] != NULL; i++, size++) {
                         result[size] = autostart[i];
@@ -351,7 +313,6 @@ gsm_util_get_desktop_dirs (gboolean include_saved_session,
 
         g_free (apps);
         g_free (autostart);
-        g_free (standard_autostart);
 
         result[size] = NULL;
 
