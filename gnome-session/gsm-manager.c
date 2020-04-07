@@ -3759,7 +3759,8 @@ gsm_manager_add_required_app (GsmManager *manager,
 
 gboolean
 gsm_manager_add_autostart_apps_from_dir (GsmManager *manager,
-                                         const char *path)
+                                         const char *path,
+                                         const char * const *whitelist)
 {
         GDir       *dir;
         const char *name;
@@ -3776,9 +3777,17 @@ gsm_manager_add_autostart_apps_from_dir (GsmManager *manager,
 
         while ((name = g_dir_read_name (dir))) {
                 char *desktop_file;
+                g_autofree char *app_id = NULL;
 
                 if (!g_str_has_suffix (name, ".desktop")) {
                         continue;
+                }
+
+                if (whitelist) {
+                        /* Remove .desktop suffix */
+                        app_id = g_strndup (name, strlen(name) - 8);
+                        if (!g_strv_contains (whitelist, app_id))
+                                continue;
                 }
 
                 desktop_file = g_build_filename (path, name, NULL);
