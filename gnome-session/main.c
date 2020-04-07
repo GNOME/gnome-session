@@ -388,8 +388,6 @@ main (int argc, char **argv)
         static char     **override_autostart_dirs = NULL;
         static char      *opt_session_name = NULL;
         const char       *debug_string = NULL;
-        const char       *env_override_autostart_dirs = NULL;
-        g_auto(GStrv)     env_override_autostart_dirs_v = NULL;
         gboolean          gl_failed = FALSE;
         guint             name_owner_id;
         GOptionContext   *options;
@@ -399,7 +397,7 @@ main (int argc, char **argv)
                 { "systemd", 0, 0, G_OPTION_ARG_NONE, &use_systemd, N_("Use systemd session management"), NULL },
 #endif
                 { "builtin", 0, G_OPTION_FLAG_REVERSE, G_OPTION_ARG_NONE, &use_systemd, N_("Use builtin session management (rather than the systemd based one)"), NULL },
-                { "autostart", 'a', 0, G_OPTION_ARG_STRING_ARRAY, &override_autostart_dirs, N_("Override standard autostart directories"), N_("AUTOSTART_DIR") },
+                { "autostart", 'a', 0, G_OPTION_ARG_STRING_ARRAY, &override_autostart_dirs, N_("Ignored, use AutostartWhitelist in session file instead"), N_("AUTOSTART_DIR") },
                 { "session", 0, 0, G_OPTION_ARG_STRING, &opt_session_name, N_("Session to use"), N_("SESSION_NAME") },
                 { "debug", 0, 0, G_OPTION_ARG_NONE, &debug, N_("Enable debugging code"), NULL },
                 { "failsafe", 'f', 0, G_OPTION_ARG_NONE, &failsafe, N_("Do not load user-specified applications"), NULL },
@@ -510,23 +508,6 @@ main (int argc, char **argv)
                 gsm_fail_whale_dialog_we_failed (TRUE, TRUE, NULL);
                 gsm_main ();
                 exit (1);
-        }
-
-        env_override_autostart_dirs = g_getenv ("GNOME_SESSION_AUTOSTART_DIR");
-
-        if (env_override_autostart_dirs != NULL && env_override_autostart_dirs[0] != '\0') {
-                env_override_autostart_dirs_v = g_strsplit (env_override_autostart_dirs, ":", 0);
-                gsm_util_set_autostart_dirs (env_override_autostart_dirs_v);
-        } else {
-                gsm_util_set_autostart_dirs (override_autostart_dirs);
-
-                /* Export the override autostart dirs parameter to the environment
-                 * in case we are running on systemd. */
-                if (override_autostart_dirs) {
-                        g_autofree char *autostart_dirs = NULL;
-                        autostart_dirs = g_strjoinv (":", override_autostart_dirs);
-                        g_setenv ("GNOME_SESSION_AUTOSTART_DIR", autostart_dirs, TRUE);
-                }
         }
 
         gsm_util_export_activation_environment (NULL);
