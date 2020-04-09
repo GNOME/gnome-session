@@ -101,7 +101,7 @@ if enable_systemd_session
 
   systemd_service = ['gnome-session-manager@.service',
                      'gnome-session-signal-init.service',
-                     'gnome-session-restart-dbus.service',
+                     'gnome-session-post-shutdown.service',
                      'gnome-session-monitor.service',
                      'gnome-session-failed.service']
 

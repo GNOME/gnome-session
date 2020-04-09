@@ -28,5 +28,5 @@ StopWhenUnneeded=true
 # This should be removed when the relevant services add a
 # PartOf=graphical-session.target
 # Historic bug: https://bugzilla.gnome.org/show_bug.cgi?id=764029
-Wants=gnome-session-restart-dbus.service
-Before=gnome-session-restart-dbus.service
+Wants=gnome-session-post-shutdown.service
+Before=gnome-session-post-shutdown.service
