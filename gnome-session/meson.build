@@ -21,6 +21,7 @@ libgsmutil = static_library(
 sources = files(
   'gsm-app.c',
   'gsm-autostart-app.c',
+  'gsm-autostart-condition.c',
   'gsm-client.c',
   'gsm-dbus-client.c',
   'gsm-fail-whale.c',
