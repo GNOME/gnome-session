@@ -1,0 +1,9 @@
+[Unit]
+Description=GNOME autostart condition monitoring
+
+BindsTo=gnome-session.target
+
+[Service]
+Type=simple
+ExecStart=@bindir@/gnome-session-autostart-condition --monitor
+Restart=always
