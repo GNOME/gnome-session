@@ -194,7 +194,7 @@ do_monitor_leader (void)
         fifo_name = g_strdup_printf ("%s/gnome-session-leader-fifo",
                                      g_get_user_runtime_dir ());
         res = mkfifo (fifo_name, 0666);
-        if (res < 0 && errno != -EEXIST)
+        if (res < 0 && errno != EEXIST)
                 g_warning ("Error creating FIFO: %m");
 
         data.fifo_fd = g_open (fifo_name, O_RDONLY | O_CLOEXEC, 0666);
