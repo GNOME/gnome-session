@@ -44,6 +44,23 @@
 #define SYSTEMD_PATH_DBUS       "/org/freedesktop/systemd1"
 #define SYSTEMD_INTERFACE_DBUS  "org.freedesktop.systemd1.Manager"
 
+/* The following is copied from GDMs spawn_session function.
+ *
+ * Environment variables listed here will be copied into the user's service
+ * environments if they are set in gnome-session's environment. We unset them
+ * at logout time again. This is to protect against environment variables
+ * leaking into new sessions (e.g. when switching from classic to
+ * default GNOME $GNOME_SHELL_SESSION_MODE will become unset).
+ */
+static const char * const variable_unsetlist[] = {
+    "DISPLAY",
+    "XAUTHORITY",
+    "WAYLAND_DISPLAY",
+    "WAYLAND_SOCKET",
+    "GNOME_SHELL_SESSION_MODE",
+    NULL
+};
+
 static GDBusConnection *
 get_session_bus (void)
 {
@@ -113,6 +130,42 @@ do_start_unit (const gchar *unit, const char *mode)
 }
 
 static void
+do_unset_systemd_env (void)
+{
+        g_autoptr(GDBusConnection) connection = NULL;
+        g_autoptr(GVariant) reply = NULL;
+        g_autoptr(GError) error = NULL;
+        GVariantBuilder builder;
+        gint i;
+
+        connection = get_session_bus ();
+        if (connection == NULL)
+                return;
+
+        g_variant_builder_init (&builder, G_VARIANT_TYPE ("(as)"));
+        g_variant_builder_open (&builder, G_VARIANT_TYPE ("as"));
+        for (i = 0; variable_unsetlist[i] != NULL; i++) {
+                g_variant_builder_add (&builder, "s", variable_unsetlist[i]);
+        }
+        g_variant_builder_close (&builder);
+
+        reply = g_dbus_connection_call_sync (connection,
+                                             SYSTEMD_DBUS,
+                                             SYSTEMD_PATH_DBUS,
+                                             SYSTEMD_INTERFACE_DBUS,
+                                             "UnsetEnvironment",
+                                             g_variant_builder_end (&builder),
+                                             NULL,
+                                             G_DBUS_CALL_FLAGS_NO_AUTO_START,
+                                             -1, NULL, &error);
+
+        if (error != NULL) {
+                g_warning ("Failed to unset systemd environment: %s",
+                           error->message);
+        }
+}
+
+static void
 do_restart_dbus (void)
 {
         g_autoptr(GDBusConnection) connection = NULL;
@@ -150,7 +203,7 @@ leader_term_or_int_signal_cb (gpointer user_data)
 {
         MonitorLeader *data = (MonitorLeader*) user_data;
 
-        g_main_quit (data->loop);
+        g_main_loop_quit (data->loop);
 
         return G_SOURCE_REMOVE;
 }
@@ -281,6 +334,7 @@ main (int argc, char *argv[])
         if (opt_signal_init) {
                 do_signal_init ();
         } else if (opt_restart_dbus) {
+                do_unset_systemd_env ();
                 do_restart_dbus ();
         } else if (opt_shutdown) {
                 do_start_unit ("gnome-session-shutdown.target", "replace-irreversibly");
