@@ -37,15 +37,10 @@ static gchar **child_environment;
 
 /* These are variables that will not be passed on to subprocesses
  * (either directly, via systemd or DBus).
- * Some of these are blacklisted as they might end up in the wrong session
- * (e.g. XDG_VTNR), others because they simply must never be passed on
- * (NOTIFY_SOCKET).
+ * Some of these simply must never be passed on (NOTIFY_SOCKET).
  */
 static const char * const variable_blacklist[] = {
     "NOTIFY_SOCKET",
-    "XDG_SEAT",
-    "XDG_SESSION_ID",
-    "XDG_VTNR",
     NULL
 };
 
