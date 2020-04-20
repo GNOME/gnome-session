@@ -36,13 +36,19 @@ static gchar *_saved_session_dir = NULL;
 static gchar **child_environment;
 
 /* These are variables that will not be passed on to subprocesses
- * (either directly, via systemd or DBus).
- * Some of these are blacklisted as they might end up in the wrong session
- * (e.g. XDG_VTNR), others because they simply must never be passed on
- * (NOTIFY_SOCKET).
+ * (either directly, via systemd or DBus) because they simply must never be
+ * (passed on NOTIFY_SOCKET).
  */
 static const char * const variable_blacklist[] = {
     "NOTIFY_SOCKET",
+    NULL
+};
+
+/* These are variables that will not be passed on to subprocesses via systemd
+ * or DBus, as they might end up in the wrong session
+ * (e.g. XDG_SESSION_ID).
+ */
+static const char * const variable_noremote[] = {
     "XDG_SEAT",
     "XDG_SESSION_ID",
     "XDG_VTNR",
@@ -566,6 +572,9 @@ gsm_util_export_activation_environment (GError     **error)
                 const char *entry_value = g_getenv (entry_name);
 
                 if (g_strv_contains (variable_blacklist, entry_name))
+                    continue;
+
+                if (g_strv_contains (variable_noremote, entry_name))
                     continue;
 
                 if (!g_utf8_validate (entry_name, -1, NULL))
