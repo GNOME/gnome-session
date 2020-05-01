@@ -2,8 +2,9 @@
 .\" gnome-session manual page.
 .\" (C) 2000 Miguel de Icaza (miguel@helixcode.com)
 .\" (C) 2009-2010 Vincent Untz (vuntz@gnome.org)
+.\" (C) 2020 Sebastian Geiger (sbastig@gmx.net)
 .\"
-.TH GNOME-SESSION 1 "GNOME"
+.TH GNOME-SESSION 1 "May 2020" "GNOME"
 .SH NAME
 gnome-session \- Start the GNOME desktop environment
 .SH SYNOPSIS
@@ -14,7 +15,8 @@ environment. This command is typically executed by your login manager
 (either gdm, xdm, or from your X startup scripts). It will load
 either your saved session, or it will provide a default session for the
 user as defined by the system administrator (or the default GNOME
-installation on your system).
+installation on your system). Note that \fIgnome-session\fP is a wrapper
+script for \fIgnome-session-binary\fP.
 .PP
 The default session is defined in \fBgnome.session\fP, a .desktop-like
 file that is looked for in
@@ -32,9 +34,8 @@ applications as well as any X11R6 SM compliant application.
 The following options are supported:
 .TP
 .I "--autostart=DIR"
-Start all applications defined in \fIDIR\fP, instead of starting the
-applications defined in \fBgnome.session\fP, or via the \fI--session\fP
-option. Multiple \fI--autostart\fP options can be passed.
+The directory \fBDIR\fP to be searched for autostart .desktop files. This option can be used multiple times.
+When this option is present, then default autostart directories will not be searched.
 .TP
 .I "--session=SESSION"
 Use the applications defined in \fBSESSION.session\fP. If not specified,
@@ -87,13 +88,21 @@ This variable is set to the X display being used by
 \fIgnome-session\fP. Note that if the \fI--display\fP option is used
 this might be different from the setting of the environment variable
 when gnome-session is invoked.
+.PP
+Behavior of \fIgnome-session\fP ifself can be modified via the following environment variable:
+.PP
+.B GNOME_SESSION_AUTOSTART_DIR
+.IP
+This variable specifies a list of directories to the searched for autostart
+files. This variable overrides all directories specified via the
+\fI--autostart\fP option, as well as all default autostart directories.
 .SH FILES
 .PP
-.B $XDG_CONFIG_HOME/config/autostart
-.B $XDG_CONFIG_DIRS/config/autostart
+.B $XDG_CONFIG_HOME/autostart
+.B $XDG_CONFIG_DIRS/autostart
 .B /usr/share/gnome/autostart
 .IP
-The applications defined in those directories will be started on login.
+Applications defined via .desktop files in those directories will be started on login.
 .PP
 .B $XDG_CONFIG_HOME/gnome-session/sessions
 .B $XDG_CONFIG_DIRS/gnome-session/sessions
@@ -107,6 +116,6 @@ with the \fI--session\fP option.
 This directory contains the list of applications of the saved session.
 .SH BUGS
 If you find bugs in the \fIgnome-session\fP program, please report
-these on https://bugzilla.gnome.org.
+these on https://gitlab.gnome.org/GNOME/gnome-session/issues.
 .SH SEE ALSO
 .BR gnome-session-quit(1)
