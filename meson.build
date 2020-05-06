@@ -103,7 +103,7 @@ x11_dep = dependency('x11')
 session_deps = [
   gio_dep,
   glib_dep,
-  dependency('gnome-desktop-3.0', version: '>= 3.18.0'),
+  dependency('gnome-desktop-3.0', version: '>= 3.34.2'),
   dependency('json-glib-1.0', version: '>= 0.10')
 ]
 
