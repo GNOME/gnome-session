@@ -3836,9 +3836,11 @@ do_query_end_session_exit (GsmManager *manager)
         }
 
         if (reboot || shutdown) {
-                g_signal_connect (manager->priv->system, "shutdown-prepared",
-                                  G_CALLBACK (on_shutdown_prepared), manager);
-                gsm_system_prepare_shutdown (manager->priv->system, reboot);
+                if (manager->priv->logout_mode == GSM_MANAGER_LOGOUT_MODE_FORCE) {
+                        g_signal_connect (manager->priv->system, "shutdown-prepared",
+                                          G_CALLBACK (on_shutdown_prepared), manager);
+                        gsm_system_prepare_shutdown (manager->priv->system, reboot);
+                }
                 return FALSE; /* don't leave query end session yet */
         }
 
