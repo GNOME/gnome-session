@@ -1,14 +1,14 @@
 # Kazakh translation for gnome-session.
 # Copyright (C) 2013 gnome-session's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-session package.
-# Baurzhan Muftakhidinov <baurthefirst@gmail.com>, 2013.
+# Baurzhan Muftakhidinov <baurthefirst@gmail.com>, 2013-2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2018-08-28 21:21+0000\n"
-"PO-Revision-Date: 2018-08-30 21:51+0500\n"
+"POT-Creation-Date: 2020-03-30 17:28+0000\n"
+"PO-Revision-Date: 2020-06-25 10:01+0500\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <kk_KZ@googlegroups.com>\n"
 "Language: kk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 2.3.1\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -27,10 +27,12 @@ msgid "This entry lets you select a saved session"
 msgstr "Бұл элемент сізге сақталып тұрған сессияны таңдауға рұқсат етеді"
 
 #: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
+#: data/gnome-wayland.desktop.in.in:3
 msgid "GNOME"
 msgstr "GNOME"
 
-#: data/gnome.desktop.in.in:4 data/gnome-xorg.desktop.in.in:4
+#: data/gnome.desktop.in.in:4 data/gnome-wayland.desktop.in.in:4
+#: data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
 msgstr "Бұл сессия арқылы GNOME-ға кіресіз"
 
@@ -142,7 +144,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "Жүйеден ш_ығу"
 
-#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:279
+#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:404
 msgid "Enable debugging code"
 msgstr "Жөндеу кодын іске қосу"
 
@@ -154,11 +156,11 @@ msgstr "Жүйеден шығуды рұқсат ету"
 msgid "Show extension warning"
 msgstr "Кеңейту ескертуін көрсету"
 
-#: gnome-session/gsm-manager.c:1266 gnome-session/gsm-manager.c:1919
+#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1999
 msgid "Not responding"
 msgstr "Жауап бермейді"
 
-#: gnome-session/gsm-util.c:382
+#: gnome-session/gsm-util.c:415
 msgid "_Log out"
 msgstr "Жүйеден _шығу"
 
@@ -185,42 +187,78 @@ msgstr "Жаңа клиенттік байланысын тайдыру, өйт�
 msgid "Could not create ICE listening socket: %s"
 msgstr "ICE тындаушы сокетін жасау мүмкін емес: %s"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:398
+msgid "Running as systemd service"
+msgstr "systemd қызметі ретінде орындалуда"
+
+#: gnome-session/main.c:399
+msgid "Use systemd session management"
+msgstr "systemd сессия басқаруын қолдану"
+
+#: gnome-session/main.c:401
+msgid "Use builtin session management (rather than the systemd based one)"
+msgstr "Құрамындағы сессияларды басқаруды қолдану (systemd-негізіндегі орнына)"
+
+#: gnome-session/main.c:402
 msgid "Override standard autostart directories"
 msgstr "Стандартты іске қосылу бумалардың орнына басқаларды қолдану"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:402
 msgid "AUTOSTART_DIR"
 msgstr "АВТОІСКЕҚОСЫЛУ_БУМАСЫ"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:403
 msgid "Session to use"
 msgstr "Қолдану үшін сессия"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:403
 msgid "SESSION_NAME"
 msgstr "СЕССИЯ_АТЫ"
 
-#: gnome-session/main.c:280
+#: gnome-session/main.c:405
 msgid "Do not load user-specified applications"
 msgstr "Пайдаланушыға тән қолданбаларды жөнелтпеу"
 
-#: gnome-session/main.c:281
+#: gnome-session/main.c:406
 msgid "Version of this application"
 msgstr "Осы қолданбаның нұсқасы"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:283
+#: gnome-session/main.c:408
 msgid "Show the fail whale dialog for testing"
 msgstr "Сынау үшін \"fail whale\" сұхбатын көрсету"
 
-#: gnome-session/main.c:284
+#: gnome-session/main.c:409
 msgid "Disable hardware acceleration check"
 msgstr "Құрылғылық үдетуді тексеруді сөндіру"
 
-#: gnome-session/main.c:316
+#: gnome-session/main.c:441
 msgid " — the GNOME session manager"
 msgstr " — GNOME сессиялар басқарушысы"
+
+#: tools/gnome-session-ctl.c:244
+msgid "Start gnome-session-shutdown.target"
+msgstr "gnome-session-shutdown.target іске қосу"
+
+#: tools/gnome-session-ctl.c:245
+msgid ""
+"Start gnome-session-shutdown.target when receiving EOF or a single byte on "
+"stdin"
+msgstr ""
+"Стандарты кіріске (stdin) EOF немесе бір байт алынған кезде, gnome-session-"
+"shutdown.target іске қосу"
+
+#: tools/gnome-session-ctl.c:246
+msgid "Signal initialization done to gnome-session"
+msgstr "gnome-session үшін сигнал инициализациясы дайын"
+
+#: tools/gnome-session-ctl.c:247
+msgid "Restart dbus.service if it is running"
+msgstr "dbus.service қызметі орындалып тұрса, оны қайта іске қосыңыз"
+
+#: tools/gnome-session-ctl.c:275
+msgid "Program needs exactly one parameter"
+msgstr "Бағдарлама тек бір параметрді талап етеді"
 
 #: tools/gnome-session-inhibit.c:108
 #, c-format
@@ -424,9 +462,6 @@ msgstr "\"%s\" атауы бар сессия бар болып тұр"
 
 #~ msgid "FILE"
 #~ msgstr "ФАЙЛ"
-
-#~ msgid "Specify session management ID"
-#~ msgstr "Сессия басқарушысы ID-ін көрсету"
 
 #~ msgid "ID"
 #~ msgstr "ID"
