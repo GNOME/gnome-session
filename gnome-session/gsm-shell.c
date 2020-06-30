@@ -69,6 +69,7 @@ enum {
         END_SESSION_DIALOG_CONFIRMED_LOGOUT,
         END_SESSION_DIALOG_CONFIRMED_SHUTDOWN,
         END_SESSION_DIALOG_CONFIRMED_REBOOT,
+        END_SESSION_DIALOG_CONFIRMED_REBOOT_TO_BOOT_OPTIONS,
         NUMBER_OF_SIGNALS
 };
 
@@ -176,6 +177,14 @@ gsm_shell_class_init (GsmShellClass *shell_class)
                               G_OBJECT_CLASS_TYPE (object_class),
                               G_SIGNAL_RUN_LAST,
                               G_STRUCT_OFFSET (GsmShellClass, end_session_dialog_confirmed_reboot),
+                              NULL, NULL, NULL,
+                              G_TYPE_NONE, 0);
+
+        signals [END_SESSION_DIALOG_CONFIRMED_REBOOT_TO_BOOT_OPTIONS] =
+                g_signal_new ("end-session-dialog-confirmed-reboot-to-boot-options",
+                              G_OBJECT_CLASS_TYPE (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GsmShellClass, end_session_dialog_confirmed_reboot_to_boot_options),
                               NULL, NULL, NULL,
                               G_TYPE_NONE, 0);
 
@@ -342,6 +351,7 @@ on_end_session_dialog_dbus_signal (GDBusProxy *proxy,
                 { "Canceled", END_SESSION_DIALOG_CANCELED },
                 { "ConfirmedLogout", END_SESSION_DIALOG_CONFIRMED_LOGOUT },
                 { "ConfirmedReboot", END_SESSION_DIALOG_CONFIRMED_REBOOT },
+                { "ConfirmedRebootToBootOptions", END_SESSION_DIALOG_CONFIRMED_REBOOT_TO_BOOT_OPTIONS },
                 { "ConfirmedShutdown", END_SESSION_DIALOG_CONFIRMED_SHUTDOWN },
                 { NULL, -1 }
         };
