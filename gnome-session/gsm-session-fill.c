@@ -30,6 +30,7 @@
 #define GSM_KEYFILE_RUNNABLE_KEY "IsRunnableHelper"
 #define GSM_KEYFILE_FALLBACK_KEY "FallbackSession"
 #define GSM_KEYFILE_REQUIRED_COMPONENTS_KEY "RequiredComponents"
+#define GSM_KEYFILE_AUTOSTART_WHITELIST_KEY "AutostartWhitelist"
 
 /* See https://bugzilla.gnome.org/show_bug.cgi?id=641992 for discussion */
 #define GSM_RUNNABLE_HELPER_TIMEOUT 3000 /* ms */
@@ -111,7 +112,7 @@ maybe_load_saved_session_apps (GsmManager *manager)
         if (is_login)
                 return;
 
-        gsm_manager_add_autostart_apps_from_dir (manager, gsm_util_get_saved_session_dir ());
+        gsm_manager_add_autostart_apps_from_dir (manager, gsm_util_get_saved_session_dir (), NULL);
 }
 
 static void
@@ -141,17 +142,24 @@ load_standard_apps (GsmManager *manager,
         g_debug ("fill: *** Done adding required components");
 
         if (!gsm_manager_get_failsafe (manager)) {
+                g_auto(GStrv) autostart_whitelist = NULL;
                 char **autostart_dirs;
                 int    i;
 
                 autostart_dirs = gsm_util_get_autostart_dirs ();
 
-                if (!gsm_manager_get_systemd_managed (manager))
+                autostart_whitelist = g_key_file_get_string_list (keyfile,
+                                                                  GSM_KEYFILE_SESSION_GROUP,
+                                                                  GSM_KEYFILE_AUTOSTART_WHITELIST_KEY,
+                                                                  NULL, NULL);
+
+                if (!gsm_manager_get_systemd_managed (manager) && !autostart_whitelist)
                         maybe_load_saved_session_apps (manager);
 
                 for (i = 0; autostart_dirs[i]; i++) {
                         gsm_manager_add_autostart_apps_from_dir (manager,
-                                                                 autostart_dirs[i]);
+                                                                 autostart_dirs[i],
+                                                                 (const char * const *)autostart_whitelist);
                 }
 
                 g_strfreev (autostart_dirs);
