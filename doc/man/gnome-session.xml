@@ -161,17 +161,32 @@ RequiredComponents=gnome-shell;gnome-settings-daemon;
 </programlisting>
 
 <para>
-In <command>systemd</command> managed sessions the RequiredComponents may be provided by
-systemd units instead. In this case the corresponding <filename>.desktop</filename> file needs
-to contain <option>X-GNOME-HiddenUnderSystemd=true</option>. <command>gnome-session</command> will
-ignore these components and rely on <command>systemd</command> to manage them appropriately,
-see the systemd section for more information on how this works.
+In <command>systemd</command> managed sessions, the components should instead
+be defined by installing a drop-in systemd configuration (since GNOME 3.38) for
+<filename>gnome-session@SESSION.target</filename>.
+Currently, the <varname>RequiredComponents</varname> list will still be
+processed and <filename>.desktop</filename> files need to have
+<varname>X-GNOME-HiddenUnderSystemd=true</varname> set so that
+<command>gnome-session</command> will ignore them.
+It strongly recommended to set <varname>X-systemd-skip=true</varname> to be more future proof.
 </para>
 <para>
-The <filename>.session</filename> files are looked for in
-<filename>$XDG_CONFIG_HOME/gnome-session/sessions</filename>,
-<filename>$XDG_CONFIG_DIRS/gnome-session/sessions</filename> and
-<filename>$XDG_DATA_DIRS/gnome-session/sessions</filename>.
+It is expected that <command>gnome-session</command> will stop allowing the use
+of autostart files to launch services within a systemd managed session.
+At that point, XDG autostart files will only be usable to start applications
+after the desktop is ready.
+For this purpose, systemd has an XDG autostart generator that supports
+a sufficient subset of features.
+Please consider creating a <filename>.service</filename> file for any XDG
+autostart file which needs <varname>X-GNOME-Autostart-Phase=</varname>.
+To support <varname>OnlyShowIn=</varname> and <varname>NotShowIn=</varname> you
+can make use of <command>systemd-xdg-autostart-condition</command> inside an
+<varname>ExecCondition=</varname> which will be available in systemd v245.
+<command>gnome-session</command> provides a similar tool which mirrors
+<varname>AutostartCondition=</varname> which is called
+<command>gnome-systemd-autostart-condition</command> and will eventually support
+starting/stopping services on demand (this features is not yet enabled as of
+GNOME 3.38).
 </para>
 </refsect1>
 
@@ -184,10 +199,14 @@ set in their <filename>.desktop</filename> file will be ignored by <command>gnom
 It instead relies on the fact that these components are managed by systemd.
 </para>
 <para>
-As of GNOME 3.34 the systemd support is new and the customizing the
-configuration is not yet easily possible. With GNOME 3.34 it may be best to use
-<option>--builtin</option> if session customizations are required. This is due to the way
-that GNOME currently defines the components that will be started on each session type.
+As of GNOME 3.38 the systemd support must be configured by providing drop-in
+configurations for <filename>gnome-session@SESSION.target</filename>.
+If such a configuration is not provided by a session, then it must force the
+legacy login mode using the <option>--builtin</option> option.
+Please see existing files and above for some more information on how to
+define the session definition.
+Below is more information on how to integrate new services properly with the
+GNOME startup.
 </para>
 <para>
 <command>systemd</command> provides the two special targets <filename>graphical-session.target</filename>
@@ -240,9 +259,12 @@ It is also strongly recommended to always do this in combination with <varname>B
 or <varname>PartOf=</varname> on one of the core targets (e.g. <filename>graphical-session.target</filename>).
 </para>
 <para>
-Units are required to set <varname>CollectMode=inactive-or-failed</varname>.
-In addition, it is strongly recommended to set <varname>TimeoutStopSec=5</varname>
-so that logout will not be delayed indefinitely in case the process does not stop properly.
+It is strongly recommended that all units set <varname>TimeoutStopSec=5</varname>
+so that logout will not be delayed indefinitely in case the process does not stop
+properly.
+If this is not done, the user will likely need to wait for 90 seconds
+before being able to log in again (and could see a black screen during this
+time).
 </para>
 
 </refsect1>
