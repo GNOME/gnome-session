@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2020-03-30 17:28+0000\n"
-"PO-Revision-Date: 2020-06-25 10:01+0500\n"
+"POT-Creation-Date: 2020-07-13 13:45+0000\n"
+"PO-Revision-Date: 2020-07-13 18:59+0500\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <kk_KZ@googlegroups.com>\n"
 "Language: kk\n"
@@ -112,11 +112,11 @@ msgstr "Сессия атауын өз_герту"
 msgid "_Continue"
 msgstr "Жалға_стыру"
 
-#: gnome-session/gsm-fail-whale-dialog.c:313
+#: gnome-session/gsm-fail-whale-dialog.c:318
 msgid "Oh no!  Something has gone wrong."
 msgstr "Қап! Бір нәрсе қате кетті."
 
-#: gnome-session/gsm-fail-whale-dialog.c:320
+#: gnome-session/gsm-fail-whale-dialog.c:325
 msgid ""
 "A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
@@ -124,7 +124,7 @@ msgstr ""
 "Мәселе орын алды және жүйе өз қалпына келе алмады. Жүйелік әкімшіңізге "
 "хабарласыңыз"
 
-#: gnome-session/gsm-fail-whale-dialog.c:322
+#: gnome-session/gsm-fail-whale-dialog.c:327
 msgid ""
 "A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
@@ -132,7 +132,7 @@ msgstr ""
 "Мәселе орын алды және жүйе өз қалпына келе алмады. Барлық кеңейтулер сақтық "
 "мақсатында сөндірілген."
 
-#: gnome-session/gsm-fail-whale-dialog.c:324
+#: gnome-session/gsm-fail-whale-dialog.c:329
 msgid ""
 "A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
@@ -140,19 +140,19 @@ msgstr ""
 "Мәселе орын алды және жүйе өз қалпына келе алмады.\n"
 "Жүйеден шығып, қайталап көріңіз."
 
-#: gnome-session/gsm-fail-whale-dialog.c:339
+#: gnome-session/gsm-fail-whale-dialog.c:344
 msgid "_Log Out"
 msgstr "Жүйеден ш_ығу"
 
-#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:404
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
 msgid "Enable debugging code"
 msgstr "Жөндеу кодын іске қосу"
 
-#: gnome-session/gsm-fail-whale-dialog.c:362
+#: gnome-session/gsm-fail-whale-dialog.c:413
 msgid "Allow logout"
 msgstr "Жүйеден шығуды рұқсат ету"
 
-#: gnome-session/gsm-fail-whale-dialog.c:363
+#: gnome-session/gsm-fail-whale-dialog.c:414
 msgid "Show extension warning"
 msgstr "Кеңейту ескертуін көрсету"
 
@@ -275,33 +275,34 @@ msgid ""
 "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
 "                    logout, switch-user, suspend, idle, automount\n"
 "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+"  -l, --list        List the existing inhibitions, and exit\n"
 "\n"
 "If no --inhibit option is specified, idle is assumed.\n"
 msgstr ""
 "%s [ОПЦИЯ…] КОМАНДА\n"
 "\n"
-"КОМАНДАНЫ орындау, сонымен қатар сессияның кейбір мүмкіндіктерін ұстап, "
-"болдырмау.\n"
+"Сессияның кейбір мүмкіндіктерін шектеп, КОМАНДАНЫ орындау.\n"
 "\n"
 "  -h, --help        Бұл көмекті көрсету\n"
 "  --version         Бағдарлама нұсқасын көрсету\n"
 "  --app-id ID       Сессияны ұстау кезінде қолданылатын\n"
 "                    қолданба id-і (қосымша түрде)\n"
-"  --reason REASON   Ұстау себебі (қосымша түрде)\n"
-"  --inhibit ARG     Ұсталатын нәрсе, келесіден тұратын үтірлермен ажыратыған "
-"тізім:\n"
+"  --reason REASON   Шектеу (қосымша түрде)\n"
+"  --inhibit ARG     Шектелетін нәрсе, келесіден тұратын үтірлермен "
+"ажыратыған тізім:\n"
 "                    logout, switch-user, suspend, idle, automount\n"
 "  --inhibit-only    КОМАНДАны орындамау, орнына тек мәңгі күту\n"
+"  -l, --list        Бар болып тұрған шектеулерді көрсету және шығу\n"
 "\n"
 "Егер --inhibit опциясы көрсетілмесе, бос етіп есептеледі.\n"
 
-#: tools/gnome-session-inhibit.c:146
+#: tools/gnome-session-inhibit.c:288
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "%s жөнелту сәтсіз\n"
 
-#: tools/gnome-session-inhibit.c:206 tools/gnome-session-inhibit.c:216
-#: tools/gnome-session-inhibit.c:226
+#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
+#: tools/gnome-session-inhibit.c:372
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s аргументті талап етеді\n"
