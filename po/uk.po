@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2019-09-18 13:36+0000\n"
-"PO-Revision-Date: 2020-03-09 18:28+0200\n"
+"POT-Creation-Date: 2020-07-13 13:45+0000\n"
+"PO-Revision-Date: 2020-07-13 17:13+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<"
 "=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Lokalize 20.03.70\n"
+"X-Generator: Lokalize 20.07.70\n"
 "X-Project-Style: gnome\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
@@ -50,31 +50,24 @@ msgid "GNOME on Xorg"
 msgstr "GNOME через Xorg"
 
 #: data/org.gnome.SessionManager.gschema.xml.in:5
-#| msgid "_Remove Session"
 msgid "Save sessions"
 msgstr "Зберігати сеанси"
 
 #: data/org.gnome.SessionManager.gschema.xml.in:6
-#| msgid ""
-#| "If enabled, gnome-session will prompt the user before ending a session."
 msgid "If enabled, gnome-session will save the session automatically."
 msgstr "Якщо увімкнено, gnome-session автоматично зберігатиме сеанси."
 
 #: data/org.gnome.SessionManager.gschema.xml.in:10
-#| msgid "Kill session"
 msgid "Save this session"
 msgstr "Зберегти цей сеанс"
 
 #: data/org.gnome.SessionManager.gschema.xml.in:11
-#| msgid ""
-#| "If enabled, gnome-session will save the session automatically. Otherwise, "
-#| "the logout dialog will have an option to save the session."
 msgid ""
 "When enabled, gnome-session will automatically save the next session at log "
 "out even if auto saving is disabled."
 msgstr ""
-"Якщо увімкнено, gnome-session автоматично збереже наступний сеанс під час"
-" виходу із системи, навіть якщо автоматичне збереження вимкнено."
+"Якщо увімкнено, gnome-session автоматично збереже наступний сеанс під час "
+"виходу із системи, навіть якщо автоматичне збереження вимкнено."
 
 #: data/org.gnome.SessionManager.gschema.xml.in:15
 msgid "Logout prompt"
@@ -87,7 +80,6 @@ msgstr ""
 "завершенням сеансу."
 
 #: data/org.gnome.SessionManager.gschema.xml.in:20
-#| msgid "Show extension warning"
 msgid "Show the fallback warning"
 msgstr "Показувати попередження щодо резервного варіанта"
 
@@ -96,8 +88,8 @@ msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
 msgstr ""
-"Якщо увімкнено, gnome-session показуватиме вікно попередження після входу до"
-" системи, якщо сеанс автоматично повернуто до резервного варіанта."
+"Якщо увімкнено, gnome-session показуватиме вікно попередження після входу до "
+"системи, якщо сеанс автоматично повернуто до резервного варіанта."
 
 #: data/session-selector.ui:15
 msgid "Custom Session"
@@ -123,14 +115,11 @@ msgstr "_Перейменувати сеанс"
 msgid "_Continue"
 msgstr "Про_довжити"
 
-#: gnome-session/gsm-fail-whale-dialog.c:313
+#: gnome-session/gsm-fail-whale-dialog.c:318
 msgid "Oh no!  Something has gone wrong."
 msgstr "Отакої!  Щось не так."
 
-#: gnome-session/gsm-fail-whale-dialog.c:320
-#| msgid ""
-#| "A problem has occurred and the system can't recover. Please contact a "
-#| "system administrator"
+#: gnome-session/gsm-fail-whale-dialog.c:325
 msgid ""
 "A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
@@ -138,10 +127,7 @@ msgstr ""
 "Виникла помилка і систему неможливо відновити. Будь ласка, зв'яжіться з "
 "системним адміністратором"
 
-#: gnome-session/gsm-fail-whale-dialog.c:322
-#| msgid ""
-#| "A problem has occurred and the system can't recover. All extensions have "
-#| "been disabled as a precaution."
+#: gnome-session/gsm-fail-whale-dialog.c:327
 msgid ""
 "A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
@@ -149,10 +135,7 @@ msgstr ""
 "Виникла помилка і систему неможливо відновити. Всі розширення вимкнуло як "
 "запобіжний засіб."
 
-#: gnome-session/gsm-fail-whale-dialog.c:324
-#| msgid ""
-#| "A problem has occurred and the system can't recover.\n"
-#| "Please log out and try again."
+#: gnome-session/gsm-fail-whale-dialog.c:329
 msgid ""
 "A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
@@ -160,27 +143,27 @@ msgstr ""
 "Виникла помилка і систему неможливо відновити.\n"
 "Будь ласка, вийдіть і спробуйте знову."
 
-#: gnome-session/gsm-fail-whale-dialog.c:339
+#: gnome-session/gsm-fail-whale-dialog.c:344
 msgid "_Log Out"
 msgstr "_Завершити сеанс"
 
-#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:396
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
 msgid "Enable debugging code"
 msgstr "Увімкнути код зневадження"
 
-#: gnome-session/gsm-fail-whale-dialog.c:362
+#: gnome-session/gsm-fail-whale-dialog.c:413
 msgid "Allow logout"
 msgstr "Дозволити вихід"
 
-#: gnome-session/gsm-fail-whale-dialog.c:363
+#: gnome-session/gsm-fail-whale-dialog.c:414
 msgid "Show extension warning"
 msgstr "Показати зауваги розширення"
 
-#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1994
+#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1999
 msgid "Not responding"
 msgstr "Не відповідає"
 
-#: gnome-session/gsm-util.c:389
+#: gnome-session/gsm-util.c:415
 msgid "_Log out"
 msgstr "Ви_йти"
 
@@ -207,56 +190,54 @@ msgstr "Відхиляються нові клієнти, бо система з
 msgid "Could not create ICE listening socket: %s"
 msgstr "Не вдалось створити гніздо прослуховування ICE: %s"
 
-#: gnome-session/main.c:390
+#: gnome-session/main.c:398
 msgid "Running as systemd service"
 msgstr "Запущено як службу systemd"
 
-#: gnome-session/main.c:391
-#| msgid "Specify session management ID"
+#: gnome-session/main.c:399
 msgid "Use systemd session management"
 msgstr "Використати керування сеансами systemd"
 
-#: gnome-session/main.c:393
+#: gnome-session/main.c:401
 msgid "Use builtin session management (rather than the systemd based one)"
 msgstr ""
-"Використовувати вбудоване керування сеансами (а не керування на основі"
-" systemd)"
+"Використовувати вбудоване керування сеансами (а не керування на основі "
+"systemd)"
 
-#: gnome-session/main.c:394
+#: gnome-session/main.c:402
 msgid "Override standard autostart directories"
 msgstr "Перевизначити стандартні каталоги автозапуску"
 
-#: gnome-session/main.c:394
+#: gnome-session/main.c:402
 msgid "AUTOSTART_DIR"
 msgstr "САМОЗАПУСКНА_ТЕКА"
 
-#: gnome-session/main.c:395
+#: gnome-session/main.c:403
 msgid "Session to use"
 msgstr "Сеанси, які використовуються"
 
-#: gnome-session/main.c:395
+#: gnome-session/main.c:403
 msgid "SESSION_NAME"
 msgstr "НАЗВА_СЕАНСУ"
 
-#: gnome-session/main.c:397
+#: gnome-session/main.c:405
 msgid "Do not load user-specified applications"
 msgstr "Не завантажувати вибрані користувачем програми"
 
-#: gnome-session/main.c:398
+#: gnome-session/main.c:406
 msgid "Version of this application"
 msgstr "Версія цієї програми"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:400
+#: gnome-session/main.c:408
 msgid "Show the fail whale dialog for testing"
 msgstr "Показувати величезне вікно помилок для випробування "
 
-#: gnome-session/main.c:401
+#: gnome-session/main.c:409
 msgid "Disable hardware acceleration check"
 msgstr "Вимкнути перевіряння на апаратне прискорення"
 
-#: gnome-session/main.c:433
-#| msgid " - the GNOME session manager"
+#: gnome-session/main.c:441
 msgid " — the GNOME session manager"
 msgstr " — керування сеансом GNOME"
 
@@ -269,8 +250,8 @@ msgid ""
 "Start gnome-session-shutdown.target when receiving EOF or a single byte on "
 "stdin"
 msgstr ""
-"Запустити gnome-session-shutdown.target, якщо отримано EOF або одинарний байт"
-" у stdin"
+"Запустити gnome-session-shutdown.target, якщо отримано EOF або одинарний "
+"байт у stdin"
 
 #: tools/gnome-session-ctl.c:246
 msgid "Signal initialization done to gnome-session"
@@ -287,7 +268,7 @@ msgstr "Програмі слід передавати точно один па�
 #: tools/gnome-session-inhibit.c:108
 #, c-format
 #| msgid ""
-#| "%s [OPTION...] COMMAND\n"
+#| "%s [OPTION…] COMMAND\n"
 #| "\n"
 #| "Execute COMMAND while inhibiting some session functionality.\n"
 #| "\n"
@@ -314,6 +295,7 @@ msgid ""
 "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
 "                    logout, switch-user, suspend, idle, automount\n"
 "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+"  -l, --list        List the existing inhibitions, and exit\n"
 "\n"
 "If no --inhibit option is specified, idle is assumed.\n"
 msgstr ""
@@ -328,17 +310,18 @@ msgstr ""
 "  --reason ПРИЧИНА  Причина для гальмування (необов'язково)\n"
 "  --inhibit ПУНКТ   Пункти гальмування, список, розділений комою:\n"
 "                    logout, switch-user, suspend, idle, automount\n"
-"  --inhibit-only    Не запускати КОМАНДУ й завжди чекати натомість\n"
+"  --inhibit-only    Не запускати КОМАНДУ, натомість завжди чекати\n"
+"  -l, --list        Вивести список наявних гальмувань і вийти\n"
 "\n"
 "Якщо не вказано параметра --inhibit, допускається бездіяльність.\n"
 
-#: tools/gnome-session-inhibit.c:146
+#: tools/gnome-session-inhibit.c:288
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Не вдалося виконати %s\n"
 
-#: tools/gnome-session-inhibit.c:206 tools/gnome-session-inhibit.c:216
-#: tools/gnome-session-inhibit.c:226
+#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
+#: tools/gnome-session-inhibit.c:372
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s потребує аргумент\n"
@@ -360,7 +343,6 @@ msgid "Ignoring any existing inhibitors"
 msgstr "Ігнорувати будь-які наявні перепони"
 
 #: tools/gnome-session-quit.c:54
-#| msgid "Don't prompt for user confirmation"
 msgid "Don’t prompt for user confirmation"
 msgstr "Не вимагати підтвердження від користувача"
 
@@ -378,24 +360,19 @@ msgid "Session %d"
 msgstr "Сеанс %d"
 
 #: tools/gnome-session-selector.c:107
-#| msgid ""
-#| "Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
 msgid ""
 "Session names are not allowed to start with “.” or contain “/” characters"
 msgstr "Назвам сеансів не дозволено починатись з «.» або містити символи «/»"
 
 #: tools/gnome-session-selector.c:111
-#| msgid "Session names are not allowed to start with ‘.’"
 msgid "Session names are not allowed to start with “.”"
 msgstr "Назвам сеансів не дозволено починатись з «.»"
 
 #: tools/gnome-session-selector.c:115
-#| msgid "Session names are not allowed to contain ‘/’ characters"
 msgid "Session names are not allowed to contain “/” characters"
 msgstr "Назвам сеансів не дозволено містити символи «/»"
 
 #: tools/gnome-session-selector.c:123
 #, c-format
-#| msgid "A session named ‘%s’ already exists"
 msgid "A session named “%s” already exists"
 msgstr "Сеанс з назвою «%s» вже існує"
