@@ -13,7 +13,10 @@ xsltproc_cmd = [
   '@INPUT@'
 ]
 
-mans = ['gnome-session-inhibit']
+mans = [
+  'gnome-session-inhibit',
+  'gnome-session',
+]
 
 if enable_session_selector
   mans += 'gnome-session-selector'
@@ -33,7 +36,6 @@ foreach man: mans
 endforeach
 
 man_data = files(
-  'gnome-session.1',
   'gnome-session-quit.1'
 )
 
