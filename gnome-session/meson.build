@@ -21,6 +21,7 @@ libgsmutil = static_library(
 sources = files(
   'gsm-app.c',
   'gsm-autostart-app.c',
+  'gsm-autostart-condition.c',
   'gsm-client.c',
   'gsm-dbus-client.c',
   'gsm-fail-whale.c',
@@ -94,6 +95,20 @@ executable(
   install: true,
   install_dir: session_libexecdir
 )
+
+if enable_systemd_session
+  sources = files('gnome-systemd-autostart-condition.c',
+                  'gsm-autostart-condition.c')
+  executable(
+    'gnome-systemd-autostart-condition',
+    sources,
+    include_directories: top_inc,
+    dependencies: [gtk_dep, libsystemd_dep],
+    c_args: cflags,
+    install: true,
+    install_dir: session_libexecdir
+  )
+endif
 
 units = [
   ['test-inhibit', [], session_deps + [gtk_dep]],

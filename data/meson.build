@@ -91,6 +91,7 @@ install_data(
 if enable_systemd_session
   unit_conf = configuration_data()
   unit_conf.set('libexecdir', session_libexecdir)
+  unit_conf.set('bindir', session_bindir)
 
   # XXX: Once https://github.com/systemd/systemd/issues/9595 is fixed and we can
   # depend on this version, replace with something like:
@@ -101,9 +102,10 @@ if enable_systemd_session
 
   systemd_service = ['gnome-session-manager@.service',
                      'gnome-session-signal-init.service',
-                     'gnome-session-restart-dbus.service',
+                     'gnome-session-post-shutdown.service',
                      'gnome-session-monitor.service',
-                     'gnome-session-failed.service']
+                     'gnome-session-failed.service',
+                     'gnome-systemd-condition-monitor.service']
 
   foreach service: systemd_service
     configure_file(
