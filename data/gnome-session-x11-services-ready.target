@@ -1,0 +1,8 @@
+[Unit]
+Description=GNOME session X11 services
+DefaultDependencies=no
+
+BindsTo=gnome-session-x11-services.target
+After=gnome-session-x11-services.target
+
+Before=gnome-session.target
