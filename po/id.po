@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2020-01-19 07:56+0000\n"
-"PO-Revision-Date: 2020-02-17 22:27+0700\n"
+"POT-Creation-Date: 2020-07-13 13:45+0000\n"
+"PO-Revision-Date: 2020-07-19 10:08+0700\n"
 "Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
 "Language: id\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 2.3.1\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -114,11 +114,11 @@ msgstr "Ubah Na_ma Sesi"
 msgid "_Continue"
 msgstr "_Lanjutkan"
 
-#: gnome-session/gsm-fail-whale-dialog.c:313
+#: gnome-session/gsm-fail-whale-dialog.c:318
 msgid "Oh no!  Something has gone wrong."
 msgstr "Oh, tidak!  Sesuatu yang tidak diinginkan telah terjadi."
 
-#: gnome-session/gsm-fail-whale-dialog.c:320
+#: gnome-session/gsm-fail-whale-dialog.c:325
 msgid ""
 "A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
@@ -126,7 +126,7 @@ msgstr ""
 "Terjadi masalah dan sistem tidak dapat dipulihkan. Silakan kontak "
 "administrator sistem"
 
-#: gnome-session/gsm-fail-whale-dialog.c:322
+#: gnome-session/gsm-fail-whale-dialog.c:327
 msgid ""
 "A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
@@ -134,7 +134,7 @@ msgstr ""
 "Terjadi masalah dan sistem tidak dapat dipulihkan. Semua ekstensi dibuat "
 "nonaktif sebagai tindak pencegahan."
 
-#: gnome-session/gsm-fail-whale-dialog.c:324
+#: gnome-session/gsm-fail-whale-dialog.c:329
 msgid ""
 "A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
@@ -142,19 +142,19 @@ msgstr ""
 "Terjadi masalah dan sistem tidak dapat dipulihkan.\n"
 "Silakan log keluar dan coba lagi."
 
-#: gnome-session/gsm-fail-whale-dialog.c:339
+#: gnome-session/gsm-fail-whale-dialog.c:344
 msgid "_Log Out"
 msgstr "Ke_luar"
 
-#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:404
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
 msgid "Enable debugging code"
 msgstr "Mengaktifkan kode debug"
 
-#: gnome-session/gsm-fail-whale-dialog.c:362
+#: gnome-session/gsm-fail-whale-dialog.c:413
 msgid "Allow logout"
 msgstr "Izinkan log keluar"
 
-#: gnome-session/gsm-fail-whale-dialog.c:363
+#: gnome-session/gsm-fail-whale-dialog.c:414
 msgid "Show extension warning"
 msgstr "Tunjukkan peringatan ekstensi"
 
@@ -162,7 +162,7 @@ msgstr "Tunjukkan peringatan ekstensi"
 msgid "Not responding"
 msgstr "Tak merespon"
 
-#: gnome-session/gsm-util.c:414
+#: gnome-session/gsm-util.c:415
 msgid "_Log out"
 msgstr "_Log keluar"
 
@@ -279,6 +279,7 @@ msgid ""
 "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
 "                    logout, switch-user, suspend, idle, automount\n"
 "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+"  -l, --list        List the existing inhibitions, and exit\n"
 "\n"
 "If no --inhibit option is specified, idle is assumed.\n"
 msgstr ""
@@ -295,16 +296,17 @@ msgstr ""
 "                    logout, switch-user, suspend, idle, automount\n"
 "  --inhibit-only    Jangan meluncurkan PERINTAH dan tunggu selamanya\n"
 "                    sebagai gantinya\n"
+"  -l, --list        Daftar hambatan yang ada, dan keluar\n"
 "\n"
 "Bila tak ada opsi --inhibit yang dinyatakan, diasumsikan idle.\n"
 
-#: tools/gnome-session-inhibit.c:146
+#: tools/gnome-session-inhibit.c:288
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Gagal mengeksekusi %s\n"
 
-#: tools/gnome-session-inhibit.c:206 tools/gnome-session-inhibit.c:216
-#: tools/gnome-session-inhibit.c:226
+#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
+#: tools/gnome-session-inhibit.c:372
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s memerlukan argumen\n"
