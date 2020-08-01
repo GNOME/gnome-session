@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2020-07-13 13:45+0000\n"
-"PO-Revision-Date: 2020-07-30 12:13+0200\n"
+"POT-Creation-Date: 2020-07-31 14:02+0000\n"
+"PO-Revision-Date: 2020-08-02 01:01+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -244,11 +244,11 @@ msgstr "Inaktivera kontroll för hårdvaruacceleration"
 msgid " — the GNOME session manager"
 msgstr " — GNOME-sessionshanteraren"
 
-#: tools/gnome-session-ctl.c:244
+#: tools/gnome-session-ctl.c:245
 msgid "Start gnome-session-shutdown.target"
 msgstr "Starta gnome-session-shutdown.target"
 
-#: tools/gnome-session-ctl.c:245
+#: tools/gnome-session-ctl.c:246
 msgid ""
 "Start gnome-session-shutdown.target when receiving EOF or a single byte on "
 "stdin"
@@ -256,15 +256,22 @@ msgstr ""
 "Starta gnome-session-shutdown.target då EOF eller en ensam byte tas emot på "
 "standard in"
 
-#: tools/gnome-session-ctl.c:246
+#: tools/gnome-session-ctl.c:247
 msgid "Signal initialization done to gnome-session"
 msgstr "Signalinitiering gjord på gnome-session"
 
-#: tools/gnome-session-ctl.c:247
+#: tools/gnome-session-ctl.c:248
 msgid "Restart dbus.service if it is running"
 msgstr "Starta om dbus.service om den körs"
 
-#: tools/gnome-session-ctl.c:275
+#: tools/gnome-session-ctl.c:249
+msgid ""
+"Run from ExecStopPost to start gnome-session-failed.target on service failure"
+msgstr ""
+"Kör från ExecStopPost för att starta gnome-session-failed.target då tjänst "
+"misslyckas"
+
+#: tools/gnome-session-ctl.c:279
 msgid "Program needs exactly one parameter"
 msgstr "Programmet behöver exakt en parameter"
 
