@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2020-07-13 13:45+0000\n"
-"PO-Revision-Date: 2020-07-15 13:50+0200\n"
+"POT-Creation-Date: 2020-07-31 14:02+0000\n"
+"PO-Revision-Date: 2020-08-02 13:29+0200\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -243,11 +243,11 @@ msgstr "Wyłącza sprawdzanie przyspieszenia sprzętowego"
 msgid " — the GNOME session manager"
 msgstr " — menedżer sesji środowiska GNOME"
 
-#: tools/gnome-session-ctl.c:244
+#: tools/gnome-session-ctl.c:245
 msgid "Start gnome-session-shutdown.target"
 msgstr "Rozpoczyna gnome-session-shutdown.target"
 
-#: tools/gnome-session-ctl.c:245
+#: tools/gnome-session-ctl.c:246
 msgid ""
 "Start gnome-session-shutdown.target when receiving EOF or a single byte on "
 "stdin"
@@ -255,15 +255,22 @@ msgstr ""
 "Rozpoczyna gnome-session-shutdown.target po otrzymaniu EOF lub pojedynczego "
 "bajtu na standardowym wejściu"
 
-#: tools/gnome-session-ctl.c:246
+#: tools/gnome-session-ctl.c:247
 msgid "Signal initialization done to gnome-session"
 msgstr "Sygnalizuje gnome-session, że inicjacja została ukończona"
 
-#: tools/gnome-session-ctl.c:247
+#: tools/gnome-session-ctl.c:248
 msgid "Restart dbus.service if it is running"
 msgstr "Uruchamia usługę dbus.service ponownie, jeśli jest uruchomiona"
 
-#: tools/gnome-session-ctl.c:275
+#: tools/gnome-session-ctl.c:249
+msgid ""
+"Run from ExecStopPost to start gnome-session-failed.target on service failure"
+msgstr ""
+"Uruchamia z ExecStopPost, aby rozpocząć gnome-session-failed.target po "
+"niepowodzeniu usługi"
+
+#: tools/gnome-session-ctl.c:279
 msgid "Program needs exactly one parameter"
 msgstr "Program wymaga dokładnie jednego parametru"
 
