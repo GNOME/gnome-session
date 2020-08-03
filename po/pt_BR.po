@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2020-07-13 13:45+0000\n"
-"PO-Revision-Date: 2020-07-17 19:05-0300\n"
+"POT-Creation-Date: 2020-07-31 14:02+0000\n"
+"PO-Revision-Date: 2020-08-03 11:04-0300\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "Language: pt_BR\n"
@@ -144,8 +144,8 @@ msgid ""
 "A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
 msgstr ""
-"Ocorreu um problema e o sistema não pôde ser recuperado. Por precaução todas "
-"as extensões foram desativadas."
+"Ocorreu um problema e o sistema não pôde ser recuperado. Todas as extensões "
+"foram desativadas por precaução."
 
 #: gnome-session/gsm-fail-whale-dialog.c:329
 msgid ""
@@ -206,21 +206,19 @@ msgstr "Não foi possível criar o soquete de escuta ICE: %s"
 
 #: gnome-session/main.c:398
 msgid "Running as systemd service"
-msgstr "Executando como serviço systemd"
+msgstr "Executa como um serviço do systemd"
 
 #: gnome-session/main.c:399
 msgid "Use systemd session management"
-msgstr "Usar gerenciamento de sessões do systemd"
+msgstr "Usa o gerenciamento de sessões do systemd"
 
 #: gnome-session/main.c:401
 msgid "Use builtin session management (rather than the systemd based one)"
-msgstr ""
-"Usar gerenciador de sessões incorporado (ao invés do que é baseado no "
-"systemd)"
+msgstr "Usa o gerenciador de sessões embutido (ao invés do baseado em systemd)"
 
 #: gnome-session/main.c:402
 msgid "Override standard autostart directories"
-msgstr "Substituir os diretórios padrões de início automático"
+msgstr "Substitui os diretórios padrões de início automático"
 
 #: gnome-session/main.c:402
 msgid "AUTOSTART_DIR"
@@ -236,7 +234,7 @@ msgstr "SESSION_NAME"
 
 #: gnome-session/main.c:405
 msgid "Do not load user-specified applications"
-msgstr "Não carregar aplicativos especificados pelo usuário"
+msgstr "Não carrega os aplicativos especificados pelo usuário"
 
 #: gnome-session/main.c:406
 msgid "Version of this application"
@@ -245,7 +243,7 @@ msgstr "Versão deste aplicativo"
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
 #: gnome-session/main.c:408
 msgid "Show the fail whale dialog for testing"
-msgstr "Mostrar o diálogo da “falha da baleia” para teste"
+msgstr "Mostra o diálogo da “falha da baleia” para teste"
 
 #: gnome-session/main.c:409
 msgid "Disable hardware acceleration check"
@@ -255,47 +253,39 @@ msgstr "Desabilita checagem de aceleração de hardware"
 msgid " — the GNOME session manager"
 msgstr " — gerenciador de sessões do GNOME"
 
-#: tools/gnome-session-ctl.c:244
-msgid "Start gnome-session-shutdown.target"
-msgstr "Iniciar gnome-session-shutdown.target"
-
 #: tools/gnome-session-ctl.c:245
+msgid "Start gnome-session-shutdown.target"
+msgstr "Inicia o gnome-session-shutdown.target"
+
+#: tools/gnome-session-ctl.c:246
 msgid ""
 "Start gnome-session-shutdown.target when receiving EOF or a single byte on "
 "stdin"
 msgstr ""
-"Iniciar gnome-session-shutdown.target ao receber um EOF ou um byte único no "
+"Inicia o gnome-session-shutdown.target ao receber um EOF ou um byte único no "
 "stdin"
 
-#: tools/gnome-session-ctl.c:246
+#: tools/gnome-session-ctl.c:247
 msgid "Signal initialization done to gnome-session"
 msgstr "Inicialização de sinal feita para gnome-session"
 
-#: tools/gnome-session-ctl.c:247
+#: tools/gnome-session-ctl.c:248
 msgid "Restart dbus.service if it is running"
-msgstr "Reiniciar dbus.service se estiver em execução"
+msgstr "Reinicia o dbus.service se estiver em execução"
 
-#: tools/gnome-session-ctl.c:275
+#: tools/gnome-session-ctl.c:249
+msgid ""
+"Run from ExecStopPost to start gnome-session-failed.target on service failure"
+msgstr ""
+"Executa de ExecStopPost para iniciar gnome-session-failed.target ao falhar o "
+"serviço"
+
+#: tools/gnome-session-ctl.c:279
 msgid "Program needs exactly one parameter"
 msgstr "O programa requer exatamente um parâmetro"
 
 #: tools/gnome-session-inhibit.c:108
 #, c-format
-#| msgid ""
-#| "%s [OPTION…] COMMAND\n"
-#| "\n"
-#| "Execute COMMAND while inhibiting some session functionality.\n"
-#| "\n"
-#| "  -h, --help        Show this help\n"
-#| "  --version         Show program version\n"
-#| "  --app-id ID       The application id to use\n"
-#| "                    when inhibiting (optional)\n"
-#| "  --reason REASON   The reason for inhibiting (optional)\n"
-#| "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
-#| "                    logout, switch-user, suspend, idle, automount\n"
-#| "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
-#| "\n"
-#| "If no --inhibit option is specified, idle is assumed.\n"
 msgid ""
 "%s [OPTION…] COMMAND\n"
 "\n"
