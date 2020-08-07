@@ -22,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2020-07-13 13:45+0000\n"
-"PO-Revision-Date: 2019-09-18 23:09+0300\n"
+"POT-Creation-Date: 2020-07-31 14:02+0000\n"
+"PO-Revision-Date: 2020-08-07 17:56+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
@@ -31,7 +31,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.2.3\n"
+"X-Generator: Poedit 2.4\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -133,8 +133,7 @@ msgid ""
 "A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
 msgstr ""
-"Sorun oluştu ve sistem kurtarılamıyor. Lütfen sistem yöneticisine "
-"başvurun"
+"Sorun oluştu ve sistem kurtarılamıyor. Lütfen sistem yöneticisine başvurun"
 
 #: gnome-session/gsm-fail-whale-dialog.c:327
 msgid ""
@@ -248,26 +247,31 @@ msgstr "Donanım hızlandırma denetimini devre dışı bırak"
 msgid " — the GNOME session manager"
 msgstr " — GNOME oturum yöneticisi"
 
-#: tools/gnome-session-ctl.c:244
+#: tools/gnome-session-ctl.c:245
 msgid "Start gnome-session-shutdown.target"
 msgstr "gnome-session-shutdown.target’ı başlat"
 
-#: tools/gnome-session-ctl.c:245
+#: tools/gnome-session-ctl.c:246
 msgid ""
 "Start gnome-session-shutdown.target when receiving EOF or a single byte on "
 "stdin"
 msgstr ""
 "stdin’de EOF veya tek bayt alınırken gnome-session-shutdown.target’ı başlat"
 
-#: tools/gnome-session-ctl.c:246
+#: tools/gnome-session-ctl.c:247
 msgid "Signal initialization done to gnome-session"
 msgstr "Sinyal ilklendirilmesi gnome-session’a tamamlandı"
 
-#: tools/gnome-session-ctl.c:247
+#: tools/gnome-session-ctl.c:248
 msgid "Restart dbus.service if it is running"
 msgstr "Çalışıyorsa dbus.service’i yeniden başlat"
 
-#: tools/gnome-session-ctl.c:275
+#: tools/gnome-session-ctl.c:249
+msgid ""
+"Run from ExecStopPost to start gnome-session-failed.target on service failure"
+msgstr "Servis hatasında gnome-session-failed.target’ı ExecStopPost’tan başlat"
+
+#: tools/gnome-session-ctl.c:279
 msgid "Program needs exactly one parameter"
 msgstr "Program tam olarak bir parametreye gereksiniyor"
 
