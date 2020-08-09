@@ -11,14 +11,14 @@
 # Miloslav Trmac <mitr@volny.cz>, 2004, 2005, 2006.
 # Petr Tomeš <ptomes@gmail.com>, 2006.
 # Petr Kovar <pknbe@volny.cz>, 2007, 2008, 2009, 2010, 2011, 2012, 2013.
-# Marek Černocký <marek@manet.cz>, 2012, 2013, 2015, 2018.
+# Marek Černocký <marek@manet.cz>, 2012, 2013, 2015, 2018, 2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2019-08-28 15:00+0000\n"
-"PO-Revision-Date: 2019-08-15 09:23+0200\n"
+"POT-Creation-Date: 2020-07-31 14:02+0000\n"
+"PO-Revision-Date: 2020-08-09 17:59+0200\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: čeština <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -121,11 +121,11 @@ msgstr "Přej_menovat sezení"
 msgid "_Continue"
 msgstr "_Pokračovat"
 
-#: gnome-session/gsm-fail-whale-dialog.c:313
+#: gnome-session/gsm-fail-whale-dialog.c:318
 msgid "Oh no!  Something has gone wrong."
 msgstr "Jejda! Něco se pokazilo."
 
-#: gnome-session/gsm-fail-whale-dialog.c:320
+#: gnome-session/gsm-fail-whale-dialog.c:325
 msgid ""
 "A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
@@ -133,7 +133,7 @@ msgstr ""
 "Došlo ke komplikacím a systém se nepodařilo obnovit. Kontaktujte prosím "
 "správce systému"
 
-#: gnome-session/gsm-fail-whale-dialog.c:322
+#: gnome-session/gsm-fail-whale-dialog.c:327
 msgid ""
 "A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
@@ -141,7 +141,7 @@ msgstr ""
 "Došlo ke komplikacím a systém se nepodařilo obnovit. Všechna rozšíření byla "
 "preventivně zakázána."
 
-#: gnome-session/gsm-fail-whale-dialog.c:324
+#: gnome-session/gsm-fail-whale-dialog.c:329
 msgid ""
 "A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
@@ -149,27 +149,27 @@ msgstr ""
 "Došlo ke komplikacím a systém se nepodařilo obnovit.\n"
 "Odhlaste se prosím a zkuste to znovu."
 
-#: gnome-session/gsm-fail-whale-dialog.c:339
+#: gnome-session/gsm-fail-whale-dialog.c:344
 msgid "_Log Out"
 msgstr "_Odhlásit se"
 
-#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:396
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
 msgid "Enable debugging code"
 msgstr "Zapnout ladicí kód"
 
-#: gnome-session/gsm-fail-whale-dialog.c:362
+#: gnome-session/gsm-fail-whale-dialog.c:413
 msgid "Allow logout"
 msgstr "Umožnit odhlášení"
 
-#: gnome-session/gsm-fail-whale-dialog.c:363
+#: gnome-session/gsm-fail-whale-dialog.c:414
 msgid "Show extension warning"
 msgstr "Zobrazit varování rozšíření"
 
-#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1994
+#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1999
 msgid "Not responding"
 msgstr "Neodpovídá"
 
-#: gnome-session/gsm-util.c:389
+#: gnome-session/gsm-util.c:415
 msgid "_Log out"
 msgstr "Odh_lásit se"
 
@@ -197,60 +197,60 @@ msgstr ""
 msgid "Could not create ICE listening socket: %s"
 msgstr "Nelze vytvořit socket naslouchání ICE: %s"
 
-#: gnome-session/main.c:390
+#: gnome-session/main.c:398
 msgid "Running as systemd service"
 msgstr "Běží jako služba systemd"
 
-#: gnome-session/main.c:391
+#: gnome-session/main.c:399
 msgid "Use systemd session management"
 msgstr "Používat správu sezení systemd"
 
-#: gnome-session/main.c:393
+#: gnome-session/main.c:401
 msgid "Use builtin session management (rather than the systemd based one)"
 msgstr "Používat vestavěnou správu sezení (místo té založené na systemd)"
 
-#: gnome-session/main.c:394
+#: gnome-session/main.c:402
 msgid "Override standard autostart directories"
 msgstr "Přepsat standardní adresáře automatického spuštění"
 
-#: gnome-session/main.c:394
+#: gnome-session/main.c:402
 msgid "AUTOSTART_DIR"
 msgstr "ADR_AUTOSPUŠTĚNÍ"
 
-#: gnome-session/main.c:395
+#: gnome-session/main.c:403
 msgid "Session to use"
 msgstr "Sezení, které se má použít"
 
-#: gnome-session/main.c:395
+#: gnome-session/main.c:403
 msgid "SESSION_NAME"
 msgstr "NÁZEV_SEZENÍ"
 
-#: gnome-session/main.c:397
+#: gnome-session/main.c:405
 msgid "Do not load user-specified applications"
 msgstr "Nenahrávat uživatelem zadané aplikace"
 
-#: gnome-session/main.c:398
+#: gnome-session/main.c:406
 msgid "Version of this application"
 msgstr "Verze této aplikace"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:400
+#: gnome-session/main.c:408
 msgid "Show the fail whale dialog for testing"
 msgstr "Zobrazit dialogové okno černé barvy pro testování"
 
-#: gnome-session/main.c:401
+#: gnome-session/main.c:409
 msgid "Disable hardware acceleration check"
 msgstr "Zakázat kontrolu hardwarové akcelerace"
 
-#: gnome-session/main.c:433
+#: gnome-session/main.c:441
 msgid " — the GNOME session manager"
 msgstr " – správce sezení GNOME"
 
-#: tools/gnome-session-ctl.c:244
+#: tools/gnome-session-ctl.c:245
 msgid "Start gnome-session-shutdown.target"
 msgstr "Spustit gnome-session-shutdown.target"
 
-#: tools/gnome-session-ctl.c:245
+#: tools/gnome-session-ctl.c:246
 msgid ""
 "Start gnome-session-shutdown.target when receiving EOF or a single byte on "
 "stdin"
@@ -258,15 +258,22 @@ msgstr ""
 "Spustit gnome-session-shutdown.target při zachycení signálu EOF nebo jednoho "
 "bajtu na standardním vstupu"
 
-#: tools/gnome-session-ctl.c:246
+#: tools/gnome-session-ctl.c:247
 msgid "Signal initialization done to gnome-session"
 msgstr "Dokončena signálová inicializace vůči gnome-session"
 
-#: tools/gnome-session-ctl.c:247
+#: tools/gnome-session-ctl.c:248
 msgid "Restart dbus.service if it is running"
 msgstr "Restartovat dbus.service, pokud běží"
 
-#: tools/gnome-session-ctl.c:275
+#: tools/gnome-session-ctl.c:249
+msgid ""
+"Run from ExecStopPost to start gnome-session-failed.target on service failure"
+msgstr ""
+"Běžet od ExecStopPost do spuštění gnome-session-failed.target při selhání "
+"služby"
+
+#: tools/gnome-session-ctl.c:279
 msgid "Program needs exactly one parameter"
 msgstr "Program potřebuje právě jeden parametr"
 
@@ -285,6 +292,7 @@ msgid ""
 "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
 "                    logout, switch-user, suspend, idle, automount\n"
 "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+"  -l, --list        List the existing inhibitions, and exit\n"
 "\n"
 "If no --inhibit option is specified, idle is assumed.\n"
 msgstr ""
@@ -297,20 +305,21 @@ msgstr ""
 "  --app-id ID       ID aplikace, které se má použít při zablokování\n"
 "                    (volitelné)\n"
 "  --reason DŮVOD    Důvod zablokování (volitelné)\n"
-"  --inhibit ARG     Vlastnosti k zablokování, seznam těchto prvků\n"
+"  --inhibit ARG     Vlastnosti k zablokování, seznam z následujících možností\n"
 "                    oddělených dvojtečkou:\n"
 "                    logout, switch-user, suspend, idle, automount\n"
 "  --inhibit-only    Nespustit PŘÍKAZ a namísto toho čekat donekonečna\n"
+"  -l, --list        Vypsat současná blokování a skončit\n"
 "\n"
 "Pokud není zadána volba --inhibit, použije se idle.\n"
 
-#: tools/gnome-session-inhibit.c:146
+#: tools/gnome-session-inhibit.c:288
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Nepodařilo se spustit %s\n"
 
-#: tools/gnome-session-inhibit.c:206 tools/gnome-session-inhibit.c:216
-#: tools/gnome-session-inhibit.c:226
+#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
+#: tools/gnome-session-inhibit.c:372
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s vyžaduje argument\n"
