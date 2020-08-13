@@ -7,168 +7,147 @@
 # Runa Bhattacharjee <runab@fedoraproject.org>, 2008.
 # Runa Bhattacharjee <runab@redhat.com>, 2008, 2009, 2010, 2011, 2012.
 # sray <sray@redhat.com>, 2013, 2014. #zanata.
+# Akarshan Biswas <akarshan.biswas@hotmail.com>, 2020.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: bn_IN\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-09-24 07:27+0000\n"
-"PO-Revision-Date: 2014-09-24 13:22+0000\n"
-"Last-Translator: \n"
-"Language-Team: Bengali (India) <kde-i18n-doc@kde.org>\n"
-"Language: bn_IN\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
+"POT-Creation-Date: 2020-07-13 13:45+0000\n"
+"PO-Revision-Date: 2020-07-28 19:36+0530\n"
+"Last-Translator: Akarshan Biswas <akarshan.biswas@hotmail.com>\n"
+"Language-Team: Bengali (India) <anubad@lists.ankur.org.in>\n"
+"Language: bn-IN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"\n"
-"X-Generator: Lokalize 1.5\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-DamnedLies-Scope: partial\n"
+"X-Generator: Gtranslator 3.36.0\n"
 
 # auto translated by TM merge from project: system-config-printer, version: 1.1.16-23, DocId: system-config-printer
-#: ../data/gnome-custom-session.desktop.in.h:1
+#: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
 msgstr "স্বনির্ধারিত"
 
-#: ../data/gnome-custom-session.desktop.in.h:2
+#: data/gnome-custom-session.desktop.in.in:4
 msgid "This entry lets you select a saved session"
 msgstr "এই এন্ট্রি অাপনাকে একটি সংরক্ষিত সেশন নির্বাচন করতে দেয়"
 
-#: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
+#: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
+#: data/gnome-wayland.desktop.in.in:3
 msgid "GNOME"
 msgstr "GNOME"
 
-#: ../data/gnome.desktop.in.h:2
+#: data/gnome.desktop.in.in:4 data/gnome-wayland.desktop.in.in:4
+#: data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
 msgstr "এই সেশানের মাধ্যমে GNOME-এ লগ-ইন করা যাবে"
 
-#: ../data/gnome-dummy.session.desktop.in.in.h:1
+#: data/gnome-dummy.session.desktop.in.in:3
 msgid "GNOME dummy"
 msgstr "GNOME ডামি"
 
-#: ../data/gnome-wayland.desktop.in.h:1
-#: ../data/gnome-wayland.session.desktop.in.in.h:1
-msgid "GNOME on Wayland"
-msgstr "Wayland এ GNOME"
+#: data/gnome-xorg.desktop.in.in:3
+#| msgid "GNOME on Wayland"
+msgid "GNOME on Xorg"
+msgstr "Xorg এ জিনোম"
 
-#: ../data/gnome-wayland.desktop.in.h:2
-#| msgid "This session logs you into GNOME"
-msgid "This session logs you into GNOME, using Wayland"
-msgstr "Wayland ব্যবহার করে, এই সেশানের মাধ্যমে GNOME-এ লগ-ইন করা যাবে"
+#: data/org.gnome.SessionManager.gschema.xml.in:5
+#| msgid "_Remove Session"
+msgid "Save sessions"
+msgstr "সেশন সংরক্ষণ করুন"
+
+#: data/org.gnome.SessionManager.gschema.xml.in:20
+#| msgid "Show extension warning"
+msgid "Show the fallback warning"
+msgstr "ফলব্যাক সতর্কতা দেখান"
 
 # auto translated by TM merge from project: gdm, version: 3.8.4, DocId: gdm
-#: ../data/session-selector.ui.h:1
+#: data/session-selector.ui:15
 msgid "Custom Session"
 msgstr "স্বনির্ধারিত সেশান"
 
-#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:102
+#: data/session-selector.ui:50 tools/gnome-session-selector.c:102
 msgid "Please select a custom session to run"
 msgstr "চালাতে অনুগ্রহ করে একটি স্বনির্বাচিত সেশন নির্বাচন করুন"
 
-#: ../data/session-selector.ui.h:3
+#: data/session-selector.ui:105
 msgid "_New Session"
 msgstr "নতুন সেশন (_N)"
 
-#: ../data/session-selector.ui.h:4
+#: data/session-selector.ui:119
 msgid "_Remove Session"
 msgstr "সেশন সরান (_R)"
 
-#: ../data/session-selector.ui.h:5
+#: data/session-selector.ui:133
 msgid "Rena_me Session"
 msgstr "সেশনের নাম পরিবর্তন করুন (_m)"
 
 # auto translated by TM merge from project: brasero, version: 3.8.0, DocId: brasero
-#: ../data/session-selector.ui.h:6
+#: data/session-selector.ui:168
 msgid "_Continue"
 msgstr "এগিয়ে চলুন (_C)"
 
-#: ../data/session-properties.ui.h:1
-msgid "Additional startup _programs:"
-msgstr "অতিরিক্ত প্রারম্ভিক প্রোগ্রাম :(_p)"
-
-#: ../data/session-properties.ui.h:2
-msgid "Startup Programs"
-msgstr "প্রারম্ভিক প্রোগ্রাম"
-
-#: ../data/session-properties.ui.h:3
-msgid "_Automatically remember running applications when logging out"
-msgstr ""
-"লগ-আউট করার সময়, চলমান অ্যাপ্লিকেশনগুলির তালিকা স্বয়ংক্রিয়রূপে মনে রাখা হবে "
-"(_A)"
-
-#: ../data/session-properties.ui.h:4
-msgid "_Remember Currently Running Applications"
-msgstr "বর্তমানে চলমান অ্যাপ্লিকেশনের তালিকা মনে রাখা হবে (_R)"
-
-#: ../data/session-properties.ui.h:5
-msgid "Options"
-msgstr "বিকল্প"
-
-#: ../data/session-properties.ui.h:6
-msgid "Browse…"
-msgstr "ব্রাউজ করুন..."
-
-#: ../data/session-properties.ui.h:7
-msgid "Comm_ent:"
-msgstr "মন্তব্য: (_e)"
-
-#: ../data/session-properties.ui.h:8
-msgid "Co_mmand:"
-msgstr "কমান্ড: (_m)"
-
-#: ../data/session-properties.ui.h:9
-msgid "_Name:"
-msgstr "নাম: (_N)"
-
-#: ../gnome-session/gsm-fail-whale-dialog.c:321
+#: gnome-session/gsm-fail-whale-dialog.c:318
 msgid "Oh no!  Something has gone wrong."
 msgstr "ওহ হো!  কিছু সমস্যা হয়েছে।"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:328
+#: gnome-session/gsm-fail-whale-dialog.c:325
+#| msgid ""
+#| "A problem has occurred and the system can't recover. Please contact a "
+#| "system administrator"
 msgid ""
-"A problem has occurred and the system can't recover. Please contact a system "
+"A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
 msgstr ""
-"একটি সমস্যা হয়েছে এবং সিস্টেমটি পুনরুদ্ধার করা সম্ভব নয়। অনুগ্রহ করে সিস্টেম "
-"অ্যাডমিনিস্ট্রেটরের সাথে যোগাযোগ করুন।"
+"একটি সমস্যা দেখা দিয়েছে এবং সিস্টেমটি পুনরুদ্ধার করতে পারছে না। একটি সিস্টেম "
+"প্রশাসকের সাথে যোগাযোগ করুন"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:330
+#: gnome-session/gsm-fail-whale-dialog.c:327
+#| msgid ""
+#| "A problem has occurred and the system can't recover. All extensions have "
+#| "been disabled as a precaution."
 msgid ""
-"A problem has occurred and the system can't recover. All extensions have "
+"A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
 msgstr ""
-"একটি সমস্যা হয়েছে এবং সিস্টেমটি পুনরুদ্ধার করা সম্ভব নয়। সাবধানতা হিসাবে সকল "
-"এক্সটেনশন নিষ্ক্রিয় করা হয়েছে।"
+"একটি সমস্যা দেখা দিয়েছে এবং সিস্টেমটি পুনরুদ্ধার করতে পারছে না। সাবধানতা জন্য সমস্ত "
+"এক্সটেনশন অক্ষম করা হয়েছে।"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:332
+#: gnome-session/gsm-fail-whale-dialog.c:329
+#| msgid ""
+#| "A problem has occurred and the system can't recover.\n"
+#| "Please log out and try again."
 msgid ""
-"A problem has occurred and the system can't recover.\n"
+"A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
 msgstr ""
-"একটি সমস্যা হয়েছে এবং সিস্টেমটি পুনরুদ্ধার করা সম্ভব নয়।\n"
-"অনুগ্রহ করে লগ আউট করে পুনরায় প্রয়াস করুন।"
+"একটি সমস্যা দেখা দিয়েছে এবং সিস্টেমটি পুনরুদ্ধার করতে পারছে না।\n"
+" লগ আউট করে আবার চেষ্টা করুন।"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:347
+#: gnome-session/gsm-fail-whale-dialog.c:344
 msgid "_Log Out"
 msgstr "লগ-আউট করুন (_L)"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:369 ../gnome-session/main.c:305
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
 msgid "Enable debugging code"
 msgstr "কোড ডিবাগ ব্যবস্থা সক্রিয় করুন"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:370
+#: gnome-session/gsm-fail-whale-dialog.c:413
 msgid "Allow logout"
 msgstr "লগ অাউটের অনুমতি দিন"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:371
+#: gnome-session/gsm-fail-whale-dialog.c:414
 msgid "Show extension warning"
 msgstr "এক্সটেনশন সর্তকতা দেখান"
 
-#: ../gnome-session/gsm-manager.c:1271 ../gnome-session/gsm-manager.c:2043
+#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1999
 msgid "Not responding"
 msgstr "কোনো প্রতিক্রিয়া হয়নি"
 
 # auto translated by TM merge from project: gnome-session, version: 3.8.4, DocId: gnome-session-3.0
-#: ../gnome-session/gsm-util.c:382
+#: gnome-session/gsm-util.c:415
 msgid "_Log out"
 msgstr "লগ-আউট করুন (_L)"
 
@@ -176,65 +155,120 @@ msgstr "লগ-আউট করুন (_L)"
 #. * then the XSMP client already has set several XSMP
 #. * properties. But it could still be that SmProgram is not set.
 #.
-#: ../gnome-session/gsm-xsmp-client.c:557
+#: gnome-session/gsm-xsmp-client.c:557
 msgid "Remembered Application"
 msgstr "অ্যাপ্লিকোশন মনে রাখা হবে"
 
-#: ../gnome-session/gsm-xsmp-client.c:1207
+#: gnome-session/gsm-xsmp-client.c:1216
 msgid "This program is blocking logout."
 msgstr "এই প্রোগ্রাম দ্বারা লগ-আউট করতে প্রতিরোধ করা হচ্ছে।"
 
-#: ../gnome-session/gsm-xsmp-server.c:340
+#: gnome-session/gsm-xsmp-server.c:338
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr ""
-"সিস্টেম বর্তমানে বন্ধ করার প্রচেষ্টা করা হচ্ছে ও এই কারণে নতুন ক্লায়েন্টের "
-"সাথে সংযোগ "
+"সিস্টেম বর্তমানে বন্ধ করার প্রচেষ্টা করা হচ্ছে ও এই কারণে নতুন ক্লায়েন্টের সাথে সংযোগ "
 "স্থাপনের অনুরোধ প্রত্যাখ্যান করা হচ্ছে।\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:609
+#: gnome-session/gsm-xsmp-server.c:605
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "ICE অপেক্ষার সকেট নির্মাণ করতে ব্যর্থ: %s"
 
-#: ../gnome-session/main.c:303
+#: gnome-session/main.c:398
+msgid "Running as systemd service"
+msgstr "সিস্টেম ডী সার্ভিস হিসাবে চলছে"
+
+#: gnome-session/main.c:399
+#| msgid "Specify session management ID"
+msgid "Use systemd session management"
+msgstr "সিস্টেমে ডী সেশন ম্যানেজমেন্ট ব্যবহার করুন"
+
+#: gnome-session/main.c:401
+msgid "Use builtin session management (rather than the systemd based one)"
+msgstr "অন্তর্নির্মিত সেশন ম্যানেজমেন্টে ব্যবহার করুন (সিস্টেম  ডী ভিত্তিক একের চেয়ে)"
+
+#: gnome-session/main.c:402
 msgid "Override standard autostart directories"
 msgstr "প্রমিত autostart ডিরেক্টরির মান উপেক্ষা করা হবে"
 
-#: ../gnome-session/main.c:303
+#: gnome-session/main.c:402
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: ../gnome-session/main.c:304
+#: gnome-session/main.c:403
 msgid "Session to use"
 msgstr "ব্যবহারযোগ্য সেশান"
 
-#: ../gnome-session/main.c:304
+#: gnome-session/main.c:403
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: ../gnome-session/main.c:306
+#: gnome-session/main.c:405
 msgid "Do not load user-specified applications"
 msgstr "ব্যবহারকারী দ্বারা নির্ধারিত অ্যাপ্লিকেশন লোড করা হবে না"
 
-#: ../gnome-session/main.c:307
+#: gnome-session/main.c:406
 msgid "Version of this application"
 msgstr "অ্যাপ্লিকেশনের সংস্করণ"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:309
+#: gnome-session/main.c:408
 msgid "Show the fail whale dialog for testing"
 msgstr "পরীক্ষার জন্য ফেইল-ওয়েইল ডায়লগটি প্রদর্শন করা হবে"
 
-#: ../gnome-session/main.c:342
-msgid " - the GNOME session manager"
-msgstr "- GNOME সেশান পরিচালনা ব্যবস্থা"
+#: gnome-session/main.c:409
+msgid "Disable hardware acceleration check"
+msgstr "হার্ডওয়্যার এক্সিলারেশন পরীক্ষা অক্ষম করুন"
 
-#: ../tools/gnome-session-inhibit.c:108
-#, c-format
+#: gnome-session/main.c:441
+#| msgid " - the GNOME session manager"
+msgid " — the GNOME session manager"
+msgstr "- জিনোম সেশন ম্যানেজার"
+
+#: tools/gnome-session-ctl.c:244
+msgid "Start gnome-session-shutdown.target"
+msgstr "Gnome-session-utdown.target শুরু করুন"
+
+#: tools/gnome-session-ctl.c:245
 msgid ""
-"%s [OPTION...] COMMAND\n"
+"Start gnome-session-shutdown.target when receiving EOF or a single byte on "
+"stdin"
+msgstr ""
+" EOF বা stdin এ একটি একক বাইট পাওয়ার সময় gnome-session-shutdown.target শুরু করুন"
+
+#: tools/gnome-session-ctl.c:246
+msgid "Signal initialization done to gnome-session"
+msgstr "জিনোম-সেশনে সংকেত সূচনা সম্পন্ন হয়েছে"
+
+#: tools/gnome-session-ctl.c:247
+msgid "Restart dbus.service if it is running"
+msgstr "dbus.service চালু থাকলে পুনরায় চালু করুন"
+
+#: tools/gnome-session-ctl.c:275
+msgid "Program needs exactly one parameter"
+msgstr "প্রোগ্রামের ঠিক এক প্যারামিটার দরকার"
+
+#: tools/gnome-session-inhibit.c:108
+#, c-format
+#| msgid ""
+#| "%s [OPTION...] COMMAND\n"
+#| "\n"
+#| "Execute COMMAND while inhibiting some session functionality.\n"
+#| "\n"
+#| "  -h, --help        Show this help\n"
+#| "  --version         Show program version\n"
+#| "  --app-id ID       The application id to use\n"
+#| "                    when inhibiting (optional)\n"
+#| "  --reason REASON   The reason for inhibiting (optional)\n"
+#| "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
+#| "                    logout, switch-user, suspend, idle, automount\n"
+#| "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+#| "\n"
+#| "If no --inhibit option is specified, idle is assumed.\n"
+msgid ""
+"%s [OPTION…] COMMAND\n"
 "\n"
 "Execute COMMAND while inhibiting some session functionality.\n"
 "\n"
@@ -246,85 +280,123 @@ msgid ""
 "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
 "                    logout, switch-user, suspend, idle, automount\n"
 "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+"  -l, --list        List the existing inhibitions, and exit\n"
 "\n"
 "If no --inhibit option is specified, idle is assumed.\n"
 msgstr ""
-"%s [OPTION...] COMMAND\n"
+"%s [বিকল্প…] COMMAND\n"
 "\n"
-"Execute COMMAND while inhibiting some session functionality.\n"
+"কিছু সেশন কার্যকারিতা বাধা দেওয়ার সময় COMMAND সম্পাদন করুন।\n"
 "\n"
-"  -h, --help        Show this help\n"
-"  --version         Show program version\n"
-"  --app-id ID       The application id to use\n"
-"                    when inhibiting (optional)\n"
-"  --reason REASON   The reason for inhibiting (optional)\n"
-"  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
-"                    logout, switch-user, suspend, idle, automount\n"
-"  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
-"\n"
-"If no --inhibit option is specified, idle is assumed.\n"
+"  -h, --help এই সাহায্যটি দেখান\n"
+" --version  প্রোগ্রাম সংস্করণ প্রদর্শন করুন\n"
+" --app-id ID ইনহিবিত করার সময় যেই অ্যাপ্লিকেশান আইডি ব্যাবহার করবেন(ঐচ্ছিক)\n"
+"--reason REASON  ইনহিবিত দেওয়ার কারণ (ঐচ্ছিক)\n"
+"--inhibit ARG  ইনহিবিত দেওয়ার বিষয়গুলি, কোলন-বিচ্ছিন্ন তালিকা:\n"
+"  logout, switch-user, suspend, idle, automount\n"
+" --inhibit-only COMMAND আরম্ভ করবেন না এবং পরিবর্তে চিরকালের জন্য অপেক্ষা\n"
+"-l, --list বিদ্যমান ইনহিবিতগুলি তালিকাভুক্ত করুন এবং প্রস্থান করুন\n"
+"যদি কোনও --inhibit বিকল্প নির্দিষ্ট না করা থাকে তবে idle ধরে নেওয়া হয়।\n"
 
-#: ../tools/gnome-session-inhibit.c:146
+#: tools/gnome-session-inhibit.c:288
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "%s সম্পাদন করা গেল না\n"
 
-#: ../tools/gnome-session-inhibit.c:206 ../tools/gnome-session-inhibit.c:216
-#: ../tools/gnome-session-inhibit.c:226
+#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
+#: tools/gnome-session-inhibit.c:372
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s এর একটি অার্গুমেন্টের অাবশ্যক\n"
 
-#: ../tools/gnome-session-selector.c:61
+#: tools/gnome-session-quit.c:50
+msgid "Log out"
+msgstr "লগ-আউট"
+
+#: tools/gnome-session-quit.c:51
+msgid "Power off"
+msgstr "বন্ধ করুন"
+
+#: tools/gnome-session-quit.c:52
+msgid "Reboot"
+msgstr "পুনরারম্ভ"
+
+#: tools/gnome-session-quit.c:53
+msgid "Ignoring any existing inhibitors"
+msgstr "কোনো উপস্থিত প্রতিরোধ অগ্রাহ্য করা হবে"
+
+#: tools/gnome-session-quit.c:54
+#| msgid "Don't prompt for user confirmation"
+msgid "Don’t prompt for user confirmation"
+msgstr "ব্যবহারকারী নিশ্চিতকরণের জন্য অনুরোধ করবেন না"
+
+#: tools/gnome-session-quit.c:88 tools/gnome-session-quit.c:102
+msgid "Could not connect to the session manager"
+msgstr "সেশান পরিচালনব্যবস্থার সাথে সংযোগ স্থাপন করতে ব্যর্থ"
+
+#: tools/gnome-session-quit.c:198
+msgid "Program called with conflicting options"
+msgstr "দ্বন্দ্বযুক্ত বিকল্প সহ প্রোগ্রাম আরম্ভের প্রচেষ্টা করা হয়েছে"
+
+#: tools/gnome-session-selector.c:61
 #, c-format
 msgid "Session %d"
 msgstr "সেশন %d"
 
-#: ../tools/gnome-session-selector.c:107
+#: tools/gnome-session-selector.c:107
+#| msgid ""
+#| "Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
 msgid ""
-"Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
-msgstr "সেশন নামগুলি ‘.’ দিয়ে শুরু করা যাবে না বা তাতে ‘/’ অক্ষর থাকলে চলবে না"
+"Session names are not allowed to start with “.” or contain “/” characters"
+msgstr "সেশন নামগুলি \".\" দিয়ে শুরু করা অথবা \"/\" অক্ষর  থাকার অনুমতি নেই।"
 
-#: ../tools/gnome-session-selector.c:111
-msgid "Session names are not allowed to start with ‘.’"
-msgstr "সেশন নামগুলি ‘.’ দিয়ে শুরু হলে চলবে না"
+#: tools/gnome-session-selector.c:111
+#| msgid "Session names are not allowed to start with ‘.’"
+msgid "Session names are not allowed to start with “.”"
+msgstr "সেশন নামগুলি \".\" দিয়ে শুরু করার অনুমতি নেই।"
 
-#: ../tools/gnome-session-selector.c:115
-msgid "Session names are not allowed to contain ‘/’ characters"
-msgstr "সেশন নামগুলিতে ‘/’ অক্ষর থাকলে চলবে না"
+#: tools/gnome-session-selector.c:115
+#| msgid "Session names are not allowed to contain ‘/’ characters"
+msgid "Session names are not allowed to contain “/” characters"
+msgstr "সেশন নামগুলিতে \"/\" অক্ষর থাকার অনুমতি নেই।"
 
-#: ../tools/gnome-session-selector.c:123
+#: tools/gnome-session-selector.c:123
 #, c-format
-msgid "A session named ‘%s’ already exists"
+#| msgid "A session named ‘%s’ already exists"
+msgid "A session named “%s” already exists"
 msgstr "‘%s’ নামের একটি সেশন ইতিমধ্যেই উপস্থিত"
 
-#: ../tools/gnome-session-quit.c:51
-msgid "Log out"
-msgstr "লগ-আউট"
+#~| msgid "This session logs you into GNOME"
+#~ msgid "This session logs you into GNOME, using Wayland"
+#~ msgstr "Wayland ব্যবহার করে, এই সেশানের মাধ্যমে GNOME-এ লগ-ইন করা যাবে"
 
-#: ../tools/gnome-session-quit.c:52
-msgid "Power off"
-msgstr "বন্ধ করুন"
+#~ msgid "Additional startup _programs:"
+#~ msgstr "অতিরিক্ত প্রারম্ভিক প্রোগ্রাম :(_p)"
 
-#: ../tools/gnome-session-quit.c:53
-msgid "Reboot"
-msgstr "পুনরারম্ভ"
+#~ msgid "Startup Programs"
+#~ msgstr "প্রারম্ভিক প্রোগ্রাম"
 
-#: ../tools/gnome-session-quit.c:54
-msgid "Ignoring any existing inhibitors"
-msgstr "কোনো উপস্থিত প্রতিরোধ অগ্রাহ্য করা হবে"
+#~ msgid "_Automatically remember running applications when logging out"
+#~ msgstr ""
+#~ "লগ-আউট করার সময়, চলমান অ্যাপ্লিকেশনগুলির তালিকা স্বয়ংক্রিয়রূপে মনে রাখা হবে (_A)"
 
-#: ../tools/gnome-session-quit.c:55
-msgid "Don't prompt for user confirmation"
-msgstr "ব্যবহারকারী দ্বারা নিশ্চিত করার অনুরোধ করা হবে না"
+#~ msgid "_Remember Currently Running Applications"
+#~ msgstr "বর্তমানে চলমান অ্যাপ্লিকেশনের তালিকা মনে রাখা হবে (_R)"
 
-#: ../tools/gnome-session-quit.c:89 ../tools/gnome-session-quit.c:99
-msgid "Could not connect to the session manager"
-msgstr "সেশান পরিচালনব্যবস্থার সাথে সংযোগ স্থাপন করতে ব্যর্থ"
+#~ msgid "Options"
+#~ msgstr "বিকল্প"
 
-#: ../tools/gnome-session-quit.c:201
-msgid "Program called with conflicting options"
-msgstr "দ্বন্দ্বযুক্ত বিকল্প সহ প্রোগ্রাম আরম্ভের প্রচেষ্টা করা হয়েছে"
+#~ msgid "Browse…"
+#~ msgstr "ব্রাউজ করুন..."
+
+#~ msgid "Comm_ent:"
+#~ msgstr "মন্তব্য: (_e)"
+
+#~ msgid "Co_mmand:"
+#~ msgstr "কমান্ড: (_m)"
+
+#~ msgid "_Name:"
+#~ msgstr "নাম: (_N)"
 
 #~ msgid "Select Command"
 #~ msgstr "কমান্ড নির্বাচন করুন"
@@ -400,9 +472,6 @@ msgstr "দ্বন্দ্বযুক্ত বিকল্প সহ প্
 
 #~ msgid "FILE"
 #~ msgstr "FILE"
-
-#~ msgid "Specify session management ID"
-#~ msgstr "সেশান পরিচালনার ID উল্লেখ করুন"
 
 #~ msgid "ID"
 #~ msgstr "ID"
