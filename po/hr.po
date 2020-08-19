@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 0\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2019-08-06 16:59+0000\n"
-"PO-Revision-Date: 2019-09-03 16:08+0200\n"
+"POT-Creation-Date: 2020-07-31 14:02+0000\n"
+"PO-Revision-Date: 2020-08-20 00:00+0200\n"
 "Last-Translator: gogo <linux.hr@protonmail.com>\n"
 "Language-Team: Croatian <lokalizacija@linux.hr>\n"
 "Language: hr\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2016-09-22 19:52+0000\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.4.1\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -107,11 +107,11 @@ msgstr "Preimen_uj sesiju"
 msgid "_Continue"
 msgstr "_Nastavi"
 
-#: gnome-session/gsm-fail-whale-dialog.c:313
+#: gnome-session/gsm-fail-whale-dialog.c:318
 msgid "Oh no!  Something has gone wrong."
 msgstr "O, ne! Nešto je pošlo po krivu."
 
-#: gnome-session/gsm-fail-whale-dialog.c:320
+#: gnome-session/gsm-fail-whale-dialog.c:325
 msgid ""
 "A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
@@ -119,7 +119,7 @@ msgstr ""
 "Došlo je do problema od kojeg se sustav ne može oporaviti. Obavijestite "
 "administratora sustava."
 
-#: gnome-session/gsm-fail-whale-dialog.c:322
+#: gnome-session/gsm-fail-whale-dialog.c:327
 msgid ""
 "A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
@@ -127,7 +127,7 @@ msgstr ""
 "Problem se pojavio i sustav se ne može oporaviti. Sva proširenja su "
 "onemogućena iz predostrožnosti."
 
-#: gnome-session/gsm-fail-whale-dialog.c:324
+#: gnome-session/gsm-fail-whale-dialog.c:329
 msgid ""
 "A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
@@ -135,27 +135,27 @@ msgstr ""
 "Došlo je do problema od kojeg se sustav ne može oporaviti.\n"
 "Odjavite se i pokušajte ponovno."
 
-#: gnome-session/gsm-fail-whale-dialog.c:339
+#: gnome-session/gsm-fail-whale-dialog.c:344
 msgid "_Log Out"
 msgstr "_Odjavljivanje"
 
-#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:396
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
 msgid "Enable debugging code"
 msgstr "Omogući otkrivanje grešaka"
 
-#: gnome-session/gsm-fail-whale-dialog.c:362
+#: gnome-session/gsm-fail-whale-dialog.c:413
 msgid "Allow logout"
 msgstr "Dopusti odjavu"
 
-#: gnome-session/gsm-fail-whale-dialog.c:363
+#: gnome-session/gsm-fail-whale-dialog.c:414
 msgid "Show extension warning"
 msgstr "Prikaži upozorenje proširenja"
 
-#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1967
+#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1999
 msgid "Not responding"
 msgstr "Ne reagira"
 
-#: gnome-session/gsm-util.c:382
+#: gnome-session/gsm-util.c:415
 msgid "_Log out"
 msgstr "_Odjavljivanje"
 
@@ -183,60 +183,60 @@ msgstr ""
 msgid "Could not create ICE listening socket: %s"
 msgstr "Nije moguće izraditi ICE priključak: %s"
 
-#: gnome-session/main.c:390
+#: gnome-session/main.c:398
 msgid "Running as systemd service"
 msgstr "Pokrenuto kao systemd usluga"
 
-#: gnome-session/main.c:391
+#: gnome-session/main.c:399
 msgid "Use systemd session management"
 msgstr "Koristi systemd upravitelj sesijama"
 
-#: gnome-session/main.c:393
+#: gnome-session/main.c:401
 msgid "Use builtin session management (rather than the systemd based one)"
 msgstr "Koristi ugrađeni upravitelj sesijama (radije nego systemd temeljeni)"
 
-#: gnome-session/main.c:394
+#: gnome-session/main.c:402
 msgid "Override standard autostart directories"
 msgstr "Nadvladaj standardne direktorije automatskog pokretanja"
 
-#: gnome-session/main.c:394
+#: gnome-session/main.c:402
 msgid "AUTOSTART_DIR"
 msgstr "DIR_AUTOPOKRETANJA"
 
-#: gnome-session/main.c:395
+#: gnome-session/main.c:403
 msgid "Session to use"
 msgstr "Sesija za korištenje"
 
-#: gnome-session/main.c:395
+#: gnome-session/main.c:403
 msgid "SESSION_NAME"
 msgstr "NAZIV_SESIJE"
 
-#: gnome-session/main.c:397
+#: gnome-session/main.c:405
 msgid "Do not load user-specified applications"
 msgstr "Nemoj učitati aplikacije koje je odredio korisnik"
 
-#: gnome-session/main.c:398
+#: gnome-session/main.c:406
 msgid "Version of this application"
 msgstr "Inačica ove aplikacije"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:400
+#: gnome-session/main.c:408
 msgid "Show the fail whale dialog for testing"
 msgstr "Prikaži fail whale dijalog za testiranje"
 
-#: gnome-session/main.c:401
+#: gnome-session/main.c:409
 msgid "Disable hardware acceleration check"
 msgstr "Onemogući provjeru hardverskog ubrzanja"
 
-#: gnome-session/main.c:433
+#: gnome-session/main.c:441
 msgid " — the GNOME session manager"
 msgstr " — GNOME upravitelj sesijama"
 
-#: tools/gnome-session-ctl.c:244
+#: tools/gnome-session-ctl.c:245
 msgid "Start gnome-session-shutdown.target"
 msgstr "Pokreni gnome-session-shutdown.target"
 
-#: tools/gnome-session-ctl.c:245
+#: tools/gnome-session-ctl.c:246
 msgid ""
 "Start gnome-session-shutdown.target when receiving EOF or a single byte on "
 "stdin"
@@ -244,15 +244,22 @@ msgstr ""
 "Pokreni gnome-session-shutdown.target kada se primi EOF ili jedan bajt na "
 "stdinu"
 
-#: tools/gnome-session-ctl.c:246
+#: tools/gnome-session-ctl.c:247
 msgid "Signal initialization done to gnome-session"
 msgstr "Pokretanje signala je završeno za gnome-session"
 
-#: tools/gnome-session-ctl.c:247
+#: tools/gnome-session-ctl.c:248
 msgid "Restart dbus.service if it is running"
 msgstr "Ponovno pokreni dbus.service ako je pokrenut"
 
-#: tools/gnome-session-ctl.c:275
+#: tools/gnome-session-ctl.c:249
+msgid ""
+"Run from ExecStopPost to start gnome-session-failed.target on service failure"
+msgstr ""
+"Pokrenite iz ExecStopPost za pokretanje gnome-session-failed.target pri "
+"neuspjehu usluge"
+
+#: tools/gnome-session-ctl.c:279
 msgid "Program needs exactly one parameter"
 msgstr "Programu je potreban točno jedan parametar"
 
@@ -271,6 +278,7 @@ msgid ""
 "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
 "                    logout, switch-user, suspend, idle, automount\n"
 "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+"  -l, --list        List the existing inhibitions, and exit\n"
 "\n"
 "If no --inhibit option is specified, idle is assumed.\n"
 msgstr ""
@@ -285,19 +293,20 @@ msgstr ""
 "  --reason RAZLOG   Razlog zabranjivanja (neobavezno)\n"
 "  --inhibit ARG     Stvari za zabraniti, Dvotočkom odvojen popis:\n"
 "                    odjave, zemjene-korisnika, suspenzije, mirovanja, "
-"automatskog mountiranja\n"
+"automatskog montiranja\n"
 "  --inhibit-only    Ne pokreći NAREDBU i čekaj zauvijek\n"
+"  -l, --list        Prikaži postojeće zabrane, i izađi\n"
 "\n"
 "ako nije --inhibit mogućnost zabrane je određena, mirovanje je "
 "pretpostavljeno.\n"
 
-#: tools/gnome-session-inhibit.c:146
+#: tools/gnome-session-inhibit.c:288
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Neuspjelo pokretanje %s\n"
 
-#: tools/gnome-session-inhibit.c:206 tools/gnome-session-inhibit.c:216
-#: tools/gnome-session-inhibit.c:226
+#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
+#: tools/gnome-session-inhibit.c:372
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s zahtijeva argument\n"
