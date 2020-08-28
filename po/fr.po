@@ -15,20 +15,22 @@
 # Bruno Brouard <annoa.b@gmail.com>, 2009,2011-2012
 # Nicolas Repentin <nicolas@shivaserv.fr>, 2011
 # Charles Monzat <charles.monzat@free.fr>, 2018-2019.
+# vanadiae <vanadiae35@gmail.com>, 2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2019-08-06 16:59+0000\n"
-"PO-Revision-Date: 2019-03-29 09:04+0100\n"
-"Last-Translator: Claude Paroz <claude@2xlibre.net>\n"
+"POT-Creation-Date: 2020-08-26 19:30+0000\n"
+"PO-Revision-Date: 2020-08-27 17:12+0200\n"
+"Last-Translator: vanadiae <vanadiae35@gmail.com>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Gtranslator 3.36.0\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -122,11 +124,11 @@ msgstr "Reno_mmer la session"
 msgid "_Continue"
 msgstr "_Continuer"
 
-#: gnome-session/gsm-fail-whale-dialog.c:313
+#: gnome-session/gsm-fail-whale-dialog.c:318
 msgid "Oh no!  Something has gone wrong."
 msgstr "Oh mince ! Quelque chose s’est mal passé."
 
-#: gnome-session/gsm-fail-whale-dialog.c:320
+#: gnome-session/gsm-fail-whale-dialog.c:325
 msgid ""
 "A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
@@ -134,7 +136,7 @@ msgstr ""
 "Un problème est survenu et le système ne peut pas se récupérer. Contactez un "
 "administrateur système"
 
-#: gnome-session/gsm-fail-whale-dialog.c:322
+#: gnome-session/gsm-fail-whale-dialog.c:327
 msgid ""
 "A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
@@ -142,7 +144,7 @@ msgstr ""
 "Un problème est survenu et le système ne peut pas se récupérer. Toutes les "
 "extensions ont été désactivées par mesure de précaution."
 
-#: gnome-session/gsm-fail-whale-dialog.c:324
+#: gnome-session/gsm-fail-whale-dialog.c:329
 msgid ""
 "A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
@@ -150,27 +152,27 @@ msgstr ""
 "Un problème est survenu et le système ne peut pas se récupérer.\n"
 "Déconnectez-vous et essayez à nouveau."
 
-#: gnome-session/gsm-fail-whale-dialog.c:339
+#: gnome-session/gsm-fail-whale-dialog.c:344
 msgid "_Log Out"
 msgstr "_Fermer la session"
 
-#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:396
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
 msgid "Enable debugging code"
 msgstr "Active le code de débogage"
 
-#: gnome-session/gsm-fail-whale-dialog.c:362
+#: gnome-session/gsm-fail-whale-dialog.c:413
 msgid "Allow logout"
 msgstr "Autoriser la déconnexion"
 
-#: gnome-session/gsm-fail-whale-dialog.c:363
+#: gnome-session/gsm-fail-whale-dialog.c:414
 msgid "Show extension warning"
 msgstr "Afficher l’avertissement pour les extensions"
 
-#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1967
+#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1999
 msgid "Not responding"
 msgstr "Absence de réponse"
 
-#: gnome-session/gsm-util.c:382
+#: gnome-session/gsm-util.c:415
 msgid "_Log out"
 msgstr "_Se déconnecter"
 
@@ -199,79 +201,87 @@ msgstr ""
 msgid "Could not create ICE listening socket: %s"
 msgstr "Impossible de créer le connecteur d’écoute ICE : %s"
 
-#: gnome-session/main.c:390
+#: gnome-session/main.c:398
 msgid "Running as systemd service"
 msgstr "Exécuté en tant que service systemd"
 
-#: gnome-session/main.c:391
+#: gnome-session/main.c:399
 msgid "Use systemd session management"
 msgstr "Utiliser la gestion des sessions systemd"
 
-#: gnome-session/main.c:393
+#: gnome-session/main.c:401
 msgid "Use builtin session management (rather than the systemd based one)"
 msgstr ""
-"Utiliser la gestion des sessions intégrée (plutôt que celle basée sur systemd)"
+"Utiliser la gestion des sessions intégrée (plutôt que celle basée sur "
+"systemd)"
 
-#: gnome-session/main.c:394
+#: gnome-session/main.c:402
 msgid "Override standard autostart directories"
 msgstr "Remplace les répertoires autostart standards"
 
-#: gnome-session/main.c:394
+#: gnome-session/main.c:402
 msgid "AUTOSTART_DIR"
 msgstr "RÉP_AUTOSTART"
 
-#: gnome-session/main.c:395
+#: gnome-session/main.c:403
 msgid "Session to use"
 msgstr "Session à utiliser"
 
-#: gnome-session/main.c:395
+#: gnome-session/main.c:403
 msgid "SESSION_NAME"
 msgstr "NOM_SESSION"
 
-#: gnome-session/main.c:397
+#: gnome-session/main.c:405
 msgid "Do not load user-specified applications"
 msgstr "Ne charge pas les applications demandées par l’utilisateur"
 
-#: gnome-session/main.c:398
+#: gnome-session/main.c:406
 msgid "Version of this application"
 msgstr "Version de cette application"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:400
+#: gnome-session/main.c:408
 msgid "Show the fail whale dialog for testing"
 msgstr "Afficher le dialogue d’erreur pour le tester"
 
-#: gnome-session/main.c:401
+#: gnome-session/main.c:409
 msgid "Disable hardware acceleration check"
 msgstr "Désactiver la vérification de l’accélération matérielle"
 
-#: gnome-session/main.c:433
+#: gnome-session/main.c:441
 msgid " — the GNOME session manager"
 msgstr " — le gestionnaire de sessions de GNOME"
 
-#: tools/gnome-session-ctl.c:244
+#: tools/gnome-session-ctl.c:245
 msgid "Start gnome-session-shutdown.target"
 msgstr "Démarrer gnome-session-shutdown.target"
 
-#: tools/gnome-session-ctl.c:245
+#: tools/gnome-session-ctl.c:246
 msgid ""
 "Start gnome-session-shutdown.target when receiving EOF or a single byte on "
 "stdin"
 msgstr ""
-"Démarrer gnome-session-shutdown.target si réception de fin de fichier (EOF) ou "
-"d’un octet unique sur stdin"
+"Démarrer gnome-session-shutdown.target si réception de fin de fichier (EOF) "
+"ou d’un octet unique sur stdin"
 
-#: tools/gnome-session-ctl.c:246
+#: tools/gnome-session-ctl.c:247
 msgid "Signal initialization done to gnome-session"
 msgstr "Signaler l’initialisation comme terminée à gnome-session"
 
-#: tools/gnome-session-ctl.c:247
+#: tools/gnome-session-ctl.c:248
 msgid "Restart dbus.service if it is running"
 msgstr "Redémarrer dbus.service s’il est en cours d’exécution"
 
-#: tools/gnome-session-ctl.c:275
+#: tools/gnome-session-ctl.c:249
+msgid ""
+"Run from ExecStopPost to start gnome-session-failed.target on service failure"
+msgstr ""
+"Démarrer depuis ExecStopPost pour lancer gnome-session-failed.target en cas "
+"d’échec du service"
+
+#: tools/gnome-session-ctl.c:279
 msgid "Program needs exactly one parameter"
-msgstr "Le programme a besoin d’un et d’un seul paramètre"
+msgstr "Le programme a besoin d’un seul paramètre uniquement"
 
 #: tools/gnome-session-inhibit.c:108
 #, c-format
@@ -288,33 +298,34 @@ msgid ""
 "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
 "                    logout, switch-user, suspend, idle, automount\n"
 "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+"  -l, --list        List the existing inhibitions, and exit\n"
 "\n"
 "If no --inhibit option is specified, idle is assumed.\n"
 msgstr ""
 "%s [OPTION…] COMMANDE\n"
 "\n"
-"Exécute COMMANDE tout en inhibant des fonctionnalités de la session.\n"
+"Exécute COMMANDE tout en inhibant certaines fonctionnalités de la session.\n"
 "\n"
 "  -h, --help        Afficher cette aide\n"
 "  --version         Afficher la version du programme\n"
 "  --app-id ID       L’identifiant d’application à utiliser\n"
 "                    lors de l’inhibition (optionnel)\n"
-"  --reason REASON   La raison de l’inhibition (optionnel)\n"
-"  --inhibit ARG     Les choses à inhiber, liste séparée par des doubles-"
-"points parmi :\n"
+"  --reason RAISON   La raison de l’inhibition (optionnel)\n"
+"  --inhibit ARG     Les choses à inhiber, liste séparée par des deux-points, "
+"parmi :\n"
 "                    logout, switch-user, suspend, idle, automount\n"
 "  --inhibit-only    Ne pas lancer COMMANDE et attendre indéfiniment à la "
 "place\n"
 "\n"
-"Si aucune option --inhibit n’est précisée, « idle » est supposé.\n"
+"Si l’option --inhibit n’est pas précisée, « idle » est présumé.\n"
 
-#: tools/gnome-session-inhibit.c:146
+#: tools/gnome-session-inhibit.c:288
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Impossible d’exécuter %s\n"
 
-#: tools/gnome-session-inhibit.c:206 tools/gnome-session-inhibit.c:216
-#: tools/gnome-session-inhibit.c:226
+#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
+#: tools/gnome-session-inhibit.c:372
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s nécessite un paramètre\n"
