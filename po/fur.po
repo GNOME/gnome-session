@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.20.x\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2020-07-13 13:45+0000\n"
-"PO-Revision-Date: 2020-07-20 13:17+0200\n"
+"POT-Creation-Date: 2020-08-16 08:36+0000\n"
+"PO-Revision-Date: 2020-08-28 12:34+0200\n"
 "Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
 "Language-Team: Friulian <massimo.furlani@libero.it>\n"
 "Language: fur\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 2.4.1\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -167,7 +167,7 @@ msgstr "_Jes"
 #.
 #: gnome-session/gsm-xsmp-client.c:557
 msgid "Remembered Application"
-msgstr "Aplicazion memorizade "
+msgstr "Aplicazion memorizade"
 
 #: gnome-session/gsm-xsmp-client.c:1216
 msgid "This program is blocking logout."
@@ -234,11 +234,11 @@ msgstr "Gjave control acelerazion hardware"
 msgid " — the GNOME session manager"
 msgstr " — Il gjestôr di session GNOME"
 
-#: tools/gnome-session-ctl.c:244
+#: tools/gnome-session-ctl.c:245
 msgid "Start gnome-session-shutdown.target"
 msgstr "Fâs partî gnome-session-shutdown.target"
 
-#: tools/gnome-session-ctl.c:245
+#: tools/gnome-session-ctl.c:246
 msgid ""
 "Start gnome-session-shutdown.target when receiving EOF or a single byte on "
 "stdin"
@@ -246,15 +246,22 @@ msgstr ""
 "Fâs partî gnome-session-shutdown.target cuant che si ricêf EOF o un singul "
 "byte sul stdin"
 
-#: tools/gnome-session-ctl.c:246
+#: tools/gnome-session-ctl.c:247
 msgid "Signal initialization done to gnome-session"
 msgstr "Inizializazion dal segnâl fate par gnome-session"
 
-#: tools/gnome-session-ctl.c:247
+#: tools/gnome-session-ctl.c:248
 msgid "Restart dbus.service if it is running"
 msgstr "Torne invie dbus.service se al è in esecuzion"
 
-#: tools/gnome-session-ctl.c:275
+#: tools/gnome-session-ctl.c:249
+msgid ""
+"Run from ExecStopPost to start gnome-session-failed.target on service failure"
+msgstr ""
+"Eseguìs di ExecStopPost par fâ partî gnome-session-failed.target al faliment "
+"dal servizi"
+
+#: tools/gnome-session-ctl.c:279
 msgid "Program needs exactly one parameter"
 msgstr "Il program al à bisugne di juste un parametri"
 
