@@ -3,7 +3,7 @@ project(
   version: '3.37.0',
   license: 'GPL2+',
   default_options: 'buildtype=debugoptimized',
-  meson_version: '>= 0.43.0'
+  meson_version: '>= 0.53.0'
 )
 
 prefix = get_option('prefix')
