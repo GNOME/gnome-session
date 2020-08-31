@@ -5,6 +5,31 @@ desktops = [
   'gnome-xorg'
 ]
 
+shell_component = {
+  desktop_plain: 'org.gnome.Shell',
+}
+
+required_components = {
+  desktop_plain: [
+    'org.gnome.SettingsDaemon.A11ySettings',
+    'org.gnome.SettingsDaemon.Color',
+    'org.gnome.SettingsDaemon.Datetime',
+    'org.gnome.SettingsDaemon.Housekeeping',
+    'org.gnome.SettingsDaemon.Keyboard',
+    'org.gnome.SettingsDaemon.MediaKeys',
+    'org.gnome.SettingsDaemon.Power',
+    'org.gnome.SettingsDaemon.PrintNotifications',
+    'org.gnome.SettingsDaemon.Rfkill',
+    'org.gnome.SettingsDaemon.ScreensaverProxy',
+    'org.gnome.SettingsDaemon.Sharing',
+    'org.gnome.SettingsDaemon.Smartcard',
+    'org.gnome.SettingsDaemon.Sound',
+    'org.gnome.SettingsDaemon.UsbProtection',
+    'org.gnome.SettingsDaemon.Wacom',
+    'org.gnome.SettingsDaemon.XSettings',
+  ],
+}
+
 if enable_session_selector
   desktops += 'gnome-custom-session'
 endif
@@ -44,15 +69,18 @@ foreach name: desktops
 endforeach
 
 sessions = [
-  'gnome.session',
-  'gnome-dummy.session'
+  'gnome',
+  'gnome-dummy'
 ]
 
 foreach session: sessions
+  session_file = session + '.session'
   desktop_conf = configuration_data()
   desktop_conf.set('libexecdir', session_libexecdir)
+  desktop_conf.set('required_components', ';'.join(
+    [shell_component.get(session, '')] + required_components.get(session, [])))
 
-  desktop = session + '.desktop'
+  desktop = session_file + '.desktop'
 
   desktop_in = configure_file(
     input: desktop + '.in.in',
@@ -61,10 +89,10 @@ foreach session: sessions
   )
 
   i18n.merge_file(
-    session,
+    session_file,
     type: 'desktop',
     input: desktop_in,
-    output: session,
+    output: session_file,
     po_dir: po_dir,
     install: true,
     install_dir: join_paths(session_pkgdatadir, 'sessions')
@@ -134,10 +162,19 @@ if enable_systemd_session
     install_dir : join_paths(systemd_userunitdir, 'gnome-launched-.scope.d')
   )
 
-  install_data(
-    'gnome.session.conf',
-    rename: join_paths('gnome-session@gnome.target.d', 'session.conf'),
-    install_dir: systemd_userunitdir,
+  gnome_session_wanted_targets = []
+  foreach component: required_components[desktop_plain]
+    gnome_session_wanted_targets += 'Wants=@0@.target'.format(component)
+  endforeach
+
+  configure_file(
+    input: 'gnome.session.conf.in',
+    output: 'session.conf',
+    configuration: {
+      'requires_component': shell_component[desktop_plain],
+      'wants_required_components': '\n'.join(gnome_session_wanted_targets),
+    },
+    install_dir: systemd_userunitdir / 'gnome-session@gnome.target.d',
   )
 endif
 
