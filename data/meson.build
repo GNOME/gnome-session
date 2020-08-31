@@ -162,20 +162,23 @@ if enable_systemd_session
     install_dir : join_paths(systemd_userunitdir, 'gnome-launched-.scope.d')
   )
 
-  gnome_session_wanted_targets = []
-  foreach component: required_components[desktop_plain]
-    gnome_session_wanted_targets += 'Wants=@0@.target'.format(component)
-  endforeach
+  foreach session, req_components: required_components
+    wanted_targets = []
+    foreach component: req_components
+      wanted_targets += 'Wants=@0@.target'.format(component)
+    endforeach
 
-  configure_file(
-    input: 'gnome.session.conf.in',
-    output: 'session.conf',
-    configuration: {
-      'requires_component': shell_component[desktop_plain],
-      'wants_required_components': '\n'.join(gnome_session_wanted_targets),
-    },
-    install_dir: systemd_userunitdir / 'gnome-session@gnome.target.d',
-  )
+    configure_file(
+      input: session + '.session.conf.in',
+      output: session + '.session.conf',
+      configuration: {
+        'requires_component': shell_component[session],
+        'wants_required_components': '\n'.join(wanted_targets),
+      },
+      install_dir: systemd_userunitdir / 'gnome-session@@0@.target.d'.format(
+        session),
+    )
+  endforeach
 endif
 
 data = files('hardware-compatibility')
