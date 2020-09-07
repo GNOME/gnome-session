@@ -30,16 +30,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2019-08-06 16:59+0000\n"
-"PO-Revision-Date: 2019-09-09 00:51+0200\n"
-"Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
+"POT-Creation-Date: 2020-07-31 14:02+0000\n"
+"PO-Revision-Date: 2020-09-06 19:21+0200\n"
+"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.3\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -132,11 +132,11 @@ msgstr "_Omdøb session"
 msgid "_Continue"
 msgstr "_Fortsæt"
 
-#: gnome-session/gsm-fail-whale-dialog.c:313
+#: gnome-session/gsm-fail-whale-dialog.c:318
 msgid "Oh no!  Something has gone wrong."
 msgstr "Åh nej!  Noget er gået galt."
 
-#: gnome-session/gsm-fail-whale-dialog.c:320
+#: gnome-session/gsm-fail-whale-dialog.c:325
 msgid ""
 "A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
@@ -144,7 +144,7 @@ msgstr ""
 "Der er opstået et problem og systemet kan ikke gendannes. Henvend dig "
 "venligst til en systemadministrator"
 
-#: gnome-session/gsm-fail-whale-dialog.c:322
+#: gnome-session/gsm-fail-whale-dialog.c:327
 msgid ""
 "A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
@@ -152,7 +152,7 @@ msgstr ""
 "Der er opstået et problem, og systemet kan ikke gendannes. Alle udvidelser "
 "er blevet deaktiveret for en sikkerheds skyld."
 
-#: gnome-session/gsm-fail-whale-dialog.c:324
+#: gnome-session/gsm-fail-whale-dialog.c:329
 msgid ""
 "A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
@@ -160,27 +160,27 @@ msgstr ""
 "Et problem er opstået og systemet kan ikke gendannes.\n"
 "Log venligst ud og prøv igen."
 
-#: gnome-session/gsm-fail-whale-dialog.c:339
+#: gnome-session/gsm-fail-whale-dialog.c:344
 msgid "_Log Out"
 msgstr "_Log ud"
 
-#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:396
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
 msgid "Enable debugging code"
 msgstr "Aktivér fejlfindingskode"
 
-#: gnome-session/gsm-fail-whale-dialog.c:362
+#: gnome-session/gsm-fail-whale-dialog.c:413
 msgid "Allow logout"
 msgstr "Tillad log ud"
 
-#: gnome-session/gsm-fail-whale-dialog.c:363
+#: gnome-session/gsm-fail-whale-dialog.c:414
 msgid "Show extension warning"
 msgstr "Vis udvidelsesfejl"
 
-#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1967
+#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1999
 msgid "Not responding"
 msgstr "Svarer ikke"
 
-#: gnome-session/gsm-util.c:382
+#: gnome-session/gsm-util.c:415
 msgid "_Log out"
 msgstr "_Log ud"
 
@@ -208,74 +208,83 @@ msgstr ""
 msgid "Could not create ICE listening socket: %s"
 msgstr "Kunne ikke oprette ICE-lyttesoklen: %s"
 
-#: gnome-session/main.c:390
+#: gnome-session/main.c:398
 msgid "Running as systemd service"
 msgstr "Kører som systemd-tjeneste"
 
-#: gnome-session/main.c:391
+#: gnome-session/main.c:399
 msgid "Use systemd session management"
 msgstr "Brug systemd-sessionshåndtering"
 
-#: gnome-session/main.c:393
+#: gnome-session/main.c:401
 msgid "Use builtin session management (rather than the systemd based one)"
 msgstr "Brug indbygget sessionshåndtering (frem for den baseret på systemd)"
 
-#: gnome-session/main.c:394
+#: gnome-session/main.c:402
 msgid "Override standard autostart directories"
 msgstr "Tilsidesæt standard-autostartmapper"
 
-#: gnome-session/main.c:394
+#: gnome-session/main.c:402
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_KAT"
 
-#: gnome-session/main.c:395
+#: gnome-session/main.c:403
 msgid "Session to use"
 msgstr "Session som skal bruges"
 
-#: gnome-session/main.c:395
+#: gnome-session/main.c:403
 msgid "SESSION_NAME"
 msgstr "SESSIONS_NAVN"
 
-#: gnome-session/main.c:397
+#: gnome-session/main.c:405
 msgid "Do not load user-specified applications"
 msgstr "Hent ikke brugerangivne programmer"
 
-#: gnome-session/main.c:398
+#: gnome-session/main.c:406
 msgid "Version of this application"
 msgstr "Version af dette program"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:400
+#: gnome-session/main.c:408
 msgid "Show the fail whale dialog for testing"
 msgstr "Vis dialogen uheldig hval for at gennemføre en test"
 
-#: gnome-session/main.c:401
+#: gnome-session/main.c:409
 msgid "Disable hardware acceleration check"
 msgstr "Slå hardwareaccelerationstjek fra"
 
-#: gnome-session/main.c:433
+#: gnome-session/main.c:441
 msgid " — the GNOME session manager"
 msgstr " — GNOME-sessionshåndteringen"
 
-#: tools/gnome-session-ctl.c:244
+#: tools/gnome-session-ctl.c:245
 msgid "Start gnome-session-shutdown.target"
 msgstr "Start gnome-session-shutdown.target"
 
-#: tools/gnome-session-ctl.c:245
+#: tools/gnome-session-ctl.c:246
 msgid ""
 "Start gnome-session-shutdown.target when receiving EOF or a single byte on "
 "stdin"
-msgstr "Start gnome-session-shutdown.target ved modtagelse af EOF eller en enkelt byte på stdin"
+msgstr ""
+"Start gnome-session-shutdown.target ved modtagelse af EOF eller en enkelt "
+"byte på stdin"
 
-#: tools/gnome-session-ctl.c:246
+#: tools/gnome-session-ctl.c:247
 msgid "Signal initialization done to gnome-session"
 msgstr "Signalinitialisering udført til gnome-session"
 
-#: tools/gnome-session-ctl.c:247
+#: tools/gnome-session-ctl.c:248
 msgid "Restart dbus.service if it is running"
 msgstr "Genstart dbus.service hvis den kører"
 
-#: tools/gnome-session-ctl.c:275
+#: tools/gnome-session-ctl.c:249
+msgid ""
+"Run from ExecStopPost to start gnome-session-failed.target on service failure"
+msgstr ""
+"Kør fra ExecStopPost for at starte gnome-session-failed.target ved fejlende "
+"tjeneste"
+
+#: tools/gnome-session-ctl.c:279
 msgid "Program needs exactly one parameter"
 msgstr "Programmet kræver én parameter"
 
@@ -294,6 +303,7 @@ msgid ""
 "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
 "                    logout, switch-user, suspend, idle, automount\n"
 "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+"  -l, --list        List the existing inhibitions, and exit\n"
 "\n"
 "If no --inhibit option is specified, idle is assumed.\n"
 msgstr ""
@@ -306,19 +316,20 @@ msgstr ""
 "  --app-id ID       Det program-id der skal bruges\n"
 "                    ved hindring (valgfrit)\n"
 "  --reason GRUND    Grunden til hindring (valgfri)\n"
-"  --inhibit ARG     Ting som skal hindres. Kolonsepareret list af:\n"
+"  --inhibit ARG     Ting som skal hindres. Kolonsepareret liste af:\n"
 "                    logout, switch-user, suspend, idle, automount\n"
 "  --inhibit-only    Start ikke kommandoen og vent i stedet for altid\n"
+"  -l, --list        Vis de eksisterende hindringer og afslut\n"
 "\n"
-"Hvis intet --inhibit tilvalg er angivet, vil “idle” bliver antaget.\n"
+"Hvis intet --inhibit tilvalg er angivet, vil “idle” blive antaget.\n"
 
-#: tools/gnome-session-inhibit.c:146
+#: tools/gnome-session-inhibit.c:288
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Kunne ikke køre %s\n"
 
-#: tools/gnome-session-inhibit.c:206 tools/gnome-session-inhibit.c:216
-#: tools/gnome-session-inhibit.c:226
+#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
+#: tools/gnome-session-inhibit.c:372
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s kræver et argument\n"
