@@ -50,7 +50,7 @@ struct _GsmConsolekitPrivate
         char            *session_id;
         gchar           *session_path;
 
-        GSList          *inhibitors;
+        const gchar     *inhibit_locks;
         gint             inhibit_fd;
 
         gboolean         is_active;
@@ -74,7 +74,7 @@ static void
 drop_system_inhibitor (GsmConsolekit *manager)
 {
         if (manager->priv->inhibit_fd != -1) {
-                g_debug ("GsmConsolekit: Dropping system inhibitor");
+                g_debug ("GsmConsolekit: Dropping system inhibitor fd %d", manager->priv->inhibit_fd);
                 close (manager->priv->inhibit_fd);
                 manager->priv->inhibit_fd = -1;
         }
@@ -100,9 +100,6 @@ gsm_consolekit_finalize (GObject *object)
         free (consolekit->priv->session_id);
         g_free (consolekit->priv->session_path);
 
-        if (consolekit->priv->inhibitors != NULL) {
-                g_slist_free_full (consolekit->priv->inhibitors, g_free);
-        }
         drop_system_inhibitor (consolekit);
         drop_delay_inhibitor (consolekit);
 
@@ -728,6 +725,9 @@ inhibit_done (GObject      *source,
         GUnixFDList *fd_list = NULL;
         gint idx;
 
+        /* Drop any previous inhibit before recording the new one */
+        drop_system_inhibitor (manager);
+
         res = g_dbus_proxy_call_with_unix_fd_list_finish (proxy, &fd_list, result, &error);
 
         if (!res) {
@@ -745,27 +745,39 @@ inhibit_done (GObject      *source,
                 g_variant_unref (res);
         }
 
-        if (manager->priv->inhibitors == NULL) {
+        /* Handle a race condition, where locks got unset during dbus call */
+        if (manager->priv->inhibit_locks == NULL) {
                 drop_system_inhibitor (manager);
         }
 }
 
 static void
-gsm_consolekit_add_inhibitor (GsmSystem        *system,
-                           const gchar      *id,
-                           GsmInhibitorFlag  flag)
+gsm_consolekit_set_inhibitors (GsmSystem        *system,
+                               GsmInhibitorFlag  flags)
 {
         GsmConsolekit *manager = GSM_CONSOLEKIT (system);
+        const gchar *locks = NULL;
+        gboolean inhibit_logout;
+        gboolean inhibit_suspend;
 
-        if ((flag & GSM_INHIBITOR_FLAG_SUSPEND) == 0)
-                return;
+        inhibit_logout = (flags & GSM_INHIBITOR_FLAG_LOGOUT) != 0;
+        inhibit_suspend = (flags & GSM_INHIBITOR_FLAG_SUSPEND) != 0;
 
-        if (manager->priv->inhibitors == NULL) {
-                g_debug ("Adding system inhibitor");
+        if (inhibit_logout && inhibit_suspend) {
+                locks = "sleep:shutdown";
+        } else if (inhibit_logout) {
+                locks = "shutdown";
+        } else if (inhibit_suspend) {
+                locks = "sleep";
+        }
+        manager->priv->inhibit_locks = locks;
+
+        if (locks != NULL) {
+                g_debug ("Adding system inhibitor on %s", locks);
                 g_dbus_proxy_call_with_unix_fd_list (manager->priv->ck_proxy,
                                                      "Inhibit",
                                                      g_variant_new ("(ssss)",
-                                                                    "sleep:shutdown",
+                                                                    locks,
                                                                     g_get_user_name (),
                                                                     "user session inhibited",
                                                                     "block"),
@@ -775,24 +787,7 @@ gsm_consolekit_add_inhibitor (GsmSystem        *system,
                                                      NULL,
                                                      inhibit_done,
                                                      manager);
-        }
-        manager->priv->inhibitors = g_slist_prepend (manager->priv->inhibitors, g_strdup (id));
-}
-
-static void
-gsm_consolekit_remove_inhibitor (GsmSystem   *system,
-                              const gchar *id)
-{
-        GsmConsolekit *manager = GSM_CONSOLEKIT (system);
-        GSList *l;
-
-        l = g_slist_find_custom (manager->priv->inhibitors, id, (GCompareFunc)g_strcmp0);
-        if (l == NULL)
-                return;
-
-        g_free (l->data);
-        manager->priv->inhibitors = g_slist_delete_link (manager->priv->inhibitors, l);
-        if (manager->priv->inhibitors == NULL) {
+        } else {
                 drop_system_inhibitor (manager);
         }
 }
@@ -905,8 +900,7 @@ gsm_consolekit_system_init (GsmSystemInterface *iface)
         iface->hibernate = gsm_consolekit_hibernate;
         iface->set_session_idle = gsm_consolekit_set_session_idle;
         iface->is_login_session = gsm_consolekit_is_login_session;
-        iface->add_inhibitor = gsm_consolekit_add_inhibitor;
-        iface->remove_inhibitor = gsm_consolekit_remove_inhibitor;
+        iface->set_inhibitors = gsm_consolekit_set_inhibitors;
         iface->prepare_shutdown = gsm_consolekit_prepare_shutdown;
         iface->complete_shutdown = gsm_consolekit_complete_shutdown;
         iface->is_last_session_for_user = gsm_consolekit_is_last_session_for_user;

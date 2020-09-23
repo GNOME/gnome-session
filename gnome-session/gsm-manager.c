@@ -2251,6 +2251,8 @@ update_inhibited_actions (GsmManager *manager,
         if (manager->priv->inhibited_actions == new_inhibited_actions)
                 return;
 
+        gsm_system_set_inhibitors (manager->priv->system, new_inhibited_actions);
+
         manager->priv->inhibited_actions = new_inhibited_actions;
         gsm_exported_manager_set_inhibited_actions (manager->priv->skeleton,
                                                     manager->priv->inhibited_actions);
@@ -2274,8 +2276,6 @@ on_store_inhibitor_added (GsmStore   *store,
         g_debug ("GsmManager: Inhibitor added: %s", id);
 
         i = GSM_INHIBITOR (gsm_store_lookup (store, id));
-        gsm_system_add_inhibitor (manager->priv->system, id,
-                                  gsm_inhibitor_peek_flags (i));
 
         new_inhibited_actions = manager->priv->inhibited_actions | gsm_inhibitor_peek_flags (i);
         update_inhibited_actions (manager, new_inhibited_actions);
@@ -2307,8 +2307,6 @@ on_store_inhibitor_removed (GsmStore   *store,
         GsmInhibitorFlag new_inhibited_actions;
 
         g_debug ("GsmManager: Inhibitor removed: %s", id);
-
-        gsm_system_remove_inhibitor (manager->priv->system, id);
 
         new_inhibited_actions = 0;
         gsm_store_foreach (manager->priv->inhibitors,
