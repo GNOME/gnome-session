@@ -673,7 +673,7 @@ gsm_util_export_user_environment (GError     **error)
                                              "UnsetAndSetEnvironment",
                                              g_variant_builder_end (&builder),
                                              NULL,
-                                             G_DBUS_CALL_FLAGS_NONE,
+                                             G_DBUS_CALL_FLAGS_NO_AUTO_START,
                                              -1, NULL, &bus_error);
 
         if (bus_error != NULL) {
@@ -720,7 +720,7 @@ gsm_util_update_user_environment (const char  *variable,
                                              g_variant_new ("(@as)",
                                                             g_variant_builder_end (&builder)),
                                              NULL,
-                                             G_DBUS_CALL_FLAGS_NONE,
+                                             G_DBUS_CALL_FLAGS_NO_AUTO_START,
                                              -1, NULL, &bus_error);
 
         if (bus_error != NULL) {
@@ -757,7 +757,7 @@ gsm_util_start_systemd_unit (const char  *unit,
                                              g_variant_new ("(ss)",
                                                             unit, mode),
                                              NULL,
-                                             G_DBUS_CALL_FLAGS_NONE,
+                                             G_DBUS_CALL_FLAGS_NO_AUTO_START,
                                              -1, NULL, &bus_error);
 
         if (bus_error != NULL) {
@@ -787,7 +787,7 @@ gsm_util_systemd_reset_failed (GError **error)
                                              "ResetFailed",
                                              NULL,
                                              NULL,
-                                             G_DBUS_CALL_FLAGS_NONE,
+                                             G_DBUS_CALL_FLAGS_NO_AUTO_START,
                                              -1, NULL, &bus_error);
 
         if (bus_error != NULL) {
