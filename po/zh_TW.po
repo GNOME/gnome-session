@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 3.1.92\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2020-03-30 17:28+0000\n"
-"PO-Revision-Date: 2020-04-01 00:02+0800\n"
+"POT-Creation-Date: 2020-08-16 08:36+0000\n"
+"PO-Revision-Date: 2020-10-12 21:01+0800\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese <zh-l10n@linux.org.tw>\n"
 "Language: zh_TW\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 2.4.1\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -83,14 +83,15 @@ msgstr "如啟用本選項，gnome-session 會在作業階段終止前先提示�
 
 #: data/org.gnome.SessionManager.gschema.xml.in:20
 msgid "Show the fallback warning"
-msgstr "顯示回滾警告"
+msgstr "顯示後備警告"
 
 #: data/org.gnome.SessionManager.gschema.xml.in:21
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
 msgstr ""
-"若啟用此選項，gnome-session 將會在工作階段自動回滾時，登入後顯示警告對話框。"
+"若啟用此選項，gnome-session 將會在工作階段自動退入後備時，於登入後顯示警告對"
+"話框。"
 
 #: data/session-selector.ui:15
 msgid "Custom Session"
@@ -116,23 +117,23 @@ msgstr "重新命名工作階段(_M)"
 msgid "_Continue"
 msgstr "繼續(_C)"
 
-#: gnome-session/gsm-fail-whale-dialog.c:313
+#: gnome-session/gsm-fail-whale-dialog.c:318
 msgid "Oh no!  Something has gone wrong."
 msgstr "糟糕！有些地方出問題了。"
 
-#: gnome-session/gsm-fail-whale-dialog.c:320
+#: gnome-session/gsm-fail-whale-dialog.c:325
 msgid ""
 "A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
 msgstr "發生問題且系統無法恢復。請連絡系統管理者"
 
-#: gnome-session/gsm-fail-whale-dialog.c:322
+#: gnome-session/gsm-fail-whale-dialog.c:327
 msgid ""
 "A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
 msgstr "發生問題且系統無法恢復。為了預防已先停用所有的擴充功能。"
 
-#: gnome-session/gsm-fail-whale-dialog.c:324
+#: gnome-session/gsm-fail-whale-dialog.c:329
 msgid ""
 "A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
@@ -140,19 +141,19 @@ msgstr ""
 "發生問題且系統無法恢復。\n"
 "請登出後再試一次。"
 
-#: gnome-session/gsm-fail-whale-dialog.c:339
+#: gnome-session/gsm-fail-whale-dialog.c:344
 msgid "_Log Out"
 msgstr "登出(_L)"
 
-#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:404
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
 msgid "Enable debugging code"
 msgstr "啟用除錯碼"
 
-#: gnome-session/gsm-fail-whale-dialog.c:362
+#: gnome-session/gsm-fail-whale-dialog.c:413
 msgid "Allow logout"
 msgstr "允許登出"
 
-#: gnome-session/gsm-fail-whale-dialog.c:363
+#: gnome-session/gsm-fail-whale-dialog.c:414
 msgid "Show extension warning"
 msgstr "顯示擴充功能警告"
 
@@ -236,26 +237,31 @@ msgstr "停用硬體加速檢查"
 msgid " — the GNOME session manager"
 msgstr " — GNOME 工作階段管理員"
 
-#: tools/gnome-session-ctl.c:244
+#: tools/gnome-session-ctl.c:245
 msgid "Start gnome-session-shutdown.target"
 msgstr "啟動 gnome-session-shutdown.target"
 
-#: tools/gnome-session-ctl.c:245
+#: tools/gnome-session-ctl.c:246
 msgid ""
 "Start gnome-session-shutdown.target when receiving EOF or a single byte on "
 "stdin"
 msgstr ""
 "當在標準輸入接收到 EOF 或一個位元組時啟動 gnome-session-shutdown.target"
 
-#: tools/gnome-session-ctl.c:246
-msgid "Signal initialization done to gnome-session"
-msgstr "gnome-session 訊號初始化完成"
-
 #: tools/gnome-session-ctl.c:247
-msgid "Restart dbus.service if it is running"
-msgstr "在其執行時重新啟動 dbus.service"
+msgid "Signal initialization done to gnome-session"
+msgstr "訊號初始化完成給 gnome-session"
 
-#: tools/gnome-session-ctl.c:275
+#: tools/gnome-session-ctl.c:248
+msgid "Restart dbus.service if it is running"
+msgstr "如果 dbus.service 正在執行則重新啟動"
+
+#: tools/gnome-session-ctl.c:249
+msgid ""
+"Run from ExecStopPost to start gnome-session-failed.target on service failure"
+msgstr "在服務失敗後從 ExecStopPost 執行以啟動 gnome-session-failed.target"
+
+#: tools/gnome-session-ctl.c:279
 msgid "Program needs exactly one parameter"
 msgstr "程式明確指出需要一個參數"
 
@@ -274,31 +280,33 @@ msgid ""
 "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
 "                    logout, switch-user, suspend, idle, automount\n"
 "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+"  -l, --list        List the existing inhibitions, and exit\n"
 "\n"
 "If no --inhibit option is specified, idle is assumed.\n"
 msgstr ""
 "%s [OPTION…] COMMAND\n"
 "\n"
-"抑制某些工作階段功能的同時執行 COMMAND 。\n"
+"抑制工作階段的某些功能的同時執行 COMMAND 。\n"
 "\n"
 "  -h, --help        顯示這個求助文件\n"
 "  --version         顯示程式版本\n"
 "  --app-id ID       抑制時要使用的\n"
-"                    應用程式 id (選擇性)\n"
-"  --reason REASON   抑制的原因 (選擇性)\n"
-"  --inhibit ARG     要抑制的東西，以冒號分隔的清單：\n"
+"                    應用程式 id (選填)\n"
+"  --reason REASON   抑制的原因 (選填)\n"
+"  --inhibit ARG     要抑制的項目，以冒號分隔的清單：\n"
 "                    logout, switch-user, suspend, idle, automount\n"
 "  --inhibit-only    不要執行 COMMAND 而以等待來取代\n"
+"  -l, --list        列出既有的抑制並離開\n"
 "\n"
 "如果沒有指定 --inhibit 選項，會假定為 idle。\n"
 
-#: tools/gnome-session-inhibit.c:146
+#: tools/gnome-session-inhibit.c:288
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "無法執行 %s\n"
 
-#: tools/gnome-session-inhibit.c:206 tools/gnome-session-inhibit.c:216
-#: tools/gnome-session-inhibit.c:226
+#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
+#: tools/gnome-session-inhibit.c:372
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s 需要引數\n"
