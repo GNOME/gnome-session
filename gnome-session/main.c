@@ -529,12 +529,20 @@ main (int argc, char **argv)
                 }
         }
 
-        gsm_util_export_activation_environment (NULL);
+        gsm_util_export_activation_environment (&error);
+        if (error) {
+                g_warning ("Failed to upload environment to DBus: %s", error->message);
+                g_clear_error (&error);
+        }
 
         session_name = opt_session_name;
 
 #ifdef HAVE_SYSTEMD
-        gsm_util_export_user_environment (NULL);
+        gsm_util_export_user_environment (&error);
+        if (error) {
+                g_warning ("Failed to upload environment to systemd: %s", error->message);
+                g_clear_error (&error);
+        }
 #endif
 
 #ifdef ENABLE_SYSTEMD_SESSION
