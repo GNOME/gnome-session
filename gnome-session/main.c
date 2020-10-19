@@ -539,7 +539,6 @@ main (int argc, char **argv)
 
 #ifdef ENABLE_SYSTEMD_SESSION
         if (use_systemd && !systemd_service) {
-                g_autoptr(GError) error = NULL;
                 g_autofree gchar *gnome_session_target;
                 const gchar *session_type;
 
@@ -571,6 +570,7 @@ main (int argc, char **argv)
 
                 /* We could not start the unit, fall back. */
                  g_warning ("Falling back to non-systemd startup procedure due to error: %s", error->message);
+                 g_clear_error (&error);
         }
 #endif /* ENABLE_SYSTEMD_SESSION */
 
