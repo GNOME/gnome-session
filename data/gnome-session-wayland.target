@@ -1,5 +1,8 @@
 [Unit]
 Description=GNOME Wayland Session
+# On wayland all is lost, do a shutdown
+OnFailure=gnome-session-shutdown.target
+OnFailureJobMode=replace-irreversibly
 # Avoid default After/Before rules
 DefaultDependencies=no
 
