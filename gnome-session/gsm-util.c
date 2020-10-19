@@ -568,17 +568,14 @@ gsm_util_export_activation_environment (GError     **error)
                 if (g_strv_contains (variable_blacklist, entry_name))
                     continue;
 
-                if (!g_utf8_validate (entry_name, -1, NULL))
-                    continue;
+                if (!g_utf8_validate (entry_name, -1, NULL) ||
+                    !g_regex_match (name_regex, entry_name, 0, NULL) ||
+                    !g_utf8_validate (entry_value, -1, NULL) ||
+                    !g_regex_match (value_regex, entry_value, 0, NULL)) {
 
-                if (!g_regex_match (name_regex, entry_name, 0, NULL))
+                    g_message ("Environment variable is unsafe to export to dbus: %s", entry_name);
                     continue;
-
-                if (!g_utf8_validate (entry_value, -1, NULL))
-                    continue;
-
-                if (!g_regex_match (value_regex, entry_value, 0, NULL))
-                    continue;
+                }
 
                 child_environment = g_environ_setenv (child_environment,
                                                       entry_name, entry_value,
@@ -655,11 +652,12 @@ gsm_util_export_user_environment (GError     **error)
         for (i = 0; entries[i] != NULL; i++) {
                 const char *entry = entries[i];
 
-                if (!g_utf8_validate (entry, -1, NULL))
-                    continue;
+                if (!g_utf8_validate (entry, -1, NULL) ||
+                    !g_regex_match (regex, entry, 0, NULL)) {
 
-                if (!g_regex_match (regex, entry, 0, NULL))
+                    g_message ("Environment entry is unsafe to upload into user environment: %s", entry);
                     continue;
+                }
 
                 g_variant_builder_add (&builder, "s", entry);
         }
