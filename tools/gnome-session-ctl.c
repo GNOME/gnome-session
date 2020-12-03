@@ -127,10 +127,10 @@ do_restart_dbus (void)
                                              SYSTEMD_DBUS,
                                              SYSTEMD_PATH_DBUS,
                                              SYSTEMD_INTERFACE_DBUS,
-                                             "TryRestartUnit",
+                                             "StopUnit",
                                              g_variant_new ("(ss)",
                                                             "dbus.service",
-                                                            "replace"),
+                                                            "fail"),
                                              NULL,
                                              G_DBUS_CALL_FLAGS_NO_AUTO_START,
                                              -1, NULL, &error);
