@@ -1,8 +1,9 @@
 [Unit]
 Description=Shutdown running GNOME Session
 
-# Allow exit.target to start even if this unit is started with replace-irreversibly
-# The same is needed for all (weak) dependencies
+# Allow exit.target to start even if this unit is started with replace-irreversibly.
+# All (weak) dependencies need to do the same. Services also need to ensure they
+# are in the root slice by setting Slice=-.slice.
 DefaultDependencies=no
 
 Conflicts=graphical-session.target graphical-session-pre.target
