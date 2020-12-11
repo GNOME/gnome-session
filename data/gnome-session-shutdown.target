@@ -31,3 +31,6 @@ StopWhenUnneeded=true
 # Historic bug: https://bugzilla.gnome.org/show_bug.cgi?id=764029
 Wants=gnome-session-restart-dbus.service
 Before=gnome-session-restart-dbus.service
+
+Wants=gnome-session-cleanup-wayland.service
+Before=gnome-session-cleanup-wayland.service

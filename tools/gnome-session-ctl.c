@@ -140,6 +140,56 @@ do_restart_dbus (void)
                            error->message);
 }
 
+static void
+do_cleanup_wayland (void)
+{
+        g_autoptr(GDBusConnection) connection = NULL;
+        g_autoptr(GVariant) reply = NULL;
+        g_autoptr(GError) error = NULL;
+        const char *unset_envs[] = {
+                "WAYLAND_DISPLAY",
+        };
+        const char *wayland_display;
+        int r;
+
+        /* Delete the wayland socket as defined by WAYLAND_DISPLAY */
+        wayland_display = g_getenv ("WAYLAND_DISPLAY");
+        if (wayland_display) {
+                const char *runtime_dir;
+
+                if (g_path_is_absolute (wayland_display)) {
+                        r = g_unlink (wayland_display);
+                } else {
+                        g_autofree char *path;
+                        runtime_dir = g_get_user_runtime_dir ();
+                        path = g_build_path (runtime_dir, wayland_display, NULL);
+                        r = g_unlink (path);
+                }
+                if (r < 0 && errno != ENOENT)
+                        g_warning ("Failed to unlink wayland socket: %d", errno);
+        }
+
+        connection = get_session_bus ();
+        if (connection == NULL)
+                return;
+
+        reply = g_dbus_connection_call_sync (connection,
+                                             SYSTEMD_DBUS,
+                                             SYSTEMD_PATH_DBUS,
+                                             SYSTEMD_INTERFACE_DBUS,
+                                             "UnsetEnvironment",
+                                             g_variant_new ("(@as)",
+                                                            g_variant_new_strv (unset_envs,
+                                                                                G_N_ELEMENTS (unset_envs))),
+                                             NULL,
+                                             G_DBUS_CALL_FLAGS_NO_AUTO_START,
+                                             -1, NULL, &error);
+
+        if (error != NULL)
+                g_warning ("Failed to restart DBus service: %s",
+                           error->message);
+}
+
 typedef struct {
         GMainLoop *loop;
         gint fifo_fd;
@@ -239,6 +289,7 @@ main (int argc, char *argv[])
         static gboolean   opt_signal_init;
         static gboolean   opt_restart_dbus;
         static gboolean   opt_exec_stop_check;
+        static gboolean   opt_cleanup_wayland;
         int     conflicting_options;
         GOptionContext *ctx;
         static const GOptionEntry options[] = {
@@ -246,6 +297,7 @@ main (int argc, char *argv[])
                 { "monitor", '\0', 0, G_OPTION_ARG_NONE, &opt_monitor, N_("Start gnome-session-shutdown.target when receiving EOF or a single byte on stdin"), NULL },
                 { "signal-init", '\0', 0, G_OPTION_ARG_NONE, &opt_signal_init, N_("Signal initialization done to gnome-session"), NULL },
                 { "restart-dbus", '\0', 0, G_OPTION_ARG_NONE, &opt_restart_dbus, N_("Restart dbus.service if it is running"), NULL },
+                { "cleanup-wayland", '\0', 0, G_OPTION_ARG_NONE, &opt_cleanup_wayland, N_("Remove wayland socket and WAYLAND_DISPLAY"), NULL },
                 { "exec-stop-check", '\0', 0, G_OPTION_ARG_NONE, &opt_exec_stop_check, N_("Run from ExecStopPost to start gnome-session-failed.target on service failure"), NULL },
                 { NULL },
         };
@@ -273,6 +325,8 @@ main (int argc, char *argv[])
                 conflicting_options++;
         if (opt_restart_dbus)
                 conflicting_options++;
+        if (opt_cleanup_wayland)
+                conflicting_options++;
         if (opt_exec_stop_check)
                 conflicting_options++;
         if (conflicting_options != 1) {
@@ -286,6 +340,8 @@ main (int argc, char *argv[])
                 do_signal_init ();
         } else if (opt_restart_dbus) {
                 do_restart_dbus ();
+        } else if (opt_cleanup_wayland) {
+                do_cleanup_wayland ();
         } else if (opt_shutdown) {
                 do_start_unit ("gnome-session-shutdown.target", "replace-irreversibly");
         } else if (opt_monitor) {

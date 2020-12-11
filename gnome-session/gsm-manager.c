@@ -1000,6 +1000,29 @@ do_phase_exit (GsmManager *manager)
                                    NULL);
         }
 
+        /* Delete the wayland socket as defined by WAYLAND_DISPLAY, on systemd
+         * we have a unit taking care of this. */
+        if (!manager->priv->systemd_managed) {
+                const char *wayland_display;
+                int r;
+
+                wayland_display = g_getenv ("WAYLAND_DISPLAY");
+                if (wayland_display) {
+                        const char *runtime_dir;
+
+                        if (g_path_is_absolute (wayland_display)) {
+                                r = g_unlink (wayland_display);
+                        } else {
+                                g_autofree char *path;
+                                runtime_dir = g_get_user_runtime_dir ();
+                                path = g_build_path (runtime_dir, wayland_display, NULL);
+                                r = g_unlink (path);
+                        }
+                        if (r < 0 && errno != ENOENT)
+                                g_warning ("Failed to unlink wayland socket: %d", errno);
+                }
+        }
+
 #ifdef HAVE_SYSTEMD
         if (!manager->priv->systemd_managed)
                 maybe_restart_user_bus (manager);

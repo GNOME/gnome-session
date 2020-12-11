@@ -1,0 +1,11 @@
+[Unit]
+Description=Delete wayland socket at logout time
+
+# Allow exit.target to start even if this unit is started with replace-irreversibly.
+# For this to work, we also need to be in the root slice.
+DefaultDependencies=no
+
+[Service]
+Type=notify
+ExecStart=@libexecdir@/gnome-session-ctl --cleanup-wayland
+Slice=-.slice
