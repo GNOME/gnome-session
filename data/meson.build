@@ -47,16 +47,6 @@ foreach name: desktops
   )
 
   install_dir = join_paths(session_datadir, 'xsessions')
-  # FIXME: The same target can not be copied into two directories.
-  #        There is a workaround in meson_post_install.py until proper solution arises:
-  #        https://groups.google.com/forum/#!topic/mesonbuild/3iIoYPrN4P0
-  if name == desktop_plain
-    #install_dir: [
-    #  join_paths(session_datadir, 'xsessions'),
-    #  join_paths(session_datadir, 'wayland-sessions')
-    #]
-  endif
-
   desktop_target = i18n.merge_file(
     desktop,
     type: 'desktop',
@@ -66,6 +56,14 @@ foreach name: desktops
     install: true,
     install_dir: install_dir
   )
+
+  if name == desktop_plain
+    # We can't install the same target in two locations, however at install
+    # phase we've already generated the file (happening during configuration)
+    # so we can be confident in installing the built file directly.
+    install_data(files(meson.current_build_dir() / desktop),
+      install_dir: session_datadir / 'wayland-sessions')
+  endif
 endforeach
 
 sessions = [
