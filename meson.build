@@ -8,13 +8,7 @@ project(
 
 prefix = get_option('prefix')
 session_version = meson.project_version()
-version_array = session_version.split('.')
-session_major_version = version_array[0].to_int()
-session_minor_version = version_array[1].to_int()
-session_micro_version = version_array[2].to_int()
-
-session_api_version = '@0@.0'.format(session_major_version)
-session_api_name = '@0@-@1@'.format(meson.project_name(), session_api_version)
+session_api_name = '@0@-@1@'.format(meson.project_name(), session_version.split('.')[0])
 
 session_prefix = get_option('prefix')
 session_bindir = join_paths(session_prefix, get_option('bindir'))
