@@ -1,3 +1,20 @@
+===============
+Version 40.beta
+===============
+
+	gnome-session: GNOME session will now only block sleep for suspend
+		inhibitors and will block shutdown if a logout inhibitor is
+		active.
+		Previously a suspend inhibitor would prevent both sleep and
+		logout. As such, applications may need to be updated and grab
+		both a logout and suspend inhibitor.
+	data: Re-add OnFailure= to .target units
+	util: Disable capturing of subpatterns
+	util: Only accept common space characters
+	Stop dbus-daemon instead of restarting it
+	data: Fix indirect conflict with exit.target via app.slice
+	Translations updates
+
 ==============
 Version 3.38.0
 ==============
