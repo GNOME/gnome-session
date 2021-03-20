@@ -4,14 +4,14 @@
 # This file is distributed under the same license as the gnome-session package.
 # Nguyễn Thái Ngọc Duy <pclouds@gmail.com>, 2002-2004,2007-2008,2011-2013.
 # Clytie Siddall <clytie@riverland.net.au>, 2005-2009.
-# Trần Ngọc Quân <vnwildman@gmail.com>, 2013,2014, 2015, 2016, 2017, 2018.
+# Trần Ngọc Quân <vnwildman@gmail.com>, 2013-2018, 2021.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2018-08-30 16:52+0000\n"
-"PO-Revision-Date: 2018-08-31 14:23+0700\n"
+"POT-Creation-Date: 2020-07-31 14:02+0000\n"
+"PO-Revision-Date: 2021-03-20 14:29+0700\n"
 "Last-Translator: Trần Ngọc Quân <vnwildman@gmail.com>\n"
 "Language-Team: Vietnamese <gnome-vi-list@gnome.org>\n"
 "Language: vi\n"
@@ -30,10 +30,12 @@ msgid "This entry lets you select a saved session"
 msgstr "Mục này cho phép bạn chọn phiên làm việc đã lưu"
 
 #: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
+#: data/gnome-wayland.desktop.in.in:3
 msgid "GNOME"
 msgstr "GNOME"
 
-#: data/gnome.desktop.in.in:4 data/gnome-xorg.desktop.in.in:4
+#: data/gnome.desktop.in.in:4 data/gnome-wayland.desktop.in.in:4
+#: data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
 msgstr "Phiên làm việc này sẽ đăng nhập bạn vào GNOME"
 
@@ -84,7 +86,7 @@ msgid ""
 "session was automatically fallen back."
 msgstr ""
 "Nếu bật, gnome-session sẽ hiển thị hộp thoại cảnh báo sau khi đăng nhập nếu "
-"như phiên được tự động fallen back."
+"như phiên được tự động fallback."
 
 #: data/session-selector.ui:15
 msgid "Custom Session"
@@ -110,26 +112,27 @@ msgstr "Đổi _tên phiên làm việc"
 msgid "_Continue"
 msgstr "_Tiếp tục"
 
-#: gnome-session/gsm-fail-whale-dialog.c:313
+#: gnome-session/gsm-fail-whale-dialog.c:318
 msgid "Oh no!  Something has gone wrong."
 msgstr "Ôi không! Có cái gì đó bị hỏng rồi."
 
-#: gnome-session/gsm-fail-whale-dialog.c:320
+#: gnome-session/gsm-fail-whale-dialog.c:325
 msgid ""
 "A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
 msgstr ""
-"Hệ thống gặp vấn đề không thể phục hồi. Vui lòng liên lạc quản trị hệ thống."
+"Hệ thống gặp vấn đề không thể phục hồi. Vui lòng liên lạc với người quản trị "
+"hệ thống"
 
-#: gnome-session/gsm-fail-whale-dialog.c:322
+#: gnome-session/gsm-fail-whale-dialog.c:327
 msgid ""
 "A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
 msgstr ""
 "Hệ thống gặp vấn đề không thể phục hồi. Mọi phần mở rộng đã bị tắt để đề "
-"phòng."
+"phòng lỗi."
 
-#: gnome-session/gsm-fail-whale-dialog.c:324
+#: gnome-session/gsm-fail-whale-dialog.c:329
 msgid ""
 "A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
@@ -137,27 +140,27 @@ msgstr ""
 "Hệ thống gặp vấn đề không thể phục hồi.\n"
 "Hãy đăng xuất và thử lại."
 
-#: gnome-session/gsm-fail-whale-dialog.c:339
+#: gnome-session/gsm-fail-whale-dialog.c:344
 msgid "_Log Out"
 msgstr "Đăng _xuất"
 
-#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:279
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
 msgid "Enable debugging code"
 msgstr "Bật mã hỗ trợ tìm lỗi"
 
-#: gnome-session/gsm-fail-whale-dialog.c:362
+#: gnome-session/gsm-fail-whale-dialog.c:413
 msgid "Allow logout"
 msgstr "Cho phép đăng xuất"
 
-#: gnome-session/gsm-fail-whale-dialog.c:363
+#: gnome-session/gsm-fail-whale-dialog.c:414
 msgid "Show extension warning"
 msgstr "Hiện cảnh báo phần mở rộng"
 
-#: gnome-session/gsm-manager.c:1266 gnome-session/gsm-manager.c:1919
+#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1999
 msgid "Not responding"
 msgstr "Không trả lời"
 
-#: gnome-session/gsm-util.c:382
+#: gnome-session/gsm-util.c:415
 msgid "_Log out"
 msgstr "Đăng _xuất"
 
@@ -184,42 +187,84 @@ msgstr "Đang từ chối kết nối khách mới vì phiên làm việc đang 
 msgid "Could not create ICE listening socket: %s"
 msgstr "Không thể tạo ổ cắm lắng nghe ICE: %s"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:398
+msgid "Running as systemd service"
+msgstr "Chạy như là dịch vụ systemd"
+
+#: gnome-session/main.c:399
+msgid "Use systemd session management"
+msgstr "Dùng quản lý phiên làm việc systemd"
+
+#: gnome-session/main.c:401
+msgid "Use builtin session management (rather than the systemd based one)"
+msgstr "Dùng quản lý phiên làm việc dựng sẵn (thay vì dựa vào systemd)"
+
+#: gnome-session/main.c:402
 msgid "Override standard autostart directories"
 msgstr "Đè lên thư mục tự khởi động tiêu chuẩn"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:402
 msgid "AUTOSTART_DIR"
 msgstr "THƯ_MỤC_TỰ_CHẠY"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:403
 msgid "Session to use"
 msgstr "Phiên làm việc cần dùng"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:403
 msgid "SESSION_NAME"
 msgstr "TÊN_PHIÊN"
 
-#: gnome-session/main.c:280
+#: gnome-session/main.c:405
 msgid "Do not load user-specified applications"
 msgstr "Đừng tải ứng dụng do người dùng chỉ định"
 
-#: gnome-session/main.c:281
+#: gnome-session/main.c:406
 msgid "Version of this application"
 msgstr "Phiên bản của ứng dụng"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:283
+#: gnome-session/main.c:408
 msgid "Show the fail whale dialog for testing"
 msgstr "Hiện cửa sổ cá voi thất bại để kiểm tra"
 
-#: gnome-session/main.c:284
+#: gnome-session/main.c:409
 msgid "Disable hardware acceleration check"
 msgstr "Tắt kiểm tra tăng tốc phần cứng"
 
-#: gnome-session/main.c:316
+#: gnome-session/main.c:441
 msgid " — the GNOME session manager"
 msgstr " — bộ quản lý phiên làm việc GNOME"
+
+#: tools/gnome-session-ctl.c:245
+msgid "Start gnome-session-shutdown.target"
+msgstr "Khởi chạy gnome-session-shutdown.target"
+
+#: tools/gnome-session-ctl.c:246
+msgid ""
+"Start gnome-session-shutdown.target when receiving EOF or a single byte on "
+"stdin"
+msgstr ""
+"Khởi chạy gnome-session-shutdown.target khi nhận được EOF hay một byte đơn "
+"trên stdin"
+
+#: tools/gnome-session-ctl.c:247
+msgid "Signal initialization done to gnome-session"
+msgstr "Khởi tạo tín hiệu xong với gnome-session"
+
+#: tools/gnome-session-ctl.c:248
+msgid "Restart dbus.service if it is running"
+msgstr "Khởi động lại dbus.service nếu nó đang chạy"
+
+#: tools/gnome-session-ctl.c:249
+msgid ""
+"Run from ExecStopPost to start gnome-session-failed.target on service failure"
+msgstr ""
+"Chạy từ ExecStopPost để khởi chạy gnome-session-failed.target khi lỗi dịch vụ"
+
+#: tools/gnome-session-ctl.c:279
+msgid "Program needs exactly one parameter"
+msgstr "Chương trình cần chính xác một đối số"
 
 #: tools/gnome-session-inhibit.c:108
 #, c-format
@@ -236,6 +281,7 @@ msgid ""
 "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
 "                    logout, switch-user, suspend, idle, automount\n"
 "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+"  -l, --list        List the existing inhibitions, and exit\n"
 "\n"
 "If no --inhibit option is specified, idle is assumed.\n"
 msgstr ""
@@ -244,24 +290,24 @@ msgstr ""
 "Thực hiện LỆNH nhưng hạn chế một số chức năng liên quan đến phiên.\n"
 "\n"
 "  -h, --help        Hiển thị trợ giúp này\n"
-"  --version         Hiển thị phiên bản\n"
+"  --version         Hiển thị phiên bản của chương trình\n"
 "  --app-id ID       Mã số ứng dụng sẽ dùng\n"
 "                    khi hạn chế (tùy chọn)\n"
 "  --reason LÝ_DO    Lý do hạn chế (tùy chọn)\n"
-"  --inhibit ARG     Những thứ hạn chế, danh sách ngăn cách bằng dấu hai chấm "
-"của:\n"
-"                    logout, switch-user, suspend, idle, automount\n"
+"  --inhibit ARG     Những thứ hạn chế, danh sách ngăn cách bằng dấu hai chấm\n"
+"                      của: logout, switch-user, suspend, idle, automount\n"
 "  --inhibit-only    Không khởi chạy LỆNH và thay vào đó là chờ mãi mãi\n"
+"  -l, --list        Liệt kê những hạn chế sẵn có rồi thoát\n"
 "\n"
 "Nếu không đưa ra tùy chọn --inhibit, coi là idle (nghỉ).\n"
 
-#: tools/gnome-session-inhibit.c:146
+#: tools/gnome-session-inhibit.c:288
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Gặp lỗi khi chạy %s\n"
 
-#: tools/gnome-session-inhibit.c:206 tools/gnome-session-inhibit.c:216
-#: tools/gnome-session-inhibit.c:226
+#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
+#: tools/gnome-session-inhibit.c:372
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s cần một đối số\n"
@@ -424,9 +470,6 @@ msgstr "Đã sẵn có phiên làm việc mang tên “%s”"
 
 #~ msgid "FILE"
 #~ msgstr "TẬP_TIN"
-
-#~ msgid "Specify session management ID"
-#~ msgstr "Xác định ID quản lý phiên làm việc"
 
 #~ msgid "ID"
 #~ msgstr "ID"
