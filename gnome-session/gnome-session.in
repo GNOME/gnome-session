@@ -21,11 +21,18 @@ if [ -n "$REGION" ]; then
   unset LC_TIME LC_NUMERIC LC_MONETARY LC_MEASUREMENT LC_PAPER
 
   if [ "$LANG" != "$REGION" ] ; then
-    export LC_TIME=$REGION
+    # LC_CTYPE
     export LC_NUMERIC=$REGION
+    export LC_TIME=$REGION
+    # LC_COLLATE
     export LC_MONETARY=$REGION
-    export LC_MEASUREMENT=$REGION
+    # LC_MESSAGES
     export LC_PAPER=$REGION
+    # LC_NAME
+    export LC_ADDRESS=$REGION
+    export LC_TELEPHONE=$REGION
+    export LC_MEASUREMENT=$REGION
+    # LC_IDENTIFICATION
   fi
 fi
 
