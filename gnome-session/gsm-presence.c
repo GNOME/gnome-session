@@ -230,6 +230,34 @@ on_screensaver_dbus_signal (GDBusProxy  *proxy,
 }
 
 static void
+screensaver_get_active_cb (GDBusProxy  *screensaver_proxy,
+                           GAsyncResult *res,
+                           GsmPresence *presence)
+{
+        g_autoptr(GVariant) data = NULL;
+        g_autoptr(GError) error = NULL;
+        gboolean is_active;
+
+        data = g_dbus_proxy_call_finish (screensaver_proxy, res, &error);
+        if (data) {
+                if (error) {
+                        g_warning ("Could not retrieve current screensaver active state: %s",
+                                   error->message);
+                } else {
+                        g_warning ("Could not retrieve current screensaver active state!");
+                }
+
+                return;
+        }
+
+        g_variant_get (data, "(b)", &is_active);
+        if (presence->priv->screensaver_active != is_active) {
+                presence->priv->screensaver_active = is_active;
+                set_session_idle (presence, is_active);
+        }
+}
+
+static void
 on_screensaver_name_owner_changed (GDBusProxy  *screensaver_proxy,
                                    GParamSpec  *pspec,
                                    GsmPresence *presence)
@@ -240,9 +268,19 @@ on_screensaver_name_owner_changed (GDBusProxy  *screensaver_proxy,
         if (name_owner == NULL) {
                 g_debug ("Detected that screensaver has left the bus");
 
-                presence->priv->screensaver_proxy = NULL;
                 presence->priv->screensaver_active = FALSE;
                 set_session_idle (presence, FALSE);
+        } else {
+                g_debug ("Detected that screensaver has aquired the bus");
+
+                g_dbus_proxy_call (presence->priv->screensaver_proxy,
+                                   "GetActive",
+                                   NULL,
+                                   G_DBUS_CALL_FLAGS_NO_AUTO_START,
+                                   1000,
+                                   NULL,
+                                   (GAsyncReadyCallback) screensaver_get_active_cb,
+                                   presence);
         }
 
         g_free (name_owner);
@@ -327,8 +365,12 @@ gsm_presence_constructor (GType                  type,
                 g_warning ("Unable to register presence with session bus");
         }
 
+        /* This only connects to signals and resolves the current name owner
+         * synchronously. It is important to not auto-start the service!
+         */
         presence->priv->screensaver_proxy = g_dbus_proxy_new_sync (presence->priv->connection,
-                                                                   G_DBUS_PROXY_FLAGS_NONE,
+                                                                   G_DBUS_PROXY_FLAGS_DO_NOT_AUTO_START |
+                                                                   G_DBUS_PROXY_FLAGS_DO_NOT_LOAD_PROPERTIES,
                                                                    NULL,
                                                                    GS_NAME,
                                                                    GS_PATH,
@@ -442,6 +484,7 @@ gsm_presence_finalize (GObject *object)
 
         g_clear_pointer (&presence->priv->status_text, g_free);
         g_clear_object (&presence->priv->idle_monitor);
+        g_clear_object (&presence->priv->screensaver_proxy);
 
         G_OBJECT_CLASS (gsm_presence_parent_class)->finalize (object);
 }
