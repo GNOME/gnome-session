@@ -239,7 +239,7 @@ screensaver_get_active_cb (GDBusProxy  *screensaver_proxy,
         gboolean is_active;
 
         data = g_dbus_proxy_call_finish (screensaver_proxy, res, &error);
-        if (data) {
+        if (!data) {
                 if (error) {
                         g_warning ("Could not retrieve current screensaver active state: %s",
                                    error->message);
