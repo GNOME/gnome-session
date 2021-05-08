@@ -274,6 +274,14 @@ wait_for_child_app (char **argv)
 {
   pid_t pid;
   int status;
+  int pipefd[2];
+
+  if (pipe(pipefd) != 0)
+    {
+      int error = errno;
+      g_print (_("Error while creating pipe: %s\n"), g_strerror (error));
+      exit (1);
+    }
 
   pid = fork ();
   if (pid < 0)
@@ -284,13 +292,29 @@ wait_for_child_app (char **argv)
 
   if (pid == 0)
     {
+      char c;
+      close(pipefd[1]);
+      if (read(pipefd[0], &c, 1) == -1)
+        {
+          g_print (_("Failure reading pipe\n"));
+        }
+      close(pipefd[0]);
       execvp (*argv, argv);
       g_print (_("Failed to execute %s\n"), *argv);
       exit (1);
     }
 
+  close(pipefd[0]);
+
   do
     {
+      setpgid (pid, pid);
+      if (isatty (0))
+        {
+          tcsetpgrp (0, pid);
+        }
+      write(pipefd[1], "\0", 1);
+      close(pipefd[1]);
       if (waitpid (pid, &status, 0) == -1)
         {
           g_print ("waitpid failed\n");
