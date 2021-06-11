@@ -1,28 +1,29 @@
 # Slovak translation for gnome-session.
 # Copyright (C) 2002, 2003, 2005-2010, 2012, 2013 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-session package.
+#
 # Stanislav Višňovský <visnovsky@nenya.ms.mff.cuni.cz>, 2002, 2003.
 # Stanislav Visnovsky <visnovsky@kde.org>, 2003.
 # Peter Tuharsky <tuharsky@misbb.sk>, 2007.
 # Marcel Telka <marcel@telka.sk>, 2005, 2006, 2008.
 # Pavol Šimo <palo.simo@gmail.com>, 2009, 2010.
 # Dušan Kazik <prescott66@gmail.com>, 2012, 2013.
-# Dusan B. <drunkez@gmail.com>, 2019
-#
+# Dusan B. <drunkez@gmail.com>, 2019.
+# Matej Mrenica <matejm98mthw@gmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2019-12-16 13:18+0000\n"
-"PO-Revision-Date: 2020-03-18 14:05+0100\n"
-"Last-Translator: Dušan B. <drunkez@gmail.com>\n"
-"Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
+"POT-Creation-Date: 2020-08-16 08:36+0000\n"
+"PO-Revision-Date: 2021-04-15 09:13+0200\n"
+"Last-Translator: Matej Mrenica <matejm98mthw@gmail.com>\n"
+"Language-Team: Slovak <kde-i18n-doc@kde.org>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Lokalize 21.03.90\n"
 
 # desktop entry name
 #: data/gnome-custom-session.desktop.in.in:3
@@ -128,11 +129,11 @@ msgstr "Pre_menovať reláciu"
 msgid "_Continue"
 msgstr "_Pokračovať"
 
-#: gnome-session/gsm-fail-whale-dialog.c:313
+#: gnome-session/gsm-fail-whale-dialog.c:318
 msgid "Oh no!  Something has gone wrong."
 msgstr "Ale nie! Niekde sa stala chyba."
 
-#: gnome-session/gsm-fail-whale-dialog.c:320
+#: gnome-session/gsm-fail-whale-dialog.c:325
 msgid ""
 "A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
@@ -142,7 +143,7 @@ msgstr ""
 
 # PK: extensions asi zasuvne moduly
 # DK: zasuvne moduly su "plugins".tu sa jedna o rozsirenia Shellu.mam overene v praxi.
-#: gnome-session/gsm-fail-whale-dialog.c:322
+#: gnome-session/gsm-fail-whale-dialog.c:327
 msgid ""
 "A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
@@ -150,7 +151,7 @@ msgstr ""
 "Vyskytla sa chyba a systém sa nedokáže obnoviť. Všetky rozšírenia boli "
 "preventívne zakázané."
 
-#: gnome-session/gsm-fail-whale-dialog.c:324
+#: gnome-session/gsm-fail-whale-dialog.c:329
 msgid ""
 "A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
@@ -159,22 +160,22 @@ msgstr ""
 "Prosím, odhláste sa a skúste to znovu."
 
 # button
-#: gnome-session/gsm-fail-whale-dialog.c:339
+#: gnome-session/gsm-fail-whale-dialog.c:344
 msgid "_Log Out"
 msgstr "_Odhlásiť sa"
 
 # cmd desc
-#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:404
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
 msgid "Enable debugging code"
 msgstr "Povolí ladiaci kód"
 
 # cmd desc
-#: gnome-session/gsm-fail-whale-dialog.c:362
+#: gnome-session/gsm-fail-whale-dialog.c:413
 msgid "Allow logout"
 msgstr "Povolí odhlásenie"
 
 # cmd desc
-#: gnome-session/gsm-fail-whale-dialog.c:363
+#: gnome-session/gsm-fail-whale-dialog.c:414
 msgid "Show extension warning"
 msgstr "Zobrazí upozornenie rozšírenia"
 
@@ -183,7 +184,7 @@ msgid "Not responding"
 msgstr "Neodpovedá"
 
 # button
-#: gnome-session/gsm-util.c:414
+#: gnome-session/gsm-util.c:415
 msgid "_Log out"
 msgstr "Odh_lásiť sa"
 
@@ -267,11 +268,11 @@ msgstr "Zakáže kontrolu hardvérovej akcelerácie"
 msgid " — the GNOME session manager"
 msgstr " — správca relácie GNOME"
 
-#: tools/gnome-session-ctl.c:244
+#: tools/gnome-session-ctl.c:245
 msgid "Start gnome-session-shutdown.target"
 msgstr "Spustí gnome-session-shutdown.target"
 
-#: tools/gnome-session-ctl.c:245
+#: tools/gnome-session-ctl.c:246
 msgid ""
 "Start gnome-session-shutdown.target when receiving EOF or a single byte on "
 "stdin"
@@ -279,20 +280,42 @@ msgstr ""
 "Spustí gnome-session-shutdown.target pri obdržaní EOF alebo jedného bajtu zo "
 "štandardného vstupu"
 
-#: tools/gnome-session-ctl.c:246
+#: tools/gnome-session-ctl.c:247
 msgid "Signal initialization done to gnome-session"
 msgstr "Signalizuje dokončenie inicializácie pre gnome-session"
 
-#: tools/gnome-session-ctl.c:247
+#: tools/gnome-session-ctl.c:248
 msgid "Restart dbus.service if it is running"
 msgstr "Reštartuje dbus.service, ak beží"
 
-#: tools/gnome-session-ctl.c:275
+#: tools/gnome-session-ctl.c:249
+msgid ""
+"Run from ExecStopPost to start gnome-session-failed.target on service failure"
+msgstr ""
+"Spustením z ExecStopPost spustíte gnome-session-failed.target pri zlyhaní"
+" služby"
+
+#: tools/gnome-session-ctl.c:279
 msgid "Program needs exactly one parameter"
 msgstr "Program vyžaduje presne jeden parameter"
 
 #: tools/gnome-session-inhibit.c:108
 #, c-format
+#| msgid ""
+#| "%s [OPTION…] COMMAND\n"
+#| "\n"
+#| "Execute COMMAND while inhibiting some session functionality.\n"
+#| "\n"
+#| "  -h, --help        Show this help\n"
+#| "  --version         Show program version\n"
+#| "  --app-id ID       The application id to use\n"
+#| "                    when inhibiting (optional)\n"
+#| "  --reason REASON   The reason for inhibiting (optional)\n"
+#| "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
+#| "                    logout, switch-user, suspend, idle, automount\n"
+#| "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+#| "\n"
+#| "If no --inhibit option is specified, idle is assumed.\n"
 msgid ""
 "%s [OPTION…] COMMAND\n"
 "\n"
@@ -306,6 +329,7 @@ msgid ""
 "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
 "                    logout, switch-user, suspend, idle, automount\n"
 "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+"  -l, --list        List the existing inhibitions, and exit\n"
 "\n"
 "If no --inhibit option is specified, idle is assumed.\n"
 msgstr ""
@@ -317,27 +341,24 @@ msgstr ""
 "  --version         Zobrazí verziu programu\n"
 "  --app-id ID       Identifikátor aplikácie, ktorá sa použije\n"
 "                    pri potlačení (voliteľné)\n"
-"  --reason PRÍČINA  Príčina, kvôli ktorej sa uskutoční potlačenie\n"
-"                    (voliteľné)\n"
-"  --inhibit PARAM   Dvojbodkou oddelené súčasti na potlačenie, z možností:\n"
-"                    logout (odhlásenie)\n"
-"                    switch-user (prepnutie používateľa)\n"
-"                    suspend (uspatie)\n"
-"                    idle (nečinnosť)\n"
-"                    automount (automatické pripojenie)\n"
-"  --inhibit-only    Nespustí PRÍKAZ, ale bude miesto toho čakať do\n"
-"                    nekonečna\n"
+"  --reason PRÍČINA  Príčina, kvôli ktorej sa uskutoční potlačenie"
+" (voliteľné)\n"
+"  --inhibit ARG   Dvojbodkou oddelené súčasti na potlačenie, z možností:\n"
+"                    logout (odhlásenie), switch-user (prepnutie používateľa),"
+" suspend (uspatie), idle (nečinnosť), automount (automatické pripojenie)\n"
+"  --inhibit-only    Nespustí PRÍKAZ, ale bude miesto toho čakať donekonečna\n"
+"  -l, --list        Vypíše existujúce potláčania, a ukončí sa\n"
 "\n"
 "Ak nie je určená žiadna voľba typu --inhibit, bude sa predpokladať "
 "nečinnosť.\n"
 
-#: tools/gnome-session-inhibit.c:146
+#: tools/gnome-session-inhibit.c:288
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Zlyhalo spustenie príkazu %s\n"
 
-#: tools/gnome-session-inhibit.c:206 tools/gnome-session-inhibit.c:216
-#: tools/gnome-session-inhibit.c:226
+#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
+#: tools/gnome-session-inhibit.c:372
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "Príkaz %s vyžaduje parameter\n"
