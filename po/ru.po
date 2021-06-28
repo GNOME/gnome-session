@@ -14,9 +14,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2019-09-25 11:15+0000\n"
-"PO-Revision-Date: 2019-11-11 22:01+0300\n"
-"Last-Translator: Stas Solovey <whats_up@tut.by>\n"
+"POT-Creation-Date: 2020-07-31 14:02+0000\n"
+"PO-Revision-Date: 2021-06-28 10:21+0300\n"
+"Last-Translator: Alexey Rubtsov <rushills@gmail.com>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Poedit 3.0\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -118,11 +118,11 @@ msgstr "П_ереименовать сеанс"
 msgid "_Continue"
 msgstr "_Продолжить"
 
-#: gnome-session/gsm-fail-whale-dialog.c:313
+#: gnome-session/gsm-fail-whale-dialog.c:318
 msgid "Oh no!  Something has gone wrong."
 msgstr "О, нет! Что-то пошло не так."
 
-#: gnome-session/gsm-fail-whale-dialog.c:320
+#: gnome-session/gsm-fail-whale-dialog.c:325
 msgid ""
 "A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
@@ -130,7 +130,7 @@ msgstr ""
 "Произошла ошибка, и системе не удалось восстановиться. Обратитесь к "
 "системному администратору"
 
-#: gnome-session/gsm-fail-whale-dialog.c:322
+#: gnome-session/gsm-fail-whale-dialog.c:327
 msgid ""
 "A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
@@ -138,7 +138,7 @@ msgstr ""
 "Произошла ошибка, и системе не удалось восстановиться. Все расширения были "
 "отключены в целях безопасности."
 
-#: gnome-session/gsm-fail-whale-dialog.c:324
+#: gnome-session/gsm-fail-whale-dialog.c:329
 msgid ""
 "A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
@@ -146,27 +146,27 @@ msgstr ""
 "Произошла ошибка, и системе не удалось восстановиться.\n"
 "Нужно завершить сеанс и войти снова."
 
-#: gnome-session/gsm-fail-whale-dialog.c:339
+#: gnome-session/gsm-fail-whale-dialog.c:344
 msgid "_Log Out"
 msgstr "_Завершить сеанс"
 
-#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:396
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
 msgid "Enable debugging code"
 msgstr "Включить отладочный код"
 
-#: gnome-session/gsm-fail-whale-dialog.c:362
+#: gnome-session/gsm-fail-whale-dialog.c:413
 msgid "Allow logout"
 msgstr "Разрешить завершение сеанса"
 
-#: gnome-session/gsm-fail-whale-dialog.c:363
+#: gnome-session/gsm-fail-whale-dialog.c:414
 msgid "Show extension warning"
 msgstr "Показывать предупреждения от расширений"
 
-#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1994
+#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1999
 msgid "Not responding"
 msgstr "Не отвечает"
 
-#: gnome-session/gsm-util.c:414
+#: gnome-session/gsm-util.c:415
 msgid "_Log out"
 msgstr "_Завершить сеанс"
 
@@ -193,61 +193,61 @@ msgstr "Новые клиентские подключения отклоняю�
 msgid "Could not create ICE listening socket: %s"
 msgstr "Не удалось создать сокет, слушающий ICE: %s"
 
-#: gnome-session/main.c:390
+#: gnome-session/main.c:398
 msgid "Running as systemd service"
 msgstr "Запущен в качестве службы systemd"
 
-#: gnome-session/main.c:391
+#: gnome-session/main.c:399
 msgid "Use systemd session management"
 msgstr "Использовать менеджер сеансов systemd"
 
-#: gnome-session/main.c:393
+#: gnome-session/main.c:401
 msgid "Use builtin session management (rather than the systemd based one)"
 msgstr ""
 "Используйте встроенное управление сессиями (вместо основанного на systemd)"
 
-#: gnome-session/main.c:394
+#: gnome-session/main.c:402
 msgid "Override standard autostart directories"
 msgstr "Заместить стандартные каталоги автозапуска"
 
-#: gnome-session/main.c:394
+#: gnome-session/main.c:402
 msgid "AUTOSTART_DIR"
 msgstr "КАТАЛОГ_АВТОЗАПУСКА"
 
-#: gnome-session/main.c:395
+#: gnome-session/main.c:403
 msgid "Session to use"
 msgstr "Использовать сеанс"
 
-#: gnome-session/main.c:395
+#: gnome-session/main.c:403
 msgid "SESSION_NAME"
 msgstr "НАЗВАНИЕ_СЕАНСА"
 
-#: gnome-session/main.c:397
+#: gnome-session/main.c:405
 msgid "Do not load user-specified applications"
 msgstr "Не загружать указанные пользователем приложения"
 
-#: gnome-session/main.c:398
+#: gnome-session/main.c:406
 msgid "Version of this application"
 msgstr "Версия этого приложения"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:400
+#: gnome-session/main.c:408
 msgid "Show the fail whale dialog for testing"
 msgstr "Показать для отладки диалог с сообщением об ошибке"
 
-#: gnome-session/main.c:401
+#: gnome-session/main.c:409
 msgid "Disable hardware acceleration check"
 msgstr "Отключить проверку наличия аппаратного ускорения"
 
-#: gnome-session/main.c:433
+#: gnome-session/main.c:441
 msgid " — the GNOME session manager"
 msgstr " — менеджер сеансов GNOME"
 
-#: tools/gnome-session-ctl.c:244
+#: tools/gnome-session-ctl.c:245
 msgid "Start gnome-session-shutdown.target"
 msgstr "Запустить gnome-session-shutdown.target"
 
-#: tools/gnome-session-ctl.c:245
+#: tools/gnome-session-ctl.c:246
 msgid ""
 "Start gnome-session-shutdown.target when receiving EOF or a single byte on "
 "stdin"
@@ -255,15 +255,22 @@ msgstr ""
 "Запустить gnome-session-shutdown.target при получении EOF или одного байта "
 "на stdin"
 
-#: tools/gnome-session-ctl.c:246
+#: tools/gnome-session-ctl.c:247
 msgid "Signal initialization done to gnome-session"
 msgstr "Инициализация сигнала выполнена для gnome-session"
 
-#: tools/gnome-session-ctl.c:247
+#: tools/gnome-session-ctl.c:248
 msgid "Restart dbus.service if it is running"
 msgstr "Перезапустить dbus.service, если он работает"
 
-#: tools/gnome-session-ctl.c:275
+#: tools/gnome-session-ctl.c:249
+msgid ""
+"Run from ExecStopPost to start gnome-session-failed.target on service failure"
+msgstr ""
+"Запуск из ExecStopPost для запуска gnome-session-failed.target при сбое "
+"службы"
+
+#: tools/gnome-session-ctl.c:279
 msgid "Program needs exactly one parameter"
 msgstr "Программе нужен только один параметр"
 
@@ -282,31 +289,33 @@ msgid ""
 "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
 "                    logout, switch-user, suspend, idle, automount\n"
 "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+"  -l, --list        List the existing inhibitions, and exit\n"
 "\n"
 "If no --inhibit option is specified, idle is assumed.\n"
 msgstr ""
-"%s [ПАРАМЕТР…] КОМАНДА\n"
+"%s [ОПЦИЯ...] КОМАНДА\n"
 "\n"
-"Выполнить КОМАНДУ с ограничением некоторой функциональности сеанса.\n"
+"Выполнение команды COMMAND с блокировкой некоторых функций сеанса.\n"
 "\n"
-"  -h, --help        Показать эту справку\n"
-"  --version         Показать версию программы\n"
-"  --app-id ID       Идентификатор используемой программы\n"
-"                     при ограничении (необязательно)\n"
-"  --reason ПРИЧИНА   Причина для ограничения (необязательно)\n"
-"  --inhibit АРГУМЕНТ Список отключаемых функций, разделённых запятыми:\n"
-"                     logout, switch-user, suspend, idle, automount\n"
-"  --inhibit-only     Не запускать КОМАНДУ и включить вечное ожидание\n"
+"  -h, --help Показать справку\n"
+"  --version Показать версию программы\n"
+"  --app-id ID Идентификатор приложения для использования\n"
+"                    при блокировке (необязательно)\n"
+"  --reason REASON Причина запрета (необязательно)\n"
+"  --inhibit ARG То, что нужно запретить, список, разделенный двоеточием:\n"
+"                    logout, switch-user, suspend, idle, automount\n"
+"  --inhibit-only Не запускать COMMAND и вместо этого ждать вечно\n"
+"  -l, --list Список существующих запретов и выход из него\n"
 "\n"
-"При использовании параметра --inhibit включается ожидание.\n"
+"Если опция --inhibit не указана, предполагается режим ожидания.\n"
 
-#: tools/gnome-session-inhibit.c:146
+#: tools/gnome-session-inhibit.c:288
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Не удалось запустить %s\n"
 
-#: tools/gnome-session-inhibit.c:206 tools/gnome-session-inhibit.c:216
-#: tools/gnome-session-inhibit.c:226
+#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
+#: tools/gnome-session-inhibit.c:372
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s требуется аргумент\n"
