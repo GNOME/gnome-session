@@ -2,7 +2,8 @@ desktop_plain = 'gnome'
 
 desktops = [
   desktop_plain,
-  'gnome-xorg'
+  'gnome-xorg',
+  'gnome-wayland',
 ]
 
 shell_component = {
@@ -46,12 +47,17 @@ foreach name: desktops
     configuration: desktop_conf
   )
 
-  install_dir = join_paths(session_datadir, 'xsessions')
-  # FIXME: The same target can not be copied into two directories.
-  #        There is a workaround in meson_post_install.py until proper solution arises:
-  #        https://groups.google.com/forum/#!topic/mesonbuild/3iIoYPrN4P0
-  if name == desktop_plain
-    #install_dir: [
+  if name.endswith('-xorg')
+    install_dir = session_datadir / 'xsessions'
+  elif name.endswith('-wayland')
+    install_dir = session_datadir / 'wayland-sessions'
+  else
+    # FIXME: The same target can not be copied into two directories.
+    #        There is a workaround in meson_post_install.py until proper
+    #        solution arises:
+    #        https://github.com/mesonbuild/meson/issues/2416
+    install_dir = session_datadir / 'xsessions'
+    #install_dir = [
     #  join_paths(session_datadir, 'xsessions'),
     #  join_paths(session_datadir, 'wayland-sessions')
     #]
