@@ -8,13 +8,13 @@
 # Raivis Dejus <orvils@gmail.com>, 2006, 2009.
 # Rudolfs <rudolfs.mazurs@gmail.com>, 2011.
 # Rūdofls Mazurs <rudolfs.mazurs@gmail.com>, 2011, 2012.
-# Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>, 2010, 2011, 2013, 2015, 2016, 2017, 2018, 2019, 2020.
+# Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>, 2010, 2011, 2013, 2015, 2016, 2017, 2018, 2019, 2020, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: lv\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2020-07-31 14:02+0000\n"
-"PO-Revision-Date: 2020-09-12 12:02+0300\n"
+"POT-Creation-Date: 2021-10-12 18:16+0000\n"
+"PO-Revision-Date: 2021-10-25 20:20+0300\n"
 "Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
 "Language: lv\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 :"
 " 2);\n"
-"X-Generator: Lokalize 19.12.3\n"
+"X-Generator: Lokalize 21.08.1\n"
 "X-Launchpad-Export-Date: 2009-02-19 16:24+0000\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
@@ -35,7 +35,6 @@ msgid "This entry lets you select a saved session"
 msgstr "Šis ieraksts ļauj izvēlēties saglabātu sesiju"
 
 #: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
-#: data/gnome-wayland.desktop.in.in:3
 msgid "GNOME"
 msgstr "GNOME"
 
@@ -47,6 +46,11 @@ msgstr "Šī sesija ieraksta jūs GNOME vidē"
 #: data/gnome-dummy.session.desktop.in.in:3
 msgid "GNOME dummy"
 msgstr "GNOME makets"
+
+#: data/gnome-wayland.desktop.in.in:3
+#| msgid "GNOME on Xorg"
+msgid "GNOME on Wayland"
+msgstr "GNOME ar Wayland"
 
 #: data/gnome-xorg.desktop.in.in:3
 msgid "GNOME on Xorg"
@@ -164,7 +168,7 @@ msgstr "Rādīt paplašinājumu brīdinājumus"
 msgid "Not responding"
 msgstr "Neatbild"
 
-#: gnome-session/gsm-util.c:415
+#: gnome-session/gsm-util.c:431
 msgid "_Log out"
 msgstr "_Izrakstīties"
 
@@ -263,8 +267,8 @@ msgstr "Pārstartēt dbus.service, ja tas ir palaists"
 msgid ""
 "Run from ExecStopPost to start gnome-session-failed.target on service failure"
 msgstr ""
-"Palaidiet no ExecStopPost, lai startētu gnome-session-failed.target, kad ir"
-" servisa kļūme"
+"Palaidiet no ExecStopPost, lai startētu gnome-session-failed.target, kad ir "
+"servisa kļūme"
 
 #: tools/gnome-session-ctl.c:279
 msgid "Program needs exactly one parameter"
@@ -272,21 +276,6 @@ msgstr "Programmai vajag tieši vienu parametru"
 
 #: tools/gnome-session-inhibit.c:108
 #, c-format
-#| msgid ""
-#| "%s [OPTION…] COMMAND\n"
-#| "\n"
-#| "Execute COMMAND while inhibiting some session functionality.\n"
-#| "\n"
-#| "  -h, --help        Show this help\n"
-#| "  --version         Show program version\n"
-#| "  --app-id ID       The application id to use\n"
-#| "                    when inhibiting (optional)\n"
-#| "  --reason REASON   The reason for inhibiting (optional)\n"
-#| "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
-#| "                    logout, switch-user, suspend, idle, automount\n"
-#| "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
-#| "\n"
-#| "If no --inhibit option is specified, idle is assumed.\n"
 msgid ""
 "%s [OPTION…] COMMAND\n"
 "\n"
