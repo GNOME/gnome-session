@@ -15,14 +15,15 @@
 # Alexander Shopov <ash@kambanaria.org>, 2021.
 # Lyubomir Vasilev <lyubomirv@abv.bg>, 2017.
 # Krasimir Chonov <mk2616@abv.bg>, 2011.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2021-06-28 10:50+0000\n"
-"PO-Revision-Date: 2021-07-10 22:42+0200\n"
+"POT-Creation-Date: 2021-10-25 17:21+0000\n"
+"PO-Revision-Date: 2021-10-30 09:47+0200\n"
 "Last-Translator: Alexander Shopov <ash@kambanaria.org>\n"
-"Language-Team: Bulgarian <dict@fsa-bg.org>\n"
+"Language-Team: Bulgarian <dict@ludost.net>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,7 +39,6 @@ msgid "This entry lets you select a saved session"
 msgstr "Оттук може да изберете сесия запазена от вас"
 
 #: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
-#: data/gnome-wayland.desktop.in.in:3
 msgid "GNOME"
 msgstr "GNOME"
 
@@ -51,6 +51,10 @@ msgstr "Влизане в GNOME"
 msgid "GNOME dummy"
 msgstr "GNOME — фиктивна"
 
+#: data/gnome-wayland.desktop.in.in:3
+msgid "GNOME on Wayland"
+msgstr "GNOME с Wayland"
+
 #: data/gnome-xorg.desktop.in.in:3
 msgid "GNOME on Xorg"
 msgstr "GNOME с Xorg"
@@ -61,7 +65,7 @@ msgstr "Запазване на сесиите"
 
 #: data/org.gnome.SessionManager.gschema.xml.in:6
 msgid "If enabled, gnome-session will save the session automatically."
-msgstr "Ако е включено, gnome-session автоматично запазва сесията."
+msgstr "Когато е включено, „gnome-session“ ще запазва сесията автоматично."
 
 #: data/org.gnome.SessionManager.gschema.xml.in:10
 msgid "Save this session"
@@ -72,30 +76,30 @@ msgid ""
 "When enabled, gnome-session will automatically save the next session at log "
 "out even if auto saving is disabled."
 msgstr ""
-"Ако е включено, gnome-session автоматично ще запази следващата сесия, дори "
-"ако автоматичното запазване е изключено."
+"Когато е включено, „gnome-session“ автоматично ще запази следващата сесия "
+"при изход, дори ако автоматичното запазване на сесии е изключено."
 
 #: data/org.gnome.SessionManager.gschema.xml.in:15
 msgid "Logout prompt"
-msgstr "Предупреждение при изход"
+msgstr "Питане преди изход"
 
 #: data/org.gnome.SessionManager.gschema.xml.in:16
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
-"Ако е включено, gnome-session ще изведе предупреждение, преди да приключи "
+"Когато е включено, „gnome-session“ ще пита потребителя, преди да прекрати "
 "сесията."
 
 #: data/org.gnome.SessionManager.gschema.xml.in:20
 msgid "Show the fallback warning"
-msgstr "Показване на предупреждение за резервна сесия"
+msgstr "Показване на предупреждение при резервен вариант"
 
 #: data/org.gnome.SessionManager.gschema.xml.in:21
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
 msgstr ""
-"Ако е включено, gnome-session ще изведе предупреждение, ако вместо заявената "
-"сесия се наложи да се ползва резервна."
+"Когато е включено, „gnome-session“ ще извежда прозорец с предупреждение, ако "
+"при влизане е ползван резервният вариант за сесия."
 
 #: data/session-selector.ui:15
 msgid "Custom Session"
@@ -200,15 +204,16 @@ msgstr "Неуспешно създаване на гнездо на ICE за с
 
 #: gnome-session/main.c:398
 msgid "Running as systemd service"
-msgstr "Изпълнение като услуга на systemd"
+msgstr "Изпълнение като услуга на „systemd“"
 
 #: gnome-session/main.c:399
 msgid "Use systemd session management"
-msgstr "Управление на сесиите чрез systemd"
+msgstr "Управление на сесиите със „systemd“"
 
 #: gnome-session/main.c:401
 msgid "Use builtin session management (rather than the systemd based one)"
-msgstr "Използване на вграденото управление на сесии (а не ползващото systemd)"
+msgstr ""
+"Използване на вграденото управление на сесии (вместо това на „systemd“)"
 
 #: gnome-session/main.c:402
 msgid "Override standard autostart directories"
@@ -249,34 +254,34 @@ msgstr " — управление на сесиите на GNOME"
 
 #: tools/gnome-session-ctl.c:245
 msgid "Start gnome-session-shutdown.target"
-msgstr "Стартиране на gnome-session-shutdown.target"
+msgstr "Изпълнение на „gnome-session-shutdown.target“"
 
 #: tools/gnome-session-ctl.c:246
 msgid ""
 "Start gnome-session-shutdown.target when receiving EOF or a single byte on "
 "stdin"
 msgstr ""
-"Стартиране на gnome-session-shutdown.target при получаване на стандартния "
-"вход на EOF или байт"
+"Стартиране на „gnome-session-shutdown.target“ при получаване на край на файл "
+"или сама на единичен байт на стандартния вход"
 
 #: tools/gnome-session-ctl.c:247
 msgid "Signal initialization done to gnome-session"
-msgstr "Инициализация на сигналите за gnome-session"
+msgstr "Извършено е инициализиране на сигналите на „gnome-session“"
 
 #: tools/gnome-session-ctl.c:248
 msgid "Restart dbus.service if it is running"
-msgstr "Рестартиране на dbus.service, ако тя работи"
+msgstr "Рестартиране на „dbus.service“, ако се изпълнява"
 
 #: tools/gnome-session-ctl.c:249
 msgid ""
 "Run from ExecStopPost to start gnome-session-failed.target on service failure"
 msgstr ""
-"Изпълнение от ExecStopPost за стартиране на gnome-session-failed.target при "
-"проблем с услугата"
+"Изпълнение от „ExecStopPost“, за да се стартираt „gnome-session-failed."
+"target“ при грешка в услугата"
 
 #: tools/gnome-session-ctl.c:279
 msgid "Program needs exactly one parameter"
-msgstr "Програмата приема точно една опция"
+msgstr "Програмата изисква точно един параметър"
 
 #: tools/gnome-session-inhibit.c:108
 #, c-format
@@ -313,8 +318,7 @@ msgstr ""
 "(бездействие),\n"
 "                    automount (автоматично монтиране)\n"
 "  --inhibit-only    Команда не се изпълнява, стартира се направо сесия\n"
-"  -l, --list        Извеждане на текущите ограничения и изход\n"
-"\n"
+"  -l, --list        Извеждане на списък с ограниченията и изход\n"
 "Ако не е указана опция „--inhibit“, за стандартна се ползва стойност "
 "„idle“.\n"
 
