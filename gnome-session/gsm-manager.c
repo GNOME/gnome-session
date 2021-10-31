@@ -271,7 +271,7 @@ on_required_app_failure (GsmManager  *manager,
 
         app_id = gsm_app_peek_app_id (app);
 
-        if (g_str_equal (app_id, "org.gnome.Shell")) {
+        if (g_str_equal (app_id, "org.gnome.Shell.desktop")) {
                 extensions = g_object_new (GSM_TYPE_SHELL_EXTENSIONS, NULL);
                 gsm_shell_extensions_disable_all (extensions);
         } else {
@@ -305,7 +305,7 @@ on_display_server_failure (GsmManager *manager,
 
         app_id = gsm_app_peek_app_id (app);
 
-        if (g_str_equal (app_id, "org.gnome.Shell")) {
+        if (g_str_equal (app_id, "org.gnome.Shell.desktop")) {
                 extensions = g_object_new (GSM_TYPE_SHELL_EXTENSIONS, NULL);
                 gsm_shell_extensions_disable_all (extensions);
 
