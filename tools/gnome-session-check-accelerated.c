@@ -93,7 +93,7 @@ wait_for_property_notify (void)
 }
 
 static char *
-get_gtk_gles_renderer (void)
+get_gtk_gles_renderer (GError **error)
 {
         GtkWidget *win;
         GdkGLContext *context;
@@ -101,7 +101,7 @@ get_gtk_gles_renderer (void)
 
         win = gtk_window_new (GTK_WINDOW_TOPLEVEL);
         gtk_widget_realize (win);
-        context = gdk_window_create_gl_context (gtk_widget_get_window (win), NULL);
+        context = gdk_window_create_gl_context (gtk_widget_get_window (win), error);
         if (!context)
                 return NULL;
         gdk_gl_context_make_current (context);
@@ -137,7 +137,7 @@ main (int argc, char **argv)
         gboolean gl_software_rendering = FALSE, gles_software_rendering = FALSE;
         Window rootwin;
         glong is_accelerated, is_software_rendering;
-        GError *gl_error = NULL, *gles_error = NULL;
+        GError *gl_error = NULL, *gles_error = NULL, *gtk_gles_error = NULL;
 
         gtk_init (NULL, NULL);
 
@@ -148,10 +148,16 @@ main (int argc, char **argv)
          * when requesting information about the second.
          */
         if (is_discrete_gpu_check () || g_strcmp0 (g_getenv ("XDG_SESSION_TYPE"), "x11") != 0) {
-                g_autofree char *discrete_renderer_string = get_gtk_gles_renderer ();
+                g_autofree char *discrete_renderer_string = get_gtk_gles_renderer (&gtk_gles_error);
                 if (discrete_renderer_string) {
                         g_print ("%s", discrete_renderer_string);
                         return 0;
+                }
+                if (gtk_gles_error != NULL) {
+                        g_printerr ("gnome-session-check-accelerated: "
+                                    "Failed to get GTK GLES renderer: %s\n",
+                                    gtk_gles_error->message);
+                        g_clear_error (&gtk_gles_error);
                 }
                 return 1;
         }
