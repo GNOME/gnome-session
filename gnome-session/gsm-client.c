@@ -566,7 +566,7 @@ gsm_client_save (GsmClient *client,
                  GsmApp    *app,
                  GError   **error)
 {
-        g_return_val_if_fail (GSM_IS_CLIENT (client), FALSE);
+        g_return_val_if_fail (GSM_IS_CLIENT (client), NULL);
 
         return GSM_CLIENT_GET_CLASS (client)->impl_save (client, app, error);
 }
