@@ -38,7 +38,6 @@ struct GsmClientPrivate
 
 enum {
         PROP_0,
-        PROP_ID,
         PROP_STARTUP_ID,
         PROP_APP_ID,
         PROP_STATUS
