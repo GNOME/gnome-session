@@ -1471,14 +1471,14 @@ gsm_autostart_app_class_init (GsmAutostartAppClass *klass)
                                      "Desktop filename",
                                      "Freedesktop .desktop file",
                                      NULL,
-                                     G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
+                                     G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS);
 
         props[PROP_MASK_SYSTEMD] =
                 g_param_spec_boolean ("mask-systemd",
                                       "Mask if systemd started",
                                       "Mask if GNOME systemd flag is set in desktop file",
                                       FALSE,
-                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
+                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS);
 
         g_object_class_install_properties (object_class, G_N_ELEMENTS (props), props);
 
