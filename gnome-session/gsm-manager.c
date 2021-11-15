@@ -3698,7 +3698,6 @@ gsm_manager_set_phase (GsmManager      *manager,
 static void
 append_app (GsmManager *manager,
             GsmApp     *app,
-            const char *provides,
             gboolean    is_required)
 {
         GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
@@ -3728,9 +3727,6 @@ append_app (GsmManager *manager,
         if (dup != NULL) {
                 g_debug ("GsmManager: not adding app: app-id '%s' already exists", app_id);
 
-                if (provides && GSM_IS_AUTOSTART_APP (dup))
-                        gsm_autostart_app_add_provides (GSM_AUTOSTART_APP (dup), provides);
-
                 if (is_required &&
                     !g_slist_find (priv->required_apps, dup)) {
                         g_debug ("GsmManager: making app '%s' required", gsm_app_peek_app_id (dup));
@@ -3750,7 +3746,6 @@ append_app (GsmManager *manager,
 static gboolean
 add_autostart_app_internal (GsmManager *manager,
                             const char *path,
-                            const char *provides,
                             gboolean    is_required)
 {
         GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
@@ -3766,27 +3761,6 @@ add_autostart_app_internal (GsmManager *manager,
          * reason meaning there is already an app playing its role, then we
          * should make sure that relevant properties (like
          * provides/is_required) are set in the pre-existing app if needed. */
-
-        /* first check to see if service is already provided */
-        if (provides != NULL) {
-                GsmApp *dup;
-
-                dup = (GsmApp *)gsm_store_find (priv->apps,
-                                                (GsmStoreFunc)_find_app_provides,
-                                                (char *)provides);
-                if (dup != NULL) {
-                        g_debug ("GsmManager: service '%s' is already provided", provides);
-
-                        if (is_required &&
-                            !g_slist_find (priv->required_apps, dup)) {
-                                g_debug ("GsmManager: making app '%s' required", gsm_app_peek_app_id (dup));
-                                priv->required_apps = g_slist_prepend (priv->required_apps, dup);
-                        }
-
-                        return FALSE;
-                }
-        }
-
         app = gsm_autostart_app_new (path, priv->systemd_managed, &error);
         if (app == NULL) {
                 g_warning ("%s", error->message);
@@ -3827,11 +3801,8 @@ add_autostart_app_internal (GsmManager *manager,
                 }
         }
 
-        if (provides)
-                gsm_autostart_app_add_provides (GSM_AUTOSTART_APP (app), provides);
-
         g_debug ("GsmManager: read %s", path);
-        append_app (manager, app, provides, is_required);
+        append_app (manager, app, is_required);
         g_object_unref (app);
 
         return TRUE;
@@ -3839,20 +3810,15 @@ add_autostart_app_internal (GsmManager *manager,
 
 gboolean
 gsm_manager_add_autostart_app (GsmManager *manager,
-                               const char *path,
-                               const char *provides)
+                               const char *path)
 {
-        return add_autostart_app_internal (manager,
-                                           path,
-                                           provides,
-                                           FALSE);
+        return add_autostart_app_internal (manager, path, FALSE);
 }
 
 /**
  * gsm_manager_add_required_app:
  * @manager: a #GsmManager
  * @path: Path to desktop file
- * @provides: What the component provides, as a space separated list
  *
  * Similar to gsm_manager_add_autostart_app(), except marks the
  * component as being required; we then try harder to ensure
@@ -3861,13 +3827,9 @@ gsm_manager_add_autostart_app (GsmManager *manager,
  */
 gboolean
 gsm_manager_add_required_app (GsmManager *manager,
-                              const char *path,
-                              const char *provides)
+                              const char *path)
 {
-        return add_autostart_app_internal (manager,
-                                           path,
-                                           provides,
-                                           TRUE);
+        return add_autostart_app_internal (manager, path, TRUE);
 }
 
 
@@ -3896,7 +3858,7 @@ gsm_manager_add_autostart_apps_from_dir (GsmManager *manager,
                 }
 
                 desktop_file = g_build_filename (path, name, NULL);
-                gsm_manager_add_autostart_app (manager, desktop_file, NULL);
+                gsm_manager_add_autostart_app (manager, desktop_file);
                 g_free (desktop_file);
         }
 
