@@ -2401,6 +2401,7 @@ gsm_manager_dispose (GObject *object)
 
         g_clear_object (&priv->end_session_cancellable);
         g_clear_object (&priv->xsmp_server);
+        g_clear_pointer (&priv->session_name, g_free);
 
         if (priv->clients != NULL) {
                 g_signal_handlers_disconnect_by_func (priv->clients,
@@ -2416,6 +2417,8 @@ gsm_manager_dispose (GObject *object)
         g_clear_object (&priv->apps);
         g_slist_free (priv->required_apps);
         priv->required_apps = NULL;
+        g_slist_free (priv->pending_apps);
+        priv->pending_apps = NULL;
 
         if (priv->inhibitors != NULL) {
                 g_signal_handlers_disconnect_by_func (priv->inhibitors,
