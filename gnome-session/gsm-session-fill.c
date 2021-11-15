@@ -212,7 +212,6 @@ find_valid_session_keyfile (const char *session)
         int                 i;
         GKeyFile           *keyfile;
         char               *basename;
-        char               *path;
 
         dirs = g_ptr_array_new ();
 
@@ -228,10 +227,9 @@ find_valid_session_keyfile (const char *session)
 
         keyfile = NULL;
         basename = g_strdup_printf ("%s.session", session);
-        path = NULL;
 
         for (i = 0; i < dirs->len; i++) {
-                path = g_build_filename (dirs->pdata[i], "gnome-session", "sessions", basename, NULL);
+                g_autofree gchar *path = g_build_filename (dirs->pdata[i], "gnome-session", "sessions", basename, NULL);
                 keyfile = get_session_keyfile_if_valid (path);
                 if (keyfile != NULL)
                         break;
@@ -241,8 +239,6 @@ find_valid_session_keyfile (const char *session)
                 g_ptr_array_free (dirs, TRUE);
         if (basename)
                 g_free (basename);
-        if (path)
-                g_free (path);
 
         return keyfile;
 }
