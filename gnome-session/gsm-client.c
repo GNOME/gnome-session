@@ -424,13 +424,13 @@ gsm_client_class_init (GsmClientClass *klass)
                                      "startup-id",
                                      "startup-id",
                                      "",
-                                     G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
+                                     G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS);
         props[PROP_APP_ID] =
                 g_param_spec_string ("app-id",
                                      "app-id",
                                      "app-id",
                                      "",
-                                     G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
+                                     G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS);
         props[PROP_STATUS] =
                 g_param_spec_uint ("status",
                                    "status",
@@ -438,7 +438,7 @@ gsm_client_class_init (GsmClientClass *klass)
                                    0,
                                    G_MAXINT,
                                    GSM_CLIENT_UNREGISTERED,
-                                   G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
+                                   G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS);
 
         g_object_class_install_properties (object_class, G_N_ELEMENTS (props), props);
 }
