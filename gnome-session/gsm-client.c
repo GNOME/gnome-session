@@ -34,12 +34,13 @@ typedef struct
         GDBusConnection *connection;
 } GsmClientPrivate;
 
-enum {
-        PROP_0,
-        PROP_STARTUP_ID,
+typedef enum {
+        PROP_STARTUP_ID = 1,
         PROP_APP_ID,
-        PROP_STATUS
-};
+        PROP_STATUS,
+} GsmClientProperty;
+
+static GParamSpec *props[PROP_STATUS + 1] = { NULL, };
 
 enum {
         DISCONNECTED,
@@ -269,7 +270,7 @@ gsm_client_set_status (GsmClient *client,
         g_return_if_fail (GSM_IS_CLIENT (client));
         if (priv->status != status) {
                 priv->status = status;
-                g_object_notify (G_OBJECT (client), "status");
+                g_object_notify_by_pspec (G_OBJECT (client), props[PROP_STATUS]);
         }
 }
 
@@ -288,7 +289,7 @@ gsm_client_set_startup_id (GsmClient  *client,
         } else {
                 priv->startup_id = g_strdup ("");
         }
-        g_object_notify (G_OBJECT (client), "startup-id");
+        g_object_notify_by_pspec (G_OBJECT (client), props[PROP_STARTUP_ID]);
 }
 
 void
@@ -306,7 +307,7 @@ gsm_client_set_app_id (GsmClient  *client,
         } else {
                 priv->app_id = g_strdup ("");
         }
-        g_object_notify (G_OBJECT (client), "app-id");
+        g_object_notify_by_pspec (G_OBJECT (client), props[PROP_APP_ID]);
 }
 
 static void
@@ -319,7 +320,7 @@ gsm_client_set_property (GObject       *object,
 
         self = GSM_CLIENT (object);
 
-        switch (prop_id) {
+        switch ((GsmClientProperty) prop_id) {
         case PROP_STARTUP_ID:
                 gsm_client_set_startup_id (self, g_value_get_string (value));
                 break;
@@ -344,7 +345,7 @@ gsm_client_get_property (GObject    *object,
         GsmClient *self = GSM_CLIENT (object);
         GsmClientPrivate *priv = gsm_client_get_instance_private (self);
 
-        switch (prop_id) {
+        switch ((GsmClientProperty) prop_id) {
         case PROP_STARTUP_ID:
                 g_value_set_string (value, priv->startup_id);
                 break;
@@ -418,29 +419,28 @@ gsm_client_class_init (GsmClientClass *klass)
                               G_TYPE_NONE,
                               4, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_STRING);
 
-        g_object_class_install_property (object_class,
-                                         PROP_STARTUP_ID,
-                                         g_param_spec_string ("startup-id",
-                                                              "startup-id",
-                                                              "startup-id",
-                                                              "",
-                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
-        g_object_class_install_property (object_class,
-                                         PROP_APP_ID,
-                                         g_param_spec_string ("app-id",
-                                                              "app-id",
-                                                              "app-id",
-                                                              "",
-                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
-        g_object_class_install_property (object_class,
-                                         PROP_STATUS,
-                                         g_param_spec_uint ("status",
-                                                            "status",
-                                                            "status",
-                                                            0,
-                                                            G_MAXINT,
-                                                            GSM_CLIENT_UNREGISTERED,
-                                                            G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+        props[PROP_STARTUP_ID] =
+                g_param_spec_string ("startup-id",
+                                     "startup-id",
+                                     "startup-id",
+                                     "",
+                                     G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
+        props[PROP_APP_ID] =
+                g_param_spec_string ("app-id",
+                                     "app-id",
+                                     "app-id",
+                                     "",
+                                     G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
+        props[PROP_STATUS] =
+                g_param_spec_uint ("status",
+                                   "status",
+                                   "status",
+                                   0,
+                                   G_MAXINT,
+                                   GSM_CLIENT_UNREGISTERED,
+                                   G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
+
+        g_object_class_install_properties (object_class, G_N_ELEMENTS (props), props);
 }
 
 const char *
