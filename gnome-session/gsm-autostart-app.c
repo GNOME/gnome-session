@@ -88,11 +88,12 @@ enum {
         LAST_SIGNAL
 };
 
-enum {
-        PROP_0,
-        PROP_DESKTOP_FILENAME,
-        PROP_MASK_SYSTEMD
-};
+typedef enum {
+        PROP_DESKTOP_FILENAME = 1,
+        PROP_MASK_SYSTEMD,
+} GsmAutostartAppProperty;
+
+static GParamSpec *props[PROP_MASK_SYSTEMD + 1] = { NULL, };
 
 static guint signals[LAST_SIGNAL] = { 0 };
 
@@ -654,7 +655,7 @@ gsm_autostart_app_set_property (GObject      *object,
         GsmAutostartApp *self = GSM_AUTOSTART_APP (object);
         GsmAutostartAppPrivate *priv = gsm_autostart_app_get_instance_private (self);
 
-        switch (prop_id) {
+        switch ((GsmAutostartAppProperty) prop_id) {
         case PROP_DESKTOP_FILENAME:
                 gsm_autostart_app_set_desktop_filename (self, g_value_get_string (value));
                 break;
@@ -676,7 +677,7 @@ gsm_autostart_app_get_property (GObject    *object,
         GsmAutostartApp *self = GSM_AUTOSTART_APP (object);
         GsmAutostartAppPrivate *priv = gsm_autostart_app_get_instance_private (self);
 
-        switch (prop_id) {
+        switch ((GsmAutostartAppProperty) prop_id) {
         case PROP_DESKTOP_FILENAME:
                 if (priv->app_info != NULL) {
                         g_value_set_string (value, g_desktop_app_info_get_filename (priv->app_info));
@@ -1465,20 +1466,22 @@ gsm_autostart_app_class_init (GsmAutostartAppClass *klass)
         app_class->impl_get_autorestart = gsm_autostart_app_get_autorestart;
         app_class->impl_save_to_keyfile = gsm_autostart_app_save_to_keyfile;
 
-        g_object_class_install_property (object_class,
-                                         PROP_DESKTOP_FILENAME,
-                                         g_param_spec_string ("desktop-filename",
-                                                              "Desktop filename",
-                                                              "Freedesktop .desktop file",
-                                                              NULL,
-                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
-        g_object_class_install_property (object_class,
-                                         PROP_MASK_SYSTEMD,
-                                         g_param_spec_boolean ("mask-systemd",
-                                                               "Mask if systemd started",
-                                                               "Mask if GNOME systemd flag is set in desktop file",
-                                                               FALSE,
-                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+        props[PROP_DESKTOP_FILENAME] =
+                g_param_spec_string ("desktop-filename",
+                                     "Desktop filename",
+                                     "Freedesktop .desktop file",
+                                     NULL,
+                                     G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
+
+        props[PROP_MASK_SYSTEMD] =
+                g_param_spec_boolean ("mask-systemd",
+                                      "Mask if systemd started",
+                                      "Mask if GNOME systemd flag is set in desktop file",
+                                      FALSE,
+                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
+
+        g_object_class_install_properties (object_class, G_N_ELEMENTS (props), props);
+
         signals[CONDITION_CHANGED] =
                 g_signal_new ("condition-changed",
                               G_OBJECT_CLASS_TYPE (object_class),
