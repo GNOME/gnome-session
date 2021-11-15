@@ -27,17 +27,11 @@
 G_BEGIN_DECLS
 
 #define GSM_TYPE_CLIENT            (gsm_client_get_type ())
-#define GSM_CLIENT(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GSM_TYPE_CLIENT, GsmClient))
-#define GSM_CLIENT_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GSM_TYPE_CLIENT, GsmClientClass))
-#define GSM_IS_CLIENT(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GSM_TYPE_CLIENT))
-#define GSM_IS_CLIENT_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GSM_TYPE_CLIENT))
-#define GSM_CLIENT_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GSM_TYPE_CLIENT, GsmClientClass))
+G_DECLARE_DERIVABLE_TYPE (GsmClient, gsm_client, GSM, CLIENT, GObject)
 
 typedef struct _GsmApp           GsmApp;
 typedef struct _GsmClient        GsmClient;
 typedef struct _GsmClientClass   GsmClientClass;
-
-typedef struct GsmClientPrivate GsmClientPrivate;
 
 typedef enum {
         GSM_CLIENT_UNREGISTERED = 0,
@@ -58,12 +52,6 @@ typedef enum {
         GSM_CLIENT_END_SESSION_FLAG_SAVE     = 1 << 1,
         GSM_CLIENT_END_SESSION_FLAG_LAST     = 1 << 2
 } GsmClientEndSessionFlag;
-
-struct _GsmClient
-{
-        GObject           parent;
-        GsmClientPrivate *priv;
-};
 
 struct _GsmClientClass
 {
@@ -105,8 +93,6 @@ typedef enum
 
 #define GSM_CLIENT_ERROR gsm_client_error_quark ()
 GQuark                gsm_client_error_quark                (void);
-
-GType                 gsm_client_get_type                   (void) G_GNUC_CONST;
 
 const char           *gsm_client_peek_id                    (GsmClient  *client);
 
