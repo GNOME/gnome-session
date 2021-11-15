@@ -33,14 +33,13 @@
 #include "gsm-manager.h"
 #include "gsm-util.h"
 
-#define GSM_DBUS_CLIENT_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_DBUS_CLIENT, GsmDBusClientPrivate))
-
-
 #define SM_DBUS_NAME                     "org.gnome.SessionManager"
 #define SM_DBUS_CLIENT_PRIVATE_INTERFACE "org.gnome.SessionManager.ClientPrivate"
 
-struct GsmDBusClientPrivate
+struct _GsmDBusClient
 {
+        GObject               parent_instance;
+
         char                 *bus_name;
         GPid                  caller_pid;
         GsmClientRestartStyle restart_style_hint;
@@ -62,8 +61,8 @@ setup_connection (GsmDBusClient *client)
 {
         GError *error = NULL;
 
-        if (client->priv->connection == NULL) {
-                client->priv->connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &error);
+        if (client->connection == NULL) {
+                client->connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &error);
                 if (error != NULL) {
                         g_debug ("GsmDbusClient: Couldn't connect to session bus: %s",
                                  error->message);
@@ -109,10 +108,10 @@ gsm_dbus_client_constructor (GType                  type,
         }
 
         skeleton = gsm_exported_client_private_skeleton_new ();
-        client->priv->skeleton = skeleton;
+        client->skeleton = skeleton;
         g_debug ("exporting dbus client to object path: %s", gsm_client_peek_id (GSM_CLIENT (client)));
         g_dbus_interface_skeleton_export (G_DBUS_INTERFACE_SKELETON (skeleton),
-                                          client->priv->connection,
+                                          client->connection,
                                           gsm_client_peek_id (GSM_CLIENT (client)),
                                           &error);
 
@@ -132,7 +131,6 @@ gsm_dbus_client_constructor (GType                  type,
 static void
 gsm_dbus_client_init (GsmDBusClient *client)
 {
-        client->priv = GSM_DBUS_CLIENT_GET_PRIVATE (client);
 }
 
 /* adapted from PolicyKit */
@@ -228,8 +226,8 @@ on_client_vanished (GDBusConnection *connection,
 {
         GsmDBusClient  *client = user_data;
 
-        g_bus_unwatch_name (client->priv->watch_id);
-        client->priv->watch_id = 0;
+        g_bus_unwatch_name (client->watch_id);
+        client->watch_id = 0;
 
         gsm_client_disconnected (GSM_CLIENT (client));
 }
@@ -240,16 +238,16 @@ gsm_dbus_client_set_bus_name (GsmDBusClient  *client,
 {
         g_return_if_fail (GSM_IS_DBUS_CLIENT (client));
 
-        g_free (client->priv->bus_name);
+        g_free (client->bus_name);
 
-        client->priv->bus_name = g_strdup (bus_name);
+        client->bus_name = g_strdup (bus_name);
         g_object_notify (G_OBJECT (client), "bus-name");
 
-        if (!get_caller_info (client, bus_name, NULL, &client->priv->caller_pid)) {
-                client->priv->caller_pid = 0;
+        if (!get_caller_info (client, bus_name, NULL, &client->caller_pid)) {
+                client->caller_pid = 0;
         }
 
-        client->priv->watch_id = g_bus_watch_name (G_BUS_TYPE_SESSION,
+        client->watch_id = g_bus_watch_name (G_BUS_TYPE_SESSION,
                                                    bus_name,
                                                    G_BUS_NAME_WATCHER_FLAGS_NONE,
                                                    NULL,
@@ -263,7 +261,7 @@ gsm_dbus_client_get_bus_name (GsmDBusClient  *client)
 {
         g_return_val_if_fail (GSM_IS_DBUS_CLIENT (client), NULL);
 
-        return client->priv->bus_name;
+        return client->bus_name;
 }
 
 static void
@@ -298,7 +296,7 @@ gsm_dbus_client_get_property (GObject    *object,
 
         switch (prop_id) {
         case PROP_BUS_NAME:
-                g_value_set_string (value, self->priv->bus_name);
+                g_value_set_string (value, self->bus_name);
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -311,18 +309,18 @@ gsm_dbus_client_finalize (GObject *object)
 {
         GsmDBusClient *client = (GsmDBusClient *) object;
 
-        g_free (client->priv->bus_name);
+        g_free (client->bus_name);
 
-        if (client->priv->skeleton != NULL) {
-                g_dbus_interface_skeleton_unexport_from_connection (G_DBUS_INTERFACE_SKELETON (client->priv->skeleton),
-                                                                    client->priv->connection);
-                g_clear_object (&client->priv->skeleton);
+        if (client->skeleton != NULL) {
+                g_dbus_interface_skeleton_unexport_from_connection (G_DBUS_INTERFACE_SKELETON (client->skeleton),
+                                                                    client->connection);
+                g_clear_object (&client->skeleton);
         }
 
-        g_clear_object (&client->priv->connection);
+        g_clear_object (&client->connection);
 
-        if (client->priv->watch_id != 0)
-                g_bus_unwatch_name (client->priv->watch_id);
+        if (client->watch_id != 0)
+                g_bus_unwatch_name (client->watch_id);
 
         G_OBJECT_CLASS (gsm_dbus_client_parent_class)->finalize (object);
 }
@@ -346,7 +344,7 @@ dbus_client_stop (GsmClient *client,
                   GError   **error)
 {
         GsmDBusClient  *dbus_client = (GsmDBusClient *) client;
-        gsm_exported_client_private_emit_stop (dbus_client->priv->skeleton);
+        gsm_exported_client_private_emit_stop (dbus_client->skeleton);
         return TRUE;
 }
 
@@ -360,13 +358,13 @@ dbus_client_get_app_name (GsmClient *client)
 static GsmClientRestartStyle
 dbus_client_get_restart_style_hint (GsmClient *client)
 {
-        return (GSM_DBUS_CLIENT (client)->priv->restart_style_hint);
+        return (GSM_DBUS_CLIENT (client)->restart_style_hint);
 }
 
 static guint
 dbus_client_get_unix_process_id (GsmClient *client)
 {
-        return (GSM_DBUS_CLIENT (client)->priv->caller_pid);
+        return (GSM_DBUS_CLIENT (client)->caller_pid);
 }
 
 static gboolean
@@ -376,7 +374,7 @@ dbus_client_query_end_session (GsmClient                *client,
 {
         GsmDBusClient  *dbus_client = (GsmDBusClient *) client;
 
-        if (dbus_client->priv->bus_name == NULL) {
+        if (dbus_client->bus_name == NULL) {
                 g_set_error (error,
                              GSM_CLIENT_ERROR,
                              GSM_CLIENT_ERROR_NOT_REGISTERED,
@@ -384,9 +382,9 @@ dbus_client_query_end_session (GsmClient                *client,
                 return FALSE;
         }
 
-        g_debug ("GsmDBusClient: sending QueryEndSession signal to %s", dbus_client->priv->bus_name);
+        g_debug ("GsmDBusClient: sending QueryEndSession signal to %s", dbus_client->bus_name);
 
-        gsm_exported_client_private_emit_query_end_session (dbus_client->priv->skeleton, flags);
+        gsm_exported_client_private_emit_query_end_session (dbus_client->skeleton, flags);
         return TRUE;
 }
 
@@ -397,7 +395,7 @@ dbus_client_end_session (GsmClient                *client,
 {
         GsmDBusClient  *dbus_client = (GsmDBusClient *) client;
 
-        gsm_exported_client_private_emit_end_session (dbus_client->priv->skeleton, flags);
+        gsm_exported_client_private_emit_end_session (dbus_client->skeleton, flags);
         return TRUE;
 }
 
@@ -406,7 +404,7 @@ dbus_client_cancel_end_session (GsmClient *client,
                                 GError   **error)
 {
         GsmDBusClient  *dbus_client = (GsmDBusClient *) client;
-        gsm_exported_client_private_emit_cancel_end_session (dbus_client->priv->skeleton);
+        gsm_exported_client_private_emit_cancel_end_session (dbus_client->skeleton);
         return TRUE;
 }
 
@@ -437,8 +435,6 @@ gsm_dbus_client_class_init (GsmDBusClientClass *klass)
                                                               "bus-name",
                                                               NULL,
                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
-
-        g_type_class_add_private (klass, sizeof (GsmDBusClientPrivate));
 }
 
 GsmClient *

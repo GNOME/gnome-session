@@ -24,29 +24,7 @@
 G_BEGIN_DECLS
 
 #define GSM_TYPE_DBUS_CLIENT            (gsm_dbus_client_get_type ())
-#define GSM_DBUS_CLIENT(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GSM_TYPE_DBUS_CLIENT, GsmDBusClient))
-#define GSM_DBUS_CLIENT_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GSM_TYPE_DBUS_CLIENT, GsmDBusClientClass))
-#define GSM_IS_DBUS_CLIENT(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GSM_TYPE_DBUS_CLIENT))
-#define GSM_IS_DBUS_CLIENT_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GSM_TYPE_DBUS_CLIENT))
-#define GSM_DBUS_CLIENT_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), GSM_TYPE_DBUS_CLIENT, GsmDBusClientClass))
-
-typedef struct _GsmDBusClient        GsmDBusClient;
-typedef struct _GsmDBusClientClass   GsmDBusClientClass;
-
-typedef struct GsmDBusClientPrivate  GsmDBusClientPrivate;
-
-struct _GsmDBusClient
-{
-        GsmClient             parent;
-        GsmDBusClientPrivate *priv;
-};
-
-struct _GsmDBusClientClass
-{
-        GsmClientClass parent_class;
-};
-
-GType          gsm_dbus_client_get_type           (void) G_GNUC_CONST;
+G_DECLARE_FINAL_TYPE (GsmDBusClient, gsm_dbus_client, GSM, DBUS_CLIENT, GsmClient)
 
 GsmClient *    gsm_dbus_client_new                (const char     *startup_id,
                                                    const char     *bus_name);
