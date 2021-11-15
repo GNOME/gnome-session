@@ -244,7 +244,11 @@ check_gl (GError **error)
                 return FALSE;
         }
 
+#if GLIB_CHECK_VERSION(2, 70, 0)
+        return g_spawn_check_wait_status (status, error);
+#else
         return g_spawn_check_exit_status (status, error);
+#endif
 }
 
 static void
