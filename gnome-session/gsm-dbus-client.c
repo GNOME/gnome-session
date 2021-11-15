@@ -140,19 +140,15 @@ get_caller_info (GsmDBusClient *client,
                  uid_t         *calling_uid_out,
                  pid_t         *calling_pid_out)
 {
-        GDBusConnection *connection;
-        gboolean         retval;
+        g_autoptr(GDBusConnection) connection = NULL;
         GError          *error;
-        GVariant        *uid_variant, *pid_variant;
+        g_autoptr(GVariant) uid_variant = NULL;
+        g_autoptr(GVariant) pid_variant = NULL;
         uid_t            uid;
         pid_t            pid;
 
-        retval = FALSE;
-        connection = NULL;
-        uid_variant = pid_variant = NULL;
-
         if (sender == NULL) {
-                goto out;
+                return FALSE;
         }
 
         error = NULL;
@@ -161,7 +157,7 @@ get_caller_info (GsmDBusClient *client,
         if (error != NULL) {
                 g_warning ("error getting session bus: %s", error->message);
                 g_error_free (error);
-                goto out;
+                return FALSE;
         }
 
         uid_variant = g_dbus_connection_call_sync (connection,
@@ -177,7 +173,7 @@ get_caller_info (GsmDBusClient *client,
         if (error != NULL) {
                 g_debug ("GetConnectionUnixUser() failed: %s", error->message);
                 g_error_free (error);
-                goto out;
+                return FALSE;
         }
 
         pid_variant = g_dbus_connection_call_sync (connection,
@@ -193,7 +189,7 @@ get_caller_info (GsmDBusClient *client,
         if (error != NULL) {
                 g_debug ("GetConnectionUnixProcessID() failed: %s", error->message);
                 g_error_free (error);
-                goto out;
+                return FALSE;
         }
 
         g_variant_get (uid_variant, "(u)", &uid);
@@ -206,17 +202,10 @@ get_caller_info (GsmDBusClient *client,
                 *calling_pid_out = pid;
         }
 
-        retval = TRUE;
-
         g_debug ("uid = %d", uid);
         g_debug ("pid = %d", pid);
 
-out:
-        g_clear_pointer (&uid_variant, (GDestroyNotify) g_variant_unref);
-        g_clear_pointer (&pid_variant, (GDestroyNotify) g_variant_unref);
-        g_clear_object (&connection);
-
-        return retval;
+        return TRUE;
 }
 
 static void
