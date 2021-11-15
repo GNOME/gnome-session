@@ -632,18 +632,21 @@ gsm_autostart_app_set_desktop_filename (GsmAutostartApp *app,
 {
         GsmAutostartAppPrivate *priv = gsm_autostart_app_get_instance_private (app);
 
+        if (g_strcmp0 (priv->desktop_filename, desktop_filename) == 0)
+                return;
+
         if (priv->app_info != NULL) {
                 g_clear_object (&priv->app_info);
                 g_clear_pointer (&priv->desktop_filename, g_free);
                 g_clear_pointer (&priv->desktop_id, g_free);
         }
 
-        if (desktop_filename == NULL) {
-                return;
+        if (desktop_filename != NULL) {
+                priv->desktop_filename = g_strdup (desktop_filename);
+                priv->desktop_id = g_path_get_basename (desktop_filename);
         }
 
-        priv->desktop_filename = g_strdup (desktop_filename);
-        priv->desktop_id = g_path_get_basename (desktop_filename);
+        g_object_notify_by_pspec (G_OBJECT (app), props[PROP_DESKTOP_FILENAME]);
 }
 
 static void
@@ -660,7 +663,10 @@ gsm_autostart_app_set_property (GObject      *object,
                 gsm_autostart_app_set_desktop_filename (self, g_value_get_string (value));
                 break;
         case PROP_MASK_SYSTEMD:
-                priv->mask_systemd = g_value_get_boolean (value);
+                if (priv->mask_systemd != g_value_get_boolean (value)) {
+                        priv->mask_systemd = g_value_get_boolean (value);
+                        g_object_notify_by_pspec (object, props[PROP_MASK_SYSTEMD]);
+                }
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -1471,14 +1477,14 @@ gsm_autostart_app_class_init (GsmAutostartAppClass *klass)
                                      "Desktop filename",
                                      "Freedesktop .desktop file",
                                      NULL,
-                                     G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS);
+                                     G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
 
         props[PROP_MASK_SYSTEMD] =
                 g_param_spec_boolean ("mask-systemd",
                                       "Mask if systemd started",
                                       "Mask if GNOME systemd flag is set in desktop file",
                                       FALSE,
-                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS);
+                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
 
         g_object_class_install_properties (object_class, G_N_ELEMENTS (props), props);
 
