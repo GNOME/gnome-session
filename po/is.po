@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2020-07-31 14:02+0000\n"
-"PO-Revision-Date: 2021-09-30 12:00+0000\n"
+"POT-Creation-Date: 2021-10-12 22:51+0000\n"
+"PO-Revision-Date: 2021-12-13 09:15+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
-"Language-Team: Icelandic\n"
+"Language-Team: Icelandic <translation-team-is@lists.sourceforge.org>\n"
 "Language: is\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,7 +27,6 @@ msgid "This entry lets you select a saved session"
 msgstr "Þessi færsla gerir þér kleift að velja vistaða setu"
 
 #: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
-#: data/gnome-wayland.desktop.in.in:3
 msgid "GNOME"
 msgstr "GNOME"
 
@@ -40,6 +39,11 @@ msgstr "Þessi seta skráir þig inn í GNOME"
 msgid "GNOME dummy"
 msgstr "GNOME sýnishorn"
 
+#: data/gnome-wayland.desktop.in.in:3
+#| msgid "GNOME on Xorg"
+msgid "GNOME on Wayland"
+msgstr "GNOME á Wayland"
+
 #: data/gnome-xorg.desktop.in.in:3
 msgid "GNOME on Xorg"
 msgstr "GNOME á Xorg"
@@ -50,7 +54,7 @@ msgstr "Vista setur"
 
 #: data/org.gnome.SessionManager.gschema.xml.in:6
 msgid "If enabled, gnome-session will save the session automatically."
-msgstr "Ef virkt mun gnome-setan vista setuna sjálkrafa."
+msgstr "Ef virkt mun gnome-session vista setuna sjálkrafa."
 
 #: data/org.gnome.SessionManager.gschema.xml.in:10
 msgid "Save this session"
@@ -61,7 +65,7 @@ msgid ""
 "When enabled, gnome-session will automatically save the next session at log "
 "out even if auto saving is disabled."
 msgstr ""
-"Ef virkt mun gnome-setan vista næstu setu sjálkrafa við útskráningu jafnvel "
+"Ef virkt mun gnome-session vista næstu setu sjálkrafa við útskráningu jafnvel "
 "þótt sjálfvirk vistun á setu sé óvirk."
 
 #: data/org.gnome.SessionManager.gschema.xml.in:15
@@ -70,7 +74,8 @@ msgstr "Staðfesta útskráningu"
 
 #: data/org.gnome.SessionManager.gschema.xml.in:16
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr "Ef virkt mun gnome-setan spyrja um staðfestingu áður en setu er lokið."
+msgstr ""
+"Ef virkt mun gnome-session spyrja um staðfestingu áður en setu er lokið."
 
 #: data/org.gnome.SessionManager.gschema.xml.in:20
 msgid "Show the fallback warning"
@@ -81,7 +86,7 @@ msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
 msgstr ""
-"Ef virkt mun gnome-setan birta aðvörun eftir innskráningu ef sjálfkrafa var "
+"Ef virkt mun gnome-session birta aðvörun eftir innskráningu ef sjálfkrafa var "
 "notuð varaseta."
 
 #: data/session-selector.ui:15
@@ -156,7 +161,7 @@ msgstr "Birta aðvörun vegna skráaendinga"
 msgid "Not responding"
 msgstr "Svarar ekki"
 
-#: gnome-session/gsm-util.c:415
+#: gnome-session/gsm-util.c:431
 msgid "_Log out"
 msgstr "S_krá út"
 
@@ -190,7 +195,6 @@ msgid "Running as systemd service"
 msgstr "Keyra sem systemd-þjónustu"
 
 #: gnome-session/main.c:399
-#| msgid " — the GNOME session manager"
 msgid "Use systemd session management"
 msgstr "Nota systemd-setustýringu"
 
@@ -248,7 +252,7 @@ msgstr ""
 
 #: tools/gnome-session-ctl.c:247
 msgid "Signal initialization done to gnome-session"
-msgstr ""
+msgstr "Frumstilling merkis lokið til gnome-session"
 
 #: tools/gnome-session-ctl.c:248
 msgid "Restart dbus.service if it is running"
@@ -258,6 +262,8 @@ msgstr "Endurræsa dbus.service ef það er í gangi"
 msgid ""
 "Run from ExecStopPost to start gnome-session-failed.target on service failure"
 msgstr ""
+"Keyra úr ExecStopPost til að ræsa gnome-session-failed.target þegar þjónusta"
+" bregst"
 
 #: tools/gnome-session-ctl.c:279
 msgid "Program needs exactly one parameter"
@@ -265,21 +271,6 @@ msgstr "Forritið þarfnast nákvælega eins viðfangs"
 
 #: tools/gnome-session-inhibit.c:108
 #, c-format
-#| msgid ""
-#| "%s [OPTION…] COMMAND\n"
-#| "\n"
-#| "Execute COMMAND while inhibiting some session functionality.\n"
-#| "\n"
-#| "  -h, --help        Show this help\n"
-#| "  --version         Show program version\n"
-#| "  --app-id ID       The application id to use\n"
-#| "                    when inhibiting (optional)\n"
-#| "  --reason REASON   The reason for inhibiting (optional)\n"
-#| "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
-#| "                    logout, switch-user, suspend, idle, automount\n"
-#| "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
-#| "\n"
-#| "If no --inhibit option is specified, idle is assumed.\n"
 msgid ""
 "%s [OPTION…] COMMAND\n"
 "\n"
