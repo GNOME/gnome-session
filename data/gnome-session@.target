@@ -1,5 +1,7 @@
 [Unit]
 Description=GNOME Session (session: %i)
+OnFailure=gnome-session-failed.target
+OnFailureJobMode=replace
 DefaultDependencies=no
 RefuseManualStart=yes
 RefuseManualStop=yes

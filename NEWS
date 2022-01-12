@@ -1,3 +1,50 @@
+============
+Version 40.8
+============
+
+	data: Install GNOME on Wayland session for X11 preferred setups
+	Don't spew as much into log when falling back to non-systemd sessions
+	Work better with certain versions of meson
+	Correct screwed up check for gnome-shell
+	Various cleanups and leak fixes
+	Translation updates
+
+==============
+Version 40.1.1
+==============
+
+	presence: Fix error detection when syncing initial screensaver state
+
+============
+Version 40.1
+============
+
+	presence: Do not auto-start the GNOME Shell screensaver service
+	util: Unset LC_* variables as they may be unset at login time
+
+============
+Version 40.0
+============
+
+	util: Remove undesired variables from activation environment
+
+===============
+Version 40.beta
+===============
+
+	gnome-session: GNOME session will now only block sleep for suspend
+		inhibitors and will block shutdown if a logout inhibitor is
+		active.
+		Previously a suspend inhibitor would prevent both sleep and
+		logout. As such, applications may need to be updated and grab
+		both a logout and suspend inhibitor.
+	data: Re-add OnFailure= to .target units
+	util: Disable capturing of subpatterns
+	util: Only accept common space characters
+	Stop dbus-daemon instead of restarting it
+	data: Fix indirect conflict with exit.target via app.slice
+	Translations updates
+
 ==============
 Version 3.38.0
 ==============

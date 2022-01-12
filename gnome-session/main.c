@@ -244,7 +244,11 @@ check_gl (GError **error)
                 return FALSE;
         }
 
+#if GLIB_CHECK_VERSION(2, 70, 0)
+        return g_spawn_check_wait_status (status, error);
+#else
         return g_spawn_check_exit_status (status, error);
+#endif
 }
 
 static void
@@ -529,17 +533,24 @@ main (int argc, char **argv)
                 }
         }
 
-        gsm_util_export_activation_environment (NULL);
+        gsm_util_export_activation_environment (&error);
+        if (error) {
+                g_warning ("Failed to upload environment to DBus: %s", error->message);
+                g_clear_error (&error);
+        }
 
         session_name = opt_session_name;
 
 #ifdef HAVE_SYSTEMD
-        gsm_util_export_user_environment (NULL);
+        gsm_util_export_user_environment (&error);
+        if (error && !g_getenv ("RUNNING_UNDER_GDM")) {
+                g_warning ("Failed to upload environment to systemd: %s", error->message);
+                g_clear_error (&error);
+        }
 #endif
 
 #ifdef ENABLE_SYSTEMD_SESSION
         if (use_systemd && !systemd_service) {
-                g_autoptr(GError) error = NULL;
                 g_autofree gchar *gnome_session_target;
                 const gchar *session_type;
 
@@ -556,7 +567,7 @@ main (int argc, char **argv)
                  * in a previous session
                  */
                 gsm_util_systemd_reset_failed (&error);
-                if (error) {
+                if (error && !g_getenv ("RUNNING_UNDER_GDM")) {
                         g_warning ("Failed to reset failed state of units: %s", error->message);
                         g_clear_error (&error);
                 }
@@ -570,7 +581,11 @@ main (int argc, char **argv)
                 }
 
                 /* We could not start the unit, fall back. */
-                 g_warning ("Falling back to non-systemd startup procedure due to error: %s", error->message);
+                if (g_getenv ("RUNNING_UNDER_GDM"))
+                        g_message ("Falling back to non-systemd startup procedure. This is expected to happen for GDM sessions.");
+                else
+                        g_warning ("Falling back to non-systemd startup procedure due to error: %s", error->message);
+                g_clear_error (&error);
         }
 #endif /* ENABLE_SYSTEMD_SESSION */
 

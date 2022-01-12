@@ -27,12 +27,10 @@
 #include "gsm-app.h"
 #include "org.gnome.SessionManager.App.h"
 
-#define GSM_APP_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_APP, GsmAppPrivate))
-
 /* If a component crashes twice within a minute, we count that as a fatal error */
 #define _GSM_APP_RESPAWN_RATELIMIT_SECONDS 60
 
-struct _GsmAppPrivate
+typedef struct
 {
         char            *id;
         char            *app_id;
@@ -42,7 +40,7 @@ struct _GsmAppPrivate
         GTimeVal         last_restart_time;
         GDBusConnection *connection;
         GsmExportedApp  *skeleton;
-};
+} GsmAppPrivate;
 
 
 enum {
@@ -64,7 +62,7 @@ enum {
         LAST_PROP
 };
 
-G_DEFINE_TYPE (GsmApp, gsm_app, G_TYPE_OBJECT)
+G_DEFINE_TYPE_WITH_PRIVATE (GsmApp, gsm_app, G_TYPE_OBJECT)
 
 GQuark
 gsm_app_error_quark (void)
@@ -96,9 +94,10 @@ gsm_app_get_startup_id (GsmExportedApp        *skeleton,
                         GDBusMethodInvocation *invocation,
                         GsmApp                *app)
 {
+        GsmAppPrivate *priv = gsm_app_get_instance_private (app);
         const gchar *id;
 
-        id = g_strdup (app->priv->startup_id);
+        id = g_strdup (priv->startup_id);
         gsm_exported_app_complete_get_startup_id (skeleton, invocation, id);
 
         return TRUE;
@@ -109,7 +108,9 @@ gsm_app_get_phase (GsmExportedApp        *skeleton,
                    GDBusMethodInvocation *invocation,
                    GsmApp                *app)
 {
-        gsm_exported_app_complete_get_phase (skeleton, invocation, app->priv->phase);
+        GsmAppPrivate *priv = gsm_app_get_instance_private (app);
+
+        gsm_exported_app_complete_get_phase (skeleton, invocation, priv->phase);
         return TRUE;
 }
 
@@ -130,11 +131,12 @@ get_next_app_serial (void)
 static gboolean
 register_app (GsmApp *app)
 {
+        GsmAppPrivate *priv = gsm_app_get_instance_private (app);
         GError *error;
         GsmExportedApp *skeleton;
 
         error = NULL;
-        app->priv->connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &error);
+        priv->connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &error);
         if (error != NULL) {
                 g_critical ("error getting session bus: %s", error->message);
                 g_error_free (error);
@@ -142,9 +144,9 @@ register_app (GsmApp *app)
         }
 
         skeleton = gsm_exported_app_skeleton_new ();
-        app->priv->skeleton = skeleton;
+        priv->skeleton = skeleton;
         g_dbus_interface_skeleton_export (G_DBUS_INTERFACE_SKELETON (skeleton),
-                                          app->priv->connection, app->priv->id,
+                                          priv->connection, priv->id,
                                           &error);
 
         if (error != NULL) {
@@ -169,14 +171,16 @@ gsm_app_constructor (GType                  type,
                      GObjectConstructParam *construct_properties)
 {
         GsmApp    *app;
+        GsmAppPrivate *priv;
         gboolean   res;
 
         app = GSM_APP (G_OBJECT_CLASS (gsm_app_parent_class)->constructor (type,
                                                                            n_construct_properties,
                                                                            construct_properties));
+        priv = gsm_app_get_instance_private (app);
 
-        g_free (app->priv->id);
-        app->priv->id = g_strdup_printf ("/org/gnome/SessionManager/App%u", get_next_app_serial ());
+        g_free (priv->id);
+        priv->id = g_strdup_printf ("/org/gnome/SessionManager/App%u", get_next_app_serial ());
 
         res = register_app (app);
         if (! res) {
@@ -189,27 +193,30 @@ gsm_app_constructor (GType                  type,
 static void
 gsm_app_init (GsmApp *app)
 {
-        app->priv = GSM_APP_GET_PRIVATE (app);
 }
 
 static void
 gsm_app_set_phase (GsmApp *app,
                    int     phase)
 {
+        GsmAppPrivate *priv = gsm_app_get_instance_private (app);
+
         g_return_if_fail (GSM_IS_APP (app));
 
-        app->priv->phase = phase;
+        priv->phase = phase;
 }
 
 static void
 gsm_app_set_id (GsmApp     *app,
                 const char *id)
 {
+        GsmAppPrivate *priv = gsm_app_get_instance_private (app);
+
         g_return_if_fail (GSM_IS_APP (app));
 
-        g_free (app->priv->id);
+        g_free (priv->id);
 
-        app->priv->id = g_strdup (id);
+        priv->id = g_strdup (id);
         g_object_notify (G_OBJECT (app), "id");
 
 }
@@ -217,11 +224,13 @@ static void
 gsm_app_set_startup_id (GsmApp     *app,
                         const char *startup_id)
 {
+        GsmAppPrivate *priv = gsm_app_get_instance_private (app);
+
         g_return_if_fail (GSM_IS_APP (app));
 
-        g_free (app->priv->startup_id);
+        g_free (priv->startup_id);
 
-        app->priv->startup_id = g_strdup (startup_id);
+        priv->startup_id = g_strdup (startup_id);
         g_object_notify (G_OBJECT (app), "startup-id");
 
 }
@@ -259,19 +268,20 @@ gsm_app_get_property (GObject    *object,
                       GParamSpec *pspec)
 {
         GsmApp *app = GSM_APP (object);
+        GsmAppPrivate *priv = gsm_app_get_instance_private (app);
 
         switch (prop_id) {
         case PROP_STARTUP_ID:
-                g_value_set_string (value, app->priv->startup_id);
+                g_value_set_string (value, priv->startup_id);
                 break;
         case PROP_ID:
-                g_value_set_string (value, app->priv->id);
+                g_value_set_string (value, priv->id);
                 break;
         case PROP_PHASE:
-                g_value_set_int (value, app->priv->phase);
+                g_value_set_int (value, priv->phase);
                 break;
         case PROP_REGISTERED:
-                g_value_set_boolean (value, app->priv->registered);
+                g_value_set_boolean (value, priv->registered);
                 break;
         default:
                 break;
@@ -282,20 +292,21 @@ static void
 gsm_app_dispose (GObject *object)
 {
         GsmApp *app = GSM_APP (object);
+        GsmAppPrivate *priv = gsm_app_get_instance_private (app);
 
-        g_free (app->priv->startup_id);
-        app->priv->startup_id = NULL;
+        g_free (priv->startup_id);
+        priv->startup_id = NULL;
 
-        g_free (app->priv->id);
-        app->priv->id = NULL;
+        g_free (priv->id);
+        priv->id = NULL;
 
-        if (app->priv->skeleton != NULL) {
-                g_dbus_interface_skeleton_unexport_from_connection (G_DBUS_INTERFACE_SKELETON (app->priv->skeleton),
-                                                                    app->priv->connection);
-                g_clear_object (&app->priv->skeleton);
+        if (priv->skeleton != NULL) {
+                g_dbus_interface_skeleton_unexport_from_connection (G_DBUS_INTERFACE_SKELETON (priv->skeleton),
+                                                                    priv->connection);
+                g_clear_object (&priv->skeleton);
         }
 
-        g_clear_object (&app->priv->connection);
+        g_clear_object (&priv->connection);
 
         G_OBJECT_CLASS (gsm_app_parent_class)->dispose (object);
 }
@@ -365,14 +376,14 @@ gsm_app_class_init (GsmAppClass *klass)
                               NULL, NULL, NULL,
                               G_TYPE_NONE,
                               1, G_TYPE_INT);
-
-        g_type_class_add_private (klass, sizeof (GsmAppPrivate));
 }
 
 const char *
 gsm_app_peek_id (GsmApp *app)
 {
-        return app->priv->id;
+        GsmAppPrivate *priv = gsm_app_get_instance_private (app);
+
+        return priv->id;
 }
 
 const char *
@@ -384,7 +395,9 @@ gsm_app_peek_app_id (GsmApp *app)
 const char *
 gsm_app_peek_startup_id (GsmApp *app)
 {
-        return app->priv->startup_id;
+        GsmAppPrivate *priv = gsm_app_get_instance_private (app);
+
+        return priv->startup_id;
 }
 
 /**
@@ -398,9 +411,11 @@ gsm_app_peek_startup_id (GsmApp *app)
 GsmManagerPhase
 gsm_app_peek_phase (GsmApp *app)
 {
+        GsmAppPrivate *priv = gsm_app_get_instance_private (app);
+
         g_return_val_if_fail (GSM_IS_APP (app), GSM_MANAGER_PHASE_APPLICATION);
 
-        return app->priv->phase;
+        return priv->phase;
 }
 
 gboolean
@@ -487,7 +502,9 @@ gboolean
 gsm_app_start (GsmApp  *app,
                GError **error)
 {
-        g_debug ("Starting app: %s", app->priv->id);
+        GsmAppPrivate *priv = gsm_app_get_instance_private (app);
+
+        g_debug ("Starting app: %s", priv->id);
         return GSM_APP_GET_CLASS (app)->impl_start (app, error);
 }
 
@@ -495,12 +512,13 @@ gboolean
 gsm_app_restart (GsmApp  *app,
                  GError **error)
 {
+        GsmAppPrivate *priv = gsm_app_get_instance_private (app);
         GTimeVal current_time;
-        g_debug ("Re-starting app: %s", app->priv->id);
+        g_debug ("Re-starting app: %s", priv->id);
 
         g_get_current_time (&current_time);
-        if (app->priv->last_restart_time.tv_sec > 0
-            && (current_time.tv_sec - app->priv->last_restart_time.tv_sec) < _GSM_APP_RESPAWN_RATELIMIT_SECONDS) {
+        if (priv->last_restart_time.tv_sec > 0
+            && (current_time.tv_sec - priv->last_restart_time.tv_sec) < _GSM_APP_RESPAWN_RATELIMIT_SECONDS) {
                 g_warning ("App '%s' respawning too quickly", gsm_app_peek_app_id (app));
                 g_set_error (error,
                              GSM_APP_ERROR,
@@ -509,7 +527,7 @@ gsm_app_restart (GsmApp  *app,
                              gsm_app_peek_app_id (app));
                 return FALSE;
         }
-        app->priv->last_restart_time = current_time;
+        priv->last_restart_time = current_time;
 
         return GSM_APP_GET_CLASS (app)->impl_restart (app, error);
 }
@@ -542,19 +560,23 @@ gsm_app_died (GsmApp *app,
 gboolean
 gsm_app_get_registered (GsmApp *app)
 {
+        GsmAppPrivate *priv = gsm_app_get_instance_private (app);
+
         g_return_val_if_fail (GSM_IS_APP (app), FALSE);
 
-        return app->priv->registered;
+        return priv->registered;
 }
 
 void
 gsm_app_set_registered (GsmApp   *app,
                         gboolean  registered)
 {
+        GsmAppPrivate *priv = gsm_app_get_instance_private (app);
+
         g_return_if_fail (GSM_IS_APP (app));
 
-        if (app->priv->registered != registered) {
-                app->priv->registered = registered;
+        if (priv->registered != registered) {
+                priv->registered = registered;
                 g_object_notify (G_OBJECT (app), "registered");
         }
 }
@@ -564,6 +586,8 @@ gsm_app_save_to_keyfile (GsmApp    *app,
                          GKeyFile  *keyfile,
                          GError   **error)
 {
-        g_debug ("Saving app: %s", app->priv->id);
+        GsmAppPrivate *priv = gsm_app_get_instance_private (app);
+
+        g_debug ("Saving app: %s", priv->id);
         return GSM_APP_GET_CLASS (app)->impl_save_to_keyfile (app, keyfile, error);
 }

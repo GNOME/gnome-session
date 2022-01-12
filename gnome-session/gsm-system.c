@@ -95,8 +95,7 @@ gsm_system_null_init_iface (GsmSystemInterface *iface)
         iface->hibernate         = (void *) do_nothing;
         iface->set_session_idle  = (void *) do_nothing;
         iface->is_login_session  = (void *) return_true;
-        iface->add_inhibitor     = (void *) do_nothing;
-        iface->remove_inhibitor  = (void *) do_nothing;
+        iface->set_inhibitors    = (void *) do_nothing;
         iface->prepare_shutdown  = (void *) do_nothing;
         iface->complete_shutdown = (void *) do_nothing;
         iface->is_last_session_for_user = (void *) return_false;
@@ -214,18 +213,10 @@ gsm_system_set_session_idle (GsmSystem *system,
 }
 
 void
-gsm_system_add_inhibitor (GsmSystem        *system,
-                          const gchar      *id,
-                          GsmInhibitorFlag  flag)
+gsm_system_set_inhibitors (GsmSystem        *system,
+                           GsmInhibitorFlag  flags)
 {
-        GSM_SYSTEM_GET_IFACE (system)->add_inhibitor (system, id, flag);
-}
-
-void
-gsm_system_remove_inhibitor (GsmSystem   *system,
-                             const gchar *id)
-{
-        GSM_SYSTEM_GET_IFACE (system)->remove_inhibitor (system, id);
+        GSM_SYSTEM_GET_IFACE (system)->set_inhibitors (system, flags);
 }
 
 gboolean

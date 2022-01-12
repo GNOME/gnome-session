@@ -29,27 +29,15 @@
 G_BEGIN_DECLS
 
 #define GSM_TYPE_MANAGER         (gsm_manager_get_type ())
-#define GSM_MANAGER(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), GSM_TYPE_MANAGER, GsmManager))
-#define GSM_MANAGER_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST((k), GSM_TYPE_MANAGER, GsmManagerClass))
-#define GSM_IS_MANAGER(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), GSM_TYPE_MANAGER))
-#define GSM_IS_MANAGER_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), GSM_TYPE_MANAGER))
-#define GSM_MANAGER_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), GSM_TYPE_MANAGER, GsmManagerClass))
+G_DECLARE_DERIVABLE_TYPE (GsmManager, gsm_manager, GSM, MANAGER, GObject)
 
-typedef struct GsmManagerPrivate GsmManagerPrivate;
-
-typedef struct
-{
-        GObject            parent;
-        GsmManagerPrivate *priv;
-} GsmManager;
-
-typedef struct
+struct _GsmManagerClass
 {
         GObjectClass   parent_class;
 
         void          (* phase_changed)       (GsmManager      *manager,
                                                const char      *phase);
-} GsmManagerClass;
+};
 
 typedef enum {
         /* gsm's own startup/initialization phase */
@@ -93,8 +81,6 @@ typedef enum
 #define GSM_MANAGER_ERROR gsm_manager_error_quark ()
 GQuark              gsm_manager_error_quark                    (void);
 
-GType               gsm_manager_get_type                       (void);
-
 GsmManager *        gsm_manager_new                            (GsmStore       *client_store,
                                                                 gboolean        failsafe,
                                                                 gboolean        systemd_managed);
@@ -104,11 +90,9 @@ gboolean            gsm_manager_get_failsafe                   (GsmManager     *
 gboolean            gsm_manager_get_systemd_managed            (GsmManager     *manager);
 
 gboolean            gsm_manager_add_autostart_app              (GsmManager     *manager,
-                                                                const char     *path,
-                                                                const char     *provides);
+                                                                const char     *path);
 gboolean            gsm_manager_add_required_app               (GsmManager     *manager,
-                                                                const char     *path,
-                                                                const char     *provides);
+                                                                const char     *path);
 gboolean            gsm_manager_add_autostart_apps_from_dir    (GsmManager     *manager,
                                                                 const char     *path);
 gboolean            gsm_manager_add_legacy_session_apps        (GsmManager     *manager,

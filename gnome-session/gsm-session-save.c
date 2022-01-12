@@ -68,11 +68,9 @@ save_one_client (char            *id,
         char       *contents = NULL;
         gsize       length = 0;
         char       *discard_exec;
-        GError     *local_error;
+        g_autoptr(GError) local_error = NULL;
 
         client = GSM_CLIENT (object);
-
-        local_error = NULL;
 
         app_id = gsm_client_peek_app_id (client);
         if (!IS_STRING_EMPTY (app_id)) {
@@ -141,8 +139,7 @@ out:
 
         /* in case of any error, stop saving session */
         if (local_error) {
-                g_propagate_error (data->error, local_error);
-                g_error_free (local_error);
+                g_propagate_error (data->error, g_steal_pointer (&local_error));
 
                 return TRUE;
         }

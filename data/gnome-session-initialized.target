@@ -1,5 +1,7 @@
 [Unit]
 Description=GNOME Session is initialized
+OnFailure=gnome-session-shutdown.target
+OnFailureJobMode=replace-irreversibly
 DefaultDependencies=no
 RefuseManualStart=yes
 RefuseManualStop=yes

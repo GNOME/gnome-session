@@ -2,21 +2,21 @@
 # This file is distributed under the same license as the PACKAGE package.
 # Samúel Jón Gunnarsson <sammi@techattack.nu>, 2003.
 # Richard Allen <ra@ra.is>, 2003.
-# Sveinn í Felli <sv1@fellsnet.is>, 2015, 2017, 2019.
+# Sveinn í Felli <sv1@fellsnet.is>, 2015, 2017, 2019, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2019-01-07 18:37+0000\n"
-"PO-Revision-Date: 2019-02-21 08:50+0000\n"
+"POT-Creation-Date: 2021-10-12 22:51+0000\n"
+"PO-Revision-Date: 2021-12-13 09:15+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
-"Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
+"Language-Team: Icelandic <translation-team-is@lists.sourceforge.org>\n"
 "Language: is\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 2.0\n"
+"X-Generator: Lokalize 19.12.3\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -30,7 +30,8 @@ msgstr "Þessi færsla gerir þér kleift að velja vistaða setu"
 msgid "GNOME"
 msgstr "GNOME"
 
-#: data/gnome.desktop.in.in:4 data/gnome-xorg.desktop.in.in:4
+#: data/gnome.desktop.in.in:4 data/gnome-wayland.desktop.in.in:4
+#: data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
 msgstr "Þessi seta skráir þig inn í GNOME"
 
@@ -38,36 +39,34 @@ msgstr "Þessi seta skráir þig inn í GNOME"
 msgid "GNOME dummy"
 msgstr "GNOME sýnishorn"
 
+#: data/gnome-wayland.desktop.in.in:3
+#| msgid "GNOME on Xorg"
+msgid "GNOME on Wayland"
+msgstr "GNOME á Wayland"
+
 #: data/gnome-xorg.desktop.in.in:3
 msgid "GNOME on Xorg"
 msgstr "GNOME á Xorg"
 
 #: data/org.gnome.SessionManager.gschema.xml.in:5
-#| msgid "Saving session details."
 msgid "Save sessions"
 msgstr "Vista setur"
 
 #: data/org.gnome.SessionManager.gschema.xml.in:6
-#| msgid ""
-#| "If enabled, gnome-session will prompt the user before ending a session."
 msgid "If enabled, gnome-session will save the session automatically."
-msgstr "Ef virkt mun gnome-setan vista setuna sjálkrafa."
+msgstr "Ef virkt mun gnome-session vista setuna sjálkrafa."
 
 #: data/org.gnome.SessionManager.gschema.xml.in:10
-#| msgid "Save Current Session"
 msgid "Save this session"
 msgstr "Vista þessa setu"
 
 #: data/org.gnome.SessionManager.gschema.xml.in:11
-#| msgid ""
-#| "If enabled, gnome-session will save the session automatically. Otherwise, "
-#| "the logout dialog will have an option to save the session."
 msgid ""
 "When enabled, gnome-session will automatically save the next session at log "
 "out even if auto saving is disabled."
 msgstr ""
-"Ef virkt mun gnome-setan vista næstu setu sjálkrafa við útskráningu jafnvel"
-" þótt sjálfvirk vistun á setu sé óvirk."
+"Ef virkt mun gnome-session vista næstu setu sjálkrafa við útskráningu jafnvel "
+"þótt sjálfvirk vistun á setu sé óvirk."
 
 #: data/org.gnome.SessionManager.gschema.xml.in:15
 msgid "Logout prompt"
@@ -75,10 +74,10 @@ msgstr "Staðfesta útskráningu"
 
 #: data/org.gnome.SessionManager.gschema.xml.in:16
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr "Ef virkt mun gnome-setan spyrja um staðfestingu áður en setu er lokið."
+msgstr ""
+"Ef virkt mun gnome-session spyrja um staðfestingu áður en setu er lokið."
 
 #: data/org.gnome.SessionManager.gschema.xml.in:20
-#| msgid "Show extension warning"
 msgid "Show the fallback warning"
 msgstr "Birta varaaðvörun"
 
@@ -87,8 +86,8 @@ msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
 msgstr ""
-"Ef virkt mun gnome-setan birta aðvörun eftir innskráningu ef sjálfkrafa var"
-" notuð varaseta."
+"Ef virkt mun gnome-session birta aðvörun eftir innskráningu ef sjálfkrafa var "
+"notuð varaseta."
 
 #: data/session-selector.ui:15
 msgid "Custom Session"
@@ -114,11 +113,11 @@ msgstr "Endur_nefna setu"
 msgid "_Continue"
 msgstr "_Áfram"
 
-#: gnome-session/gsm-fail-whale-dialog.c:313
+#: gnome-session/gsm-fail-whale-dialog.c:318
 msgid "Oh no!  Something has gone wrong."
 msgstr "Úbbs! Eitthvað hefur farið úrskeiðis núna."
 
-#: gnome-session/gsm-fail-whale-dialog.c:320
+#: gnome-session/gsm-fail-whale-dialog.c:325
 msgid ""
 "A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
@@ -126,7 +125,7 @@ msgstr ""
 "Vandamál kom upp og kerfið nær ekki að vinna sig út úr því. Hafðu samband "
 "við kerfisstjóra"
 
-#: gnome-session/gsm-fail-whale-dialog.c:322
+#: gnome-session/gsm-fail-whale-dialog.c:327
 msgid ""
 "A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
@@ -134,7 +133,7 @@ msgstr ""
 "Vandamál kom upp og kerfið nær ekki að vinna sig út úr því. Allar viðbætur "
 "hafa verið gerðar óvirkar í varúðarskyni."
 
-#: gnome-session/gsm-fail-whale-dialog.c:324
+#: gnome-session/gsm-fail-whale-dialog.c:329
 msgid ""
 "A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
@@ -142,27 +141,27 @@ msgstr ""
 "Vandamál kom upp og kerfið nær ekki að vinna sig út úr því.\n"
 "Skráðu þig út og reyndu aftur."
 
-#: gnome-session/gsm-fail-whale-dialog.c:339
+#: gnome-session/gsm-fail-whale-dialog.c:344
 msgid "_Log Out"
 msgstr "_Útskrá"
 
-#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:279
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
 msgid "Enable debugging code"
 msgstr "Virkja aflúsunarham"
 
-#: gnome-session/gsm-fail-whale-dialog.c:362
+#: gnome-session/gsm-fail-whale-dialog.c:413
 msgid "Allow logout"
 msgstr "Leyfa að skrá sig út"
 
-#: gnome-session/gsm-fail-whale-dialog.c:363
+#: gnome-session/gsm-fail-whale-dialog.c:414
 msgid "Show extension warning"
 msgstr "Birta aðvörun vegna skráaendinga"
 
-#: gnome-session/gsm-manager.c:1266 gnome-session/gsm-manager.c:1919
+#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1999
 msgid "Not responding"
 msgstr "Svarar ekki"
 
-#: gnome-session/gsm-util.c:382
+#: gnome-session/gsm-util.c:431
 msgid "_Log out"
 msgstr "S_krá út"
 
@@ -191,42 +190,84 @@ msgstr ""
 msgid "Could not create ICE listening socket: %s"
 msgstr "Gat ekki búið til ICE hlustunar tengi: %s"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:398
+msgid "Running as systemd service"
+msgstr "Keyra sem systemd-þjónustu"
+
+#: gnome-session/main.c:399
+msgid "Use systemd session management"
+msgstr "Nota systemd-setustýringu"
+
+#: gnome-session/main.c:401
+msgid "Use builtin session management (rather than the systemd based one)"
+msgstr "Nota innbyggða setustýringu (fremur en þessa úr systemd)"
+
+#: gnome-session/main.c:402
 msgid "Override standard autostart directories"
 msgstr "Ekki nota sjálfgefna möppu fyrir sjálfvirka ræsingu"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:402
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:403
 msgid "Session to use"
 msgstr "Setan sem á að nota"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:403
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: gnome-session/main.c:280
+#: gnome-session/main.c:405
 msgid "Do not load user-specified applications"
 msgstr "Ekki hlaða inn forritum völdum að notanda"
 
-#: gnome-session/main.c:281
+#: gnome-session/main.c:406
 msgid "Version of this application"
 msgstr "Útgáfa þessa forrits"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:283
+#: gnome-session/main.c:408
 msgid "Show the fail whale dialog for testing"
 msgstr "Birta 'bilaða bilunargluggann' til prófunar"
 
-#: gnome-session/main.c:284
+#: gnome-session/main.c:409
 msgid "Disable hardware acceleration check"
 msgstr "Gera prófun á vélbúnaðarhröðun óvirka"
 
-#: gnome-session/main.c:316
+#: gnome-session/main.c:441
 msgid " — the GNOME session manager"
 msgstr " — GNOME setustýringin"
+
+#: tools/gnome-session-ctl.c:245
+msgid "Start gnome-session-shutdown.target"
+msgstr "Ræsa gnome-session-shutdown.target"
+
+#: tools/gnome-session-ctl.c:246
+msgid ""
+"Start gnome-session-shutdown.target when receiving EOF or a single byte on "
+"stdin"
+msgstr ""
+"Ræsa gnome-session-shutdown.target þegar EOF eða stakt bæti berast á stdin"
+
+#: tools/gnome-session-ctl.c:247
+msgid "Signal initialization done to gnome-session"
+msgstr "Frumstilling merkis lokið til gnome-session"
+
+#: tools/gnome-session-ctl.c:248
+msgid "Restart dbus.service if it is running"
+msgstr "Endurræsa dbus.service ef það er í gangi"
+
+#: tools/gnome-session-ctl.c:249
+msgid ""
+"Run from ExecStopPost to start gnome-session-failed.target on service failure"
+msgstr ""
+"Keyra úr ExecStopPost til að ræsa gnome-session-failed.target þegar þjónusta"
+" bregst"
+
+#: tools/gnome-session-ctl.c:279
+msgid "Program needs exactly one parameter"
+msgstr "Forritið þarfnast nákvælega eins viðfangs"
 
 #: tools/gnome-session-inhibit.c:108
 #, c-format
@@ -243,6 +284,7 @@ msgid ""
 "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
 "                    logout, switch-user, suspend, idle, automount\n"
 "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+"  -l, --list        List the existing inhibitions, and exit\n"
 "\n"
 "If no --inhibit option is specified, idle is assumed.\n"
 msgstr ""
@@ -258,16 +300,17 @@ msgstr ""
 "  --inhibit ARG     Hvað á að hindra, listi með kommuaðgreinum:\n"
 "                    logout, switch-user, suspend, idle, automount\n"
 "  --inhibit-only    Ekki keyra SKIPUN og þess í stað bíða til eilífðar\n"
+" -l, --list        Telur upp fyrirliggjandi hindranir og hættir\n"
 "\n"
 "Ef engin --inhibit kostur er tilgreindur, ganga út frá 'idle' sem vísu.\n"
 
-#: tools/gnome-session-inhibit.c:146
+#: tools/gnome-session-inhibit.c:288
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Mistókst að keyra %s\n"
 
-#: tools/gnome-session-inhibit.c:206 tools/gnome-session-inhibit.c:216
-#: tools/gnome-session-inhibit.c:226
+#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
+#: tools/gnome-session-inhibit.c:372
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s krefst færibreytu\n"

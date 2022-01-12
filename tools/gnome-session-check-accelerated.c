@@ -132,7 +132,7 @@ main (int argc, char **argv)
         int estatus;
         char *gl_helper_argv[] = { LIBEXECDIR "/gnome-session-check-accelerated-gl-helper", "--print-renderer", NULL };
         char *gles_helper_argv[] = { LIBEXECDIR "/gnome-session-check-accelerated-gles-helper", "--print-renderer", NULL };
-        char *renderer_string = NULL;
+        const char *renderer_string = NULL;
         char *gl_renderer_string = NULL, *gles_renderer_string = NULL;
         gboolean gl_software_rendering = FALSE, gles_software_rendering = FALSE;
         Window rootwin;
@@ -148,9 +148,9 @@ main (int argc, char **argv)
          * when requesting information about the second.
          */
         if (is_discrete_gpu_check () || g_strcmp0 (g_getenv ("XDG_SESSION_TYPE"), "x11") != 0) {
-                renderer_string = get_gtk_gles_renderer ();
-                if (renderer_string) {
-                        g_print ("%s", renderer_string);
+                g_autofree char *discrete_renderer_string = get_gtk_gles_renderer ();
+                if (discrete_renderer_string) {
+                        g_print ("%s", discrete_renderer_string);
                         return 0;
                 }
                 return 1;

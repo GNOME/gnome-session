@@ -65,6 +65,22 @@ static const char * const variable_unsetlist[] = {
     "WAYLAND_SOCKET",
     "GNOME_SHELL_SESSION_MODE",
     "GNOME_SETUP_DISPLAY",
+
+    /* None of the LC_* variables should survive a logout/login */
+    "LC_CTYPE",
+    "LC_NUMERIC",
+    "LC_TIME",
+    "LC_COLLATE",
+    "LC_MONETARY",
+    "LC_MESSAGES",
+    "LC_PAPER",
+    "LC_NAME",
+    "LC_ADDRESS",
+    "LC_TELEPHONE",
+    "LC_MEASUREMENT",
+    "LC_IDENTIFICATION",
+    "LC_ALL",
+
     NULL
 };
 
@@ -550,7 +566,7 @@ gsm_util_export_activation_environment (GError     **error)
                 return FALSE;
         }
 
-        value_regex = g_regex_new ("^([[:blank:]]|[^[:cntrl:]])*$", G_REGEX_OPTIMIZE, 0, error);
+        value_regex = g_regex_new ("^(?:[ \t\n]|[^[:cntrl:]])*$", G_REGEX_OPTIMIZE, 0, error);
 
         if (value_regex == NULL) {
                 return FALSE;
@@ -568,17 +584,14 @@ gsm_util_export_activation_environment (GError     **error)
                 if (g_strv_contains (variable_blacklist, entry_name))
                     continue;
 
-                if (!g_utf8_validate (entry_name, -1, NULL))
-                    continue;
+                if (!g_utf8_validate (entry_name, -1, NULL) ||
+                    !g_regex_match (name_regex, entry_name, 0, NULL) ||
+                    !g_utf8_validate (entry_value, -1, NULL) ||
+                    !g_regex_match (value_regex, entry_value, 0, NULL)) {
 
-                if (!g_regex_match (name_regex, entry_name, 0, NULL))
+                    g_message ("Environment variable is unsafe to export to dbus: %s", entry_name);
                     continue;
-
-                if (!g_utf8_validate (entry_value, -1, NULL))
-                    continue;
-
-                if (!g_regex_match (value_regex, entry_value, 0, NULL))
-                    continue;
+                }
 
                 child_environment = g_environ_setenv (child_environment,
                                                       entry_name, entry_value,
@@ -633,7 +646,7 @@ gsm_util_export_user_environment (GError     **error)
                 return FALSE;
         }
 
-        regex = g_regex_new ("^[a-zA-Z_][a-zA-Z0-9_]*=([[:blank:]]|[^[:cntrl:]])*$", G_REGEX_OPTIMIZE, 0, error);
+        regex = g_regex_new ("^[a-zA-Z_][a-zA-Z0-9_]*=(?:[ \t\n]|[^[:cntrl:]])*$", G_REGEX_OPTIMIZE, 0, error);
 
         if (regex == NULL) {
                 return FALSE;
@@ -649,17 +662,20 @@ gsm_util_export_user_environment (GError     **error)
         g_variant_builder_open (&builder, G_VARIANT_TYPE ("as"));
         for (i = 0; variable_unsetlist[i] != NULL; i++)
                 g_variant_builder_add (&builder, "s", variable_unsetlist[i]);
+        for (i = 0; variable_blacklist[i] != NULL; i++)
+                g_variant_builder_add (&builder, "s", variable_blacklist[i]);
         g_variant_builder_close (&builder);
 
         g_variant_builder_open (&builder, G_VARIANT_TYPE ("as"));
         for (i = 0; entries[i] != NULL; i++) {
                 const char *entry = entries[i];
 
-                if (!g_utf8_validate (entry, -1, NULL))
-                    continue;
+                if (!g_utf8_validate (entry, -1, NULL) ||
+                    !g_regex_match (regex, entry, 0, NULL)) {
 
-                if (!g_regex_match (regex, entry, 0, NULL))
+                    g_message ("Environment entry is unsafe to upload into user environment: %s", entry);
                     continue;
+                }
 
                 g_variant_builder_add (&builder, "s", entry);
         }
@@ -675,7 +691,7 @@ gsm_util_export_user_environment (GError     **error)
                                              "UnsetAndSetEnvironment",
                                              g_variant_builder_end (&builder),
                                              NULL,
-                                             G_DBUS_CALL_FLAGS_NONE,
+                                             G_DBUS_CALL_FLAGS_NO_AUTO_START,
                                              -1, NULL, &bus_error);
 
         if (bus_error != NULL) {
@@ -722,7 +738,7 @@ gsm_util_update_user_environment (const char  *variable,
                                              g_variant_new ("(@as)",
                                                             g_variant_builder_end (&builder)),
                                              NULL,
-                                             G_DBUS_CALL_FLAGS_NONE,
+                                             G_DBUS_CALL_FLAGS_NO_AUTO_START,
                                              -1, NULL, &bus_error);
 
         if (bus_error != NULL) {
@@ -759,7 +775,7 @@ gsm_util_start_systemd_unit (const char  *unit,
                                              g_variant_new ("(ss)",
                                                             unit, mode),
                                              NULL,
-                                             G_DBUS_CALL_FLAGS_NONE,
+                                             G_DBUS_CALL_FLAGS_NO_AUTO_START,
                                              -1, NULL, &bus_error);
 
         if (bus_error != NULL) {
@@ -789,7 +805,7 @@ gsm_util_systemd_reset_failed (GError **error)
                                              "ResetFailed",
                                              NULL,
                                              NULL,
-                                             G_DBUS_CALL_FLAGS_NONE,
+                                             G_DBUS_CALL_FLAGS_NO_AUTO_START,
                                              -1, NULL, &bus_error);
 
         if (bus_error != NULL) {

@@ -65,11 +65,8 @@ struct _GsmSystemInterface
         void     (* set_session_idle) (GsmSystem *system,
                                        gboolean   is_idle);
         gboolean (* is_login_session) (GsmSystem *system);
-        void     (* add_inhibitor)    (GsmSystem        *system,
-                                       const gchar      *id,
+        void     (* set_inhibitors)   (GsmSystem        *system,
                                        GsmInhibitorFlag  flags);
-        void     (* remove_inhibitor) (GsmSystem        *system,
-                                       const gchar      *id);
         void     (* prepare_shutdown) (GsmSystem   *system,
                                        gboolean     restart);
         void     (* complete_shutdown)(GsmSystem   *system);
@@ -119,12 +116,9 @@ gboolean   gsm_system_is_last_session_for_user (GsmSystem *system);
 
 gboolean   gsm_system_is_active        (GsmSystem *system);
 
-void       gsm_system_add_inhibitor    (GsmSystem        *system,
-                                        const gchar      *id,
+void       gsm_system_set_inhibitors   (GsmSystem        *system,
                                         GsmInhibitorFlag  flags);
 
-void       gsm_system_remove_inhibitor (GsmSystem        *system,
-                                        const gchar      *id);
 void       gsm_system_prepare_shutdown  (GsmSystem  *system,
                                          gboolean    restart);
 void       gsm_system_complete_shutdown (GsmSystem  *system);
