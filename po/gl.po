@@ -11,22 +11,28 @@
 # Antón Méixome <meixome@mancomun.org>, 2009.
 # Fran Diéguez <frandieguez@gnome.org>, 2009, 2010, 2011, 2012.
 # Leandro Regueiro <leandro.regueiro@gmail.com>, 2012.
-# Fran Dieguez <frandieguez@gnome.org>, 2012-2020, 2021.
+# Fran Dieguez <frandieguez@gnome.org>, 2012-2022.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2020-08-16 08:36+0000\n"
-"PO-Revision-Date: 2021-02-24 20:45+0100\n"
-"Last-Translator: Fran Diéguez <frandieguez@gnome.org>\n"
-"Language-Team: Proxecto Trasno <proxecto@trasno.gal>\n"
+"POT-Creation-Date: 2022-01-13 20:29+0000\n"
+"PO-Revision-Date: 2022-01-26 19:49+0100\n"
+"Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
+"Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Gtranslator 3.38.0\n"
+"X-Generator: Gtranslator 40.0\n"
 "X-Project-Style: gnome\n"
+"X-DL-Team: gl\n"
+"X-DL-Module: gnome-session\n"
+"X-DL-Branch: main\n"
+"X-DL-Domain: po\n"
+"X-DL-State: Translating\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -37,7 +43,6 @@ msgid "This entry lets you select a saved session"
 msgstr "Esta entrada permítelle selecciona unha sesión gardada"
 
 #: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
-#: data/gnome-wayland.desktop.in.in:3
 msgid "GNOME"
 msgstr "GNOME"
 
@@ -49,6 +54,11 @@ msgstr "Esta sesión iniciará en GNOME"
 #: data/gnome-dummy.session.desktop.in.in:3
 msgid "GNOME dummy"
 msgstr "GNOME de proba"
+
+#: data/gnome-wayland.desktop.in.in:3
+#| msgid "GNOME on Xorg"
+msgid "GNOME on Wayland"
+msgstr "GNOME en Wayland"
 
 #: data/gnome-xorg.desktop.in.in:3
 msgid "GNOME on Xorg"
@@ -152,7 +162,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_Saír da sesión"
 
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:408
 msgid "Enable debugging code"
 msgstr "Activar o código de depuración"
 
@@ -164,11 +174,11 @@ msgstr "Permitir saír da sesión"
 msgid "Show extension warning"
 msgstr "Mostrar aviso de extensión"
 
-#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1999
+#: gnome-session/gsm-manager.c:1317 gnome-session/gsm-manager.c:2058
 msgid "Not responding"
 msgstr "Non responde"
 
-#: gnome-session/gsm-util.c:415
+#: gnome-session/gsm-util.c:431
 msgid "_Log out"
 msgstr "_Saír da sesión"
 
@@ -184,7 +194,7 @@ msgstr "Aplicación recordado"
 msgid "This program is blocking logout."
 msgstr "Este programa está bloqueando a saída da sesión."
 
-#: gnome-session/gsm-xsmp-server.c:338
+#: gnome-session/gsm-xsmp-server.c:340
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
@@ -192,57 +202,57 @@ msgstr ""
 "Rexeitouse a conexión co novo cliente porque neste momento a sesión está "
 "sendo apagada\n"
 
-#: gnome-session/gsm-xsmp-server.c:605
+#: gnome-session/gsm-xsmp-server.c:607
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Non foi posíbel crear o socket de escoita ICE: %s"
 
-#: gnome-session/main.c:398
+#: gnome-session/main.c:402
 msgid "Running as systemd service"
 msgstr "Executándose como un servizo de systemd"
 
-#: gnome-session/main.c:399
+#: gnome-session/main.c:403
 msgid "Use systemd session management"
 msgstr "Usar a xestión de sesións de systemd"
 
-#: gnome-session/main.c:401
+#: gnome-session/main.c:405
 msgid "Use builtin session management (rather than the systemd based one)"
 msgstr "Usar a xestión de sesións interna (no lugar da baseada en systemd)"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:406
 msgid "Override standard autostart directories"
 msgstr "Ignorar os directorios de inicio automático estándares"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:406
 msgid "AUTOSTART_DIR"
 msgstr "CARTAFO_DE_AUTOINICIO"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:407
 msgid "Session to use"
 msgstr "Sesión a usar"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:407
 msgid "SESSION_NAME"
 msgstr "NOME_DA_SESIÓN"
 
-#: gnome-session/main.c:405
+#: gnome-session/main.c:409
 msgid "Do not load user-specified applications"
 msgstr "Non cargar as aplicacións especificadas polo usuario"
 
-#: gnome-session/main.c:406
+#: gnome-session/main.c:410
 msgid "Version of this application"
 msgstr "Versión desta aplicación"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:408
+#: gnome-session/main.c:412
 msgid "Show the fail whale dialog for testing"
 msgstr "Mostrar o diálogo da balea de fallos"
 
-#: gnome-session/main.c:409
+#: gnome-session/main.c:413
 msgid "Disable hardware acceleration check"
 msgstr "Desactivar a comprobación de aceleración de hardware"
 
-#: gnome-session/main.c:441
+#: gnome-session/main.c:445
 msgid " — the GNOME session manager"
 msgstr " — o xestor de sesións do GNOME"
 
