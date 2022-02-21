@@ -1850,6 +1850,16 @@ gsm_manager_set_failsafe (GsmManager *manager,
 }
 
 gboolean
+gsm_manager_get_dbus_disconnected (GsmManager *manager)
+{
+        GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
+
+        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
+
+        return priv->dbus_disconnected;
+}
+
+gboolean
 gsm_manager_get_failsafe (GsmManager *manager)
 {
         GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
