@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2019-08-06 16:59+0000\n"
-"PO-Revision-Date: 2019-08-17 16:15+0300\n"
+"POT-Creation-Date: 2021-10-12 18:16+0000\n"
+"PO-Revision-Date: 2022-02-27 19:06+0200\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: suomi <lokalisointi-lista@googlegroups.com>\n"
 "Language: fi\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -34,7 +34,6 @@ msgid "This entry lets you select a saved session"
 msgstr "Tämä kohta mahdollistaa tallennetun istunnon valinnan"
 
 #: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
-#: data/gnome-wayland.desktop.in.in:3
 msgid "GNOME"
 msgstr "Gnome"
 
@@ -46,6 +45,10 @@ msgstr "Tämä istunto kirjautuu Gnomeen"
 #: data/gnome-dummy.session.desktop.in.in:3
 msgid "GNOME dummy"
 msgstr "Gnome-malli-istunto (dummy)"
+
+#: data/gnome-wayland.desktop.in.in:3
+msgid "GNOME on Wayland"
+msgstr "Gnome Waylandia käyttäen"
 
 #: data/gnome-xorg.desktop.in.in:3
 msgid "GNOME on Xorg"
@@ -118,11 +121,11 @@ msgstr "Ni_meä istunto uudelleen"
 msgid "_Continue"
 msgstr "_Jatka"
 
-#: gnome-session/gsm-fail-whale-dialog.c:313
+#: gnome-session/gsm-fail-whale-dialog.c:318
 msgid "Oh no!  Something has gone wrong."
 msgstr "Voi ei! Jotain meni pieleen."
 
-#: gnome-session/gsm-fail-whale-dialog.c:320
+#: gnome-session/gsm-fail-whale-dialog.c:325
 msgid ""
 "A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
@@ -130,7 +133,7 @@ msgstr ""
 "Esiintyi ongelma, josta järjestelmä ei pysty palautumaan. Ota yhteys "
 "järjestelmän ylläpitäjään"
 
-#: gnome-session/gsm-fail-whale-dialog.c:322
+#: gnome-session/gsm-fail-whale-dialog.c:327
 msgid ""
 "A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
@@ -138,7 +141,7 @@ msgstr ""
 "Esiintyi ongelma, josta järjestelmä ei pysty palautumaan. Kaikki "
 "laajennukset on poistettu käytöstä varotoimenpiteenä."
 
-#: gnome-session/gsm-fail-whale-dialog.c:324
+#: gnome-session/gsm-fail-whale-dialog.c:329
 msgid ""
 "A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
@@ -146,27 +149,27 @@ msgstr ""
 "Esiintyi ongelma, josta järjestelmä ei pysty palautumaan.\n"
 "Kirjaudu ulos ja yritä uudelleen."
 
-#: gnome-session/gsm-fail-whale-dialog.c:339
+#: gnome-session/gsm-fail-whale-dialog.c:344
 msgid "_Log Out"
 msgstr "Kirjaudu ul_os"
 
-#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:396
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
 msgid "Enable debugging code"
 msgstr "Käytä vianetsintäkoodia"
 
-#: gnome-session/gsm-fail-whale-dialog.c:362
+#: gnome-session/gsm-fail-whale-dialog.c:413
 msgid "Allow logout"
 msgstr "Salli uloskirjautuminen"
 
-#: gnome-session/gsm-fail-whale-dialog.c:363
+#: gnome-session/gsm-fail-whale-dialog.c:414
 msgid "Show extension warning"
 msgstr "Näytä laajennusvaroitus"
 
-#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1967
+#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1999
 msgid "Not responding"
 msgstr "Ei vastaa"
 
-#: gnome-session/gsm-util.c:382
+#: gnome-session/gsm-util.c:431
 msgid "_Log out"
 msgstr "Kirjau_du ulos"
 
@@ -195,75 +198,80 @@ msgstr ""
 msgid "Could not create ICE listening socket: %s"
 msgstr "ICE-kuuntelupistoketta ei voi luoda: %s"
 
-#: gnome-session/main.c:390
+#: gnome-session/main.c:398
 msgid "Running as systemd service"
 msgstr "Suoritetaan systemd-palveluna"
 
-#: gnome-session/main.c:391
+#: gnome-session/main.c:399
 msgid "Use systemd session management"
 msgstr "Käytä systemd-istuntohallintaa"
 
-#: gnome-session/main.c:393
+#: gnome-session/main.c:401
 msgid "Use builtin session management (rather than the systemd based one)"
 msgstr ""
 "Käytä sisäänrakennettua istuntohallintaa systemd-istuntohallinan sijaan"
 
-#: gnome-session/main.c:394
+#: gnome-session/main.c:402
 msgid "Override standard autostart directories"
 msgstr "Korvaa automaattikäynnistyksen oletuskansiot"
 
-#: gnome-session/main.c:394
+#: gnome-session/main.c:402
 msgid "AUTOSTART_DIR"
 msgstr "AUTOKÄYN_HAK"
 
-#: gnome-session/main.c:395
+#: gnome-session/main.c:403
 msgid "Session to use"
 msgstr "Käytettävä istunto"
 
-#: gnome-session/main.c:395
+#: gnome-session/main.c:403
 msgid "SESSION_NAME"
 msgstr "ISTUNTONIMI"
 
-#: gnome-session/main.c:397
+#: gnome-session/main.c:405
 msgid "Do not load user-specified applications"
 msgstr "Älä lataa käyttäjän määrittelemiä sovelluksia"
 
-#: gnome-session/main.c:398
+#: gnome-session/main.c:406
 msgid "Version of this application"
 msgstr "Tämän ohjelman versio"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:400
+#: gnome-session/main.c:408
 msgid "Show the fail whale dialog for testing"
 msgstr "Näytä musta virheikkuna testausta varten"
 
-#: gnome-session/main.c:401
+#: gnome-session/main.c:409
 msgid "Disable hardware acceleration check"
 msgstr "Poista laitteistokiihdytyksen tarkistus käytöstä"
 
-#: gnome-session/main.c:433
+#: gnome-session/main.c:441
 msgid " — the GNOME session manager"
 msgstr " — Gnomen istunnonhallinta"
 
-#: tools/gnome-session-ctl.c:244
+#: tools/gnome-session-ctl.c:245
 msgid "Start gnome-session-shutdown.target"
 msgstr "Käynnistä gnome-session-shutdown.target"
 
-#: tools/gnome-session-ctl.c:245
+#: tools/gnome-session-ctl.c:246
 msgid ""
 "Start gnome-session-shutdown.target when receiving EOF or a single byte on "
 "stdin"
 msgstr ""
 
-#: tools/gnome-session-ctl.c:246
+#: tools/gnome-session-ctl.c:247
 msgid "Signal initialization done to gnome-session"
 msgstr ""
 
-#: tools/gnome-session-ctl.c:247
+#: tools/gnome-session-ctl.c:248
 msgid "Restart dbus.service if it is running"
 msgstr "Käynnistä dbus.service uudelleen jos se on käynnissä"
 
-#: tools/gnome-session-ctl.c:275
+#: tools/gnome-session-ctl.c:249
+msgid ""
+"Run from ExecStopPost to start gnome-session-failed.target on service failure"
+msgstr ""
+
+#: tools/gnome-session-ctl.c:279
 msgid "Program needs exactly one parameter"
 msgstr ""
 
@@ -282,17 +290,18 @@ msgid ""
 "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
 "                    logout, switch-user, suspend, idle, automount\n"
 "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+"  -l, --list        List the existing inhibitions, and exit\n"
 "\n"
 "If no --inhibit option is specified, idle is assumed.\n"
 msgstr ""
 
-#: tools/gnome-session-inhibit.c:146
+#: tools/gnome-session-inhibit.c:288
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Kohteen %s suorittaminen epäonnistui\n"
 
-#: tools/gnome-session-inhibit.c:206 tools/gnome-session-inhibit.c:216
-#: tools/gnome-session-inhibit.c:226
+#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
+#: tools/gnome-session-inhibit.c:372
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s vaatii argumentin\n"
