@@ -1,19 +1,18 @@
 # Serbian translation of gnome-session
-# Courtesy of Prevod.org team (http://prevod.org/) -- 2003—2017.
+# Courtesy of Prevod.org team (http://prevod.org/) -- 2003–2022.
 # This file is distributed under the same license as the gnome-session package.
 # Данило Шеган <danilo@gnome.org> 2005.
 # Слободан Д. Средојевић <slobo@akrep.be> 2006.
-# Милош Поповић <gpopac@gmail.com>, 2010—2011.
-# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2011—2017.
+# Милош Поповић <gpopac@gmail.com>, 2010–2011.
 # Марко М. Костић <marko.m.kostic@gmail.com>, 2020.
-#
+# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2011–2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2020-07-31 14:02+0000\n"
-"PO-Revision-Date: 2020-08-18 23:06+0200\n"
-"Last-Translator: Марко М. Костић <marko.m.kostic@gmail.com>\n"
+"POT-Creation-Date: 2022-01-12 15:33+0000\n"
+"PO-Revision-Date: 2022-03-03 05:15+0200\n"
+"Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <gnome-sr@googlegroups.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +21,6 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2\n"
 "X-Project-Style: gnome\n"
-"X-Generator: Gtranslator 3.36.0\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -33,7 +31,6 @@ msgid "This entry lets you select a saved session"
 msgstr "Ова ставка вам допушта да изаберете сачувану сесију"
 
 #: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
-#: data/gnome-wayland.desktop.in.in:3
 msgid "GNOME"
 msgstr "Гном"
 
@@ -45,6 +42,11 @@ msgstr "Ова сесија вас пријављује у Гном"
 #: data/gnome-dummy.session.desktop.in.in:3
 msgid "GNOME dummy"
 msgstr "Гномов лажњак"
+
+#: data/gnome-wayland.desktop.in.in:3
+#| msgid "GNOME on Xorg"
+msgid "GNOME on Wayland"
+msgstr "Гном на Вејланду"
 
 #: data/gnome-xorg.desktop.in.in:3
 msgid "GNOME on Xorg"
@@ -148,7 +150,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_Одјави ме"
 
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:408
 msgid "Enable debugging code"
 msgstr "Укључује код за исправљање грешака"
 
@@ -160,11 +162,11 @@ msgstr "Дозвољава одјављивање"
 msgid "Show extension warning"
 msgstr "Приказује упозорење проширења"
 
-#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1999
+#: gnome-session/gsm-manager.c:1317 gnome-session/gsm-manager.c:2058
 msgid "Not responding"
 msgstr "Не даје одзив"
 
-#: gnome-session/gsm-util.c:415
+#: gnome-session/gsm-util.c:431
 msgid "_Log out"
 msgstr "_Одјави ме"
 
@@ -180,63 +182,63 @@ msgstr "Запамћени програм"
 msgid "This program is blocking logout."
 msgstr "Овај програм онемогућава одјаву."
 
-#: gnome-session/gsm-xsmp-server.c:338
+#: gnome-session/gsm-xsmp-server.c:340
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr "Одбацујем везу са новим клијентом јер је у току гашење сесије\n"
 
-#: gnome-session/gsm-xsmp-server.c:605
+#: gnome-session/gsm-xsmp-server.c:607
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Не могу да направим прикључак ИЦЕ ослушкивања: %s"
 
-#: gnome-session/main.c:398
+#: gnome-session/main.c:402
 msgid "Running as systemd service"
 msgstr "Покрени као систем-де услугу"
 
-#: gnome-session/main.c:399
+#: gnome-session/main.c:403
 msgid "Use systemd session management"
 msgstr "Користи систем-де управљање сесијом"
 
-#: gnome-session/main.c:401
+#: gnome-session/main.c:405
 msgid "Use builtin session management (rather than the systemd based one)"
 msgstr "Користи уграђено управљање сесије (уместо оне засноване на систем-деу)"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:406
 msgid "Override standard autostart directories"
 msgstr "Заобилази уобичајене директоријуме самопокретања"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:406
 msgid "AUTOSTART_DIR"
 msgstr "ДИРЕКТОРИЈУМ_САМОПОКРЕТАЊА"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:407
 msgid "Session to use"
 msgstr "Сесије које ће бити коришћене"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:407
 msgid "SESSION_NAME"
 msgstr "НАЗИВ_СЕСИЈЕ"
 
-#: gnome-session/main.c:405
+#: gnome-session/main.c:409
 msgid "Do not load user-specified applications"
 msgstr "Не учитава програме које је задао корисник"
 
-#: gnome-session/main.c:406
+#: gnome-session/main.c:410
 msgid "Version of this application"
 msgstr "Издање овог програма"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:408
+#: gnome-session/main.c:412
 msgid "Show the fail whale dialog for testing"
 msgstr "Приказује прозорче неуспеха за испробавање"
 
-#: gnome-session/main.c:409
+#: gnome-session/main.c:413
 msgid "Disable hardware acceleration check"
 msgstr "Искључује проверу хардверског убрзања"
 
-#: gnome-session/main.c:441
+#: gnome-session/main.c:445
 msgid " — the GNOME session manager"
 msgstr " — управник Гномовом сесијом"
 
@@ -273,21 +275,6 @@ msgstr "Програму треба тачно један параметар"
 
 #: tools/gnome-session-inhibit.c:108
 #, c-format
-#| msgid ""
-#| "%s [OPTION…] COMMAND\n"
-#| "\n"
-#| "Execute COMMAND while inhibiting some session functionality.\n"
-#| "\n"
-#| "  -h, --help        Show this help\n"
-#| "  --version         Show program version\n"
-#| "  --app-id ID       The application id to use\n"
-#| "                    when inhibiting (optional)\n"
-#| "  --reason REASON   The reason for inhibiting (optional)\n"
-#| "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
-#| "                    logout, switch-user, suspend, idle, automount\n"
-#| "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
-#| "\n"
-#| "If no --inhibit option is specified, idle is assumed.\n"
 msgid ""
 "%s [OPTION…] COMMAND\n"
 "\n"
