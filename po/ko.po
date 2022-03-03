@@ -3,7 +3,7 @@
 #
 # Updated by Sung-Hyun Nam <namsh@kldp.org>, 2000
 # Updated by Young-Ho Cha <ganadist@chollian.net>, 2000,2001,2006,2007
-# Changwoo Ryu <cwryu@debian.org>, 1998, 2002-2013, 2015-2020.
+# Changwoo Ryu <cwryu@debian.org>, 1998, 2002-2013, 2015-2020, 2022.
 #
 #
 # 용어:
@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2020-08-28 10:35+0000\n"
-"PO-Revision-Date: 2020-08-29 19:20+0900\n"
+"POT-Creation-Date: 2021-10-12 18:16+0000\n"
+"PO-Revision-Date: 2022-03-02 23:56+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
 "Language: ko\n"
@@ -33,7 +33,6 @@ msgid "This entry lets you select a saved session"
 msgstr "이 항목으로 저장한 세션을 지정합니다"
 
 #: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
-#: data/gnome-wayland.desktop.in.in:3
 msgid "GNOME"
 msgstr "그놈"
 
@@ -45,6 +44,10 @@ msgstr "이 세션을 사용하면 그놈에 로그인합니다"
 #: data/gnome-dummy.session.desktop.in.in:3
 msgid "GNOME dummy"
 msgstr "그놈 더미"
+
+#: data/gnome-wayland.desktop.in.in:3
+msgid "GNOME on Wayland"
+msgstr "그놈 (웨일랜드)"
 
 #: data/gnome-xorg.desktop.in.in:3
 msgid "GNOME on Xorg"
@@ -160,7 +163,7 @@ msgstr "확장 경고 표시"
 msgid "Not responding"
 msgstr "응답 없음"
 
-#: gnome-session/gsm-util.c:415
+#: gnome-session/gsm-util.c:431
 msgid "_Log out"
 msgstr "로그아웃(_L)"
 
@@ -259,7 +262,9 @@ msgstr "dbus.service가 실행 중이면 다시 시작"
 #: tools/gnome-session-ctl.c:249
 msgid ""
 "Run from ExecStopPost to start gnome-session-failed.target on service failure"
-msgstr "ExecStopPost에서 실행, 서비스 실패할 때 gnome-session-failed.target을 시작합니다"
+msgstr ""
+"ExecStopPost에서 실행, 서비스 실패할 때 gnome-session-failed.target을 시작합"
+"니다"
 
 #: tools/gnome-session-ctl.c:279
 msgid "Program needs exactly one parameter"
