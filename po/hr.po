@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 0\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2021-10-13 09:38+0000\n"
-"PO-Revision-Date: 2021-11-22 14:21+0100\n"
+"POT-Creation-Date: 2022-01-13 20:29+0000\n"
+"PO-Revision-Date: 2022-03-29 14:31+0200\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <lokalizacija@linux.hr>\n"
 "Language: hr\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2016-09-22 19:52+0000\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -51,7 +51,7 @@ msgstr "Spremi sesiju"
 
 #: data/org.gnome.SessionManager.gschema.xml.in:6
 msgid "If enabled, gnome-session will save the session automatically."
-msgstr "Ako je omogućeno, gnome-session će spreimiti sesiju automatski."
+msgstr "Ako je omogućeno, gnome-session će spremiti sesiju automatski."
 
 #: data/org.gnome.SessionManager.gschema.xml.in:10
 msgid "Save this session"
@@ -142,7 +142,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_Odjavljivanje"
 
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:408
 msgid "Enable debugging code"
 msgstr "Omogući otkrivanje grešaka"
 
@@ -154,7 +154,7 @@ msgstr "Dopusti odjavu"
 msgid "Show extension warning"
 msgstr "Prikaži upozorenje proširenja"
 
-#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1999
+#: gnome-session/gsm-manager.c:1317 gnome-session/gsm-manager.c:2058
 msgid "Not responding"
 msgstr "Ne reagira"
 
@@ -174,64 +174,64 @@ msgstr "Zapamćene aplikacije"
 msgid "This program is blocking logout."
 msgstr "Ovaj program blokira odjavu."
 
-#: gnome-session/gsm-xsmp-server.c:338
+#: gnome-session/gsm-xsmp-server.c:340
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr ""
 "Odbija se novo povezivanje s klijentom jer se sesija trenutno isključuje.\n"
 
-#: gnome-session/gsm-xsmp-server.c:605
+#: gnome-session/gsm-xsmp-server.c:607
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Nije moguće izraditi ICE priključak: %s"
 
-#: gnome-session/main.c:398
+#: gnome-session/main.c:402
 msgid "Running as systemd service"
 msgstr "Pokrenuto kao systemd usluga"
 
-#: gnome-session/main.c:399
+#: gnome-session/main.c:403
 msgid "Use systemd session management"
 msgstr "Koristi systemd upravitelj sesijama"
 
-#: gnome-session/main.c:401
+#: gnome-session/main.c:405
 msgid "Use builtin session management (rather than the systemd based one)"
 msgstr "Koristi ugrađeni upravitelj sesijama (radije nego systemd temeljeni)"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:406
 msgid "Override standard autostart directories"
 msgstr "Nadvladaj standardne direktorije automatskog pokretanja"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:406
 msgid "AUTOSTART_DIR"
 msgstr "DIR_AUTOPOKRETANJA"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:407
 msgid "Session to use"
 msgstr "Sesija za korištenje"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:407
 msgid "SESSION_NAME"
 msgstr "NAZIV_SESIJE"
 
-#: gnome-session/main.c:405
+#: gnome-session/main.c:409
 msgid "Do not load user-specified applications"
 msgstr "Nemoj učitati aplikacije koje je odredio korisnik"
 
-#: gnome-session/main.c:406
+#: gnome-session/main.c:410
 msgid "Version of this application"
 msgstr "Inačica ove aplikacije"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:408
+#: gnome-session/main.c:412
 msgid "Show the fail whale dialog for testing"
 msgstr "Prikaži fail whale dijalog za testiranje"
 
-#: gnome-session/main.c:409
+#: gnome-session/main.c:413
 msgid "Disable hardware acceleration check"
 msgstr "Onemogući provjeru hardverskog ubrzanja"
 
-#: gnome-session/main.c:441
+#: gnome-session/main.c:445
 msgid " — the GNOME session manager"
 msgstr " — GNOME upravitelj sesijama"
 
