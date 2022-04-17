@@ -543,10 +543,9 @@ main (int argc, char **argv)
 
 #ifdef HAVE_SYSTEMD
         gsm_util_export_user_environment (&error);
-        if (error && !g_getenv ("RUNNING_UNDER_GDM")) {
+        if (error && !g_getenv ("RUNNING_UNDER_GDM"))
                 g_warning ("Failed to upload environment to systemd: %s", error->message);
-                g_clear_error (&error);
-        }
+        g_clear_error (&error);
 #endif
 
 #ifdef ENABLE_SYSTEMD_SESSION
@@ -567,10 +566,9 @@ main (int argc, char **argv)
                  * in a previous session
                  */
                 gsm_util_systemd_reset_failed (&error);
-                if (error && !g_getenv ("RUNNING_UNDER_GDM")) {
+                if (error && !g_getenv ("RUNNING_UNDER_GDM"))
                         g_warning ("Failed to reset failed state of units: %s", error->message);
-                        g_clear_error (&error);
-                }
+                g_clear_error (&error);
 
                 /* We don't escape the name (i.e. we leave any '-' intact). */
                 gnome_session_target = g_strdup_printf ("gnome-session-%s@%s.target", session_type, session_name);
