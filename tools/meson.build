@@ -1,8 +1,3 @@
-install_data(
-  'gnome-session-custom-session',
-  install_dir: session_bindir
-)
-
 deps = session_deps + [
   sm_dep,
   ice_dep
@@ -25,6 +20,11 @@ if enable_session_selector
     glib_dep,
     gtk_dep
   ]
+
+  install_data(
+    'gnome-session-custom-session',
+    install_dir: session_bindir
+  )
 
   cflags += '-DGTKBUILDER_DIR="@0@"'.format(session_pkgdatadir)
 
