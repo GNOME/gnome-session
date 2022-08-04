@@ -1,17 +1,16 @@
-# Vietnamese Translation for GNOME Session.
-# Bản dịch tiếng Việt dành cho GNOME Session.
+# Vietnamese translation for gnome-shell-extensions.
 # Copyright © 2016 GNOME i18n Project for Vietnamese.
-# This file is distributed under the same license as the gnome-session package.
-# Nguyễn Thái Ngọc Duy <pclouds@gmail.com>, 2002-2004,2007-2008,2011-2013.
-# Clytie Siddall <clytie@riverland.net.au>, 2005-2009.
-# Trần Ngọc Quân <vnwildman@gmail.com>, 2013-2018, 2021.
+# This file is distributed under the same license as the gnome-shell-extensions package.
+# Nguyễn Thái Ngọc Duy <pclouds@gmail.com>, 2011.
+# Trần Ngọc Quân <vnwildman@gmail.com>, 2014, 2016-2017, 2021-2022.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session master\n"
-"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2020-07-31 14:02+0000\n"
-"PO-Revision-Date: 2021-03-20 14:29+0700\n"
+"Project-Id-Version: gnome-shell-extensions main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-shell-extensions/"
+"issues\n"
+"POT-Creation-Date: 2022-03-29 15:31+0000\n"
+"PO-Revision-Date: 2022-04-03 14:48+0700\n"
 "Last-Translator: Trần Ngọc Quân <vnwildman@gmail.com>\n"
 "Language-Team: Vietnamese <gnome-vi-list@gnome.org>\n"
 "Language: vi\n"
@@ -19,621 +18,386 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Gtranslator 2.91.7\n"
+"X-Generator: Gtranslator 3.38.0\n"
 
-#: data/gnome-custom-session.desktop.in.in:3
-msgid "Custom"
-msgstr "Tự chọn"
+#: data/gnome-classic.desktop.in:3
+msgid "GNOME Classic"
+msgstr "GNOME cổ điển"
 
-#: data/gnome-custom-session.desktop.in.in:4
-msgid "This entry lets you select a saved session"
-msgstr "Mục này cho phép bạn chọn phiên làm việc đã lưu"
+#: data/gnome-classic.desktop.in:4 data/gnome-classic-wayland.desktop.in:4
+#: data/gnome-classic-xorg.desktop.in:4
+msgid "This session logs you into GNOME Classic"
+msgstr "Phiên làm việc này đăng nhập bạn vào GNOME cổ điển"
 
-#: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
-#: data/gnome-wayland.desktop.in.in:3
-msgid "GNOME"
-msgstr "GNOME"
+#: data/gnome-classic-wayland.desktop.in:3
+msgid "GNOME Classic on Wayland"
+msgstr "GNOME cổ điển trên Wayland"
 
-#: data/gnome.desktop.in.in:4 data/gnome-wayland.desktop.in.in:4
-#: data/gnome-xorg.desktop.in.in:4
-msgid "This session logs you into GNOME"
-msgstr "Phiên làm việc này sẽ đăng nhập bạn vào GNOME"
+#: data/gnome-classic-xorg.desktop.in:3
+msgid "GNOME Classic on Xorg"
+msgstr "GNOME cổ điển trên Xorg"
 
-#: data/gnome-dummy.session.desktop.in.in:3
-msgid "GNOME dummy"
-msgstr "Giả lập GNOME"
+#: extensions/apps-menu/extension.js:118
+msgid "Favorites"
+msgstr "Ưa thích"
 
-#: data/gnome-xorg.desktop.in.in:3
-msgid "GNOME on Xorg"
-msgstr "GNOME trên Xorg"
+#: extensions/apps-menu/extension.js:379
+msgid "Applications"
+msgstr "Ứng dụng"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:5
-msgid "Save sessions"
-msgstr "Lưu phiên làm việc"
+#: extensions/auto-move-windows/org.gnome.shell.extensions.auto-move-windows.gschema.xml:6
+msgid "Application and workspace list"
+msgstr "Danh sách ứng dụng và không gian làm việc"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:6
-msgid "If enabled, gnome-session will save the session automatically."
-msgstr "Nếu được chọn, gnome-session sẽ tự động lưu phiên phiên làm việc."
-
-#: data/org.gnome.SessionManager.gschema.xml.in:10
-msgid "Save this session"
-msgstr "Lưu phiên làm việc này"
-
-#: data/org.gnome.SessionManager.gschema.xml.in:11
+#: extensions/auto-move-windows/org.gnome.shell.extensions.auto-move-windows.gschema.xml:7
 msgid ""
-"When enabled, gnome-session will automatically save the next session at log "
-"out even if auto saving is disabled."
+"A list of strings, each containing an application id (desktop file name), "
+"followed by a colon and the workspace number"
 msgstr ""
-"Nếu được bật, gnome-session sẽ lưu tự động phiên làm việc kế tiếp lúc đăng "
-"xuất ngay cả khi tự động lưu bị tắt."
+"Một danh sách chuỗi, mỗi chuỗi là một mã số của ứng dụng (tên tập tin ."
+"desktop), theo sau là dấu hai chấm và mã số không gian làm việc"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:15
-msgid "Logout prompt"
-msgstr "Nhắc đăng xuất"
+#: extensions/auto-move-windows/prefs.js:152
+msgid "Workspace Rules"
+msgstr "Thước Không gian làm việc"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:16
-msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr ""
-"Nếu bật, gnome-session sẽ nhắc người dùng trước khi kết thúc phiên làm việc."
+#: extensions/auto-move-windows/prefs.js:306
+msgid "Add Rule"
+msgstr "Thêm quy tắc"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:20
-msgid "Show the fallback warning"
-msgstr "Hiện cảnh báo fallback"
+#. TRANSLATORS: %s is the filesystem name
+#: extensions/drive-menu/extension.js:126
+#: extensions/places-menu/placeDisplay.js:210
+#, javascript-format
+msgid "Ejecting drive “%s” failed:"
+msgstr "Gặp lỗi khi đẩy hệ thống tập tin “%s” ra:"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:21
+#: extensions/drive-menu/extension.js:145
+msgid "Removable devices"
+msgstr "Đĩa di động"
+
+#: extensions/drive-menu/extension.js:167
+msgid "Open Files"
+msgstr "Mở tập tin"
+
+#: extensions/native-window-placement/org.gnome.shell.extensions.native-window-placement.gschema.xml:5
+msgid "Use more screen for windows"
+msgstr "Dùng nhiều màn hình cho các cửa sổ"
+
+#: extensions/native-window-placement/org.gnome.shell.extensions.native-window-placement.gschema.xml:6
 msgid ""
-"If enabled, gnome-session will display a warning dialog after login if the "
-"session was automatically fallen back."
+"Try to use more screen for placing window thumbnails by adapting to screen "
+"aspect ratio, and consolidating them further to reduce the bounding box. "
+"This setting applies only with the natural placement strategy."
 msgstr ""
-"Nếu bật, gnome-session sẽ hiển thị hộp thoại cảnh báo sau khi đăng nhập nếu "
-"như phiên được tự động fallback."
+"Hãy thử dùng nhiều màn hình để đặt ảnh thu nhỏ của cửa sổ bằng cách chỉnh "
+"sửa cho thích hợp với tỷ lệ dạng màn hình, và hợp nhất chúng hơn nữa để giảm "
+"bớt ô hạn biên. Cài đặt này chỉ áp dụng với chiến lược sắp đặt tự nhiên."
 
-#: data/session-selector.ui:15
-msgid "Custom Session"
-msgstr "Phiên làm việc tự chọn"
+#: extensions/native-window-placement/org.gnome.shell.extensions.native-window-placement.gschema.xml:11
+msgid "Place window captions on top"
+msgstr "Đặt thanh tiêu đề cửa sổ ở trên đỉnh"
 
-#: data/session-selector.ui:50 tools/gnome-session-selector.c:102
-msgid "Please select a custom session to run"
-msgstr "Vui lòng chọn phiên làm việc mà bạn muốn chạy"
-
-#: data/session-selector.ui:105
-msgid "_New Session"
-msgstr "Phiên làm việc _mới"
-
-#: data/session-selector.ui:119
-msgid "_Remove Session"
-msgstr "Phiên làm việc từ _xa"
-
-#: data/session-selector.ui:133
-msgid "Rena_me Session"
-msgstr "Đổi _tên phiên làm việc"
-
-#: data/session-selector.ui:168
-msgid "_Continue"
-msgstr "_Tiếp tục"
-
-#: gnome-session/gsm-fail-whale-dialog.c:318
-msgid "Oh no!  Something has gone wrong."
-msgstr "Ôi không! Có cái gì đó bị hỏng rồi."
-
-#: gnome-session/gsm-fail-whale-dialog.c:325
+#: extensions/native-window-placement/org.gnome.shell.extensions.native-window-placement.gschema.xml:12
 msgid ""
-"A problem has occurred and the system can’t recover. Please contact a system "
-"administrator"
+"If true, place window captions on top the respective thumbnail, overriding "
+"shell default of placing it at the bottom. Changing this setting requires "
+"restarting the shell to have any effect."
 msgstr ""
-"Hệ thống gặp vấn đề không thể phục hồi. Vui lòng liên lạc với người quản trị "
-"hệ thống"
+"Nếu chọn, đặt thanh tiêu đề của cửa sổ trên đỉnh của ảnh thu nhỏ tương ứng, "
+"đè lên cách ứng xử mặc định của hệ vỏ là ở dưới đáy. Những thay đổi này cần "
+"khởi động lại hệ vỏ để có tác dụng."
 
-#: gnome-session/gsm-fail-whale-dialog.c:327
+#: extensions/places-menu/extension.js:94
+#: extensions/places-menu/extension.js:97
+msgid "Places"
+msgstr "Mở nhanh"
+
+#: extensions/places-menu/placeDisplay.js:49
+#, javascript-format
+msgid "Failed to launch “%s”"
+msgstr "Gặp lỗi khi khởi chạy \"%s\""
+
+#: extensions/places-menu/placeDisplay.js:64
+#, javascript-format
+msgid "Failed to mount volume for “%s”"
+msgstr "Gặp lỗi khi gắn đĩa cho “%s”"
+
+#: extensions/places-menu/placeDisplay.js:125
+#: extensions/places-menu/placeDisplay.js:148
+msgid "Computer"
+msgstr "Máy tính"
+
+#: extensions/places-menu/placeDisplay.js:336
+msgid "Home"
+msgstr "Thư mục riêng"
+
+#: extensions/places-menu/placeDisplay.js:381
+msgid "Browse Network"
+msgstr "Duyệt mạng"
+
+#: extensions/screenshot-window-sizer/org.gnome.shell.extensions.screenshot-window-sizer.gschema.xml:7
+msgid "Cycle Screenshot Sizes"
+msgstr "Đổi kích thước cửa sổ để chụp màn hình"
+
+#: extensions/screenshot-window-sizer/org.gnome.shell.extensions.screenshot-window-sizer.gschema.xml:11
+msgid "Cycle Screenshot Sizes Backward"
+msgstr "Đổi kích thước cửa sổ để chụp màn hình ngược lại"
+
+#: extensions/user-theme/org.gnome.shell.extensions.user-theme.gschema.xml:5
+msgid "Theme name"
+msgstr "Tên chủ đề"
+
+#: extensions/user-theme/org.gnome.shell.extensions.user-theme.gschema.xml:6
+msgid "The name of the theme, to be loaded from ~/.themes/name/gnome-shell"
+msgstr "Tên của chủ đề, được tải từ ~/.themes/name/gnome-shell"
+
+#: extensions/window-list/extension.js:72
+msgid "Close"
+msgstr "Đóng"
+
+#: extensions/window-list/extension.js:92
+msgid "Unminimize"
+msgstr "Thôi thu nhỏ"
+
+#: extensions/window-list/extension.js:92
+msgid "Minimize"
+msgstr "Thu nhỏ"
+
+#: extensions/window-list/extension.js:99
+msgid "Unmaximize"
+msgstr "Thôi phóng hết cỡ"
+
+#: extensions/window-list/extension.js:99
+msgid "Maximize"
+msgstr "Phóng to hết cỡ"
+
+#: extensions/window-list/extension.js:441
+msgid "Minimize all"
+msgstr "Thu nhỏ tất cả"
+
+#: extensions/window-list/extension.js:447
+msgid "Unminimize all"
+msgstr "Thôi thu nhỏ tất cả"
+
+#: extensions/window-list/extension.js:453
+msgid "Maximize all"
+msgstr "Phóng to tất cả"
+
+#: extensions/window-list/extension.js:461
+msgid "Unmaximize all"
+msgstr "Thôi phóng to tất cả"
+
+#: extensions/window-list/extension.js:469
+msgid "Close all"
+msgstr "Đóng tất cả"
+
+#: extensions/window-list/extension.js:753
+msgid "Window List"
+msgstr "Danh sách cửa sổ"
+
+#: extensions/window-list/org.gnome.shell.extensions.window-list.gschema.xml:12
+msgid "When to group windows"
+msgstr "Khi nào thì nhóm các cửa sổ lại"
+
+#: extensions/window-list/org.gnome.shell.extensions.window-list.gschema.xml:13
 msgid ""
-"A problem has occurred and the system can’t recover. All extensions have "
-"been disabled as a precaution."
+"Decides when to group windows from the same application on the window list. "
+"Possible values are “never”, “auto” and “always”."
 msgstr ""
-"Hệ thống gặp vấn đề không thể phục hồi. Mọi phần mở rộng đã bị tắt để đề "
-"phòng lỗi."
+"Quyết định khi nào thì nhóm các cửa sổ của cùng một ứng dụng trên danh sách "
+"cửa số. Các giá trị có thể là “never”, “auto” và “always”."
 
-#: gnome-session/gsm-fail-whale-dialog.c:329
-msgid ""
-"A problem has occurred and the system can’t recover.\n"
-"Please log out and try again."
+#: extensions/window-list/org.gnome.shell.extensions.window-list.gschema.xml:20
+#: extensions/window-list/prefs.js:79
+msgid "Show windows from all workspaces"
+msgstr "Hiển thị các cửa sổ trong mọi không gian làm việc"
+
+#: extensions/window-list/org.gnome.shell.extensions.window-list.gschema.xml:21
+msgid "Whether to show windows from all workspaces or only the current one."
 msgstr ""
-"Hệ thống gặp vấn đề không thể phục hồi.\n"
-"Hãy đăng xuất và thử lại."
+"Có hiển thị các cửa sổ từ mọi không gian làm việc hay chỉ trên màn hình hiện "
+"tại mà thôi."
 
-#: gnome-session/gsm-fail-whale-dialog.c:344
-msgid "_Log Out"
-msgstr "Đăng _xuất"
+#: extensions/window-list/org.gnome.shell.extensions.window-list.gschema.xml:27
+msgid "Show the window list on all monitors"
+msgstr "Hiển thị danh sách cửa sổ ở mọi màn hình"
 
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
-msgid "Enable debugging code"
-msgstr "Bật mã hỗ trợ tìm lỗi"
-
-#: gnome-session/gsm-fail-whale-dialog.c:413
-msgid "Allow logout"
-msgstr "Cho phép đăng xuất"
-
-#: gnome-session/gsm-fail-whale-dialog.c:414
-msgid "Show extension warning"
-msgstr "Hiện cảnh báo phần mở rộng"
-
-#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1999
-msgid "Not responding"
-msgstr "Không trả lời"
-
-#: gnome-session/gsm-util.c:415
-msgid "_Log out"
-msgstr "Đăng _xuất"
-
-#. It'd be really surprising to reach this code: if we're here,
-#. * then the XSMP client already has set several XSMP
-#. * properties. But it could still be that SmProgram is not set.
-#.
-#: gnome-session/gsm-xsmp-client.c:557
-msgid "Remembered Application"
-msgstr "Ứng dụng đã nhớ"
-
-#: gnome-session/gsm-xsmp-client.c:1216
-msgid "This program is blocking logout."
-msgstr "Chương trình này đang ngăn cản đăng xuất."
-
-#: gnome-session/gsm-xsmp-server.c:338
+#: extensions/window-list/org.gnome.shell.extensions.window-list.gschema.xml:28
 msgid ""
-"Refusing new client connection because the session is currently being shut "
-"down\n"
-msgstr "Đang từ chối kết nối khách mới vì phiên làm việc đang bị tắt\n"
-
-#: gnome-session/gsm-xsmp-server.c:605
-#, c-format
-msgid "Could not create ICE listening socket: %s"
-msgstr "Không thể tạo ổ cắm lắng nghe ICE: %s"
-
-#: gnome-session/main.c:398
-msgid "Running as systemd service"
-msgstr "Chạy như là dịch vụ systemd"
-
-#: gnome-session/main.c:399
-msgid "Use systemd session management"
-msgstr "Dùng quản lý phiên làm việc systemd"
-
-#: gnome-session/main.c:401
-msgid "Use builtin session management (rather than the systemd based one)"
-msgstr "Dùng quản lý phiên làm việc dựng sẵn (thay vì dựa vào systemd)"
-
-#: gnome-session/main.c:402
-msgid "Override standard autostart directories"
-msgstr "Đè lên thư mục tự khởi động tiêu chuẩn"
-
-#: gnome-session/main.c:402
-msgid "AUTOSTART_DIR"
-msgstr "THƯ_MỤC_TỰ_CHẠY"
-
-#: gnome-session/main.c:403
-msgid "Session to use"
-msgstr "Phiên làm việc cần dùng"
-
-#: gnome-session/main.c:403
-msgid "SESSION_NAME"
-msgstr "TÊN_PHIÊN"
-
-#: gnome-session/main.c:405
-msgid "Do not load user-specified applications"
-msgstr "Đừng tải ứng dụng do người dùng chỉ định"
-
-#: gnome-session/main.c:406
-msgid "Version of this application"
-msgstr "Phiên bản của ứng dụng"
-
-#. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:408
-msgid "Show the fail whale dialog for testing"
-msgstr "Hiện cửa sổ cá voi thất bại để kiểm tra"
-
-#: gnome-session/main.c:409
-msgid "Disable hardware acceleration check"
-msgstr "Tắt kiểm tra tăng tốc phần cứng"
-
-#: gnome-session/main.c:441
-msgid " — the GNOME session manager"
-msgstr " — bộ quản lý phiên làm việc GNOME"
-
-#: tools/gnome-session-ctl.c:245
-msgid "Start gnome-session-shutdown.target"
-msgstr "Khởi chạy gnome-session-shutdown.target"
-
-#: tools/gnome-session-ctl.c:246
-msgid ""
-"Start gnome-session-shutdown.target when receiving EOF or a single byte on "
-"stdin"
+"Whether to show the window list on all connected monitors or only on the "
+"primary one."
 msgstr ""
-"Khởi chạy gnome-session-shutdown.target khi nhận được EOF hay một byte đơn "
-"trên stdin"
+"Có hiển thị danh sách cửa sổ trên mọi màn hình đã kết nối hay chỉ trên màn "
+"hình chính mà thôi."
 
-#: tools/gnome-session-ctl.c:247
-msgid "Signal initialization done to gnome-session"
-msgstr "Khởi tạo tín hiệu xong với gnome-session"
+#: extensions/window-list/prefs.js:35
+msgid "Window Grouping"
+msgstr "Nhóm cửa sổ lại"
 
-#: tools/gnome-session-ctl.c:248
-msgid "Restart dbus.service if it is running"
-msgstr "Khởi động lại dbus.service nếu nó đang chạy"
+#: extensions/window-list/prefs.js:40
+msgid "Never group windows"
+msgstr "Không bao giờ nhóm các cửa sổ lại với nhau"
 
-#: tools/gnome-session-ctl.c:249
-msgid ""
-"Run from ExecStopPost to start gnome-session-failed.target on service failure"
-msgstr ""
-"Chạy từ ExecStopPost để khởi chạy gnome-session-failed.target khi lỗi dịch vụ"
+#: extensions/window-list/prefs.js:41
+msgid "Group windows when space is limited"
+msgstr "Nhóm các cửa sổ lại với nhau khi không đủ chỗ"
 
-#: tools/gnome-session-ctl.c:279
-msgid "Program needs exactly one parameter"
-msgstr "Chương trình cần chính xác một đối số"
+#: extensions/window-list/prefs.js:42
+msgid "Always group windows"
+msgstr "Luôn nhóm các cửa sổ lại với nhau"
 
-#: tools/gnome-session-inhibit.c:108
-#, c-format
-msgid ""
-"%s [OPTION…] COMMAND\n"
-"\n"
-"Execute COMMAND while inhibiting some session functionality.\n"
-"\n"
-"  -h, --help        Show this help\n"
-"  --version         Show program version\n"
-"  --app-id ID       The application id to use\n"
-"                    when inhibiting (optional)\n"
-"  --reason REASON   The reason for inhibiting (optional)\n"
-"  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
-"                    logout, switch-user, suspend, idle, automount\n"
-"  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
-"  -l, --list        List the existing inhibitions, and exit\n"
-"\n"
-"If no --inhibit option is specified, idle is assumed.\n"
-msgstr ""
-"%s [TÙY CHỌN…] LỆNH\n"
-"\n"
-"Thực hiện LỆNH nhưng hạn chế một số chức năng liên quan đến phiên.\n"
-"\n"
-"  -h, --help        Hiển thị trợ giúp này\n"
-"  --version         Hiển thị phiên bản của chương trình\n"
-"  --app-id ID       Mã số ứng dụng sẽ dùng\n"
-"                    khi hạn chế (tùy chọn)\n"
-"  --reason LÝ_DO    Lý do hạn chế (tùy chọn)\n"
-"  --inhibit ARG     Những thứ hạn chế, danh sách ngăn cách bằng dấu hai chấm\n"
-"                      của: logout, switch-user, suspend, idle, automount\n"
-"  --inhibit-only    Không khởi chạy LỆNH và thay vào đó là chờ mãi mãi\n"
-"  -l, --list        Liệt kê những hạn chế sẵn có rồi thoát\n"
-"\n"
-"Nếu không đưa ra tùy chọn --inhibit, coi là idle (nghỉ).\n"
+#: extensions/window-list/prefs.js:66
+msgid "Show on all monitors"
+msgstr "Hiển thị trên mọi màn hình"
 
-#: tools/gnome-session-inhibit.c:288
-#, c-format
-msgid "Failed to execute %s\n"
-msgstr "Gặp lỗi khi chạy %s\n"
+#: extensions/window-list/workspaceIndicator.js:261
+#: extensions/workspace-indicator/extension.js:266
+msgid "Workspace Indicator"
+msgstr "Ô chỉ thị không gian làm việc"
 
-#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
-#: tools/gnome-session-inhibit.c:372
-#, c-format
-msgid "%s requires an argument\n"
-msgstr "%s cần một đối số\n"
+#: extensions/workspace-indicator/prefs.js:62
+#, javascript-format
+msgid "Workspace %d"
+msgstr "Không gian làm việc %d"
 
-#: tools/gnome-session-quit.c:50
-msgid "Log out"
-msgstr "Đăng xuất"
+#: extensions/workspace-indicator/prefs.js:129
+msgid "Workspace Names"
+msgstr "Tên không gian làm việc"
 
-#: tools/gnome-session-quit.c:51
-msgid "Power off"
-msgstr "Tắt máy"
+#: extensions/workspace-indicator/prefs.js:255
+msgid "Add Workspace"
+msgstr "Thêm Không gian làm việc"
 
-#: tools/gnome-session-quit.c:52
-msgid "Reboot"
-msgstr "Khởi động lại"
-
-#: tools/gnome-session-quit.c:53
-msgid "Ignoring any existing inhibitors"
-msgstr "Bỏ qua các ứng dụng ngăn cản"
-
-#: tools/gnome-session-quit.c:54
-msgid "Don’t prompt for user confirmation"
-msgstr "Đừng nhắc yêu cầu xác nhận người dùng"
-
-#: tools/gnome-session-quit.c:88 tools/gnome-session-quit.c:102
-msgid "Could not connect to the session manager"
-msgstr "Không thể kết nối với trình quản lý phiên làm việc"
-
-#: tools/gnome-session-quit.c:198
-msgid "Program called with conflicting options"
-msgstr "Chương trình được gọi với các tùy chọn xung đột nhau"
-
-#: tools/gnome-session-selector.c:61
-#, c-format
-msgid "Session %d"
-msgstr "Phiên làm việc %d"
-
-#: tools/gnome-session-selector.c:107
-msgid ""
-"Session names are not allowed to start with “.” or contain “/” characters"
-msgstr ""
-"Tên phiên làm việc không được phép bắt đầu bằng ký tự “.” hoặc có chứa “/”"
-
-#: tools/gnome-session-selector.c:111
-msgid "Session names are not allowed to start with “.”"
-msgstr "Tên phiên làm việc không được phép bắt đầu bằng ký tự “.”"
-
-#: tools/gnome-session-selector.c:115
-msgid "Session names are not allowed to contain “/” characters"
-msgstr "Tên phiên làm việc không cho phép chứa ký tự “/”"
-
-#: tools/gnome-session-selector.c:123
-#, c-format
-msgid "A session named “%s” already exists"
-msgstr "Đã sẵn có phiên làm việc mang tên “%s”"
-
-#~ msgid "This session logs you into GNOME, using Wayland"
-#~ msgstr "Phiên làm việc này sẽ đăng nhập bạn vào GNOME, đang dùng Wayland"
-
-#~ msgid "Additional startup _programs:"
-#~ msgstr "_Chương trình khởi động thêm:"
-
-#~ msgid "Startup Programs"
-#~ msgstr "Chương trình khởi động"
-
-#~ msgid "_Automatically remember running applications when logging out"
-#~ msgstr "_Tự động nhớ các ứng dụng đang chạy khi đăng xuất"
-
-#~ msgid "_Remember Currently Running Applications"
-#~ msgstr "_Nhớ ứng dụng đang chạy"
-
-#~ msgid "Options"
-#~ msgstr "Tùy chọn"
-
-#~ msgid "Browse…"
-#~ msgstr "Duyệt…"
-
-#~ msgid "Comm_ent:"
-#~ msgstr "C_hú thích:"
-
-#~ msgid "Co_mmand:"
-#~ msgstr "Lệ_nh:"
-
-#~ msgid "_Name:"
-#~ msgstr "_Tên:"
-
-#~ msgid "Select Command"
-#~ msgstr "Chọn câu lệnh"
-
-#~ msgid "Add Startup Program"
-#~ msgstr "Thêm chương trình tự động chạy lúc khởi động"
-
-#~ msgid "Edit Startup Program"
-#~ msgstr "Sửa chương trình tự chạy lúc khởi động"
-
-#~ msgid "The startup command cannot be empty"
-#~ msgstr "Không cho phép lệnh khởi động là rỗng"
-
-#~ msgid "The startup command is not valid"
-#~ msgstr "Câu lệnh khởi chạy không hợp lệ"
-
-#~ msgid "Enabled"
-#~ msgstr "Bật"
-
-#~ msgid "Icon"
-#~ msgstr "Biểu tượng"
-
-#~ msgid "Program"
-#~ msgstr "Chương trình"
-
-#~ msgid "Startup Applications Preferences"
-#~ msgstr "Cá nhân hóa việc chạy các ứng dụng khi khởi động"
-
-#~ msgid "No name"
-#~ msgstr "Không tên"
-
-#~ msgid "No description"
-#~ msgstr "Không mô tả"
-
-#~ msgid "Could not display help document"
-#~ msgstr "Không thể hiện tài liệu trợ giúp"
-
-#~ msgid "Some programs are still running:"
-#~ msgstr "Vài chương trình vẫn đang chạy:"
-
-#~ msgid "Startup Applications"
-#~ msgstr "Ứng dụng Khởi chạy"
-
-#~ msgid "Choose what applications to start when you log in"
-#~ msgstr "Hãy chọn những ứng dụng nào cần khởi chạy khi bạn đăng nhập"
-
-#~ msgid "File is not a valid .desktop file"
-#~ msgstr "Đây không phải là một tập tin .desktop hợp lệ"
-
-#~ msgid "Unrecognized desktop file Version '%s'"
-#~ msgstr "Không chấp nhận tập tin màn hình nền Version “%s”"
-
-#~ msgid "Starting %s"
-#~ msgstr "Đang khởi chạy %s"
-
-#~ msgid "Application does not accept documents on command line"
-#~ msgstr "Ứng dụng không chấp nhận tài liệu thông qua dòng lệnh"
-
-#~ msgid "Unrecognized launch option: %d"
-#~ msgstr "Không nhận ra tùy chọn khởi chạy: %d"
-
-#~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-#~ msgstr ""
-#~ "Không thể gửi địa chỉ URI của tài liệu cho một mục nhập màn hình nền "
-#~ "“Kiểu=Liên_kết”"
-
-#~ msgid "Not a launchable item"
-#~ msgstr "Không phải một mục có thể khởi chạy"
-
-#~ msgid "Disable connection to session manager"
-#~ msgstr "Tắt kết nối với trình quản lý phiên làm việc"
-
-#~ msgid "Specify file containing saved configuration"
-#~ msgstr "Ghi rõ tập tin chứa cấu hình đã lưu"
-
-#~ msgid "FILE"
-#~ msgstr "TẬP_TIN"
-
-#~ msgid "ID"
-#~ msgstr "ID"
-
-#~ msgid "Session management options:"
-#~ msgstr "Tùy chọn quản lý phiên làm việc:"
-
-#~ msgid "Show session management options"
-#~ msgstr "Hiện tùy chọn quản lý phiên làm việc"
-
-#~ msgid "Unknown"
-#~ msgstr "Chưa xác định"
-
-#~ msgid "A program is still running:"
-#~ msgstr "Một chương trình vẫn đang chạy:"
+#~ msgid "Attach modal dialog to the parent window"
+#~ msgstr "Gắn hộp thoại dạng luôn nằm trên cửa sổ mẹ"
 
 #~ msgid ""
-#~ "Waiting for the program to finish. Interrupting the program may cause you "
-#~ "to lose work."
+#~ "This key overrides the key in org.gnome.mutter when running GNOME Shell."
 #~ msgstr ""
-#~ "Đang chờ chương trình kết thúc. Ngắt chương trình có thể dẫn đến mất dữ "
-#~ "liệu."
+#~ "Khóa này sẽ đè lên khóa có trong org.gnome.mutter khi chạy Hệ vỏ GNOME."
+
+#~ msgid "Arrangement of buttons on the titlebar"
+#~ msgstr "Sắp xếp các nút trên thanh tiêu đề"
 
 #~ msgid ""
-#~ "Waiting for programs to finish. Interrupting these programs may cause you "
-#~ "to lose work."
+#~ "This key overrides the key in org.gnome.desktop.wm.preferences when "
+#~ "running GNOME Shell."
 #~ msgstr ""
-#~ "Đang chờ các chương trình kết thúc. Ngắt chương trình có thể dẫn đến mất "
-#~ "dữ liệu."
+#~ "Khóa này sẽ đè lên khóa có trong org.gnome.desktop.wm.preferences khi "
+#~ "đang chạy Hệ vỏ GNOME."
 
-#~ msgid "Switch User Anyway"
-#~ msgstr "Vẫn chuyển đổi người dùng"
+#~ msgid "Enable edge tiling when dropping windows on screen edges"
+#~ msgstr "Bật xếp lớp ở cạnh khi thả cửa sổ vào cạnh màn hình"
 
-#~ msgid "Log Out Anyway"
-#~ msgstr "Vẫn đăng xuất"
+#~ msgid "Workspaces only on primary monitor"
+#~ msgstr "Không gian làm việc chỉ ở trên màn hình chính"
 
-#~ msgid "Suspend Anyway"
-#~ msgstr "Vẫn Ngưng"
+#~ msgid "Delay focus changes in mouse mode until the pointer stops moving"
+#~ msgstr "Khoảng trễ chờ cho con chuột ngừng di chuyển"
 
-#~ msgid "Hibernate Anyway"
-#~ msgstr "Vẫn Ngủ đông"
+#~ msgid "Thumbnail only"
+#~ msgstr "Chỉ ảnh nhỏ"
 
-#~ msgid "Shut Down Anyway"
-#~ msgstr "Vẫn tắt máy"
+#~ msgid "Application icon only"
+#~ msgstr "Chỉ có ảnh nhỏ đại diện cho ứng dụng"
 
-#~ msgid "Restart Anyway"
-#~ msgstr "Vẫn khởi động lại"
+#~ msgid "Thumbnail and application icon"
+#~ msgstr "Ảnh thu nhỏ và biểu tượng của ứng dụng"
 
-#~ msgid "Lock Screen"
-#~ msgstr "Khóa màn hình"
+#~ msgid "Present windows as"
+#~ msgstr "Cửa sổ hiện tại như là"
 
-#~ msgid "Cancel"
-#~ msgstr "Thôi"
+#~ msgid "Activities Overview"
+#~ msgstr "Tổng quan hoạt động"
 
-#~ msgid "You will be automatically logged out in %d second."
-#~ msgid_plural "You will be automatically logged out in %d seconds."
-#~ msgstr[0] "Sẽ tự động đăng xuất trong %d giây."
+#~ msgid "Application"
+#~ msgstr "Ứng dụng"
 
-#~ msgid "This system will be automatically shut down in %d second."
-#~ msgid_plural "This system will be automatically shut down in %d seconds."
-#~ msgstr[0] "Hệ thống này sẽ bị tự động tắt trong %d giây."
+#~ msgid "Create new matching rule"
+#~ msgstr "Tạo mới một quy tắc khớp mẫu"
 
-#~ msgid "This system will be automatically restarted in %d second."
-#~ msgid_plural "This system will be automatically restarted in %d seconds."
-#~ msgstr[0] "Hệ thống này sẽ bị tự động khởi động lại trong %d giây."
+#~ msgid "Add"
+#~ msgstr "Thêm"
 
-#~ msgid "You are currently logged in as \"%s\"."
-#~ msgstr "Hiện bạn đăng nhập với tên \"%s\""
+#~ msgid "Hello, world!"
+#~ msgstr "Xin chào!"
 
-#~ msgid "Log out of this system now?"
-#~ msgstr "Đăng xuất ra hệ thống này ngay bây giờ?"
-
-#~ msgid "_Switch User"
-#~ msgstr "Đổ_i người dùng"
-
-#~ msgid "Shut down this system now?"
-#~ msgstr "Tắt hệ thống này ngay bây giờ?"
-
-#~ msgid "S_uspend"
-#~ msgstr "N_gưng"
-
-#~ msgid "_Hibernate"
-#~ msgstr "_Ngủ đông"
-
-#~ msgid "_Restart"
-#~ msgstr "_Khởi động lại"
-
-#~ msgid "_Shut Down"
-#~ msgstr "_Tắt máy"
-
-#~ msgid "Restart this system now?"
-#~ msgstr "Khởi động lại hệ thống này ngay bây giờ?"
-
-#~ msgid "Icon '%s' not found"
-#~ msgstr "Không thấy biểu tượng “%s”"
-
-#~ msgid "GNOME 3 Failed to Load"
-#~ msgstr "Lỗi nạp GNOME 3"
+#~ msgid "Alternative greeting text."
+#~ msgstr "Lời chào thay thế."
 
 #~ msgid ""
-#~ "Unfortunately GNOME 3 failed to start properly and started in the "
-#~ "<i>fallback mode</i>.\n"
-#~ "\n"
-#~ "This most likely means your system (graphics hardware or driver) is not "
-#~ "capable of delivering the full GNOME 3 experience."
+#~ "If not empty, it contains the text that will be shown when clicking on "
+#~ "the panel."
 #~ msgstr ""
-#~ "Rất tiếc không thể khởi động GNOME 3 nên đang chạy trong <i>chế độ phòng "
-#~ "bị</i>.\n"
-#~ "\n"
-#~ "Nhiều khả năng hệ thống của bạn (phần cứng đồ họa hoặc trình điều khiển) "
-#~ "không đủ khả năng chạy GNOME 3."
+#~ "Nếu không rỗng, nó sẽ chứa chữ mà chữ này sẽ được hiển thị khi bấm chuột "
+#~ "trên bảng điều khiển."
 
-#~ msgid "Learn more about GNOME 3"
-#~ msgstr "Tìm hiểu thêm về GNOME 3"
+#~ msgid "Message"
+#~ msgstr "Thông báo"
 
 #~ msgid ""
-#~ "Unable to start login session (and unable to connect to the X server)"
+#~ "Example aims to show how to build well behaved extensions for the Shell "
+#~ "and as such it has little functionality on its own.\n"
+#~ "Nevertheless it’s possible to customize the greeting message."
 #~ msgstr ""
-#~ "Không thể khởi chạy phiên đăng nhập (và không thể kết nối đến X server)"
+#~ "Ví dụ có mục đích hướng dẫn làm cách nào để xây dựng các phần mở rộng "
+#~ "chạy tốt cho Hệ vỏ và do vậy nó chỉ có một ít chức năng.\n"
+#~ "Tuy thế nó có khả năng cá nhân hóa lời chào."
 
-#~ msgid "<b>Some programs are still running:</b>"
-#~ msgstr "<b>Vài chương trình vẫn đang hoạt đọng:</b>"
+#~ msgid "Name"
+#~ msgstr "Tên"
 
-#~ msgid "Exited with code %d"
-#~ msgstr "Thoát với mã %d"
+#~ msgid "CPU"
+#~ msgstr "CPU"
 
-#~ msgid "Killed by signal %d"
-#~ msgstr "Bị buộc thoát bởi tín hiệu %d"
+#~ msgid "Memory"
+#~ msgstr "Bộ nhớ"
 
-#~ msgid "Stopped by signal %d"
-#~ msgstr "Bị dừng bởi tín hiệu %d"
+#~ msgid "GNOME Shell Classic"
+#~ msgstr "Hệ vỏ GNOME cổ điển"
 
-#~ msgid ""
-#~ "There is a problem with the configuration server.\n"
-#~ "(%s exited with status %d)"
-#~ msgstr ""
-#~ "Gặp vấn đề với trình phục vụ cấu hình.\n"
-#~ "(%s đã thoát với trạng thái %d)"
+#~ msgid "Window management and application launching"
+#~ msgstr "Quản lý cửa sổ và chạy ứng dụng"
 
-#~ msgid "The name of the startup program cannot be empty"
-#~ msgstr "Tên của chương trình khởi động không thể là rỗng"
+#~ msgid "Suspend"
+#~ msgstr "Ngừng"
 
-#~ msgid "Sessions Preferences"
-#~ msgstr "Tùy thích phiên làm việc"
+#~ msgid "Hibernate"
+#~ msgstr "Ngủ đông"
 
-#~ msgid ""
-#~ "Assistive technology support has been requested for this session, but the "
-#~ "accessibility registry was not found. Please ensure that the AT-SPI "
-#~ "package is installed. Your session has been started without assistive "
-#~ "technology support."
-#~ msgstr ""
-#~ "Khả năng hỗ trợ công nghệ giúp đỡ đã được yêu cầu cho phiên làm việc này, "
-#~ "nhưng không tìm thấy bộ đăng ký khả năng truy cập. Hãy kiểm tra xem gói "
-#~ "AT-SPI đã được cài đặt. Phiên làm việc đã được khởi chạy mà không có khả "
-#~ "năng hỗ trợ công nghệ giúp đỡ."
+#~ msgid "Power Off"
+#~ msgstr "Tắt máy"
 
-#~ msgid "AT SPI Registry Wrapper"
-#~ msgstr "Bộ bao bọc đăng ký SPI AT"
+#~ msgid "Enable suspending"
+#~ msgstr "Cho phép tạm dừng"
 
-#~ msgid "GNOME Settings Daemon Helper"
-#~ msgstr "Trình bổ trợ Trình nền Thiết lập GNOME"
+#~ msgid "Control the visibility of the Suspend menu item"
+#~ msgstr "Cấu hình trình đơn con “Tạm dừng” hiện hay ẩn đi"
 
-#~ msgid "File Manager"
-#~ msgstr "Bộ Quản lý Tập tin"
+#~ msgid "Enable hibernating"
+#~ msgstr "Cho phép ngủ đông"
 
-#~ msgid "List of applications that are part of the default session."
-#~ msgstr "Danh sách các ứng dụng thuộc về phiên làm việc mặc định."
+#~ msgid "Control the visibility of the Hibernate menu item"
+#~ msgstr "Cấu hình trình đơn con “Ngủ đông” hiện hay ẩn đi"
+
+#~ msgid "Normal"
+#~ msgstr "Bình thường"
+
+#~ msgid "Left"
+#~ msgstr "Trái"
+
+#~ msgid "Right"
+#~ msgstr "Phải"
+
+#~ msgid "Upside-down"
+#~ msgstr "Trên-xuống"
+
+#~ msgid "Display"
+#~ msgstr "Hiển thị"
+
+#~ msgid "Display Settings"
+#~ msgstr "Cài đặt hiển thị"
+
+#~ msgid "Notifications"
+#~ msgstr "Thông báo"
