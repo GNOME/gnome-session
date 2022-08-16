@@ -543,8 +543,10 @@ main (int argc, char **argv)
 
 #ifdef HAVE_SYSTEMD
         gsm_util_export_user_environment (&error);
-        if (error && !g_getenv ("RUNNING_UNDER_GDM")) {
-                g_warning ("Failed to upload environment to systemd: %s", error->message);
+        if (error) {
+                if (!g_getenv ("RUNNING_UNDER_GDM")) {
+                        g_warning ("Failed to upload environment to systemd: %s", error->message);
+                }
                 g_clear_error (&error);
         }
 #endif
@@ -567,8 +569,10 @@ main (int argc, char **argv)
                  * in a previous session
                  */
                 gsm_util_systemd_reset_failed (&error);
-                if (error && !g_getenv ("RUNNING_UNDER_GDM")) {
-                        g_warning ("Failed to reset failed state of units: %s", error->message);
+                if (error) {
+                        if (!g_getenv ("RUNNING_UNDER_GDM")) {
+                                g_warning ("Failed to reset failed state of units: %s", error->message);
+                        }
                         g_clear_error (&error);
                 }
 
