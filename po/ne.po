@@ -10,16 +10,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Gnome Nepali Translation Project\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2020-07-31 14:02+0000\n"
-"PO-Revision-Date: 2021-05-01 11:16+0545\n"
+"POT-Creation-Date: 2022-07-31 09:17+0000\n"
+"PO-Revision-Date: 2022-09-08 02:55+0545\n"
 "Last-Translator: Pawan Chitrakar <chautari@gmail.com>\n"
 "Language-Team: Nepali Translation Team <chautari@gmail.com>\n"
 "Language: ne\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.2\n"
 "Plural-Forms: nplurals=2; plural=n !=1;\n"
+"X-Generator: Poedit 3.0.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
@@ -31,7 +31,6 @@ msgid "This entry lets you select a saved session"
 msgstr "यो प्रविष्टिले तपाईँलाई बचत गरिएको सत्र चयन गर्न अनुमति दिन्छ ।"
 
 #: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
-#: data/gnome-wayland.desktop.in.in:3
 msgid "GNOME"
 msgstr "जिनोम"
 
@@ -43,6 +42,10 @@ msgstr "यो सत्र जिनोम लगईन हुन्छ"
 #: data/gnome-dummy.session.desktop.in.in:3
 msgid "GNOME dummy"
 msgstr "जिनोम डम्मि"
+
+#: data/gnome-wayland.desktop.in.in:3
+msgid "GNOME on Wayland"
+msgstr "वेल्याण्डमा जिनोम"
 
 #: data/gnome-xorg.desktop.in.in:3
 msgid "GNOME on Xorg"
@@ -142,7 +145,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "लगआउट"
 
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:408
 msgid "Enable debugging code"
 msgstr "डिबगिङ सक्षम पार्नुहोस्"
 
@@ -154,11 +157,11 @@ msgstr "लगआउट अनुमति दिनुहोस्"
 msgid "Show extension warning"
 msgstr "चेतावनी देखाउनुहोस्"
 
-#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1999
+#: gnome-session/gsm-manager.c:1317 gnome-session/gsm-manager.c:2058
 msgid "Not responding"
 msgstr "जवाफ दिन बन्द गरेको छ"
 
-#: gnome-session/gsm-util.c:415
+#: gnome-session/gsm-util.c:431
 msgid "_Log out"
 msgstr "लगआउट"
 
@@ -174,61 +177,61 @@ msgstr "सम्झिएको अनुप्रयोग"
 msgid "This program is blocking logout."
 msgstr "यो कार्यक्रमले लगआउट गर्न दिएन."
 
-#: gnome-session/gsm-xsmp-server.c:338
+#: gnome-session/gsm-xsmp-server.c:340
 msgid "Refusing new client connection because the session is currently being shut down\n"
 msgstr "नयाँ क्लाइन्ट जडान अस्वीकार गर्दैछ किनभने सत्र हाल बन्द छ\n"
 
-#: gnome-session/gsm-xsmp-server.c:605
+#: gnome-session/gsm-xsmp-server.c:607
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "ICE सुन्ने सकेट सिर्जना गर्न सकेन: %s"
 
-#: gnome-session/main.c:398
+#: gnome-session/main.c:402
 msgid "Running as systemd service"
 msgstr "प्रणाली सेवाको रूपमा चलिरहेको छ"
 
-#: gnome-session/main.c:399
+#: gnome-session/main.c:403
 msgid "Use systemd session management"
 msgstr "प्रणाली प्रयोग गरि सत्र व्यवस्थापन गर्नुहोस्"
 
-#: gnome-session/main.c:401
+#: gnome-session/main.c:405
 msgid "Use builtin session management (rather than the systemd based one)"
 msgstr "अवस्थित सत्र व्यवस्थापन प्रयोग गर्नुहोस् (systemd आधारित भन्दा)"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:406
 msgid "Override standard autostart directories"
 msgstr "मानक स्वत: सुरुआत डाइरेक्टरी अधिरोहण गर्नुहोस्"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:406
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:407
 msgid "Session to use"
 msgstr "प्रयोग गर्न सत्र"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:407
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: gnome-session/main.c:405
+#: gnome-session/main.c:409
 msgid "Do not load user-specified applications"
 msgstr "प्रयोगकर्ता निर्दिष्ट गरिएको अनुप्रयोग हरू लोड नगर्नुहोस्"
 
-#: gnome-session/main.c:406
+#: gnome-session/main.c:410
 msgid "Version of this application"
 msgstr "यो अनुप्रयोगको स‌सकरण"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:408
+#: gnome-session/main.c:412
 msgid "Show the fail whale dialog for testing"
 msgstr "परीक्षणका लागि असफल ह्वेल संवाद देखाउनुहोस्"
 
-#: gnome-session/main.c:409
+#: gnome-session/main.c:413
 msgid "Disable hardware acceleration check"
 msgstr "हार्डवेयर गतिवर्धन जाँच अक्षम पार्नुहोस्"
 
-#: gnome-session/main.c:441
+#: gnome-session/main.c:445
 msgid " — the GNOME session manager"
 msgstr " — जिनोम सेसन प्रबन्धक"
 
