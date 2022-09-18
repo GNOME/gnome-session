@@ -1,6 +1,6 @@
 # Turkish translation of gnome-session.
 # Copyright (C) 2001-2003, 2004, 2008, 2011 Free Software Foundation, Inc.
-# Copyright (C) 2012-2019 gnome-session's COPYRIGHT HOLDER
+# Copyright (C) 2012-2022 gnome-session's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-session package.
 #
 # Sinan İmamoğlu <sinan@myrealbox.com>, 2002-2003.
@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2021-10-12 18:16+0000\n"
+"POT-Creation-Date: 2022-07-31 09:17+0000\n"
 "PO-Revision-Date: 2021-12-17 17:56+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
@@ -55,7 +55,6 @@ msgid "GNOME dummy"
 msgstr "GNOME dummy"
 
 #: data/gnome-wayland.desktop.in.in:3
-#| msgid "GNOME on Xorg"
 msgid "GNOME on Wayland"
 msgstr "Wayland üzerinde GNOME"
 
@@ -159,7 +158,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_Çıkış"
 
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:408
 msgid "Enable debugging code"
 msgstr "Kod hatası ayıklamayı etkinleştir"
 
@@ -171,7 +170,7 @@ msgstr "Çıkışa izin ver"
 msgid "Show extension warning"
 msgstr "Eklenti uyarısını göster"
 
-#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1999
+#: gnome-session/gsm-manager.c:1317 gnome-session/gsm-manager.c:2058
 msgid "Not responding"
 msgstr "Yanıtlamıyor"
 
@@ -191,63 +190,63 @@ msgstr "Anımsanan Uygulama"
 msgid "This program is blocking logout."
 msgstr "Bu program, oturumu kapatmayı engelliyor."
 
-#: gnome-session/gsm-xsmp-server.c:338
+#: gnome-session/gsm-xsmp-server.c:340
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr "Oturum şu anda kapatıldığından yeni istemci bağlantısı reddediliyor\n"
 
-#: gnome-session/gsm-xsmp-server.c:605
+#: gnome-session/gsm-xsmp-server.c:607
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "ICE dinleme soketi oluşturulamadı: %s"
 
-#: gnome-session/main.c:398
+#: gnome-session/main.c:402
 msgid "Running as systemd service"
 msgstr "systemd servisi olarak çalışıyor"
 
-#: gnome-session/main.c:399
+#: gnome-session/main.c:403
 msgid "Use systemd session management"
 msgstr "systemd oturum yönetimini kullan"
 
-#: gnome-session/main.c:401
+#: gnome-session/main.c:405
 msgid "Use builtin session management (rather than the systemd based one)"
 msgstr "Yerleşik oturum yönetimini kullan (systemd temelli yerine)"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:406
 msgid "Override standard autostart directories"
 msgstr "Standart kendiliğinden başlat dizinlerinin yerine geç"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:406
 msgid "AUTOSTART_DIR"
 msgstr "KENDILIGINDANBASLAT_DIZINI"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:407
 msgid "Session to use"
 msgstr "Kullanılacak oturum"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:407
 msgid "SESSION_NAME"
 msgstr "OTURUM_ADI"
 
-#: gnome-session/main.c:405
+#: gnome-session/main.c:409
 msgid "Do not load user-specified applications"
 msgstr "Kullanıcıya özel programları yükleme"
 
-#: gnome-session/main.c:406
+#: gnome-session/main.c:410
 msgid "Version of this application"
 msgstr "Bu uygulamanın sürümü"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:408
+#: gnome-session/main.c:412
 msgid "Show the fail whale dialog for testing"
 msgstr "Sınama için büyük hata iletişim penceresini göster"
 
-#: gnome-session/main.c:409
+#: gnome-session/main.c:413
 msgid "Disable hardware acceleration check"
 msgstr "Donanım hızlandırma denetimini devre dışı bırak"
 
-#: gnome-session/main.c:441
+#: gnome-session/main.c:445
 msgid " — the GNOME session manager"
 msgstr " — GNOME oturum yöneticisi"
 
@@ -375,33 +374,3 @@ msgstr "Oturum adları “/” karakterini içeremez"
 #, c-format
 msgid "A session named “%s” already exists"
 msgstr "“%s” adında oturum var"
-
-#~ msgid "Additional startup _programs:"
-#~ msgstr "Ek başlangıç _programları:"
-
-#~ msgid "Startup Programs"
-#~ msgstr "Başlangıç Uygulamaları"
-
-#~ msgid "_Automatically remember running applications when logging out"
-#~ msgstr "Çıkarken çalışan uygulamaları kendiliğindne _hatırla"
-
-#~ msgid "_Remember Currently Running Applications"
-#~ msgstr "Şu Anda Çalışan Uygulamaları Hatı_rla"
-
-#~ msgid "Options"
-#~ msgstr "Seçenekler"
-
-#~ msgid "Browse…"
-#~ msgstr "Gözat…"
-
-#~ msgid "Comm_ent:"
-#~ msgstr "_Açıklama:"
-
-#~ msgid "Co_mmand:"
-#~ msgstr "_Komut:"
-
-#~ msgid "_Name:"
-#~ msgstr "İ_sim:"
-
-#~ msgid "This session logs you into GNOME, using Wayland"
-#~ msgstr "GNOME'da Wayland kullanarak oturum açmanızı sağlar"
