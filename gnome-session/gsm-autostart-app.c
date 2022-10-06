@@ -1364,7 +1364,9 @@ gsm_autostart_app_initable_init (GInitable *initable,
         priv->app_info = g_desktop_app_info_new_from_filename (priv->desktop_filename);
         if (priv->app_info == NULL) {
                 g_set_error (error, G_IO_ERROR, G_IO_ERROR_FAILED,
-                             "Could not parse desktop file %s or it references a not found TryExec binary", priv->desktop_id);
+                             "Desktop file %s for application %s could not be parsed or references a missing TryExec binary",
+                             priv->desktop_filename,
+                             priv->desktop_id);
                 return FALSE;
         }
 
