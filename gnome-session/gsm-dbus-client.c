@@ -49,10 +49,11 @@ struct _GsmDBusClient
         guint                 watch_id;
 };
 
-enum {
-        PROP_0,
-        PROP_BUS_NAME
-};
+typedef enum {
+        PROP_BUS_NAME = 1,
+} GsmDBusClientProperty;
+
+static GParamSpec *props[PROP_BUS_NAME + 1] = { NULL, };
 
 G_DEFINE_TYPE (GsmDBusClient, gsm_dbus_client, GSM_TYPE_CLIENT)
 
@@ -230,7 +231,7 @@ gsm_dbus_client_set_bus_name (GsmDBusClient  *client,
         g_free (client->bus_name);
 
         client->bus_name = g_strdup (bus_name);
-        g_object_notify (G_OBJECT (client), "bus-name");
+        g_object_notify_by_pspec (G_OBJECT (client), props[PROP_BUS_NAME]);
 
         if (!get_caller_info (client, bus_name, NULL, &client->caller_pid)) {
                 client->caller_pid = 0;
@@ -259,11 +260,9 @@ gsm_dbus_client_set_property (GObject       *object,
                               const GValue  *value,
                               GParamSpec    *pspec)
 {
-        GsmDBusClient *self;
+        GsmDBusClient *self = GSM_DBUS_CLIENT (object);
 
-        self = GSM_DBUS_CLIENT (object);
-
-        switch (prop_id) {
+        switch ((GsmDBusClientProperty) prop_id) {
         case PROP_BUS_NAME:
                 gsm_dbus_client_set_bus_name (self, g_value_get_string (value));
                 break;
@@ -279,11 +278,9 @@ gsm_dbus_client_get_property (GObject    *object,
                               GValue     *value,
                               GParamSpec *pspec)
 {
-        GsmDBusClient *self;
+        GsmDBusClient *self = GSM_DBUS_CLIENT (object);
 
-        self = GSM_DBUS_CLIENT (object);
-
-        switch (prop_id) {
+        switch ((GsmDBusClientProperty) prop_id) {
         case PROP_BUS_NAME:
                 g_value_set_string (value, self->bus_name);
                 break;
@@ -417,13 +414,14 @@ gsm_dbus_client_class_init (GsmDBusClientClass *klass)
         client_class->impl_get_restart_style_hint = dbus_client_get_restart_style_hint;
         client_class->impl_get_unix_process_id    = dbus_client_get_unix_process_id;
 
-        g_object_class_install_property (object_class,
-                                         PROP_BUS_NAME,
-                                         g_param_spec_string ("bus-name",
-                                                              "bus-name",
-                                                              "bus-name",
-                                                              NULL,
-                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+        props[PROP_BUS_NAME] =
+                g_param_spec_string ("bus-name",
+                                     "bus-name",
+                                     "bus-name",
+                                     NULL,
+                                     G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
+
+        g_object_class_install_properties (object_class, G_N_ELEMENTS (props), props);
 }
 
 GsmClient *
