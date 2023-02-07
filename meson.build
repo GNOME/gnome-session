@@ -6,7 +6,6 @@ project(
   meson_version: '>= 0.53.0'
 )
 
-prefix = get_option('prefix')
 session_version = meson.project_version()
 session_api_name = '@0@-@1@'.format(meson.project_name(), session_version.split('.')[0])
 
