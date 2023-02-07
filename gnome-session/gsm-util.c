@@ -324,7 +324,7 @@ gsm_util_get_desktop_dirs (gboolean include_saved_session,
         size = 0;
         for (i = 0; apps[i] != NULL; i++) { size++; }
         for (i = 0; autostart[i] != NULL; i++) { size++; }
-        if (autostart_dirs != NULL)
+        if (standard_autostart != NULL)
                 for (i = 0; standard_autostart[i] != NULL; i++) { size++; }
         if (include_saved_session)
                 size += 1;
