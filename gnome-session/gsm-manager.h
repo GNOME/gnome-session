@@ -86,7 +86,9 @@ GsmManager *        gsm_manager_new                            (GsmStore       *
                                                                 gboolean        systemd_managed);
 GsmManager *        gsm_manager_get                            (void);
 
+
 gboolean            gsm_manager_get_failsafe                   (GsmManager     *manager);
+gboolean            gsm_manager_get_dbus_disconnected          (GsmManager *manager);
 gboolean            gsm_manager_get_systemd_managed            (GsmManager     *manager);
 
 gboolean            gsm_manager_add_autostart_app              (GsmManager     *manager,
