@@ -77,7 +77,7 @@ typedef GObjectClass GsmSystemNullClass;
 
 static void do_nothing (void) { }
 static gboolean return_true (void) { return TRUE; }
-static gboolean return_false (void) { return TRUE; }
+static gboolean return_false (void) { return FALSE; }
 
 static void
 gsm_system_null_init_iface (GsmSystemInterface *iface)
