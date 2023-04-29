@@ -21,8 +21,6 @@
 #include "config.h"
 #include "gsm-systemd.h"
 
-#ifdef HAVE_SYSTEMD
-
 #include <errno.h>
 #include <string.h>
 #include <stdlib.h>
@@ -1171,13 +1169,4 @@ sd_proxy_signal_cb (GDBusProxy  *proxy,
         }
 }
 
-#else
-
-GsmSystemd *
-gsm_systemd_new (void)
-{
-        return NULL;
-}
-
-#endif
 

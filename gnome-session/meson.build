@@ -60,10 +60,6 @@ foreach iface: dbus_ifaces
   )
 endforeach
 
-if enable_consolekit
-  sources += files('gsm-consolekit.c')
-endif
-
 cflags = [
   '-DLOCALE_DIR="@0@"'.format(session_localedir),
   '-DDATA_DIR="@0@"'.format(session_pkgdatadir),

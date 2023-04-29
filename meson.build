@@ -111,68 +111,30 @@ session_bin_deps = session_deps + [
 # Check for session selector GTK+ UI
 enable_session_selector = get_option('session_selector')
 
-# Check for session tracking backend
-session_tracking = 'null backend'
+session_bin_deps += dependency('gio-unix-2.0', version: glib_req_version)
 
-enable_systemd = get_option('systemd')
-enable_systemd_session = get_option('systemd_session') != 'disable'
-use_systemd_session = get_option('systemd_session') == 'default'
-enable_systemd_journal = get_option('systemd_journal')
-enable_consolekit = get_option('consolekit')
-if enable_systemd or enable_consolekit
-  session_bin_deps += dependency('gio-unix-2.0', version: glib_req_version)
-
-  # Check for systemd
-  if enable_systemd
-    systemd_userunitdir = get_option('systemduserunitdir')
-    if systemd_userunitdir == ''
-      systemd_dep = dependency('systemd', version: '>= 242', required: true)
-      systemd_userunitdir = systemd_dep.get_pkgconfig_variable('systemduserunitdir',
-                                                               define_variable: ['prefix', prefix])
-    endif
-
-    libsystemd_dep = dependency('libsystemd', version: '>= 209', required: false)
-    session_bin_deps += libsystemd_dep
-
-    if not libsystemd_dep.found()
-      libsystemd_login_dep = dependency('libsystemd-login', version: '>= 183', required: false)
-      libsystemd_daemon_dep = dependency('libsystemd-daemon', required: false)
-      libsystemd_journal_dep = dependency('libsystemd-journal', required: false)
-      assert(libsystemd_login_dep.found() and libsystemd_daemon_dep.found() and libsystemd_journal_dep.found(),
-             'Systemd support explicitly required, but systemd not found')
-
-      session_bin_deps += [
-        libsystemd_login_dep,
-        libsystemd_daemon_dep,
-        libsystemd_journal_dep
-      ]
-    endif
-
-    session_tracking = 'systemd'
-  endif
-
-  # Check for ConsoleKit
-  if enable_consolekit
-    dbus_glib_dep = dependency('dbus-glib-1', version: '>= 0.76')
-    assert(dbus_glib_dep.found(), 'ConsoleKit support explicitly required, but dbus-glib not found')
-
-    session_bin_deps += dbus_glib_dep
-
-    if enable_systemd
-      session_tracking += ' (with fallback to ConsoleKit)'
-    else
-      session_tracking = 'ConsoleKit'
-    endif
-  endif
+# Check for systemd
+systemd_userunitdir = get_option('systemduserunitdir')
+if systemd_userunitdir == ''
+  systemd_dep = dependency('systemd', version: '>= 242', required: true)
+  systemd_userunitdir = systemd_dep.get_pkgconfig_variable('systemduserunitdir',
+                                                            define_variable: ['prefix', prefix])
 endif
-if enable_systemd_session
-  assert(enable_systemd, 'Systemd support must be enabled when using systemd session management')
+
+libsystemd_dep = dependency('libsystemd', version: '>= 209', required: false)
+if libsystemd_dep.found()
+  session_bin_deps += libsystemd_dep
+else
+  libsystemd_login_dep = dependency('libsystemd-login', version: '>= 183', required: true)
+  libsystemd_daemon_dep = dependency('libsystemd-daemon', required: true)
+  libsystemd_journal_dep = dependency('libsystemd-journal', required: true)
+
+  session_bin_deps += [
+    libsystemd_login_dep,
+    libsystemd_daemon_dep,
+    libsystemd_journal_dep
+  ]
 endif
-config_h.set('HAVE_SYSTEMD', enable_systemd)
-config_h.set('ENABLE_SYSTEMD_SESSION', enable_systemd_session)
-config_h.set('ENABLE_SYSTEMD_JOURNAL', enable_systemd_journal)
-config_h.set('HAVE_CONSOLEKIT', enable_consolekit)
-config_h.set10('USE_SYSTEMD_SESSION', use_systemd_session)
 
 configure_file(
   output: 'config.h',
@@ -219,7 +181,7 @@ output += '        compiler:                 ' + cc.get_id() + '\n'
 output += '        cflags:                   ' + ' '.join(compiler_flags) + '\n'
 output += '        Debug mode:               ' + session_debug.to_string() + '\n'
 output += '        Use *_DISABLE_DEPRECATED: ' + enable_deprecation_flags.to_string() + '\n\n'
-output += '        Session tracking:         ' + session_tracking + ' \n'
+output += '        Session tracking:         ' + 'systemd' + ' \n'
 output += '        Build Docbook:            ' + enable_docbook.to_string() + '\n'
 output += '        Build manpages:           ' + enable_man.to_string()
 message(output)
