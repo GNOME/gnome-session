@@ -103,16 +103,9 @@ foreach session: sessions
   )
 endforeach
 
-schema_conf = configuration_data()
-
-schema = 'org.gnome.SessionManager.gschema.xml'
-
-configure_file(
-  input: schema + '.in',
-  output: schema,
-  install: true,
+install_data(
+  'org.gnome.SessionManager.gschema.xml',
   install_dir: join_paths(session_datadir, 'glib-2.0', 'schemas'),
-  configuration: schema_conf
 )
 
 install_data(

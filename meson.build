@@ -3,7 +3,7 @@ project(
   version: '45.0',
   license: 'GPL2+',
   default_options: 'buildtype=debugoptimized',
-  meson_version: '>= 0.53.0'
+  meson_version: '>= 0.60.0'
 )
 
 prefix = get_option('prefix')
@@ -117,8 +117,8 @@ session_bin_deps += dependency('gio-unix-2.0', version: glib_req_version)
 systemd_userunitdir = get_option('systemduserunitdir')
 if systemd_userunitdir == ''
   systemd_dep = dependency('systemd', version: '>= 242', required: true)
-  systemd_userunitdir = systemd_dep.get_pkgconfig_variable('systemduserunitdir',
-                                                            define_variable: ['prefix', prefix])
+  systemd_userunitdir = systemd_dep.get_variable(pkgconfig: 'systemduserunitdir',
+                                                 pkgconfig_define: ['prefix', prefix])
 endif
 
 libsystemd_dep = dependency('libsystemd', version: '>= 209', required: false)
@@ -145,7 +145,7 @@ gnome = import('gnome')
 i18n = import('i18n')
 pkg = import('pkgconfig')
 
-po_dir = join_paths(meson.source_root(), 'po')
+po_dir = join_paths(meson.project_source_root(), 'po')
 
 top_inc = include_directories('.')
 
@@ -176,7 +176,7 @@ output += '        sbindir:                  ' + session_sbindir + '\n'
 output += '        sysconfdir:               ' + session_sysconfdir + '\n'
 output += '        localstatedir:            ' + session_localstatedir + '\n'
 output += '        datadir:                  ' + session_datadir + '\n'
-output += '        source code location:     ' + meson.source_root() + '\n'
+output += '        source code location:     ' + meson.project_source_root() + '\n'
 output += '        compiler:                 ' + cc.get_id() + '\n'
 output += '        cflags:                   ' + ' '.join(compiler_flags) + '\n'
 output += '        Debug mode:               ' + session_debug.to_string() + '\n'

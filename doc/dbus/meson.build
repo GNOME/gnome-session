@@ -8,7 +8,7 @@ ifaces = [
   'org.gnome.SessionManager.Presence'
 ]
 
-gnome_session_dir = join_paths(meson.source_root(), 'gnome-session')
+gnome_session_dir = join_paths(meson.project_source_root(), 'gnome-session')
 spec_to_docbook = files('spec-to-docbook.xsl')
 
 foreach iface: ifaces
