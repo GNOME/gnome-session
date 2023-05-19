@@ -40,7 +40,6 @@ typedef void (*GsmFillHandleComponent) (const char *component,
 
 static void
 handle_required_components (GKeyFile               *keyfile,
-                            gboolean                look_in_saved_session,
                             GsmFillHandleComponent  callback,
                             gpointer                user_data)
 {
@@ -62,7 +61,7 @@ handle_required_components (GKeyFile               *keyfile,
                 char *app_path;
 
                 app_path = gsm_util_find_desktop_file_for_app_name (required_components[i],
-                                                                    look_in_saved_session, TRUE);
+                                                                    TRUE);
                 callback (required_components[i], app_path, user_data);
                 g_free (app_path);
         }
@@ -90,28 +89,13 @@ check_required (GKeyFile *keyfile)
 
         g_debug ("fill: *** Checking required components");
 
-        handle_required_components (keyfile, FALSE,
-                                    check_required_components_helper, &error);
+        handle_required_components (keyfile,
+                                    check_required_components_helper,
+                                    &error);
 
         g_debug ("fill: *** Done checking required components");
 
         return !error;
-}
-
-static void
-maybe_load_saved_session_apps (GsmManager *manager)
-{
-        GsmSystem *system;
-        gboolean is_login;
-
-        system = gsm_get_system ();
-        is_login = gsm_system_is_login_session (system);
-        g_object_unref (system);
-
-        if (is_login)
-                return;
-
-        gsm_manager_add_autostart_apps_from_dir (manager, gsm_util_get_saved_session_dir ());
 }
 
 static void
@@ -132,12 +116,10 @@ static void
 load_standard_apps (GsmManager *manager,
                     GKeyFile   *keyfile)
 {
-        /* Note that saving/restoring sessions is not really possible on systemd, as
-         * XSMP clients cannot be reliably mapped to .desktop files. */
         g_debug ("fill: *** Adding required components");
         handle_required_components (keyfile,
-                                    !gsm_manager_get_failsafe (manager) && !gsm_manager_get_systemd_managed (manager),
-                                    append_required_components_helper, manager);
+                                    append_required_components_helper,
+                                    manager);
         g_debug ("fill: *** Done adding required components");
 
         if (!gsm_manager_get_failsafe (manager)) {
@@ -145,9 +127,6 @@ load_standard_apps (GsmManager *manager,
                 int    i;
 
                 autostart_dirs = gsm_util_get_autostart_dirs ();
-
-                if (!gsm_manager_get_systemd_managed (manager))
-                        maybe_load_saved_session_apps (manager);
 
                 for (i = 0; autostart_dirs[i]; i++) {
                         gsm_manager_add_autostart_apps_from_dir (manager,

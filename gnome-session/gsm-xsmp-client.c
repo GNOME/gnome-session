@@ -526,8 +526,7 @@ get_desktop_file_path (GsmXSMPClient *client)
 
         program_name = prop->vals[0].value;
         desktop_file_path =
-                gsm_util_find_desktop_file_for_app_name (program_name,
-                                                         TRUE, FALSE);
+                gsm_util_find_desktop_file_for_app_name (program_name, FALSE);
 
 out:
         g_debug ("GsmXSMPClient: desktop file for client %s is %s",

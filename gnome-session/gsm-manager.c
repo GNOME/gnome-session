@@ -61,7 +61,6 @@
 #include "gsm-util.h"
 #include "gsm-icon-names.h"
 #include "gsm-system.h"
-#include "gsm-session-save.h"
 #include "gsm-shell-extensions.h"
 #include "gsm-fail-whale.h"
 
@@ -91,8 +90,6 @@
 #define KEY_SESSION_NAME          "session-name"
 
 #define GSM_MANAGER_SCHEMA        "org.gnome.SessionManager"
-#define KEY_AUTOSAVE              "auto-save-session"
-#define KEY_AUTOSAVE_ONE_SHOT     "auto-save-session-one-shot"
 #define KEY_LOGOUT_PROMPT         "logout-prompt"
 #define KEY_SHOW_FALLBACK_WARNING "show-fallback-warning"
 
@@ -190,9 +187,6 @@ static guint signals [LAST_SIGNAL] = { 0 };
 
 static void     gsm_manager_class_init  (GsmManagerClass *klass);
 static void     gsm_manager_init        (GsmManager      *manager);
-
-static gboolean auto_save_is_enabled (GsmManager *manager);
-static void     maybe_save_session   (GsmManager *manager);
 
 static gboolean _log_out_is_locked_down     (GsmManager *manager);
 
@@ -562,7 +556,6 @@ end_phase (GsmManager *manager)
                         start_next_phase = FALSE;
                 break;
         case GSM_MANAGER_PHASE_END_SESSION:
-                maybe_save_session (manager);
                 break;
         case GSM_MANAGER_PHASE_EXIT:
                 start_next_phase = FALSE;
@@ -891,9 +884,6 @@ do_phase_end_session (GsmManager *manager)
         if (priv->logout_mode == GSM_MANAGER_LOGOUT_MODE_FORCE) {
                 data.flags |= GSM_CLIENT_END_SESSION_FLAG_FORCEFUL;
         }
-        if (auto_save_is_enabled (manager)) {
-                data.flags |= GSM_CLIENT_END_SESSION_FLAG_SAVE;
-        }
 
         if (priv->phase_timeout_id > 0) {
                 g_source_remove (priv->phase_timeout_id);
@@ -924,9 +914,6 @@ do_phase_end_session_part_2 (GsmManager *manager)
 
         if (priv->logout_mode == GSM_MANAGER_LOGOUT_MODE_FORCE) {
                 data.flags |= GSM_CLIENT_END_SESSION_FLAG_FORCEFUL;
-        }
-        if (auto_save_is_enabled (manager)) {
-                data.flags |= GSM_CLIENT_END_SESSION_FLAG_SAVE;
         }
         data.flags |= GSM_CLIENT_END_SESSION_FLAG_LAST;
 
@@ -1956,50 +1943,6 @@ on_xsmp_client_register_confirmed (GsmXSMPClient *client,
         }
 }
 #endif
-
-static gboolean
-auto_save_is_enabled (GsmManager *manager)
-{
-        GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
-
-        /* Note that saving/restoring sessions is not really possible on systemd, as
-         * XSMP clients cannot be reliably mapped to .desktop files. */
-        if (priv->systemd_managed)
-                return FALSE;
-
-        return g_settings_get_boolean (priv->settings, KEY_AUTOSAVE_ONE_SHOT)
-            || g_settings_get_boolean (priv->settings, KEY_AUTOSAVE);
-}
-
-static void
-maybe_save_session (GsmManager *manager)
-{
-        GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
-        GError *error;
-
-        if (gsm_system_is_login_session (priv->system))
-                return;
-
-        /* We only allow session saving when session is running or when
-         * logging out */
-        if (priv->phase != GSM_MANAGER_PHASE_RUNNING &&
-            priv->phase != GSM_MANAGER_PHASE_END_SESSION) {
-                return;
-        }
-
-        if (!auto_save_is_enabled (manager)) {
-                gsm_session_save_clear ();
-                return;
-        }
-
-        error = NULL;
-        gsm_session_save (priv->clients, priv->apps, &error);
-
-        if (error) {
-                g_warning ("Error saving session: %s", error->message);
-                g_error_free (error);
-        }
-}
 
 static void
 _handle_client_end_session_response (GsmManager *manager,

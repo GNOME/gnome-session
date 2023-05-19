@@ -32,7 +32,6 @@
 
 #include "gsm-util.h"
 
-static gchar *_saved_session_dir = NULL;
 static gchar **child_environment;
 
 /* These are variables that will not be passed on to subprocesses
@@ -86,7 +85,6 @@ static const char * const variable_unsetlist[] = {
 
 char *
 gsm_util_find_desktop_file_for_app_name (const char *name,
-                                         gboolean    look_in_saved_session,
                                          gboolean    autostart_first)
 {
         char     *app_path;
@@ -97,7 +95,7 @@ gsm_util_find_desktop_file_for_app_name (const char *name,
 
         app_path = NULL;
 
-        app_dirs = gsm_util_get_desktop_dirs (look_in_saved_session, autostart_first);
+        app_dirs = gsm_util_get_desktop_dirs (autostart_first);
 
         key_file = g_key_file_new ();
 
@@ -142,84 +140,6 @@ gsm_util_find_desktop_file_for_app_name (const char *name,
         g_strfreev (app_dirs);
 
         return app_path;
-}
-
-static gboolean
-ensure_dir_exists (const char *dir)
-{
-        if (g_mkdir_with_parents (dir, 0700) == 0)
-                return TRUE;
-
-        g_warning ("GsmSessionSave: Failed to create directory %s: %s", dir, strerror (errno));
-
-        return FALSE;
-}
-
-gchar *
-gsm_util_get_empty_tmp_session_dir (void)
-{
-        char *tmp;
-        gboolean exists;
-
-        tmp = g_build_filename (g_get_user_config_dir (),
-                                "gnome-session",
-                                "saved-session.new",
-                                NULL);
-
-        exists = ensure_dir_exists (tmp);
-
-        if (G_UNLIKELY (!exists)) {
-                g_warning ("GsmSessionSave: could not create directory for saved session: %s", tmp);
-                g_free (tmp);
-                return NULL;
-        } else {
-                /* make sure it's empty */
-                GDir       *dir;
-                const char *filename;
-
-                dir = g_dir_open (tmp, 0, NULL);
-                if (dir) {
-                        while ((filename = g_dir_read_name (dir))) {
-                                char *path = g_build_filename (tmp, filename,
-                                                               NULL);
-                                g_unlink (path);
-                        }
-                        g_dir_close (dir);
-                }
-        }
-
-        return tmp;
-}
-
-const gchar *
-gsm_util_get_saved_session_dir (void)
-{
-        if (_saved_session_dir == NULL) {
-                gboolean exists;
-
-                _saved_session_dir =
-                        g_build_filename (g_get_user_config_dir (),
-                                          "gnome-session",
-                                          "saved-session",
-                                          NULL);
-
-                exists = ensure_dir_exists (_saved_session_dir);
-
-                if (G_UNLIKELY (!exists)) {
-                        static gboolean printed_warning = FALSE;
-
-                        if (!printed_warning) {
-                                g_warning ("GsmSessionSave: could not create directory for saved session: %s", _saved_session_dir);
-                                printed_warning = TRUE;
-                        }
-
-                        _saved_session_dir = NULL;
-
-                        return NULL;
-                }
-        }
-
-        return _saved_session_dir;
 }
 
 static char ** autostart_dirs;
@@ -301,8 +221,7 @@ gsm_util_get_app_dirs ()
 }
 
 char **
-gsm_util_get_desktop_dirs (gboolean include_saved_session,
-                           gboolean autostart_first)
+gsm_util_get_desktop_dirs (gboolean autostart_first)
 {
         char **apps;
         char **autostart;
@@ -326,17 +245,12 @@ gsm_util_get_desktop_dirs (gboolean include_saved_session,
         for (i = 0; autostart[i] != NULL; i++) { size++; }
         if (standard_autostart != NULL)
                 for (i = 0; standard_autostart[i] != NULL; i++) { size++; }
-        if (include_saved_session)
-                size += 1;
 
         result = g_new (char *, size + 1); /* including last NULL */
 
         size = 0;
 
         if (autostart_first) {
-                if (include_saved_session)
-                        result[size++] = g_strdup (gsm_util_get_saved_session_dir ());
-
                 for (i = 0; autostart[i] != NULL; i++, size++) {
                         result[size] = autostart[i];
                 }
@@ -360,9 +274,6 @@ gsm_util_get_desktop_dirs (gboolean include_saved_session,
                 for (i = 0; autostart[i] != NULL; i++, size++) {
                         result[size] = autostart[i];
                 }
-
-                if (include_saved_session)
-                        result[size++] = g_strdup (gsm_util_get_saved_session_dir ());
         }
 
         g_free (apps);
