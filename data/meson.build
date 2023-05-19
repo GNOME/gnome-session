@@ -108,11 +108,6 @@ install_data(
   install_dir: join_paths(session_datadir, 'glib-2.0', 'schemas'),
 )
 
-install_data(
-  'gnome-session.convert',
-  install_dir: join_paths(session_datadir, 'GConf', 'gsettings')
-)
-
 unit_conf = configuration_data()
 unit_conf.set('libexecdir', session_libexecdir)
 
