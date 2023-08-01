@@ -36,8 +36,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2020-07-31 14:02+0000\n"
-"PO-Revision-Date: 2020-09-30 23:04+0300\n"
+"POT-Creation-Date: 2023-05-05 13:09+0000\n"
+"PO-Revision-Date: 2023-08-01 23:42+0300\n"
 "Last-Translator: Efstathios Iosifidis <eiosifidis@gnome.org>\n"
 "Language-Team: Greek, Modern (1453-) <gnome-el-list@gnome.org>\n"
 "Language: el\n"
@@ -45,7 +45,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.3.2\n"
 "X-Project-Style: gnome\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
@@ -57,7 +57,6 @@ msgid "This entry lets you select a saved session"
 msgstr "Αυτή η καταχώριση επιτρέπει την επιλογή μιας αποθηκευμένης συνεδρίας"
 
 #: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
-#: data/gnome-wayland.desktop.in.in:3
 msgid "GNOME"
 msgstr "GNOME"
 
@@ -69,6 +68,10 @@ msgstr "Αυτή η συνεδρία σας συνδέει στο GNOME"
 #: data/gnome-dummy.session.desktop.in.in:3
 msgid "GNOME dummy"
 msgstr "Εικονικό GNOME"
+
+#: data/gnome-wayland.desktop.in.in:3
+msgid "GNOME on Wayland"
+msgstr "GNOME σε Wayland"
 
 #: data/gnome-xorg.desktop.in.in:3
 msgid "GNOME on Xorg"
@@ -174,7 +177,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "Απο_σύνδεση"
 
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:412
 msgid "Enable debugging code"
 msgstr "Ενεργοποίηση κώδικα αποφαλμάτωσης"
 
@@ -186,11 +189,11 @@ msgstr "Να επιτρέπεται αποσύνδεση"
 msgid "Show extension warning"
 msgstr "Προβολή προειδοποίησης επέκτασης"
 
-#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1999
+#: gnome-session/gsm-manager.c:1317 gnome-session/gsm-manager.c:2068
 msgid "Not responding"
 msgstr "Δεν ανταποκρίνεται"
 
-#: gnome-session/gsm-util.c:415
+#: gnome-session/gsm-util.c:431
 msgid "_Log out"
 msgstr "_Αποσύνδεση"
 
@@ -206,66 +209,66 @@ msgstr "Απομνημόνευση εφαρμογών"
 msgid "This program is blocking logout."
 msgstr "Αυτό το πρόγραμμα εμποδίζει την αποσύνδεση."
 
-#: gnome-session/gsm-xsmp-server.c:338
+#: gnome-session/gsm-xsmp-server.c:340
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr ""
 "Άρνηση σύνδεσης νέου πελάτη επειδή το σύστημα τερματίζεται αυτή τη στιγμή\n"
 
-#: gnome-session/gsm-xsmp-server.c:605
+#: gnome-session/gsm-xsmp-server.c:607
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Αδυναμία δημιουργίας υποδοχής ακρόασης ICE: %s"
 
-#: gnome-session/main.c:398
+#: gnome-session/main.c:406
 msgid "Running as systemd service"
 msgstr "Εκτελείται ως υπηρεσία systemd"
 
-#: gnome-session/main.c:399
+#: gnome-session/main.c:407
 msgid "Use systemd session management"
 msgstr "Χρήση διαχείριση συνεδρίας systemd"
 
-#: gnome-session/main.c:401
+#: gnome-session/main.c:409
 msgid "Use builtin session management (rather than the systemd based one)"
 msgstr ""
 "Χρήση της ενσωματωμένης διαχείρισης συνεδρίας (και όχι την βασισμένη στο "
 "systemd)"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:410
 msgid "Override standard autostart directories"
 msgstr "Παράκαμψη τυπικών καταλόγων αυτόματης εκκίνησης"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:410
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:411
 msgid "Session to use"
 msgstr "Συνεδρία για χρήση"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:411
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: gnome-session/main.c:405
+#: gnome-session/main.c:413
 msgid "Do not load user-specified applications"
 msgstr "Να μην φορτώνονται εφαρμογές καθορισμένες από τον χρήστη"
 
-#: gnome-session/main.c:406
+#: gnome-session/main.c:414
 msgid "Version of this application"
 msgstr "Η έκδοση αυτής της εφαρμογής"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:408
+#: gnome-session/main.c:416
 msgid "Show the fail whale dialog for testing"
 msgstr "Εμφάνιση του διαλόγου fail whale για δοκιμή"
 
-#: gnome-session/main.c:409
+#: gnome-session/main.c:417
 msgid "Disable hardware acceleration check"
 msgstr "Απενεργοποίηση ελέγχου επιτάχυνσης υλικού"
 
-#: gnome-session/main.c:441
+#: gnome-session/main.c:449
 msgid " — the GNOME session manager"
 msgstr " — ο διαχειριστής συνεδρίας του GNOME"
 
@@ -665,11 +668,11 @@ msgstr "Υπάρχει ήδη μια συνεδρία με όνομα «%s»"
 
 #~ msgid ""
 #~ "List of components that are required as part of the session. (Each "
-#~ "element names a key under \"/desktop/gnome/session/required_components"
-#~ "\"). The Startup Applications preferences tool will not normally allow "
-#~ "users to remove a required component from the session, and the session "
-#~ "manager will automatically add the required components back to the "
-#~ "session at login time if they do get removed."
+#~ "element names a key under \"/desktop/gnome/session/"
+#~ "required_components\"). The Startup Applications preferences tool will "
+#~ "not normally allow users to remove a required component from the session, "
+#~ "and the session manager will automatically add the required components "
+#~ "back to the session at login time if they do get removed."
 #~ msgstr ""
 #~ "Μια λίστα με στοιχεία που είναι απαραίτητα μέρη της συνεδρίας. (Κάθε "
 #~ "στοιχείο ονομάζει ένα κλειδί στο \"/desktop/gnome/session/"
