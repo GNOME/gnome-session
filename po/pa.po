@@ -4,20 +4,20 @@
 #
 # Amanpreet Singh Alam <amanliunx@netscapet.net>, 2004.
 # Amanpreet Singh Alam <aalam@users.sf.net>, 2005, 2007, 2008.
-# A S Alam <aalam@users.sf.net>, 2009, 2010, 2011, 2012, 2013, 2015, 2018, 2020, 2021.
+# A S Alam <aalam@users.sf.net>, 2009, 2010, 2011, 2012, 2013, 2015, 2018, 2020, 2021, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2020-07-31 14:02+0000\n"
-"PO-Revision-Date: 2021-01-31 08:45-0800\n"
+"POT-Creation-Date: 2023-05-05 13:09+0000\n"
+"PO-Revision-Date: 2023-08-30 19:03-0700\n"
 "Last-Translator: A S Alam <aalam@satluj.org>\n"
 "Language-Team: Punjabi <punjabi-translation@googlegroups.com>\n"
 "Language: pa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 20.08.1\n"
+"X-Generator: Lokalize 23.04.3\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
@@ -29,7 +29,6 @@ msgid "This entry lets you select a saved session"
 msgstr "ਇਹ ਐਂਟਰੀ ਤੁਹਾਨੂੰ ਸੰਭਾਲਿਆ ਸ਼ੈਸ਼ਨ ਚੁਣਨ ਦਿੰਦੀ ਹੈ"
 
 #: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
-#: data/gnome-wayland.desktop.in.in:3
 msgid "GNOME"
 msgstr "ਗਨੋਮ"
 
@@ -41,6 +40,11 @@ msgstr "ਇਹ ਸ਼ੈਸ਼ਨ ਤੁਹਾਨੂੰ ਗਨੋਮ ਵਿੱ�
 #: data/gnome-dummy.session.desktop.in.in:3
 msgid "GNOME dummy"
 msgstr "ਗਨੋਮ ਡੰਮੀ"
+
+#: data/gnome-wayland.desktop.in.in:3
+#| msgid "GNOME on Xorg"
+msgid "GNOME on Wayland"
+msgstr "ਵੇਅਲੈਂਡ ਉੱਤੇ ਗਨੋਮ"
 
 #: data/gnome-xorg.desktop.in.in:3
 msgid "GNOME on Xorg"
@@ -151,7 +155,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "ਲਾਗ-ਆਉਟ(_L)"
 
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:412
 msgid "Enable debugging code"
 msgstr "ਡੀਬੱਗ ਕੋਡ ਯੋਗ"
 
@@ -163,12 +167,12 @@ msgstr "ਲਾਗਆਉਟ ਮਨਜ਼ੂਰ"
 msgid "Show extension warning"
 msgstr "ਇਕਸਟੈਨਸ਼ਨ ਚੇਤਾਵਨੀ ਵੇਖਾਓ"
 
-#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1999
+#: gnome-session/gsm-manager.c:1317 gnome-session/gsm-manager.c:2068
 msgid "Not responding"
 msgstr "ਕੋਈ ਜਵਾਬ ਨਹੀਂ"
 
 # gnome-session/logout.c:274
-#: gnome-session/gsm-util.c:415
+#: gnome-session/gsm-util.c:431
 msgid "_Log out"
 msgstr "ਲਾਗ-ਆਉਟ(_L)"
 
@@ -184,66 +188,66 @@ msgstr "ਯਾਦ ਰੱਖੇ ਹੋਏ ਐਪਲੀਕੇਸ਼ਨ"
 msgid "This program is blocking logout."
 msgstr "ਇਹ ਪਰੋਗਰਾਮ ਲਾਗ-ਆਉਟ ਨੂੰ ਰੋਕ ਰਿਹਾ ਹੈ।"
 
-#: gnome-session/gsm-xsmp-server.c:338
+#: gnome-session/gsm-xsmp-server.c:340
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr ""
 "ਨਵਾਂ ਕਲਾਇਟ ਕੁਨੈਕਸ਼ਨ ਤੋਂ ਇਨਕਾਰ ਕੀਤਾ ਗਿਆ ਹੈ, ਕਿਉਂਕਿ ਸ਼ੈਸ਼ਨ ਬੰਦ ਹੋ ਰਿਹਾ ਹੈ\n"
 
-#: gnome-session/gsm-xsmp-server.c:605
+#: gnome-session/gsm-xsmp-server.c:607
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "ICE ਲਿਸਨਿੰਗ ਸਾਕਟ ਬਣਾਈ ਨਹੀਂ ਜਾ ਸਕੀ: %s"
 
-#: gnome-session/main.c:398
+#: gnome-session/main.c:406
 msgid "Running as systemd service"
 msgstr "systemd ਸੇਵਾ ਵਜੋਂ ਚੱਲ ਰਿਹਾ ਹੈ"
 
 # gnome-session/main.c:66
-#: gnome-session/main.c:399
+#: gnome-session/main.c:407
 msgid "Use systemd session management"
 msgstr "systemd ਸ਼ੈਸ਼ਨ ਇੰਤਜ਼ਾਮ ਵਰਤੋਂ"
 
-#: gnome-session/main.c:401
+#: gnome-session/main.c:409
 msgid "Use builtin session management (rather than the systemd based one)"
 msgstr "ਇਹ ਬਿਲਟ-ਇਨ ਸ਼ੈਸ਼ਨ ਇੰਤਜ਼ਾਮ (systemd ਦੇ ਅਧਾਰਿਤ ਬਿਨਾਂ)"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:410
 msgid "Override standard autostart directories"
 msgstr "ਸਟੈਂਡਰਡ ਆਟੋ-ਸਟਾਰਟ ਡਾਇਰੈਕਟਰੀਆਂ ਅਣਡਿੱਠੀਆਂ"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:410
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
 # gnome-session/session-properties.c:272
-#: gnome-session/main.c:403
+#: gnome-session/main.c:411
 msgid "Session to use"
 msgstr "ਵਰਤਣ ਲਈ ਸ਼ੈਸ਼ਨ"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:411
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: gnome-session/main.c:405
+#: gnome-session/main.c:413
 msgid "Do not load user-specified applications"
 msgstr "ਖਾਸ ਵਰਤੋਂਕਾਰ ਐਪਲੀਕੇਸ਼ਨਾਂ ਨੂੰ ਲੋਡ ਨਾ ਕਰੋ"
 
-#: gnome-session/main.c:406
+#: gnome-session/main.c:414
 msgid "Version of this application"
 msgstr "ਇਸ ਐਪਲੀਕੇਸ਼ਨ ਦਾ ਵਰਜ਼ਨ"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:408
+#: gnome-session/main.c:416
 msgid "Show the fail whale dialog for testing"
 msgstr "ਟੈਸਟ ਕਰਨ ਲਈ ਵੇਲ੍ਹ ਡਾਈਲਾਗ ਵੇਖਾਓ"
 
-#: gnome-session/main.c:409
+#: gnome-session/main.c:417
 msgid "Disable hardware acceleration check"
 msgstr "ਹਾਰਡਵੇਅਰ ਐਕਸਰਲੇਸ਼ਨ ਚੈਕ ਅਸਮਰੱਥ ਕਰੋ"
 
-#: gnome-session/main.c:441
+#: gnome-session/main.c:449
 msgid " — the GNOME session manager"
 msgstr " — ਗਨੋਮ ਸ਼ੈਸ਼ਨ ਮੈਨੇਜਰ"
 
@@ -280,21 +284,6 @@ msgstr "ਪਰੋਗਰਾਮ ਨੂੰ ਪੂਰਾ ਠੀਕ ਪੈਰਾਮ�
 
 #: tools/gnome-session-inhibit.c:108
 #, c-format
-#| msgid ""
-#| "%s [OPTION…] COMMAND\n"
-#| "\n"
-#| "Execute COMMAND while inhibiting some session functionality.\n"
-#| "\n"
-#| "  -h, --help        Show this help\n"
-#| "  --version         Show program version\n"
-#| "  --app-id ID       The application id to use\n"
-#| "                    when inhibiting (optional)\n"
-#| "  --reason REASON   The reason for inhibiting (optional)\n"
-#| "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
-#| "                    logout, switch-user, suspend, idle, automount\n"
-#| "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
-#| "\n"
-#| "If no --inhibit option is specified, idle is assumed.\n"
 msgid ""
 "%s [OPTION…] COMMAND\n"
 "\n"
@@ -680,11 +669,11 @@ msgstr "“%s “ ਨਾਂ ਨਾਲ ਸ਼ੈਸ਼ਨ ਪਹਿਲਾਂ ਹੀ ਮ
 
 #~ msgid ""
 #~ "List of components that are required as part of the session. (Each "
-#~ "element names a key under \"/desktop/gnome/session/required_components"
-#~ "\"). The Startup Applications preferences tool will not normally allow "
-#~ "users to remove a required component from the session, and the session "
-#~ "manager will automatically add the required components back to the "
-#~ "session at login time if they do get removed."
+#~ "element names a key under \"/desktop/gnome/session/"
+#~ "required_components\"). The Startup Applications preferences tool will "
+#~ "not normally allow users to remove a required component from the session, "
+#~ "and the session manager will automatically add the required components "
+#~ "back to the session at login time if they do get removed."
 #~ msgstr ""
 #~ "ਭਾਗਾਂ ਦੀ ਲਿਸਟ, ਜੋ ਕਿ ਗਨੋਮ ਦੇ ਭਾਗ ਵਜੋਂ ਲੋੜੀਦੇ ਹਨ। (ਹਰ ਭਾਗ ਨੂੰ \"/desktop/gnome/"
 #~ "session/required_components\" ਵਿੱਚ ਰੱਖਿਆ ਹੈ)। ਸ਼ੁਰੂਆਤ ਐਪਲੀਕੇਸ਼ਨ ਪਸੰਦ ਟੂਲ ਯੂਜ਼ਰ ਨੂੰ ਆਮ "
@@ -825,8 +814,8 @@ msgstr "“%s “ ਨਾਂ ਨਾਲ ਸ਼ੈਸ਼ਨ ਪਹਿਲਾਂ ਹੀ ਮ
 #~ "values are \"logout\" for logging out, \"shutdown\" for halting the "
 #~ "system and \"restart\" for restarting the system."
 #~ msgstr ""
-#~ "ਇਹ ਚੋਣ ਹੈ, ਜੋ ਕਿ ਲਾਗ-ਆਉਣ ਡਾਈਲਾਗ ਵਿੱਚ ਵੇਖਾਈ ਜਾਵੇਗੀ, ਠੀਕ ਮੁੱਲ ਲਾਗ-ਆਉਣ ਲਈ \"ਲਾਗ-ਆਉਟ"
-#~ "\", ਸਿਸਟਮ ਨੂੰ ਬੰਦ ਕਰਨ ਲਈ \"ਬੰਦ ਕਰੋ\", ਅਤੇ ਮੁੜ-ਚਲਾਉਣ ਲਈ \"ਮੁੜ-ਚਲਾਓ\" ਹਨ।"
+#~ "ਇਹ ਚੋਣ ਹੈ, ਜੋ ਕਿ ਲਾਗ-ਆਉਣ ਡਾਈਲਾਗ ਵਿੱਚ ਵੇਖਾਈ ਜਾਵੇਗੀ, ਠੀਕ ਮੁੱਲ ਲਾਗ-ਆਉਣ ਲਈ \"ਲਾਗ-"
+#~ "ਆਉਟ\", ਸਿਸਟਮ ਨੂੰ ਬੰਦ ਕਰਨ ਲਈ \"ਬੰਦ ਕਰੋ\", ਅਤੇ ਮੁੜ-ਚਲਾਉਣ ਲਈ \"ਮੁੜ-ਚਲਾਓ\" ਹਨ।"
 
 #~ msgid "Configure your sessions"
 #~ msgstr "ਆਪਣੇ ਸ਼ੈਸ਼ਨ ਦੀ ਸੰਰਚਨਾ ਕਰੋ"
