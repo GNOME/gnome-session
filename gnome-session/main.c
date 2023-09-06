@@ -554,8 +554,8 @@ main (int argc, char **argv)
 
 #ifdef ENABLE_SYSTEMD_SESSION
         if (use_systemd && !systemd_service) {
-                g_autofree gchar *gnome_session_target;
-                const gchar *session_type;
+                const gchar *session_type = NULL;
+                g_autofree gchar *gnome_session_target = NULL;
 
                 session_type = g_getenv ("XDG_SESSION_TYPE");
 
@@ -565,29 +565,40 @@ main (int argc, char **argv)
                         session_name = _gsm_manager_get_default_session (NULL);
                 }
 
-                /* Reset all failed units; we are going to start a lof ot things and
-                 * really do not want to run into errors because units have failed
-                 * in a previous session
-                 */
-                gsm_util_systemd_reset_failed (&error);
-                if (error && !g_getenv ("RUNNING_UNDER_GDM"))
-                        g_warning ("Failed to reset failed state of units: %s", error->message);
-                g_clear_error (&error);
-
                 /* We don't escape the name (i.e. we leave any '-' intact). */
                 gnome_session_target = g_strdup_printf ("gnome-session-%s@%s.target", session_type, session_name);
-                if (gsm_util_start_systemd_unit (gnome_session_target, "fail", &error)) {
-                        /* We started the unit, open fifo and sleep forever. */
-                        systemd_leader_run ();
-                        exit(0);
-                }
 
-                /* We could not start the unit, fall back. */
-                if (g_getenv ("RUNNING_UNDER_GDM"))
-                        g_message ("Falling back to non-systemd startup procedure. This is expected to happen for GDM sessions.");
-                else
-                        g_warning ("Falling back to non-systemd startup procedure due to error: %s", error->message);
-                g_clear_error (&error);
+                if (!gsm_util_systemd_unit_is_active (gnome_session_target, &error)) {
+                        if (error != NULL) {
+                                g_warning ("Could not check if unit %s is active: %s",
+                                           gnome_session_target, error->message);
+                                g_clear_error (&error);
+                        }
+                        /* Reset all failed units; we are going to start a lof ot things and
+                         * really do not want to run into errors because units have failed
+                         * in a previous session
+                         */
+                        gsm_util_systemd_reset_failed (&error);
+                        if (error && !g_getenv ("RUNNING_UNDER_GDM"))
+                                g_warning ("Failed to reset failed state of units: %s", error->message);
+                        g_clear_error (&error);
+
+                        if (gsm_util_start_systemd_unit (gnome_session_target, "fail", &error)) {
+                                /* We started the unit, open fifo and sleep forever. */
+                                systemd_leader_run ();
+                                exit (0);
+                        }
+
+                        /* We could not start the unit, fall back. */
+                        if (g_getenv ("RUNNING_UNDER_GDM"))
+                                g_message ("Falling back to non-systemd startup procedure. This is expected to happen for GDM sessions.");
+                        else
+                                g_warning ("Falling back to non-systemd startup procedure due to error: %s", error->message);
+                        g_clear_error (&error);
+                } else {
+                        g_warning ("Session manager already running!");
+                        exit (1);
+                }
         }
 #endif /* ENABLE_SYSTEMD_SESSION */
 
