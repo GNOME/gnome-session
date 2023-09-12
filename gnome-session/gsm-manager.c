@@ -3154,7 +3154,7 @@ gsm_manager_inhibit (GsmExportedManager    *skeleton,
                                          "Reason not specified");
                 g_debug ("GsmManager: Unable to inhibit: %s", new_error->message);
                 g_dbus_method_invocation_take_error (invocation, new_error);
-                return FALSE;
+                return TRUE;
         }
 
         if (flags == 0) {
@@ -3165,7 +3165,7 @@ gsm_manager_inhibit (GsmExportedManager    *skeleton,
                                          "Invalid inhibit flags");
                 g_debug ("GsmManager: Unable to inhibit: %s", new_error->message);
                 g_dbus_method_invocation_take_error (invocation, new_error);
-                return FALSE;
+                return TRUE;
         }
 
         cookie = _generate_unique_cookie (manager);
