@@ -18,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.3.6.2\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2018-08-28 21:21+0000\n"
-"PO-Revision-Date: 2018-10-16 23:10+0200\n"
+"POT-Creation-Date: 2023-05-05 13:09+0000\n"
+"PO-Revision-Date: 2023-09-25 22:36+0200\n"
 "Last-Translator: Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>\n"
 "Language-Team: Esperanto <gnome-eo-list@gnome.org>\n"
 "Language: eo\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.7.1\n"
+"X-Generator: Poedit 3.2.2\n"
 "X-Project-Style: gnome\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
@@ -42,13 +42,18 @@ msgstr "Ĉi kampo permesas al vi elekti konservitan seancon"
 msgid "GNOME"
 msgstr "GNOME"
 
-#: data/gnome.desktop.in.in:4 data/gnome-xorg.desktop.in.in:4
+#: data/gnome.desktop.in.in:4 data/gnome-wayland.desktop.in.in:4
+#: data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
 msgstr "Ĉi tiu seanco salutas vin en GNOME"
 
 #: data/gnome-dummy.session.desktop.in.in:3
 msgid "GNOME dummy"
 msgstr "GNOME lokokupo"
+
+#: data/gnome-wayland.desktop.in.in:3
+msgid "GNOME on Wayland"
+msgstr "GNOME je Vajlando"
 
 #: data/gnome-xorg.desktop.in.in:3
 msgid "GNOME on Xorg"
@@ -118,11 +123,11 @@ msgstr "Alino_mi seancon"
 msgid "_Continue"
 msgstr "_Daŭrigi"
 
-#: gnome-session/gsm-fail-whale-dialog.c:313
+#: gnome-session/gsm-fail-whale-dialog.c:318
 msgid "Oh no!  Something has gone wrong."
 msgstr "Ho ne!  Io malsukcesis."
 
-#: gnome-session/gsm-fail-whale-dialog.c:320
+#: gnome-session/gsm-fail-whale-dialog.c:325
 msgid ""
 "A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
@@ -130,7 +135,7 @@ msgstr ""
 "Problemo okazis kaj la sistemo ne eblis retrovi. Bonvolu kontakti "
 "sistemadministranton"
 
-#: gnome-session/gsm-fail-whale-dialog.c:322
+#: gnome-session/gsm-fail-whale-dialog.c:327
 msgid ""
 "A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
@@ -138,7 +143,7 @@ msgstr ""
 "Problemo okazis kaj la sistemo ne eblis retrovi. Ĉiuj kromprogramoj estis "
 "malŝaltitaj por garantii sekurecon."
 
-#: gnome-session/gsm-fail-whale-dialog.c:324
+#: gnome-session/gsm-fail-whale-dialog.c:329
 msgid ""
 "A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
@@ -146,27 +151,27 @@ msgstr ""
 "Problemo okazis kaj la sistemo ne eblas restaŭri.\n"
 "Bonvolu adiaŭi kaj provi denove."
 
-#: gnome-session/gsm-fail-whale-dialog.c:339
+#: gnome-session/gsm-fail-whale-dialog.c:344
 msgid "_Log Out"
 msgstr "A_diaŭi"
 
-#: gnome-session/gsm-fail-whale-dialog.c:361 gnome-session/main.c:279
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:412
 msgid "Enable debugging code"
 msgstr "Ŝalti sencimigan kodon"
 
-#: gnome-session/gsm-fail-whale-dialog.c:362
+#: gnome-session/gsm-fail-whale-dialog.c:413
 msgid "Allow logout"
 msgstr "Permesi adiaŭon"
 
-#: gnome-session/gsm-fail-whale-dialog.c:363
+#: gnome-session/gsm-fail-whale-dialog.c:414
 msgid "Show extension warning"
 msgstr "Montri kromproagaman averton"
 
-#: gnome-session/gsm-manager.c:1266 gnome-session/gsm-manager.c:1919
+#: gnome-session/gsm-manager.c:1317 gnome-session/gsm-manager.c:2068
 msgid "Not responding"
 msgstr "Ne respondas"
 
-#: gnome-session/gsm-util.c:382
+#: gnome-session/gsm-util.c:431
 msgid "_Log out"
 msgstr "A_diaŭi"
 
@@ -182,53 +187,96 @@ msgstr "Memorigitaj aplikaĵoj"
 msgid "This program is blocking logout."
 msgstr "Ĉi tiu programaro blokas adiaŭon."
 
-#: gnome-session/gsm-xsmp-server.c:338
+#: gnome-session/gsm-xsmp-server.c:340
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr "Rifuzas novan klientkonekton ĉar la seanco estas nun elsalutata\n"
 
-#: gnome-session/gsm-xsmp-server.c:605
+#: gnome-session/gsm-xsmp-server.c:607
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Ne eblis krei ICE-aŭskultantan kontaktoskatolon: %s"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:406
+msgid "Running as systemd service"
+msgstr "Funkcianta kiel systemd-servo"
+
+#: gnome-session/main.c:407
+msgid "Use systemd session management"
+msgstr "Uzi systemd-on kiel seancoadministrilo"
+
+#: gnome-session/main.c:409
+msgid "Use builtin session management (rather than the systemd based one)"
+msgstr "Uzi enkonstruitan seacan administradon (anstataŭ la systemd-bazitan)"
+
+#: gnome-session/main.c:410
 msgid "Override standard autostart directories"
 msgstr "Transiri normajn aŭtomatajn startdosierujojn"
 
-#: gnome-session/main.c:277
+#: gnome-session/main.c:410
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:411
 msgid "Session to use"
 msgstr "Uzenda seanco"
 
-#: gnome-session/main.c:278
+#: gnome-session/main.c:411
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: gnome-session/main.c:280
+#: gnome-session/main.c:413
 msgid "Do not load user-specified applications"
 msgstr "Ne ŝargi propre specifitajn aplikaĵojn"
 
-#: gnome-session/main.c:281
+#: gnome-session/main.c:414
 msgid "Version of this application"
 msgstr "Versio de ĉi tiu aplikaĵo"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:283
+#: gnome-session/main.c:416
 msgid "Show the fail whale dialog for testing"
 msgstr "Montri la paneo-dialogo por testado"
 
-#: gnome-session/main.c:284
+#: gnome-session/main.c:417
 msgid "Disable hardware acceleration check"
 msgstr "Malebligi kontrolon de aparatara plirapidigo"
 
-#: gnome-session/main.c:316
+#: gnome-session/main.c:449
 msgid " — the GNOME session manager"
 msgstr " — la seancadministrilo de GNOME"
+
+#: tools/gnome-session-ctl.c:245
+msgid "Start gnome-session-shutdown.target"
+msgstr "Komenci gnome-session-shutdown.target"
+
+#: tools/gnome-session-ctl.c:246
+msgid ""
+"Start gnome-session-shutdown.target when receiving EOF or a single byte on "
+"stdin"
+msgstr ""
+"Komenci gnome-session-shutdown.target kiam vi ricevas EOF aŭ ununuran bajton "
+"sur stdin"
+
+#: tools/gnome-session-ctl.c:247
+msgid "Signal initialization done to gnome-session"
+msgstr "gnome-session signalas ke inicialigo estas kompleta"
+
+#: tools/gnome-session-ctl.c:248
+msgid "Restart dbus.service if it is running"
+msgstr "Rekomenci dbus.service se ĝi funkcias"
+
+#: tools/gnome-session-ctl.c:249
+msgid ""
+"Run from ExecStopPost to start gnome-session-failed.target on service failure"
+msgstr ""
+"Ruli de ExecStopPost por komenci gnome-session-failed.target se servo "
+"malsukcesis"
+
+#: tools/gnome-session-ctl.c:279
+msgid "Program needs exactly one parameter"
+msgstr "Programo bezonas ekzakte unu parametron"
 
 #: tools/gnome-session-inhibit.c:108
 #, c-format
@@ -245,12 +293,13 @@ msgid ""
 "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
 "                    logout, switch-user, suspend, idle, automount\n"
 "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+"  -l, --list        List the existing inhibitions, and exit\n"
 "\n"
 "If no --inhibit option is specified, idle is assumed.\n"
 msgstr ""
 "%s [OPCIO...] KOMANDO\n"
 "\n"
-"Plenumi KOMANDO dum inhibiting some session functionality.\n"
+"Plenumi KOMANDO por malebligi iujn seancajn funkciojn.\n"
 "\n"
 "  -h, --help        Montri ĉi tiun helpon\n"
 "  --version         Montri la version de la programo\n"
@@ -260,16 +309,18 @@ msgstr ""
 "  --inhibit ARG     Malebligendaj aferoj, dupunkto-apartigita listo de:\n"
 "                    logout, switch-user, suspend, idle, automount\n"
 "  --inhibit-only    Ne lanĉi COMMAND kaj anstataŭe atendi por ĉiam\n"
+"  -l, --list        Listigi la ekzistantajn inhibiciojn, kaj eliri\n"
+"\n"
 "\n"
 "Se neniu --inhibit opcio estas specifita, oni antaŭsupozas idle.\n"
 
-#: tools/gnome-session-inhibit.c:146
+#: tools/gnome-session-inhibit.c:288
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Malsukcesis ruli %s\n"
 
-#: tools/gnome-session-inhibit.c:206 tools/gnome-session-inhibit.c:216
-#: tools/gnome-session-inhibit.c:226
+#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
+#: tools/gnome-session-inhibit.c:372
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s bezonas argumenton\n"
@@ -431,9 +482,6 @@ msgstr "Seanco nomita “%s” jam ekzistas"
 
 #~ msgid "FILE"
 #~ msgstr "DOSIERO"
-
-#~ msgid "Specify session management ID"
-#~ msgstr "Specifi identigilon de la seancoadministrilo"
 
 #~ msgid "ID"
 #~ msgstr "Identigilon"
