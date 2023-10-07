@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import os
-import shutil
+import subprocess
 import sys
 
 if os.environ.get('DESTDIR'):
@@ -14,7 +14,3 @@ else:
 dst_dir = os.path.join(install_root, 'wayland-sessions')
 if not os.path.exists(dst_dir):
   os.makedirs(dst_dir)
-
-src = os.path.join(install_root, 'xsessions', 'gnome.desktop')
-dst = os.path.join(dst_dir, 'gnome.desktop')
-shutil.copyfile(src, dst)
