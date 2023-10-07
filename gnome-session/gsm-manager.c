@@ -49,8 +49,6 @@
 #include "gsm-presence.h"
 #include "gsm-shell.h"
 
-#include "gsm-xsmp-server.h"
-#include "gsm-xsmp-client.h"
 #include "gsm-dbus-client.h"
 
 #include "gsm-autostart-app.h"
@@ -123,7 +121,6 @@ typedef struct
         GsmInhibitorFlag        inhibited_actions;
         GsmStore               *apps;
         GsmPresence            *presence;
-        GsmXsmpServer          *xsmp_server;
 
         char                   *session_name;
         gboolean                is_fallback_session : 1;
@@ -1405,7 +1402,6 @@ start_phase (GsmManager *manager)
                                  "PRIORITY=%d", 5,
                                  "MESSAGE=Entering running state",
                                  NULL);
-                gsm_xsmp_server_start_accepting_new_clients (priv->xsmp_server);
                 if (priv->pending_end_session_tasks != NULL)
                         complete_end_session_tasks (manager);
                 g_object_unref (priv->end_session_cancellable);
@@ -1414,7 +1410,6 @@ start_phase (GsmManager *manager)
                 update_idle (manager);
                 break;
         case GSM_MANAGER_PHASE_QUERY_END_SESSION:
-                gsm_xsmp_server_stop_accepting_new_clients (priv->xsmp_server);
                 do_phase_query_end_session (manager);
                 break;
         case GSM_MANAGER_PHASE_END_SESSION:
@@ -1473,13 +1468,10 @@ debug_app_summary (GsmManager *manager)
 void
 gsm_manager_start (GsmManager *manager)
 {
-        GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
-
         g_debug ("GsmManager: GSM starting to manage");
 
         g_return_if_fail (GSM_IS_MANAGER (manager));
 
-        gsm_xsmp_server_start (priv->xsmp_server);
         gsm_manager_set_phase (manager, GSM_MANAGER_PHASE_EARLY_INITIALIZATION);
         debug_app_summary (manager);
         start_phase (manager);
@@ -1878,82 +1870,6 @@ on_client_disconnected (GsmClient  *client,
 }
 
 static gboolean
-on_xsmp_client_register_request (GsmXSMPClient *client,
-                                 char         **id,
-                                 GsmManager    *manager)
-{
-        GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
-        gboolean handled;
-        char    *new_id;
-        GsmApp  *app;
-
-        handled = TRUE;
-        new_id = NULL;
-
-        if (priv->phase >= GSM_MANAGER_PHASE_QUERY_END_SESSION) {
-                goto out;
-        }
-
-        if (IS_STRING_EMPTY (*id)) {
-                new_id = gsm_util_generate_startup_id ();
-        } else {
-                GsmClient *client;
-
-                client = (GsmClient *)gsm_store_find (priv->clients,
-                                                      (GsmStoreFunc)_client_has_startup_id,
-                                                      *id);
-                /* We can't have two clients with the same id. */
-                if (client != NULL) {
-                        goto out;
-                }
-
-                new_id = g_strdup (*id);
-        }
-
-        g_debug ("GsmManager: Adding new client %s to session", new_id);
-
-        g_signal_connect (client,
-                          "disconnected",
-                          G_CALLBACK (on_client_disconnected),
-                          manager);
-
-        /* If it's a brand new client id, we just accept the client*/
-        if (IS_STRING_EMPTY (*id)) {
-                goto out;
-        }
-
-        app = find_app_for_startup_id (manager, new_id);
-        if (app != NULL) {
-                gsm_client_set_app_id (GSM_CLIENT (client), gsm_app_peek_app_id (app));
-                goto out;
-        }
-
-        /* app not found */
-        g_free (new_id);
-        new_id = NULL;
-
- out:
-        g_free (*id);
-        *id = new_id;
-
-        return handled;
-}
-
-static void
-on_xsmp_client_register_confirmed (GsmXSMPClient *client,
-                                   const gchar   *id,
-                                   GsmManager    *manager)
-{
-        GsmApp *app;
-
-        app = find_app_for_startup_id (manager, id);
-
-        if (app != NULL) {
-                gsm_app_set_registered (app, TRUE);
-        }
-}
-
-static gboolean
 auto_save_is_enabled (GsmManager *manager)
 {
         GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
@@ -2106,28 +2022,6 @@ on_client_end_session_response (GsmClient  *client,
 }
 
 static void
-on_xsmp_client_logout_request (GsmXSMPClient *client,
-                               gboolean       show_dialog,
-                               GsmManager    *manager)
-{
-        GError *error;
-        int     logout_mode;
-
-        if (show_dialog) {
-                logout_mode = GSM_MANAGER_LOGOUT_MODE_NORMAL;
-        } else {
-                logout_mode = GSM_MANAGER_LOGOUT_MODE_NO_CONFIRMATION;
-        }
-
-        error = NULL;
-        gsm_manager_logout (manager, logout_mode, &error);
-        if (error != NULL) {
-                g_warning ("Unable to logout: %s", error->message);
-                g_error_free (error);
-        }
-}
-
-static void
 on_store_client_added (GsmStore   *store,
                        const char *id,
                        GsmManager *manager)
@@ -2138,22 +2032,6 @@ on_store_client_added (GsmStore   *store,
         g_debug ("GsmManager: Client added: %s", id);
 
         client = (GsmClient *)gsm_store_lookup (store, id);
-
-        /* a bit hacky */
-        if (GSM_IS_XSMP_CLIENT (client)) {
-                g_signal_connect (client,
-                                  "register-request",
-                                  G_CALLBACK (on_xsmp_client_register_request),
-                                  manager);
-                g_signal_connect (client,
-                                  "register-confirmed",
-                                  G_CALLBACK (on_xsmp_client_register_confirmed),
-                                  manager);
-                g_signal_connect (client,
-                                  "logout-request",
-                                  G_CALLBACK (on_xsmp_client_logout_request),
-                                  manager);
-        }
 
         g_signal_connect (client,
                           "end-session-response",
@@ -2203,22 +2081,6 @@ gsm_manager_set_client_store (GsmManager *manager,
         g_debug ("GsmManager: setting client store %p", store);
 
         priv->clients = store;
-
-        if (priv->clients != NULL) {
-                if (priv->xsmp_server)
-                        g_object_unref (priv->xsmp_server);
-
-                priv->xsmp_server = gsm_xsmp_server_new (store);
-
-                g_signal_connect (priv->clients,
-                                  "added",
-                                  G_CALLBACK (on_store_client_added),
-                                  manager);
-                g_signal_connect (priv->clients,
-                                  "removed",
-                                  G_CALLBACK (on_store_client_removed),
-                                  manager);
-        }
 }
 
 static void
@@ -2392,7 +2254,6 @@ gsm_manager_dispose (GObject *object)
         g_debug ("GsmManager: disposing manager");
 
         g_clear_object (&priv->end_session_cancellable);
-        g_clear_object (&priv->xsmp_server);
         g_clear_pointer (&priv->session_name, g_free);
 
         if (priv->clients != NULL) {

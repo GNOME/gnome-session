@@ -36,8 +36,6 @@ sources = files(
   'gsm-store.c',
   'gsm-system.c',
   'gsm-systemd.c',
-  'gsm-xsmp-client.c',
-  'gsm-xsmp-server.c',
   'main.c'
 )
 

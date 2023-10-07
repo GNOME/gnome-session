@@ -82,10 +82,6 @@ glib_req_version = '>= 2.46.0'
 gio_dep = dependency('gio-2.0', version: glib_req_version)
 glib_dep = dependency('glib-2.0', version: glib_req_version)
 gtk_dep = dependency('gtk+-3.0', version: '>= 3.22.0')
-xtrans_dep = dependency('xtrans')
-ice_dep = dependency('ice')
-sm_dep = dependency('sm')
-x11_dep = dependency('x11')
 
 session_deps = [
   gio_dep,
@@ -94,14 +90,7 @@ session_deps = [
   dependency('json-glib-1.0', version: '>= 0.10')
 ]
 
-session_bin_deps = session_deps + [
-  xtrans_dep,
-  ice_dep,
-  sm_dep
-]
-
-# Check for session selector GTK+ UI
-enable_session_selector = get_option('session_selector')
+session_bin_deps = session_deps + []
 
 session_bin_deps += dependency('gio-unix-2.0', version: glib_req_version)
 
@@ -150,7 +139,6 @@ summary_options = {
  'Build Docbook': get_option('docbook'),
  'Build manpages': get_option('man'),
  'Systemd Units Directory': systemd_userunitdir,
- 'Session Selector Enabled': enable_session_selector,
 }
 
 summary_dirs = {

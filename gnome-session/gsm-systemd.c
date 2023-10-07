@@ -268,7 +268,7 @@ static void sd_proxy_signal_cb (GDBusProxy  *proxy,
 static gboolean
 _systemd_session_is_graphical (const char *session_id)
 {
-        const gchar * const graphical_session_types[] = { "wayland", "x11", "mir", NULL };
+        const gchar * const graphical_session_types[] = { "wayland", "mir", NULL };
         int saved_errno;
         g_autofree gchar *type = NULL;
 
@@ -1086,8 +1086,7 @@ gsm_systemd_is_last_session_for_user (GsmSystem *system)
                 if (ret != 0)
                         continue;
 
-                if (g_strcmp0 (type, "x11") != 0 &&
-                    g_strcmp0 (type, "wayland") != 0) {
+                if (g_strcmp0 (type, "wayland") != 0) {
                         free (type);
                         continue;
                 }

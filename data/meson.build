@@ -1,9 +1,5 @@
 desktop_plain = 'gnome'
 
-desktops = [
-  desktop_plain,
-]
-
 shell_component = {
   desktop_plain: 'org.gnome.Shell',
 }
@@ -29,37 +25,27 @@ required_components = {
   ],
 }
 
-if enable_session_selector
-  desktops += 'gnome-custom-session'
-endif
+desktop_conf = configuration_data()
+desktop_conf.set('bindir', session_bindir)
 
-foreach name: desktops
-  desktop_conf = configuration_data()
-  desktop_conf.set('bindir', session_bindir)
+desktop = desktop_plain + '.desktop'
 
-  desktop = name + '.desktop'
+desktop_in = configure_file(
+  input: desktop + '.in.in',
+  output: desktop + '.in',
+  configuration: desktop_conf
+)
 
-  desktop_in = configure_file(
-    input: desktop + '.in.in',
-    output: desktop + '.in',
-    configuration: desktop_conf
-  )
+install_dir = session_datadir / 'wayland-sessions'
 
-  if name == 'gnome-custom-session'
-    install_dir = session_datadir / 'xsessions'
-  else
-    install_dir = session_datadir / 'wayland-sessions'
-  endif
-
-  desktop_target = i18n.merge_file(
-    type: 'desktop',
-    input: desktop_in,
-    output: desktop,
-    po_dir: po_dir,
-    install: true,
-    install_dir: install_dir
-  )
-endforeach
+i18n.merge_file(
+  type: 'desktop',
+  input: desktop_in,
+  output: desktop,
+  po_dir: po_dir,
+  install: true,
+  install_dir: install_dir
+)
 
 sessions = [
   'gnome',
@@ -117,8 +103,6 @@ endforeach
 
 systemd_target = files('gnome-session-wayland@.target',
                         'gnome-session-wayland.target',
-                        'gnome-session-x11@.target',
-                        'gnome-session-x11.target',
                         'gnome-session-x11-services.target',
                         'gnome-session-x11-services-ready.target',
                         'gnome-session@.target',
@@ -160,10 +144,6 @@ foreach session, req_components: required_components
 endforeach
 
 data = files('hardware-compatibility')
-
-if enable_session_selector
-  data += files('session-selector.ui')
-endif
 
 install_data(
   data,

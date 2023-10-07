@@ -30,8 +30,6 @@ applications in the \fB$XDG_CONFIG_HOME/gnome-session/saved-session\fP
 directory. Saving sessions is only supported with the legacy non-systemd
 startup method.
 .PP
-\fIgnome-session\fP is an X11R6 session manager. It can manage GNOME
-applications as well as any X11R6 SM compliant application.
 .SH OPTIONS
 The following options are supported:
 .TP
@@ -100,11 +98,11 @@ Generic unit that will be active throughout the session. Similar to
 Used for tasks that need to be done before session startup. Similar to
 \fBgraphical-session-pre.target\fP.
 .TP
-.I "gnome-session-x11@SESSION.target" "gnome-session-wayland@SESSION.target"
-Main unit started for X11/wayland based session. \fBSESSION\fP is set according
+.I "gnome-session-wayland@SESSION.target"
+Main unit started for the wayland based session. \fBSESSION\fP is set according
 to the session that is passed in \fI--session\fP.
 .TP
-.I "gnome-session-x11.target" "gnome-session-wayland.target"
+.I "gnome-session-wayland.target"
 Convenience units without the session embedded into the target.
 .TP
 .I "gnome-session@SESSION.target"

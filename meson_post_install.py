@@ -14,3 +14,8 @@ else:
 dst_dir = os.path.join(install_root, 'wayland-sessions')
 if not os.path.exists(dst_dir):
   os.makedirs(dst_dir)
+
+if not os.environ.get('DESTDIR'):
+  schemadir = os.path.join(install_root, 'glib-2.0', 'schemas')
+  print('Compile gsettings schemas...')
+  subprocess.call(['glib-compile-schemas', schemadir])
