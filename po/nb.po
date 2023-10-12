@@ -7,15 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 4.4\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2023-01-25 19:26+0000\n"
-"PO-Revision-Date: 2023-02-14 14:21+0100\n"
-"Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
+"POT-Creation-Date: 2023-10-12 11:31+0000\n"
+"PO-Revision-Date: 2023-10-12 21:59+0200\n"
+"Last-Translator: Brage <bragefuglseth@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: nb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -23,7 +24,7 @@ msgstr "Egendefinert"
 
 #: data/gnome-custom-session.desktop.in.in:4
 msgid "This entry lets you select a saved session"
-msgstr "Denne oppføringen lar deg velge en lagret økt"
+msgstr "Dette feltet lar deg velge en lagret økt"
 
 #: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
 msgid "GNOME"
@@ -32,55 +33,64 @@ msgstr "GNOME"
 #: data/gnome.desktop.in.in:4 data/gnome-wayland.desktop.in.in:4
 #: data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
-msgstr "Denne økten logger inn i GNOME"
+msgstr "Denne økten logger deg inn i GNOME"
 
 #: data/gnome-dummy.session.desktop.in.in:3
 msgid "GNOME dummy"
-msgstr "GNOME dummy"
+msgstr "GNOME-testmodell"
 
 #: data/gnome-wayland.desktop.in.in:3
 msgid "GNOME on Wayland"
-msgstr "GNOME på Wayland"
+msgstr "GNOME med Wayland"
 
 #: data/gnome-xorg.desktop.in.in:3
 msgid "GNOME on Xorg"
-msgstr "GNOME på Xorg"
+msgstr "GNOME med Xorg"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:5
+#: data/org.gnome.SessionManager.gschema.xml:5
 msgid "Save sessions"
 msgstr "Lagre økter"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:6
+#: data/org.gnome.SessionManager.gschema.xml:6
 msgid "If enabled, gnome-session will save the session automatically."
-msgstr "Hvis aktivert vil gnome-session lagre økten automatisk."
+msgstr ""
+"Hvis denne innstillingen er slått på, vil gnome-session lagre økten "
+"automatisk."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:10
+#: data/org.gnome.SessionManager.gschema.xml:10
 msgid "Save this session"
 msgstr "Lagre denne økten"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:11
+#: data/org.gnome.SessionManager.gschema.xml:11
 msgid ""
 "When enabled, gnome-session will automatically save the next session at log "
 "out even if auto saving is disabled."
 msgstr ""
+"Hvis denne innstillingen er slått på, vil gnome-session automatisk lagre "
+"neste økt ved utlogging, selv hvis automatisk lagring er slått av."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:15
+#: data/org.gnome.SessionManager.gschema.xml:15
 msgid "Logout prompt"
-msgstr ""
+msgstr "Utloggingsvindu"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:16
+#: data/org.gnome.SessionManager.gschema.xml:16
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
+"Hvis denne innstillingen er slått på, vil gnome-session be brukeren om "
+"bekreftelse før økten avsluttes."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:20
+#: data/org.gnome.SessionManager.gschema.xml:20
 msgid "Show the fallback warning"
 msgstr "Vis advarsel for reserveløsning"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:21
+#: data/org.gnome.SessionManager.gschema.xml:21
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
 msgstr ""
+"Hvis denne innstillingen er slått på, vil gnome-session vise et "
+"advarselsvindu etter innlogging hvis en reserveløsning for økten ble tatt i "
+"bruk."
 
 #: data/session-selector.ui:15
 msgid "Custom Session"
@@ -96,11 +106,11 @@ msgstr "_Ny økt"
 
 #: data/session-selector.ui:119
 msgid "_Remove Session"
-msgstr "Fje_rn økt"
+msgstr "Fjern _økt"
 
 #: data/session-selector.ui:133
 msgid "Rena_me Session"
-msgstr "E_ndre navn på økt"
+msgstr "_Endre navn på økt"
 
 #: data/session-selector.ui:168
 msgid "_Continue"
@@ -108,39 +118,40 @@ msgstr "_Fortsett"
 
 #: gnome-session/gsm-fail-whale-dialog.c:318
 msgid "Oh no!  Something has gone wrong."
-msgstr "Å nei! Noe har gått galt."
+msgstr "Å nei! Noe gikk galt."
 
+# Her burde også originalteksten ha sluttet med punktum
 #: gnome-session/gsm-fail-whale-dialog.c:325
 msgid ""
 "A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
 msgstr ""
-"Et problem har oppstått og systemet kan ikke gjenopprettes. Vennligst "
-"kontakt en systemadmininstrator"
+"Det har oppstått et problem, og systemet kan ikke gjenopprettes. Kontakt en "
+"systemadministrator."
 
 #: gnome-session/gsm-fail-whale-dialog.c:327
 msgid ""
 "A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
 msgstr ""
-"Et problem har oppstått og systemet kan ikke gjenopprettes. Alle utvidelser "
-"er slått av som følge av dette."
+"Det har oppstått et problem, og systemet kan ikke gjenopprettes. For "
+"sikkerhets skyld har alle utvidelser blitt slått av."
 
 #: gnome-session/gsm-fail-whale-dialog.c:329
 msgid ""
 "A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
 msgstr ""
-"Et problem har oppstått og systemet kan ikke gjenopprettes.\n"
-"Vennligst logg ut og prøv igjen."
+"Det har oppstått et problem, og systemet kan ikke gjenopprettes.\n"
+"Logg ut og prøv igjen."
 
 #: gnome-session/gsm-fail-whale-dialog.c:344
 msgid "_Log Out"
 msgstr "_Logg ut"
 
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:408
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:403
 msgid "Enable debugging code"
-msgstr "Aktiver feilsøkingskode"
+msgstr "Slå på feilsøkingskode"
 
 #: gnome-session/gsm-fail-whale-dialog.c:413
 msgid "Allow logout"
@@ -150,7 +161,7 @@ msgstr "Tillat utlogging"
 msgid "Show extension warning"
 msgstr "Vis advarsel om utvidelser"
 
-#: gnome-session/gsm-manager.c:1317 gnome-session/gsm-manager.c:2058
+#: gnome-session/gsm-manager.c:1301 gnome-session/gsm-manager.c:2050
 msgid "Not responding"
 msgstr "Svarer ikke"
 
@@ -164,7 +175,7 @@ msgstr "_Logg ut"
 #.
 #: gnome-session/gsm-xsmp-client.c:557
 msgid "Remembered Application"
-msgstr "Husket program"
+msgstr "Husket app"
 
 #: gnome-session/gsm-xsmp-client.c:1216
 msgid "This program is blocking logout."
@@ -174,61 +185,53 @@ msgstr "Dette programmet hindrer utlogging."
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
-msgstr "Nekter ny klient tilgang fordi økten er i ferd med å avsluttes\n"
+msgstr "Ny klienttilkobling avslått fordi økten avsluttes for øyeblikket\n"
 
 #: gnome-session/gsm-xsmp-server.c:607
 #, c-format
 msgid "Could not create ICE listening socket: %s"
-msgstr "Kunne ikke opprette plugg for ICE-lytting: %s"
+msgstr "Kunne ikke opprette mottakspunkt for ICE-lytting: %s"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:400
 msgid "Running as systemd service"
-msgstr "Kjører som systemd tjeneste"
+msgstr "Kjører som systemd-tjeneste"
 
-#: gnome-session/main.c:403
-msgid "Use systemd session management"
-msgstr "Bruk systemd økthåndterer"
-
-#: gnome-session/main.c:405
-msgid "Use builtin session management (rather than the systemd based one)"
-msgstr "Bruk innebygget økthåndterer (i stedet for systemd sin)"
-
-#: gnome-session/main.c:406
+#: gnome-session/main.c:401
 msgid "Override standard autostart directories"
 msgstr "Overstyr forvalgte kataloger for autostart"
 
-#: gnome-session/main.c:406
+#: gnome-session/main.c:401
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: gnome-session/main.c:407
+#: gnome-session/main.c:402
 msgid "Session to use"
 msgstr "Økt som skal brukes"
 
-#: gnome-session/main.c:407
+#: gnome-session/main.c:402
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: gnome-session/main.c:409
+#: gnome-session/main.c:404
 msgid "Do not load user-specified applications"
 msgstr "Ikke last brukerdefinerte programmer"
 
-#: gnome-session/main.c:410
+#: gnome-session/main.c:405
 msgid "Version of this application"
 msgstr "Versjon av dette programmet"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:412
+#: gnome-session/main.c:407
 msgid "Show the fail whale dialog for testing"
 msgstr "Vis feildialog for testing"
 
-#: gnome-session/main.c:413
+#: gnome-session/main.c:408
 msgid "Disable hardware acceleration check"
 msgstr "Slå av sjekk for maskinvareaksellerasjon"
 
-#: gnome-session/main.c:445
+#: gnome-session/main.c:440
 msgid " — the GNOME session manager"
-msgstr "– GNOME økthåndterer"
+msgstr " — GNOME sin øktstyrer"
 
 #: tools/gnome-session-ctl.c:245
 msgid "Start gnome-session-shutdown.target"
@@ -357,3 +360,9 @@ msgstr "Øktnavn kan ikke inneholde «/»-tegn"
 #, c-format
 msgid "A session named “%s” already exists"
 msgstr "En økt med navn «%s» eksisterer allerede"
+
+#~ msgid "Use systemd session management"
+#~ msgstr "Bruk systemd økthåndterer"
+
+#~ msgid "Use builtin session management (rather than the systemd based one)"
+#~ msgstr "Bruk innebygget økthåndterer (i stedet for systemd sin)"
