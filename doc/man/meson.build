@@ -1,4 +1,5 @@
-man1_dir = join_paths(session_mandir, 'man1')
+xsltproc = find_program('xsltproc')
+man1_dir = join_paths(get_option('mandir'), 'man1')
 
 xsltproc_cmd = [
   xsltproc,

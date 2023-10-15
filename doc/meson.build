@@ -1,9 +1,7 @@
-xsltproc = find_program('xsltproc')
-
-if enable_docbook
+if get_option('docbook')
   subdir('dbus')
 endif
 
-if enable_man
+if get_option('man')
   subdir('man')
 endif

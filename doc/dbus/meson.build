@@ -1,3 +1,5 @@
+xsltproc = find_program('xsltproc')
+
 ifaces_refs = []
 
 ifaces = [
