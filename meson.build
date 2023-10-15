@@ -23,7 +23,7 @@ session_sysconfdir = join_paths(session_prefix, get_option('sysconfdir'))
 
 session_pkgdatadir = join_paths(session_datadir, meson.project_name())
 
-session_debug = get_option('buildtype').contains('debug')
+session_debug = get_option('debug')
 
 cc = meson.get_compiler('c')
 
