@@ -166,6 +166,10 @@ meson.add_install_script(
   session_datadir
 )
 
+gnome.post_install(
+  glib_compile_schemas: true,
+)
+
 output = '\n                gnome-session ' + session_version + '\n'
 output += '                ====================\n\n'
 output += '        prefix:                   ' + session_prefix + '\n'
