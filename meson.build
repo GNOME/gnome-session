@@ -121,20 +121,8 @@ if systemd_userunitdir == ''
                                                  pkgconfig_define: ['prefix', prefix])
 endif
 
-libsystemd_dep = dependency('libsystemd', version: '>= 209', required: false)
-if libsystemd_dep.found()
-  session_bin_deps += libsystemd_dep
-else
-  libsystemd_login_dep = dependency('libsystemd-login', version: '>= 183', required: true)
-  libsystemd_daemon_dep = dependency('libsystemd-daemon', required: true)
-  libsystemd_journal_dep = dependency('libsystemd-journal', required: true)
-
-  session_bin_deps += [
-    libsystemd_login_dep,
-    libsystemd_daemon_dep,
-    libsystemd_journal_dep
-  ]
-endif
+libsystemd_dep = dependency('libsystemd', version: '>= 209', required: true)
+session_bin_deps += libsystemd_dep
 
 configure_file(
   output: 'config.h',
