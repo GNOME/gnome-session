@@ -1,6 +1,6 @@
 project(
   'gnome-session', 'c',
-  version: '45.0',
+  version: '46.alpha',
   license: 'GPL2+',
   default_options: 'buildtype=debugoptimized',
   meson_version: '>= 0.60.0'
