@@ -9,18 +9,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2023-02-14 13:22+0000\n"
-"PO-Revision-Date: 2023-02-27 22:14+0100\n"
-"Last-Translator: Matej Urbančič <mateju@src.gnome.org>\n"
+"POT-Creation-Date: 2024-01-08 21:02+0000\n"
+"PO-Revision-Date: 2024-01-09 22:14+0100\n"
+"Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
-"n%100==4 ? 3 : 0);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
+"%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 2.2.1\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -51,19 +51,19 @@ msgstr "GNOME na sistemu Wayland"
 msgid "GNOME on Xorg"
 msgstr "GNOME na sistemu Xorg"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:5
+#: data/org.gnome.SessionManager.gschema.xml:5
 msgid "Save sessions"
 msgstr "Shrani seje"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:6
+#: data/org.gnome.SessionManager.gschema.xml:6
 msgid "If enabled, gnome-session will save the session automatically."
 msgstr "Izbrana možnost omogoči samodejno shranjevanje seje."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:10
+#: data/org.gnome.SessionManager.gschema.xml:10
 msgid "Save this session"
 msgstr "Shrani sejo"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:11
+#: data/org.gnome.SessionManager.gschema.xml:11
 msgid ""
 "When enabled, gnome-session will automatically save the next session at log "
 "out even if auto saving is disabled."
@@ -71,19 +71,19 @@ msgstr ""
 "Izbrana možnost omogoči samodejno shranjevanje seje ob odjavi, neglede na "
 "nastavitev samodejnega shranjevanja."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:15
+#: data/org.gnome.SessionManager.gschema.xml:15
 msgid "Logout prompt"
 msgstr "Vnosno polje odjave"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:16
+#: data/org.gnome.SessionManager.gschema.xml:16
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr "Izbrana možnost omogoči prikaz vnosnega polja pred koncem seje."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:20
+#: data/org.gnome.SessionManager.gschema.xml:20
 msgid "Show the fallback warning"
 msgstr "Pokaži opozorila programske povrnitve"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:21
+#: data/org.gnome.SessionManager.gschema.xml:21
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
@@ -147,7 +147,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_Odjava"
 
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:408
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:403
 msgid "Enable debugging code"
 msgstr "Omogoči razhroščevanje kode"
 
@@ -159,7 +159,7 @@ msgstr "Dovoli odjavo"
 msgid "Show extension warning"
 msgstr "Pokaži opozorila razširitev"
 
-#: gnome-session/gsm-manager.c:1317 gnome-session/gsm-manager.c:2058
+#: gnome-session/gsm-manager.c:1301 gnome-session/gsm-manager.c:2050
 msgid "Not responding"
 msgstr "Ni odziva"
 
@@ -190,52 +190,44 @@ msgstr "Povezave z odjemalci bodo zavrnjene, ker se trenutna seja izklaplja.\n"
 msgid "Could not create ICE listening socket: %s"
 msgstr "Ni mogoče ustvariti vtiča za prisluh ICE: %s"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:400
 msgid "Running as systemd service"
 msgstr "Zagnano kot storitev systemd"
 
-#: gnome-session/main.c:403
-msgid "Use systemd session management"
-msgstr "Uporabi upravljalnik seje systemd"
-
-#: gnome-session/main.c:405
-msgid "Use builtin session management (rather than the systemd based one)"
-msgstr "Uporabi vgrajen upravljalnik seje (namesto storitev systemd)"
-
-#: gnome-session/main.c:406
+#: gnome-session/main.c:401
 msgid "Override standard autostart directories"
 msgstr "Preskoči običajne mape samodejnega zagona"
 
-#: gnome-session/main.c:406
+#: gnome-session/main.c:401
 msgid "AUTOSTART_DIR"
 msgstr "ZAČETNA_MAPA"
 
-#: gnome-session/main.c:407
+#: gnome-session/main.c:402
 msgid "Session to use"
 msgstr "Seja za uporabo"
 
-#: gnome-session/main.c:407
+#: gnome-session/main.c:402
 msgid "SESSION_NAME"
 msgstr "IME_SEJE"
 
-#: gnome-session/main.c:409
+#: gnome-session/main.c:404
 msgid "Do not load user-specified applications"
 msgstr "Ne naloži uporabniško določenih programov"
 
-#: gnome-session/main.c:410
+#: gnome-session/main.c:405
 msgid "Version of this application"
 msgstr "Različica programa"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:412
+#: gnome-session/main.c:407
 msgid "Show the fail whale dialog for testing"
 msgstr "Pokaži pogovorno okno napak med preizkušanjem."
 
-#: gnome-session/main.c:413
+#: gnome-session/main.c:408
 msgid "Disable hardware acceleration check"
 msgstr "Onemogoči strojno pospeševanje"
 
-#: gnome-session/main.c:445
+#: gnome-session/main.c:440
 msgid " — the GNOME session manager"
 msgstr "– upravljalnik seje GNOME"
 
@@ -306,13 +298,22 @@ msgstr ""
 "Kadar ni izbrane možnosti --inhibit, je uporabljen argument idle "
 "(nedejavno).\n"
 
-#: tools/gnome-session-inhibit.c:288
+#: tools/gnome-session-inhibit.c:282
+#, c-format
+msgid "Error while creating pipe: %s\n"
+msgstr "Napaka pri ustvarjanju cevi: %s\n"
+
+#: tools/gnome-session-inhibit.c:299
+msgid "Failure reading pipe\n"
+msgstr "Napaka pri branju cevi\n"
+
+#: tools/gnome-session-inhibit.c:303
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Napaka med izvajanjem %s\n"
 
-#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
-#: tools/gnome-session-inhibit.c:372
+#: tools/gnome-session-inhibit.c:376 tools/gnome-session-inhibit.c:386
+#: tools/gnome-session-inhibit.c:396
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s zahteva določen argument\n"
@@ -369,283 +370,3 @@ msgstr "Imena seje ne smejo vsebovati poševnice » / «."
 #, c-format
 msgid "A session named “%s” already exists"
 msgstr "Seja z imenom »%s« že obstaja"
-
-#~ msgid "Additional startup _programs:"
-#~ msgstr "Dodatni _začetni programi:"
-
-#~ msgid "Startup Programs"
-#~ msgstr "Začetni programi"
-
-#~ msgid "_Automatically remember running applications when logging out"
-#~ msgstr "_Zapomni si zagnane programe ob odjavi"
-
-#~ msgid "_Remember Currently Running Applications"
-#~ msgstr "_Zapomni si trenutno zagnane programe"
-
-#~ msgid "Options"
-#~ msgstr "Možnosti"
-
-#~ msgid "Browse…"
-#~ msgstr "Prebrskaj ..."
-
-#~ msgid "Comm_ent:"
-#~ msgstr "_Opomba:"
-
-#~ msgid "Co_mmand:"
-#~ msgstr "_Ukaz:"
-
-#~ msgid "_Name:"
-#~ msgstr "_Ime:"
-
-#~ msgid "This session logs you into GNOME, using Wayland"
-#~ msgstr "Seja omogoča prijavo v namizje GNOME z uporabo sistema Wayland."
-
-#~ msgid "Select Command"
-#~ msgstr "Izbor ukaza"
-
-#~ msgid "Add Startup Program"
-#~ msgstr "Dodaj začetni program"
-
-#~ msgid "Edit Startup Program"
-#~ msgstr "Uredi začetni program"
-
-#~ msgid "The startup command cannot be empty"
-#~ msgstr "Polje začetnega ukaza mora biti izpolnjeno"
-
-#~ msgid "The startup command is not valid"
-#~ msgstr "Začetni ukaz ni veljaven"
-
-#~ msgid "Enabled"
-#~ msgstr "Omogočeno"
-
-#~ msgid "Icon"
-#~ msgstr "Ikona"
-
-#~ msgid "Program"
-#~ msgstr "Program"
-
-#~ msgid "Startup Applications Preferences"
-#~ msgstr "Možnosti začetnih programov"
-
-#~ msgid "No name"
-#~ msgstr "Brez imena"
-
-#~ msgid "No description"
-#~ msgstr "Brez opisa"
-
-#~ msgid "Could not display help document"
-#~ msgstr "Ni mogoče prikazati dokumenta pomoči"
-
-#~ msgid "Startup Applications"
-#~ msgstr "Začetni programi"
-
-#~ msgid "Choose what applications to start when you log in"
-#~ msgstr "Izbor programov za samodejni zagon ob prijavi"
-
-#~ msgid "File is not a valid .desktop file"
-#~ msgstr "Datoteka ni veljavna .desktop datoteka"
-
-#~ msgid "Unrecognized desktop file Version '%s'"
-#~ msgstr "Neznana različica datoteke namizja '%s'"
-
-#~ msgid "Starting %s"
-#~ msgstr "Začenjanje %s"
-
-#~ msgid "Application does not accept documents on command line"
-#~ msgstr "Program ne sprejme dokumentov preko ukazne vrstice"
-
-#~ msgid "Unrecognized launch option: %d"
-#~ msgstr "Nepoznana možnost zagona: %d"
-
-#~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-#~ msgstr ""
-#~ "Ni mogoče poslati naslova URI dokumenta na vnos 'Vrsta=Povezava' predmeta "
-#~ "namizja"
-
-#~ msgid "Not a launchable item"
-#~ msgstr "Predmet ni izvedljiv"
-
-#~ msgid "Disable connection to session manager"
-#~ msgstr "Onemogoči povezavo z upravljalnikom seje"
-
-#~ msgid "Specify file containing saved configuration"
-#~ msgstr "Določitev datoteke s shranjenimi nastavitvami"
-
-#~ msgid "FILE"
-#~ msgstr "DATOTEKA"
-
-#~ msgid "ID"
-#~ msgstr "ID"
-
-#~ msgid "Session management options:"
-#~ msgstr "Možnosti upravljanja seje:"
-
-#~ msgid "Show session management options"
-#~ msgstr "Pokaži možnosti upravljanja seje"
-
-#~ msgid "Some programs are still running:"
-#~ msgstr "Nekateri programi so še vedno zagnani:"
-
-#~ msgid "Unknown"
-#~ msgstr "Neznano"
-
-#~ msgid "A program is still running:"
-#~ msgstr "Program je še vedno zagnan:"
-
-#~ msgid ""
-#~ "Waiting for the program to finish. Interrupting the program may cause you "
-#~ "to lose work."
-#~ msgstr ""
-#~ "Čakanje na konec izvajanja programa. Prekinitev izvajanja lahko povzroči "
-#~ "izgubo vaših podatkov."
-
-#~ msgid ""
-#~ "Waiting for programs to finish. Interrupting these programs may cause you "
-#~ "to lose work."
-#~ msgstr ""
-#~ "Čakanje na konec izvajanja programov. Prekinitev izvajanja lahko povzroči "
-#~ "izgubo vaših podatkov."
-
-#~ msgid "Switch User Anyway"
-#~ msgstr "Vseeno preklopi uporabnika"
-
-#~ msgid "Log Out Anyway"
-#~ msgstr "Vseeno se odjavi"
-
-#~ msgid "Suspend Anyway"
-#~ msgstr "Vseeno postavi v pripravljenost"
-
-#~ msgid "Hibernate Anyway"
-#~ msgstr "Vseeno postavi v mirovanje"
-
-#~ msgid "Shut Down Anyway"
-#~ msgstr "Vseeno izklopi računalnik"
-
-#~ msgid "Restart Anyway"
-#~ msgstr "Vseeno ponovno zaženi"
-
-#~ msgid "Lock Screen"
-#~ msgstr "Zakleni zaslon"
-
-#~ msgid "Cancel"
-#~ msgstr "Prekliči"
-
-#~ msgid "You will be automatically logged out in %d second."
-#~ msgid_plural "You will be automatically logged out in %d seconds."
-#~ msgstr[0] "Samodejno boste odjavljeni čez %d sekund."
-#~ msgstr[1] "Samodejno boste odjavljeni čez %d sekundo."
-#~ msgstr[2] "Samodejno boste odjavljeni čez %d sekundi."
-#~ msgstr[3] "Samodejno boste odjavljeni čez %d sekunde."
-
-#~ msgid "This system will be automatically shut down in %d second."
-#~ msgid_plural "This system will be automatically shut down in %d seconds."
-#~ msgstr[0] "Sistem se bo samodejno izklopil čez %d sekund."
-#~ msgstr[1] "Sistem se bo samodejno izklopil čez %d sekundo."
-#~ msgstr[2] "Sistem se bo samodejno izklopil čez %d sekundi."
-#~ msgstr[3] "Sistem se bo samodejno izklopil čez %d sekunde."
-
-#~ msgid "This system will be automatically restarted in %d second."
-#~ msgid_plural "This system will be automatically restarted in %d seconds."
-#~ msgstr[0] "Sistem se bo samodejno ponovno zagnal čez %d sekund."
-#~ msgstr[1] "Sistem se bo samodejno ponovno zagnal čez %d sekundo."
-#~ msgstr[2] "Sistem se bo samodejno ponovno zagnal čez %d sekundi."
-#~ msgstr[3] "Sistem se bo samodejno ponovno zagnal čez %d sekunde."
-
-#~ msgid "You are currently logged in as \"%s\"."
-#~ msgstr "Trenutno ste prijavljeni kot \"%s\"."
-
-#~ msgid "Log out of this system now?"
-#~ msgstr "Ali se želite odjaviti iz sistema?"
-
-#~ msgid "_Switch User"
-#~ msgstr "_Preklop uporabnika"
-
-#~ msgid "Shut down this system now?"
-#~ msgstr "Ali želite izklopiti računalnik?"
-
-#~ msgid "S_uspend"
-#~ msgstr "V _pripravljenost"
-
-#~ msgid "_Hibernate"
-#~ msgstr "V _mirovanje"
-
-#~ msgid "_Restart"
-#~ msgstr "_Ponoven zagon"
-
-#~ msgid "_Shut Down"
-#~ msgstr "_Izklopi"
-
-#~ msgid "Restart this system now?"
-#~ msgstr "Ali naj se sistem ponovno zažene?"
-
-#~ msgid "%d hour"
-#~ msgid_plural "%d hours"
-#~ msgstr[0] "%d ur"
-#~ msgstr[1] "%d ura"
-#~ msgstr[2] "%d uri"
-#~ msgstr[3] "%d ure"
-
-#~ msgid "%d minute"
-#~ msgid_plural "%d minutes"
-#~ msgstr[0] "%d minut"
-#~ msgstr[1] "%d minuta"
-#~ msgstr[2] "%d minuti"
-#~ msgstr[3] "%d minute"
-
-#~ msgid "%d second"
-#~ msgid_plural "%d seconds"
-#~ msgstr[0] "%d sekund"
-#~ msgstr[1] "%d sekunda"
-#~ msgstr[2] "%d sekundi"
-#~ msgstr[3] "%d sekunde"
-
-#~ msgid "0 seconds"
-#~ msgstr "0 sekund"
-
-#~ msgid "Automatic logout in %s"
-#~ msgstr "Do samodejne odjave je še %s"
-
-#~ msgid ""
-#~ "This session is configured to automatically log out after a period of "
-#~ "inactivity."
-#~ msgstr ""
-#~ "Seja je nastavljena za samodejno odjavo po daljšem času nedejavnosti."
-
-#~ msgid "Icon '%s' not found"
-#~ msgstr "Ikone '%s' ni mogoče najti"
-
-#~ msgid "GNOME 3 Failed to Load"
-#~ msgstr "Nalaganje namizja GNOME 3 je spodletelo"
-
-#~ msgid ""
-#~ "Unfortunately GNOME 3 failed to start properly and started in the "
-#~ "<i>fallback mode</i>.\n"
-#~ "\n"
-#~ "This most likely means your system (graphics hardware or driver) is not "
-#~ "capable of delivering the full GNOME 3 experience."
-#~ msgstr ""
-#~ "Nalaganje namizja GNOME 3 je spodletelo, zato je namizje <i>povrnjeno na  "
-#~ "delujočo različico</i>.\n"
-#~ "\n"
-#~ "Napaka običajno pomeni, da grafična strojna oprema ali gonilnik ni "
-#~ "primeren za zagon namizja GNOME 3 v polnem grafičnem načinu."
-
-#~ msgid "Learn more about GNOME 3"
-#~ msgstr "Več podrobnosti o namizju GNOME 3"
-
-#~ msgid ""
-#~ "Unable to start login session (and unable to connect to the X server)"
-#~ msgstr ""
-#~ "Ni mogoče začeti prijavne seje (in ni se mogoče povezati s strežnikom X)"
-
-#~ msgid "Exited with code %d"
-#~ msgstr "Končano s kodo %d"
-
-#~ msgid "Killed by signal %d"
-#~ msgstr "Uničeno s signalom %d"
-
-#~ msgid "Stopped by signal %d"
-#~ msgstr "Zaustavljeno s signalom %d"
-
-#~ msgid "<b>Some programs are still running:</b>"
-#~ msgstr "<b>Nekateri programi so še vedno zagnani:</b>"
