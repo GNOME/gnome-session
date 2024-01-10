@@ -22,16 +22,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2021-10-12 18:16+0000\n"
-"PO-Revision-Date: 2022-01-01 11:08+0800\n"
-"Last-Translator: lumingzh <lumingzh@qq.com>\n"
+"POT-Creation-Date: 2024-01-08 21:02+0000\n"
+"PO-Revision-Date: 2024-01-10 15:09-0500\n"
+"Last-Translator: Boyuan Yang <073plan@gmail.com>\n"
 "Language-Team: Chinese - China <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
-"X-Generator: Gtranslator 41.0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -55,7 +55,6 @@ msgid "GNOME dummy"
 msgstr "GNOME dummy"
 
 #: data/gnome-wayland.desktop.in.in:3
-#| msgid "GNOME on Xorg"
 msgid "GNOME on Wayland"
 msgstr "GNOME Wayland"
 
@@ -63,38 +62,38 @@ msgstr "GNOME Wayland"
 msgid "GNOME on Xorg"
 msgstr "GNOME Xorg"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:5
+#: data/org.gnome.SessionManager.gschema.xml:5
 msgid "Save sessions"
 msgstr "保存会话"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:6
+#: data/org.gnome.SessionManager.gschema.xml:6
 msgid "If enabled, gnome-session will save the session automatically."
 msgstr "如果启用，gnome-session 将自动保存会话。"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:10
+#: data/org.gnome.SessionManager.gschema.xml:10
 msgid "Save this session"
 msgstr "保存此会话"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:11
+#: data/org.gnome.SessionManager.gschema.xml:11
 msgid ""
 "When enabled, gnome-session will automatically save the next session at log "
 "out even if auto saving is disabled."
 msgstr ""
 "启用时，gnome-session 将在下次注销时保存会话，无论自动保存是否已被禁用。"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:15
+#: data/org.gnome.SessionManager.gschema.xml:15
 msgid "Logout prompt"
 msgstr "注销提示"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:16
+#: data/org.gnome.SessionManager.gschema.xml:16
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr "如果启用，gnome-session 将在结束会话前提示用户。"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:20
+#: data/org.gnome.SessionManager.gschema.xml:20
 msgid "Show the fallback warning"
 msgstr "显示回退警告"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:21
+#: data/org.gnome.SessionManager.gschema.xml:21
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
@@ -128,13 +127,13 @@ msgstr "继续(_C)"
 
 #: gnome-session/gsm-fail-whale-dialog.c:318
 msgid "Oh no!  Something has gone wrong."
-msgstr "糟糕！出错啦！"
+msgstr "糟糕！出现了错误。"
 
 #: gnome-session/gsm-fail-whale-dialog.c:325
 msgid ""
 "A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
-msgstr "系统出错且无法恢复。请联系系统管理员。"
+msgstr "系统出错且无法恢复。请联系系统管理员"
 
 #: gnome-session/gsm-fail-whale-dialog.c:327
 msgid ""
@@ -153,7 +152,7 @@ msgstr "系统出错并无法恢复，请尝试注销并重新登录。"
 msgid "_Log Out"
 msgstr "注销(_L)"
 
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:403
 msgid "Enable debugging code"
 msgstr "启用调试代码"
 
@@ -165,7 +164,7 @@ msgstr "允许注销"
 msgid "Show extension warning"
 msgstr "显示扩展警告"
 
-#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1999
+#: gnome-session/gsm-manager.c:1301 gnome-session/gsm-manager.c:2050
 msgid "Not responding"
 msgstr "无响应"
 
@@ -186,63 +185,55 @@ msgstr "记住的应用程序"
 msgid "This program is blocking logout."
 msgstr "此程序正在阻止注销。"
 
-#: gnome-session/gsm-xsmp-server.c:338
+#: gnome-session/gsm-xsmp-server.c:340
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr "拒绝新客户连接，原因是会话正在关闭\n"
 
-#: gnome-session/gsm-xsmp-server.c:605
+#: gnome-session/gsm-xsmp-server.c:607
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "无法创建 ICE 监听套接字：%s"
 
-#: gnome-session/main.c:398
+#: gnome-session/main.c:400
 msgid "Running as systemd service"
 msgstr "以 systemd 服务运行"
 
-#: gnome-session/main.c:399
-msgid "Use systemd session management"
-msgstr "使用 systemd 会话管理"
-
 #: gnome-session/main.c:401
-msgid "Use builtin session management (rather than the systemd based one)"
-msgstr "使用内建的会话管理（不基于 systemd 的实现）"
-
-#: gnome-session/main.c:402
 msgid "Override standard autostart directories"
 msgstr "取代默认的自动启动目录"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:401
 msgid "AUTOSTART_DIR"
 msgstr "自动启动目录"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:402
 msgid "Session to use"
 msgstr "要使用的会话"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:402
 msgid "SESSION_NAME"
 msgstr "会话名称"
 
-#: gnome-session/main.c:405
+#: gnome-session/main.c:404
 msgid "Do not load user-specified applications"
 msgstr "不装入用户指定的应用程序"
 
-#: gnome-session/main.c:406
+#: gnome-session/main.c:405
 msgid "Version of this application"
 msgstr "此应用程序的版本"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:408
+#: gnome-session/main.c:407
 msgid "Show the fail whale dialog for testing"
 msgstr "显示用于测试的鲸鱼失败对话框"
 
-#: gnome-session/main.c:409
+#: gnome-session/main.c:408
 msgid "Disable hardware acceleration check"
 msgstr "禁用硬件加速检测"
 
-#: gnome-session/main.c:441
+#: gnome-session/main.c:440
 msgid " — the GNOME session manager"
 msgstr " — GNOME 会话管理器"
 
@@ -307,13 +298,22 @@ msgstr ""
 "\n"
 "若未指定 --inhibit 参数，将假设为 idle。\n"
 
-#: tools/gnome-session-inhibit.c:288
+#: tools/gnome-session-inhibit.c:282
+#, c-format
+msgid "Error while creating pipe: %s\n"
+msgstr "创建管道时出错：%s\n"
+
+#: tools/gnome-session-inhibit.c:299
+msgid "Failure reading pipe\n"
+msgstr "读取管道失败\n"
+
+#: tools/gnome-session-inhibit.c:303
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "执行 %s 失败\n"
 
-#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
-#: tools/gnome-session-inhibit.c:372
+#: tools/gnome-session-inhibit.c:376 tools/gnome-session-inhibit.c:386
+#: tools/gnome-session-inhibit.c:396
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s 需要一个参数\n"
@@ -370,6 +370,12 @@ msgstr "会话名称不允许包含“/”字符"
 #, c-format
 msgid "A session named “%s” already exists"
 msgstr "名为“%s”的会话已存在"
+
+#~ msgid "Use systemd session management"
+#~ msgstr "使用 systemd 会话管理"
+
+#~ msgid "Use builtin session management (rather than the systemd based one)"
+#~ msgstr "使用内建的会话管理（不基于 systemd 的实现）"
 
 #~ msgid "This session logs you into GNOME, using Wayland"
 #~ msgstr "此会话将您登录到使用 Wayland 的 GNOME"
