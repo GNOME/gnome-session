@@ -15,26 +15,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2021-10-12 18:16+0000\n"
-"PO-Revision-Date: 2021-10-16 00:48+0300\n"
-"Last-Translator: Melman <Alexmelman88@gmail.com>\n"
+"POT-Creation-Date: 2024-01-08 21:02+0000\n"
+"PO-Revision-Date: 2024-01-09 20:59+0300\n"
+"Last-Translator: Artur So <arturios2005@mail.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
-"X-Generator: Gtranslator 40.0\n"
-"X-DL-Team: ru\n"
-"X-DL-Module: gnome-session\n"
-"X-DL-Branch: main\n"
-"X-DL-Domain: po\n"
-"X-DL-State: None\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
-msgstr "Другой сеанс"
+msgstr "Пользовательский"
 
 #: data/gnome-custom-session.desktop.in.in:4
 msgid "This entry lets you select a saved session"
@@ -54,7 +49,6 @@ msgid "GNOME dummy"
 msgstr "Фиктивный сеанс GNOME"
 
 #: data/gnome-wayland.desktop.in.in:3
-#| msgid "GNOME on Xorg"
 msgid "GNOME on Wayland"
 msgstr "GNOME на Wayland"
 
@@ -62,19 +56,19 @@ msgstr "GNOME на Wayland"
 msgid "GNOME on Xorg"
 msgstr "GNOME на Xorg"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:5
+#: data/org.gnome.SessionManager.gschema.xml:5
 msgid "Save sessions"
-msgstr "Сохранить сеанс"
+msgstr "Сохранить сеансы"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:6
+#: data/org.gnome.SessionManager.gschema.xml:6
 msgid "If enabled, gnome-session will save the session automatically."
 msgstr "Если включено, gnome-session автоматически сохранит сеанс."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:10
+#: data/org.gnome.SessionManager.gschema.xml:10
 msgid "Save this session"
 msgstr "Сохранить этот сеанс"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:11
+#: data/org.gnome.SessionManager.gschema.xml:11
 msgid ""
 "When enabled, gnome-session will automatically save the next session at log "
 "out even if auto saving is disabled."
@@ -82,21 +76,21 @@ msgstr ""
 "Когда включено, gnome-session автоматически сохранит следующий сеанс при "
 "выходе из системы, даже если автоматическое сохранение отключено."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:15
+#: data/org.gnome.SessionManager.gschema.xml:15
 msgid "Logout prompt"
-msgstr "Предупреждать перед завершением сеанса"
+msgstr "Предупреждать перед выходом из системы"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:16
+#: data/org.gnome.SessionManager.gschema.xml:16
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
-"Если включено, gnome-session будет предупреждать пользователя перед "
-"завершением сеанса."
+"Если включено, gnome-session будет предупреждать пользователя перед выходом "
+"из системы."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:20
+#: data/org.gnome.SessionManager.gschema.xml:20
 msgid "Show the fallback warning"
 msgstr "Показать аварийное предупреждение"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:21
+#: data/org.gnome.SessionManager.gschema.xml:21
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
@@ -106,7 +100,7 @@ msgstr ""
 
 #: data/session-selector.ui:15
 msgid "Custom Session"
-msgstr "Другой сеанс"
+msgstr "Пользовательский сеанс"
 
 #: data/session-selector.ui:50 tools/gnome-session-selector.c:102
 msgid "Please select a custom session to run"
@@ -154,31 +148,31 @@ msgid ""
 "Please log out and try again."
 msgstr ""
 "Произошла ошибка, и системе не удалось восстановиться.\n"
-"Нужно завершить сеанс и войти снова."
+"Нужно выйти из системы и попробовать снова."
 
 #: gnome-session/gsm-fail-whale-dialog.c:344
 msgid "_Log Out"
-msgstr "_Завершить сеанс"
+msgstr "_Выйти"
 
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:403
 msgid "Enable debugging code"
 msgstr "Включить отладочный код"
 
 #: gnome-session/gsm-fail-whale-dialog.c:413
 msgid "Allow logout"
-msgstr "Разрешить завершение сеанса"
+msgstr "Разрешить выход из системы"
 
 #: gnome-session/gsm-fail-whale-dialog.c:414
 msgid "Show extension warning"
 msgstr "Показывать предупреждения от расширений"
 
-#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1999
+#: gnome-session/gsm-manager.c:1301 gnome-session/gsm-manager.c:2050
 msgid "Not responding"
 msgstr "Не отвечает"
 
 #: gnome-session/gsm-util.c:431
 msgid "_Log out"
-msgstr "_Завершить сеанс"
+msgstr "_Выйти"
 
 #. It'd be really surprising to reach this code: if we're here,
 #. * then the XSMP client already has set several XSMP
@@ -190,66 +184,57 @@ msgstr "Запомненное приложение"
 
 #: gnome-session/gsm-xsmp-client.c:1216
 msgid "This program is blocking logout."
-msgstr "Эта программа блокирует завершение сеанса."
+msgstr "Эта программа блокирует выход из системы."
 
-#: gnome-session/gsm-xsmp-server.c:338
+#: gnome-session/gsm-xsmp-server.c:340
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr "Новые клиентские подключения отклоняются, т. к. сеанс завершается\n"
 
-#: gnome-session/gsm-xsmp-server.c:605
+#: gnome-session/gsm-xsmp-server.c:607
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Не удалось создать сокет, слушающий ICE: %s"
 
-#: gnome-session/main.c:398
+#: gnome-session/main.c:400
 msgid "Running as systemd service"
 msgstr "Запущен в качестве службы systemd"
 
-#: gnome-session/main.c:399
-msgid "Use systemd session management"
-msgstr "Использовать менеджер сеансов systemd"
-
 #: gnome-session/main.c:401
-msgid "Use builtin session management (rather than the systemd based one)"
-msgstr ""
-"Используйте встроенное управление сессиями (вместо основанного на systemd)"
-
-#: gnome-session/main.c:402
 msgid "Override standard autostart directories"
 msgstr "Заместить стандартные каталоги автозапуска"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:401
 msgid "AUTOSTART_DIR"
 msgstr "КАТАЛОГ_АВТОЗАПУСКА"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:402
 msgid "Session to use"
-msgstr "Использовать сеанс"
+msgstr "Сеанс для использования"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:402
 msgid "SESSION_NAME"
 msgstr "НАЗВАНИЕ_СЕАНСА"
 
-#: gnome-session/main.c:405
+#: gnome-session/main.c:404
 msgid "Do not load user-specified applications"
 msgstr "Не загружать указанные пользователем приложения"
 
-#: gnome-session/main.c:406
+#: gnome-session/main.c:405
 msgid "Version of this application"
 msgstr "Версия этого приложения"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:408
+#: gnome-session/main.c:407
 msgid "Show the fail whale dialog for testing"
 msgstr "Показать для отладки диалог с сообщением об ошибке"
 
-#: gnome-session/main.c:409
+#: gnome-session/main.c:408
 msgid "Disable hardware acceleration check"
 msgstr "Отключить проверку наличия аппаратного ускорения"
 
-#: gnome-session/main.c:441
+#: gnome-session/main.c:440
 msgid " — the GNOME session manager"
 msgstr " — менеджер сеансов GNOME"
 
@@ -305,34 +290,44 @@ msgid ""
 msgstr ""
 "%s [ОПЦИЯ...] КОМАНДА\n"
 "\n"
-"Выполнение команды COMMAND с блокировкой некоторых функций сеанса.\n"
+"Выполнение КОМАНДЫ с блокировкой некоторых функций сеанса.\n"
 "\n"
-"  -h, --help Показать справку\n"
-"  --version Показать версию программы\n"
-"  --app-id ID Идентификатор приложения для использования\n"
+"  -h, --help        Показать справку\n"
+"  --version         Показать версию программы\n"
+"  --app-id ID       Идентификатор приложения для использования\n"
 "                    при блокировке (необязательно)\n"
-"  --reason REASON Причина запрета (необязательно)\n"
-"  --inhibit ARG То, что нужно запретить, список, разделенный двоеточием:\n"
+"  --reason REASON   Причина запрета (необязательно)\n"
+"  --inhibit ARG     То, что нужно запретить, список, разделенный "
+"двоеточием:\n"
 "                    logout, switch-user, suspend, idle, automount\n"
-"  --inhibit-only Не запускать COMMAND и вместо этого ждать вечно\n"
-"  -l, --list Список существующих запретов и выход из него\n"
+"  --inhibit-only    Не запускать COMMAND и вместо этого ждать вечно\n"
+"  -l, --list        Список существующих запретов и выход из него\n"
 "\n"
 "Если опция --inhibit не указана, предполагается режим ожидания.\n"
 
-#: tools/gnome-session-inhibit.c:288
+#: tools/gnome-session-inhibit.c:282
+#, c-format
+msgid "Error while creating pipe: %s\n"
+msgstr "Ошибка при создании канала: %s\n"
+
+#: tools/gnome-session-inhibit.c:299
+msgid "Failure reading pipe\n"
+msgstr "Сбой чтения канала\n"
+
+#: tools/gnome-session-inhibit.c:303
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Не удалось запустить %s\n"
 
-#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
-#: tools/gnome-session-inhibit.c:372
+#: tools/gnome-session-inhibit.c:376 tools/gnome-session-inhibit.c:386
+#: tools/gnome-session-inhibit.c:396
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s требуется аргумент\n"
 
 #: tools/gnome-session-quit.c:50
 msgid "Log out"
-msgstr "Завершить сеанс"
+msgstr "Выйти"
 
 #: tools/gnome-session-quit.c:51
 msgid "Power off"
@@ -382,3 +377,9 @@ msgstr "Имена сеансов не могут содержать симво�
 msgid "A session named “%s” already exists"
 msgstr "Сеанс с именем «%s» уже существует"
 
+#~ msgid "Use systemd session management"
+#~ msgstr "Использовать управление сеансами systemd"
+
+#~ msgid "Use builtin session management (rather than the systemd based one)"
+#~ msgstr ""
+#~ "Использовать встроенное управление сеансами (а не основанное на systemd)"
