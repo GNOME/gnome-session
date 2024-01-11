@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2021-10-12 18:16+0000\n"
-"PO-Revision-Date: 2021-11-01 19:55+0100\n"
+"POT-Creation-Date: 2024-01-08 21:02+0000\n"
+"PO-Revision-Date: 2024-01-11 19:18+0100\n"
 "Last-Translator: Quentin PAGÈS\n"
 "Language-Team: Tot En Òc\n"
 "Language: oc\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.4.2\n"
 "X-Project-Style: gnome\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
@@ -48,19 +48,19 @@ msgstr "GNOME sus Wayland"
 msgid "GNOME on Xorg"
 msgstr "GNOME sus Xorg"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:5
+#: data/org.gnome.SessionManager.gschema.xml:5
 msgid "Save sessions"
 msgstr "Enregistrar las sessions"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:6
+#: data/org.gnome.SessionManager.gschema.xml:6
 msgid "If enabled, gnome-session will save the session automatically."
 msgstr "Se activat, gnome-session enregistra la session automaticament."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:10
+#: data/org.gnome.SessionManager.gschema.xml:10
 msgid "Save this session"
 msgstr "Enregistrar aquesta session"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:11
+#: data/org.gnome.SessionManager.gschema.xml:11
 msgid ""
 "When enabled, gnome-session will automatically save the next session at log "
 "out even if auto saving is disabled."
@@ -69,21 +69,21 @@ msgstr ""
 "seguenta a la desconnexion encara que siá desactivat l’enregistrament "
 "automatic."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:15
+#: data/org.gnome.SessionManager.gschema.xml:15
 msgid "Logout prompt"
 msgstr "Demanda de desconnexion"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:16
+#: data/org.gnome.SessionManager.gschema.xml:16
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 "S'es activat, gnome-session demandarà una confirmacion a l’utilizaire abans "
 "de terminar una session."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:20
+#: data/org.gnome.SessionManager.gschema.xml:20
 msgid "Show the fallback warning"
 msgstr "Afichar l'avertiment de solucion de recambi"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:21
+#: data/org.gnome.SessionManager.gschema.xml:21
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
@@ -147,7 +147,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_Tampar la session"
 
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:403
 msgid "Enable debugging code"
 msgstr "Activa lo còdi de desbugatge"
 
@@ -159,7 +159,7 @@ msgstr "Autorizar la desconnexion"
 msgid "Show extension warning"
 msgstr "Afichar l'avertiment per las extensions"
 
-#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1999
+#: gnome-session/gsm-manager.c:1301 gnome-session/gsm-manager.c:2050
 msgid "Not responding"
 msgstr "Abséncia de responsa"
 
@@ -179,7 +179,7 @@ msgstr "Aplicacions memorizadas"
 msgid "This program is blocking logout."
 msgstr "Aqueste programa blòca la desconnexion."
 
-#: gnome-session/gsm-xsmp-server.c:338
+#: gnome-session/gsm-xsmp-server.c:340
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
@@ -187,59 +187,49 @@ msgstr ""
 "Refús de la connexion d'un novèl client perque la session es actualament en "
 "cors de tampadura\n"
 
-#: gnome-session/gsm-xsmp-server.c:605
+#: gnome-session/gsm-xsmp-server.c:607
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Impossible de crear lo connectador d'escota ICE : %s"
 
-#: gnome-session/main.c:398
+#: gnome-session/main.c:400
 msgid "Running as systemd service"
 msgstr "Execucion coma servici systemd"
 
-#: gnome-session/main.c:399
-msgid "Use systemd session management"
-msgstr "Utilizar la gestion de session systemd"
-
 #: gnome-session/main.c:401
-msgid "Use builtin session management (rather than the systemd based one)"
-msgstr ""
-"Utilizar la gestion de session integrada (puslèu qu’aquela basada sus "
-"systemd)"
-
-#: gnome-session/main.c:402
 msgid "Override standard autostart directories"
 msgstr "Remplaça los repertòris autostart estandards"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:401
 msgid "AUTOSTART_DIR"
 msgstr "REP_AUTOSTART"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:402
 msgid "Session to use"
 msgstr "Session d'utilizar"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:402
 msgid "SESSION_NAME"
 msgstr "NOM_SESSION"
 
-#: gnome-session/main.c:405
+#: gnome-session/main.c:404
 msgid "Do not load user-specified applications"
 msgstr "Carga pas las aplicacions demandadas per l'utilizaire"
 
-#: gnome-session/main.c:406
+#: gnome-session/main.c:405
 msgid "Version of this application"
 msgstr "Version d'aquesta aplicacion"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:408
+#: gnome-session/main.c:407
 msgid "Show the fail whale dialog for testing"
 msgstr "Afichar lo dialòg d'error per lo testar"
 
-#: gnome-session/main.c:409
+#: gnome-session/main.c:408
 msgid "Disable hardware acceleration check"
 msgstr "Desactivar la verificacion de l'acceleracion materiala"
 
-#: gnome-session/main.c:441
+#: gnome-session/main.c:440
 msgid " — the GNOME session manager"
 msgstr " — lo gestionari de sessions de GNOME"
 
@@ -309,13 +299,22 @@ msgstr ""
 "\n"
 "Se pas cap d'opcion --inhibit es pas precisat, « idle » es supausat.\n"
 
-#: tools/gnome-session-inhibit.c:288
+#: tools/gnome-session-inhibit.c:282
+#, c-format
+msgid "Error while creating pipe: %s\n"
+msgstr "Error de creacion del pipe : %s\n"
+
+#: tools/gnome-session-inhibit.c:299
+msgid "Failure reading pipe\n"
+msgstr "Fracàs de la lectura del pipe\n"
+
+#: tools/gnome-session-inhibit.c:303
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Impossible d'executar %s\n"
 
-#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
-#: tools/gnome-session-inhibit.c:372
+#: tools/gnome-session-inhibit.c:376 tools/gnome-session-inhibit.c:386
+#: tools/gnome-session-inhibit.c:396
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s necessita un paramètre\n"
@@ -372,6 +371,14 @@ msgstr "Los noms de sessions pòdon pas conténer lo caractèr « / »"
 #, c-format
 msgid "A session named “%s” already exists"
 msgstr "Una session nomenada « %s » existís ja"
+
+#~ msgid "Use systemd session management"
+#~ msgstr "Utilizar la gestion de session systemd"
+
+#~ msgid "Use builtin session management (rather than the systemd based one)"
+#~ msgstr ""
+#~ "Utilizar la gestion de session integrada (puslèu qu’aquela basada sus "
+#~ "systemd)"
 
 #~ msgid "Additional startup _programs:"
 #~ msgstr "_Programas suplementaris a l'aviada :"
