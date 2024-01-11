@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD.he\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2021-10-12 18:16+0000\n"
-"PO-Revision-Date: 2021-11-15 15:56+0200\n"
+"POT-Creation-Date: 2024-01-08 21:02+0000\n"
+"PO-Revision-Date: 2024-01-11 16:52+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <yoseforb@gmail.com>\n"
 "Language: he\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? "
 "2 : 3);\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -51,19 +51,19 @@ msgstr "‏GNOME על גבי Wayland"
 msgid "GNOME on Xorg"
 msgstr "‏GNOME על גבי Xorg"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:5
+#: data/org.gnome.SessionManager.gschema.xml:5
 msgid "Save sessions"
 msgstr "שמירת הפעלות"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:6
+#: data/org.gnome.SessionManager.gschema.xml:6
 msgid "If enabled, gnome-session will save the session automatically."
 msgstr "If enabled, gnome-session will save the session automatically."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:10
+#: data/org.gnome.SessionManager.gschema.xml:10
 msgid "Save this session"
 msgstr "שמירת ההפעלה הזאת"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:11
+#: data/org.gnome.SessionManager.gschema.xml:11
 msgid ""
 "When enabled, gnome-session will automatically save the next session at log "
 "out even if auto saving is disabled."
@@ -71,20 +71,20 @@ msgstr ""
 "When enabled, gnome-session will automatically save the next session at log "
 "out even if auto saving is disabled."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:15
+#: data/org.gnome.SessionManager.gschema.xml:15
 msgid "Logout prompt"
 msgstr "הודעה לפני יציאה"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:16
+#: data/org.gnome.SessionManager.gschema.xml:16
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 "If enabled, gnome-session will prompt the user before ending a session."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:20
+#: data/org.gnome.SessionManager.gschema.xml:20
 msgid "Show the fallback warning"
 msgstr "הצגת אזהרה כנסיגה"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:21
+#: data/org.gnome.SessionManager.gschema.xml:21
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
@@ -147,7 +147,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_ניתוק"
 
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:403
 msgid "Enable debugging code"
 msgstr "הפעלת קוד ניפוי שגיאות"
 
@@ -159,7 +159,7 @@ msgstr "לאפשר יציאה"
 msgid "Show extension warning"
 msgstr "הצגת אזהרת הרחבות"
 
-#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1999
+#: gnome-session/gsm-manager.c:1301 gnome-session/gsm-manager.c:2050
 msgid "Not responding"
 msgstr "אין תגובה"
 
@@ -179,63 +179,55 @@ msgstr "יישום השמור בזיכרון"
 msgid "This program is blocking logout."
 msgstr "תכנית זו מונעת את היציאה."
 
-#: gnome-session/gsm-xsmp-server.c:338
+#: gnome-session/gsm-xsmp-server.c:340
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr "מסרב לחיבור לקוח חדש מכיון שההפעלה נמצאת במהלך כיבוי\n"
 
-#: gnome-session/gsm-xsmp-server.c:605
+#: gnome-session/gsm-xsmp-server.c:607
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "לא ניתן ליצור שקע ICE: ‏%s"
 
-#: gnome-session/main.c:398
+#: gnome-session/main.c:400
 msgid "Running as systemd service"
 msgstr "מופעל כשירות systemd"
 
-#: gnome-session/main.c:399
-msgid "Use systemd session management"
-msgstr "להשתמש בניהול ההפעלות של systemd"
-
 #: gnome-session/main.c:401
-msgid "Use builtin session management (rather than the systemd based one)"
-msgstr "להשתמש בניהול הפעלות פנימי (במקום בניהול מבוסס systemd)"
-
-#: gnome-session/main.c:402
 msgid "Override standard autostart directories"
 msgstr "Override standard autostart directories"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:401
 msgid "AUTOSTART_DIR"
 msgstr "תיקייה_הפעלה_אוטומטית"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:402
 msgid "Session to use"
 msgstr "הפעלה לשימוש"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:402
 msgid "SESSION_NAME"
 msgstr "שם_הפעלה"
 
-#: gnome-session/main.c:405
+#: gnome-session/main.c:404
 msgid "Do not load user-specified applications"
 msgstr "לא לטעון יישומים בבחירת המשתמש"
 
-#: gnome-session/main.c:406
+#: gnome-session/main.c:405
 msgid "Version of this application"
 msgstr "גירסת היישום הזה"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:408
+#: gnome-session/main.c:407
 msgid "Show the fail whale dialog for testing"
 msgstr "Show the fail whale dialog for testing"
 
-#: gnome-session/main.c:409
+#: gnome-session/main.c:408
 msgid "Disable hardware acceleration check"
 msgstr "השבתת בדיקת האצת חומרה"
 
-#: gnome-session/main.c:441
+#: gnome-session/main.c:440
 msgid " — the GNOME session manager"
 msgstr " — מנהל ההפעלות של GNOME"
 
@@ -304,15 +296,28 @@ msgstr ""
 "\n"
 "If no --inhibit option is specified, idle is assumed.\n"
 
-#: tools/gnome-session-inhibit.c:288
+#: tools/gnome-session-inhibit.c:282
+#, c-format
+msgid "Error while creating pipe: %s\n"
+msgstr ""
+"שגיאה ביצירת צינור: %s\n"
+"‬\n"
+
+#: tools/gnome-session-inhibit.c:299
+msgid "Failure reading pipe\n"
+msgstr ""
+"קריאת צינור נכשלה\n"
+"‬\n"
+
+#: tools/gnome-session-inhibit.c:303
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr ""
 "ההפעלה של %s נכשלה\n"
 "‬\n"
 
-#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
-#: tools/gnome-session-inhibit.c:372
+#: tools/gnome-session-inhibit.c:376 tools/gnome-session-inhibit.c:386
+#: tools/gnome-session-inhibit.c:396
 #, c-format
 msgid "%s requires an argument\n"
 msgstr ""
@@ -369,6 +374,12 @@ msgstr "אסור ששמות ההפעלות יכילו את התו „/”"
 #, c-format
 msgid "A session named “%s” already exists"
 msgstr "כבר קיימת הפעלה בשם „%s”"
+
+#~ msgid "Use systemd session management"
+#~ msgstr "להשתמש בניהול ההפעלות של systemd"
+
+#~ msgid "Use builtin session management (rather than the systemd based one)"
+#~ msgstr "להשתמש בניהול הפעלות פנימי (במקום בניהול מבוסס systemd)"
 
 #~ msgid "Additional startup _programs:"
 #~ msgstr "_תכניות הפעלה נוספות:"
@@ -683,18 +694,18 @@ msgstr "כבר קיימת הפעלה בשם „%s”"
 
 #~ msgid ""
 #~ "List of components that are required as part of the session. (Each "
-#~ "element names a key under \"/desktop/gnome/session/required_components"
-#~ "\"). The Startup Applications preferences tool will not normally allow "
-#~ "users to remove a required component from the session, and the session "
-#~ "manager will automatically add the required components back to the "
-#~ "session at login time if they do get removed."
+#~ "element names a key under \"/desktop/gnome/session/"
+#~ "required_components\"). The Startup Applications preferences tool will "
+#~ "not normally allow users to remove a required component from the session, "
+#~ "and the session manager will automatically add the required components "
+#~ "back to the session at login time if they do get removed."
 #~ msgstr ""
 #~ "List of components that are required as part of the session. (Each "
-#~ "element names a key under \"/desktop/gnome/session/required_components"
-#~ "\"). The Startup Applications preferences tool will not normally allow "
-#~ "users to remove a required component from the session, and the session "
-#~ "manager will automatically add the required components back to the "
-#~ "session at login time if they do get removed."
+#~ "element names a key under \"/desktop/gnome/session/"
+#~ "required_components\"). The Startup Applications preferences tool will "
+#~ "not normally allow users to remove a required component from the session, "
+#~ "and the session manager will automatically add the required components "
+#~ "back to the session at login time if they do get removed."
 
 #~ msgid "Panel"
 #~ msgstr "Panel"
