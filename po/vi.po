@@ -4,16 +4,16 @@
 # This file is distributed under the same license as the gnome-session package.
 # Nguyễn Thái Ngọc Duy <pclouds@gmail.com>, 2002-2004,2007-2008,2011-2013.
 # Clytie Siddall <clytie@riverland.net.au>, 2005-2009.
-# Trần Ngọc Quân <vnwildman@gmail.com>, 2013-2023.
+# Trần Ngọc Quân <vnwildman@gmail.com>, 2013-2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2023-11-03 17:38+0000\n"
-"PO-Revision-Date: 2023-11-11 13:41+0700\n"
+"POT-Creation-Date: 2024-01-12 03:15+0000\n"
+"PO-Revision-Date: 2024-01-13 14:08+0700\n"
 "Last-Translator: Trần Ngọc Quân <vnwildman@gmail.com>\n"
-"Language-Team: Vietnamese <Vietnamese <gnome-vi-list@gnome.org>>\n"
+"Language-Team: Vietnamese <gnome-vi-list@gnome.org>>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -177,7 +177,7 @@ msgstr "Ứng dụng đã nhớ"
 
 #: gnome-session/gsm-xsmp-client.c:1216
 msgid "This program is blocking logout."
-msgstr "Chương trình này đang ngăn cản đăng xuất."
+msgstr "Chương trình này đang ngăn cản việc đăng xuất."
 
 #: gnome-session/gsm-xsmp-server.c:340
 msgid ""
@@ -226,7 +226,7 @@ msgstr "Hiện cửa sổ cá voi thất bại để kiểm tra"
 
 #: gnome-session/main.c:408
 msgid "Disable hardware acceleration check"
-msgstr "Tắt kiểm tra tăng tốc phần cứng"
+msgstr "Tắt kiểm tra tăng tốc xử lý bằng phần cứng"
 
 #: gnome-session/main.c:440
 msgid " — the GNOME session manager"
@@ -234,7 +234,7 @@ msgstr " — bộ quản lý phiên làm việc GNOME"
 
 #: tools/gnome-session-ctl.c:245
 msgid "Start gnome-session-shutdown.target"
-msgstr "Khởi chạy gnome-session-shutdown.target"
+msgstr "Khởi chạy gnome-session-shutdown.targetchuẩn)"
 
 #: tools/gnome-session-ctl.c:246
 msgid ""
@@ -242,7 +242,7 @@ msgid ""
 "stdin"
 msgstr ""
 "Khởi chạy gnome-session-shutdown.target khi nhận được EOF hay một byte đơn "
-"trên stdin"
+"trên stdin (đầu vào tiêu "
 
 #: tools/gnome-session-ctl.c:247
 msgid "Signal initialization done to gnome-session"
@@ -298,13 +298,22 @@ msgstr ""
 "\n"
 "Nếu không đưa ra tùy chọn --inhibit, coi là idle (nghỉ).\n"
 
-#: tools/gnome-session-inhibit.c:288
+#: tools/gnome-session-inhibit.c:282
+#, c-format
+msgid "Error while creating pipe: %s\n"
+msgstr "Gặp lỗi khi đang tạo đường ống: %s\n"
+
+#: tools/gnome-session-inhibit.c:299
+msgid "Failure reading pipe\n"
+msgstr "Gặp lỗi nghiêm trọng khi đọc đường ống\n"
+
+#: tools/gnome-session-inhibit.c:303
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Gặp lỗi khi chạy %s\n"
 
-#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
-#: tools/gnome-session-inhibit.c:372
+#: tools/gnome-session-inhibit.c:376 tools/gnome-session-inhibit.c:386
+#: tools/gnome-session-inhibit.c:396
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s cần một đối số\n"
@@ -335,7 +344,7 @@ msgstr "Không thể kết nối với trình quản lý phiên làm việc"
 
 #: tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
-msgstr "Chương trình được gọi với các tùy chọn xung đột nhau"
+msgstr "Chương trình được gọi với các tùy chọn xung đột với nhau"
 
 #: tools/gnome-session-selector.c:61
 #, c-format
