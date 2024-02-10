@@ -22,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2023-08-08 10:45+0000\n"
-"PO-Revision-Date: 2023-10-06 03:56+0300\n"
+"POT-Creation-Date: 2024-01-23 21:17+0000\n"
+"PO-Revision-Date: 2024-02-08 01:15+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
 "Language: tr\n"
@@ -31,7 +31,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -62,19 +62,19 @@ msgstr "Wayland üzerinde GNOME"
 msgid "GNOME on Xorg"
 msgstr "Xorg üzerinde GNOME"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:5
+#: data/org.gnome.SessionManager.gschema.xml:5
 msgid "Save sessions"
 msgstr "Oturumları kaydet"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:6
+#: data/org.gnome.SessionManager.gschema.xml:6
 msgid "If enabled, gnome-session will save the session automatically."
 msgstr "Etkinse; gnome-session, oturumu kendiliğinden kaydedecektir."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:10
+#: data/org.gnome.SessionManager.gschema.xml:10
 msgid "Save this session"
 msgstr "Bu oturumu kaydet"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:11
+#: data/org.gnome.SessionManager.gschema.xml:11
 msgid ""
 "When enabled, gnome-session will automatically save the next session at log "
 "out even if auto saving is disabled."
@@ -82,20 +82,20 @@ msgstr ""
 "Etkinleştirildiğinde; gnome-session, kendiliğinden kaydetme devre dışı olsa "
 "bile oturum kapatıldığında sonraki oturumu kendiliğinden kaydedecektir."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:15
+#: data/org.gnome.SessionManager.gschema.xml:15
 msgid "Logout prompt"
 msgstr "Oturum kapatma istemi"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:16
+#: data/org.gnome.SessionManager.gschema.xml:16
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 "Etkinse; gnome-session, oturumu bitirmeden önce kullanıcıya soracaktır."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:20
+#: data/org.gnome.SessionManager.gschema.xml:20
 msgid "Show the fallback warning"
 msgstr "Yedeğe dönüş uyarısını göster"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:21
+#: data/org.gnome.SessionManager.gschema.xml:21
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
@@ -152,31 +152,31 @@ msgid ""
 "Please log out and try again."
 msgstr ""
 "Sorun oluştu ve sistem kurtarılamıyor.\n"
-"Lütfen çıkış yapın ve yeniden deneyin."
+"Lütfen oturumu kapatıp yeniden deneyin."
 
 #: gnome-session/gsm-fail-whale-dialog.c:344
 msgid "_Log Out"
-msgstr "_Çıkış"
+msgstr "_Oturumu Kapat"
 
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:412
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:403
 msgid "Enable debugging code"
 msgstr "Kod hatası ayıklamayı etkinleştir"
 
 #: gnome-session/gsm-fail-whale-dialog.c:413
 msgid "Allow logout"
-msgstr "Çıkışa izin ver"
+msgstr "Oturumu kapatmaya izin ver"
 
 #: gnome-session/gsm-fail-whale-dialog.c:414
 msgid "Show extension warning"
 msgstr "Uzantı uyarısını göster"
 
-#: gnome-session/gsm-manager.c:1317 gnome-session/gsm-manager.c:2068
+#: gnome-session/gsm-manager.c:1301 gnome-session/gsm-manager.c:2050
 msgid "Not responding"
 msgstr "Yanıtlamıyor"
 
 #: gnome-session/gsm-util.c:431
 msgid "_Log out"
-msgstr "_Çıkış"
+msgstr "_Oturumu kapat"
 
 #. It'd be really surprising to reach this code: if we're here,
 #. * then the XSMP client already has set several XSMP
@@ -201,52 +201,44 @@ msgstr "Oturum şu anda kapatıldığından yeni istemci bağlantısı reddedili
 msgid "Could not create ICE listening socket: %s"
 msgstr "ICE dinleme soketi oluşturulamadı: %s"
 
-#: gnome-session/main.c:406
+#: gnome-session/main.c:400
 msgid "Running as systemd service"
 msgstr "systemd hizmeti olarak çalışıyor"
 
-#: gnome-session/main.c:407
-msgid "Use systemd session management"
-msgstr "systemd oturum yönetimini kullan"
-
-#: gnome-session/main.c:409
-msgid "Use builtin session management (rather than the systemd based one)"
-msgstr "Yerleşik oturum yönetimini kullan (systemd temelli yerine)"
-
-#: gnome-session/main.c:410
+#: gnome-session/main.c:401
 msgid "Override standard autostart directories"
 msgstr "Standart kendiliğinden başlat dizinlerinin yerine geç"
 
-#: gnome-session/main.c:410
+#: gnome-session/main.c:401
 msgid "AUTOSTART_DIR"
 msgstr "KENDILIGINDANBASLAT_DIZINI"
 
-#: gnome-session/main.c:411
+#: gnome-session/main.c:402
 msgid "Session to use"
 msgstr "Kullanılacak oturum"
 
-#: gnome-session/main.c:411
+#: gnome-session/main.c:402
 msgid "SESSION_NAME"
 msgstr "OTURUM_ADI"
 
-#: gnome-session/main.c:413
+#: gnome-session/main.c:404
 msgid "Do not load user-specified applications"
 msgstr "Kullanıcıya özel programları yükleme"
 
-#: gnome-session/main.c:414
+#: gnome-session/main.c:405
 msgid "Version of this application"
 msgstr "Bu uygulamanın sürümü"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:416
+#: gnome-session/main.c:407
 msgid "Show the fail whale dialog for testing"
 msgstr "Sınama için büyük hata iletişim penceresini göster"
 
-#: gnome-session/main.c:417
+#: gnome-session/main.c:408
 msgid "Disable hardware acceleration check"
 msgstr "Donanım hızlandırma denetimini devre dışı bırak"
 
-#: gnome-session/main.c:449
+#: gnome-session/main.c:440
 msgid " — the GNOME session manager"
 msgstr " — GNOME oturum yöneticisi"
 
@@ -313,20 +305,29 @@ msgstr ""
 "\n"
 "Eğer hiç --inhibit seçeneği verilmediyse, idle kısıtı kabul edilir.\n"
 
-#: tools/gnome-session-inhibit.c:288
+#: tools/gnome-session-inhibit.c:282
+#, c-format
+msgid "Error while creating pipe: %s\n"
+msgstr "Boru oluşturulurken hata: %s\n"
+
+#: tools/gnome-session-inhibit.c:299
+msgid "Failure reading pipe\n"
+msgstr "Boru okuma hatası\n"
+
+#: tools/gnome-session-inhibit.c:303
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "%s çalıştırılamadı\n"
 
-#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
-#: tools/gnome-session-inhibit.c:372
+#: tools/gnome-session-inhibit.c:376 tools/gnome-session-inhibit.c:386
+#: tools/gnome-session-inhibit.c:396
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s için parametre eksik\n"
 
 #: tools/gnome-session-quit.c:50
 msgid "Log out"
-msgstr "Çıkış"
+msgstr "Oturumu kapat"
 
 #: tools/gnome-session-quit.c:51
 msgid "Power off"
@@ -374,3 +375,9 @@ msgstr "Oturum adları “/” karakterini içeremez"
 #, c-format
 msgid "A session named “%s” already exists"
 msgstr "“%s” adında oturum var"
+
+#~ msgid "Use systemd session management"
+#~ msgstr "systemd oturum yönetimini kullan"
+
+#~ msgid "Use builtin session management (rather than the systemd based one)"
+#~ msgstr "Yerleşik oturum yönetimini kullan (systemd temelli yerine)"
