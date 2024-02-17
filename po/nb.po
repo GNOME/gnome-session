@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 4.4\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2023-10-12 11:31+0000\n"
-"PO-Revision-Date: 2023-10-12 21:59+0200\n"
+"POT-Creation-Date: 2024-01-23 21:17+0000\n"
+"PO-Revision-Date: 2024-02-17 22:48+0100\n"
 "Last-Translator: Brage <bragefuglseth@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: nb\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -118,7 +118,7 @@ msgstr "_Fortsett"
 
 #: gnome-session/gsm-fail-whale-dialog.c:318
 msgid "Oh no!  Something has gone wrong."
-msgstr "Å nei! Noe gikk galt."
+msgstr "Å nei! Noe har gått galt."
 
 # Her burde også originalteksten ha sluttet med punktum
 #: gnome-session/gsm-fail-whale-dialog.c:325
@@ -291,7 +291,7 @@ msgstr ""
 "  --version         Vis versjon for programmet\n"
 "  --app-id ID       Applikasjons-ID som skal brukes\n"
 "                    ved hindring (valgfri)\n"
-"  --reason ÅRSAK    Årsak for hindring\n"
+"  --reason ÅRSAK    Årsak til hindring\n"
 "  --inhibit ARG     Ting som skal hindres. Kolonseparert liste med:\n"
 "                    logout, switch-user, suspend, idle og automount\n"
 "  --inhibit-only    Ikke start KOMMANDO og vent for alltid i stedet\n"
@@ -299,13 +299,22 @@ msgstr ""
 "  \n"
 "Hvis ingen flagg gis til --inhibit vil idle brukes.\n"
 
-#: tools/gnome-session-inhibit.c:288
+#: tools/gnome-session-inhibit.c:282
+#, c-format
+msgid "Error while creating pipe: %s\n"
+msgstr "Oppretting av forbindelse mislyktes: %s\n"
+
+#: tools/gnome-session-inhibit.c:299
+msgid "Failure reading pipe\n"
+msgstr "Lesing av forbindelse mislyktes\n"
+
+#: tools/gnome-session-inhibit.c:303
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Klarte ikke å kjøre %s\n"
 
-#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
-#: tools/gnome-session-inhibit.c:372
+#: tools/gnome-session-inhibit.c:376 tools/gnome-session-inhibit.c:386
+#: tools/gnome-session-inhibit.c:396
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s krever et argument\n"
