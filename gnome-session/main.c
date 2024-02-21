@@ -285,6 +285,8 @@ leader_term_or_int_signal_cb (gpointer data)
 {
         gint fifo_fd = GPOINTER_TO_INT (data);
 
+        g_debug ("Session termination requested");
+
         /* Start a shutdown explicitly. */
         gsm_util_start_systemd_unit ("gnome-session-shutdown.target", "replace-irreversibly", NULL);
 
@@ -301,6 +303,105 @@ leader_term_or_int_signal_cb (gpointer data)
                 /* Otherwise quit immediately as we cannot wait on systemd */
                 gsm_quit ();
         }
+
+        return G_SOURCE_REMOVE;
+}
+
+static void
+graphical_session_pre_state_changed_cb (GDBusProxy *proxy,
+                                        GVariant   *changed_properties)
+{
+        const char *state;
+        g_autoptr (GVariant) value = NULL;
+
+        value = g_variant_lookup_value (changed_properties, "ActiveState", NULL);
+
+        if (value == NULL)
+                return;
+
+        g_variant_get (value, "&s", &state);
+        if (g_strcmp0 (state, "inactive") == 0) {
+                g_debug ("Session services now inactive, quitting");
+                gsm_quit ();
+                return;
+        }
+}
+
+static gboolean
+monitor_hangup_cb (int          fd,
+                   GIOCondition condition,
+                   gpointer     user_data)
+{
+        g_autoptr (GDBusConnection) connection = NULL;
+        g_autoptr (GVariant) unit = NULL;
+        g_autoptr (GVariant) value = NULL;
+        g_autoptr (GError) error = NULL;
+        GDBusProxy *proxy = NULL;
+        const char *unit_path = NULL;
+
+        g_debug ("Services have begun stopping, waiting for them to finish stopping");
+
+        connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &error);
+
+        if (!connection) {
+                g_debug ("Could not get bus connection: %s", error->message);
+                gsm_quit ();
+                return G_SOURCE_REMOVE;
+        }
+
+        unit = g_dbus_connection_call_sync (connection,
+                                            "org.freedesktop.systemd1",
+                                            "/org/freedesktop/systemd1",
+                                            "org.freedesktop.systemd1.Manager",
+                                            "GetUnit",
+                                            g_variant_new ("(s)", "graphical-session-pre.target"),
+                                            G_VARIANT_TYPE ("(o)"),
+                                            G_DBUS_CALL_FLAGS_NONE,
+                                            -1,
+                                            NULL,
+                                            &error);
+        if (!unit) {
+                g_debug ("Could not get unit for graphical-session-pre.target: %s", error->message);
+                gsm_quit ();
+                return G_SOURCE_REMOVE;
+        }
+
+        g_variant_get (unit, "(&o)", &unit_path);
+
+        proxy = g_dbus_proxy_new_sync (connection,
+                                       G_DBUS_PROXY_FLAGS_NONE,
+                                       NULL,
+                                       "org.freedesktop.systemd1",
+                                       unit_path,
+                                       "org.freedesktop.systemd1.Unit",
+                                       NULL,
+                                       &error);
+        if (!proxy) {
+                g_debug ("Could not get proxy for graphical-session-pre.target unit: %s", error->message);
+                gsm_quit ();
+                return G_SOURCE_REMOVE;
+        }
+
+        value = g_dbus_proxy_get_cached_property (proxy, "ActiveState");
+
+        if (value) {
+                const char *state;
+
+                g_variant_get (value, "&s", &state);
+
+                if (g_strcmp0 (state, "inactive") == 0) {
+                        g_debug ("State of graphical-session-pre.target unit already inactive quitting");
+                        gsm_quit ();
+                        return G_SOURCE_REMOVE;
+                }
+                g_debug ("State of graphical-session-pre.target unit is '%s', waiting for it to go inactive", state);
+        } else {
+                g_debug ("State of graphical-session-pre.target unit is unknown, waiting for it to go inactive");
+        }
+        g_signal_connect (proxy,
+                          "g-properties-changed",
+                          G_CALLBACK (graphical_session_pre_state_changed_cb),
+                          NULL);
 
         return G_SOURCE_REMOVE;
 }
@@ -370,7 +471,7 @@ systemd_leader_run(void)
                         close (fifo_fd);
                         fifo_fd = -1;
                 } else {
-                        g_unix_fd_add (fifo_fd, G_IO_HUP, (GUnixFDSourceFunc) gsm_quit, NULL);
+                        g_unix_fd_add (fifo_fd, G_IO_HUP, (GUnixFDSourceFunc) monitor_hangup_cb, NULL);
                 }
         } else {
                 g_warning ("Unable to watch systemd session: Opening FIFO failed with %m");
