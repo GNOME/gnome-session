@@ -164,11 +164,13 @@ leader_fifo_io_cb (gint fd,
 
         sd_notify (0, "STOPPING=1");
 
-        if (condition | G_IO_IN) {
+        if (condition & G_IO_IN) {
                 char buf[1];
                 read (data->fifo_fd, buf, 1);
+                g_main_loop_quit (data->loop);
         }
-        if (condition | G_IO_HUP) {
+
+        if (condition & G_IO_HUP) {
                 g_main_loop_quit (data->loop);
         }
 
