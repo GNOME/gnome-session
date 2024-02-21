@@ -376,6 +376,7 @@ systemd_leader_run(void)
                 g_warning ("Unable to watch systemd session: Opening FIFO failed with %m");
         }
 
+        g_unix_signal_add (SIGHUP, leader_term_or_int_signal_cb, GINT_TO_POINTER (fifo_fd));
         g_unix_signal_add (SIGTERM, leader_term_or_int_signal_cb, GINT_TO_POINTER (fifo_fd));
         g_unix_signal_add (SIGINT, leader_term_or_int_signal_cb, GINT_TO_POINTER (fifo_fd));
 
