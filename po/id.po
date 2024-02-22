@@ -6,13 +6,13 @@
 # Dirgita <dirgitadevina@yahoo.co.id>, 2010, 2011, 2012, 2014.
 # Andika Triwidada <andika@gmail.com>, 2010, 2011, 2013, 2014.
 # Bonaventura Aditya Perdana <bonaditya@about.me>, 2012.
-# Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2017-2021.
+# Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2017-2021, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2021-10-12 18:16+0000\n"
-"PO-Revision-Date: 2021-10-13 22:02+0700\n"
+"POT-Creation-Date: 2024-01-13 12:21+0000\n"
+"PO-Revision-Date: 2024-02-22 20:15+0700\n"
 "Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome-l10n-id@googlegroups.com>\n"
 "Language: id\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -51,19 +51,19 @@ msgstr "GNOME pada Wayland"
 msgid "GNOME on Xorg"
 msgstr "GNOME pada Xorg"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:5
+#: data/org.gnome.SessionManager.gschema.xml:5
 msgid "Save sessions"
 msgstr "Simpan sesi"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:6
+#: data/org.gnome.SessionManager.gschema.xml:6
 msgid "If enabled, gnome-session will save the session automatically."
 msgstr "Jika diaktifkan, gnome-session akan menyimpan sesi secara otomatis."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:10
+#: data/org.gnome.SessionManager.gschema.xml:10
 msgid "Save this session"
 msgstr "Simpan sesi ini"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:11
+#: data/org.gnome.SessionManager.gschema.xml:11
 msgid ""
 "When enabled, gnome-session will automatically save the next session at log "
 "out even if auto saving is disabled."
@@ -71,21 +71,21 @@ msgstr ""
 "Saat diaktifkan, gnome-session akan secara otomatis menyimpan sesi "
 "berikutnya saat log keluar bahkan jika penyimpanan otomatis dinonaktifkan."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:15
+#: data/org.gnome.SessionManager.gschema.xml:15
 msgid "Logout prompt"
 msgstr "Tanyakan log keluar"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:16
+#: data/org.gnome.SessionManager.gschema.xml:16
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 "Jika diaktifkan, gnome-session akan menanyakan pengguna sebelum mengakhiri "
 "sesi."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:20
+#: data/org.gnome.SessionManager.gschema.xml:20
 msgid "Show the fallback warning"
 msgstr "Tampilkan peringatan penggantian"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:21
+#: data/org.gnome.SessionManager.gschema.xml:21
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
@@ -149,7 +149,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "Ke_luar"
 
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:403
 msgid "Enable debugging code"
 msgstr "Mengaktifkan kode debug"
 
@@ -161,7 +161,7 @@ msgstr "Izinkan log keluar"
 msgid "Show extension warning"
 msgstr "Tunjukkan peringatan ekstensi"
 
-#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1999
+#: gnome-session/gsm-manager.c:1301 gnome-session/gsm-manager.c:2050
 msgid "Not responding"
 msgstr "Tak merespon"
 
@@ -181,7 +181,7 @@ msgstr "Aplikasi Yang Diingat"
 msgid "This program is blocking logout."
 msgstr "Program ini menghalangi log keluar."
 
-#: gnome-session/gsm-xsmp-server.c:338
+#: gnome-session/gsm-xsmp-server.c:340
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
@@ -189,57 +189,49 @@ msgstr ""
 "Menolak sambungan dari klien baru, karena sesi sedang dalam proses "
 "dimatikan\n"
 
-#: gnome-session/gsm-xsmp-server.c:605
+#: gnome-session/gsm-xsmp-server.c:607
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Tak dapat membuat soket pendengar ICE: %s"
 
-#: gnome-session/main.c:398
+#: gnome-session/main.c:400
 msgid "Running as systemd service"
 msgstr "Jalankan sebagai layanan systemd"
 
-#: gnome-session/main.c:399
-msgid "Use systemd session management"
-msgstr "Gunakan manajemen sesi systemd"
-
 #: gnome-session/main.c:401
-msgid "Use builtin session management (rather than the systemd based one)"
-msgstr "Gunakan manajemen sesi tertanam (bukan yang berbasis systemd)"
-
-#: gnome-session/main.c:402
 msgid "Override standard autostart directories"
 msgstr "Menimpa direktori standar autostart"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:401
 msgid "AUTOSTART_DIR"
 msgstr "DIR_MULAI_OTOMATIS"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:402
 msgid "Session to use"
 msgstr "Sesi yang dipakai"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:402
 msgid "SESSION_NAME"
 msgstr "NAMA_SESI"
 
-#: gnome-session/main.c:405
+#: gnome-session/main.c:404
 msgid "Do not load user-specified applications"
 msgstr "Tak memuat aplikasi yang ditentukan oleh pengguna"
 
-#: gnome-session/main.c:406
+#: gnome-session/main.c:405
 msgid "Version of this application"
 msgstr "Versi aplikasi ini"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:408
+#: gnome-session/main.c:407
 msgid "Show the fail whale dialog for testing"
 msgstr "Tampilkan dialog paus gagal untul pengujian"
 
-#: gnome-session/main.c:409
+#: gnome-session/main.c:408
 msgid "Disable hardware acceleration check"
 msgstr "Nonaktifkan pemeriksaan akselerasi perangkat keras"
 
-#: gnome-session/main.c:441
+#: gnome-session/main.c:440
 msgid " — the GNOME session manager"
 msgstr " — manajer sesi GNOME"
 
@@ -310,13 +302,22 @@ msgstr ""
 "\n"
 "Bila tak ada opsi --inhibit yang dinyatakan, diasumsikan idle.\n"
 
-#: tools/gnome-session-inhibit.c:288
+#: tools/gnome-session-inhibit.c:282
+#, c-format
+msgid "Error while creating pipe: %s\n"
+msgstr "Galat saat membuat pipa: %s\n"
+
+#: tools/gnome-session-inhibit.c:299
+msgid "Failure reading pipe\n"
+msgstr "Kegagalan membaca pipa\n"
+
+#: tools/gnome-session-inhibit.c:303
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Gagal mengeksekusi %s\n"
 
-#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
-#: tools/gnome-session-inhibit.c:372
+#: tools/gnome-session-inhibit.c:376 tools/gnome-session-inhibit.c:386
+#: tools/gnome-session-inhibit.c:396
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s memerlukan argumen\n"
@@ -372,3 +373,9 @@ msgstr "Nama sesi tak boleh memuat karakter “/”"
 #, c-format
 msgid "A session named “%s” already exists"
 msgstr "Nama sesi “%s” telah ada"
+
+#~ msgid "Use systemd session management"
+#~ msgstr "Gunakan manajemen sesi systemd"
+
+#~ msgid "Use builtin session management (rather than the systemd based one)"
+#~ msgstr "Gunakan manajemen sesi tertanam (bukan yang berbasis systemd)"
