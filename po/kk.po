@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2021-10-12 18:16+0000\n"
-"PO-Revision-Date: 2022-03-12 22:36+0500\n"
+"POT-Creation-Date: 2024-01-13 12:21+0000\n"
+"PO-Revision-Date: 2024-02-24 19:17+0600\n"
 "Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh <kk_KZ@googlegroups.com>\n"
 "Language: kk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -47,20 +47,20 @@ msgstr "Wayland негізіндегі GNOME"
 msgid "GNOME on Xorg"
 msgstr "Xorg негізіндегі GNOME"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:5
+#: data/org.gnome.SessionManager.gschema.xml:5
 msgid "Save sessions"
 msgstr "Сессияларды сақтау"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:6
+#: data/org.gnome.SessionManager.gschema.xml:6
 msgid "If enabled, gnome-session will save the session automatically."
 msgstr ""
 "Іске қосылған болса, gnome-session сессияны автоматты түрде сақтайтын болады."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:10
+#: data/org.gnome.SessionManager.gschema.xml:10
 msgid "Save this session"
 msgstr "Бұл сессияны сақтау"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:11
+#: data/org.gnome.SessionManager.gschema.xml:11
 msgid ""
 "When enabled, gnome-session will automatically save the next session at log "
 "out even if auto saving is disabled."
@@ -68,21 +68,21 @@ msgstr ""
 "Іске қосылған болса, gnome-session келесі сессияны шыққан кезде "
 "автосақтайды, автоматты түрде сақтау сөндірілген болса да."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:15
+#: data/org.gnome.SessionManager.gschema.xml:15
 msgid "Logout prompt"
 msgstr "Жүйеден шығу сұрауы"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:16
+#: data/org.gnome.SessionManager.gschema.xml:16
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 "Іске қосылған болса, gnome-session сессияны аяқтаудың алдында пайдаланушыдан "
 "растауды сұрайтын болады."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:20
+#: data/org.gnome.SessionManager.gschema.xml:20
 msgid "Show the fallback warning"
 msgstr "Бастапқы сессияға оралу ескертуін көрсету"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:21
+#: data/org.gnome.SessionManager.gschema.xml:21
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
@@ -147,7 +147,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "Жүйеден ш_ығу"
 
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:403
 msgid "Enable debugging code"
 msgstr "Жөндеу кодын іске қосу"
 
@@ -159,7 +159,7 @@ msgstr "Жүйеден шығуды рұқсат ету"
 msgid "Show extension warning"
 msgstr "Кеңейту ескертуін көрсету"
 
-#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1999
+#: gnome-session/gsm-manager.c:1301 gnome-session/gsm-manager.c:2050
 msgid "Not responding"
 msgstr "Жауап бермейді"
 
@@ -179,63 +179,55 @@ msgstr "Есте сақталған қолданбалар"
 msgid "This program is blocking logout."
 msgstr "Бұл бағдарлама жүйеден шығуды болдырмай тұр."
 
-#: gnome-session/gsm-xsmp-server.c:338
+#: gnome-session/gsm-xsmp-server.c:340
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr "Жаңа клиенттік байланысын тайдыру, өйткені жүйе қазір сөндірілуде\n"
 
-#: gnome-session/gsm-xsmp-server.c:605
+#: gnome-session/gsm-xsmp-server.c:607
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "ICE тындаушы сокетін жасау мүмкін емес: %s"
 
-#: gnome-session/main.c:398
+#: gnome-session/main.c:400
 msgid "Running as systemd service"
 msgstr "systemd қызметі ретінде орындалуда"
 
-#: gnome-session/main.c:399
-msgid "Use systemd session management"
-msgstr "systemd сессия басқаруын қолдану"
-
 #: gnome-session/main.c:401
-msgid "Use builtin session management (rather than the systemd based one)"
-msgstr "Құрамындағы сессияларды басқаруды қолдану (systemd-негізіндегі орнына)"
-
-#: gnome-session/main.c:402
 msgid "Override standard autostart directories"
 msgstr "Стандартты іске қосылу бумалардың орнына басқаларды қолдану"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:401
 msgid "AUTOSTART_DIR"
 msgstr "АВТОІСКЕҚОСЫЛУ_БУМАСЫ"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:402
 msgid "Session to use"
 msgstr "Қолдану үшін сессия"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:402
 msgid "SESSION_NAME"
 msgstr "СЕССИЯ_АТЫ"
 
-#: gnome-session/main.c:405
+#: gnome-session/main.c:404
 msgid "Do not load user-specified applications"
 msgstr "Пайдаланушыға тән қолданбаларды жөнелтпеу"
 
-#: gnome-session/main.c:406
+#: gnome-session/main.c:405
 msgid "Version of this application"
 msgstr "Осы қолданбаның нұсқасы"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:408
+#: gnome-session/main.c:407
 msgid "Show the fail whale dialog for testing"
 msgstr "Сынау үшін \"fail whale\" сұхбатын көрсету"
 
-#: gnome-session/main.c:409
+#: gnome-session/main.c:408
 msgid "Disable hardware acceleration check"
 msgstr "Құрылғылық үдетуді тексеруді сөндіру"
 
-#: gnome-session/main.c:441
+#: gnome-session/main.c:440
 msgid " — the GNOME session manager"
 msgstr " — GNOME сессиялар басқарушысы"
 
@@ -306,13 +298,22 @@ msgstr ""
 "\n"
 "Егер --inhibit опциясы көрсетілмесе, бос етіп есептеледі.\n"
 
-#: tools/gnome-session-inhibit.c:288
+#: tools/gnome-session-inhibit.c:282
+#, c-format
+msgid "Error while creating pipe: %s\n"
+msgstr "Құбырды жасау кезіндегі қате: %s\n"
+
+#: tools/gnome-session-inhibit.c:299
+msgid "Failure reading pipe\n"
+msgstr "Құбырдан оқу қатесі\n"
+
+#: tools/gnome-session-inhibit.c:303
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "%s жөнелту сәтсіз\n"
 
-#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
-#: tools/gnome-session-inhibit.c:372
+#: tools/gnome-session-inhibit.c:376 tools/gnome-session-inhibit.c:386
+#: tools/gnome-session-inhibit.c:396
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s аргументті талап етеді\n"
@@ -369,6 +370,13 @@ msgstr "Сессия атауында \"/\" таңбасы болмауы тиі
 #, c-format
 msgid "A session named “%s” already exists"
 msgstr "\"%s\" атауы бар сессия бар болып тұр"
+
+#~ msgid "Use systemd session management"
+#~ msgstr "systemd сессия басқаруын қолдану"
+
+#~ msgid "Use builtin session management (rather than the systemd based one)"
+#~ msgstr ""
+#~ "Құрамындағы сессияларды басқаруды қолдану (systemd-негізіндегі орнына)"
 
 #~ msgid "Additional startup _programs:"
 #~ msgstr "Қосымша іске қосылатын бағ_дарламалар:"
