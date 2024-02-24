@@ -6,15 +6,15 @@
 # P�eris Krij�is <peterisk@apollo.lv>, 2000.
 # Artis Trops <hornet@navigators.lv>, 2000.
 # Raivis Dejus <orvils@gmail.com>, 2006, 2009.
-# Rudolfs <rudolfs.mazurs@gmail.com>, 2011.
+# SPDX-FileCopyrightText: 2011, 2024 Rudolfs <rudolfs.mazurs@gmail.com>
 # Rūdofls Mazurs <rudolfs.mazurs@gmail.com>, 2011, 2012.
 # Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>, 2010, 2011, 2013, 2015, 2016, 2017, 2018, 2019, 2020, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: lv\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2021-10-12 18:16+0000\n"
-"PO-Revision-Date: 2021-10-25 20:20+0300\n"
+"POT-Creation-Date: 2024-01-13 12:21+0000\n"
+"PO-Revision-Date: 2024-02-24 20:52+0200\n"
 "Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
 "Language: lv\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 :"
 " 2);\n"
-"X-Generator: Lokalize 21.08.1\n"
+"X-Generator: Lokalize 23.08.1\n"
 "X-Launchpad-Export-Date: 2009-02-19 16:24+0000\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
@@ -48,7 +48,6 @@ msgid "GNOME dummy"
 msgstr "GNOME makets"
 
 #: data/gnome-wayland.desktop.in.in:3
-#| msgid "GNOME on Xorg"
 msgid "GNOME on Wayland"
 msgstr "GNOME ar Wayland"
 
@@ -56,19 +55,19 @@ msgstr "GNOME ar Wayland"
 msgid "GNOME on Xorg"
 msgstr "GNOME ar Xorg"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:5
+#: data/org.gnome.SessionManager.gschema.xml:5
 msgid "Save sessions"
 msgstr "Saglabāt sesijas"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:6
+#: data/org.gnome.SessionManager.gschema.xml:6
 msgid "If enabled, gnome-session will save the session automatically."
 msgstr "Ja ieslēgts, gnome-session automātiski saglabās sesiju."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:10
+#: data/org.gnome.SessionManager.gschema.xml:10
 msgid "Save this session"
 msgstr "Saglabāt šo sesiju"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:11
+#: data/org.gnome.SessionManager.gschema.xml:11
 msgid ""
 "When enabled, gnome-session will automatically save the next session at log "
 "out even if auto saving is disabled."
@@ -76,19 +75,19 @@ msgstr ""
 "Kad ieslēgts, gnome-session izrakstoties automātiski saglabās nākamo sesiju, "
 "pat ja automātiskā saglabāšana ir izslēgta."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:15
+#: data/org.gnome.SessionManager.gschema.xml:15
 msgid "Logout prompt"
 msgstr "Izrakstīšanās uzvedne"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:16
+#: data/org.gnome.SessionManager.gschema.xml:16
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr "Ja ieslēgts, gnome-session vaicās lietotājam pirms sesijas beigšanas."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:20
+#: data/org.gnome.SessionManager.gschema.xml:20
 msgid "Show the fallback warning"
 msgstr "Rādīt atkāpšanās brīdinājumu"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:21
+#: data/org.gnome.SessionManager.gschema.xml:21
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
@@ -152,7 +151,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_Izrakstīties"
 
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:403
 msgid "Enable debugging code"
 msgstr "Aktivēt atkļūdošanas kodu"
 
@@ -164,7 +163,7 @@ msgstr "Atļaut izrakstīšanos"
 msgid "Show extension warning"
 msgstr "Rādīt paplašinājumu brīdinājumus"
 
-#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1999
+#: gnome-session/gsm-manager.c:1301 gnome-session/gsm-manager.c:2050
 msgid "Not responding"
 msgstr "Neatbild"
 
@@ -184,63 +183,55 @@ msgstr "Iegaumētā lietotne"
 msgid "This program is blocking logout."
 msgstr "Programma bloķē izrakstīšanos."
 
-#: gnome-session/gsm-xsmp-server.c:338
+#: gnome-session/gsm-xsmp-server.c:340
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr "Atsaka jauniem klientu savienojumiem, jo sesija tiek izslēgta\n"
 
-#: gnome-session/gsm-xsmp-server.c:605
+#: gnome-session/gsm-xsmp-server.c:607
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Nevar izveidot ICE klausīšanās ligzdu — %s"
 
-#: gnome-session/main.c:398
+#: gnome-session/main.c:400
 msgid "Running as systemd service"
 msgstr "Darbina kā systemd pakalpojumu"
 
-#: gnome-session/main.c:399
-msgid "Use systemd session management"
-msgstr "Izmantot systemd sesiju pārvaldību"
-
 #: gnome-session/main.c:401
-msgid "Use builtin session management (rather than the systemd based one)"
-msgstr "Izmantot iebūvēto sesiju pārvaldību (nevis systemd pārbaldību)"
-
-#: gnome-session/main.c:402
 msgid "Override standard autostart directories"
 msgstr "Aizstāt standarta automātiskā starta direktorijas"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:401
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTARTA_DIR"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:402
 msgid "Session to use"
 msgstr "Sesija, ko izmantot"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:402
 msgid "SESSION_NAME"
 msgstr "SESIJAS_NOSAUKUMS"
 
-#: gnome-session/main.c:405
+#: gnome-session/main.c:404
 msgid "Do not load user-specified applications"
 msgstr "Neielādēt lietotāja norādītās lietotnes"
 
-#: gnome-session/main.c:406
+#: gnome-session/main.c:405
 msgid "Version of this application"
 msgstr "Lietotnes versija"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:408
+#: gnome-session/main.c:407
 msgid "Show the fail whale dialog for testing"
 msgstr "Rādīt neveiksmju vali testēšanai"
 
-#: gnome-session/main.c:409
+#: gnome-session/main.c:408
 msgid "Disable hardware acceleration check"
 msgstr "Izslēgt aparatūras paātrinājuma pārbaudi"
 
-#: gnome-session/main.c:441
+#: gnome-session/main.c:440
 msgid " — the GNOME session manager"
 msgstr " — GNOME sesiju pārvaldnieks"
 
@@ -309,13 +300,22 @@ msgstr ""
 "\n"
 "Ja nav norādīta opcija --inhibit, tiek pieņemts idle.\n"
 
-#: tools/gnome-session-inhibit.c:288
+#: tools/gnome-session-inhibit.c:282
+#, c-format
+msgid "Error while creating pipe: %s\n"
+msgstr "Kļūda, veidojot konveijeru: %s\n"
+
+#: tools/gnome-session-inhibit.c:299
+msgid "Failure reading pipe\n"
+msgstr "Kļūda, lasot konveijeru\n"
+
+#: tools/gnome-session-inhibit.c:303
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Neizdevās izpildīt %s\n"
 
-#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
-#: tools/gnome-session-inhibit.c:372
+#: tools/gnome-session-inhibit.c:376 tools/gnome-session-inhibit.c:386
+#: tools/gnome-session-inhibit.c:396
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s pieprasa parametru\n"
@@ -371,6 +371,12 @@ msgstr "Sesijas nosaukums nedrīkst vai saturēt rakstzīmi “/”"
 msgid "A session named “%s” already exists"
 msgstr "Sesija ar nosaukumu “%s” jau eksistē"
 
+#~ msgid "Use systemd session management"
+#~ msgstr "Izmantot systemd sesiju pārvaldību"
+
+#~ msgid "Use builtin session management (rather than the systemd based one)"
+#~ msgstr "Izmantot iebūvēto sesiju pārvaldību (nevis systemd pārbaldību)"
+
 #~ msgid "Additional startup _programs:"
 #~ msgstr "Papildu starta _programmas:"
 
@@ -397,3 +403,4 @@ msgstr "Sesija ar nosaukumu “%s” jau eksistē"
 
 #~ msgid "_Name:"
 #~ msgstr "_Nosaukums:"
+
