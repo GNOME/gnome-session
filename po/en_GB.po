@@ -4,13 +4,14 @@
 # Philip Withnall <philip@tecnocode.co.uk>, 2009, 2010.
 # Bruce Cowan <bruce@bcowan.me.uk>, 2011-2023.
 # Zander Brown <zbrown@gnome.org>, 2020.
+# Andi Chandler <andi@gowling.com>, 2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.24\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2023-05-05 13:09+0000\n"
-"PO-Revision-Date: 2023-09-06 12:15+0100\n"
+"POT-Creation-Date: 2024-02-23 00:16+0000\n"
+"PO-Revision-Date: 2024-02-24 16:04+0000\n"
 "Last-Translator: Bruce Cowan <bruce@bcowan.me.uk>\n"
 "Language-Team: English - United Kingdom <en_GB@li.org>\n"
 "Language: en_GB\n"
@@ -18,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.4.2\n"
 "X-Project-Style: gnome\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
@@ -43,7 +44,6 @@ msgid "GNOME dummy"
 msgstr "GNOME dummy"
 
 #: data/gnome-wayland.desktop.in.in:3
-#| msgid "GNOME on Xorg"
 msgid "GNOME on Wayland"
 msgstr "GNOME on Wayland"
 
@@ -51,19 +51,19 @@ msgstr "GNOME on Wayland"
 msgid "GNOME on Xorg"
 msgstr "GNOME on Xorg"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:5
+#: data/org.gnome.SessionManager.gschema.xml:5
 msgid "Save sessions"
 msgstr "Save sessions"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:6
+#: data/org.gnome.SessionManager.gschema.xml:6
 msgid "If enabled, gnome-session will save the session automatically."
 msgstr "If enabled, gnome-session will save the session automatically."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:10
+#: data/org.gnome.SessionManager.gschema.xml:10
 msgid "Save this session"
 msgstr "Save this session"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:11
+#: data/org.gnome.SessionManager.gschema.xml:11
 msgid ""
 "When enabled, gnome-session will automatically save the next session at log "
 "out even if auto saving is disabled."
@@ -71,25 +71,25 @@ msgstr ""
 "When enabled, gnome-session will automatically save the next session at log "
 "out even if auto saving is disabled."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:15
+#: data/org.gnome.SessionManager.gschema.xml:15
 msgid "Logout prompt"
 msgstr "Logout prompt"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:16
+#: data/org.gnome.SessionManager.gschema.xml:16
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 "If enabled, gnome-session will prompt the user before ending a session."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:20
+#: data/org.gnome.SessionManager.gschema.xml:20
 msgid "Show the fallback warning"
 msgstr "Show the fallback warning"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:21
+#: data/org.gnome.SessionManager.gschema.xml:21
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
 msgstr ""
-"If enabled, gnome-session will display a warning dialog after login if the "
+"If enabled, gnome-session will display a warning dialogue after login if the "
 "session was automatically fallen back."
 
 #: data/session-selector.ui:15
@@ -148,7 +148,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_Log Out"
 
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:412
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:505
 msgid "Enable debugging code"
 msgstr "Enable debugging code"
 
@@ -160,7 +160,7 @@ msgstr "Allow logout"
 msgid "Show extension warning"
 msgstr "Show extension warning"
 
-#: gnome-session/gsm-manager.c:1317 gnome-session/gsm-manager.c:2068
+#: gnome-session/gsm-manager.c:1301 gnome-session/gsm-manager.c:2050
 msgid "Not responding"
 msgstr "Not responding"
 
@@ -193,60 +193,52 @@ msgstr ""
 msgid "Could not create ICE listening socket: %s"
 msgstr "Could not create ICE listening socket: %s"
 
-#: gnome-session/main.c:406
+#: gnome-session/main.c:502
 msgid "Running as systemd service"
 msgstr "Running as systemd service"
 
-#: gnome-session/main.c:407
-msgid "Use systemd session management"
-msgstr "Use systemd session management"
-
-#: gnome-session/main.c:409
-msgid "Use builtin session management (rather than the systemd based one)"
-msgstr "Use builtin session management (rather than the systemd based one)"
-
-#: gnome-session/main.c:410
+#: gnome-session/main.c:503
 msgid "Override standard autostart directories"
 msgstr "Override standard autostart directories"
 
-#: gnome-session/main.c:410
+#: gnome-session/main.c:503
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: gnome-session/main.c:411
+#: gnome-session/main.c:504
 msgid "Session to use"
 msgstr "Session to use"
 
-#: gnome-session/main.c:411
+#: gnome-session/main.c:504
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: gnome-session/main.c:413
+#: gnome-session/main.c:506
 msgid "Do not load user-specified applications"
 msgstr "Do not load user-specified applications"
 
-#: gnome-session/main.c:414
+#: gnome-session/main.c:507
 msgid "Version of this application"
 msgstr "Version of this application"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:416
+#: gnome-session/main.c:509
 msgid "Show the fail whale dialog for testing"
 msgstr "Show the fail whale dialogue for testing"
 
-#: gnome-session/main.c:417
+#: gnome-session/main.c:510
 msgid "Disable hardware acceleration check"
 msgstr "Disable hardware acceleration check"
 
-#: gnome-session/main.c:449
+#: gnome-session/main.c:542
 msgid " — the GNOME session manager"
 msgstr " — the GNOME session manager"
 
-#: tools/gnome-session-ctl.c:245
+#: tools/gnome-session-ctl.c:247
 msgid "Start gnome-session-shutdown.target"
 msgstr "Start gnome-session-shutdown.target"
 
-#: tools/gnome-session-ctl.c:246
+#: tools/gnome-session-ctl.c:248
 msgid ""
 "Start gnome-session-shutdown.target when receiving EOF or a single byte on "
 "stdin"
@@ -254,21 +246,21 @@ msgstr ""
 "Start gnome-session-shutdown.target when receiving EOF or a single byte on "
 "stdin"
 
-#: tools/gnome-session-ctl.c:247
+#: tools/gnome-session-ctl.c:249
 msgid "Signal initialization done to gnome-session"
 msgstr "Signal initialisation done to gnome-session"
 
-#: tools/gnome-session-ctl.c:248
+#: tools/gnome-session-ctl.c:250
 msgid "Restart dbus.service if it is running"
 msgstr "Restart dbus.service if it is running"
 
-#: tools/gnome-session-ctl.c:249
+#: tools/gnome-session-ctl.c:251
 msgid ""
 "Run from ExecStopPost to start gnome-session-failed.target on service failure"
 msgstr ""
 "Run from ExecStopPost to start gnome-session-failed.target on service failure"
 
-#: tools/gnome-session-ctl.c:279
+#: tools/gnome-session-ctl.c:281
 msgid "Program needs exactly one parameter"
 msgstr "Program needs exactly one parameter"
 
@@ -307,13 +299,22 @@ msgstr ""
 "\n"
 "If no --inhibit option is specified, idle is assumed.\n"
 
-#: tools/gnome-session-inhibit.c:288
+#: tools/gnome-session-inhibit.c:282
+#, c-format
+msgid "Error while creating pipe: %s\n"
+msgstr "Error while creating pipe: %s\n"
+
+#: tools/gnome-session-inhibit.c:299
+msgid "Failure reading pipe\n"
+msgstr "Failure reading pipe\n"
+
+#: tools/gnome-session-inhibit.c:303
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Failed to execute %s\n"
 
-#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
-#: tools/gnome-session-inhibit.c:372
+#: tools/gnome-session-inhibit.c:376 tools/gnome-session-inhibit.c:386
+#: tools/gnome-session-inhibit.c:396
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s requires an argument\n"
@@ -369,6 +370,12 @@ msgstr "Session names are not allowed to contain “/” characters"
 #, c-format
 msgid "A session named “%s” already exists"
 msgstr "A session named “%s” already exists"
+
+#~ msgid "Use systemd session management"
+#~ msgstr "Use systemd session management"
+
+#~ msgid "Use builtin session management (rather than the systemd based one)"
+#~ msgstr "Use builtin session management (rather than the systemd based one)"
 
 #~ msgid "Select Command"
 #~ msgstr "Select Command"
