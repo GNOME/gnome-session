@@ -13,22 +13,22 @@
 # Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2005, 2006.
 #
 # Jorge González <jorgegonz@svn.gnome.org>, 2007, 2009-2011.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011-2021.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2011-2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2021-10-12 18:16+0000\n"
-"PO-Revision-Date: 2021-11-26 17:57+0100\n"
+"POT-Creation-Date: 2024-01-13 12:21+0000\n"
+"PO-Revision-Date: 2024-02-26 14:02+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Spanish - Spain <gnome-es-list@gnome.org>\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Gtranslator 41.0\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Gtranslator 45.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -52,7 +52,6 @@ msgid "GNOME dummy"
 msgstr "GNOME «dummy»"
 
 #: data/gnome-wayland.desktop.in.in:3
-#| msgid "GNOME on Xorg"
 msgid "GNOME on Wayland"
 msgstr "GNOME en Wayland"
 
@@ -60,19 +59,19 @@ msgstr "GNOME en Wayland"
 msgid "GNOME on Xorg"
 msgstr "GNOME en Xorg"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:5
+#: data/org.gnome.SessionManager.gschema.xml:5
 msgid "Save sessions"
 msgstr "Guardar sesiones"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:6
+#: data/org.gnome.SessionManager.gschema.xml:6
 msgid "If enabled, gnome-session will save the session automatically."
 msgstr "Si está activado, gnome-session guardará la sesión automáticamente."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:10
+#: data/org.gnome.SessionManager.gschema.xml:10
 msgid "Save this session"
 msgstr "Guardar esta sesión"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:11
+#: data/org.gnome.SessionManager.gschema.xml:11
 msgid ""
 "When enabled, gnome-session will automatically save the next session at log "
 "out even if auto saving is disabled."
@@ -80,21 +79,21 @@ msgstr ""
 "Si está activado, gnome-session guardará automáticamente la próxima sesión "
 "cuando salga incluso si el guardado automático está desactivado."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:15
+#: data/org.gnome.SessionManager.gschema.xml:15
 msgid "Logout prompt"
 msgstr "Diálogo de salida"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:16
+#: data/org.gnome.SessionManager.gschema.xml:16
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 "Si está activado, gnome-session preguntará al usuario antes de cerrar una "
 "sesión."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:20
+#: data/org.gnome.SessionManager.gschema.xml:20
 msgid "Show the fallback warning"
 msgstr "Mostrar advertencia del modo alternativo"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:21
+#: data/org.gnome.SessionManager.gschema.xml:21
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
@@ -158,7 +157,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "Ce_rrar la sesión"
 
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:403
 msgid "Enable debugging code"
 msgstr "Activar el código de depuración"
 
@@ -170,7 +169,7 @@ msgstr "Permitir cerrar sesión"
 msgid "Show extension warning"
 msgstr "Mostrar advertencias de las extensiones"
 
-#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1999
+#: gnome-session/gsm-manager.c:1301 gnome-session/gsm-manager.c:2050
 msgid "Not responding"
 msgstr "No responde"
 
@@ -190,7 +189,7 @@ msgstr "Aplicación recordada"
 msgid "This program is blocking logout."
 msgstr "Este programa está bloqueando el cierre de sesión."
 
-#: gnome-session/gsm-xsmp-server.c:338
+#: gnome-session/gsm-xsmp-server.c:340
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
@@ -198,58 +197,49 @@ msgstr ""
 "Rechazando la conexión de un nuevo cliente porque actualmente se está "
 "cerrando la sesión\n"
 
-#: gnome-session/gsm-xsmp-server.c:605
+#: gnome-session/gsm-xsmp-server.c:607
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "No se pudo crear el socket de escucha ICE: %s"
 
-#: gnome-session/main.c:398
+#: gnome-session/main.c:400
 msgid "Running as systemd service"
 msgstr "Ejecutándose como servicio de systemd"
 
-#: gnome-session/main.c:399
-msgid "Use systemd session management"
-msgstr "Usar el gestor de sesión de systemd"
-
 #: gnome-session/main.c:401
-msgid "Use builtin session management (rather than the systemd based one)"
-msgstr ""
-"Usar la gestión de sesiones implementada (en lugar de la basada en systemd)"
-
-#: gnome-session/main.c:402
 msgid "Override standard autostart directories"
 msgstr "Sobrescribir las carpetas de inicio automático estándar"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:401
 msgid "AUTOSTART_DIR"
 msgstr "CARPETA_DE_AUTOINICIO"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:402
 msgid "Session to use"
 msgstr "Sesión que usar"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:402
 msgid "SESSION_NAME"
 msgstr "NOMBRE_DE_LA_SESIÓN"
 
-#: gnome-session/main.c:405
+#: gnome-session/main.c:404
 msgid "Do not load user-specified applications"
 msgstr "No cargar las aplicaciones especificadas por el usuario"
 
-#: gnome-session/main.c:406
+#: gnome-session/main.c:405
 msgid "Version of this application"
 msgstr "Versión de esta aplicación"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:408
+#: gnome-session/main.c:407
 msgid "Show the fail whale dialog for testing"
 msgstr "Mostrar el diálogo de la ballena de pruebas"
 
-#: gnome-session/main.c:409
+#: gnome-session/main.c:408
 msgid "Disable hardware acceleration check"
 msgstr "Desactivar la verificación de aceleración hardware"
 
-#: gnome-session/main.c:441
+#: gnome-session/main.c:440
 msgid " — the GNOME session manager"
 msgstr " - El gestor de sesiones de GNOME"
 
@@ -320,13 +310,22 @@ msgstr ""
 "\n"
 "Si no se especifica la opción --inhibit se asume «idle».\n"
 
-#: tools/gnome-session-inhibit.c:288
+#: tools/gnome-session-inhibit.c:282
+#, c-format
+msgid "Error while creating pipe: %s\n"
+msgstr "Error al crear la tubería: %s\n"
+
+#: tools/gnome-session-inhibit.c:299
+msgid "Failure reading pipe\n"
+msgstr "Falló al leer de la tubería\n"
+
+#: tools/gnome-session-inhibit.c:303
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Falló al ejecutar %s\n"
 
-#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
-#: tools/gnome-session-inhibit.c:372
+#: tools/gnome-session-inhibit.c:376 tools/gnome-session-inhibit.c:386
+#: tools/gnome-session-inhibit.c:396
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s requiere un argumento\n"
@@ -383,6 +382,14 @@ msgstr "No se permite que los nombres de las sesiones contengan «/»"
 #, c-format
 msgid "A session named “%s” already exists"
 msgstr "Ya existe una sesión llamada «%s»"
+
+#~ msgid "Use systemd session management"
+#~ msgstr "Usar el gestor de sesión de systemd"
+
+#~ msgid "Use builtin session management (rather than the systemd based one)"
+#~ msgstr ""
+#~ "Usar la gestión de sesiones implementada (en lugar de la basada en "
+#~ "systemd)"
 
 #~ msgid "Additional startup _programs:"
 #~ msgstr "_Programas adicionales para iniciar:"
@@ -717,11 +724,11 @@ msgstr "Ya existe una sesión llamada «%s»"
 
 #~ msgid ""
 #~ "List of components that are required as part of the session. (Each "
-#~ "element names a key under \"/desktop/gnome/session/required_components"
-#~ "\"). The Startup Applications preferences tool will not normally allow "
-#~ "users to remove a required component from the session, and the session "
-#~ "manager will automatically add the required components back to the "
-#~ "session at login time if they do get removed."
+#~ "element names a key under \"/desktop/gnome/session/"
+#~ "required_components\"). The Startup Applications preferences tool will "
+#~ "not normally allow users to remove a required component from the session, "
+#~ "and the session manager will automatically add the required components "
+#~ "back to the session at login time if they do get removed."
 #~ msgstr ""
 #~ "Lista de componentes necesarios como partes de la sesión. (Cada elemento "
 #~ "tiene una clave bajo  \"/desktop/gnome/session/required_components\".) "
