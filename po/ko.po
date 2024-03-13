@@ -3,7 +3,7 @@
 #
 # Updated by Sung-Hyun Nam <namsh@kldp.org>, 2000
 # Updated by Young-Ho Cha <ganadist@chollian.net>, 2000,2001,2006,2007
-# Changwoo Ryu <cwryu@debian.org>, 1998, 2002-2013, 2015-2020, 2022.
+# Changwoo Ryu <cwryu@debian.org>, 1998, 2002-2013, 2015-2020, 2022, 2024.
 #
 #
 # 용어:
@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2021-10-12 18:16+0000\n"
-"PO-Revision-Date: 2022-03-02 23:56+0900\n"
+"POT-Creation-Date: 2024-01-13 12:21+0000\n"
+"PO-Revision-Date: 2024-03-10 21:34+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
 "Language: ko\n"
@@ -53,19 +53,19 @@ msgstr "그놈 (웨일랜드)"
 msgid "GNOME on Xorg"
 msgstr "그놈 (Xorg)"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:5
+#: data/org.gnome.SessionManager.gschema.xml:5
 msgid "Save sessions"
 msgstr "세션 저장"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:6
+#: data/org.gnome.SessionManager.gschema.xml:6
 msgid "If enabled, gnome-session will save the session automatically."
 msgstr "참이면, gnome-session에서 자동으로 세션을 저장합니다."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:10
+#: data/org.gnome.SessionManager.gschema.xml:10
 msgid "Save this session"
 msgstr "이 세션 저장"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:11
+#: data/org.gnome.SessionManager.gschema.xml:11
 msgid ""
 "When enabled, gnome-session will automatically save the next session at log "
 "out even if auto saving is disabled."
@@ -73,19 +73,19 @@ msgstr ""
 "참이면, gnome-session에서 자동 저장을 껐더라도 로그아웃할 때 다음 세션을 자동"
 "으로 저장합니다."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:15
+#: data/org.gnome.SessionManager.gschema.xml:15
 msgid "Logout prompt"
 msgstr "로그아웃 확인"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:16
+#: data/org.gnome.SessionManager.gschema.xml:16
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr "참이면, 세션을 끝낼 때 사용자에게 물어봅니다."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:20
+#: data/org.gnome.SessionManager.gschema.xml:20
 msgid "Show the fallback warning"
 msgstr "대체 모드 경고 표시"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:21
+#: data/org.gnome.SessionManager.gschema.xml:21
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
@@ -147,7 +147,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "로그아웃(_L)"
 
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:403
 msgid "Enable debugging code"
 msgstr "디버깅 코드를 사용합니다"
 
@@ -159,7 +159,7 @@ msgstr "로그아웃 허용"
 msgid "Show extension warning"
 msgstr "확장 경고 표시"
 
-#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1999
+#: gnome-session/gsm-manager.c:1301 gnome-session/gsm-manager.c:2050
 msgid "Not responding"
 msgstr "응답 없음"
 
@@ -179,63 +179,55 @@ msgstr "기억한 프로그램"
 msgid "This program is blocking logout."
 msgstr "이 프로그램이 로그아웃을 막고 있습니다."
 
-#: gnome-session/gsm-xsmp-server.c:338
+#: gnome-session/gsm-xsmp-server.c:340
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr "지금 세션을 끝내는 중이므로 새 클라이언트 연결을 거부합니다.\n"
 
-#: gnome-session/gsm-xsmp-server.c:605
+#: gnome-session/gsm-xsmp-server.c:607
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "ICE 리스닝 소켓을 만들 수 없습니다: %s"
 
-#: gnome-session/main.c:398
+#: gnome-session/main.c:400
 msgid "Running as systemd service"
 msgstr "systemd 서비스로 실행"
 
-#: gnome-session/main.c:399
-msgid "Use systemd session management"
-msgstr "systemd 세션 관리 사용"
-
 #: gnome-session/main.c:401
-msgid "Use builtin session management (rather than the systemd based one)"
-msgstr "내장 세션 관리 기능 사용 (systemd 기반 세션 아님)"
-
-#: gnome-session/main.c:402
 msgid "Override standard autostart directories"
 msgstr "기본 자동 시작 디렉토리 대신 사용합니다"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:401
 msgid "AUTOSTART_DIR"
 msgstr "<자동시작_폴더>"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:402
 msgid "Session to use"
 msgstr "사용할 세션"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:402
 msgid "SESSION_NAME"
 msgstr "<세션_이름>"
 
-#: gnome-session/main.c:405
+#: gnome-session/main.c:404
 msgid "Do not load user-specified applications"
 msgstr "사용자가 지정한 프로그램을 읽어들이지 않습니다"
 
-#: gnome-session/main.c:406
+#: gnome-session/main.c:405
 msgid "Version of this application"
 msgstr "이 프로그램의 버전"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:408
+#: gnome-session/main.c:407
 msgid "Show the fail whale dialog for testing"
 msgstr "테스트 용도로 고래 대화창을 표시합니다"
 
-#: gnome-session/main.c:409
+#: gnome-session/main.c:408
 msgid "Disable hardware acceleration check"
 msgstr "하드웨어 가속 기능을 검사 하지 않습니다"
 
-#: gnome-session/main.c:441
+#: gnome-session/main.c:440
 msgid " — the GNOME session manager"
 msgstr " — 그놈 세션 관리자"
 
@@ -304,13 +296,22 @@ msgstr ""
 "\n"
 "--inhibit 옵션을 지정하지 않았다면, idle이라고 가정합니다.\n"
 
-#: tools/gnome-session-inhibit.c:288
+#: tools/gnome-session-inhibit.c:282
+#, c-format
+msgid "Error while creating pipe: %s\n"
+msgstr "파이프를 만드는 중 오류: %s\n"
+
+#: tools/gnome-session-inhibit.c:299
+msgid "Failure reading pipe\n"
+msgstr "파이프를 읽는 중 실패\n"
+
+#: tools/gnome-session-inhibit.c:303
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "%s 실행 실패\n"
 
-#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
-#: tools/gnome-session-inhibit.c:372
+#: tools/gnome-session-inhibit.c:376 tools/gnome-session-inhibit.c:386
+#: tools/gnome-session-inhibit.c:396
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s requires an argument\n"
@@ -365,3 +366,9 @@ msgstr "“/”가 들어간 세션 이름은 허용하지 않습니다"
 #, c-format
 msgid "A session named “%s” already exists"
 msgstr "이름이 “%s”인 세션이 이미 있습니다"
+
+#~ msgid "Use systemd session management"
+#~ msgstr "systemd 세션 관리 사용"
+
+#~ msgid "Use builtin session management (rather than the systemd based one)"
+#~ msgstr "내장 세션 관리 기능 사용 (systemd 기반 세션 아님)"
