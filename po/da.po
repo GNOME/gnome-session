@@ -1,6 +1,6 @@
 # translation of gnome-session.HEAD.po to Dansk
 # Danish translation of gnome-session.
-# Copyright (C) 1998-2009, 2015-2019 Free Software Foundation, Inc.
+# Copyright (C) 1998-2009, 2015-2019, 2024 Free Software Foundation, Inc.
 # This file is distributed under the same license as the gnome-session package.
 #
 # Kenneth Christiansen <kenneth@ripen.dk>, 1998-2000.
@@ -10,7 +10,7 @@
 # Martin Willemoes Hansen <mwh@sysrq.dk>, 2004, 05.
 # Lasse Bang Mikkelsen <lbm@fatalerror.dk>, 2007.
 # Peter Bach <bach.peter@gmail.com>, 2007.
-# Ask Hjorth Larsen <asklarsen@gmail.com>, 2007, 2015-2019.
+# Ask Hjorth Larsen <asklarsen@gmail.com>, 2007, 2015-2019, 2024.
 # Kenneth Nielsen <k.nielsen81@gmail.com>, 2008-2009, 2013.
 # M.P. Rommedahl <Lhademmor@gmail.com>, 2008.
 # Kris Thomsen <lakristho@gmail.com>, 2011, 2013.
@@ -30,9 +30,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2021-10-12 18:16+0000\n"
-"PO-Revision-Date: 2022-02-27 13:07+0100\n"
-"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
+"POT-Creation-Date: 2024-01-13 12:21+0000\n"
+"PO-Revision-Date: 2024-03-13 18:05+0100\n"
+"Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -70,19 +70,19 @@ msgstr "GNOME på Wayland"
 msgid "GNOME on Xorg"
 msgstr "GNOME på Xorg"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:5
+#: data/org.gnome.SessionManager.gschema.xml:5
 msgid "Save sessions"
 msgstr "Gem sessioner"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:6
+#: data/org.gnome.SessionManager.gschema.xml:6
 msgid "If enabled, gnome-session will save the session automatically."
 msgstr "Hvis aktiveret vil gnome-session automatisk gemme sessionen."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:10
+#: data/org.gnome.SessionManager.gschema.xml:10
 msgid "Save this session"
 msgstr "Gem denne session"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:11
+#: data/org.gnome.SessionManager.gschema.xml:11
 msgid ""
 "When enabled, gnome-session will automatically save the next session at log "
 "out even if auto saving is disabled."
@@ -90,20 +90,20 @@ msgstr ""
 "Hvis aktiveret vil gnome-session automatisk gemme næste session ved "
 "udlogning, selv når automatisk gemmetilstand er slået fra."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:15
+#: data/org.gnome.SessionManager.gschema.xml:15
 msgid "Logout prompt"
 msgstr "Log ud-prompt"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:16
+#: data/org.gnome.SessionManager.gschema.xml:16
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 "Hvis aktiveret vil gnome-session spørge brugeren før en session afsluttes."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:20
+#: data/org.gnome.SessionManager.gschema.xml:20
 msgid "Show the fallback warning"
 msgstr "Vis advarsel for reservetilstand"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:21
+#: data/org.gnome.SessionManager.gschema.xml:21
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
@@ -167,7 +167,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_Log ud"
 
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:403
 msgid "Enable debugging code"
 msgstr "Aktivér fejlfindingskode"
 
@@ -179,7 +179,7 @@ msgstr "Tillad log ud"
 msgid "Show extension warning"
 msgstr "Vis udvidelsesfejl"
 
-#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1999
+#: gnome-session/gsm-manager.c:1301 gnome-session/gsm-manager.c:2050
 msgid "Not responding"
 msgstr "Svarer ikke"
 
@@ -199,64 +199,56 @@ msgstr "Husket program"
 msgid "This program is blocking logout."
 msgstr "Dette program blokerer log ud."
 
-#: gnome-session/gsm-xsmp-server.c:338
+#: gnome-session/gsm-xsmp-server.c:340
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr ""
 "Nægter ny klientforbindelse fordi sessionen er ved at blive lukket ned\n"
 
-#: gnome-session/gsm-xsmp-server.c:605
+#: gnome-session/gsm-xsmp-server.c:607
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Kunne ikke oprette ICE-lyttesoklen: %s"
 
-#: gnome-session/main.c:398
+#: gnome-session/main.c:400
 msgid "Running as systemd service"
 msgstr "Kører som systemd-tjeneste"
 
-#: gnome-session/main.c:399
-msgid "Use systemd session management"
-msgstr "Brug systemd-sessionshåndtering"
-
 #: gnome-session/main.c:401
-msgid "Use builtin session management (rather than the systemd based one)"
-msgstr "Brug indbygget sessionshåndtering (frem for den baseret på systemd)"
-
-#: gnome-session/main.c:402
 msgid "Override standard autostart directories"
 msgstr "Tilsidesæt standard-autostartmapper"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:401
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_KAT"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:402
 msgid "Session to use"
 msgstr "Session som skal bruges"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:402
 msgid "SESSION_NAME"
 msgstr "SESSIONS_NAVN"
 
-#: gnome-session/main.c:405
+#: gnome-session/main.c:404
 msgid "Do not load user-specified applications"
 msgstr "Hent ikke brugerangivne programmer"
 
-#: gnome-session/main.c:406
+#: gnome-session/main.c:405
 msgid "Version of this application"
 msgstr "Version af dette program"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:408
+#: gnome-session/main.c:407
 msgid "Show the fail whale dialog for testing"
 msgstr "Vis dialogen uheldig hval for at gennemføre en test"
 
-#: gnome-session/main.c:409
+#: gnome-session/main.c:408
 msgid "Disable hardware acceleration check"
 msgstr "Slå hardwareaccelerationstjek fra"
 
-#: gnome-session/main.c:441
+#: gnome-session/main.c:440
 msgid " — the GNOME session manager"
 msgstr " — GNOME-sessionshåndteringen"
 
@@ -326,13 +318,22 @@ msgstr ""
 "\n"
 "Hvis intet --inhibit tilvalg er angivet, vil “idle” blive antaget.\n"
 
-#: tools/gnome-session-inhibit.c:288
+#: tools/gnome-session-inhibit.c:282
+#, c-format
+msgid "Error while creating pipe: %s\n"
+msgstr "Fejl ved oprettelse af rørledning: %s\n"
+
+#: tools/gnome-session-inhibit.c:299
+msgid "Failure reading pipe\n"
+msgstr "Fejl ved læsning fra rørledning\n"
+
+#: tools/gnome-session-inhibit.c:303
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Kunne ikke køre %s\n"
 
-#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
-#: tools/gnome-session-inhibit.c:372
+#: tools/gnome-session-inhibit.c:376 tools/gnome-session-inhibit.c:386
+#: tools/gnome-session-inhibit.c:396
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s kræver et argument\n"
@@ -387,6 +388,12 @@ msgstr "Sessionsnavne må ikke indeholde “/”-tegn"
 #, c-format
 msgid "A session named “%s” already exists"
 msgstr "Der findes allerede en session med navnet “%s”"
+
+#~ msgid "Use systemd session management"
+#~ msgstr "Brug systemd-sessionshåndtering"
+
+#~ msgid "Use builtin session management (rather than the systemd based one)"
+#~ msgstr "Brug indbygget sessionshåndtering (frem for den baseret på systemd)"
 
 #~ msgid "Additional startup _programs:"
 #~ msgstr "Yderligere opstarts_programmer:"
@@ -652,11 +659,11 @@ msgstr "Der findes allerede en session med navnet “%s”"
 
 #~ msgid ""
 #~ "List of components that are required as part of the session. (Each "
-#~ "element names a key under \"/desktop/gnome/session/required_components"
-#~ "\"). The Startup Applications preferences tool will not normally allow "
-#~ "users to remove a required component from the session, and the session "
-#~ "manager will automatically add the required components back to the "
-#~ "session at login time if they do get removed."
+#~ "element names a key under \"/desktop/gnome/session/"
+#~ "required_components\"). The Startup Applications preferences tool will "
+#~ "not normally allow users to remove a required component from the session, "
+#~ "and the session manager will automatically add the required components "
+#~ "back to the session at login time if they do get removed."
 #~ msgstr ""
 #~ "Liste over komponenter der er nødvendige som en del af sessionen. (Hvert "
 #~ "element navngiver en nøgle under “/desktop/gnome/session/required-"
