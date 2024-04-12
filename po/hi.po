@@ -7,179 +7,178 @@
 # Rajesh Ranjan <rajesh672@gmail.com>, 2009.
 # rajesh <rajeshkajha@yahoo.com>, 2012, 2014.
 # chandankumar <chandankumar.093047@gmail.com>, 2013.
+# Scrambled777 <weblate.scrambled777@simplelogin.com>, 2024.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=gnome-"
-"session&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2014-09-19 19:32+0000\n"
-"PO-Revision-Date: 2014-09-20 22:10+0630\n"
-"Last-Translator: rajesh <rajesh>\n"
-"Language-Team: Hindi <kde-i18n-doc@kde.org>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
+"POT-Creation-Date: 2024-03-30 03:44+0000\n"
+"PO-Revision-Date: 2024-04-03 23:55+0530\n"
+"Last-Translator: Scrambled777 <weblate.scrambled777@simplelogin.com>\n"
+"Language-Team: Hindi\n"
 "Language: hi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "net>\n"
-"X-Generator: Lokalize 1.5\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"X-Generator: Gtranslator 46.0\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "\n"
 "\n"
 "\n"
 "\n"
 
-#: ../data/gnome-custom-session.desktop.in.h:1
+#: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
-msgstr "मनपसंद"
+msgstr "कस्टम"
 
-#: ../data/gnome-custom-session.desktop.in.h:2
+#: data/gnome-custom-session.desktop.in.in:4
 msgid "This entry lets you select a saved session"
-msgstr "इस प्रविष्टि की मदद से आप एक सहेजी गई सत्र का चयन करें"
+msgstr "यह प्रविष्टि आपको सहेजे गए सत्र का चयन करने देती है"
 
-#: ../data/gnome.desktop.in.h:1 ../data/gnome.session.desktop.in.in.h:1
+#: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
 msgid "GNOME"
-msgstr "गनोम"
+msgstr "GNOME"
 
-#: ../data/gnome.desktop.in.h:2
+#: data/gnome.desktop.in.in:4 data/gnome-wayland.desktop.in.in:4
+#: data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
-msgstr "यह सत्र गनोम में लॉगइन होगा"
+msgstr "यह सत्र आपको GNOME में लॉग इन करता है"
 
-#: ../data/gnome-dummy.session.desktop.in.in.h:1
+#: data/gnome-dummy.session.desktop.in.in:3
 msgid "GNOME dummy"
-msgstr "गनोम डमी"
+msgstr "GNOME dummy"
 
-#: ../data/gnome-wayland.desktop.in.h:1
-#: ../data/gnome-wayland.session.desktop.in.in.h:1
-#| msgid "GNOME fallback"
+#: data/gnome-wayland.desktop.in.in:3
 msgid "GNOME on Wayland"
-msgstr "गनोम वेलैंड पर"
+msgstr "GNOME Wayland"
 
-#: ../data/gnome-wayland.desktop.in.h:2
-#| msgid "This session logs you into GNOME"
-msgid "This session logs you into GNOME, using Wayland"
-msgstr "यह सत्र गनोम में लॉगइन होगा, वेलैंड के उपयोग से"
-
-# gnome-session/save-session.c:43
-#: ../data/session-selector.ui.h:1
-msgid "Custom Session"
-msgstr "मनपसंद सत्र"
-
-#: ../data/session-selector.ui.h:2 ../tools/gnome-session-selector.c:102
-msgid "Please select a custom session to run"
-msgstr "चलाने के लिए एक कस्टम सत्र का चयन करें"
+#: data/gnome-xorg.desktop.in.in:3
+msgid "GNOME on Xorg"
+msgstr "GNOME Xorg"
 
 # gnome-session/session-properties.c:272
-#: ../data/session-selector.ui.h:3
+#: data/org.gnome.SessionManager.gschema.xml:5
+msgid "Save sessions"
+msgstr "सत्र सहेजें"
+
+#: data/org.gnome.SessionManager.gschema.xml:6
+msgid "If enabled, gnome-session will save the session automatically."
+msgstr "यदि सक्षम है तो, gnome-session सत्र को स्वचालित रूप से सहेज लेगा।"
+
+# gnome-session/save-session.c:43
+#: data/org.gnome.SessionManager.gschema.xml:10
+msgid "Save this session"
+msgstr "यह सत्र सहेजें"
+
+#: data/org.gnome.SessionManager.gschema.xml:11
+msgid ""
+"When enabled, gnome-session will automatically save the next session at log "
+"out even if auto saving is disabled."
+msgstr ""
+"सक्षम होने पर, gnome-session स्वचालित रूप से अगले सत्र को लॉग आउट पर सहेज लेगा, भले ही "
+"स्वतः सहेजना अक्षम हो।"
+
+#: data/org.gnome.SessionManager.gschema.xml:15
+msgid "Logout prompt"
+msgstr "लॉगआउट संकेत"
+
+#: data/org.gnome.SessionManager.gschema.xml:16
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr "यदि सक्षम है तो, gnome-session सत्र समाप्त होने से पहले उपयोक्ता को संकेत देगा।"
+
+#: data/org.gnome.SessionManager.gschema.xml:20
+msgid "Show the fallback warning"
+msgstr "फ़ॉलबैक चेतावनी दिखाएँ"
+
+#: data/org.gnome.SessionManager.gschema.xml:21
+msgid ""
+"If enabled, gnome-session will display a warning dialog after login if the "
+"session was automatically fallen back."
+msgstr ""
+"यदि सक्षम है तो, gnome-session लॉगिन के बाद एक चेतावनी संवाद प्रदर्शित करेगा यदि सत्र "
+"स्वचालित रूप से फ़ॉल बैक हो गया था।"
+
+# gnome-session/save-session.c:43
+#: data/session-selector.ui:15
+msgid "Custom Session"
+msgstr "कस्टम सत्र"
+
+#: data/session-selector.ui:50 tools/gnome-session-selector.c:102
+msgid "Please select a custom session to run"
+msgstr "कृपया चलाने के लिए एक कस्टम सत्र चुनें"
+
+# gnome-session/session-properties.c:272
+#: data/session-selector.ui:105
 msgid "_New Session"
 msgstr "नया सत्र (_N)"
 
 # gnome-session/session-properties.c:272
-#: ../data/session-selector.ui.h:4
+#: data/session-selector.ui:119
 msgid "_Remove Session"
-msgstr "सत्रें हटाएं (_R)"
+msgstr "सत्र हटाएँ (_R)"
 
 # gnome-session/session-properties.c:272
-#: ../data/session-selector.ui.h:5
+#: data/session-selector.ui:133
 msgid "Rena_me Session"
 msgstr "सत्र का नाम बदलें (_m)"
 
-#: ../data/session-selector.ui.h:6
+#: data/session-selector.ui:168
 msgid "_Continue"
 msgstr "जारी रखें (_C)"
 
-# gnome-session/startup-programs.c:372
-#: ../data/session-properties.ui.h:1
-msgid "Additional startup _programs:"
-msgstr "प्रारंभिक प्रोग्राम में जोड़ें (_p)"
-
-# gnome-session/session-properties-capplet.c:399
-#: ../data/session-properties.ui.h:2
-msgid "Startup Programs"
-msgstr "प्रारंभिक प्रोग्राम"
-
-#: ../data/session-properties.ui.h:3
-msgid "_Automatically remember running applications when logging out"
-msgstr "चलते अनुप्रयोग को स्वतः याद रखें जब लॉग आउट हो रहे हों (_A)"
-
-#: ../data/session-properties.ui.h:4
-msgid "_Remember Currently Running Applications"
-msgstr "हाल में कार्यशील अनुप्रयोग याद रखें (_R)"
-
-# gnome-session/session-properties-capplet.c:332
-#: ../data/session-properties.ui.h:5
-msgid "Options"
-msgstr "विकल्प"
-
-#: ../data/session-properties.ui.h:6
-msgid "Browse…"
-msgstr "ब्राउज़ करें…"
-
-# gnome-session/session-properties-capplet.c:362
-#: ../data/session-properties.ui.h:7
-msgid "Comm_ent:"
-msgstr "टिप्पणी (_e):"
-
-# gnome-session/session-properties-capplet.c:362
-#: ../data/session-properties.ui.h:8
-msgid "Co_mmand:"
-msgstr "कमांड (_m):"
-
-#: ../data/session-properties.ui.h:9
-msgid "_Name:"
-msgstr "नाम (_N):"
-
-#: ../gnome-session/gsm-fail-whale-dialog.c:321
+#: gnome-session/gsm-fail-whale-dialog.c:318
 msgid "Oh no!  Something has gone wrong."
-msgstr "नहीं! कुछ गलत हो गया है."
+msgstr "अरे नहीं!  कुछ गलत हो गया है।"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:328
+#: gnome-session/gsm-fail-whale-dialog.c:325
 msgid ""
-"A problem has occurred and the system can't recover. Please contact a system "
+"A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
 msgstr ""
-"एक समस्या आई और तंत्र रिकवर नहीं कर सकता है. कृपया तंत्र प्रशासक से संपर्क "
-"करें"
+"कोई समस्या उत्पन्न हो गई है और सिस्टम पुनर्प्राप्त नहीं हो सकता। कृपया किसी सिस्टम "
+"प्रशासक से संपर्क करें"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:330
+#: gnome-session/gsm-fail-whale-dialog.c:327
 msgid ""
-"A problem has occurred and the system can't recover. All extensions have "
+"A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
 msgstr ""
-"एक समस्या आई और तंत्र रिकवर नहीं कर सकता है. सभी विस्तारों को सावधानी के "
-"लिहाज से "
-"निष्क्रिय कर दिया गया है."
+"कोई समस्या उत्पन्न हो गई है और सिस्टम पुनर्प्राप्त नहीं हो सकता. एहतियात के तौर पर सभी "
+"एक्सटेंशन अक्षम कर दिए गए हैं।"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:332
+#: gnome-session/gsm-fail-whale-dialog.c:329
 msgid ""
-"A problem has occurred and the system can't recover.\n"
+"A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
 msgstr ""
-"एक समस्या आई और तंत्र रिकवर नहीं कर सकता है. \n"
-"कृपया लॉग आउट करें और फिर कोशिश करें."
+"कोई समस्या उत्पन्न हो गई है और सिस्टम पुनर्प्राप्त नहीं हो सकता।\n"
+"कृपया लॉग आउट करें और पुनः प्रयास करें।"
 
 # gnome-session/logout.c:274
-#: ../gnome-session/gsm-fail-whale-dialog.c:347
+#: gnome-session/gsm-fail-whale-dialog.c:344
 msgid "_Log Out"
 msgstr "लॉग आउट (_L)"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:369 ../gnome-session/main.c:305
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:505
 msgid "Enable debugging code"
-msgstr "डिबगिंग कोड सक्रिय करें"
+msgstr "डिबगिंग कोड सक्षम करें"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:370
+#: gnome-session/gsm-fail-whale-dialog.c:413
 msgid "Allow logout"
 msgstr "लॉगआउट की अनुमति दें"
 
-#: ../gnome-session/gsm-fail-whale-dialog.c:371
+#: gnome-session/gsm-fail-whale-dialog.c:414
 msgid "Show extension warning"
-msgstr "विस्तार चेतावनी दिखाएं"
+msgstr "एक्सटेंशन चेतावनी दिखाएँ"
 
-#: ../gnome-session/gsm-manager.c:1271 ../gnome-session/gsm-manager.c:2043
+#: gnome-session/gsm-manager.c:1301 gnome-session/gsm-manager.c:2050
 msgid "Not responding"
-msgstr "कोई प्रतिक्रिया नहीं दे रहा है"
+msgstr "प्रतिक्रिया नहीं दे रहा है"
 
 # gnome-session/logout.c:274
-#: ../gnome-session/gsm-util.c:382
+#: gnome-session/gsm-util.c:431
 msgid "_Log out"
 msgstr "लॉग आउट (_L)"
 
@@ -187,63 +186,100 @@ msgstr "लॉग आउट (_L)"
 #. * then the XSMP client already has set several XSMP
 #. * properties. But it could still be that SmProgram is not set.
 #.
-#: ../gnome-session/gsm-xsmp-client.c:557
+#: gnome-session/gsm-xsmp-client.c:557
 msgid "Remembered Application"
-msgstr "स्मृतिस्थ अनुप्रयोग"
+msgstr "स्मरणनित अनुप्रयोग"
 
-#: ../gnome-session/gsm-xsmp-client.c:1207
+#: gnome-session/gsm-xsmp-client.c:1216
 msgid "This program is blocking logout."
-msgstr "यह प्रोग्राम लॉगआउट रोक रहा है."
+msgstr "यह प्रोग्राम लॉगआउट को अवरुद्ध कर रहा है।"
 
-#: ../gnome-session/gsm-xsmp-server.c:340
+#: gnome-session/gsm-xsmp-server.c:340
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr ""
-"नया क्लाइंट कनेक्शन अस्वीकार कर रहा है क्योंकि सत्र शट डाउन हो रहा है\n"
+"नए पक्षकार कनेक्शन को अस्वीकार कर रहे हैं क्योंकि सत्र वर्तमान में बंद किया जा रहा है\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:609
+#: gnome-session/gsm-xsmp-server.c:607
 #, c-format
 msgid "Could not create ICE listening socket: %s"
-msgstr "ICE लाइसेंसिंग सॉकेट बना नहीं सका: %s"
+msgstr "ICE लिसनिंग सॉकेट नहीं बनाया जा सका: %s"
 
-#: ../gnome-session/main.c:303
+#: gnome-session/main.c:502
+msgid "Running as systemd service"
+msgstr "systemd सेवा के रूप में चल रहा है"
+
+#: gnome-session/main.c:503
 msgid "Override standard autostart directories"
-msgstr "मानक स्वतः आरंभ निर्देशिका अध्यारोहित करें"
+msgstr "मानक स्वतः आरंभ निर्देशिकाओं को अध्यारोहित करें"
 
-#: ../gnome-session/main.c:303
+#: gnome-session/main.c:503
 msgid "AUTOSTART_DIR"
-msgstr "AUTOSTART_DIR"
+msgstr "स्वतः प्रारंभ_निर्देशिका"
 
-#: ../gnome-session/main.c:304
+#: gnome-session/main.c:504
 msgid "Session to use"
-msgstr "उपयोग में सत्र"
+msgstr "उपयोग हेतु सत्र"
 
-#: ../gnome-session/main.c:304
+#: gnome-session/main.c:504
 msgid "SESSION_NAME"
-msgstr "SESSION_NAME"
+msgstr "सत्र_नाम"
 
-#: ../gnome-session/main.c:306
+#: gnome-session/main.c:506
 msgid "Do not load user-specified applications"
 msgstr "उपयोक्ता विशिष्ट अनुप्रयोग मत लोड करें"
 
-#: ../gnome-session/main.c:307
+#: gnome-session/main.c:507
 msgid "Version of this application"
 msgstr "इस अनुप्रयोग का संस्करण"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: ../gnome-session/main.c:309
+#: gnome-session/main.c:509
 msgid "Show the fail whale dialog for testing"
-msgstr "फेल ह्वेल संवाद को जाँच के लिए दिखाएँ"
+msgstr "परीक्षण के लिए फेल व्हेल संवाद दिखाएँ"
 
-#: ../gnome-session/main.c:342
-msgid " - the GNOME session manager"
-msgstr "- GNOME सत्र प्रबंधक"
+#: gnome-session/main.c:510
+msgid "Disable hardware acceleration check"
+msgstr "हार्डवेयर त्वरण जांच अक्षम करें"
 
-#: ../tools/gnome-session-inhibit.c:108
+#: gnome-session/main.c:542
+msgid " — the GNOME session manager"
+msgstr " — GNOME सत्र प्रबंधक"
+
+#: tools/gnome-session-ctl.c:247
+msgid "Start gnome-session-shutdown.target"
+msgstr "gnome-session-shutdown.target प्रारंभ करें"
+
+#: tools/gnome-session-ctl.c:248
+msgid ""
+"Start gnome-session-shutdown.target when receiving EOF or a single byte on "
+"stdin"
+msgstr ""
+"EOF या stdin पर एक बाइट प्राप्त होने पर gnome-session-shutdown.target प्रारंभ करें"
+
+#: tools/gnome-session-ctl.c:249
+msgid "Signal initialization done to gnome-session"
+msgstr "gnome-session के लिए संकेत आरंभीकरण किया गया"
+
+#: tools/gnome-session-ctl.c:250
+msgid "Restart dbus.service if it is running"
+msgstr "यदि dbus.service चल रही है तो उसे पुनः आरंभ करें"
+
+#: tools/gnome-session-ctl.c:251
+msgid ""
+"Run from ExecStopPost to start gnome-session-failed.target on service failure"
+msgstr ""
+"सेवा विफलता पर gnome-session-failed.target प्रारंभ करने के लिए ExecStopPost से चलाएँ"
+
+#: tools/gnome-session-ctl.c:281
+msgid "Program needs exactly one parameter"
+msgstr "प्रोग्राम को बिल्कुल एक प्राचल की आवश्यकता है"
+
+#: tools/gnome-session-inhibit.c:108
 #, c-format
 msgid ""
-"%s [OPTION...] COMMAND\n"
+"%s [OPTION…] COMMAND\n"
 "\n"
 "Execute COMMAND while inhibiting some session functionality.\n"
 "\n"
@@ -255,90 +291,133 @@ msgid ""
 "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
 "                    logout, switch-user, suspend, idle, automount\n"
 "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+"  -l, --list        List the existing inhibitions, and exit\n"
 "\n"
 "If no --inhibit option is specified, idle is assumed.\n"
 msgstr ""
-"%s [विकल्प...] कमांड\n"
+"%s [OPTION…] कमांड\n"
 "\n"
-"जबकि बाधा कुछ सत्र कार्यक्षमता आदेश पर अमल..\n"
+"कुछ सत्र कार्यक्षमता को बाधित करते हुए कमांड निष्पादित करें।\n"
 "\n"
-"  -h, --मदद        इस मदद को दिखाएँ\n"
-"  --संस्करण         प्रोग्राम संस्करण को दिखाएँ\n"
-"  --अनुप्रयोग आईडी आईडी       अनुप्रयोग के लिए उपयोग आईडी\n"
-"                   बाधा जब (वैकल्पिक)\n"
-"  --कारण कारण   बाधा के लिए कारण (वैकल्पिक)\n"
-"  --ARG को बाधित     हालात को बाधित, बृहदान्त्र अलग की सूची:\n"
-"                    लॉगआउट, स्विच उपयोगकर्ता को निलंबित, निष्क्रिय, "
-"स्वारोहित\n"
-"  --को बाधित केवल    शुरू करने और आदेश नहीं हमेशा के बजाय इंतजार\n"
+"  -h, --help        यह सहायता दिखाएँ\n"
+"  --version         प्रोग्राम संस्करण दिखाएँ\n"
+"  --app-id ID       उपयोग करने के लिए अनुप्रयोग ID अवरोध करते समय (वैकल्पिक)\n"
+"  --reason REASON   रोकने का कारण (वैकल्पिक)\n"
+"  --inhibit ARG     रोकने के लिए चीजें, कोलन से अलग की गई सूची:\n"
+"                    logout, switch-user, suspend, idle, automount\n"
+"  --inhibit-only    कमांड लॉन्च न करें और इसके बजाय हमेशा के लिए प्रतीक्षा करें\n"
+"  -l, --list        मौजूदा अवरोधों को सूचीबद्ध करें, और बाहर निकलें\n"
 "\n"
-"अगर कोई विकल्प को बाधित करने के लिए निर्दिष्ट किया जाता है, निष्क्रिय माना "
-"जाता है.\n"
+"यदि कोई --inhibit विकल्प निर्दिष्ट नहीं है, तो निष्क्रिय मान लिया जाता है।\n"
 
-#: ../tools/gnome-session-inhibit.c:146
+#: tools/gnome-session-inhibit.c:282
+#, c-format
+msgid "Error while creating pipe: %s\n"
+msgstr "पाइप बनाते समय त्रुटि: %s\n"
+
+#: tools/gnome-session-inhibit.c:299
+msgid "Failure reading pipe\n"
+msgstr "पाइप को पढ़ने में विफलता\n"
+
+#: tools/gnome-session-inhibit.c:303
 #, c-format
 msgid "Failed to execute %s\n"
-msgstr "%s कार्यान्वित करने में असफल\n"
+msgstr "%s निष्पादित करने में विफल\n"
 
-#: ../tools/gnome-session-inhibit.c:206 ../tools/gnome-session-inhibit.c:216
-#: ../tools/gnome-session-inhibit.c:226
+#: tools/gnome-session-inhibit.c:376 tools/gnome-session-inhibit.c:386
+#: tools/gnome-session-inhibit.c:396
 #, c-format
 msgid "%s requires an argument\n"
-msgstr "% s ने एक तर्क की आवश्यकता है\n"
+msgstr "%s को एक तर्क की आवश्यकता है\n"
 
-#: ../tools/gnome-session-selector.c:61
+# gnome-session/logout.c:274
+#: tools/gnome-session-quit.c:50
+msgid "Log out"
+msgstr "लॉग आउट"
+
+#: tools/gnome-session-quit.c:51
+msgid "Power off"
+msgstr "पॉवर बंद"
+
+#: tools/gnome-session-quit.c:52
+msgid "Reboot"
+msgstr "रीबूट"
+
+#: tools/gnome-session-quit.c:53
+msgid "Ignoring any existing inhibitors"
+msgstr "किसी भी मौजूदा अवरोधकों को नजरअंदाज कर रहा है"
+
+#: tools/gnome-session-quit.c:54
+msgid "Don’t prompt for user confirmation"
+msgstr "उपयोक्ता पुष्टिकरण के लिए संकेत न दें"
+
+# gnome-session/save-session.c:112
+#: tools/gnome-session-quit.c:88 tools/gnome-session-quit.c:102
+msgid "Could not connect to the session manager"
+msgstr "सत्र प्रबंधक से संपर्क नहीं हो सका"
+
+#: tools/gnome-session-quit.c:198
+msgid "Program called with conflicting options"
+msgstr "परस्पर विरोधी विकल्पों के साथ प्रोग्राम बुलाया गया"
+
+#: tools/gnome-session-selector.c:61
 #, c-format
 msgid "Session %d"
 msgstr "सत्र %d"
 
-#: ../tools/gnome-session-selector.c:107
+#: tools/gnome-session-selector.c:107
 msgid ""
-"Session names are not allowed to start with ‘.’ or contain ‘/’ characters"
-msgstr ""
-"सत्र के नाम के साथ शुरू करने की अनुमति दी जाती है या '.' '/' अक्षर होते हैं"
+"Session names are not allowed to start with “.” or contain “/” characters"
+msgstr "सत्र नामों को “.” से प्रारंभ करने या “/” वर्ण रखने की अनुमति नहीं है"
 
-#: ../tools/gnome-session-selector.c:111
-msgid "Session names are not allowed to start with ‘.’"
-msgstr "सत्र के नाम  ‘.’ के साथ शुरू करने की अनुमति नहीं है. "
+#: tools/gnome-session-selector.c:111
+msgid "Session names are not allowed to start with “.”"
+msgstr "सत्र के नामों को “.” से प्रारंभ करने की अनुमति नहीं है"
 
-#: ../tools/gnome-session-selector.c:115
-msgid "Session names are not allowed to contain ‘/’ characters"
-msgstr "सत्र नाम '/' अक्षर होते हैं की अनुमति नहीं है"
+#: tools/gnome-session-selector.c:115
+msgid "Session names are not allowed to contain “/” characters"
+msgstr "सत्र नामों में \"/\" वर्ण शामिल करने की अनुमति नहीं है"
 
-#: ../tools/gnome-session-selector.c:123
+#: tools/gnome-session-selector.c:123
 #, c-format
-msgid "A session named ‘%s’ already exists"
-msgstr "'%s' नामक सत्र पहले से ही मौजूद है"
+msgid "A session named “%s” already exists"
+msgstr "\"%s\" नामक सत्र पहले से मौजूद है"
 
-# gnome-session/logout.c:274
-#: ../tools/gnome-session-quit.c:51
-msgid "Log out"
-msgstr "लॉग आउट"
+#~| msgid "This session logs you into GNOME"
+#~ msgid "This session logs you into GNOME, using Wayland"
+#~ msgstr "यह सत्र गनोम में लॉगइन होगा, वेलैंड के उपयोग से"
 
-#: ../tools/gnome-session-quit.c:52
-msgid "Power off"
-msgstr "बंद करें"
+# gnome-session/startup-programs.c:372
+#~ msgid "Additional startup _programs:"
+#~ msgstr "प्रारंभिक प्रोग्राम में जोड़ें (_p)"
 
-#: ../tools/gnome-session-quit.c:53
-msgid "Reboot"
-msgstr "रिबूट करें"
+# gnome-session/session-properties-capplet.c:399
+#~ msgid "Startup Programs"
+#~ msgstr "प्रारंभिक प्रोग्राम"
 
-#: ../tools/gnome-session-quit.c:54
-msgid "Ignoring any existing inhibitors"
-msgstr "किसी मौजूदा इनहिबिटर्स को अनदेखा कर रहा है"
+#~ msgid "_Automatically remember running applications when logging out"
+#~ msgstr "चलते अनुप्रयोग को स्वतः याद रखें जब लॉग आउट हो रहे हों (_A)"
 
-#: ../tools/gnome-session-quit.c:55
-msgid "Don't prompt for user confirmation"
-msgstr "उपयोक्ता संपुष्टि के लिए प्राँप्ट मत करें"
+#~ msgid "_Remember Currently Running Applications"
+#~ msgstr "हाल में कार्यशील अनुप्रयोग याद रखें (_R)"
 
-# gnome-session/save-session.c:112
-#: ../tools/gnome-session-quit.c:89 ../tools/gnome-session-quit.c:99
-msgid "Could not connect to the session manager"
-msgstr "सत्र मैनेजर से संपर्क स्थापित नहीं हो पा रहा है"
+# gnome-session/session-properties-capplet.c:332
+#~ msgid "Options"
+#~ msgstr "विकल्प"
 
-#: ../tools/gnome-session-quit.c:201
-msgid "Program called with conflicting options"
-msgstr "विरोधी विकल्प के साथ लाया गया प्रोग्राम"
+#~ msgid "Browse…"
+#~ msgstr "ब्राउज़ करें…"
+
+# gnome-session/session-properties-capplet.c:362
+#~ msgid "Comm_ent:"
+#~ msgstr "टिप्पणी (_e):"
+
+# gnome-session/session-properties-capplet.c:362
+#~ msgid "Co_mmand:"
+#~ msgstr "कमांड (_m):"
+
+#~ msgid "_Name:"
+#~ msgstr "नाम (_N):"
 
 # gnome-session/startup-programs.c:282 gnome-session/startup-programs.c:289
 #~ msgid "Select Command"
@@ -567,36 +646,22 @@ msgstr "विरोधी विकल्प के साथ लाया ग�
 #~ msgid "File Manager"
 #~ msgstr "फ़ाइल प्रबंधक"
 
-#~ msgid ""
-#~ "If enabled, gnome-session will prompt the user before ending a session."
-#~ msgstr "अगर सक्षम हे तो जीनोम सत्र वंद होने से पहले उपयोगकर्ता को टोकेगा"
-
-#~ msgid ""
-#~ "If enabled, gnome-session will save the session automatically. Otherwise, "
-#~ "the logout dialog will have an option to save the session."
-#~ msgstr ""
-#~ "अगर सक्षम हे तो जीनोम सत्र स्वतः संग्रहित होगा, नहीं तो लॉगउट संवाद में सत्र संग्रहित "
-#~ "करने का विकल्प होगा"
-
 #~ msgid "List of applications that are part of the default session."
 #~ msgstr "अनुप्रयोग की सूची जो तयशुदा सत्र का हिस्सा है"
 
 #~ msgid ""
 #~ "List of components that are required as part of the session. (Each "
-#~ "element names a key under \"/desktop/gnome/session/required_components"
-#~ "\"). The Startup Applications preferences tool will not normally allow "
-#~ "users to remove a required component from the session, and the session "
-#~ "manager will automatically add the required components back to the "
-#~ "session at login time if they do get removed."
+#~ "element names a key under \"/desktop/gnome/session/"
+#~ "required_components\"). The Startup Applications preferences tool will "
+#~ "not normally allow users to remove a required component from the session, "
+#~ "and the session manager will automatically add the required components "
+#~ "back to the session at login time if they do get removed."
 #~ msgstr ""
 #~ "घटकों की सूची जो कि सत्र के हिस्से के रूप में जरूरी है. (Each element names a key "
 #~ "under \"/desktop/gnome/session/required_components\"). स्टार्टअप अनुप्रयोग "
 #~ "वरीयताएँ औजार उपयोक्ता को सामान्यतः अनुमति नहीं देगी सत्र से किसी जरूरी घटकों को "
 #~ "हटाने के लिए, और सत्र प्रबंधक स्वतः जरूरी घटकोंको जोड़ेगा सत्र में लॉगिन समय पर यदि वे "
 #~ "हटाए जाते हैं."
-
-#~ msgid "Logout prompt"
-#~ msgstr "लॉगाउट संदेश"
 
 # gnome-session/splash.c:69
 #~ msgid "Panel"
@@ -695,7 +760,3 @@ msgstr "विरोधी विकल्प के साथ लाया ग�
 
 #~ msgid "NAME"
 #~ msgstr "नाम"
-
-# gnome-session/save-session.c:43
-#~ msgid "Kill session"
-#~ msgstr "सत्र को समाप्त करें"
