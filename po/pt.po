@@ -1,21 +1,22 @@
 # gnome-session's Portuguese translation
-# Copyright © 1999, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013 gnome-session
+# Copyright © 1999 2024 gnome-session
 # Distributed under the same licence as the gnome-session package
 # Nuno Ferreira <nmrf@rnl.ist.utl.pt>, 1999
 # Duarte Loreto <happyguy_pt@hotmail.com>, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013.
 # António Lima <amrlima@gmail.com>, 2013.
 # Pedro Albuquerque <palbuquerque73@gmail.com>, 2015.
-# Sérgio Cardeira <cardeira dot sergio at gmail dot com>, 2016.
+# Sérgio Cardeira <cardeira.sergio@gmail.com>, 2016.
 # Juliano Camargo <julianosc@pm.me>, 2020.
 # José Vieira <jvieira33@sapo.pt>, 2020-2021.
-# Hugo Carvalho <hugokarvalho@hotmail.com>, 2021.
+# Hugo Carvalho <hugokarvalho@hotmail.com>, 2020, 2021, 2022, 2023, 2024.
+# João Carvalhinho <joao.carvalhinho@gmail.com>, 2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 3.18\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2021-10-12 18:16+0000\n"
-"PO-Revision-Date: 2021-10-13 17:16+0100\n"
+"POT-Creation-Date: 2024-04-12 08:04+0000\n"
+"PO-Revision-Date: 2024-05-05 00:01+0100\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Português <https://l10n.gnome.org/teams/pt/>\n"
 "Language: pt\n"
@@ -23,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.4.2\n"
 "X-Project-Style: gnome\n"
 "X-Language: pt_PT\n"
 "X-Source-Language: C\n"
@@ -57,19 +58,19 @@ msgstr "GNOME em Wayland"
 msgid "GNOME on Xorg"
 msgstr "GNOME em Xorg"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:5
+#: data/org.gnome.SessionManager.gschema.xml:5
 msgid "Save sessions"
 msgstr "Guardar sessões"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:6
+#: data/org.gnome.SessionManager.gschema.xml:6
 msgid "If enabled, gnome-session will save the session automatically."
 msgstr "Se ativo, o \"gnome-session\" irá guardar a sessão automaticamente."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:10
+#: data/org.gnome.SessionManager.gschema.xml:10
 msgid "Save this session"
 msgstr "Guardar esta sessão"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:11
+#: data/org.gnome.SessionManager.gschema.xml:11
 msgid ""
 "When enabled, gnome-session will automatically save the next session at log "
 "out even if auto saving is disabled."
@@ -77,21 +78,21 @@ msgstr ""
 "Se ativado, \"gnome-session\" irá guardar automaticamente a próxima sessão "
 "ao terminar a sessão se o guardar automático estiver desativado."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:15
+#: data/org.gnome.SessionManager.gschema.xml:15
 msgid "Logout prompt"
 msgstr "Perguntar ao sair"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:16
+#: data/org.gnome.SessionManager.gschema.xml:16
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 "Se ativo, o \"gnome-session\" questionará o utilizador antes de terminar uma "
 "sessão."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:20
+#: data/org.gnome.SessionManager.gschema.xml:20
 msgid "Show the fallback warning"
 msgstr "Mostrar aviso do modo de recurso"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:21
+#: data/org.gnome.SessionManager.gschema.xml:21
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
@@ -155,7 +156,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_Sair"
 
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:505
 msgid "Enable debugging code"
 msgstr "Ativar o código de depuração"
 
@@ -167,7 +168,7 @@ msgstr "Permitir a saída"
 msgid "Show extension warning"
 msgstr "Mostrar aviso de extensão"
 
-#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1999
+#: gnome-session/gsm-manager.c:1301 gnome-session/gsm-manager.c:2050
 msgid "Not responding"
 msgstr "Não está a responder"
 
@@ -187,7 +188,7 @@ msgstr "Aplicação Memorizada"
 msgid "This program is blocking logout."
 msgstr "Esta aplicação está a impedir a saída."
 
-#: gnome-session/gsm-xsmp-server.c:338
+#: gnome-session/gsm-xsmp-server.c:340
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
@@ -195,65 +196,57 @@ msgstr ""
 "A recusar uma nova ligação de cliente porque a sessão está atualmente a ser "
 "terminada\n"
 
-#: gnome-session/gsm-xsmp-server.c:605
+#: gnome-session/gsm-xsmp-server.c:607
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Não foi possível criar tomada de escuta ICE: %s"
 
-#: gnome-session/main.c:398
+#: gnome-session/main.c:502
 msgid "Running as systemd service"
 msgstr "A executar como serviço do \"systemd\""
 
-#: gnome-session/main.c:399
-msgid "Use systemd session management"
-msgstr "Utilizar a gestão de sessões do \"systemd\""
-
-#: gnome-session/main.c:401
-msgid "Use builtin session management (rather than the systemd based one)"
-msgstr "Utilizar a gestão de sessões integrada (em vez da baseada no sistema)"
-
-#: gnome-session/main.c:402
+#: gnome-session/main.c:503
 msgid "Override standard autostart directories"
 msgstr "Ignorar os diretórios de arranque automático padrão"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:503
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:504
 msgid "Session to use"
 msgstr "Sessão a utilizar"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:504
 msgid "SESSION_NAME"
 msgstr "NOME_DA_SESSAO"
 
-#: gnome-session/main.c:405
+#: gnome-session/main.c:506
 msgid "Do not load user-specified applications"
 msgstr "Não carregar aplicações especificadas pelo utilizador"
 
-#: gnome-session/main.c:406
+#: gnome-session/main.c:507
 msgid "Version of this application"
 msgstr "Versão desta aplicação"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:408
+#: gnome-session/main.c:509
 msgid "Show the fail whale dialog for testing"
 msgstr "Mostrar a janela de falha total para testar"
 
-#: gnome-session/main.c:409
+#: gnome-session/main.c:510
 msgid "Disable hardware acceleration check"
 msgstr "Desativar a verificação de aceleração de hardware"
 
-#: gnome-session/main.c:441
+#: gnome-session/main.c:542
 msgid " — the GNOME session manager"
 msgstr " — o gestor de sessões do GNOME"
 
-#: tools/gnome-session-ctl.c:245
+#: tools/gnome-session-ctl.c:247
 msgid "Start gnome-session-shutdown.target"
 msgstr "Iniciar \"gnome-session-shutdown.target\""
 
-#: tools/gnome-session-ctl.c:246
+#: tools/gnome-session-ctl.c:248
 msgid ""
 "Start gnome-session-shutdown.target when receiving EOF or a single byte on "
 "stdin"
@@ -261,22 +254,22 @@ msgstr ""
 "Iniciar \"gnome-session-shutdown.target\" quando receber EOF ou um único "
 "byte em stdin"
 
-#: tools/gnome-session-ctl.c:247
+#: tools/gnome-session-ctl.c:249
 msgid "Signal initialization done to gnome-session"
 msgstr "Inicialização de sinal efetuada para a \"gnome-session\""
 
-#: tools/gnome-session-ctl.c:248
+#: tools/gnome-session-ctl.c:250
 msgid "Restart dbus.service if it is running"
 msgstr "Reiniciar \"dbus.service\" se estiver em execução"
 
-#: tools/gnome-session-ctl.c:249
+#: tools/gnome-session-ctl.c:251
 msgid ""
 "Run from ExecStopPost to start gnome-session-failed.target on service failure"
 msgstr ""
 "Na falha do serviço, executar a partir de ExecStopPost para iniciar o "
 "\"gnome-session-failed.target\""
 
-#: tools/gnome-session-ctl.c:279
+#: tools/gnome-session-ctl.c:281
 msgid "Program needs exactly one parameter"
 msgstr "O programa precisa exatamente de um parâmetro"
 
@@ -316,13 +309,22 @@ msgstr ""
 "\n"
 "Se não for especificada nenhuma opção --inhibit, é assumida idle.\n"
 
-#: tools/gnome-session-inhibit.c:288
+#: tools/gnome-session-inhibit.c:282
+#, c-format
+msgid "Error while creating pipe: %s\n"
+msgstr "Erro ao criar o ligação: %s\n"
+
+#: tools/gnome-session-inhibit.c:299
+msgid "Failure reading pipe\n"
+msgstr "Erro na leitura da ligação\n"
+
+#: tools/gnome-session-inhibit.c:303
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Falha ao executar %s\n"
 
-#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
-#: tools/gnome-session-inhibit.c:372
+#: tools/gnome-session-inhibit.c:376 tools/gnome-session-inhibit.c:386
+#: tools/gnome-session-inhibit.c:396
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s requer um argumento\n"
@@ -379,6 +381,13 @@ msgstr "Não são permitidos os nomes de sessão que contenham o caráter \"/\""
 #, c-format
 msgid "A session named “%s” already exists"
 msgstr "Já existe uma sessão designada \"%s\""
+
+#~ msgid "Use systemd session management"
+#~ msgstr "Utilizar a gestão de sessões do \"systemd\""
+
+#~ msgid "Use builtin session management (rather than the systemd based one)"
+#~ msgstr ""
+#~ "Utilizar a gestão de sessões integrada (em vez da baseada no sistema)"
 
 #~ msgid "Additional startup _programs:"
 #~ msgstr "A_plicações de arranque adicionais:"
@@ -698,11 +707,11 @@ msgstr "Já existe uma sessão designada \"%s\""
 
 #~ msgid ""
 #~ "List of components that are required as part of the session. (Each "
-#~ "element names a key under \"/desktop/gnome/session/required_components"
-#~ "\"). The Startup Applications preferences tool will not normally allow "
-#~ "users to remove a required component from the session, and the session "
-#~ "manager will automatically add the required components back to the "
-#~ "session at login time if they do get removed."
+#~ "element names a key under \"/desktop/gnome/session/"
+#~ "required_components\"). The Startup Applications preferences tool will "
+#~ "not normally allow users to remove a required component from the session, "
+#~ "and the session manager will automatically add the required components "
+#~ "back to the session at login time if they do get removed."
 #~ msgstr ""
 #~ "Lista de componentes que são necessários como parte da sessão. (Cada "
 #~ "elemento designa uma chave sob \"/desktop/gnome/session/"
