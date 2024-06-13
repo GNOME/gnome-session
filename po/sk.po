@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2021-10-12 18:16+0000\n"
-"PO-Revision-Date: 2021-10-19 11:20+0200\n"
+"POT-Creation-Date: 2024-03-30 03:44+0000\n"
+"PO-Revision-Date: 2024-06-13 23:41+0200\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
@@ -53,7 +53,6 @@ msgid "GNOME dummy"
 msgstr "Fingované GNOME"
 
 #: data/gnome-wayland.desktop.in.in:3
-#| msgid "GNOME on Xorg"
 msgid "GNOME on Wayland"
 msgstr "GNOME cez Wayland"
 
@@ -62,19 +61,19 @@ msgid "GNOME on Xorg"
 msgstr "GNOME cez Xorg"
 
 # GtkButton label
-#: data/org.gnome.SessionManager.gschema.xml.in:5
+#: data/org.gnome.SessionManager.gschema.xml:5
 msgid "Save sessions"
 msgstr "Ukladanie relácie"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:6
+#: data/org.gnome.SessionManager.gschema.xml:6
 msgid "If enabled, gnome-session will save the session automatically."
 msgstr "Ak je povolené, gnome-session bude reláciu ukladať automaticky."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:10
+#: data/org.gnome.SessionManager.gschema.xml:10
 msgid "Save this session"
 msgstr "Uloženie tejto relácie"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:11
+#: data/org.gnome.SessionManager.gschema.xml:11
 msgid ""
 "When enabled, gnome-session will automatically save the next session at log "
 "out even if auto saving is disabled."
@@ -82,21 +81,21 @@ msgstr ""
 "Keď je povolené, gnome-session automaticky uloží nasledujúcu reláciu pri "
 "odhlásení, aj keď je automatické ukladanie zakázané."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:15
+#: data/org.gnome.SessionManager.gschema.xml:15
 msgid "Logout prompt"
 msgstr "Výzvna na odhlásenie"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:16
+#: data/org.gnome.SessionManager.gschema.xml:16
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 "Ak je povolené, gnome-session vyzve používateľa pred ukončením relácie."
 
 # cmd desc
-#: data/org.gnome.SessionManager.gschema.xml.in:20
+#: data/org.gnome.SessionManager.gschema.xml:20
 msgid "Show the fallback warning"
 msgstr "Zobrazí upozornenie záchranného režimu"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:21
+#: data/org.gnome.SessionManager.gschema.xml:21
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
@@ -170,7 +169,7 @@ msgid "_Log Out"
 msgstr "_Odhlásiť sa"
 
 # cmd desc
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:505
 msgid "Enable debugging code"
 msgstr "Povolí ladiaci kód"
 
@@ -184,7 +183,7 @@ msgstr "Povolí odhlásenie"
 msgid "Show extension warning"
 msgstr "Zobrazí upozornenie rozšírenia"
 
-#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1999
+#: gnome-session/gsm-manager.c:1301 gnome-session/gsm-manager.c:2050
 msgid "Not responding"
 msgstr "Neodpovedá"
 
@@ -205,79 +204,69 @@ msgstr "Zapamätaná aplikácia"
 msgid "This program is blocking logout."
 msgstr "Tento program blokuje odhlásenie."
 
-#: gnome-session/gsm-xsmp-server.c:338
+#: gnome-session/gsm-xsmp-server.c:340
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr "Nové pripojenie klienta odmietnuté, pretože sa relácia práve vypína\n"
 
-#: gnome-session/gsm-xsmp-server.c:605
+#: gnome-session/gsm-xsmp-server.c:607
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Nepodarilo sa vytvoriť načúvajúci soket ICE: %s"
 
-#: gnome-session/main.c:398
+#: gnome-session/main.c:502
 msgid "Running as systemd service"
 msgstr "Pobeží ako služba systemd"
 
 # cmd desc
-#: gnome-session/main.c:399
-msgid "Use systemd session management"
-msgstr "Použije správu relácií systemd"
-
-#: gnome-session/main.c:401
-msgid "Use builtin session management (rather than the systemd based one)"
-msgstr ""
-"Použije zabudovaného správcu relácií (namiesto toho, založeného na systemd)"
-
-# cmd desc
-#: gnome-session/main.c:402
+#: gnome-session/main.c:503
 msgid "Override standard autostart directories"
 msgstr "Preváži predvolené adresáre automatického spúšťania"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:503
 msgid "AUTOSTART_DIR"
 msgstr "ADRESÁR_AUTOSPUSTENIA"
 
 # cmd desc
-#: gnome-session/main.c:403
+#: gnome-session/main.c:504
 msgid "Session to use"
 msgstr "Relácia, ktorá bude použitá"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:504
 msgid "SESSION_NAME"
 msgstr "NÁZOV_RELÁCIE"
 
 # cmd desc
-#: gnome-session/main.c:405
+#: gnome-session/main.c:506
 msgid "Do not load user-specified applications"
 msgstr "Nenačíta aplikácie špecifikované používateľom"
 
 # cmd desc
-#: gnome-session/main.c:406
+#: gnome-session/main.c:507
 msgid "Version of this application"
 msgstr "Verzia tejto aplikácie"
 
 # cmd desc
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:408
+#: gnome-session/main.c:509
 msgid "Show the fail whale dialog for testing"
 msgstr "Zobrazí dialógové okno s chybou slúžiace na testovanie"
 
 # cmd desc
-#: gnome-session/main.c:409
+#: gnome-session/main.c:510
 msgid "Disable hardware acceleration check"
 msgstr "Zakáže kontrolu hardvérovej akcelerácie"
 
-#: gnome-session/main.c:441
+#: gnome-session/main.c:542
 msgid " — the GNOME session manager"
 msgstr " — správca relácie GNOME"
 
-#: tools/gnome-session-ctl.c:245
+#: tools/gnome-session-ctl.c:247
 msgid "Start gnome-session-shutdown.target"
 msgstr "Spustí gnome-session-shutdown.target"
 
-#: tools/gnome-session-ctl.c:246
+#: tools/gnome-session-ctl.c:248
 msgid ""
 "Start gnome-session-shutdown.target when receiving EOF or a single byte on "
 "stdin"
@@ -285,22 +274,22 @@ msgstr ""
 "Spustí gnome-session-shutdown.target pri obdržaní EOF alebo jedného bajtu zo "
 "štandardného vstupu"
 
-#: tools/gnome-session-ctl.c:247
+#: tools/gnome-session-ctl.c:249
 msgid "Signal initialization done to gnome-session"
 msgstr "Signalizuje dokončenie inicializácie pre gnome-session"
 
-#: tools/gnome-session-ctl.c:248
+#: tools/gnome-session-ctl.c:250
 msgid "Restart dbus.service if it is running"
 msgstr "Reštartuje dbus.service, ak beží"
 
-#: tools/gnome-session-ctl.c:249
+#: tools/gnome-session-ctl.c:251
 msgid ""
 "Run from ExecStopPost to start gnome-session-failed.target on service failure"
 msgstr ""
 "Spustením z ExecStopPost spustíte gnome-session-failed.target pri zlyhaní "
 "služby"
 
-#: tools/gnome-session-ctl.c:279
+#: tools/gnome-session-ctl.c:281
 msgid "Program needs exactly one parameter"
 msgstr "Program vyžaduje presne jeden parameter"
 
@@ -343,13 +332,22 @@ msgstr ""
 "Ak nie je určená žiadna voľba typu --inhibit, bude sa predpokladať "
 "nečinnosť.\n"
 
-#: tools/gnome-session-inhibit.c:288
+#: tools/gnome-session-inhibit.c:282
+#, c-format
+msgid "Error while creating pipe: %s\n"
+msgstr "Chyba pri vytváraní rúry (pipe): %s\n"
+
+#: tools/gnome-session-inhibit.c:299
+msgid "Failure reading pipe\n"
+msgstr "Chyba pri čítaní z rúry (pipe)\n"
+
+#: tools/gnome-session-inhibit.c:303
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Zlyhalo spustenie príkazu %s\n"
 
-#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
-#: tools/gnome-session-inhibit.c:372
+#: tools/gnome-session-inhibit.c:376 tools/gnome-session-inhibit.c:386
+#: tools/gnome-session-inhibit.c:396
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "Príkaz %s vyžaduje parameter\n"
@@ -410,6 +408,15 @@ msgstr "Názvy relácií nesmú obsahovať znaky „/“"
 #, c-format
 msgid "A session named “%s” already exists"
 msgstr "Relácia s názvom „%s“ už existuje"
+
+# cmd desc
+#~ msgid "Use systemd session management"
+#~ msgstr "Použije správu relácií systemd"
+
+#~ msgid "Use builtin session management (rather than the systemd based one)"
+#~ msgstr ""
+#~ "Použije zabudovaného správcu relácií (namiesto toho, založeného na "
+#~ "systemd)"
 
 # GtkLabel label
 #~ msgid "Additional startup _programs:"
