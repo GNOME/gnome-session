@@ -22,9 +22,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2024-02-10 10:57+0000\n"
-"PO-Revision-Date: 2024-02-08 01:15+0300\n"
-"Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
+"POT-Creation-Date: 2024-05-04 23:04+0000\n"
+"PO-Revision-Date: 2024-05-07 12:06+0300\n"
+"Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -68,7 +68,7 @@ msgstr "Oturumları kaydet"
 
 #: data/org.gnome.SessionManager.gschema.xml:6
 msgid "If enabled, gnome-session will save the session automatically."
-msgstr "Etkinse; gnome-session, oturumu kendiliğinden kaydedecektir."
+msgstr "Etkinse, gnome-session, oturumu kendiliğinden kaydedecektir."
 
 #: data/org.gnome.SessionManager.gschema.xml:10
 msgid "Save this session"
@@ -89,7 +89,7 @@ msgstr "Oturum kapatma istemi"
 #: data/org.gnome.SessionManager.gschema.xml:16
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
-"Etkinse; gnome-session, oturumu bitirmeden önce kullanıcıya soracaktır."
+"Etkinse, gnome-session, oturumu bitirmeden önce kullanıcıya soracaktır."
 
 #: data/org.gnome.SessionManager.gschema.xml:20
 msgid "Show the fallback warning"
@@ -100,7 +100,7 @@ msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
 msgstr ""
-"Etkinse; gnome-session, oturum kendiliğinden yedeğe düşmüşse girişin "
+"Etkinse, gnome-session, oturum kendiliğinden yedeğe düşmüşse girişin "
 "ardından uyarı penceresi gösterecektir."
 
 #: data/session-selector.ui:15
@@ -129,7 +129,7 @@ msgstr "_Sürdür"
 
 #: gnome-session/gsm-fail-whale-dialog.c:318
 msgid "Oh no!  Something has gone wrong."
-msgstr "Tüh!  Bir şeyler yanlış gitti."
+msgstr "Hayda!  Bir şeyler yanlış gitti."
 
 #: gnome-session/gsm-fail-whale-dialog.c:325
 msgid ""
@@ -158,7 +158,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_Oturumu Kapat"
 
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:403
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:505
 msgid "Enable debugging code"
 msgstr "Kod hatası ayıklamayı etkinleştir"
 
@@ -201,72 +201,72 @@ msgstr "Oturum şu anda kapatıldığından yeni istemci bağlantısı reddedili
 msgid "Could not create ICE listening socket: %s"
 msgstr "ICE dinleme soketi oluşturulamadı: %s"
 
-#: gnome-session/main.c:400
+#: gnome-session/main.c:502
 msgid "Running as systemd service"
 msgstr "systemd hizmeti olarak çalışıyor"
 
-#: gnome-session/main.c:401
+#: gnome-session/main.c:503
 msgid "Override standard autostart directories"
 msgstr "Standart kendiliğinden başlat dizinlerinin yerine geç"
 
-#: gnome-session/main.c:401
+#: gnome-session/main.c:503
 msgid "AUTOSTART_DIR"
 msgstr "KENDILIGINDANBASLAT_DIZINI"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:504
 msgid "Session to use"
 msgstr "Kullanılacak oturum"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:504
 msgid "SESSION_NAME"
 msgstr "OTURUM_ADI"
 
-#: gnome-session/main.c:404
+#: gnome-session/main.c:506
 msgid "Do not load user-specified applications"
 msgstr "Kullanıcıya özel programları yükleme"
 
-#: gnome-session/main.c:405
+#: gnome-session/main.c:507
 msgid "Version of this application"
 msgstr "Bu uygulamanın sürümü"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:407
+#: gnome-session/main.c:509
 msgid "Show the fail whale dialog for testing"
 msgstr "Sınama için büyük hata iletişim penceresini göster"
 
-#: gnome-session/main.c:408
+#: gnome-session/main.c:510
 msgid "Disable hardware acceleration check"
 msgstr "Donanım hızlandırma denetimini devre dışı bırak"
 
-#: gnome-session/main.c:440
+#: gnome-session/main.c:542
 msgid " — the GNOME session manager"
 msgstr " — GNOME oturum yöneticisi"
 
-#: tools/gnome-session-ctl.c:245
+#: tools/gnome-session-ctl.c:247
 msgid "Start gnome-session-shutdown.target"
 msgstr "gnome-session-shutdown.target’ı başlat"
 
-#: tools/gnome-session-ctl.c:246
+#: tools/gnome-session-ctl.c:248
 msgid ""
 "Start gnome-session-shutdown.target when receiving EOF or a single byte on "
 "stdin"
 msgstr ""
 "stdin’de EOF veya tek bayt alınırken gnome-session-shutdown.target’ı başlat"
 
-#: tools/gnome-session-ctl.c:247
+#: tools/gnome-session-ctl.c:249
 msgid "Signal initialization done to gnome-session"
 msgstr "Sinyal ilklendirilmesi gnome-session’a tamamlandı"
 
-#: tools/gnome-session-ctl.c:248
+#: tools/gnome-session-ctl.c:250
 msgid "Restart dbus.service if it is running"
 msgstr "Çalışıyorsa dbus.service’i yeniden başlat"
 
-#: tools/gnome-session-ctl.c:249
+#: tools/gnome-session-ctl.c:251
 msgid ""
 "Run from ExecStopPost to start gnome-session-failed.target on service failure"
 msgstr "Hizmet hatasında gnome-session-failed.target’ı ExecStopPost’tan başlat"
 
-#: tools/gnome-session-ctl.c:279
+#: tools/gnome-session-ctl.c:281
 msgid "Program needs exactly one parameter"
 msgstr "Program tam olarak bir parametreye gereksiniyor"
 
