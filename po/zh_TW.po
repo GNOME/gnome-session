@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 3.1.92\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2022-01-13 20:29+0000\n"
-"PO-Revision-Date: 2022-05-12 00:03+0800\n"
+"POT-Creation-Date: 2024-03-30 03:44+0000\n"
+"PO-Revision-Date: 2024-07-24 16:02+0800\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese <zh-l10n@linux.org.tw>\n"
 "Language: zh_TW\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -56,19 +56,19 @@ msgstr "GNOME 採行 Wayland"
 msgid "GNOME on Xorg"
 msgstr "GNOME 採行 Xorg"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:5
+#: data/org.gnome.SessionManager.gschema.xml:5
 msgid "Save sessions"
 msgstr "儲存工作階段"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:6
+#: data/org.gnome.SessionManager.gschema.xml:6
 msgid "If enabled, gnome-session will save the session automatically."
 msgstr "如啟用本選項，gnome-session 會自動儲存作業階段。"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:10
+#: data/org.gnome.SessionManager.gschema.xml:10
 msgid "Save this session"
 msgstr "儲存此工作階段"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:11
+#: data/org.gnome.SessionManager.gschema.xml:11
 msgid ""
 "When enabled, gnome-session will automatically save the next session at log "
 "out even if auto saving is disabled."
@@ -76,19 +76,19 @@ msgstr ""
 "當啟用此選項，gnome-session 將在登出時自動儲存下一個工作階段，就算自動儲存為"
 "停用狀態。"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:15
+#: data/org.gnome.SessionManager.gschema.xml:15
 msgid "Logout prompt"
 msgstr "登出提示"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:16
+#: data/org.gnome.SessionManager.gschema.xml:16
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr "如啟用本選項，gnome-session 會在作業階段終止前先提示使用者。"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:20
+#: data/org.gnome.SessionManager.gschema.xml:20
 msgid "Show the fallback warning"
 msgstr "顯示後備警告"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:21
+#: data/org.gnome.SessionManager.gschema.xml:21
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
@@ -148,7 +148,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "登出(_L)"
 
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:408
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:505
 msgid "Enable debugging code"
 msgstr "啟用除錯碼"
 
@@ -160,7 +160,7 @@ msgstr "允許登出"
 msgid "Show extension warning"
 msgstr "顯示擴充功能警告"
 
-#: gnome-session/gsm-manager.c:1317 gnome-session/gsm-manager.c:2058
+#: gnome-session/gsm-manager.c:1301 gnome-session/gsm-manager.c:2050
 msgid "Not responding"
 msgstr "沒有回應"
 
@@ -191,80 +191,72 @@ msgstr "因為目前此工作階段即將關閉電腦，拒絕新的客戶端連
 msgid "Could not create ICE listening socket: %s"
 msgstr "無法建立 ICE 監聽插槽：%s"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:502
 msgid "Running as systemd service"
 msgstr "以 systemd 服務執行"
 
-#: gnome-session/main.c:403
-msgid "Use systemd session management"
-msgstr "使用 systemd 工作階段管理工具"
-
-#: gnome-session/main.c:405
-msgid "Use builtin session management (rather than the systemd based one)"
-msgstr "使用內建（而非基於 systemd 的）工作階段管理工具"
-
-#: gnome-session/main.c:406
+#: gnome-session/main.c:503
 msgid "Override standard autostart directories"
 msgstr "覆蓋標準的自動啟動目錄"
 
-#: gnome-session/main.c:406
+#: gnome-session/main.c:503
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: gnome-session/main.c:407
+#: gnome-session/main.c:504
 msgid "Session to use"
 msgstr "要使用的工作階段"
 
-#: gnome-session/main.c:407
+#: gnome-session/main.c:504
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: gnome-session/main.c:409
+#: gnome-session/main.c:506
 msgid "Do not load user-specified applications"
 msgstr "不要載入使用者指定的應用程式"
 
-#: gnome-session/main.c:410
+#: gnome-session/main.c:507
 msgid "Version of this application"
 msgstr "這個程式的版本"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:412
+#: gnome-session/main.c:509
 msgid "Show the fail whale dialog for testing"
 msgstr "顯示嚴重錯誤對話盒以供測試"
 
-#: gnome-session/main.c:413
+#: gnome-session/main.c:510
 msgid "Disable hardware acceleration check"
 msgstr "停用硬體加速檢查"
 
-#: gnome-session/main.c:445
+#: gnome-session/main.c:542
 msgid " — the GNOME session manager"
 msgstr " — GNOME 工作階段管理員"
 
-#: tools/gnome-session-ctl.c:245
+#: tools/gnome-session-ctl.c:247
 msgid "Start gnome-session-shutdown.target"
 msgstr "啟動 gnome-session-shutdown.target"
 
-#: tools/gnome-session-ctl.c:246
+#: tools/gnome-session-ctl.c:248
 msgid ""
 "Start gnome-session-shutdown.target when receiving EOF or a single byte on "
 "stdin"
 msgstr ""
 "當在標準輸入接收到 EOF 或一個位元組時啟動 gnome-session-shutdown.target"
 
-#: tools/gnome-session-ctl.c:247
+#: tools/gnome-session-ctl.c:249
 msgid "Signal initialization done to gnome-session"
 msgstr "訊號初始化完成給 gnome-session"
 
-#: tools/gnome-session-ctl.c:248
+#: tools/gnome-session-ctl.c:250
 msgid "Restart dbus.service if it is running"
 msgstr "如果 dbus.service 正在執行則重新啟動"
 
-#: tools/gnome-session-ctl.c:249
+#: tools/gnome-session-ctl.c:251
 msgid ""
 "Run from ExecStopPost to start gnome-session-failed.target on service failure"
 msgstr "在服務失敗後從 ExecStopPost 執行以啟動 gnome-session-failed.target"
 
-#: tools/gnome-session-ctl.c:279
+#: tools/gnome-session-ctl.c:281
 msgid "Program needs exactly one parameter"
 msgstr "程式明確指出需要一個參數"
 
@@ -303,13 +295,22 @@ msgstr ""
 "\n"
 "如果沒有指定 --inhibit 選項，會假定為 idle。\n"
 
-#: tools/gnome-session-inhibit.c:288
+#: tools/gnome-session-inhibit.c:282
+#, c-format
+msgid "Error while creating pipe: %s\n"
+msgstr "建立管道時發生錯誤： %s\n"
+
+#: tools/gnome-session-inhibit.c:299
+msgid "Failure reading pipe\n"
+msgstr "讀取管道失敗\n"
+
+#: tools/gnome-session-inhibit.c:303
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "無法執行 %s\n"
 
-#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
-#: tools/gnome-session-inhibit.c:372
+#: tools/gnome-session-inhibit.c:376 tools/gnome-session-inhibit.c:386
+#: tools/gnome-session-inhibit.c:396
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s 需要引數\n"
@@ -364,6 +365,12 @@ msgstr "工作階段名稱不允許包含「/」字元"
 #, c-format
 msgid "A session named “%s” already exists"
 msgstr "已存在名為「%s」的工作階段"
+
+#~ msgid "Use systemd session management"
+#~ msgstr "使用 systemd 工作階段管理工具"
+
+#~ msgid "Use builtin session management (rather than the systemd based one)"
+#~ msgstr "使用內建（而非基於 systemd 的）工作階段管理工具"
 
 #~ msgid "Additional startup _programs:"
 #~ msgstr "初始啟動時額外執行以下的程式(_P):"
