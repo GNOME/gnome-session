@@ -36,9 +36,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2023-05-05 13:09+0000\n"
+"POT-Creation-Date: 2024-03-30 03:44+0000\n"
 "PO-Revision-Date: 2023-08-01 23:42+0300\n"
-"Last-Translator: Efstathios Iosifidis <eiosifidis@gnome.org>\n"
+"Last-Translator: Giannis Antypas <gianni.antypas@gmail.com>\n"
 "Language-Team: Greek, Modern (1453-) <gnome-el-list@gnome.org>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
@@ -77,20 +77,20 @@ msgstr "GNOME σε Wayland"
 msgid "GNOME on Xorg"
 msgstr "GNOME σε Xorg"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:5
+#: data/org.gnome.SessionManager.gschema.xml:5
 msgid "Save sessions"
 msgstr "Αποθήκευση συνεδρίων"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:6
+#: data/org.gnome.SessionManager.gschema.xml:6
 msgid "If enabled, gnome-session will save the session automatically."
 msgstr ""
 "Αν ενεργοποιηθεί, η συνεδρία του gnome θα αποθηκεύει αυτόματα τη συνεδρία."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:10
+#: data/org.gnome.SessionManager.gschema.xml:10
 msgid "Save this session"
 msgstr "Αποθήκευση συνεδρίας"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:11
+#: data/org.gnome.SessionManager.gschema.xml:11
 msgid ""
 "When enabled, gnome-session will automatically save the next session at log "
 "out even if auto saving is disabled."
@@ -99,21 +99,21 @@ msgstr ""
 "συνεδρία στην έξοδο ακόμη και αν η αυτόματη αποθήκευση είναι "
 "απενεργοποιημένη."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:15
+#: data/org.gnome.SessionManager.gschema.xml:15
 msgid "Logout prompt"
 msgstr "Ειδοποίηση αποσύνδεσης"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:16
+#: data/org.gnome.SessionManager.gschema.xml:16
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 "Αν ενεργοποιηθεί, η συνεδρία του gnome θα ειδοποιεί το χρήστη πριν το τέλος "
 "της συνεδρίας."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:20
+#: data/org.gnome.SessionManager.gschema.xml:20
 msgid "Show the fallback warning"
 msgstr "Προβολή προειδοποίησης εφεδρικής συνεδρίας"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:21
+#: data/org.gnome.SessionManager.gschema.xml:21
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
@@ -177,7 +177,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "Απο_σύνδεση"
 
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:412
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:505
 msgid "Enable debugging code"
 msgstr "Ενεργοποίηση κώδικα αποφαλμάτωσης"
 
@@ -189,7 +189,7 @@ msgstr "Να επιτρέπεται αποσύνδεση"
 msgid "Show extension warning"
 msgstr "Προβολή προειδοποίησης επέκτασης"
 
-#: gnome-session/gsm-manager.c:1317 gnome-session/gsm-manager.c:2068
+#: gnome-session/gsm-manager.c:1301 gnome-session/gsm-manager.c:2050
 msgid "Not responding"
 msgstr "Δεν ανταποκρίνεται"
 
@@ -221,62 +221,52 @@ msgstr ""
 msgid "Could not create ICE listening socket: %s"
 msgstr "Αδυναμία δημιουργίας υποδοχής ακρόασης ICE: %s"
 
-#: gnome-session/main.c:406
+#: gnome-session/main.c:502
 msgid "Running as systemd service"
 msgstr "Εκτελείται ως υπηρεσία systemd"
 
-#: gnome-session/main.c:407
-msgid "Use systemd session management"
-msgstr "Χρήση διαχείριση συνεδρίας systemd"
-
-#: gnome-session/main.c:409
-msgid "Use builtin session management (rather than the systemd based one)"
-msgstr ""
-"Χρήση της ενσωματωμένης διαχείρισης συνεδρίας (και όχι την βασισμένη στο "
-"systemd)"
-
-#: gnome-session/main.c:410
+#: gnome-session/main.c:503
 msgid "Override standard autostart directories"
 msgstr "Παράκαμψη τυπικών καταλόγων αυτόματης εκκίνησης"
 
-#: gnome-session/main.c:410
+#: gnome-session/main.c:503
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: gnome-session/main.c:411
+#: gnome-session/main.c:504
 msgid "Session to use"
 msgstr "Συνεδρία για χρήση"
 
-#: gnome-session/main.c:411
+#: gnome-session/main.c:504
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: gnome-session/main.c:413
+#: gnome-session/main.c:506
 msgid "Do not load user-specified applications"
 msgstr "Να μην φορτώνονται εφαρμογές καθορισμένες από τον χρήστη"
 
-#: gnome-session/main.c:414
+#: gnome-session/main.c:507
 msgid "Version of this application"
 msgstr "Η έκδοση αυτής της εφαρμογής"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:416
+#: gnome-session/main.c:509
 msgid "Show the fail whale dialog for testing"
 msgstr "Εμφάνιση του διαλόγου fail whale για δοκιμή"
 
-#: gnome-session/main.c:417
+#: gnome-session/main.c:510
 msgid "Disable hardware acceleration check"
 msgstr "Απενεργοποίηση ελέγχου επιτάχυνσης υλικού"
 
-#: gnome-session/main.c:449
+#: gnome-session/main.c:542
 msgid " — the GNOME session manager"
 msgstr " — ο διαχειριστής συνεδρίας του GNOME"
 
-#: tools/gnome-session-ctl.c:245
+#: tools/gnome-session-ctl.c:247
 msgid "Start gnome-session-shutdown.target"
 msgstr "Εκκίνηση του gnome-session-shutdown.target"
 
-#: tools/gnome-session-ctl.c:246
+#: tools/gnome-session-ctl.c:248
 msgid ""
 "Start gnome-session-shutdown.target when receiving EOF or a single byte on "
 "stdin"
@@ -284,22 +274,22 @@ msgstr ""
 "Εκκίνηση του gnome-session-shutdown.target όταν λαμβάνετε EOF ή ένα μόνο "
 "byte στο stdin"
 
-#: tools/gnome-session-ctl.c:247
+#: tools/gnome-session-ctl.c:249
 msgid "Signal initialization done to gnome-session"
 msgstr "Η αρχικοποίηση του σήματος έγινε στο gnome-session"
 
-#: tools/gnome-session-ctl.c:248
+#: tools/gnome-session-ctl.c:250
 msgid "Restart dbus.service if it is running"
 msgstr "Επανεκκίνηση της υπηρεσίας dbus εάν εκτελείται"
 
-#: tools/gnome-session-ctl.c:249
+#: tools/gnome-session-ctl.c:251
 msgid ""
 "Run from ExecStopPost to start gnome-session-failed.target on service failure"
 msgstr ""
 "Εκτέλεση από το ExecStopPost για εκκίνηση του gnome-session-failed.target σε "
 "περίπτωση αποτυχίας υπηρεσίας"
 
-#: tools/gnome-session-ctl.c:279
+#: tools/gnome-session-ctl.c:281
 msgid "Program needs exactly one parameter"
 msgstr "Το πρόγραμμα χρειάζεται ακριβώς μία παράμετρο"
 
@@ -340,13 +330,22 @@ msgstr ""
 "\n"
 "Εάν δεν έχει οριστεί καμιά επιλογή --inhibit, υποτίθεται αδράνεια.\n"
 
-#: tools/gnome-session-inhibit.c:288
+#: tools/gnome-session-inhibit.c:282
+#, c-format
+msgid "Error while creating pipe: %s\n"
+msgstr "Σφάλμα κατά τη δημιουργία σωλήνωσης: %s\n"
+
+#: tools/gnome-session-inhibit.c:299
+msgid "Failure reading pipe\n"
+msgstr "Αποτυχία ανάγνωσης σωλήνωσης\n"
+
+#: tools/gnome-session-inhibit.c:303
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Αποτυχία εκτέλεσης του %s\n"
 
-#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
-#: tools/gnome-session-inhibit.c:372
+#: tools/gnome-session-inhibit.c:376 tools/gnome-session-inhibit.c:386
+#: tools/gnome-session-inhibit.c:396
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "Το %s απαιτεί ένα όρισμα\n"
@@ -403,6 +402,14 @@ msgstr "Τα ονόματα της συνεδρίας δεν επιτρέπετ�
 #, c-format
 msgid "A session named “%s” already exists"
 msgstr "Υπάρχει ήδη μια συνεδρία με όνομα «%s»"
+
+#~ msgid "Use systemd session management"
+#~ msgstr "Χρήση διαχείριση συνεδρίας systemd"
+
+#~ msgid "Use builtin session management (rather than the systemd based one)"
+#~ msgstr ""
+#~ "Χρήση της ενσωματωμένης διαχείρισης συνεδρίας (και όχι την βασισμένη στο "
+#~ "systemd)"
 
 #~ msgid "Additional startup _programs:"
 #~ msgstr "Πρόσθετα _προγράμματα εκκίνησης:"
