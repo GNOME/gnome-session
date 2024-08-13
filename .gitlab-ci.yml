@@ -9,30 +9,9 @@ workflow:
 
 variables:
   COMMON_BUILD_OPTIONS: "--prefix=/usr -Ddocbook=false -Dman=false"
-  COMMON_DEPENDENCIES: >-
-    gcc
-    git
-    json-glib-devel
-    meson
-    systemd
-    systemd-devel
-    gtk3-devel
-    gnome-desktop3-devel
-  DEPS_X11: >-
-    $COMMON_DEPENDENCIES
-    libX11-devel
-    libSM-devel
-    libICE-devel
-    xorg-x11-xtrans-devel
-    libglvnd-devel
-    libepoxy-devel
-    libXcomposite-devel
 
-build-fedora:
-  image: fedora:40
+.build:
   stage: build
-  before_script:
-    - dnf install -y --setopt=install_weak_deps=false $DEPENDENCIES
   script:
     - meson setup _build $MESON_OPTIONS
     - meson compile -C _build
@@ -42,6 +21,31 @@ build-fedora:
     - export _DEST="$CI_PROJECT_DIR/destdir/"
     - mkdir -p "$CI_PROJECT_DIR/destdir/"
     - meson install -C _build --no-rebuild --destdir="$_DEST"
+
+build-fedora:
+  extends: ".build"
+  image: "fedora:40"
+  variables:
+    COMMON_DEPENDENCIES: >-
+      gcc
+      git
+      json-glib-devel
+      meson
+      systemd
+      systemd-devel
+      gtk3-devel
+      gnome-desktop3-devel
+    DEPS_X11: >-
+      $COMMON_DEPENDENCIES
+      libX11-devel
+      libSM-devel
+      libICE-devel
+      xorg-x11-xtrans-devel
+      libglvnd-devel
+      libepoxy-devel
+      libXcomposite-devel
+  before_script:
+    - dnf install -y --setopt=install_weak_deps=false $DEPENDENCIES
   parallel:
     matrix:
       - MESON_OPTIONS: "$COMMON_BUILD_OPTIONS"
