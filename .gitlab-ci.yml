@@ -11,16 +11,20 @@ variables:
   COMMON_BUILD_OPTIONS: "--prefix=/usr"
 
 .build:
-  stage: build
+  stage: "build"
+  variables:
+    _DEST: "$CI_PROJECT_DIR/destdir/"
   script:
     - meson setup _build $MESON_OPTIONS
     - meson compile -C _build
     - meson test -C _build --print-errorlogs --no-stdsplit --no-rebuild
     - meson dist -C _build --no-tests
 
-    - export _DEST="$CI_PROJECT_DIR/destdir/"
-    - mkdir -p "$CI_PROJECT_DIR/destdir/"
+    - mkdir -p $_DEST
     - meson install -C _build --no-rebuild --destdir="$_DEST"
+  after_script:
+    # Cleanup the destdir and thus container volume once we are done
+    - rm -rf $_DEST
 
 build-fedora:
   extends: ".build"
