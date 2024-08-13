@@ -8,7 +8,7 @@ workflow:
     - if: $CI_COMMIT_BRANCH
 
 variables:
-  COMMON_BUILD_OPTIONS: "--prefix=/usr -Ddocbook=false -Dman=false"
+  COMMON_BUILD_OPTIONS: "--prefix=/usr"
 
 .build:
   stage: build
@@ -26,6 +26,7 @@ build-fedora:
   extends: ".build"
   image: "fedora:40"
   variables:
+    FEDORA_MESON_OPTIONS: "$COMMON_BUILD_OPTIONS -Ddocbook=false -Dman=false"
     COMMON_DEPENDENCIES: >-
       gcc
       git
@@ -48,7 +49,15 @@ build-fedora:
     - dnf install -y --setopt=install_weak_deps=false $DEPENDENCIES
   parallel:
     matrix:
-      - MESON_OPTIONS: "$COMMON_BUILD_OPTIONS"
+      - MESON_OPTIONS: "$FEDORA_MESON_OPTIONS"
         DEPENDENCIES: "$DEPS_X11"
-      - MESON_OPTIONS: "$COMMON_BUILD_OPTIONS -Dx11=false"
+      - MESON_OPTIONS: "$FEDORA_MESON_OPTIONS -Dx11=false"
         DEPENDENCIES: "$COMMON_DEPENDENCIES"
+
+build-gnomeos:
+  extends: ".build"
+  image: "quay.io/gnome_infrastructure/gnome-build-meta:core-nightly"
+  parallel:
+    matrix:
+      - MESON_OPTIONS: "$COMMON_BUILD_OPTIONS"
+      - MESON_OPTIONS: "$COMMON_BUILD_OPTIONS -Dx11=false"
