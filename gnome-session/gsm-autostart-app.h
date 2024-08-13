@@ -22,8 +22,6 @@
 
 #include "gsm-app.h"
 
-#include <X11/SM/SMlib.h>
-
 G_BEGIN_DECLS
 
 #define GSM_TYPE_AUTOSTART_APP            (gsm_autostart_app_get_type ())

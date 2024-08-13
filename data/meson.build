@@ -2,9 +2,11 @@ desktop_plain = 'gnome'
 
 desktops = [
   desktop_plain,
-  'gnome-xorg',
   'gnome-wayland',
 ]
+if have_x11
+  desktops += ['gnome-xorg']
+endif
 
 shell_component = {
   desktop_plain: 'org.gnome.Shell',
@@ -47,7 +49,7 @@ foreach name: desktops
     configuration: desktop_conf
   )
 
-  if name.endswith('-xorg')
+  if name.endswith('-xorg') and have_x11
     install_dir = session_datadir / 'xsessions'
   elif name.endswith('-wayland')
     install_dir = session_datadir / 'wayland-sessions'
@@ -129,10 +131,6 @@ endforeach
 
 systemd_target = files('gnome-session-wayland@.target',
                         'gnome-session-wayland.target',
-                        'gnome-session-x11@.target',
-                        'gnome-session-x11.target',
-                        'gnome-session-x11-services.target',
-                        'gnome-session-x11-services-ready.target',
                         'gnome-session@.target',
                         'gnome-session.target',
                         'gnome-session-pre.target',
@@ -141,6 +139,14 @@ systemd_target = files('gnome-session-wayland@.target',
                         'gnome-session-shutdown.target',
                         'gnome-session-failed.target',
                         )
+if have_x11
+  systemd_target += [
+    'gnome-session-x11@.target',
+    'gnome-session-x11.target',
+    'gnome-session-x11-services.target',
+    'gnome-session-x11-services-ready.target',
+  ]
+endif
 
 install_data(
   systemd_target,

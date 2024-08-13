@@ -20,6 +20,7 @@ session_pkgdatadir = join_paths(session_datadir, meson.project_name())
 
 cc = meson.get_compiler('c')
 
+have_x11 = get_option('x11')
 config_h = configuration_data()
 
 # defines
@@ -35,6 +36,7 @@ set_defines = [
 foreach define: set_defines
   config_h.set_quoted(define[0], define[1])
 endforeach
+config_h.set('HAVE_X11', have_x11)
 
 # compiler flags
 common_flags = ['-DHAVE_CONFIG_H']
@@ -82,10 +84,12 @@ glib_req_version = '>= 2.46.0'
 gio_dep = dependency('gio-2.0', version: glib_req_version)
 glib_dep = dependency('glib-2.0', version: glib_req_version)
 gtk_dep = dependency('gtk+-3.0', version: '>= 3.22.0')
-xtrans_dep = dependency('xtrans')
-ice_dep = dependency('ice')
-sm_dep = dependency('sm')
-x11_dep = dependency('x11')
+
+if have_x11
+  ice_dep = dependency('ice')
+  sm_dep = dependency('sm')
+  x11_dep = dependency('x11')
+endif
 
 session_deps = [
   gio_dep,
@@ -94,11 +98,15 @@ session_deps = [
   dependency('json-glib-1.0', version: '>= 0.10')
 ]
 
-session_bin_deps = session_deps + [
-  xtrans_dep,
-  ice_dep,
-  sm_dep
-]
+session_bin_deps = session_deps
+
+if have_x11
+  session_bin_deps += [
+    dependency('xtrans'),
+    ice_dep,
+    sm_dep
+  ]
+endif
 
 # Check for session selector GTK+ UI
 enable_session_selector = get_option('session_selector')
@@ -130,14 +138,16 @@ po_dir = join_paths(meson.project_source_root(), 'po')
 top_inc = include_directories('.')
 
 subdir('gnome-session')
-subdir('tools')
+if have_x11
+  subdir('tools')
+endif
 subdir('data')
 subdir('doc')
 subdir('po')
 
 meson.add_install_script(
   'meson_post_install.py',
-  session_datadir
+  [session_datadir, have_x11 ? 'true' : 'false'],
 )
 
 gnome.post_install(

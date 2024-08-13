@@ -36,10 +36,15 @@ sources = files(
   'gsm-store.c',
   'gsm-system.c',
   'gsm-systemd.c',
-  'gsm-xsmp-client.c',
-  'gsm-xsmp-server.c',
   'main.c'
 )
+
+if have_x11
+  sources += [
+    'gsm-xsmp-client.c',
+    'gsm-xsmp-server.c',
+  ]
+endif
 
 dbus_ifaces = [
   ['org.gnome.SessionManager', 'ExportedManager'],

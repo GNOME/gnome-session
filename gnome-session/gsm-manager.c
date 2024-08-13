@@ -49,8 +49,11 @@
 #include "gsm-presence.h"
 #include "gsm-shell.h"
 
+#ifdef HAVE_X11
 #include "gsm-xsmp-server.h"
 #include "gsm-xsmp-client.h"
+#endif
+
 #include "gsm-dbus-client.h"
 
 #include "gsm-autostart-app.h"
@@ -123,8 +126,9 @@ typedef struct
         GsmInhibitorFlag        inhibited_actions;
         GsmStore               *apps;
         GsmPresence            *presence;
+#ifdef HAVE_X11
         GsmXsmpServer          *xsmp_server;
-
+#endif
         char                   *session_name;
         gboolean                is_fallback_session : 1;
 
@@ -1405,7 +1409,9 @@ start_phase (GsmManager *manager)
                                  "PRIORITY=%d", 5,
                                  "MESSAGE=Entering running state",
                                  NULL);
+#ifdef HAVE_X11
                 gsm_xsmp_server_start_accepting_new_clients (priv->xsmp_server);
+#endif
                 if (priv->pending_end_session_tasks != NULL)
                         complete_end_session_tasks (manager);
                 g_object_unref (priv->end_session_cancellable);
@@ -1414,7 +1420,9 @@ start_phase (GsmManager *manager)
                 update_idle (manager);
                 break;
         case GSM_MANAGER_PHASE_QUERY_END_SESSION:
+#ifdef HAVE_X11
                 gsm_xsmp_server_stop_accepting_new_clients (priv->xsmp_server);
+#endif
                 do_phase_query_end_session (manager);
                 break;
         case GSM_MANAGER_PHASE_END_SESSION:
@@ -1473,13 +1481,16 @@ debug_app_summary (GsmManager *manager)
 void
 gsm_manager_start (GsmManager *manager)
 {
+#ifdef HAVE_X11
         GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
-
+#endif
         g_debug ("GsmManager: GSM starting to manage");
 
         g_return_if_fail (GSM_IS_MANAGER (manager));
 
+#ifdef HAVE_X11
         gsm_xsmp_server_start (priv->xsmp_server);
+#endif
         gsm_manager_set_phase (manager, GSM_MANAGER_PHASE_EARLY_INITIALIZATION);
         debug_app_summary (manager);
         start_phase (manager);
@@ -1877,6 +1888,7 @@ on_client_disconnected (GsmClient  *client,
         }
 }
 
+#ifdef HAVE_X11
 static gboolean
 on_xsmp_client_register_request (GsmXSMPClient *client,
                                  char         **id,
@@ -1952,6 +1964,7 @@ on_xsmp_client_register_confirmed (GsmXSMPClient *client,
                 gsm_app_set_registered (app, TRUE);
         }
 }
+#endif
 
 static gboolean
 auto_save_is_enabled (GsmManager *manager)
@@ -2105,6 +2118,7 @@ on_client_end_session_response (GsmClient  *client,
                                              reason);
 }
 
+#ifdef HAVE_X11
 static void
 on_xsmp_client_logout_request (GsmXSMPClient *client,
                                gboolean       show_dialog,
@@ -2126,6 +2140,7 @@ on_xsmp_client_logout_request (GsmXSMPClient *client,
                 g_error_free (error);
         }
 }
+#endif
 
 static void
 on_store_client_added (GsmStore   *store,
@@ -2140,6 +2155,7 @@ on_store_client_added (GsmStore   *store,
         client = (GsmClient *)gsm_store_lookup (store, id);
 
         /* a bit hacky */
+#ifdef HAVE_X11
         if (GSM_IS_XSMP_CLIENT (client)) {
                 g_signal_connect (client,
                                   "register-request",
@@ -2154,6 +2170,7 @@ on_store_client_added (GsmStore   *store,
                                   G_CALLBACK (on_xsmp_client_logout_request),
                                   manager);
         }
+#endif
 
         g_signal_connect (client,
                           "end-session-response",
@@ -2205,10 +2222,12 @@ gsm_manager_set_client_store (GsmManager *manager,
         priv->clients = store;
 
         if (priv->clients != NULL) {
+#ifdef HAVE_X11
                 if (priv->xsmp_server)
                         g_object_unref (priv->xsmp_server);
 
                 priv->xsmp_server = gsm_xsmp_server_new (store);
+#endif
 
                 g_signal_connect (priv->clients,
                                   "added",
@@ -2392,8 +2411,10 @@ gsm_manager_dispose (GObject *object)
         g_debug ("GsmManager: disposing manager");
 
         g_clear_object (&priv->end_session_cancellable);
-        g_clear_object (&priv->xsmp_server);
         g_clear_pointer (&priv->session_name, g_free);
+#ifdef HAVE_X11
+        g_clear_object (&priv->xsmp_server);
+#endif
 
         if (priv->clients != NULL) {
                 g_signal_handlers_disconnect_by_func (priv->clients,
