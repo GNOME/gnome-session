@@ -30,6 +30,8 @@ variables:
     when: "always"
     paths:
       - "_build/meson-logs/"
+    reports:
+      junit: "_build/meson-logs/testlog.junit.xml"
 
 build-fedora:
   extends: ".build"
