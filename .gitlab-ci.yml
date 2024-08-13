@@ -32,9 +32,9 @@ build-fedora:
   image: fedora:40
   stage: build
   before_script:
-    - dnf -y install $DEPENDENCIES
+    - dnf install -y --setopt=install_weak_deps=false $DEPENDENCIES
   script:
-    - meson setup _build "$MESON_OPTIONS"
+    - meson setup _build $MESON_OPTIONS
     - meson compile -C _build
     - meson test -C _build --print-errorlogs --no-stdsplit --no-rebuild
     - meson dist -C _build --no-tests
