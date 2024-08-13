@@ -24,7 +24,12 @@ variables:
     - meson install -C _build --no-rebuild --destdir="$_DEST"
   after_script:
     # Cleanup the destdir and thus container volume once we are done
-    - rm -rf $_DEST
+    - rm -rvf $_DEST
+  artifacts:
+    expire_in: "2 days"
+    when: "always"
+    paths:
+      - "_build/meson-logs/"
 
 build-fedora:
   extends: ".build"
