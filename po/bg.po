@@ -3,7 +3,7 @@
 # Copyright (C) 2007, 2008, 2009, 2010, 2011 Free Software Foundation, Inc.
 # Copyright (C) 2012, 2013, 2014, 2015, 2016 Free Software Foundation, Inc.
 # Copyright (C) 2017 Free Software Foundation, Inc.
-# Copyright (C) 2021 Alexander Shopov.
+# Copyright (C) 2021, 2024 Alexander Shopov.
 # Pavel Cholakov <pavel@linux.zonebg.com>, 2001.
 # Yanko Kaneti <yaneti@declera.com>, 2002.
 # Vladimir "Kaladan" Petkov <kaladan@gmail.com>, 2004, 2005.
@@ -12,23 +12,25 @@
 # Damyan Ivanov <dam+gnome@ktnx.net>, 2010.
 # Alexander Shopov <ash@kambanaria.org>, 2002, 2005, 2006, 2007, 2009, 2010.
 # Alexander Shopov <ash@kambanaria.org>, 2011, 2012, 2013, 2014, 2015, 2016.
-# Alexander Shopov <ash@kambanaria.org>, 2021.
+# Alexander Shopov <ash@kambanaria.org>, 2021, 2024.
 # Lyubomir Vasilev <lyubomirv@abv.bg>, 2017.
 # Krasimir Chonov <mk2616@abv.bg>, 2011.
+# twlvnn kraftwerk <kraft_werk@tutanota.com>, 2024.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session master\n"
+"Project-Id-Version: gnome-session main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2021-10-25 17:21+0000\n"
-"PO-Revision-Date: 2021-10-30 09:47+0200\n"
-"Last-Translator: Alexander Shopov <ash@kambanaria.org>\n"
+"POT-Creation-Date: 2024-08-13 20:59+0000\n"
+"PO-Revision-Date: 2024-08-30 09:14+0200\n"
+"Last-Translator: twlvnn kraftwerk <kraft_werk@tutanota.com>\n"
 "Language-Team: Bulgarian <dict@ludost.net>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: Gtranslator 46.1\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -59,19 +61,19 @@ msgstr "GNOME с Wayland"
 msgid "GNOME on Xorg"
 msgstr "GNOME с Xorg"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:5
+#: data/org.gnome.SessionManager.gschema.xml:5
 msgid "Save sessions"
 msgstr "Запазване на сесиите"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:6
+#: data/org.gnome.SessionManager.gschema.xml:6
 msgid "If enabled, gnome-session will save the session automatically."
 msgstr "Когато е включено, „gnome-session“ ще запазва сесията автоматично."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:10
+#: data/org.gnome.SessionManager.gschema.xml:10
 msgid "Save this session"
 msgstr "Запазване на тази сесия"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:11
+#: data/org.gnome.SessionManager.gschema.xml:11
 msgid ""
 "When enabled, gnome-session will automatically save the next session at log "
 "out even if auto saving is disabled."
@@ -79,21 +81,21 @@ msgstr ""
 "Когато е включено, „gnome-session“ автоматично ще запази следващата сесия "
 "при изход, дори ако автоматичното запазване на сесии е изключено."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:15
+#: data/org.gnome.SessionManager.gschema.xml:15
 msgid "Logout prompt"
 msgstr "Питане преди изход"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:16
+#: data/org.gnome.SessionManager.gschema.xml:16
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 "Когато е включено, „gnome-session“ ще пита потребителя, преди да прекрати "
 "сесията."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:20
+#: data/org.gnome.SessionManager.gschema.xml:20
 msgid "Show the fallback warning"
 msgstr "Показване на предупреждение при резервен вариант"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:21
+#: data/org.gnome.SessionManager.gschema.xml:21
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
@@ -157,7 +159,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_Изход"
 
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:505
 msgid "Enable debugging code"
 msgstr "Включване на изчистването на грешки"
 
@@ -169,7 +171,7 @@ msgstr "Разрешаване на изхода"
 msgid "Show extension warning"
 msgstr "Показване на предупреждение за разширение"
 
-#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1999
+#: gnome-session/gsm-manager.c:1305 gnome-session/gsm-manager.c:2063
 msgid "Not responding"
 msgstr "Не отговаря"
 
@@ -189,7 +191,7 @@ msgstr "Запомнена програма"
 msgid "This program is blocking logout."
 msgstr "Тази програма блокира излизането."
 
-#: gnome-session/gsm-xsmp-server.c:338
+#: gnome-session/gsm-xsmp-server.c:340
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
@@ -197,66 +199,57 @@ msgstr ""
 "Отхвърляне на свързванията с нови клиенти, защото тази сесия в момента се "
 "затваря\n"
 
-#: gnome-session/gsm-xsmp-server.c:605
+#: gnome-session/gsm-xsmp-server.c:607
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Неуспешно създаване на гнездо на ICE за слушане: %s"
 
-#: gnome-session/main.c:398
+#: gnome-session/main.c:502
 msgid "Running as systemd service"
 msgstr "Изпълнение като услуга на „systemd“"
 
-#: gnome-session/main.c:399
-msgid "Use systemd session management"
-msgstr "Управление на сесиите със „systemd“"
-
-#: gnome-session/main.c:401
-msgid "Use builtin session management (rather than the systemd based one)"
-msgstr ""
-"Използване на вграденото управление на сесии (вместо това на „systemd“)"
-
-#: gnome-session/main.c:402
+#: gnome-session/main.c:503
 msgid "Override standard autostart directories"
 msgstr "Използване на различни от стандартните папки за стартиране при влизане"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:503
 msgid "AUTOSTART_DIR"
 msgstr "ПАПКА_ЗА_АВТОМАТИЧНО_СТАРТИРАНЕ"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:504
 msgid "Session to use"
 msgstr "Коя сесия да се ползва"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:504
 msgid "SESSION_NAME"
 msgstr "ИМЕ_НА_СЕСИЯ"
 
-#: gnome-session/main.c:405
+#: gnome-session/main.c:506
 msgid "Do not load user-specified applications"
 msgstr "Да не се зареждат програми, зададени от потребителя"
 
-#: gnome-session/main.c:406
+#: gnome-session/main.c:507
 msgid "Version of this application"
 msgstr "Версията на програмата"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:408
+#: gnome-session/main.c:509
 msgid "Show the fail whale dialog for testing"
 msgstr "Показване на черния екран за грешка с тестови цели"
 
-#: gnome-session/main.c:409
+#: gnome-session/main.c:510
 msgid "Disable hardware acceleration check"
 msgstr "Изключване на проверката за хардуерно ускорение"
 
-#: gnome-session/main.c:441
+#: gnome-session/main.c:542
 msgid " — the GNOME session manager"
 msgstr " — управление на сесиите на GNOME"
 
-#: tools/gnome-session-ctl.c:245
+#: tools/gnome-session-ctl.c:247
 msgid "Start gnome-session-shutdown.target"
 msgstr "Изпълнение на „gnome-session-shutdown.target“"
 
-#: tools/gnome-session-ctl.c:246
+#: tools/gnome-session-ctl.c:248
 msgid ""
 "Start gnome-session-shutdown.target when receiving EOF or a single byte on "
 "stdin"
@@ -264,22 +257,22 @@ msgstr ""
 "Стартиране на „gnome-session-shutdown.target“ при получаване на край на файл "
 "или сама на единичен байт на стандартния вход"
 
-#: tools/gnome-session-ctl.c:247
+#: tools/gnome-session-ctl.c:249
 msgid "Signal initialization done to gnome-session"
 msgstr "Извършено е инициализиране на сигналите на „gnome-session“"
 
-#: tools/gnome-session-ctl.c:248
+#: tools/gnome-session-ctl.c:250
 msgid "Restart dbus.service if it is running"
 msgstr "Рестартиране на „dbus.service“, ако се изпълнява"
 
-#: tools/gnome-session-ctl.c:249
+#: tools/gnome-session-ctl.c:251
 msgid ""
 "Run from ExecStopPost to start gnome-session-failed.target on service failure"
 msgstr ""
 "Изпълнение от „ExecStopPost“, за да се стартираt „gnome-session-failed."
 "target“ при грешка в услугата"
 
-#: tools/gnome-session-ctl.c:279
+#: tools/gnome-session-ctl.c:281
 msgid "Program needs exactly one parameter"
 msgstr "Програмата изисква точно един параметър"
 
@@ -322,13 +315,22 @@ msgstr ""
 "Ако не е указана опция „--inhibit“, за стандартна се ползва стойност "
 "„idle“.\n"
 
-#: tools/gnome-session-inhibit.c:288
+#: tools/gnome-session-inhibit.c:282
+#, c-format
+msgid "Error while creating pipe: %s\n"
+msgstr "Грешка при създаване на канал: %s\n"
+
+#: tools/gnome-session-inhibit.c:299
+msgid "Failure reading pipe\n"
+msgstr "Грешка при четене на канал\n"
+
+#: tools/gnome-session-inhibit.c:303
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Неуспешно изпълнение на %s\n"
 
-#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
-#: tools/gnome-session-inhibit.c:372
+#: tools/gnome-session-inhibit.c:376 tools/gnome-session-inhibit.c:386
+#: tools/gnome-session-inhibit.c:396
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s изисква аргумент\n"
