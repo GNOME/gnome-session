@@ -10,7 +10,7 @@ else:
   install_root = sys.argv[1]
 
 try:
-    have_x11 = bool(sys.argv[2])
+    have_x11 = sys.argv[2] == 'true'
 except IndexError:
     have_x11 = False
 
