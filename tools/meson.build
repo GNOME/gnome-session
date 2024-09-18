@@ -1,17 +1,22 @@
-deps = session_deps + [
-  sm_dep,
-  ice_dep
-]
-
 cflags = ['-DLOCALE_DIR="@0@"'.format(session_localedir)]
 
 programs = [
   # name, deps, cflags, install_dir
-  ['gnome-session-quit', deps, cflags, session_bindir],
-  ['gnome-session-inhibit', session_deps, cflags, session_bindir]
+  ['gnome-session-ctl', session_bin_deps, cflags, session_libexecdir],
+  ['gnome-session-inhibit', session_deps, cflags, session_bindir],
 ]
 
-programs += [['gnome-session-ctl', session_bin_deps, cflags, session_libexecdir]]
+if have_x11
+  deps = session_deps + [
+    sm_dep,
+    ice_dep
+  ]
+
+  programs += [
+    # name, deps, cflags, install_dir
+    ['gnome-session-quit', deps, cflags, session_bindir],
+  ]
+endif
 
 if enable_session_selector
   deps = [
@@ -29,32 +34,34 @@ if enable_session_selector
   programs += [['gnome-session-selector', deps, cflags, session_bindir]]
 endif
 
-deps = [
-  gtk_dep,
-  x11_dep,
-  dependency('egl'),
-  dependency('glesv2')
-]
+if have_x11
+  deps = [
+    gtk_dep,
+    x11_dep,
+    dependency('egl'),
+    dependency('glesv2')
+  ]
 
-cflags = '-DPKGDATADIR="@0@"'.format(session_pkgdatadir)
+  cflags = '-DPKGDATADIR="@0@"'.format(session_pkgdatadir)
 
-programs += [['gnome-session-check-accelerated-gles-helper', deps, cflags, session_libexecdir]]
+  programs += [['gnome-session-check-accelerated-gles-helper', deps, cflags, session_libexecdir]]
 
-deps = [
-  glib_dep,
-  x11_dep,
-  dependency('gl'),
-  dependency('epoxy'),
-  dependency('xcomposite')
-]
+  deps = [
+    glib_dep,
+    x11_dep,
+    dependency('gl'),
+    dependency('epoxy'),
+    dependency('xcomposite')
+  ]
 
-programs += [['gnome-session-check-accelerated-gl-helper', deps, cflags, session_libexecdir]]
+  programs += [['gnome-session-check-accelerated-gl-helper', deps, cflags, session_libexecdir]]
 
-deps += [gtk_dep]
+  deps += [gtk_dep]
 
-cflags = '-DLIBEXECDIR="@0@"'.format(session_libexecdir)
+  cflags = '-DLIBEXECDIR="@0@"'.format(session_libexecdir)
 
-programs += [['gnome-session-check-accelerated', deps, cflags, session_libexecdir]]
+  programs += [['gnome-session-check-accelerated', deps, cflags, session_libexecdir]]
+endif
 
 foreach program: programs
   executable(

@@ -138,9 +138,7 @@ po_dir = join_paths(meson.project_source_root(), 'po')
 top_inc = include_directories('.')
 
 subdir('gnome-session')
-if have_x11
-  subdir('tools')
-endif
+subdir('tools')
 subdir('data')
 subdir('doc')
 subdir('po')
