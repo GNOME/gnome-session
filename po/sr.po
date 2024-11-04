@@ -10,17 +10,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2022-01-12 17:11+0000\n"
-"PO-Revision-Date: 2022-03-03 05:26+0200\n"
-"Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
+"POT-Creation-Date: 2024-10-23 01:17+0000\n"
+"PO-Revision-Date: 2024-11-04 08:13+0100\n"
+"Last-Translator: Марко М. Костић <marko.m.kostic@gmail.com>\n"
 "Language-Team: Serbian <gnome-sr@googlegroups.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : n"
-"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2\n"
+"Plural-Forms: nplurals=4; plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 : "
+"n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Project-Style: gnome\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -44,7 +45,6 @@ msgid "GNOME dummy"
 msgstr "Гномов лажњак"
 
 #: data/gnome-wayland.desktop.in.in:3
-#| msgid "GNOME on Xorg"
 msgid "GNOME on Wayland"
 msgstr "Гном на Вејланду"
 
@@ -52,19 +52,19 @@ msgstr "Гном на Вејланду"
 msgid "GNOME on Xorg"
 msgstr "Гном на Икс серверу"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:5
+#: data/org.gnome.SessionManager.gschema.xml:5
 msgid "Save sessions"
 msgstr "Сачувај сесије"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:6
+#: data/org.gnome.SessionManager.gschema.xml:6
 msgid "If enabled, gnome-session will save the session automatically."
 msgstr "Ако је омогућено, гномова сесија ће самостално чувати сесију."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:10
+#: data/org.gnome.SessionManager.gschema.xml:10
 msgid "Save this session"
 msgstr "Сачувај ову сесију"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:11
+#: data/org.gnome.SessionManager.gschema.xml:11
 msgid ""
 "When enabled, gnome-session will automatically save the next session at log "
 "out even if auto saving is disabled."
@@ -72,21 +72,21 @@ msgstr ""
 "Када је омогућено, гномова сесија ће самостално сачувати следећу сесију при "
 "одјави чак иако је самостално чување искључено."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:15
+#: data/org.gnome.SessionManager.gschema.xml:15
 msgid "Logout prompt"
 msgstr "Упит за одјаву"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:16
+#: data/org.gnome.SessionManager.gschema.xml:16
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 "Ако је омогућено, гномова сесија ће питати корисника да ли жели да оконча "
 "сесију."
 
-#: data/org.gnome.SessionManager.gschema.xml.in:20
+#: data/org.gnome.SessionManager.gschema.xml:20
 msgid "Show the fallback warning"
 msgstr "Прикажи упозорење о одступању"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:21
+#: data/org.gnome.SessionManager.gschema.xml:21
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
@@ -150,7 +150,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_Одјави ме"
 
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:408
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:505
 msgid "Enable debugging code"
 msgstr "Укључује код за исправљање грешака"
 
@@ -162,7 +162,7 @@ msgstr "Дозвољава одјављивање"
 msgid "Show extension warning"
 msgstr "Приказује упозорење проширења"
 
-#: gnome-session/gsm-manager.c:1317 gnome-session/gsm-manager.c:2058
+#: gnome-session/gsm-manager.c:1305 gnome-session/gsm-manager.c:2063
 msgid "Not responding"
 msgstr "Не даје одзив"
 
@@ -193,60 +193,52 @@ msgstr "Одбацујем везу са новим клијентом јер ј
 msgid "Could not create ICE listening socket: %s"
 msgstr "Не могу да направим прикључак ИЦЕ ослушкивања: %s"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:502
 msgid "Running as systemd service"
 msgstr "Покрени као систем-де услугу"
 
-#: gnome-session/main.c:403
-msgid "Use systemd session management"
-msgstr "Користи систем-де управљање сесијом"
-
-#: gnome-session/main.c:405
-msgid "Use builtin session management (rather than the systemd based one)"
-msgstr "Користи уграђено управљање сесије (уместо оне засноване на систем-деу)"
-
-#: gnome-session/main.c:406
+#: gnome-session/main.c:503
 msgid "Override standard autostart directories"
 msgstr "Заобилази уобичајене директоријуме самопокретања"
 
-#: gnome-session/main.c:406
+#: gnome-session/main.c:503
 msgid "AUTOSTART_DIR"
 msgstr "ДИРЕКТОРИЈУМ_САМОПОКРЕТАЊА"
 
-#: gnome-session/main.c:407
+#: gnome-session/main.c:504
 msgid "Session to use"
 msgstr "Сесије које ће бити коришћене"
 
-#: gnome-session/main.c:407
+#: gnome-session/main.c:504
 msgid "SESSION_NAME"
 msgstr "НАЗИВ_СЕСИЈЕ"
 
-#: gnome-session/main.c:409
+#: gnome-session/main.c:506
 msgid "Do not load user-specified applications"
 msgstr "Не учитава програме које је задао корисник"
 
-#: gnome-session/main.c:410
+#: gnome-session/main.c:507
 msgid "Version of this application"
 msgstr "Издање овог програма"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:412
+#: gnome-session/main.c:509
 msgid "Show the fail whale dialog for testing"
 msgstr "Приказује прозорче неуспеха за испробавање"
 
-#: gnome-session/main.c:413
+#: gnome-session/main.c:510
 msgid "Disable hardware acceleration check"
 msgstr "Искључује проверу хардверског убрзања"
 
-#: gnome-session/main.c:445
+#: gnome-session/main.c:542
 msgid " — the GNOME session manager"
 msgstr " — управник Гномовом сесијом"
 
-#: tools/gnome-session-ctl.c:245
+#: tools/gnome-session-ctl.c:247
 msgid "Start gnome-session-shutdown.target"
 msgstr "Покрени gnome-session-shutdown.target"
 
-#: tools/gnome-session-ctl.c:246
+#: tools/gnome-session-ctl.c:248
 msgid ""
 "Start gnome-session-shutdown.target when receiving EOF or a single byte on "
 "stdin"
@@ -254,22 +246,22 @@ msgstr ""
 "Покрени gnome-session-shutdown.target након примања EOF сигнала или примања "
 "једног бајта на стандардном улазу"
 
-#: tools/gnome-session-ctl.c:247
+#: tools/gnome-session-ctl.c:249
 msgid "Signal initialization done to gnome-session"
 msgstr "Иницијализација сигнала урађено за gnome-session"
 
-#: tools/gnome-session-ctl.c:248
+#: tools/gnome-session-ctl.c:250
 msgid "Restart dbus.service if it is running"
 msgstr "Поново покрени dbus.service ако је покренут"
 
-#: tools/gnome-session-ctl.c:249
+#: tools/gnome-session-ctl.c:251
 msgid ""
 "Run from ExecStopPost to start gnome-session-failed.target on service failure"
 msgstr ""
 "Покретање из ExecStopPost-а зарад покретања gnome-session-failed.target при "
 "неуспешној услузи"
 
-#: tools/gnome-session-ctl.c:279
+#: tools/gnome-session-ctl.c:281
 msgid "Program needs exactly one parameter"
 msgstr "Програму треба тачно један параметар"
 
@@ -311,13 +303,22 @@ msgstr ""
 "Ако ниједна опција спречавања (--inhibit) није наведена, подразумева се "
 "стање мировања (idle).\n"
 
-#: tools/gnome-session-inhibit.c:288
+#: tools/gnome-session-inhibit.c:282
+#, c-format
+msgid "Error while creating pipe: %s\n"
+msgstr "Грешка при прављењу цеви: %s\n"
+
+#: tools/gnome-session-inhibit.c:299
+msgid "Failure reading pipe\n"
+msgstr "Грешка при читању цеви\n"
+
+#: tools/gnome-session-inhibit.c:303
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "Нисам успео да извршим „%s“\n"
 
-#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
-#: tools/gnome-session-inhibit.c:372
+#: tools/gnome-session-inhibit.c:376 tools/gnome-session-inhibit.c:386
+#: tools/gnome-session-inhibit.c:396
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "„%s“ захтева аргумент\n"
@@ -372,6 +373,13 @@ msgstr "Називи сесија не могу да садрже косу цр�
 #, c-format
 msgid "A session named “%s” already exists"
 msgstr "Већ постоји сесија под називом „%s“"
+
+#~ msgid "Use systemd session management"
+#~ msgstr "Користи систем-де управљање сесијом"
+
+#~ msgid "Use builtin session management (rather than the systemd based one)"
+#~ msgstr ""
+#~ "Користи уграђено управљање сесије (уместо оне засноване на систем-деу)"
 
 #~ msgid "Additional startup _programs:"
 #~ msgstr "Додатни почетни _програми:"
