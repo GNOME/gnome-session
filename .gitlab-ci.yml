@@ -1,25 +1,13 @@
-default:
-  interruptible: true
-  # Auto-retry jobs in case of infra failures
-  retry:
-    max: 1
-    when:
-      - 'runner_system_failure'
-      - 'stuck_or_timeout_failure'
-      - 'scheduler_failure'
-      - 'api_failure'
-
-workflow:
-  rules:
-    - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS && $CI_PIPELINE_SOURCE == "push"
-      when: never
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-    - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS
-      when: never
-    - if: $CI_COMMIT_BRANCH
-
-variables:
-  COMMON_BUILD_OPTIONS: "--prefix=/usr"
+include:
+  - project: "GNOME/citemplates"
+    file: "templates/default-rules.yml"
+  - component: gitlab.gnome.org/GNOME/citemplates/gnomeos-basic-ci@master
+    inputs:
+      job-name: "build-gnomeos"
+  - component: gitlab.gnome.org/GNOME/citemplates/gnomeos-basic-ci@master
+    inputs:
+      job-name: "build-gnomeos-no-x11"
+      meson-options: "-Dx11=false"
 
 .build:
   stage: "build"
@@ -48,7 +36,7 @@ build-fedora:
   extends: ".build"
   image: "fedora:40"
   variables:
-    FEDORA_MESON_OPTIONS: "$COMMON_BUILD_OPTIONS -Ddocbook=false -Dman=false"
+    FEDORA_MESON_OPTIONS: "--prefix=/usr -Ddocbook=false -Dman=false"
     COMMON_DEPENDENCIES: >-
       gcc
       git
@@ -75,11 +63,3 @@ build-fedora:
         DEPENDENCIES: "$DEPS_X11"
       - MESON_OPTIONS: "$FEDORA_MESON_OPTIONS -Dx11=false"
         DEPENDENCIES: "$COMMON_DEPENDENCIES"
-
-build-gnomeos:
-  extends: ".build"
-  image: "quay.io/gnome_infrastructure/gnome-build-meta:core-nightly"
-  parallel:
-    matrix:
-      - MESON_OPTIONS: "$COMMON_BUILD_OPTIONS"
-      - MESON_OPTIONS: "$COMMON_BUILD_OPTIONS -Dx11=false"
