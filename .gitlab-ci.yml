@@ -8,6 +8,10 @@ include:
     inputs:
       job-name: "build-gnomeos-no-x11"
       meson-options: "-Dx11=false"
+  - component: gitlab.gnome.org/GNOME/citemplates/release-service@master
+    inputs:
+      dist-job-name: "build-gnomeos"
+      tarball-artifact-path: "_builddir/meson-dist/$CI_PROJECT_NAME-$CI_COMMIT_TAG.tar.xz"
 
 .build:
   stage: "build"
