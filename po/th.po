@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2023-10-12 11:31+0000\n"
-"PO-Revision-Date: 2024-01-07 06:11+0700\n"
+"POT-Creation-Date: 2025-01-12 21:19+0000\n"
+"PO-Revision-Date: 2025-01-28 17:18+0700\n"
 "Last-Translator: Akom Chotiphantawanon <knight2000@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "Language: th\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.4.1\n"
+"X-Generator: Poedit 3.5\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -28,7 +28,7 @@ msgstr "กำหนดเอง"
 
 #: data/gnome-custom-session.desktop.in.in:4
 msgid "This entry lets you select a saved session"
-msgstr "รายการนี้จะให้คุณเลือกวาระที่บันทึกไว้"
+msgstr "รายการนี้จะให้คุณเลือกเซสชันที่บันทึกไว้"
 
 #: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
 msgid "GNOME"
@@ -36,7 +36,7 @@ msgstr "GNOME"
 
 #: data/gnome.desktop.in.in:4 data/gnome-wayland.desktop.in.in:4 data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
-msgstr "วาระนี้จะเข้าสู่ GNOME"
+msgstr "เซสชันนี้จะเข้าสู่ GNOME"
 
 #: data/gnome-dummy.session.desktop.in.in:3
 msgid "GNOME dummy"
@@ -52,21 +52,21 @@ msgstr "GNOME ใน Xorg"
 
 #: data/org.gnome.SessionManager.gschema.xml:5
 msgid "Save sessions"
-msgstr "บันทึกวาระ"
+msgstr "บันทึกเซสชัน"
 
 #: data/org.gnome.SessionManager.gschema.xml:6
 msgid "If enabled, gnome-session will save the session automatically."
-msgstr "ถ้าเลือก gnome-session จะบันทึกวาระให้โดยอัตโนมัติ"
+msgstr "ถ้าเลือก gnome-session จะบันทึกเซสชันให้โดยอัตโนมัติ"
 
 #: data/org.gnome.SessionManager.gschema.xml:10
 msgid "Save this session"
-msgstr "บันทึกวาระนี้"
+msgstr "บันทึกเซสชันนี้"
 
 #: data/org.gnome.SessionManager.gschema.xml:11
 msgid ""
 "When enabled, gnome-session will automatically save the next session at log out even if auto "
 "saving is disabled."
-msgstr "ถ้าเลือก gnome-session จะบันทึกวาระถัดไปให้โดยอัตโนมัติเมื่อออกจากระบบ แม้จะปิดการบันทึกอัตโนมัติก็ตาม"
+msgstr "ถ้าเลือก gnome-session จะบันทึกเซสชันถัดไปให้โดยอัตโนมัติเมื่อออกจากระบบ แม้จะปิดการบันทึกอัตโนมัติก็ตาม"
 
 #: data/org.gnome.SessionManager.gschema.xml:15
 msgid "Logout prompt"
@@ -77,38 +77,34 @@ msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr "ถ้าเลือก gnome-session จะถามผู้ใช้ก่อนจะออกจากการใช้งาน"
 
 #: data/org.gnome.SessionManager.gschema.xml:20
-#, fuzzy
-#| msgid "Show extension warning"
 msgid "Show the fallback warning"
-msgstr "แสดงคำเตือนของส่วนขยาย"
+msgstr "แสดงคำเตือนสำรอง"
 
 #: data/org.gnome.SessionManager.gschema.xml:21
-#, fuzzy
-#| msgid "If enabled, gnome-session will save the session automatically."
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the session was "
 "automatically fallen back."
-msgstr "ถ้าเลือก gnome-session จะบันทึกวาระให้โดยอัตโนมัติ"
+msgstr "ถ้าเลือก gnome-session จะแสดงกล่องโต้ตอบคำเตือนหลังจากเข้าระบบถ้ามีการใช้เซสชันสำรองโดยอัตโนมัติ"
 
 #: data/session-selector.ui:15
 msgid "Custom Session"
-msgstr "วาระที่กำหนดเอง"
+msgstr "เซสชันที่กำหนดเอง"
 
 #: data/session-selector.ui:50 tools/gnome-session-selector.c:102
 msgid "Please select a custom session to run"
-msgstr "กรุณาเลือกวาระที่กำหนดเองที่จะเรียกทำงาน"
+msgstr "กรุณาเลือกเซสชันที่กำหนดเองที่จะเรียกทำงาน"
 
 #: data/session-selector.ui:105
 msgid "_New Session"
-msgstr "วาระใ_หม่"
+msgstr "เซสชันใ_หม่"
 
 #: data/session-selector.ui:119
 msgid "_Remove Session"
-msgstr "_ลบวาระ"
+msgstr "_ลบเซสชัน"
 
 #: data/session-selector.ui:133
 msgid "Rena_me Session"
-msgstr "เ_ปลี่ยนชื่อวาระ"
+msgstr "เ_ปลี่ยนชื่อเซสชัน"
 
 #: data/session-selector.ui:168
 msgid "_Continue"
@@ -140,7 +136,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_ออกจากระบบ"
 
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:403
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:505
 msgid "Enable debugging code"
 msgstr "เปิดใช้โค้ดส่วนดีบั๊ก"
 
@@ -152,7 +148,7 @@ msgstr "อนุญาตให้ออกจากระบบ"
 msgid "Show extension warning"
 msgstr "แสดงคำเตือนของส่วนขยาย"
 
-#: gnome-session/gsm-manager.c:1301 gnome-session/gsm-manager.c:2050
+#: gnome-session/gsm-manager.c:1305 gnome-session/gsm-manager.c:2063
 msgid "Not responding"
 msgstr "ไม่ตอบสนอง"
 
@@ -166,7 +162,7 @@ msgstr "_ออกจากระบบ"
 #.
 #: gnome-session/gsm-xsmp-client.c:557
 msgid "Remembered Application"
-msgstr "โปรแกรมที่จำไว้"
+msgstr "แอปพลิเคชันที่จำไว้"
 
 #: gnome-session/gsm-xsmp-client.c:1216
 msgid "This program is blocking logout."
@@ -174,95 +170,80 @@ msgstr "โปรแกรมนี้ขัดขวางการออกจ
 
 #: gnome-session/gsm-xsmp-server.c:340
 msgid "Refusing new client connection because the session is currently being shut down\n"
-msgstr "ไม่รับการเชื่อมต่อใหม่จากลูกข่าย เพราะวาระกำลังปิดตัว\n"
+msgstr "ไม่รับการเชื่อมต่อใหม่จากลูกข่าย เพราะเซสชันกำลังปิดตัว\n"
 
 #: gnome-session/gsm-xsmp-server.c:607
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "ไม่สามารถสร้างซ็อกเก็ตรอรับการเชื่อมต่อ ICE: %s"
 
-#: gnome-session/main.c:400
+#: gnome-session/main.c:502
 msgid "Running as systemd service"
-msgstr ""
+msgstr "กำลังเรียกทำงานในแบบบริการ systemd"
 
-#: gnome-session/main.c:401
+#: gnome-session/main.c:503
 msgid "Override standard autostart directories"
 msgstr "กำหนดค่าไดเรกทอรีเริ่มต้นอัตโนมัติทับค่ามาตรฐาน"
 
-#: gnome-session/main.c:401
+#: gnome-session/main.c:503
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:504
 msgid "Session to use"
-msgstr "วาระที่จะใช้"
+msgstr "เซสชันที่จะใช้"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:504
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: gnome-session/main.c:404
+#: gnome-session/main.c:506
 msgid "Do not load user-specified applications"
-msgstr "ไม่ต้องโหลดโปรแกรมที่ผู้ใช้ระบุไว้"
+msgstr "ไม่ต้องโหลดแอปพลิเคชันที่ผู้ใช้ระบุไว้"
 
-#: gnome-session/main.c:405
+#: gnome-session/main.c:507
 msgid "Version of this application"
-msgstr "รุ่นของโปรแกรมนี้"
+msgstr "รุ่นของแอปพลิเคชันนี้"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:407
+#: gnome-session/main.c:509
 msgid "Show the fail whale dialog for testing"
 msgstr "แสดงกล่องแจ้งพังเพื่อทดสอบ"
 
-#: gnome-session/main.c:408
+#: gnome-session/main.c:510
 msgid "Disable hardware acceleration check"
 msgstr "ปิดใช้การตรวจสอบการเร่งความเร็วด้วยฮาร์ดแวร์"
 
-#: gnome-session/main.c:440
+#: gnome-session/main.c:542
 msgid " — the GNOME session manager"
-msgstr " — โปรแกรมจัดการวาระ GNOME"
-
-#: tools/gnome-session-ctl.c:245
-msgid "Start gnome-session-shutdown.target"
-msgstr ""
-
-#: tools/gnome-session-ctl.c:246
-msgid "Start gnome-session-shutdown.target when receiving EOF or a single byte on stdin"
-msgstr ""
+msgstr " — โปรแกรมจัดการเซสชัน GNOME"
 
 #: tools/gnome-session-ctl.c:247
-msgid "Signal initialization done to gnome-session"
-msgstr ""
+msgid "Start gnome-session-shutdown.target"
+msgstr "เริ่ม gnome-session-shutdown.target"
 
 #: tools/gnome-session-ctl.c:248
-msgid "Restart dbus.service if it is running"
-msgstr ""
+msgid "Start gnome-session-shutdown.target when receiving EOF or a single byte on stdin"
+msgstr "เริ่ม gnome-session-shutdown.target เมื่อพบจุดสิ้นสุดไฟล์หรือไบต์เดี่ยวบน stdin"
 
 #: tools/gnome-session-ctl.c:249
-msgid "Run from ExecStopPost to start gnome-session-failed.target on service failure"
-msgstr ""
+msgid "Signal initialization done to gnome-session"
+msgstr "กำหนดค่าเริ่มต้นสัญญาณให้กับ gnome-session เรียบร้อยแล้ว"
 
-#: tools/gnome-session-ctl.c:279
+#: tools/gnome-session-ctl.c:250
+msgid "Restart dbus.service if it is running"
+msgstr "เริ่ม dbus.service ใหม่ถ้าไม่ได้ทำงาน"
+
+#: tools/gnome-session-ctl.c:251
+msgid "Run from ExecStopPost to start gnome-session-failed.target on service failure"
+msgstr "เรียกใช้จาก ExecStopPost เพื่อเริ่ม gnome-session-failed.target เมื่อบริการเกิดความขัดข้อง"
+
+#: tools/gnome-session-ctl.c:281
 msgid "Program needs exactly one parameter"
-msgstr ""
+msgstr "โปรแกรมต้องการพารามิเตอร์เพียงตัวเดียวเท่านั้น"
 
 #: tools/gnome-session-inhibit.c:108
-#, fuzzy, c-format
-#| msgid ""
-#| "%s [OPTION...] COMMAND\n"
-#| "\n"
-#| "Execute COMMAND while inhibiting some session functionality.\n"
-#| "\n"
-#| "  -h, --help        Show this help\n"
-#| "  --version         Show program version\n"
-#| "  --app-id ID       The application id to use\n"
-#| "                    when inhibiting (optional)\n"
-#| "  --reason REASON   The reason for inhibiting (optional)\n"
-#| "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
-#| "                    logout, switch-user, suspend, idle, automount\n"
-#| "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
-#| "\n"
-#| "If no --inhibit option is specified, idle is assumed.\n"
+#, c-format
 msgid ""
 "%s [OPTION…] COMMAND\n"
 "\n"
@@ -282,7 +263,7 @@ msgid ""
 msgstr ""
 "%s [ตัวเลือก...] คำสั่ง\n"
 "\n"
-"เรียก \"คำสั่ง\" ขณะระงับการทำงานบางส่วนของวาระ\n"
+"เรียก \"คำสั่ง\" ขณะระงับการทำงานบางส่วนของเซสชัน\n"
 "\n"
 "  -h, --help        แสดงวิธีใช้นี้\n"
 "  --version         แสดงรุ่นของโปรแกรม\n"
@@ -292,16 +273,26 @@ msgstr ""
 "  --inhibit ARG     สิ่งที่จะระงับ, เป็นรายชื่อที่คั่นด้วยทวิภาคของ:\n"
 "                    logout, switch-user, suspend, idle, automount\n"
 "  --inhibit-only    ไม่ต้องเรียก \"คำสั่ง\" และหยุดรอแทน\n"
+"  -l, --list        แสดงรายการระงับที่มีอยู่ทั้งหมด และจบการทำงาน\n"
 "\n"
 "ถ้าไม่ระบุตัวเลือก --inhibit จะถือเป็นการเดินเครื่องเปล่า\n"
 
-#: tools/gnome-session-inhibit.c:288
+#: tools/gnome-session-inhibit.c:282
+#, c-format
+msgid "Error while creating pipe: %s\n"
+msgstr "เกิดข้อผิดพลาดขณะสร้างไพป์: %s\n"
+
+#: tools/gnome-session-inhibit.c:299
+msgid "Failure reading pipe\n"
+msgstr "เกิดความขัดข้องขณะอ่านไพป์\n"
+
+#: tools/gnome-session-inhibit.c:303
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "เรียกทำงาน %s ไม่สำเร็จ\n"
 
-#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
-#: tools/gnome-session-inhibit.c:372
+#: tools/gnome-session-inhibit.c:376 tools/gnome-session-inhibit.c:386
+#: tools/gnome-session-inhibit.c:396
 #, c-format
 msgid "%s requires an argument\n"
 msgstr "%s ต้องมีอาร์กิวเมนต์\n"
@@ -328,7 +319,7 @@ msgstr "ไม่ต้องถามการยืนยันจากผู
 
 #: tools/gnome-session-quit.c:88 tools/gnome-session-quit.c:102
 msgid "Could not connect to the session manager"
-msgstr "ติดต่อโปรแกรมจัดการวาระไม่สำเร็จ"
+msgstr "ติดต่อโปรแกรมจัดการเซสชันไม่สำเร็จ"
 
 #: tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
@@ -337,24 +328,24 @@ msgstr "โปรแกรมถูกเรียกด้วยตัวเล
 #: tools/gnome-session-selector.c:61
 #, c-format
 msgid "Session %d"
-msgstr "วาระ %d"
+msgstr "เซสชัน %d"
 
 #: tools/gnome-session-selector.c:107
 msgid "Session names are not allowed to start with “.” or contain “/” characters"
-msgstr "ชื่อวาระห้ามขึ้นต้นด้วย “.” หรือมีอักขระ “/”"
+msgstr "ชื่อเซสชันห้ามขึ้นต้นด้วย “.” หรือมีอักขระ “/”"
 
 #: tools/gnome-session-selector.c:111
 msgid "Session names are not allowed to start with “.”"
-msgstr "ชื่อวาระห้ามขึ้นต้นด้วย “.”"
+msgstr "ชื่อเซสชันห้ามขึ้นต้นด้วย “.”"
 
 #: tools/gnome-session-selector.c:115
 msgid "Session names are not allowed to contain “/” characters"
-msgstr "ชื่อวาระห้ามมีอักขระ “/”"
+msgstr "ชื่อเซสชันห้ามมีอักขระ “/”"
 
 #: tools/gnome-session-selector.c:123
 #, c-format
 msgid "A session named “%s” already exists"
-msgstr "มีวาระชื่อ “%s” อยู่ก่อนแล้ว"
+msgstr "มีเซสชันชื่อ “%s” อยู่ก่อนแล้ว"
 
 #~ msgid "Additional startup _programs:"
 #~ msgstr "โ_ปรแกรมเริ่มวาระเพิ่มเติม:"
