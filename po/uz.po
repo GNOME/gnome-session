@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session-2.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-07 20:40+0500\n"
-"PO-Revision-Date: 2009-01-08 19:52+0500\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
+"POT-Creation-Date: 2024-07-29 23:21+0000\n"
+"PO-Revision-Date: 2025-03-27 20:10+0500\n"
 "Last-Translator: Nurali Abdurahmonov <mavnur@gmail.com>\n"
 "Language-Team: Uzbek\n"
 "Language: uz\n"
@@ -16,508 +16,513 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Poedit 3.5\n"
 
-#: ../capplet/gsm-app-dialog.c:126
-msgid "Select Command"
-msgstr "Buyruqni tanlash"
+#: data/gnome-custom-session.desktop.in.in:3
+msgid "Custom"
+msgstr "Maxsus"
 
-#: ../capplet/gsm-app-dialog.c:187
-msgid "Add Startup Program"
-msgstr ""
+#: data/gnome-custom-session.desktop.in.in:4
+msgid "This entry lets you select a saved session"
+msgstr "Ushbu yozuv saqlangan seansni tanlash imkonini beradi"
 
-#: ../capplet/gsm-app-dialog.c:191
-msgid "Edit Startup Program"
-msgstr ""
-
-#: ../capplet/gsm-properties-dialog.c:132
-msgid "No description"
-msgstr "Taʼrif yoʻq"
-
-#: ../capplet/gsm-properties-dialog.c:977
-msgid "The name of the startup program cannot be empty"
-msgstr ""
-
-#: ../capplet/gsm-properties-dialog.c:981
-msgid "The startup command cannot be empty"
-msgstr ""
-
-#: ../capplet/gsm-properties-dialog.c:987
-msgid "The startup command is not valid"
-msgstr ""
-
-#: ../capplet/gsm-properties-dialog.c:1291
-msgid "Enabled"
-msgstr "Yoqilgan"
-
-#: ../capplet/gsm-properties-dialog.c:1304
-msgid "Icon"
-msgstr "Nishoncha"
-
-#: ../capplet/gsm-properties-dialog.c:1315
-msgid "Program"
-msgstr "Dastur"
-
-#: ../capplet/gsm-properties-dialog.c:1465
-#: ../data/session-properties.glade.h:6
-msgid "Sessions Preferences"
-msgstr "Seans parametrlari"
-
-#: ../capplet/main.c:37 ../gnome-session/main.c:508
-msgid "Version of this application"
-msgstr "Dastur versiyasi"
-
-#: ../compat/at-spi-registryd-wrapper.c:47
-msgid ""
-"Assistive technology support has been requested for this session, but the "
-"accessibility registry was not found. Please ensure that the AT-SPI package "
-"is installed. Your session has been started without assistive technology "
-"support."
-msgstr ""
-
-#: ../compat/at-spi-registryd-wrapper.desktop.in.in.in.h:1
-msgid "AT SPI Registry Wrapper"
-msgstr ""
-
-#: ../compat/gnome-settings-daemon-helper.desktop.in.in.in.h:1
-msgid "GNOME Settings Daemon Helper"
-msgstr ""
-
-#: ../data/gnome.desktop.in.h:1
+#: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
 msgid "GNOME"
 msgstr "GNOME"
 
-#: ../data/gnome.desktop.in.h:2
+#: data/gnome.desktop.in.in:4 data/gnome-wayland.desktop.in.in:4
+#: data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
 msgstr "Ushbu seans GNOME'ga kirishingizni taʼminlaydi"
 
-#: ../data/gnome-session.schemas.in.h:1
-msgid "Default session"
-msgstr "Andoza seans"
+#: data/gnome-dummy.session.desktop.in.in:3
+msgid "GNOME dummy"
+msgstr "GNOME qo'g'irchoq"
 
-#: ../data/gnome-session.schemas.in.h:2
-msgid "File Manager"
-msgstr "Fayl boshqaruvchisi"
+#: data/gnome-wayland.desktop.in.in:3
+msgid "GNOME on Wayland"
+msgstr "Waylanddagi GNOME"
 
-#: ../data/gnome-session.schemas.in.h:3
-msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr "Agar belgilansa , gnome-session seansni tugatishdan avval foydalanuvchini ogohlantiradi."
+#: data/gnome-xorg.desktop.in.in:3
+msgid "GNOME on Xorg"
+msgstr "Xorg-da GNOME"
 
-#: ../data/gnome-session.schemas.in.h:4
-msgid ""
-"If enabled, gnome-session will save the session automatically. Otherwise, "
-"the logout dialog will have an option to save the session."
-msgstr ""
-
-#: ../data/gnome-session.schemas.in.h:5
-msgid "List of applications that are part of the default session."
-msgstr ""
-
-#: ../data/gnome-session.schemas.in.h:6
-msgid ""
-"List of components that are required as part of the session. (Each element "
-"names a key under \"/desktop/gnome/session/required-components\".) The "
-"Session Preferences will not normally allow users to remove a required "
-"component from the session, and the session manager will automatically add "
-"the required components back to the session if they do get removed."
-msgstr ""
-
-#: ../data/gnome-session.schemas.in.h:7
-msgid "Logout prompt"
-msgstr ""
-
-#: ../data/gnome-session.schemas.in.h:8
-msgid "Panel"
-msgstr "Panel"
-
-#: ../data/gnome-session.schemas.in.h:9
-msgid "Preferred Image to use for login splash screen"
-msgstr ""
-
-#: ../data/gnome-session.schemas.in.h:10
-msgid "Required session components"
-msgstr "Kerakli seans komponentlari"
-
-#: ../data/gnome-session.schemas.in.h:11
+#: data/org.gnome.SessionManager.gschema.xml:5
 msgid "Save sessions"
 msgstr "Seanslarni saqlash"
 
-#: ../data/gnome-session.schemas.in.h:12
-msgid "Selected option in the log out dialog"
-msgstr "Seansdan chiqish dialogidagi tanlangan parametr"
+#: data/org.gnome.SessionManager.gschema.xml:6
+msgid "If enabled, gnome-session will save the session automatically."
+msgstr ""
+"Agar yoqilgan bo'lsa, gnome-session seansni avtomatik ravishda saqlaydi."
 
-#: ../data/gnome-session.schemas.in.h:13
-msgid "Show the splash screen"
-msgstr "Splesh oynasini koʻrsatish"
+#: data/org.gnome.SessionManager.gschema.xml:10
+msgid "Save this session"
+msgstr "Ushbu seansni saqlang"
 
-#: ../data/gnome-session.schemas.in.h:14
-msgid "Show the splash screen when the session starts up"
-msgstr "Seans boshlanganda splesh oynasini koʻrsatish"
-
-#: ../data/gnome-session.schemas.in.h:15
+#: data/org.gnome.SessionManager.gschema.xml:11
 msgid ""
-"The file manager provides the desktop icons and allows you to interact with "
-"your saved files."
+"When enabled, gnome-session will automatically save the next session at log "
+"out even if auto saving is disabled."
 msgstr ""
+"Agar yoqilgan bo’lsa, gnome-session avtomatik saqlash o’chirilgan bo’lsa "
+"ham, tizimdan chiqishda keyingi seansni avtomatik ravishda saqlaydi."
 
-#: ../data/gnome-session.schemas.in.h:16
+#: data/org.gnome.SessionManager.gschema.xml:15
+msgid "Logout prompt"
+msgstr "Chiqish so’rovi"
+
+#: data/org.gnome.SessionManager.gschema.xml:16
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr ""
+"Agar yoqilgan bo’lsa, gnome-session seansni tugatishdan oldin "
+"foydalanuvchini so’raydi."
+
+#: data/org.gnome.SessionManager.gschema.xml:20
+msgid "Show the fallback warning"
+msgstr "Qayta tiklash ogohlantirishini ko’rsating"
+
+#: data/org.gnome.SessionManager.gschema.xml:21
 msgid ""
-"The panel provides the bar at the top or bottom of the screen containing "
-"menus, the window list, status icons, the clock, etc."
+"If enabled, gnome-session will display a warning dialog after login if the "
+"session was automatically fallen back."
+msgstr ""
+"Agar yoqilgan bo’lsa, gnome-session tizimga kirgandan so’ng, agar seans "
+"avtomatik ravishda orqaga qaytsa, ogohlantirish oynasini ko’rsatadi."
+
+#: data/session-selector.ui:15
+msgid "Custom Session"
+msgstr "Maxsus seans"
+
+#: data/session-selector.ui:50 tools/gnome-session-selector.c:102
+msgid "Please select a custom session to run"
+msgstr "Iltimos, ishga tushirish uchun maxsus seansni tanlang"
+
+#: data/session-selector.ui:105
+msgid "_New Session"
+msgstr "_Yangi sessiya"
+
+#: data/session-selector.ui:119
+msgid "_Remove Session"
+msgstr "_Seansni olib tashlash"
+
+#: data/session-selector.ui:133
+msgid "Rena_me Session"
 msgstr ""
 
-#: ../data/gnome-session.schemas.in.h:17
+#: data/session-selector.ui:168
+msgid "_Continue"
+msgstr "_Davom etish"
+
+#: gnome-session/gsm-fail-whale-dialog.c:318
+msgid "Oh no!  Something has gone wrong."
+msgstr "Yo’q! Nimadir xato ketdi."
+
+#: gnome-session/gsm-fail-whale-dialog.c:325
 msgid ""
-"The window manager is the program that draws the title bar and borders "
-"around windows, and allows you to move and resize windows."
+"A problem has occurred and the system can’t recover. Please contact a system "
+"administrator"
 msgstr ""
+"Muammo yuz berdi va tizim tiklana olmadi. Tizim administratoriga murojaat "
+"qiling"
 
-#: ../data/gnome-session.schemas.in.h:18
+#: gnome-session/gsm-fail-whale-dialog.c:327
 msgid ""
-"This is a relative path value based off the $datadir/pixmaps/ directory. Sub-"
-"directories and image names are valid values. Changing this value will "
-"effect the next session login."
+"A problem has occurred and the system can’t recover. All extensions have "
+"been disabled as a precaution."
 msgstr ""
+"Muammo yuz berdi va tizim tiklana olmadi. Ehtiyotkorlik maqsadida barcha "
+"kengaytmalar oʻchirib qoʻyilgan."
 
-#: ../data/gnome-session.schemas.in.h:19
+#: gnome-session/gsm-fail-whale-dialog.c:329
 msgid ""
-"This is the option that will be selected in the logout dialog, valid values "
-"are \"logout\" for logging out, \"shutdown\" for halting the system and "
-"\"restart\" for restarting the system."
+"A problem has occurred and the system can’t recover.\n"
+"Please log out and try again."
 msgstr ""
+"Muammo yuz berdi va tizim tiklana olmadi.\n"
+"Iltimos, tizimdan chiqing va qaytadan urining."
 
-#: ../data/gnome-session.schemas.in.h:20 ../data/gnome-wm.desktop.in.in.h:1
-msgid "Window Manager"
-msgstr "Oyna boshqaruvchisi"
-
-#: ../data/gsm-inhibit-dialog.glade.h:1
-msgid "<b>Some programs are still running:</b>"
-msgstr "<b>Baʼzi dasturlar hozir ham ishlamoqda:</b>"
-
-#: ../data/gsm-inhibit-dialog.glade.h:2
-#: ../gnome-session/gsm-inhibit-dialog.c:633
-msgid ""
-"Waiting for program to finish.  Interrupting program may cause you to lose "
-"work."
-msgstr ""
-
-#: ../data/session-properties.desktop.in.in.h:1
-msgid "Configure your sessions"
-msgstr "Seanslarni boshqaring"
-
-#: ../data/session-properties.desktop.in.in.h:2
-msgid "Sessions"
-msgstr "Seanslar"
-
-#: ../data/session-properties.glade.h:1
-msgid "Additional startup _programs:"
-msgstr "Qoʻshimcha avto-ishga tushadigan _dasturlar:"
-
-#: ../data/session-properties.glade.h:2
-msgid "Browse..."
-msgstr "Tanlash..."
-
-#: ../data/session-properties.glade.h:3
-msgid "Co_mmand:"
-msgstr "Buy_ruq:"
-
-#: ../data/session-properties.glade.h:4
-msgid "Comm_ent:"
-msgstr "_Izoh:"
-
-#: ../data/session-properties.glade.h:5
-msgid "Options"
-msgstr "Parametrlar"
-
-#: ../data/session-properties.glade.h:7
-msgid "Startup Programs"
-msgstr "Avto-ishga tushadigan dasturlar"
-
-#: ../data/session-properties.glade.h:8
-msgid "_Automatically remember running applications when logging out"
-msgstr "Seansdan chiqilayotganda ishlab turgan dasturlarni _avtomatik eslab qolish"
-
-#: ../data/session-properties.glade.h:9
-msgid "_Name:"
-msgstr "_Nomi:"
-
-#: ../data/session-properties.glade.h:10
-msgid "_Remember Currently Running Application"
-msgstr "Joriy ishlayotgan dasturni _eslab qolish"
-
-#: ../egg/eggdesktopfile.c:165
-#, c-format
-msgid "File is not a valid .desktop file"
-msgstr ""
-
-#: ../egg/eggdesktopfile.c:188
-#, c-format
-msgid "Unrecognized desktop file Version '%s'"
-msgstr "Aniqlanmagan '%s' desktop fayli versiyasi"
-
-#: ../egg/eggdesktopfile.c:962
-#, c-format
-msgid "Starting %s"
-msgstr "%s ishga tushirilmoqda"
-
-#: ../egg/eggdesktopfile.c:1096
-#, c-format
-msgid "Application does not accept documents on command line"
-msgstr ""
-
-#: ../egg/eggdesktopfile.c:1164
-#, c-format
-msgid "Unrecognized launch option: %d"
-msgstr "Tanilmagan ishga tushirish opsiyasi: %d"
-
-#: ../egg/eggdesktopfile.c:1372
-#, c-format
-msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
-msgstr ""
-
-#: ../egg/eggdesktopfile.c:1391
-#, c-format
-msgid "Not a launchable item"
-msgstr "Element ishga tushiriladigan emas"
-
-#: ../egg/eggsmclient.c:185
-msgid "Disable connection to session manager"
-msgstr ""
-
-#: ../egg/eggsmclient.c:188
-msgid "Specify file containing saved configuration"
-msgstr "Saqlangan moslamalar mavjud boʻlgan faylni koʻrsating"
-
-#: ../egg/eggsmclient.c:188
-msgid "FILE"
-msgstr "FAYL"
-
-#: ../egg/eggsmclient.c:191
-msgid "Specify session management ID"
-msgstr "Seans boshqaruvi ID'ni koʻrsating"
-
-#: ../egg/eggsmclient.c:191
-msgid "ID"
-msgstr "ID"
-
-#: ../egg/eggsmclient.c:241
-msgid "Session Management Options"
-msgstr "Seans boshqaruvi parametrlari"
-
-#: ../egg/eggsmclient.c:242
-msgid "Show Session Management options"
-msgstr "Seans boshqaruvi parametrlarini koʻrsatish"
-
-#: ../gnome-session/gsm-gconf.c:106
-#, c-format
-msgid ""
-"There is a problem with the configuration server.\n"
-"(%s exited with status %d)"
-msgstr ""
-
-#: ../gnome-session/gsm-inhibit-dialog.c:256
-#, c-format
-msgid "Icon '%s' not found"
-msgstr "'%s' nishonchasi topildi"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:581
-msgid "Unknown"
-msgstr "Nomaʼlum"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:632
-msgid "A program is still running:"
-msgstr ""
-
-#: ../gnome-session/gsm-inhibit-dialog.c:636
-msgid "Some programs are still running:"
-msgstr ""
-
-#: ../gnome-session/gsm-inhibit-dialog.c:637
-msgid ""
-"Waiting for programs to finish.  Interrupting these programs may cause you "
-"to lose work."
-msgstr ""
-
-#: ../gnome-session/gsm-inhibit-dialog.c:865
-msgid "Switch User Anyway"
-msgstr ""
-
-#: ../gnome-session/gsm-inhibit-dialog.c:868
-msgid "Logout Anyway"
-msgstr ""
-
-#: ../gnome-session/gsm-inhibit-dialog.c:871
-msgid "Suspend Anyway"
-msgstr ""
-
-#: ../gnome-session/gsm-inhibit-dialog.c:874
-msgid "Hibernate Anyway"
-msgstr ""
-
-#: ../gnome-session/gsm-inhibit-dialog.c:877
-msgid "Shutdown Anyway"
-msgstr ""
-
-#: ../gnome-session/gsm-inhibit-dialog.c:880
-msgid "Reboot Anyway"
-msgstr ""
-
-#: ../gnome-session/gsm-inhibit-dialog.c:888
-msgid "Lock Screen"
-msgstr "Ekranni qulflash"
-
-#: ../gnome-session/gsm-inhibit-dialog.c:891
-msgid "Cancel"
-msgstr "Bekor qilish"
-
-#: ../gnome-session/gsm-logout-dialog.c:283
-#, c-format
-msgid ""
-"You are currently logged in as \"%s\".\n"
-"You will be automatically logged out in %d second."
-msgid_plural ""
-"You are currently logged in as \"%s\".\n"
-"You will be automatically logged out in %d seconds."
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../gnome-session/gsm-logout-dialog.c:295
-#, c-format
-msgid ""
-"You are currently logged in as \"%s\".\n"
-"This system will be automatically shut down in %d second."
-msgid_plural ""
-"You are currently logged in as \"%s\".\n"
-"This system will be automatically shut down in %d seconds."
-msgstr[0] ""
-msgstr[1] ""
-
-#: ../gnome-session/gsm-logout-dialog.c:377
-msgid "Log out of this system now?"
-msgstr ""
-
-#: ../gnome-session/gsm-logout-dialog.c:383
-msgid "_Switch User"
-msgstr "Foydalanuvchini _oʻzgartirish"
-
-#: ../gnome-session/gsm-logout-dialog.c:392
+#: gnome-session/gsm-fail-whale-dialog.c:344
 msgid "_Log Out"
-msgstr ""
+msgstr "_Chiqish"
 
-#: ../gnome-session/gsm-logout-dialog.c:398
-msgid "Shut down this system now?"
-msgstr "Kompyuter oʻchirilsinmi?"
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:505
+msgid "Enable debugging code"
+msgstr "Nosozliklarni tuzatish kodini yoqing"
 
-#: ../gnome-session/gsm-logout-dialog.c:404
-msgid "S_uspend"
-msgstr "_Kutish usuli"
+#: gnome-session/gsm-fail-whale-dialog.c:413
+msgid "Allow logout"
+msgstr "Chiqishga ruxsat bering"
 
-#: ../gnome-session/gsm-logout-dialog.c:410
-msgid "_Hibernate"
-msgstr "_Uxlash usuli"
+#: gnome-session/gsm-fail-whale-dialog.c:414
+msgid "Show extension warning"
+msgstr "Kengaytma haqida ogohlantirishni ko’rsatish"
 
-#: ../gnome-session/gsm-logout-dialog.c:416
-msgid "_Restart"
-msgstr "_Oʻchirib-yoqish"
-
-#: ../gnome-session/gsm-logout-dialog.c:426
-msgid "_Shut Down"
-msgstr "_Oʻchirish"
-
-#: ../gnome-session/gsm-manager.c:911 ../gnome-session/gsm-manager.c:1528
+#: gnome-session/gsm-manager.c:1301 gnome-session/gsm-manager.c:2050
 msgid "Not responding"
 msgstr "Javob bermayapti"
 
-#: ../gnome-session/gsm-xsmp-client.c:989
-msgid "This program is blocking log out."
-msgstr ""
+#: gnome-session/gsm-util.c:431
+msgid "_Log out"
+msgstr "_Chiqish"
 
-#: ../gnome-session/gsm-xsmp-server.c:234
+#. It'd be really surprising to reach this code: if we're here,
+#. * then the XSMP client already has set several XSMP
+#. * properties. But it could still be that SmProgram is not set.
+#.
+#: gnome-session/gsm-xsmp-client.c:557
+msgid "Remembered Application"
+msgstr "Eslab qolingan dastur"
+
+#: gnome-session/gsm-xsmp-client.c:1216
+msgid "This program is blocking logout."
+msgstr "Ushbu dastur tizimdan chiqishni bloklamoqda."
+
+#: gnome-session/gsm-xsmp-server.c:340
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
-msgstr ""
+msgstr "Seans hozirda yopilganligi sababli yangi mijoz ulanishini rad etish\n"
 
-#: ../gnome-session/gsm-xsmp-server.c:489
+#: gnome-session/gsm-xsmp-server.c:607
 #, c-format
 msgid "Could not create ICE listening socket: %s"
-msgstr ""
+msgstr "ICE tinglash socket yaratib bo‘lmadi: %s"
 
-#. Oh well, no X for you!
-#: ../gnome-session/gsm-util.c:143
-#, c-format
-msgid "Unable to start login session (and unable connect to the X server)"
-msgstr ""
+#: gnome-session/main.c:502
+msgid "Running as systemd service"
+msgstr "Systemd xizmati sifatida ishlaydi"
 
-#: ../gnome-session/main.c:504
+#: gnome-session/main.c:503
 msgid "Override standard autostart directories"
-msgstr ""
+msgstr "Standart avtomatik ishga tushirish kataloglarini bekor qilish"
 
-#: ../gnome-session/main.c:505
-msgid "GConf key used to lookup default session"
-msgstr ""
+#: gnome-session/main.c:503
+msgid "AUTOSTART_DIR"
+msgstr "AUTOSTART_DIR"
 
-#: ../gnome-session/main.c:506
-msgid "Enable debugging code"
-msgstr ""
+#: gnome-session/main.c:504
+msgid "Session to use"
+msgstr "Foydalanish uchun seans"
 
-#: ../gnome-session/main.c:507
+#: gnome-session/main.c:504
+msgid "SESSION_NAME"
+msgstr "SESSION_NAME"
+
+#: gnome-session/main.c:506
 msgid "Do not load user-specified applications"
-msgstr "Foydalanuvchi dasturlari ishga tushirilmasin"
+msgstr "Foydalanuvchi tomonidan belgilangan ilovalarni yuklamang"
 
-#: ../gnome-session/main.c:528
-msgid " - the GNOME session manager"
-msgstr " - GNOME seans boshqaruvchisi"
+#: gnome-session/main.c:507
+msgid "Version of this application"
+msgstr "Dastur versiyasi"
 
-#: ../splash/gnome-session-splash.c:315
-msgid "- GNOME Splash Screen"
-msgstr "- GNOME splesh oynasi"
+#. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
+#: gnome-session/main.c:509
+msgid "Show the fail whale dialog for testing"
+msgstr "Sinov uchun muvaffaqiyatsiz kit dialogini ko’rsating"
 
-#: ../splash/gnome-session-splash.desktop.in.in.in.h:1
-msgid "GNOME Splash Screen"
-msgstr "GNOME splesh oynasi"
+#: gnome-session/main.c:510
+msgid "Disable hardware acceleration check"
+msgstr "Uskuna tezlashuvini tekshirishni o’chiring"
 
-#: ../tools/gnome-session-save.c:65
-msgid "Set the current session name"
-msgstr "Joriy seans nomini belgilash"
+#: gnome-session/main.c:542
+msgid " — the GNOME session manager"
+msgstr " — GNOME seans menejeri"
 
-#: ../tools/gnome-session-save.c:65
-msgid "NAME"
-msgstr "NOMI"
+#: tools/gnome-session-ctl.c:247
+msgid "Start gnome-session-shutdown.target"
+msgstr "Gnome-session-shutdown.target-ni ishga tushiring"
 
-#: ../tools/gnome-session-save.c:66
+#: tools/gnome-session-ctl.c:248
+msgid ""
+"Start gnome-session-shutdown.target when receiving EOF or a single byte on "
+"stdin"
+msgstr ""
+"EOF yoki stdin-da bitta bayt olayotganda gnome-session-shutdown.target-ni "
+"ishga tushiring"
+
+#: tools/gnome-session-ctl.c:249
+msgid "Signal initialization done to gnome-session"
+msgstr "Gnome-sessiyada signal ishga tushirildi"
+
+#: tools/gnome-session-ctl.c:250
+msgid "Restart dbus.service if it is running"
+msgstr "Agar dbus.service ishlayotgan bo’lsa, uni qayta ishga tushiring"
+
+#: tools/gnome-session-ctl.c:251
+msgid ""
+"Run from ExecStopPost to start gnome-session-failed.target on service failure"
+msgstr ""
+"Xizmat ishlamay qolganda gnome-session-failed.target-ni ishga tushirish "
+"uchun ExecStopPost-dan ishga tushiring"
+
+#: tools/gnome-session-ctl.c:281
+msgid "Program needs exactly one parameter"
+msgstr "Dasturga aynan bitta parametr kerak"
+
+#: tools/gnome-session-inhibit.c:108
+#, c-format
+msgid ""
+"%s [OPTION…] COMMAND\n"
+"\n"
+"Execute COMMAND while inhibiting some session functionality.\n"
+"\n"
+"  -h, --help        Show this help\n"
+"  --version         Show program version\n"
+"  --app-id ID       The application id to use\n"
+"                    when inhibiting (optional)\n"
+"  --reason REASON   The reason for inhibiting (optional)\n"
+"  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
+"                    logout, switch-user, suspend, idle, automount\n"
+"  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+"  -l, --list        List the existing inhibitions, and exit\n"
+"\n"
+"If no --inhibit option is specified, idle is assumed.\n"
+msgstr ""
+"%s [OPTION…] BUYRUQ\n"
+"\n"
+"Ba'zi seans funksiyalarini inhibe qilgan holda COMMANDni bajaring.\n"
+"\n"
+" -h, --help Ushbu yordamni ko'rsating\n"
+" --version Dastur versiyasini ko'rsatish\n"
+" --app-id ID Foydalanish uchun ilova identifikatori\n"
+" inhibe qilganda (ixtiyoriy)\n"
+" --reason REASON Inhibe qilish sababi (ixtiyoriy)\n"
+" —inhibit ARG inhibe qilinishi kerak bo’lgan narsalar, yo’g’on ichak bilan "
+"ajratilgan ro’yxati:\n"
+" chiqish, foydalanuvchini almashtirish, to’xtatib turish, bo’sh turish, "
+"avtomatik o’rnatish\n"
+" —inhibit-only COMMAND-ni ishga tushirmang va uning o’rniga abadiy kuting\n"
+" -l, —list Mavjud taqiqlarni sanab chiqing va chiqing\n"
+"\n"
+"Agar —inhibit opsiyasi ko’rsatilmagan bo’lsa, ishlamay qolgan deb "
+"hisoblanadi.\n"
+
+#: tools/gnome-session-inhibit.c:282
+#, c-format
+msgid "Error while creating pipe: %s\n"
+msgstr "Quvurni yaratishda xatolik yuz berdi: %s\n"
+
+#: tools/gnome-session-inhibit.c:299
+msgid "Failure reading pipe\n"
+msgstr "O’qish trubkasi noto’g’ri\n"
+
+#: tools/gnome-session-inhibit.c:303
+#, c-format
+msgid "Failed to execute %s\n"
+msgstr "%s bajarilmadi\n"
+
+#: tools/gnome-session-inhibit.c:376 tools/gnome-session-inhibit.c:386
+#: tools/gnome-session-inhibit.c:396
+#, c-format
+msgid "%s requires an argument\n"
+msgstr "%s argument talab qiladi\n"
+
+#: tools/gnome-session-quit.c:50
 msgid "Log out"
-msgstr "Seansni tugatish"
+msgstr "Chiqish"
 
-#: ../tools/gnome-session-save.c:67
-msgid "Log out, ignoring any existing inhibitors"
-msgstr ""
+#: tools/gnome-session-quit.c:51
+msgid "Power off"
+msgstr "O’chirish"
 
-#: ../tools/gnome-session-save.c:68
-msgid "Show logout dialog"
-msgstr "Seansni tugatish dialogini koʻrsatish"
+#: tools/gnome-session-quit.c:52
+msgid "Reboot"
+msgstr "Qayta ishga tushirish"
 
-#: ../tools/gnome-session-save.c:69
-msgid "Show shutdown dialog"
-msgstr "Kompyuterni oʻchirish dialogini koʻrsatish"
+#: tools/gnome-session-quit.c:53
+msgid "Ignoring any existing inhibitors"
+msgstr "Mavjud inhibitorlarga e’tibor bermaslik"
 
-#: ../tools/gnome-session-save.c:70
-msgid "Kill session"
-msgstr ""
+#: tools/gnome-session-quit.c:54
+msgid "Don’t prompt for user confirmation"
+msgstr "Foydalanuvchini tasdiqlashni so’ramang"
 
-#: ../tools/gnome-session-save.c:71
-msgid "Use dialog boxes for errors"
-msgstr "Xatolar uchun dialog qutisidan foydalanish"
-
-#: ../tools/gnome-session-save.c:72
-msgid "Do not require confirmation"
-msgstr "Tasdiqlash soʻralmasin"
-
-#: ../tools/gnome-session-save.c:120 ../tools/gnome-session-save.c:130
+#: tools/gnome-session-quit.c:88 tools/gnome-session-quit.c:102
 msgid "Could not connect to the session manager"
-msgstr "Seans boshqaruvchisiga bogʻlanib boʻlmadi"
+msgstr "Seans boshqaruvchisiga ulanib bo‘lmadi"
 
-#: ../tools/gnome-session-save.c:273
+#: tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
-msgstr ""
+msgstr "Qarama-qarshi variantlar bilan chaqirilgan dastur"
 
+#: tools/gnome-session-selector.c:61
+#, c-format
+msgid "Session %d"
+msgstr "Seans %d"
+
+#: tools/gnome-session-selector.c:107
+msgid ""
+"Session names are not allowed to start with “.” or contain “/” characters"
+msgstr ""
+"Seans nomlarini “.” bilan boshlash mumkin emas. yoki “/” belgilaridan iborat"
+
+#: tools/gnome-session-selector.c:111
+msgid "Session names are not allowed to start with “.”"
+msgstr "Seans nomlarini “.” bilan boshlash mumkin emas."
+
+#: tools/gnome-session-selector.c:115
+msgid "Session names are not allowed to contain “/” characters"
+msgstr "Seans nomlarida “/” belgilari bo‘lishi mumkin emas"
+
+#: tools/gnome-session-selector.c:123
+#, c-format
+msgid "A session named “%s” already exists"
+msgstr "“%s” nomli sessiya allaqachon mavjud"
+
+#~ msgid "Select Command"
+#~ msgstr "Buyruqni tanlash"
+
+#~ msgid "No description"
+#~ msgstr "Taʼrif yoʻq"
+
+#~ msgid "Enabled"
+#~ msgstr "Yoqilgan"
+
+#~ msgid "Icon"
+#~ msgstr "Nishoncha"
+
+#~ msgid "Program"
+#~ msgstr "Dastur"
+
+#~ msgid "Sessions Preferences"
+#~ msgstr "Seans parametrlari"
+
+#~ msgid "Default session"
+#~ msgstr "Andoza seans"
+
+#~ msgid "File Manager"
+#~ msgstr "Fayl boshqaruvchisi"
+
+#~ msgid "Panel"
+#~ msgstr "Panel"
+
+#~ msgid "Required session components"
+#~ msgstr "Kerakli seans komponentlari"
+
+#~ msgid "Selected option in the log out dialog"
+#~ msgstr "Seansdan chiqish dialogidagi tanlangan parametr"
+
+#~ msgid "Show the splash screen"
+#~ msgstr "Splesh oynasini koʻrsatish"
+
+#~ msgid "Show the splash screen when the session starts up"
+#~ msgstr "Seans boshlanganda splesh oynasini koʻrsatish"
+
+#~ msgid "Window Manager"
+#~ msgstr "Oyna boshqaruvchisi"
+
+#~ msgid "<b>Some programs are still running:</b>"
+#~ msgstr "<b>Baʼzi dasturlar hozir ham ishlamoqda:</b>"
+
+#~ msgid "Configure your sessions"
+#~ msgstr "Seanslarni boshqaring"
+
+#~ msgid "Additional startup _programs:"
+#~ msgstr "Qoʻshimcha avto-ishga tushadigan _dasturlar:"
+
+#~ msgid "Browse..."
+#~ msgstr "Tanlash..."
+
+#~ msgid "Co_mmand:"
+#~ msgstr "Buy_ruq:"
+
+#~ msgid "Comm_ent:"
+#~ msgstr "_Izoh:"
+
+#~ msgid "Options"
+#~ msgstr "Parametrlar"
+
+#~ msgid "Startup Programs"
+#~ msgstr "Avto-ishga tushadigan dasturlar"
+
+#~ msgid "_Automatically remember running applications when logging out"
+#~ msgstr ""
+#~ "Seansdan chiqilayotganda ishlab turgan dasturlarni _avtomatik eslab qolish"
+
+#~ msgid "_Name:"
+#~ msgstr "_Nomi:"
+
+#, c-format
+#~ msgid "Unrecognized desktop file Version '%s'"
+#~ msgstr "Aniqlanmagan '%s' desktop fayli versiyasi"
+
+#, c-format
+#~ msgid "Starting %s"
+#~ msgstr "%s ishga tushirilmoqda"
+
+#, c-format
+#~ msgid "Unrecognized launch option: %d"
+#~ msgstr "Tanilmagan ishga tushirish opsiyasi: %d"
+
+#, c-format
+#~ msgid "Not a launchable item"
+#~ msgstr "Element ishga tushiriladigan emas"
+
+#~ msgid "Specify file containing saved configuration"
+#~ msgstr "Saqlangan moslamalar mavjud boʻlgan faylni koʻrsating"
+
+#~ msgid "FILE"
+#~ msgstr "FAYL"
+
+#~ msgid "Specify session management ID"
+#~ msgstr "Seans boshqaruvi ID'ni koʻrsating"
+
+#~ msgid "ID"
+#~ msgstr "ID"
+
+#~ msgid "Session Management Options"
+#~ msgstr "Seans boshqaruvi parametrlari"
+
+#~ msgid "Show Session Management options"
+#~ msgstr "Seans boshqaruvi parametrlarini koʻrsatish"
+
+#, c-format
+#~ msgid "Icon '%s' not found"
+#~ msgstr "'%s' nishonchasi topildi"
+
+#~ msgid "Unknown"
+#~ msgstr "Nomaʼlum"
+
+#~ msgid "Lock Screen"
+#~ msgstr "Ekranni qulflash"
+
+#~ msgid "Cancel"
+#~ msgstr "Bekor qilish"
+
+#~ msgid "_Switch User"
+#~ msgstr "Foydalanuvchini _oʻzgartirish"
+
+#~ msgid "Shut down this system now?"
+#~ msgstr "Kompyuter oʻchirilsinmi?"
+
+#~ msgid "S_uspend"
+#~ msgstr "_Kutish usuli"
+
+#~ msgid "_Hibernate"
+#~ msgstr "_Uxlash usuli"
+
+#~ msgid "_Restart"
+#~ msgstr "_Oʻchirib-yoqish"
+
+#~ msgid "_Shut Down"
+#~ msgstr "_Oʻchirish"
+
+#~ msgid "- GNOME Splash Screen"
+#~ msgstr "- GNOME splesh oynasi"
+
+#~ msgid "GNOME Splash Screen"
+#~ msgstr "GNOME splesh oynasi"
+
+#~ msgid "Set the current session name"
+#~ msgstr "Joriy seans nomini belgilash"
+
+#~ msgid "NAME"
+#~ msgstr "NOMI"
+
+#~ msgid "Show shutdown dialog"
+#~ msgstr "Kompyuterni oʻchirish dialogini koʻrsatish"
+
+#~ msgid "Use dialog boxes for errors"
+#~ msgstr "Xatolar uchun dialog qutisidan foydalanish"
