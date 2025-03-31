@@ -31,8 +31,6 @@
 
 #include "gsm-store.h"
 
-#define GSM_STORE_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_STORE, GsmStorePrivate))
-
 struct GsmStorePrivate
 {
         GHashTable *objects;
@@ -56,7 +54,8 @@ static void     gsm_store_class_init    (GsmStoreClass *klass);
 static void     gsm_store_init          (GsmStore      *store);
 static void     gsm_store_finalize      (GObject       *object);
 
-G_DEFINE_TYPE (GsmStore, gsm_store, G_TYPE_OBJECT)
+G_DEFINE_TYPE_WITH_CODE (GsmStore, gsm_store, G_TYPE_OBJECT,
+                         G_ADD_PRIVATE (GsmStore))
 
 GQuark
 gsm_store_error_quark (void)
@@ -356,8 +355,6 @@ gsm_store_class_init (GsmStoreClass *klass)
                                                                NULL,
                                                                FALSE,
                                                                G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
-
-        g_type_class_add_private (klass, sizeof (GsmStorePrivate));
 }
 
 static void
@@ -371,7 +368,7 @@ static void
 gsm_store_init (GsmStore *store)
 {
 
-        store->priv = GSM_STORE_GET_PRIVATE (store);
+        store->priv = gsm_store_get_instance_private (store);
 
         store->priv->objects = g_hash_table_new_full (g_str_hash,
                                                       g_str_equal,

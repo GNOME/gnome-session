@@ -30,15 +30,14 @@
 #define SHELL_SCHEMA "org.gnome.shell"
 #define DISABLE_EXTENSIONS_KEY "disable-user-extensions"
 
-#define SHELL_EXTENSIONS_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_SHELL_EXTENSIONS, GsmShellExtensionsPrivate))
-
 struct _GsmShellExtensionsPrivate
 {
   GSettings *settings;
   guint num_extensions;
 };
 
-G_DEFINE_TYPE (GsmShellExtensions, gsm_shell_extensions, G_TYPE_OBJECT);
+G_DEFINE_TYPE_WITH_CODE (GsmShellExtensions, gsm_shell_extensions, G_TYPE_OBJECT,
+                         G_ADD_PRIVATE (GsmShellExtensions));
 
 /**
  * gsm_shell_extensions_finalize:
@@ -71,7 +70,6 @@ gsm_shell_extensions_class_init (GsmShellExtensionsClass *klass)
 
   object_class = G_OBJECT_CLASS (klass);
   object_class->finalize = gsm_shell_extensions_finalize;
-  g_type_class_add_private (object_class, sizeof (GsmShellExtensionsPrivate));
 }
 
 static void
@@ -166,7 +164,7 @@ gsm_shell_extensions_init (GsmShellExtensions *self)
   GSettingsSchemaSource *source;
   GSettingsSchema *schema;
 
-  self->priv = SHELL_EXTENSIONS_PRIVATE (self);
+  self->priv = gsm_shell_extensions_get_instance_private (self);
 
   source = g_settings_schema_source_get_default ();
   schema = g_settings_schema_source_lookup (source, SHELL_SCHEMA, TRUE);

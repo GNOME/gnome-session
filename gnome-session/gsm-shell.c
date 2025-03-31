@@ -39,9 +39,6 @@
 
 #define AUTOMATIC_ACTION_TIMEOUT 60
 
-#define GSM_SHELL_GET_PRIVATE(o)                                   \
-        (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_SHELL, GsmShellPrivate))
-
 struct _GsmShellPrivate
 {
         GDBusProxy      *end_session_dialog_proxy;
@@ -80,7 +77,8 @@ static void     gsm_shell_finalize     (GObject            *object);
 
 static void     queue_end_session_dialog_update (GsmShell *shell);
 
-G_DEFINE_TYPE (GsmShell, gsm_shell, G_TYPE_OBJECT);
+G_DEFINE_TYPE_WITH_CODE (GsmShell, gsm_shell, G_TYPE_OBJECT,
+                         G_ADD_PRIVATE (GsmShell));
 
 static void
 gsm_shell_get_property (GObject    *object,
@@ -178,8 +176,6 @@ gsm_shell_class_init (GsmShellClass *shell_class)
                               G_STRUCT_OFFSET (GsmShellClass, end_session_dialog_confirmed_reboot),
                               NULL, NULL, NULL,
                               G_TYPE_NONE, 0);
-
-        g_type_class_add_private (shell_class, sizeof (GsmShellPrivate));
 }
 
 static void
@@ -219,7 +215,7 @@ gsm_shell_ensure_connection (GsmShell  *shell)
 static void
 gsm_shell_init (GsmShell *shell)
 {
-        shell->priv = GSM_SHELL_GET_PRIVATE (shell);
+        shell->priv = gsm_shell_get_instance_private (shell);
 
         gsm_shell_ensure_connection (shell);
 }

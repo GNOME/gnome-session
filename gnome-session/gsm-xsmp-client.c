@@ -38,8 +38,6 @@
 
 #define GsmDesktopFile "_GSM_DesktopFile"
 
-#define GSM_XSMP_CLIENT_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_XSMP_CLIENT, GsmXSMPClientPrivate))
-
 struct GsmXSMPClientPrivate
 {
 
@@ -71,7 +69,8 @@ enum {
 
 static guint signals[LAST_SIGNAL] = { 0 };
 
-G_DEFINE_TYPE (GsmXSMPClient, gsm_xsmp_client, GSM_TYPE_CLIENT)
+G_DEFINE_TYPE_WITH_CODE (GsmXSMPClient, gsm_xsmp_client, GSM_TYPE_CLIENT,
+                         G_ADD_PRIVATE (GsmXSMPClient))
 
 static gboolean
 client_iochannel_watch (GIOChannel    *channel,
@@ -196,7 +195,7 @@ gsm_xsmp_client_constructor (GType                  type,
 static void
 gsm_xsmp_client_init (GsmXSMPClient *client)
 {
-        client->priv = GSM_XSMP_CLIENT_GET_PRIVATE (client);
+        client->priv = gsm_xsmp_client_get_instance_private (client);
 
         client->priv->props = g_ptr_array_new ();
         client->priv->current_save_yourself = -1;
@@ -1037,8 +1036,6 @@ gsm_xsmp_client_class_init (GsmXSMPClientClass *klass)
                                                                "ice-connection",
                                                                "ice-connection",
                                                                G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
-
-        g_type_class_add_private (klass, sizeof (GsmXSMPClientPrivate));
 }
 
 GsmClient *
