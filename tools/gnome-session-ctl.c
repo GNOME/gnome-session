@@ -150,7 +150,7 @@ leader_term_or_int_signal_cb (gpointer user_data)
 {
         MonitorLeader *data = (MonitorLeader*) user_data;
 
-        g_main_quit (data->loop);
+        g_main_loop_quit (data->loop);
 
         return G_SOURCE_REMOVE;
 }
