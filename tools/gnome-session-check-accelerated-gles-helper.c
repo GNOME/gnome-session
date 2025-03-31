@@ -61,6 +61,7 @@ get_gles_renderer (void)
         };
 
         gboolean egl_inited = FALSE;
+        GdkDisplay *gdisplay;
         Display *display;
         Window win = None;
         EGLContext egl_ctx = NULL;
@@ -68,9 +69,10 @@ get_gles_renderer (void)
         EGLSurface egl_surf = NULL;
         char *renderer = NULL;
 
-        gdk_error_trap_push ();
+        gdisplay = gdk_display_get_default ();
+        gdk_x11_display_error_trap_push (gdisplay);
 
-        display = GDK_DISPLAY_XDISPLAY (gdk_display_get_default ());
+        display = GDK_DISPLAY_XDISPLAY (gdisplay);
         egl_dpy = eglGetDisplay (display);
         if (!egl_dpy) {
                 g_warning ("eglGetDisplay() failed");
@@ -150,7 +152,7 @@ get_gles_renderer (void)
         if (win != None)
                 XDestroyWindow (display, win);
 
-        gdk_error_trap_pop_ignored ();
+        gdk_x11_display_error_trap_pop_ignored (gdisplay);
         return renderer;
 }
 #endif
