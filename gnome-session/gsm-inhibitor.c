@@ -31,8 +31,6 @@
 
 static guint32 inhibitor_serial = 1;
 
-#define GSM_INHIBITOR_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_INHIBITOR, GsmInhibitorPrivate))
-
 struct GsmInhibitorPrivate
 {
         char *id;
@@ -66,7 +64,8 @@ enum {
 };
 static guint signals[LAST_SIGNAL] = { 0 };
 
-G_DEFINE_TYPE (GsmInhibitor, gsm_inhibitor, G_TYPE_OBJECT)
+G_DEFINE_TYPE_WITH_CODE (GsmInhibitor, gsm_inhibitor, G_TYPE_OBJECT,
+                         G_ADD_PRIVATE (GsmInhibitor))
 
 #define GSM_INHIBITOR_DBUS_IFACE "org.gnome.SessionManager.Inhibitor"
 
@@ -240,7 +239,7 @@ gsm_inhibitor_constructor (GType                  type,
 static void
 gsm_inhibitor_init (GsmInhibitor *inhibitor)
 {
-        inhibitor->priv = GSM_INHIBITOR_GET_PRIVATE (inhibitor);
+        inhibitor->priv = gsm_inhibitor_get_instance_private (inhibitor);
 }
 
 static void
@@ -600,8 +599,6 @@ gsm_inhibitor_class_init (GsmInhibitorClass *klass)
                                                             G_MAXINT,
                                                             0,
                                                             G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
-
-        g_type_class_add_private (klass, sizeof (GsmInhibitorPrivate));
 }
 
 GsmInhibitor *

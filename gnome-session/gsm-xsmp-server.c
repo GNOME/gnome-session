@@ -59,8 +59,6 @@
 #define GSM_ICE_MAGIC_COOKIE_AUTH_NAME "MIT-MAGIC-COOKIE-1"
 #define GSM_ICE_MAGIC_COOKIE_LEN       16
 
-#define GSM_XSMP_SERVER_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_XSMP_SERVER, GsmXsmpServerPrivate))
-
 struct _GsmXsmpServer
 {
         GObject         parent_instance;

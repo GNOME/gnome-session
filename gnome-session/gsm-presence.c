@@ -39,8 +39,6 @@
 
 #define MAX_STATUS_TEXT 140
 
-#define GSM_PRESENCE_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), GSM_TYPE_PRESENCE, GsmPresencePrivate))
-
 struct GsmPresencePrivate
 {
         guint             status;
@@ -70,7 +68,8 @@ enum {
 
 static guint signals[LAST_SIGNAL] = { 0, };
 
-G_DEFINE_TYPE (GsmPresence, gsm_presence, G_TYPE_OBJECT)
+G_DEFINE_TYPE_WITH_CODE (GsmPresence, gsm_presence, G_TYPE_OBJECT,
+                         G_ADD_PRIVATE (GsmPresence))
 
 static const GDBusErrorEntry gsm_presence_error_entries[] = {
         { GSM_PRESENCE_ERROR_GENERAL, GSM_PRESENCE_DBUS_IFACE ".GeneralError" }
@@ -393,7 +392,7 @@ gsm_presence_constructor (GType                  type,
 static void
 gsm_presence_init (GsmPresence *presence)
 {
-        presence->priv = GSM_PRESENCE_GET_PRIVATE (presence);
+        presence->priv = gsm_presence_get_instance_private (presence);
 
         presence->priv->idle_monitor = gnome_idle_monitor_new ();
 }
@@ -526,8 +525,6 @@ gsm_presence_class_init (GsmPresenceClass *klass)
                                                             G_MAXINT,
                                                             120000,
                                                             G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
-
-        g_type_class_add_private (klass, sizeof (GsmPresencePrivate));
 }
 
 GsmPresence *

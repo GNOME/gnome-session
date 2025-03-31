@@ -71,7 +71,8 @@ static void gsm_systemd_system_init (GsmSystemInterface *iface);
 
 G_DEFINE_TYPE_WITH_CODE (GsmSystemd, gsm_systemd, G_TYPE_OBJECT,
                          G_IMPLEMENT_INTERFACE (GSM_TYPE_SYSTEM,
-                                                gsm_systemd_system_init))
+                                                gsm_systemd_system_init)
+			 G_ADD_PRIVATE (GsmSystemd))
 
 static void
 drop_system_inhibitor (GsmSystemd *manager)
@@ -159,8 +160,6 @@ gsm_systemd_class_init (GsmSystemdClass *manager_class)
         object_class->finalize = gsm_systemd_finalize;
 
         g_object_class_override_property (object_class, PROP_ACTIVE, "active");
-
-        g_type_class_add_private (manager_class, sizeof (GsmSystemdPrivate));
 }
 
 typedef struct
@@ -370,9 +369,7 @@ gsm_systemd_init (GsmSystemd *manager)
         GDBusConnection *bus;
         GVariant *res;
 
-        manager->priv = G_TYPE_INSTANCE_GET_PRIVATE (manager,
-                                                     GSM_TYPE_SYSTEMD,
-                                                     GsmSystemdPrivate);
+        manager->priv = gsm_systemd_get_instance_private (manager);
 
         manager->priv->inhibit_fd = -1;
         manager->priv->delay_inhibit_fd = -1;
