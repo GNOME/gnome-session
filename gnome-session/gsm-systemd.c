@@ -581,15 +581,7 @@ gsm_systemd_set_session_idle (GsmSystem *system,
 static gboolean
 gsm_systemd_can_switch_user (GsmSystem *system)
 {
-        GsmSystemd *manager = GSM_SYSTEMD (system);
-        gchar *seat;
-        gint ret;
-
-        sd_session_get_seat (manager->priv->session_id, &seat);
-        ret = sd_seat_can_multi_session (seat);
-        free (seat);
-
-        return ret > 0;
+        return TRUE;
 }
 
 static gboolean
