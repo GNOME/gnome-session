@@ -15,7 +15,7 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __GSM_FAIL_WHALE_H___
+#ifndef __GSM_FAIL_WHALE_H__
 #define __GSM_FAIL_WHALE_H__
 
 #include <glib.h>
