@@ -165,8 +165,6 @@ create_manager (void)
         if (!gsm_session_fill (manager, session_name)) {
                 gsm_fail_whale_dialog_we_failed (FALSE, TRUE, NULL);
         }
-
-        _gsm_manager_set_renderer (manager, gl_renderer);
 }
 
 static void
@@ -227,29 +225,6 @@ require_dbus_session (int      argc,
 
         /* Should not be reached */
         return TRUE;
-}
-
-static gboolean
-check_gl (GError **error)
-{
-        int status;
-        char *argv[] = { LIBEXECDIR "/gnome-session-check-accelerated", NULL };
-
-        if (getenv ("DISPLAY") == NULL) {
-                /* Not connected to X11, someone else will take care of checking GL */
-                return TRUE;
-        }
-
-        if (!g_spawn_sync (NULL, (char **) argv, NULL, 0, NULL, NULL, &gl_renderer, NULL,
-                           &status, error)) {
-                return FALSE;
-        }
-
-#if GLIB_CHECK_VERSION(2, 70, 0)
-        return g_spawn_check_wait_status (status, error);
-#else
-        return g_spawn_check_exit_status (status, error);
-#endif
 }
 
 static void
@@ -495,7 +470,6 @@ main (int argc, char **argv)
         const char       *debug_string = NULL;
         const char       *env_override_autostart_dirs = NULL;
         g_auto(GStrv)     env_override_autostart_dirs_v = NULL;
-        gboolean          gl_failed = FALSE;
         guint             name_owner_id;
         GOptionContext   *options;
         static GOptionEntry entries[] = {
@@ -507,7 +481,7 @@ main (int argc, char **argv)
                 { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
                 /* Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong */
                 { "whale", 0, 0, G_OPTION_ARG_NONE, &please_fail, N_("Show the fail whale dialog for testing"), NULL },
-                { "disable-acceleration-check", 0, 0, G_OPTION_ARG_NONE, &disable_acceleration_check, N_("Disable hardware acceleration check"), NULL },
+                { "disable-acceleration-check", 0, 0, G_OPTION_ARG_NONE, &disable_acceleration_check, N_("This option is ignored"), NULL },
                 { NULL, 0, 0, 0, NULL, NULL, NULL }
         };
 
@@ -570,40 +544,6 @@ main (int argc, char **argv)
 
         gdm_log_init ();
         gdm_log_set_debug (debug);
-
-        if (systemd_service) {
-                /* XXX: This is an optimization, but we actually need to do
-                 *      it right now as the DISPLAY environment might leak
-                 *      into the new session from an old run. */
-                g_debug ("hardware acceleration already done if needed");
-        } else if (disable_acceleration_check) {
-                g_debug ("hardware acceleration check is disabled");
-        } else {
-                /* Check GL, if it doesn't work out then force software fallback */
-                if (!check_gl (&error)) {
-                        gl_failed = TRUE;
-
-                        g_debug ("hardware acceleration check failed: %s",
-                                 error? error->message : "");
-                        g_clear_error (&error);
-                        if (g_getenv ("LIBGL_ALWAYS_SOFTWARE") == NULL) {
-                                g_setenv ("LIBGL_ALWAYS_SOFTWARE", "1", TRUE);
-                                if (!check_gl (&error)) {
-                                        g_warning ("software acceleration check failed: %s",
-                                                   error? error->message : "");
-                                        g_clear_error (&error);
-                                } else {
-                                        gl_failed = FALSE;
-                                }
-                        }
-                }
-        }
-
-        if (gl_failed) {
-                gsm_fail_whale_dialog_we_failed (FALSE, TRUE, NULL);
-                gsm_main ();
-                exit (1);
-        }
 
         if (please_fail) {
                 gsm_fail_whale_dialog_we_failed (TRUE, TRUE, NULL);

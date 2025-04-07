@@ -108,9 +108,6 @@ void                _gsm_manager_set_active_session            (GsmManager     *
                                                                 const char     *session_name,
                                                                 gboolean        is_fallback);
 
-void                _gsm_manager_set_renderer                  (GsmManager     *manager,
-                                                                const char     *renderer);
-
 gboolean            gsm_manager_logout                         (GsmManager     *manager,
                                                                 guint           logout_mode,
                                                                 GError        **error);

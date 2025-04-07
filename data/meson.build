@@ -177,16 +177,12 @@ foreach session, req_components: required_components
   )
 endforeach
 
-data = files('hardware-compatibility')
-
 if enable_session_selector
-  data += files('session-selector.ui')
+  install_data(
+    'session-selector.ui',
+    install_dir: session_pkgdatadir
+  )
 endif
-
-install_data(
-  data,
-  install_dir: session_pkgdatadir
-)
 
 install_data(
   'gnome-portals.conf',

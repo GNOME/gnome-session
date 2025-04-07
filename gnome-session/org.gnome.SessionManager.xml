@@ -460,11 +460,13 @@
     </property>
 
     <property name="Renderer" type="s" access="read">
+      <annotation name="org.freedesktop.DBus.Deprecated" value="true"/>
       <doc:doc>
         <doc:description>
-          <doc:para>The renderer for the session that has been loaded.
-          At the moment this supports GL and GLES, and is only used for the
-          X session.</doc:para>
+          <doc:para>This is deprecated! Previously, this would give the GL or
+          GLES renderer name for the X11 session that has been loaded. Now, this
+          always returns an empty string. Instead, use the GPUs property on the
+          net.hadess.SwitcherooControl service.</doc:para>
         </doc:description>
       </doc:doc>
     </property>

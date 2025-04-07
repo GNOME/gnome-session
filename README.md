@@ -47,8 +47,6 @@ If you're building with X11 support, you'll also need:
 - `libSM`
 - `libICE`
 - `xtrans`
-- `libglvnd`
-- `libepoxy`
 - `libXcomposite`
 
 Once you have all the necessary dependencies, you can use Meson to build

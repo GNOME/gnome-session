@@ -56,8 +56,6 @@ build-fedora:
       libSM-devel
       libICE-devel
       xorg-x11-xtrans-devel
-      libglvnd-devel
-      libepoxy-devel
       libXcomposite-devel
   before_script:
     - dnf install -y --setopt=install_weak_deps=false $DEPENDENCIES
