@@ -108,9 +108,6 @@ if have_x11
   ]
 endif
 
-# Check for session selector GTK+ UI
-enable_session_selector = get_option('session_selector')
-
 session_bin_deps += dependency('gio-unix-2.0', version: glib_req_version)
 
 # Check for systemd
@@ -158,7 +155,6 @@ summary_options = {
  'Build Docbook': get_option('docbook'),
  'Build manpages': get_option('man'),
  'Systemd Units Directory': systemd_userunitdir,
- 'Session Selector Enabled': enable_session_selector,
 }
 
 summary_dirs = {

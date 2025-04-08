@@ -16,10 +16,6 @@ xsltproc_cmd = [
 
 mans = ['gnome-session-inhibit']
 
-if enable_session_selector
-  mans += 'gnome-session-selector'
-endif
-
 foreach man: mans
   output = man + '.1'
 

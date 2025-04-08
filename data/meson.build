@@ -33,10 +33,6 @@ required_components = {
   ],
 }
 
-if enable_session_selector
-  desktops += 'gnome-custom-session'
-endif
-
 foreach name: desktops
   desktop_conf = configuration_data()
   desktop_conf.set('bindir', session_bindir)
@@ -176,13 +172,6 @@ foreach session, req_components: required_components
       session),
   )
 endforeach
-
-if enable_session_selector
-  install_data(
-    'session-selector.ui',
-    install_dir: session_pkgdatadir
-  )
-endif
 
 install_data(
   'gnome-portals.conf',

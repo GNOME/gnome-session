@@ -1,9 +1,7 @@
-cflags = ['-DLOCALE_DIR="@0@"'.format(session_localedir)]
-
 programs = [
-  # name, deps, cflags, install_dir
-  ['gnome-session-ctl', session_bin_deps, cflags, session_libexecdir],
-  ['gnome-session-inhibit', session_deps, cflags, session_bindir],
+  # name, deps, install_dir
+  ['gnome-session-ctl', session_bin_deps, session_libexecdir],
+  ['gnome-session-inhibit', session_deps, session_bindir],
 ]
 
 if have_x11
@@ -13,25 +11,9 @@ if have_x11
   ]
 
   programs += [
-    # name, deps, cflags, install_dir
-    ['gnome-session-quit', deps, cflags, session_bindir],
+    # name, deps, install_dir
+    ['gnome-session-quit', deps, session_bindir],
   ]
-endif
-
-if enable_session_selector
-  deps = [
-    glib_dep,
-    gtk_dep
-  ]
-
-  install_data(
-    'gnome-session-custom-session',
-    install_dir: session_bindir
-  )
-
-  cflags += '-DGTKBUILDER_DIR="@0@"'.format(session_pkgdatadir)
-
-  programs += [['gnome-session-selector', deps, cflags, session_bindir]]
 endif
 
 foreach program: programs
@@ -40,8 +22,8 @@ foreach program: programs
     program[0] + '.c',
     include_directories: top_inc,
     dependencies: program[1],
-    c_args: program[2],
+    c_args: ['-DLOCALE_DIR="@0@"'.format(session_localedir)],
     install: true,
-    install_dir: program[3]
+    install_dir: program[2]
   )
 endforeach
