@@ -914,6 +914,25 @@ inhibit_done (GObject      *source,
 }
 
 static void
+gsm_systemd_call_inhibit (GsmSystemd *manager,
+                          char       *what)
+{
+        g_dbus_proxy_call_with_unix_fd_list (manager->priv->sd_proxy,
+                                             "Inhibit",
+                                             g_variant_new ("(ssss)",
+                                                            what,
+                                                            g_get_user_name (),
+                                                            "user session inhibited",
+                                                            "block"),
+                                             0,
+                                             G_MAXINT,
+                                             NULL,
+                                             NULL,
+                                             inhibit_done,
+                                             manager);
+}
+
+static void
 gsm_systemd_set_inhibitors (GsmSystem        *system,
                             GsmInhibitorFlag  flags)
 {
@@ -936,19 +955,19 @@ gsm_systemd_set_inhibitors (GsmSystem        *system,
 
         if (locks != NULL) {
                 g_debug ("Adding system inhibitor on %s", locks);
-                g_dbus_proxy_call_with_unix_fd_list (manager->priv->sd_proxy,
-                                                     "Inhibit",
-                                                     g_variant_new ("(ssss)",
-                                                                    locks,
-                                                                    g_get_user_name (),
-                                                                    "user session inhibited",
-                                                                    "block"),
-                                                     0,
-                                                     G_MAXINT,
-                                                     NULL,
-                                                     NULL,
-                                                     inhibit_done,
-                                                     manager);
+                gsm_systemd_call_inhibit (manager, locks);
+        } else {
+                drop_system_inhibitor (manager);
+        }
+}
+
+static void
+gsm_systemd_reacquire_inhibitors (GsmSystemd *manager)
+{
+        const gchar *locks = manager->priv->inhibit_locks;
+        if (locks != NULL) {
+                g_debug ("Reacquiring system inhibitor on %s", locks);
+                gsm_systemd_call_inhibit (manager, locks);
         } else {
                 drop_system_inhibitor (manager);
         }
@@ -976,6 +995,7 @@ reboot_or_poweroff_done (GObject      *source,
                 g_debug ("GsmSystemd: shutdown preparation failed");
                 systemd->priv->prepare_for_shutdown_expected = FALSE;
                 g_signal_emit_by_name (systemd, "shutdown-prepared", FALSE);
+                gsm_systemd_reacquire_inhibitors (systemd);
         } else {
                 g_variant_unref (result);
         }
@@ -992,6 +1012,10 @@ gsm_systemd_prepare_shutdown (GsmSystem *system,
         gint idx;
 
         g_debug ("GsmSystemd: prepare shutdown");
+
+        /* if we're holding a blocking inhibitor to inhibit shutdown, systemd
+         * will prevent us from shutting down */
+        drop_system_inhibitor (systemd);
 
         res = g_dbus_proxy_call_with_unix_fd_list_sync (systemd->priv->sd_proxy,
                                                         "Inhibit",
@@ -1010,6 +1034,7 @@ gsm_systemd_prepare_shutdown (GsmSystem *system,
                 g_warning ("Failed to get delay inhibitor: %s", error->message);
                 g_error_free (error);
                 g_signal_emit_by_name (systemd, "shutdown-prepared", FALSE);
+                gsm_systemd_reacquire_inhibitors (systemd);
                 return;
         }
 
