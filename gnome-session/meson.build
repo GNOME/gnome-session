@@ -97,7 +97,6 @@ executable(
 )
 
 units = [
-  ['test-inhibit', [], session_deps + [gtk_dep]],
   ['test-client-dbus', [], [gio_dep]],
   ['test-process-helper', files('gsm-process-helper.c'), [gio_dep]]
 ]
