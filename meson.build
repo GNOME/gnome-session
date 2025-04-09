@@ -83,7 +83,7 @@ glib_req_version = '>= 2.46.0'
 
 gio_dep = dependency('gio-2.0', version: glib_req_version)
 glib_dep = dependency('glib-2.0', version: glib_req_version)
-gtk_dep = dependency('gtk+-3.0', version: '>= 3.22.0')
+gtk_dep = dependency('gtk4')
 
 if have_x11
   ice_dep = dependency('ice')
@@ -94,7 +94,7 @@ endif
 session_deps = [
   gio_dep,
   glib_dep,
-  dependency('gnome-desktop-3.0', version: '>= 3.34.2'),
+  dependency('gnome-desktop-4'),
   dependency('json-glib-1.0', version: '>= 0.10')
 ]
 

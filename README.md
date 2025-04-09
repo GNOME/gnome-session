@@ -38,8 +38,8 @@ Before you can build `gnome-session`, you need the following dependencies:
 - Ninja
 - `json-glib`
 - `systemd`
-- `gtk3`
-- `gnome-desktop3`
+- `gtk4`
+- `gnome-desktop4`
 
 If you're building with X11 support, you'll also need:
 
