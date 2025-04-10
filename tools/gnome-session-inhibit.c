@@ -25,6 +25,11 @@
 #include <stdint.h>
 #include <locale.h>
 
+#if defined(__linux__)
+#include <linux/prctl.h>
+#include <sys/prctl.h>
+#endif
+
 #include <glib.h>
 #include <glib/gi18n.h>
 #include <gio/gio.h>
@@ -273,6 +278,12 @@ wait_for_child_app (char **argv)
        * separately from the parent */
       if (isatty (0))
         setpgid (0, 0);
+
+#if defined(__linux__)
+      /* Ensure that the child process goes away when the parent does */
+      if (prctl(PR_SET_PDEATHSIG, SIGHUP) < 0)
+        g_printerr ("Failed to configure PDEATHSIG, ignoring.\n");
+#endif
 
       execvp (*argv, argv);
       g_printerr (_("Failed to execute %s: %m\n"), *argv);
