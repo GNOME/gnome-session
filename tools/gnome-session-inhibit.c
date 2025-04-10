@@ -253,62 +253,80 @@ static void list (void)
     }
 }
 
-static void
+static int
 wait_for_child_app (char **argv)
 {
   pid_t pid;
   int status;
-  int pipefd[2];
 
-  if (pipe(pipefd) != 0)
-    {
-      int error = errno;
-      g_print (_("Error while creating pipe: %s\n"), g_strerror (error));
-      exit (1);
-    }
-
+  /* Fork off the child */
   pid = fork ();
   if (pid < 0)
     {
-      g_print ("fork failed\n");
-      exit (1);
+      g_printerr ("fork failed: %m\n");
+      return 1;
     }
 
-  if (pid == 0)
+  if (pid == 0) /* Child process */
     {
-      char c;
-      close(pipefd[1]);
-      if (read(pipefd[0], &c, 1) == -1)
-        {
-          g_print (_("Failure reading pipe\n"));
-        }
-      close(pipefd[0]);
+      /* Give ourselves a new process group, so that we can handle Ctrl+C
+       * separately from the parent */
+      if (isatty (0))
+        setpgid (0, 0);
+
       execvp (*argv, argv);
-      g_print (_("Failed to execute %s\n"), *argv);
+      g_printerr (_("Failed to execute %s: %m\n"), *argv);
       exit (1);
     }
 
-  close(pipefd[0]);
+  /* Parent process */
 
+  /* Give the child control over the terminal. This allows the child to
+   * handle Ctrl+C on its own. */
+  if (isatty (0))
+    tcsetpgrp (0, pid);
+
+  /* Wait for the child to exit, either naturally or via signal */
   do
     {
-      setpgid (pid, pid);
-      if (isatty (0))
+      if (waitpid (pid, &status, 0) < 0)
         {
-          tcsetpgrp (0, pid);
+          g_printerr ("waitpid failed: %m\n");
+          return 1;
         }
-      write(pipefd[1], "\0", 1);
-      close(pipefd[1]);
-      if (waitpid (pid, &status, 0) == -1)
-        {
-          g_print ("waitpid failed\n");
-          exit (1);
-        }
-
-      if (WIFEXITED (status))
-        exit (WEXITSTATUS (status));
-
     } while (!WIFEXITED (status) && ! WIFSIGNALED(status));
+
+  /* Take back control over the terminal */
+  if (isatty (0))
+    {
+      sigset_t block, old;
+      sigemptyset (&block);
+      sigaddset (&block, SIGTTOU);
+
+      /* If you don't currently have control and try to take it, the kernel will
+       * send you SIGTTOU and your process will be stopped. By blocking it, we
+       * allow ourselves to take control. */
+      if (sigprocmask (SIG_BLOCK, &block, &old) < 0)
+        {
+          g_printerr ("sigprocmask(SIG_BLOCK, SIGTTOU) failed: %m\n");
+          return 1;
+        }
+
+      tcsetpgrp (0, getpgid (0));
+
+      /* Not strictly necessary, but good hygiene */
+      if (sigprocmask (SIG_SETMASK, &old, NULL) < 0)
+        {
+          g_printerr ("sigprocmask(SIG_SETMASK, old) failed: %m\n");
+          return 1;
+        }
+    }
+
+  /* Propagate exit code */
+  if (WIFEXITED (status))
+    return WEXITSTATUS (status);
+  else
+    return 0;
 }
 
 static void
@@ -396,9 +414,8 @@ int main (int argc, char *argv[])
     return 1;
 
   if (!no_launch)
-    wait_for_child_app (argv + 1);
+    return wait_for_child_app (argv + 1);
   else
     wait_forever ();
-
   return 0;
 }
