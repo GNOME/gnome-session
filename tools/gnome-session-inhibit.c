@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012 Red Hat, Inc.
+ * Copyright (C) 2012,2025 Red Hat, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,34 +31,43 @@
 
 #include "gnome-session/gsm-inhibitor-flag.h"
 
-static GsmInhibitorFlag parse_flags (const gchar *arg)
+static gboolean
+parse_flags (const gchar      *option_name,
+             const gchar      *value,
+             GsmInhibitorFlag *flags,
+             GError          **error)
 {
-  GsmInhibitorFlag flags;
-  gchar **args;
+  /* Previous versions of gnome-session-inhibit suggested using a colon-separated
+   * list as the --inhibit=ARG value. For backwards-compatibility, we should
+   * continue to support that. */
+
+  g_auto(GStrv) args = NULL;
   gint i;
 
-  flags = 0;
-
-  args = g_strsplit (arg, ":", 0);
+  args = g_strsplit (value, ":", 0);
   for (i = 0; args[i]; i++)
     {
       if (strcmp (args[i], "logout") == 0)
-        flags |= GSM_INHIBITOR_FLAG_LOGOUT;
+        *flags |= GSM_INHIBITOR_FLAG_LOGOUT;
       else if (strcmp (args[i], "switch-user") == 0)
-        flags |= GSM_INHIBITOR_FLAG_SWITCH_USER;
+        *flags |= GSM_INHIBITOR_FLAG_SWITCH_USER;
       else if (strcmp (args[i], "suspend") == 0)
-        flags |= GSM_INHIBITOR_FLAG_SUSPEND;
+        *flags |= GSM_INHIBITOR_FLAG_SUSPEND;
       else if (strcmp (args[i], "idle") == 0)
-        flags |= GSM_INHIBITOR_FLAG_IDLE;
+        *flags |= GSM_INHIBITOR_FLAG_IDLE;
       else if (strcmp (args[i], "automount") == 0)
-        flags |= GSM_INHIBITOR_FLAG_AUTOMOUNT;
+        *flags |= GSM_INHIBITOR_FLAG_AUTOMOUNT;
       else
-        g_print ("Ignoring inhibit argument: %s\n", args[i]);
+        {
+          g_set_error (error,
+                       G_OPTION_ERROR, G_OPTION_ERROR_BAD_VALUE,
+                       _("Unknown inhibit argument: %s"),
+                       args [i]);
+          return FALSE;
+        }
     }
 
-  g_strfreev (args);
-
-  return flags;
+  return TRUE;
 }
 
 static gboolean inhibit (const gchar       *app_id,
@@ -101,31 +110,6 @@ static gboolean inhibit (const gchar       *app_id,
   g_variant_unref (ret);
 
   return TRUE;
-}
-
-static void usage (void)
-{
-  g_print (_("%s [OPTION…] COMMAND\n"
-             "\n"
-             "Execute COMMAND while inhibiting some session functionality.\n"
-             "\n"
-             "  -h, --help        Show this help\n"
-             "  --version         Show program version\n"
-             "  --app-id ID       The application id to use\n"
-             "                    when inhibiting (optional)\n"
-             "  --reason REASON   The reason for inhibiting (optional)\n"
-             "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
-             "                    logout, switch-user, suspend, idle, automount\n"
-             "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
-             "  -l, --list        List the existing inhibitions, and exit\n"
-             "\n"
-             "If no --inhibit option is specified, idle is assumed.\n"),
-           g_get_prgname ());
-}
-
-static void version (void)
-{
-  g_print ("%s %s\n", g_get_prgname (), PACKAGE_VERSION);
 }
 
 static GVariant *
@@ -337,74 +321,49 @@ wait_forever (void)
 
 int main (int argc, char *argv[])
 {
-  gchar *prgname;
   GsmInhibitorFlag inhibit_flags = 0;
-  gboolean show_help = FALSE;
   gboolean show_version = FALSE;
   gboolean show_list = FALSE;
   gboolean no_launch = FALSE;
-  gint i;
-  const gchar *app_id = "unknown";
-  const gchar *reason = "not specified";
+  g_autofree gchar *app_id = NULL;
+  g_autofree gchar *reason = NULL;
 
-  prgname = g_path_get_basename (argv[0]);
-  g_set_prgname (prgname);
-  g_free (prgname);
+  GOptionEntry entries[] = {
+    { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Show program version"), NULL },
+    { "app-id", 0, 0, G_OPTION_ARG_STRING, &app_id, N_("The application id to use when inhibiting (optional)"), N_("ID") },
+    { "reason", 0, 0, G_OPTION_ARG_STRING, &reason, N_("The reason for inhibiting (optional)"), N_("REASON") },
+    { "inhibit", 0, 0, G_OPTION_ARG_CALLBACK, &parse_flags, N_("Add action to inhibit (repeatable)"), N_("ACTION") },
+    { "inhibit-only", 0, 0, G_OPTION_ARG_NONE, &no_launch, N_("Do not launch COMMAND and wait forever instead"), NULL },
+    { "list", 'l', 0, G_OPTION_ARG_NONE, &show_list, N_("List the existing inhibitions, and exit"), NULL },
+    { NULL, 0, 0, 0, NULL, NULL, NULL }
+  };
+  g_autoptr(GOptionContext) opts = NULL;
+  GOptionGroup *main_opts;
+  g_autoptr(GError) error = NULL;
 
   setlocale (LC_ALL, "");
   bindtextdomain (GETTEXT_PACKAGE, LOCALE_DIR);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
-  for (i = 1; i < argc; i++)
+  opts = g_option_context_new (N_("COMMAND"));
+  g_option_context_set_translation_domain (opts, GETTEXT_PACKAGE);
+  main_opts = g_option_group_new (NULL, NULL, NULL, &inhibit_flags, NULL);
+  g_option_group_set_translation_domain (main_opts, GETTEXT_PACKAGE);
+  g_option_group_add_entries (main_opts, entries);
+  g_option_context_set_main_group (opts, main_opts);
+  g_option_context_set_summary (opts, N_("Execute COMMAND while inhibiting some session functionality."));
+  g_option_context_set_description (opts, N_("Valid ACTION values are: logout, switch-user, suspend, idle, and automount.\nIf no --inhibit options are specified, idle is assumed."));
+
+  if (!g_option_context_parse (opts, &argc, &argv, &error))
     {
-      if (strcmp (argv[i], "--help") == 0 ||
-          strcmp (argv[i], "-h") == 0)
-        show_help = TRUE;
-      if (strcmp (argv[i], "--list") == 0 ||
-          strcmp (argv[i], "-l") == 0)
-        show_list = TRUE;
-      else if (strcmp (argv[i], "--version") == 0)
-        show_version = TRUE;
-      else if (strcmp (argv[i], "--inhibit-only") == 0)
-        no_launch = TRUE;
-      else if (strcmp (argv[i], "--app-id") == 0)
-        {
-          i++;
-          if (i == argc)
-            {
-              g_print (_("%s requires an argument\n"), argv[i]);
-              exit (1);
-            }
-          app_id = argv[i];
-        }
-      else if (strcmp (argv[i], "--reason") == 0)
-        {
-          i++;
-          if (i == argc)
-            {
-              g_print (_("%s requires an argument\n"), argv[i]);
-              exit (1);
-            }
-          reason = argv[i];
-        }
-      else if (strcmp (argv[i], "--inhibit") == 0)
-        {
-          i++;
-          if (i == argc)
-            {
-              g_print (_("%s requires an argument\n"), argv[i]);
-              exit (1);
-            }
-          inhibit_flags |= parse_flags (argv[i]);
-        }
-      else
-        break;
+      g_printerr ("%s\n", error->message);
+      return 1;
     }
 
   if (show_version)
     {
-      version ();
+      g_print ("%s %s\n", g_get_prgname (), PACKAGE_VERSION);
       return 0;
     }
 
@@ -414,20 +373,30 @@ int main (int argc, char *argv[])
       return 0;
     }
 
-  if (show_help || (i == argc && !no_launch))
+  if (argc < 2 && !no_launch)
     {
-      usage ();
-      return 0;
+      gchar *usage = g_option_context_get_help (opts, TRUE, NULL);
+      g_printerr ("%s\n\n%s",
+                  _("Neither COMMAND nor --inhibit-only were specified."),
+                  usage);
+      g_free(usage);
+      return 1;
     }
+
+  if (app_id == NULL)
+    app_id = g_strdup ("unknown");
+
+  if (reason == NULL)
+    reason = g_strdup ("not specified");
 
   if (inhibit_flags == 0)
     inhibit_flags = GSM_INHIBITOR_FLAG_IDLE;
 
-  if (inhibit (app_id, reason, inhibit_flags) == FALSE)
+  if (!inhibit (app_id, reason, inhibit_flags))
     return 1;
 
   if (!no_launch)
-    wait_for_child_app (argv + i);
+    wait_for_child_app (argv + 1);
   else
     wait_forever ();
 
