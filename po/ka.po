@@ -1,14 +1,14 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# Ekaterine Papava <papava.e@gtu.ge>, 2023-2024.
+# Georgian translation for gnome-session.
+# Copyright (C) 2023 gnome-session's authors.
+# This file is distributed under the same license as the gnome-session package.
+# Ekaterine Papava <papava.e@gtu.ge>, 2023-2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2024-01-13 12:21+0000\n"
-"PO-Revision-Date: 2024-02-13 05:42+0100\n"
+"POT-Creation-Date: 2025-04-10 21:00+0000\n"
+"PO-Revision-Date: 2025-04-10 23:32+0200\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: \n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.5\n"
 
 #: data/gnome-custom-session.desktop.in.in:3
 msgid "Custom"
@@ -143,7 +143,7 @@ msgstr ""
 msgid "_Log Out"
 msgstr "_გასვლა"
 
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:403
+#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:505
 msgid "Enable debugging code"
 msgstr "გამართვის კოდის ჩართვა"
 
@@ -155,7 +155,7 @@ msgstr "გასვლის ნების დართვა"
 msgid "Show extension warning"
 msgstr "გაფართოების გაფრთხილების ჩვენება"
 
-#: gnome-session/gsm-manager.c:1301 gnome-session/gsm-manager.c:2050
+#: gnome-session/gsm-manager.c:1305 gnome-session/gsm-manager.c:2063
 msgid "Not responding"
 msgstr "არ პასუხობს"
 
@@ -188,52 +188,52 @@ msgstr ""
 msgid "Could not create ICE listening socket: %s"
 msgstr "ICE მოსასმენი სოკეტის გახსნის შეცდომა: %s"
 
-#: gnome-session/main.c:400
+#: gnome-session/main.c:502
 msgid "Running as systemd service"
 msgstr "გაშვებულია, როგორც systemd-ის სერვისი"
 
-#: gnome-session/main.c:401
+#: gnome-session/main.c:503
 msgid "Override standard autostart directories"
 msgstr "ავტოსტარტის ნაგულისხმევი საქაღალდეების თავის არიდება"
 
-#: gnome-session/main.c:401
+#: gnome-session/main.c:503
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:504
 msgid "Session to use"
 msgstr "სესია"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:504
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: gnome-session/main.c:404
+#: gnome-session/main.c:506
 msgid "Do not load user-specified applications"
 msgstr "არ ჩატვირთო მომხმარებლის მიერ გაშვებული პროგრამები"
 
-#: gnome-session/main.c:405
+#: gnome-session/main.c:507
 msgid "Version of this application"
 msgstr "ამ აპლიკაციის ვერსია"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:407
+#: gnome-session/main.c:509
 msgid "Show the fail whale dialog for testing"
 msgstr "გამართვის სრული ფანჯრის ჩვენება"
 
-#: gnome-session/main.c:408
+#: gnome-session/main.c:510
 msgid "Disable hardware acceleration check"
 msgstr "აპარატურული აჩქარების შემოწმების გათიშვა"
 
-#: gnome-session/main.c:440
+#: gnome-session/main.c:542
 msgid " — the GNOME session manager"
 msgstr " — GNOME-ის სესიების მმართველი"
 
-#: tools/gnome-session-ctl.c:245
+#: tools/gnome-session-ctl.c:247
 msgid "Start gnome-session-shutdown.target"
 msgstr "'gnome-session-shutdown.target\"-ის გაშვება"
 
-#: tools/gnome-session-ctl.c:246
+#: tools/gnome-session-ctl.c:248
 msgid ""
 "Start gnome-session-shutdown.target when receiving EOF or a single byte on "
 "stdin"
@@ -241,78 +241,100 @@ msgstr ""
 "სტანდარტულ შემომავალზე EOF ბაიტის მოსვლისას gnome-session-shutdown.target-ის "
 "გაშვება"
 
-#: tools/gnome-session-ctl.c:247
+#: tools/gnome-session-ctl.c:249
 msgid "Signal initialization done to gnome-session"
 msgstr "\"gnome-session\"-ის ინიციალიზაციის სიგნალი გაშვებულია"
 
-#: tools/gnome-session-ctl.c:248
+#: tools/gnome-session-ctl.c:250
 msgid "Restart dbus.service if it is running"
 msgstr "\"dbus.service\"-ის გაშვება, თუ არაა გაშვებული"
 
-#: tools/gnome-session-ctl.c:249
+#: tools/gnome-session-ctl.c:251
 msgid ""
 "Run from ExecStopPost to start gnome-session-failed.target on service failure"
 msgstr ""
 "სერვისის სიკვტილისას gnome-session-failed.target-ის ExecStopPost-ის გაშვება"
 
-#: tools/gnome-session-ctl.c:279
+#: tools/gnome-session-ctl.c:281
 msgid "Program needs exactly one parameter"
 msgstr "პროგრამას ზუსტად ერთი პარამეტრი სჭირდება"
 
-#: tools/gnome-session-inhibit.c:108
+#: tools/gnome-session-inhibit.c:64
 #, c-format
-msgid ""
-"%s [OPTION…] COMMAND\n"
-"\n"
-"Execute COMMAND while inhibiting some session functionality.\n"
-"\n"
-"  -h, --help        Show this help\n"
-"  --version         Show program version\n"
-"  --app-id ID       The application id to use\n"
-"                    when inhibiting (optional)\n"
-"  --reason REASON   The reason for inhibiting (optional)\n"
-"  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
-"                    logout, switch-user, suspend, idle, automount\n"
-"  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
-"  -l, --list        List the existing inhibitions, and exit\n"
-"\n"
-"If no --inhibit option is specified, idle is assumed.\n"
-msgstr ""
-"%s [პარამეტრი…] ბრძანება\n"
-"\n"
-"ბრძანების შესრულება სესიის რაღაც პარამეტრების გათიშვით.\n"
-"\n"
-"  -h, --help        ამ დახმარების ჩვენება\n"
-"  --version         პროგრამის ვერსიის ჩვენება\n"
-"  --app-id ID       გათიშვისას გამოყენებული\n"
-"                    აპლიკაციის ID (არასავალდებული)\n"
-"  --reason მიზესი     გათიშვის მიზეზი(არასავალდებულო)\n"
-"  --inhibit არგ     გასათიში საგნები. სია შეიძლება შეიცავდეს:\n"
-"                    logout, switch-user, suspend, idle, automount\n"
-"  --inhibit-only    არ გაუშვა ბრძანება, უბრალოდ გათიშე, სამუდამოდ\n"
-"  -l, --list        არსებული გათიშვების სიის ჩვენება და გასვლა\n"
-"\n"
-"თუ --inhibit პარამეტრი მითითებული არაა, ნაგულისხმებად მიჩნეულია idle.\n"
+msgid "Unknown inhibit argument: %s"
+msgstr "უცნობი ჩახშობის არგუმენტი: %s"
 
-#: tools/gnome-session-inhibit.c:282
+#: tools/gnome-session-inhibit.c:266
 #, c-format
 msgid "Error while creating pipe: %s\n"
 msgstr "ფაიფის შექმნის შეცდომა: %s\n"
 
-#: tools/gnome-session-inhibit.c:299
+#: tools/gnome-session-inhibit.c:283
 msgid "Failure reading pipe\n"
 msgstr "ფაიფიდან წაკითხვა ჩავარდა\n"
 
-#: tools/gnome-session-inhibit.c:303
+#: tools/gnome-session-inhibit.c:287
 #, c-format
 msgid "Failed to execute %s\n"
 msgstr "%s-ის გაშვების შეცდომა\n"
 
-#: tools/gnome-session-inhibit.c:376 tools/gnome-session-inhibit.c:386
-#: tools/gnome-session-inhibit.c:396
-#, c-format
-msgid "%s requires an argument\n"
-msgstr "%s-ს სჭირდება არგუმენტები\n"
+#: tools/gnome-session-inhibit.c:332
+msgid "Show program version"
+msgstr "პროგრამის ვერსიის ჩვენება"
+
+#: tools/gnome-session-inhibit.c:333
+msgid "The application id to use when inhibiting (optional)"
+msgstr "ჩახშობისას გამოყენებული აპლიკაციის id (არასავალდებულო)"
+
+#: tools/gnome-session-inhibit.c:333
+msgid "ID"
+msgstr "ID"
+
+#: tools/gnome-session-inhibit.c:334
+msgid "The reason for inhibiting (optional)"
+msgstr "ჩახშობის მიზეზი (არასავალდებულო)"
+
+#: tools/gnome-session-inhibit.c:334
+msgid "REASON"
+msgstr "მიზეზი"
+
+#: tools/gnome-session-inhibit.c:335
+msgid "Add action to inhibit (repeatable)"
+msgstr "ქმედების დამატება ჩახშობისთვის (გამეორებადი)"
+
+#: tools/gnome-session-inhibit.c:335
+msgid "ACTION"
+msgstr "ქმედება"
+
+#: tools/gnome-session-inhibit.c:336
+msgid "Do not launch COMMAND and wait forever instead"
+msgstr "ბრძანების არგაშვება და მისთვის სამუდამოდ დალოდება"
+
+#: tools/gnome-session-inhibit.c:337
+msgid "List the existing inhibitions, and exit"
+msgstr "არსებული ჩამხშობების ჩამოთვლის გამოტანა და გასვლა"
+
+#: tools/gnome-session-inhibit.c:349
+msgid "COMMAND"
+msgstr "ბრძანება"
+
+#: tools/gnome-session-inhibit.c:355
+msgid "Execute COMMAND while inhibiting some session functionality."
+msgstr "ბრძანებების გაშვება რომელიმე სესიის ფუნქციონალის ჩახშობისას."
+
+#: tools/gnome-session-inhibit.c:356
+msgid ""
+"Valid ACTION values are: logout, switch-user, suspend, idle, and automount.\n"
+"If no --inhibit options are specified, idle is assumed."
+msgstr ""
+"სწორი ქმედების მნიშვნელობებია: logout (სესიიდან გასვლა), switch-user "
+"(მომხმარებლის გადართვა), suspend (პროგრამული ძილი), idle (უქმეობა) და "
+"automount (ავტომიმაგრება).\n"
+"თუ არაა მითითებული პარამეტრი --inhibit, ითვლება, რომ მითითებულია idle."
+
+#: tools/gnome-session-inhibit.c:380
+msgid "Neither COMMAND nor --inhibit-only were specified."
+msgstr "მითითებულია არც ბრძანება, არც პარამეტრი --inhibit-only."
 
 #: tools/gnome-session-quit.c:50
 msgid "Log out"
@@ -365,6 +387,44 @@ msgstr "არ შეიძლება, რომ სესიის სახ�
 #, c-format
 msgid "A session named “%s” already exists"
 msgstr "სესია სახელად \"%s\" უკვე არსებობს"
+
+#, c-format
+#~ msgid ""
+#~ "%s [OPTION…] COMMAND\n"
+#~ "\n"
+#~ "Execute COMMAND while inhibiting some session functionality.\n"
+#~ "\n"
+#~ "  -h, --help        Show this help\n"
+#~ "  --version         Show program version\n"
+#~ "  --app-id ID       The application id to use\n"
+#~ "                    when inhibiting (optional)\n"
+#~ "  --reason REASON   The reason for inhibiting (optional)\n"
+#~ "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
+#~ "                    logout, switch-user, suspend, idle, automount\n"
+#~ "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+#~ "  -l, --list        List the existing inhibitions, and exit\n"
+#~ "\n"
+#~ "If no --inhibit option is specified, idle is assumed.\n"
+#~ msgstr ""
+#~ "%s [პარამეტრი…] ბრძანება\n"
+#~ "\n"
+#~ "ბრძანების შესრულება სესიის რაღაც პარამეტრების გათიშვით.\n"
+#~ "\n"
+#~ "  -h, --help        ამ დახმარების ჩვენება\n"
+#~ "  --version         პროგრამის ვერსიის ჩვენება\n"
+#~ "  --app-id ID       გათიშვისას გამოყენებული\n"
+#~ "                    აპლიკაციის ID (არასავალდებული)\n"
+#~ "  --reason მიზესი     გათიშვის მიზეზი(არასავალდებულო)\n"
+#~ "  --inhibit არგ     გასათიში საგნები. სია შეიძლება შეიცავდეს:\n"
+#~ "                    logout, switch-user, suspend, idle, automount\n"
+#~ "  --inhibit-only    არ გაუშვა ბრძანება, უბრალოდ გათიშე, სამუდამოდ\n"
+#~ "  -l, --list        არსებული გათიშვების სიის ჩვენება და გასვლა\n"
+#~ "\n"
+#~ "თუ --inhibit პარამეტრი მითითებული არაა, ნაგულისხმებად მიჩნეულია idle.\n"
+
+#, c-format
+#~ msgid "%s requires an argument\n"
+#~ msgstr "%s-ს სჭირდება არგუმენტები\n"
 
 #~ msgid "Use systemd session management"
 #~ msgstr "Systemd-ის სესიების მმართველის გამოყენება"
