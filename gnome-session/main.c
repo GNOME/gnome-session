@@ -549,6 +549,11 @@ main (int argc, char **argv)
 
         g_option_context_free (options);
 
+        if (show_version) {
+                g_print ("%s %s\n", argv [0], VERSION);
+                exit (0);
+        }
+
         /* Rebind stdout/stderr to the journal explicitly, so that
          * journald picks ups the nicer "gnome-session" as the program
          * name instead of whatever shell script GDM happened to use.
@@ -592,11 +597,6 @@ main (int argc, char **argv)
                                 }
                         }
                 }
-        }
-
-        if (show_version) {
-                g_print ("%s %s\n", argv [0], VERSION);
-                exit (0);
         }
 
         if (gl_failed) {
