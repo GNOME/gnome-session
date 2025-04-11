@@ -117,7 +117,10 @@
       </arg>
       <arg type="u" name="toplevel_xid" direction="in">
         <doc:doc>
-          <doc:summary>The toplevel X window identifier</doc:summary>
+          <doc:summary>
+            The toplevel X window identifier. Specify 0 when using other display
+            servers like Wayland.
+          </doc:summary>
         </doc:doc>
       </arg>
       <arg type="s" name="reason" direction="in">
