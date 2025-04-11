@@ -108,7 +108,11 @@
     <method name="Inhibit">
       <arg type="s" name="app_id" direction="in">
         <doc:doc>
-          <doc:summary>The application identifier</doc:summary>
+          <doc:summary>
+            The application identifier. Optional, but if none is provided then
+            the user might not be informed of this inhibitor when prompting
+            whether they want to force a shutdown.
+          </doc:summary>
         </doc:doc>
       </arg>
       <arg type="u" name="toplevel_xid" direction="in">

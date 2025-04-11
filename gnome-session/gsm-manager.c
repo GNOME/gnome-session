@@ -3138,17 +3138,6 @@ gsm_manager_inhibit (GsmExportedManager    *skeleton,
                 return TRUE;
         }
 
-        if (IS_STRING_EMPTY (app_id)) {
-                GError *new_error;
-
-                new_error = g_error_new (GSM_MANAGER_ERROR,
-                                         GSM_MANAGER_ERROR_GENERAL,
-                                         "Application ID not specified");
-                g_debug ("GsmManager: Unable to inhibit: %s", new_error->message);
-                g_dbus_method_invocation_take_error (invocation, new_error);
-                return TRUE;
-        }
-
         if (IS_STRING_EMPTY (reason)) {
                 GError *new_error;
 
