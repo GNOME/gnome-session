@@ -73,7 +73,6 @@ endforeach
 
 sessions = [
   'gnome',
-  'gnome-dummy'
 ]
 
 foreach session: sessions
