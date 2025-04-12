@@ -167,9 +167,16 @@ install_data(
 # Install resource limits that are applied to GNOME-launched apps
 
 install_data(
-  'gnome-launched-override.scope.conf',
+  'app-override.scope.conf',
   rename: 'override.conf',
-  install_dir : join_paths(systemd_userunitdir, 'gnome-launched-.scope.d')
+  install_dir : join_paths(systemd_userunitdir, 'app-gnome-.scope.d')
+)
+
+# FIXME: https://github.com/systemd/systemd/issues/37104
+install_data(
+  'app-override.scope.conf',
+  rename: 'override.conf',
+  install_dir : join_paths(systemd_userunitdir, 'app-flatpak-.scope.d')
 )
 
 # Install some other misc. configuration files
