@@ -66,7 +66,6 @@ wanted_components = [
   'org.gnome.SettingsDaemon.Sound',
   'org.gnome.SettingsDaemon.UsbProtection',
   'org.gnome.SettingsDaemon.Wacom',
-  'org.gnome.SettingsDaemon.XSettings',
 ]
 
 # Generate the legacy "builtin" session configuration. In this mode, gnome-session
