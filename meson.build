@@ -120,6 +120,8 @@ endif
 
 libsystemd_dep = dependency('libsystemd', version: '>= 209', required: true)
 session_bin_deps += libsystemd_dep
+libsystemd_version = libsystemd_dep.version()
+config_h.set('SYSTEMD_STRICT_ENV', libsystemd_version.version_compare('< 248'))
 
 configure_file(
   output: 'config.h',
