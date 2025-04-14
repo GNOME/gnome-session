@@ -457,6 +457,12 @@ update_iceauthority (GsmXsmpServer *server,
         gboolean          ok = FALSE;
 
         filename = IceAuthFileName ();
+
+        if (filename == NULL) {
+                g_warning ("IceAuthFileName failed: %m");
+                return FALSE;
+        }
+
         do {
                 ret = IceLockAuthFile (filename,
                                        GSM_ICE_AUTH_RETRIES,
