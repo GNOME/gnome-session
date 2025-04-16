@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+
+<!--
+  org.gnome.SessionManager.App:
+  @short_description: Apps to Start on Login
+
+  This interface represents the apps that <command>gnome-session</command> is
+  configured to start on login.
+-->
 <node>
   <interface name="org.gnome.SessionManager.App">
     <annotation name="org.gtk.GDBus.C.Name" value="ExportedApp"/>

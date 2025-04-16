@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+
+<!--
+  org.gnome.SessionManager.ClientPrivate:
+  @short_description: Plumbing for D-Bus Clients
+
+  This interface is used by
+  <link linkend='gdbus-org.gnome.SessionManager.ClientPrivate'>clients</link>
+  that connect to the Session Manager via D-Bus. It largely mirrors the
+  functionality available in the X11 Session Manager Protocol.
+-->
 <node>
   <interface name="org.gnome.SessionManager.ClientPrivate">
     <annotation name="org.gtk.GDBus.C.Name" value="ExportedClientPrivate"/>

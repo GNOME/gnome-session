@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+
+<!--
+  org.gnome.SessionManager.Client:
+  @short_description: Registered Clients
+
+  This interface exports the clients that have registered themselves with
+  <command>gnome-session</command>, either via the
+  <link linkend='gdbus-method-org-gnome-SessionManager.RegisterClient'>D-Bus API</link>
+  or via the X11 Session Management Protocol.
+  You can obtain a list of clients by calling the manager's
+  <link linkend='gdbus-method-org-gnome-SessionManager.GetClients'>GetClients()</link>
+  method.
+-->
 <node>
   <interface name="org.gnome.SessionManager.Client">
     <annotation name="org.gtk.GDBus.C.Name" value="ExportedClient"/>

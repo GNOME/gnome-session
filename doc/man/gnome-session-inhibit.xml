@@ -1,106 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- SPDX-License-Identifier: GPL-2.0-or-later -->
+
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd">
 <refentry id="gnome-session-inhibit" lang="en">
 
-<refentryinfo>
-<title>gnome-session-inhibit</title>
-<productname>gnome-session</productname>
-</refentryinfo>
+  <refentryinfo>
+    <title>gnome-session-inhibit</title>
+    <productname>gnome-session</productname>
+  </refentryinfo>
 
-<refmeta>
-<refentrytitle>gnome-session-inhibit</refentrytitle>
-<manvolnum>1</manvolnum>
-<refmiscinfo class="manual">User Commands</refmiscinfo>
-</refmeta>
+  <refmeta>
+    <refentrytitle>gnome-session-inhibit</refentrytitle>
+    <manvolnum>1</manvolnum>
+    <refmiscinfo class="manual">User Commands</refmiscinfo>
+  </refmeta>
 
-<refnamediv>
-<refname>gnome-session-inhibit</refname>
-<refpurpose>inhibit gnome-session functionality</refpurpose>
-</refnamediv>
+  <refnamediv>
+    <refname>gnome-session-inhibit</refname>
+    <refpurpose>Inhibit gnome-session functionality</refpurpose>
+  </refnamediv>
 
-<refsynopsisdiv>
-<cmdsynopsis>
-<command>gnome-session-inhibit</command>
-<arg choice="opt" rep="repeat">OPTION</arg>
-<arg choice="opt">COMMAND</arg>
-</cmdsynopsis>
-</refsynopsisdiv>
+  <refsynopsisdiv>
+    <cmdsynopsis>
+      <command>gnome-session-inhibit</command>
+      <arg choice="opt" rep="repeat">OPTION</arg>
+      <arg choice="opt">COMMAND</arg>
+    </cmdsynopsis>
+  </refsynopsisdiv>
 
-<refsect1><title>Description</title>
-<para><command>gnome-session-inhibit</command> can inhibit certain
-gnome-session functionality while executing the given COMMAND. To
-achieve this, it calls the Inhibit() method of the gnome-session
-D-Bus API and creates an inhibitor. The inhibitor is automatically
-removed when gnome-session-inhibit exits.
-</para>
-<para>
-A typical use case is to prevent the session from going idle (and
-thus locking the screen) while a movie player is running.
-</para>
+  <refsect1>
+    <title>Description</title>
+    <para>
+      <command>gnome-session-inhibit</command> can inhibit certain
+      gnome-session functionality while executing the given COMMAND. To
+      achieve this, it calls the Inhibit() method of the gnome-session
+      D-Bus API and creates an inhibitor. The inhibitor is automatically
+      removed when gnome-session-inhibit exits.
+    </para>
+    <para>
+      A typical use case is to prevent the session from going idle (and
+      thus locking the screen) while a movie player is running.
+    </para>
+  </refsect1>
 
-</refsect1>
+  <refsect1>
+    <title>Options</title>
+    <variablelist>
+      <varlistentry>
+        <term><option>-h</option>, <option>--help</option></term>
+        <listitem><para>
+          Print help and exit
+        </para></listitem>
+      </varlistentry>
 
-<refsect1><title>Options</title>
-<variablelist>
+      <varlistentry>
+        <term><option>--version</option></term>
+        <listitem><para>
+          Print version information and exit
+        </para></listitem>
+      </varlistentry>
 
-<varlistentry>
-<term><option>-h</option>, <option>--help</option></term>
-<listitem><para>
-print help and exit
-</para></listitem>
-</varlistentry>
+      <varlistentry>
+        <term><option>--app-id</option> ID</term>
+        <listitem><para>
+          The application id to use when calling the gnome-session Inhibit() method.
+          If this option is not specified, "unknown" is used.
+        </para></listitem>
+      </varlistentry>
 
-<varlistentry>
-<term><option>--version</option></term>
-<listitem><para>
-print version information and exit
-</para></listitem>
-</varlistentry>
+      <varlistentry>
+        <term><option>--reason</option> REASON</term>
+        <listitem><para>
+          A human-readable reason to pass along when calling the gnome-session
+          Inhibit() method. If this option is not specified, "not specified" is used.
+        </para></listitem>
+      </varlistentry>
 
-<varlistentry>
-<term><option>--app-id</option> ID</term>
-<listitem><para>
-The application id to use when calling the gnome-session Inhibit() method.
-If this option is not specified, "unknown" is used.
-</para></listitem>
-</varlistentry>
+      <varlistentry>
+        <term><option>--inhibit</option> ACTION</term>
+        <listitem><para>
+          ACTION specifies the actions to inhibit.
+          This option can be repeated to inhibit multiple actions.
+          The possible values for an ACTION are:  logout, switch-user, suspend, idle, automount.
+          If this option is not specified, "idle" is assumed.
+        </para></listitem>
+      </varlistentry>
 
-<varlistentry>
-<term><option>--reason</option> REASON</term>
-<listitem><para>
-A human-readable reason to pass along when calling the gnome-session
-Inhibit() method. If this option is not specified, "not specified" is used.
-</para></listitem>
-</varlistentry>
+      <varlistentry>
+        <term><option>--inhibit-only</option></term>
+        <listitem><para>
+          Do not launch COMMAND and wait forever instead
+        </para></listitem>
+      </varlistentry>
 
-<varlistentry>
-<term><option>--inhibit</option> ACTION</term>
-<listitem><para>
-ACTION specifies the actions to inhibit.
-This option can be repeated to inhibit multiple actions.
-The possible values for an ACTION are:  logout, switch-user, suspend, idle, automount.
-If this option is not specified, "idle" is assumed.
-</para></listitem>
-</varlistentry>
+      <varlistentry>
+        <term><option>-l</option>, <option>--list</option></term>
+        <listitem><para>
+          List the existing inhibitions and exit
+        </para></listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
 
-<varlistentry>
-<term><option>--inhibit-only</option></term>
-<listitem><para>
-Do not launch COMMAND and wait forever instead
-</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><option>-l</option>, <option>--list</option></term>
-<listitem><para>
-list the existing inhibitions and exit
-</para></listitem>
-</varlistentry>
-
-</variablelist>
-</refsect1>
-
-<refsect1><title>See also</title>
-<para>
-<citerefentry><refentrytitle>systemd-inhibit</refentrytitle><manvolnum>1</manvolnum></citerefentry>
-</para>
-</refsect1>
+  <refsect1><title>See also</title>
+    <para>
+      <citerefentry><refentrytitle>systemd-inhibit</refentrytitle><manvolnum>1</manvolnum></citerefentry>
+    </para>
+  </refsect1>
 </refentry>

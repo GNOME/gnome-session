@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+
+<!--
+  org.gnome.SessionManager:
+  @short_description: The Manager
+-->
 <node>
   <interface name="org.gnome.SessionManager">
     <annotation name="org.gtk.GDBus.C.Name" value="ExportedManager"/>
@@ -169,19 +174,21 @@
 
       This gets a list of all the clients that are currently known to the
       session manager. Each client ID is a D-Bus object path to the object
-      that implements the #org.gnome.SessionManager.Client interface.
+      that implements the <link linkend='gdbus-org.gnome.SessionManager.Client'>
+      Client interface</link>
     -->
     <method name="GetClients">
       <arg name="clients" direction="out" type="ao"/>
     </method>
 
     <!--
-      GetInhibitors
+      GetInhibitors:
       @inhibitors: an array of inhibitor IDs
 
       This gets a list of all the inhibitors that are currently known to the
       session manager. Each inhibitor ID is a D-Bus object path to the object
-      that implements the #org.gnome.SessionManager.Inhibitor interface
+      that implements the <link linkend='gdbus-org.gnome.SessionManager.Inhibitor'>
+      Inhibitor interface</link>
     -->
     <method name="GetInhibitors">
       <arg name="inhibitors" direction="out" type="ao"/>
@@ -356,8 +363,8 @@
     <!--
       Renderer:
 
-      Starting in GNOME 49, this property is deprecated! This always returns
-      an empty string now. You should instead use the GPUs property on the
+      Starting in GNOME 49, this property always returns an empty string.
+      You should instead use the <literal>GPUs</literal> property on the
       <ulink url="https://gitlab.freedesktop.org/hadess/switcheroo-control/-/blob/master/src/net.hadess.SwitcherooControl.xml">
       net.hadess.SwitcherooControl</ulink> service instead.
     -->

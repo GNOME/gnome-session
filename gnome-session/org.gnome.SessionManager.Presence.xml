@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+
+<!--
+  org.gnome.SessionManager.Presence:
+  @short_description: Session Status Management
+
+  This interface is responsible for keeping track of the session's current
+  status, such as whether or not the user is currently idle.
+
+  This interface was a lot more important in early versions of GNOME, where
+  the user's presence status was integrated with Telepathy and GNOME Shell, so
+  that it would be propagated into Instant Messaging apps. This is no longer
+  common.
+
+  However, this interface is still used (as of GNOME 48) to track the user's
+  idle status.
+-->
 <node>
   <interface name="org.gnome.SessionManager.Presence">
     <annotation name="org.gtk.GDBus.C.Name" value="ExportedPresence"/>

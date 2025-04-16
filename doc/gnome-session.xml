@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
   <!ENTITY version SYSTEM "version.xml">
+
+  <!-- Make xmllint stop complaining about the unexpected xmlns:xi attribute -->
   <!ENTITY % local.book.attrib "xmlns:xi CDATA #FIXED 'http://www.w3.org/2001/XInclude'">
 ]>
 
@@ -10,28 +12,37 @@
     <releaseinfo>Version &version;</releaseinfo>
   </bookinfo>
 
-
-  <chapter id="dbus">
-    <title>D-Bus API</title>
-
-    <para>
-      This API is unstable, and is likely to change in the future.
-    </para>
-
-    <xi:include href="ref-org.gnome.SessionManager.xml"/>
-    <xi:include href="ref-org.gnome.SessionManager.Client.xml"/>
-    <xi:include href="ref-org.gnome.SessionManager.ClientPrivate.xml"/>
-    <xi:include href="ref-org.gnome.SessionManager.Inhibitor.xml"/>
-    <xi:include href="ref-org.gnome.SessionManager.Presence.xml"/>
-  </chapter>
-
-  <chapter id="commands">
+  <part id="commands">
     <title>Commands</title>
 
     <xi:include href="man/gnome-session.xml"/>
     <xi:include href="man/gnome-session-inhibit.xml"/>
     <xi:include href="man/gnome-session-quit.xml"/>
-  </chapter>
+  </part>
+
+  <part id="dbus">
+    <title>Internal D-Bus API</title>
+
+    <partintro>
+      <para>
+        This API is unstable, and is likely to change in the future.
+      </para>
+      <para>
+        If you're an app developer, you should use the
+        <ulink url="https://flatpak.github.io/xdg-desktop-portal/docs/doc-org.freedesktop.portal.Inhibit.html">
+          <literal>Inhibit</literal> Portal
+        </ulink>
+        instead of this low-level internal API.
+      </para>
+    </partintro>
+
+    <xi:include href="ref-org.gnome.SessionManager.xml"/>
+    <xi:include href="ref-org.gnome.SessionManager.Client.xml"/>
+    <xi:include href="ref-org.gnome.SessionManager.ClientPrivate.xml"/>
+    <xi:include href="ref-org.gnome.SessionManager.App.xml"/>
+    <xi:include href="ref-org.gnome.SessionManager.Inhibitor.xml"/>
+    <xi:include href="ref-org.gnome.SessionManager.Presence.xml"/>
+  </part>
 
   <index>
     <title>Index</title>

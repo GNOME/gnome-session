@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+
+<!--
+  org.gnome.SessionManager.Inhibitor:
+  @short_description: Active Inhibitors
+
+  This interface is implemented by the active inhibitors that are returned by
+  the manager's <link linkend='gdbus-method-org-gnome-SessionManager.GetInhibitors'>
+  GetInhibitors()</link> method.
+
+  Clients like GNOME Shell use this interface to display the shutdown
+  confirmation dialog.
+-->
 <node>
   <interface name="org.gnome.SessionManager.Inhibitor">
     <annotation name="org.gtk.GDBus.C.Name" value="ExportedInhibitor"/>
