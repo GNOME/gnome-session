@@ -1,73 +1,64 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
-<node xmlns:doc="http://www.freedesktop.org/dbus/1.0/doc.dtd">
+<node>
   <interface name="org.gnome.SessionManager.Client">
+    <annotation name="org.gtk.GDBus.C.Name" value="ExportedClient"/>
+
+    <!--
+      GetAppId:
+      @app_id: The identifier for the associated application
+
+      Return the application ID associated with this client.
+    -->
     <method name="GetAppId">
-      <arg type="s" name="app_id" direction="out">
-        <doc:doc>
-          <doc:summary>The identifier for the associated application</doc:summary>
-        </doc:doc>
-      </arg>
-      <doc:doc>
-        <doc:description>
-          <doc:para>Return the application ID associated with this client.</doc:para>
-        </doc:description>
-      </doc:doc>
+      <arg type="s" name="app_id" direction="out"/>
     </method>
+
+    <!--
+      GetStartupId:
+      @startup_id: The startup identifier
+
+      Return the startup ID associated with this client.
+    -->
     <method name="GetStartupId">
-      <arg type="s" name="startup_id" direction="out">
-        <doc:doc>
-          <doc:summary>The startup identifier</doc:summary>
-        </doc:doc>
-      </arg>
-      <doc:doc>
-        <doc:description>
-          <doc:para>Return the startup ID associated with this client.</doc:para>
-        </doc:description>
-      </doc:doc>
+      <arg type="s" name="startup_id" direction="out"/>
     </method>
+
+    <!--
+      GetRestartStyleHint:
+      @hint: The restart style hint
+
+      Return the restart style hint for this client.
+    -->
     <method name="GetRestartStyleHint">
-      <arg type="u" name="hint" direction="out">
-        <doc:doc>
-          <doc:summary>The restart style hint</doc:summary>
-        </doc:doc>
-      </arg>
-      <doc:doc>
-        <doc:description>
-          <doc:para>Return the restart style hint for this client.</doc:para>
-        </doc:description>
-      </doc:doc>
+      <arg type="u" name="hint" direction="out"/>
     </method>
+
+    <!--
+      GetUnixProcessId:
+      @pid: The Unix process identifier
+
+      Return the Unix process identifier for this client.
+    -->
     <method name="GetUnixProcessId">
-      <arg type="u" name="pid" direction="out">
-        <doc:doc>
-          <doc:summary>The Unix process identifier</doc:summary>
-        </doc:doc>
-      </arg>
-      <doc:doc>
-        <doc:description>
-          <doc:para>Return the Unix process identifier for this client.</doc:para>
-        </doc:description>
-      </doc:doc>
+      <arg type="u" name="pid" direction="out"/>
     </method>
+
+    <!--
+      GetStatus:
+      @status: The client status
+
+      Return the status of this client.
+    -->
     <method name="GetStatus">
-      <arg type="u" name="status" direction="out">
-        <doc:doc>
-          <doc:summary>The client status</doc:summary>
-        </doc:doc>
-      </arg>
-      <doc:doc>
-        <doc:description>
-          <doc:para>Return the status of this client.</doc:para>
-        </doc:description>
-      </doc:doc>
+      <arg type="u" name="status" direction="out"/>
     </method>
-    <method name="Stop">
-      <doc:doc>
-        <doc:description>
-          <doc:para>Initiate a request to terminate this application via XSMP.</doc:para>
-        </doc:description>
-      </doc:doc>
-    </method>
+
+    <!--
+      Stop:
+
+      Initiate a request to terminate this application via XSMP.
+    -->
+    <method name="Stop"/>
   </interface>
 </node>

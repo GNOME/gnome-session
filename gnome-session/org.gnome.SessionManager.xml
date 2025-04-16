@@ -1,463 +1,350 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
-<node xmlns:doc="http://www.freedesktop.org/dbus/1.0/doc.dtd">
+<node>
   <interface name="org.gnome.SessionManager">
+    <annotation name="org.gtk.GDBus.C.Name" value="ExportedManager"/>
 
     <!-- Initialization phase interfaces -->
 
+    <!--
+      Setenv:
+      @variable: The variable name
+      @value: The variable value
+
+      Adds the variable name to the application launch environment with the
+      specified value. May only be used during the Session Manager
+      initialization phase.
+    -->
     <method name="Setenv">
-      <arg name="variable" type="s" direction="in">
-        <doc:doc>
-          <doc:summary>The variable name</doc:summary>
-        </doc:doc>
-      </arg>
-      <arg name="value" type="s" direction="in">
-        <doc:doc>
-          <doc:summary>The value</doc:summary>
-        </doc:doc>
-      </arg>
-      <doc:doc>
-        <doc:description>
-          <doc:para>Adds the variable name to the application launch environment with the specified value.  May only be used during the Session Manager initialization phase.</doc:para>
-        </doc:description>
-      </doc:doc>
+      <arg name="variable" type="s" direction="in"/>
+      <arg name="value" type="s" direction="in"/>
     </method>
 
+    <!--
+      GetLocale:
+      @category: The locale category
+      @value: The value
+
+      Reads the current state of the specific locale category.
+    -->
     <method name="GetLocale">
-      <arg name="category" type="i" direction="in">
-        <doc:doc>
-          <doc:summary>The locale category</doc:summary>
-        </doc:doc>
-      </arg>
-      <arg name="value" type="s" direction="out">
-        <doc:doc>
-          <doc:summary>The value</doc:summary>
-        </doc:doc>
-      </arg>
-      <doc:doc>
-        <doc:description>
-          <doc:para>Reads the current state of the specific locale category.</doc:para>
-        </doc:description>
-      </doc:doc>
+      <arg name="category" type="i" direction="in"/>
+      <arg name="value" type="s" direction="out"/>
     </method>
 
+    <!--
+      InitializationError:
+      @message: The error message
+      @fatal: Whether the error should be treated as fatal
+
+      May be used by applications launched during the Session Manager
+      initialization phase to indicate there was a problem.
+    -->
     <method name="InitializationError">
-      <arg name="message" type="s" direction="in">
-        <doc:doc>
-          <doc:summary>The error message</doc:summary>
-        </doc:doc>
-      </arg>
-      <arg name="fatal" type="b" direction="in">
-        <doc:doc>
-          <doc:summary>Whether the error should be treated as fatal</doc:summary>
-        </doc:doc>
-      </arg>
-      <doc:doc>
-        <doc:description>
-          <doc:para>May be used by applications launched during the Session Manager initialization phase to indicate there was a problem.</doc:para>
-        </doc:description>
-      </doc:doc>
+      <arg name="message" type="s" direction="in"/>
+      <arg name="fatal" type="b" direction="in"/>
     </method>
 
-    <method name="Initialized">
-      <doc:doc>
-        <doc:description>
-          <doc:para>Run from systemd to signal that gnome-session-initialized.target has been reached.</doc:para>
-        </doc:description>
-      </doc:doc>
-    </method>
+    <!--
+      Initialized:
+
+      Run from systemd to signal that gnome-session-initialized.target has
+      been reached.
+    -->
+    <method name="Initialized"/>
 
     <!-- Running phase interfaces -->
 
+    <!--
+      RegisterClient:
+      @app_id: The application identifier
+      @client_startup_id: Client startup identifier
+      @client_id: The object path of the newly registered client
+
+      Register the caller as a Session Management client.
+    -->
     <method name="RegisterClient">
-      <arg type="s" name="app_id" direction="in">
-        <doc:doc>
-          <doc:summary>The application identifier</doc:summary>
-        </doc:doc>
-      </arg>
-      <arg type="s" name="client_startup_id" direction="in">
-        <doc:doc>
-          <doc:summary>Client startup identifier</doc:summary>
-        </doc:doc>
-      </arg>
-      <arg type="o" name="client_id" direction="out">
-        <doc:doc>
-          <doc:summary>The object path of the newly registered client</doc:summary>
-        </doc:doc>
-      </arg>
-      <doc:doc>
-        <doc:description>
-          <doc:para>Register the caller as a Session Management client.</doc:para>
-        </doc:description>
-      </doc:doc>
+      <arg type="s" name="app_id" direction="in"/>
+      <arg type="s" name="client_startup_id" direction="in"/>
+      <arg type="o" name="client_id" direction="out"/>
     </method>
 
+    <!--
+      UnregisterClient:
+      @client_id: The object path of the client
+
+      Unregister the specified client from Session Management.
+    -->
     <method name="UnregisterClient">
-      <arg type="o" name="client_id" direction="in">
-        <doc:doc>
-          <doc:summary>The object path of the client</doc:summary>
-        </doc:doc>
-      </arg>
-      <doc:doc>
-        <doc:description>
-          <doc:para>Unregister the specified client from Session Management.</doc:para>
-        </doc:description>
-      </doc:doc>
+      <arg type="o" name="client_id" direction="in"/>
     </method>
 
+    <!--
+      Inhibit:
+      @app_id: The application identifier, optional
+      @toplevel_xid: The toplevel X window identifier
+      @reason: The reason for the inhibit
+      @flags: Flags that specify what should be inhibited
+      @inhibit_cookie: The cookie
+
+      Applications should invoke this method when they begin an operation that
+      should not be interrupted, such as creating a CD or DVD. The types of actions
+      that may be blocked are specified by the flags parameter. When the application
+      completes the operation it should call #org.gnome.SessionManager.Uninhibit()
+      or disconnect from the session bus.
+
+      Applications should not expect that they will always be able to block the
+      action. In most cases, users will be given the option to force the action
+      to take place. If @app_id is not specified, the user might not be informed
+      of this inhibitor when prompted to force the action.
+
+      On Wayland, or other display servers, pass 0 for @toplevel_xid.
+
+      The @flags parameter must include at least one of the following flags,
+      bitwise or'ed together:
+
+      <itemizedlist>
+        <listitem><para>
+          <emphasis>1</emphasis>:
+          Inhibit logging out
+        </para></listitem>
+        <listitem><para>
+          <emphasis>2</emphasis>:
+          Inhibit user switching
+        </para></listitem>
+        <listitem><para>
+          <emphasis>4</emphasis>:
+          Inhibit suspending the session or computer
+        </para></listitem>
+        <listitem><para>
+          <emphasis>8</emphasis>:
+          Inhibit the session being marked as idle
+        </para></listitem>
+        <listitem><para>
+          <emphasis>16</emphasis>:
+          Inhibit auto-mounting removable media for the session
+        </para></listitem>
+      </itemizedlist>
+
+      The returned cookie is used to uniquely identify this request. It should
+      be used as an argument to #org.gnome.SessionManager.Uninhibit()
+      in order to remove the request.
+    -->
     <method name="Inhibit">
-      <arg type="s" name="app_id" direction="in">
-        <doc:doc>
-          <doc:summary>
-            The application identifier. Optional, but if none is provided then
-            the user might not be informed of this inhibitor when prompting
-            whether they want to force a shutdown.
-          </doc:summary>
-        </doc:doc>
-      </arg>
-      <arg type="u" name="toplevel_xid" direction="in">
-        <doc:doc>
-          <doc:summary>
-            The toplevel X window identifier. Specify 0 when using other display
-            servers like Wayland.
-          </doc:summary>
-        </doc:doc>
-      </arg>
-      <arg type="s" name="reason" direction="in">
-        <doc:doc>
-          <doc:summary>The reason for the inhibit</doc:summary>
-        </doc:doc>
-      </arg>
-      <arg type="u" name="flags" direction="in">
-        <doc:doc>
-          <doc:summary>Flags that specify what should be inhibited</doc:summary>
-        </doc:doc>
-      </arg>
-      <arg type="u" name="inhibit_cookie" direction="out">
-        <doc:doc>
-          <doc:summary>The cookie</doc:summary>
-        </doc:doc>
-      </arg>
-      <doc:doc>
-        <doc:summary>
-          Proactively indicates that the calling application is performing an action that should not be interrupted and sets a reason to be displayed to the user when an interruption is about to take place.
-        </doc:summary>
-        <doc:description>
-          <doc:para>Applications should invoke this method when they begin an operation that
-            should not be interrupted, such as creating a CD or DVD.  The types of actions
-            that may be blocked are specified by the flags parameter.  When the application
-            completes the operation it should call <doc:ref type="method" to="org.gnome.SessionManager.Uninhibit">Uninhibit()</doc:ref>
-            or disconnect from the session bus.
-          </doc:para>
-          <doc:para>
-            Applications should not expect that they will always be able to block the
-            action.  In most cases, users will be given the option to force the action
-            to take place.
-          </doc:para>
-          <doc:para>
-            Reasons should be short and to the point.
-          </doc:para>
-          <doc:para>
-            The flags parameter must include at least one of the following:
-            <doc:list>
-              <doc:item>
-                <doc:term>1</doc:term>
-                <doc:definition>Inhibit logging out</doc:definition>
-              </doc:item>
-              <doc:item>
-                <doc:term>2</doc:term>
-                <doc:definition>Inhibit user switching</doc:definition>
-              </doc:item>
-              <doc:item>
-                <doc:term>4</doc:term>
-                <doc:definition>Inhibit suspending the session or computer</doc:definition>
-              </doc:item>
-              <doc:item>
-                <doc:term>8</doc:term>
-                <doc:definition>Inhibit the session being marked as idle</doc:definition>
-              </doc:item>
-              <doc:item>
-                <doc:term>16</doc:term>
-                <doc:definition>Inhibit auto-mounting removable media for the session</doc:definition>
-              </doc:item>
-            </doc:list>
-            Values for flags may be bitwise or'ed together.
-          </doc:para>
-          <doc:para>
-            The returned cookie is used to uniquely identify this request.  It should be used
-            as an argument to <doc:ref type="method" to="org.gnome.SessionManager.Uninhibit">Uninhibit()</doc:ref> in
-            order to remove the request.
-          </doc:para>
-        </doc:description>
-      </doc:doc>
+      <arg type="s" name="app_id" direction="in"/>
+      <arg type="u" name="toplevel_xid" direction="in"/>
+      <arg type="s" name="reason" direction="in"/>
+      <arg type="u" name="flags" direction="in"/>
+      <arg type="u" name="inhibit_cookie" direction="out"/>
     </method>
 
+    <!--
+      Uninhibit:
+      @inhibit_cookie: The cookie
+
+      Cancel a previous call to #org.gnome.SessionManager.Inhibit(),
+      identified by the cookie.
+    -->
     <method name="Uninhibit">
-      <arg type="u" name="inhibit_cookie" direction="in">
-        <doc:doc>
-          <doc:summary>The cookie</doc:summary>
-        </doc:doc>
-      </arg>
-      <doc:doc>
-        <doc:description>
-          <doc:para>Cancel a previous call to <doc:ref type="method" to="org.gnome.SessionManager.Inhibit">Inhibit()</doc:ref> identified by the cookie.</doc:para>
-        </doc:description>
-      </doc:doc>
+      <arg type="u" name="inhibit_cookie" direction="in"/>
     </method>
 
+    <!--
+      IsInhibited:
+      @flags: Flags that specify what should be inhibited
+      @is_inhibited: TRUE if any of the operations in @flags are inhibited
+
+      Determine if operation(s) specified by the flags are currently inhibited.
+      Flags are same as those accepted by the #org.gnome.SessionManager.Inhibit()
+      method.
+    -->
     <method name="IsInhibited">
-      <arg type="u" name="flags" direction="in">
-        <doc:doc>
-          <doc:summary>Flags that specify what should be inhibited</doc:summary>
-        </doc:doc>
-      </arg>
-      <arg type="b" name="is_inhibited" direction="out">
-        <doc:doc>
-          <doc:summary>Returns TRUE if any of the operations in the bitfield flags are inhibited</doc:summary>
-        </doc:doc>
-      </arg>
-      <doc:doc>
-        <doc:description>
-          <doc:para>Determine if operation(s) specified by the flags
-            are currently inhibited.  Flags are same as those accepted
-            by the
-            <doc:ref type="method" to="org.gnome.SessionManager.Inhibit">Inhibit()</doc:ref>
-            method.</doc:para>
-        </doc:description>
-      </doc:doc>
+      <arg type="u" name="flags" direction="in"/>
+      <arg type="b" name="is_inhibited" direction="out"/>
     </method>
 
+    <!--
+      GetClients:
+      @clients: an array of client IDs
+
+      This gets a list of all the clients that are currently known to the
+      session manager. Each client ID is a D-Bus object path to the object
+      that implements the #org.gnome.SessionManager.Client interface.
+    -->
     <method name="GetClients">
-      <arg name="clients" direction="out" type="ao">
-        <doc:doc>
-          <doc:summary>an array of client IDs</doc:summary>
-        </doc:doc>
-      </arg>
-      <doc:doc>
-        <doc:description>
-          <doc:para>This gets a list of all the <doc:ref type="interface" to="org.gnome.SessionManager.Client">Clients</doc:ref>
-          that are currently known to the session manager.</doc:para>
-          <doc:para>Each Client ID is an D-Bus object path for the object that implements the
-          <doc:ref type="interface" to="org.gnome.SessionManager.Client">Client</doc:ref> interface.</doc:para>
-        </doc:description>
-        <doc:seealso><doc:ref type="interface" to="org.gnome.SessionManager.Client">org.gnome.SessionManager.Client</doc:ref></doc:seealso>
-      </doc:doc>
+      <arg name="clients" direction="out" type="ao"/>
     </method>
 
+    <!--
+      GetInhibitors
+      @inhibitors: an array of inhibitor IDs
+
+      This gets a list of all the inhibitors that are currently known to the
+      session manager. Each inhibitor ID is a D-Bus object path to the object
+      that implements the #org.gnome.SessionManager.Inhibitor interface
+    -->
     <method name="GetInhibitors">
-      <arg name="inhibitors" direction="out" type="ao">
-        <doc:doc>
-          <doc:summary>an array of inhibitor IDs</doc:summary>
-        </doc:doc>
-      </arg>
-      <doc:doc>
-        <doc:description>
-          <doc:para>This gets a list of all the <doc:ref type="interface" to="org.gnome.SessionManager.Inhibitor">Inhibitors</doc:ref>
-          that are currently known to the session manager.</doc:para>
-          <doc:para>Each Inhibitor ID is an D-Bus object path for the object that implements the
-          <doc:ref type="interface" to="org.gnome.SessionManager.Inhibitor">Inhibitor</doc:ref> interface.</doc:para>
-        </doc:description>
-        <doc:seealso><doc:ref type="interface" to="org.gnome.SessionManager.Inhibitor">org.gnome.SessionManager.Inhibitor</doc:ref></doc:seealso>
-      </doc:doc>
+      <arg name="inhibitors" direction="out" type="ao"/>
     </method>
 
+    <!--
+      IsAutostartConditionHandled:
+      @condition: The autostart condition string
+      @handled: True if condition is handled, false otherwise
 
+      Allows the caller to determine whether the session manager is handling
+      changes to the specified autostart condition.
+    -->
     <method name="IsAutostartConditionHandled">
-      <arg name="condition" direction="in" type="s">
-        <doc:doc>
-          <doc:summary>The autostart condition string</doc:summary>
-        </doc:doc>
-      </arg>
-      <arg name="handled" direction="out" type="b">
-        <doc:doc>
-          <doc:summary>True if condition is handled, false otherwise</doc:summary>
-        </doc:doc>
-      </arg>
-      <doc:doc>
-        <doc:description>
-          <doc:para>Allows the caller to determine whether the session manager is
-          handling changes to the specified autostart condition.</doc:para>
-        </doc:description>
-      </doc:doc>
+      <arg name="condition" direction="in" type="s"/>
+      <arg name="handled" direction="out" type="b"/>
     </method>
 
-    <method name="Shutdown">
-      <doc:doc>
-        <doc:description>
-          <doc:para>Request a shutdown dialog.</doc:para>
-        </doc:description>
-      </doc:doc>
-    </method>
+    <!--
+      Shutdown:
 
-    <method name="Reboot">
-      <doc:doc>
-        <doc:description>
-          <doc:para>Request a reboot dialog.</doc:para>
-        </doc:description>
-      </doc:doc>
-    </method>
+      Request a shutdown dialog.
+    -->
+    <method name="Shutdown"/>
 
+    <!--
+      Reboot:
+
+      Request a reboot dialog.
+    -->
+    <method name="Reboot"/>
+
+    <!--
+      CanShutdown
+      @is_available: True if shutdown is available to the user, false otherwise
+
+      Allows the caller to determine whether or not it's okay to show a shutdown
+      option in the UI
+    -->
     <method name="CanShutdown">
-      <arg name="is_available" direction="out" type="b">
-        <doc:doc>
-          <doc:summary>True if shutdown is available to the user, false otherwise</doc:summary>
-        </doc:doc>
-      </arg>
-      <doc:doc>
-        <doc:description>
-          <doc:para>Allows the caller to determine whether or not it's okay to show
-          a shutdown option in the UI</doc:para>
-        </doc:description>
-      </doc:doc>
+      <arg name="is_available" direction="out" type="b"/>
     </method>
 
+    <!--
+      SetRebootToFirmwareSetup:
+      @enable: Whether we should reboot into setup
+
+      Allows the caller to indicate to the system's firmware to boot into
+      setup mode
+    -->
     <method name="SetRebootToFirmwareSetup">
-      <arg name="enable" direction="in" type="b">
-        <doc:doc>
-          <doc:summary>Whether we should reboot into setup</doc:summary>
-        </doc:doc>
-      </arg>
-      <doc:doc>
-        <doc:description>
-          <doc:para>Allows the caller to indicate to the system's firmware to boot into setup mode</doc:para>
-        </doc:description>
-      </doc:doc>
+      <arg name="enable" direction="in" type="b"/>
     </method>
 
+    <!--
+      CanRebootToFirmwareSetup:
+      @is_available: True if boot into setup mode is available to the user, false otherwise
+
+      Allows the caller to determine whether or not it's okay to show a reboot
+      to firmware option in the UI
+    -->
     <method name="CanRebootToFirmwareSetup">
-      <arg name="is_available" direction="out" type="b">
-        <doc:doc>
-          <doc:summary>True if boot into setup mode is available to the user, false otherwise</doc:summary>
-        </doc:doc>
-      </arg>
-      <doc:doc>
-        <doc:description>
-          <doc:para>Allows the caller to determine whether or not it's okay to show
-          a reboot to firmware option in the UI</doc:para>
-        </doc:description>
-      </doc:doc>
+      <arg name="is_available" direction="out" type="b"/>
     </method>
 
+    <!--
+      Logout:
+      @mode: The type of logout that is being requested
+
+      Request a log out dialog.
+
+      You may pass the following flags into @mode, and they can be bitwise
+      or'ed together:
+
+      <itemizedlist>
+        <listitem><para><emphasis>0</emphasis>: Normal</para></listitem>
+        <listitem><para>
+          <emphasis>1</emphasis>:
+          No confirmation interface should be shown.
+        </para></listitem>
+        <listitem><para>
+          <emphasis>2</emphasis>:
+          Forcefully logout. No confirmation will be shown and any inhibitors
+          will be ignored.
+        </para></listitem>
+      </itemizedlist>
+    -->
     <method name="Logout">
-      <arg name="mode" type="u" direction="in">
-        <doc:doc>
-          <doc:summary>The type of logout that is being requested</doc:summary>
-        </doc:doc>
-      </arg>
-      <doc:doc>
-        <doc:description>
-          <doc:para>Request a logout dialog</doc:para>
-          <doc:para>
-            Allowed values for the mode parameter are:
-            <doc:list>
-              <doc:item>
-                <doc:term>0</doc:term>
-                <doc:definition>Normal.</doc:definition>
-              </doc:item>
-              <doc:item>
-                <doc:term>1</doc:term>
-                <doc:definition>No confirmation interface should be shown.</doc:definition>
-              </doc:item>
-              <doc:item>
-                <doc:term>2</doc:term>
-                <doc:definition>Forcefully logout.  No confirmation will be shown and any inhibitors will be ignored.</doc:definition>
-              </doc:item>
-            </doc:list>
-            Values for flags may be bitwise or'ed together.
-          </doc:para>
-        </doc:description>
-      </doc:doc>
+      <arg name="mode" type="u" direction="in"/>
     </method>
 
+    <!--
+      IsSessionRunning:
+      @running: True if the session has entered the Running phase, false otherwise
+
+      Allows the caller to determine whether the session manager has entered
+      the Running phase, in case the client missed the SessionRunning signal.
+    -->
     <method name="IsSessionRunning">
-      <arg name="running" direction="out" type="b">
-        <doc:doc>
-          <doc:summary>True if the session has entered the Running phase, false otherwise</doc:summary>
-        </doc:doc>
-      </arg>
-      <doc:doc>
-        <doc:description>
-          <doc:para>Allows the caller to determine whether the session manager
-          has entered the Running phase, in case the client missed the
-          SessionRunning signal.</doc:para>
-        </doc:description>
-      </doc:doc>
+      <arg name="running" direction="out" type="b"/>
     </method>
 
     <!-- Signals -->
 
+    <!--
+      ClientAdded:
+      @id: The object path for the added client
+
+      Emitted when a client has been added to the session manager.
+    -->
     <signal name="ClientAdded">
-      <arg name="id" type="o">
-        <doc:doc>
-          <doc:summary>The object path for the added client</doc:summary>
-        </doc:doc>
-      </arg>
-      <doc:doc>
-        <doc:description>
-          <doc:para>Emitted when a client has been added to the session manager.
-          </doc:para>
-        </doc:description>
-      </doc:doc>
+      <arg name="id" type="o"/>
     </signal>
+
+    <!--
+      ClientRemoved:
+      @id: The object path for the removed client
+
+      Emitted when a client has been removed from the session manager.
+    -->
     <signal name="ClientRemoved">
-      <arg name="id" type="o">
-        <doc:doc>
-          <doc:summary>The object path for the removed client</doc:summary>
-        </doc:doc>
-      </arg>
-      <doc:doc>
-        <doc:description>
-          <doc:para>Emitted when a client has been removed from the session manager.
-          </doc:para>
-        </doc:description>
-      </doc:doc>
+      <arg name="id" type="o"/>
     </signal>
 
+    <!--
+      InhibitorAdded:
+      @id: The object path for the added inhibitor
+
+      Emitted when an inhibitor has been added to the session manager.
+    -->
     <signal name="InhibitorAdded">
-      <arg name="id" type="o">
-        <doc:doc>
-          <doc:summary>The object path for the added inhibitor</doc:summary>
-        </doc:doc>
-      </arg>
-      <doc:doc>
-        <doc:description>
-          <doc:para>Emitted when an inhibitor has been added to the session manager.
-          </doc:para>
-        </doc:description>
-      </doc:doc>
+      <arg name="id" type="o"/>
     </signal>
+
+    <!--
+      InhibitorRemoved:
+      @id: The object path for the removed inhibitor
+
+      Emitted when an inhibitor has been removed from the session manager.
+    -->
     <signal name="InhibitorRemoved">
-      <arg name="id" type="o">
-        <doc:doc>
-          <doc:summary>The object path for the removed inhibitor</doc:summary>
-        </doc:doc>
-      </arg>
-      <doc:doc>
-        <doc:description>
-          <doc:para>Emitted when an inhibitor has been removed from the session manager.
-          </doc:para>
-        </doc:description>
-      </doc:doc>
+      <arg name="id" type="o"/>
     </signal>
 
-    <signal name="SessionRunning">
-      <doc:doc>
-        <doc:description>
-          <doc:para>Indicates the session has entered the Running phase.</doc:para>
-        </doc:description>
-      </doc:doc>
-    </signal>
+    <!--
+      SessionRunning:
 
-    <signal name="SessionOver">
-      <doc:doc>
-        <doc:description>
-          <doc:para>Indicates the session is about to end.</doc:para>
-        </doc:description>
-      </doc:doc>
-    </signal>
+      Emitted when the session enters the Running phase.
+    -->
+    <signal name="SessionRunning"/>
+
+    <!--
+      SessionOver:
+
+      Emitted when the session is about to end.
+    -->
+    <signal name="SessionOver"/>
 
     <!-- Properties -->
 
+    <!--
+      SessionName: The name of the session that has been loaded.
+    -->
     <property name="SessionName" type="s" access="read">
       <doc:doc>
         <doc:description>
@@ -466,36 +353,35 @@
       </doc:doc>
     </property>
 
+    <!--
+      Renderer:
+
+      Starting in GNOME 49, this property is deprecated! This always returns
+      an empty string now. You should instead use the GPUs property on the
+      <ulink url="https://gitlab.freedesktop.org/hadess/switcheroo-control/-/blob/master/src/net.hadess.SwitcherooControl.xml">
+      net.hadess.SwitcherooControl</ulink> service instead.
+    -->
     <property name="Renderer" type="s" access="read">
+      <!-- FIXME: Adjust the switcheroo-control link once this is fixed usptream:
+           https://gitlab.freedesktop.org/hadess/switcheroo-control/-/issues/36 -->
       <annotation name="org.freedesktop.DBus.Deprecated" value="true"/>
-      <doc:doc>
-        <doc:description>
-          <doc:para>This is deprecated! Previously, this would give the GL or
-          GLES renderer name for the X11 session that has been loaded. Now, this
-          always returns an empty string. Instead, use the GPUs property on the
-          net.hadess.SwitcherooControl service.</doc:para>
-        </doc:description>
-      </doc:doc>
     </property>
 
-    <property name="SessionIsActive" type="b" access="read">
-      <doc:doc>
-        <doc:description>
-          <doc:para>If true, the session is currently in the
-          foreground and available for user input.</doc:para>
-        </doc:description>
-      </doc:doc>
-    </property>
+    <!--
+      SessionIsActive:
 
-    <property name="InhibitedActions" type="u" access="read">
-      <doc:doc>
-        <doc:description>
-          <doc:para>A bitmask of flags to indicate which actions
-          are inhibited. See the Inhibit() function's description
-          for a list of possible values.</doc:para>
-        </doc:description>
-      </doc:doc>
-    </property>
+      If true, the session is currently in the foreground and available for
+      user input.
+    -->
+    <property name="SessionIsActive" type="b" access="read"/>
+
+    <!--
+      InhibitedActions:
+
+      A bitmask of flags to indicate which actions are inhibited. See
+      #org.gnome.SessionManager.Inhibit() for a list of possible values.
+    -->
+    <property name="InhibitedActions" type="u" access="read"/>
 
   </interface>
 </node>

@@ -1,94 +1,66 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
-<node xmlns:doc="http://www.freedesktop.org/dbus/1.0/doc.dtd">
+<node>
   <interface name="org.gnome.SessionManager.Presence">
+    <annotation name="org.gtk.GDBus.C.Name" value="ExportedPresence"/>
 
-    <property name="status" type="u" access="readwrite">
-      <doc:doc>
-        <doc:description>
-          <doc:para>
-            The status of the session.
-          </doc:para>
-          <doc:para>
-            The status parameter must be one of the following:
-            <doc:list>
-              <doc:item>
-                <doc:term>0</doc:term>
-                <doc:definition>Available</doc:definition>
-              </doc:item>
-              <doc:item>
-                <doc:term>1</doc:term>
-                <doc:definition>Invisible</doc:definition>
-              </doc:item>
-              <doc:item>
-                <doc:term>2</doc:term>
-                <doc:definition>Busy</doc:definition>
-              </doc:item>
-              <doc:item>
-                <doc:term>3</doc:term>
-                <doc:definition>Idle</doc:definition>
-              </doc:item>
-            </doc:list>
-          </doc:para>
-        </doc:description>
-      </doc:doc>
-    </property>
-    <property name="status-text" type="s" access="readwrite">
-      <doc:doc>
-        <doc:description>
-          <doc:para>The descriptive status for the session.
-          </doc:para>
-        </doc:description>
-      </doc:doc>
-    </property>
+    <!--
+      status:
+
+      The status of the session. One of the following:
+
+      <itemizedlist>
+        <listitem><para><emphasis>0</emphasis>: Available</para></listitem>
+        <listitem><para><emphasis>1</emphasis>: Invisible</para></listitem>
+        <listitem><para><emphasis>2</emphasis>: Busy</para></listitem>
+        <listitem><para><emphasis>3</emphasis>: Idle</para></listitem>
+      </itemizedlist>
+    -->
+    <property name="status" type="u" access="readwrite"/>
+
+    <!--
+      status-text: The descriptive status for the session
+    -->
+    <property name="status-text" type="s" access="readwrite"/>
+
+    <!--
+      SetStatus:
+      @status: The new status value
+
+      Set the status value of the session.
+    -->
     <method name="SetStatus">
-      <arg type="u" name="status" direction="in">
-        <doc:doc>
-          <doc:summary>The status value</doc:summary>
-        </doc:doc>
-      </arg>
-      <doc:doc>
-        <doc:description>
-          <doc:para>Set the status value of the session.</doc:para>
-        </doc:description>
-      </doc:doc>
-    </method>
-    <method name="SetStatusText">
-      <arg type="s" name="status_text" direction="in">
-        <doc:doc>
-          <doc:summary>The descriptive status for the session.</doc:summary>
-        </doc:doc>
-      </arg>
-      <doc:doc>
-        <doc:description>
-          <doc:para>Set the descriptive status text for the session.</doc:para>
-        </doc:description>
-      </doc:doc>
+      <arg type="u" name="status" direction="in"/>
     </method>
 
+    <!--
+      SetStatusText:
+      @status_text: The new descriptive status for the session.
+
+      Set the descriptive status text for the session.
+    -->
+    <method name="SetStatusText">
+      <arg type="s" name="status_text" direction="in"/>
+    </method>
+
+    <!--
+      StatusChanged:
+      @status: The new status value
+
+      Emitted when the session status value has changed
+    -->
     <signal name="StatusChanged">
-      <arg name="status" type="u">
-        <doc:doc>
-          <doc:summary>The new status value</doc:summary>
-        </doc:doc>
-      </arg>
-      <doc:doc>
-        <doc:description>
-          <doc:para>Indicates that the session status value has changed.</doc:para>
-        </doc:description>
-      </doc:doc>
+      <arg name="status" type="u"/>
     </signal>
+
+    <!--
+      StatusTextChanged:
+      @status_text: The new status text
+
+      Indicates that the descriptive session status text has changed.
+    -->
     <signal name="StatusTextChanged">
-      <arg name="status_text" type="s">
-        <doc:doc>
-          <doc:summary>The new status text</doc:summary>
-        </doc:doc>
-      </arg>
-      <doc:doc>
-        <doc:description>
-          <doc:para>Indicates that the descriptive session status text has changed.</doc:para>
-        </doc:description>
-      </doc:doc>
+      <arg name="status_text" type="s"/>
     </signal>
 
   </interface>

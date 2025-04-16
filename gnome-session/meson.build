@@ -47,22 +47,26 @@ if have_x11
 endif
 
 dbus_ifaces = [
-  ['org.gnome.SessionManager', 'ExportedManager'],
-  ['org.gnome.SessionManager.Client', 'ExportedClient'],
-  ['org.gnome.SessionManager.ClientPrivate', 'ExportedClientPrivate'],
-  ['org.gnome.SessionManager.App', 'ExportedApp'],
-  ['org.gnome.SessionManager.Inhibitor', 'ExportedInhibitor'],
-  ['org.gnome.SessionManager.Presence', 'ExportedPresence']
+  'org.gnome.SessionManager',
+  'org.gnome.SessionManager.Client',
+  'org.gnome.SessionManager.ClientPrivate',
+  'org.gnome.SessionManager.App',
+  'org.gnome.SessionManager.Inhibitor',
+  'org.gnome.SessionManager.Presence',
 ]
 
+xml_dbus_docs = []
+
 foreach iface: dbus_ifaces
-  sources += gnome.gdbus_codegen(
-    iface[0],
-    iface[0] + '.xml',
-    interface_prefix: iface[0] + '.',
+  out = gnome.gdbus_codegen(
+    iface,
+    iface + '.xml',
+    interface_prefix: iface + '.',
     namespace: 'Gsm',
-    annotations: [iface[0], 'org.gtk.GDBus.C.Name', iface[1]]
+    docbook: 'ref'
   )
+  sources += [out[0], out[1]] # .c/.h sources
+  xml_dbus_docs += out[2] # docbook XML
 endforeach
 
 cflags = [

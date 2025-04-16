@@ -1,8 +1,5 @@
-xsltproc = find_program('xsltproc')
-man1_dir = join_paths(get_option('mandir'), 'man1')
-
 xsltproc_cmd = [
-  xsltproc,
+  find_program('xsltproc'),
   '--output', '@OUTPUT@',
   '--nonet',
   '--stringparam', 'man.output.quietly', '1',
@@ -22,13 +19,14 @@ mans = [
 
 foreach man: mans
   output = man + '.1'
-
   custom_target(
     output,
     input: man + '.xml',
     output: output,
     command: xsltproc_cmd,
     install: true,
-    install_dir: man1_dir
+    install_dir: get_option('mandir') / 'man1'
   )
+
+  xml_man_pages += files(man + '.xml')
 endforeach
