@@ -15,6 +15,7 @@ xsltproc_cmd = [
 ]
 
 mans = [
+  'gnome-session',
   'gnome-session-inhibit',
   'gnome-session-quit',
 ]
@@ -31,12 +32,3 @@ foreach man: mans
     install_dir: man1_dir
   )
 endforeach
-
-man_data = files(
-  'gnome-session.1',
-)
-
-install_data(
-  man_data,
-  install_dir: man1_dir
-)
