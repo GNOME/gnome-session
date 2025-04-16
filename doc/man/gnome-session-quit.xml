@@ -1,0 +1,97 @@
+<!--
+  SPDX-License-Identifier: GPL-2.0-or-later
+
+  (C) 2000 Miguel de Icaza (miguel@helixcode.com)
+  (C) 2009-2010 Vincent Untz (vuntz@gnome.org)
+  (C) 2025 Red Hat
+-->
+
+<refentry id="gnome-session-quit" lang="en">
+  <refentryinfo>
+    <title>gnome-session-quit</title>
+    <productname>gnome-session</productname>
+  </refentryinfo>
+
+  <refmeta>
+    <refentrytitle>gnome-session-quit</refentrytitle>
+    <manvolnum>1</manvolnum>
+    <refmiscinfo class="manual">User Commands</refmiscinfo>
+  </refmeta>
+
+  <refnamediv>
+    <refname>gnome-session-quit</refname>
+    <refpurpose>End the current GNOME session</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <cmdsynopsis>
+      <command>gnome-session-quit</command>
+      <arg choice="opt" rep="repeat">OPTION</arg>
+    </cmdsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Description</title>
+    <para>
+      <command>gnome-session-quit</command> can be used to end a GNOME
+      session.
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>Options</title>
+    <variablelist>
+
+      <varlistentry>
+        <term><option>-h</option>, <option>--help</option></term>
+        <listitem><para>Print help and exit</para></listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>--logout</option></term>
+        <listitem><para>
+          Prompt the user to confirm logout. This is the default behavior.
+          Cannot be combined with <option>--power-off</option> or
+          <option>--reboot</option>.
+        </para></listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>--power-off</option></term>
+        <listitem><para>
+          Prompt the user to confirm system power off. Cannot be combined with
+          <option>--logout</option> or <option>--reboot</option>.
+        </para></listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>--reboot</option></term>
+        <listitem><para>
+          Prompt the user to confirm system reboot. Cannot be combined with
+          <option>--logout</option> or <option>--power-off</option>.
+        </para></listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>--force</option></term>
+        <listitem><para>Ignore any inhibitors.</para></listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>--no-prompt</option></term>
+        <listitem><para>
+          End the session without user interaction. This only works with
+          <option>--logout</option>.
+        </para></listitem>
+      </varlistentry>
+
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>See also</title>
+    <para>
+      <citerefentry><refentrytitle>gnome-session</refentrytitle><manvolnum>1</manvolnum></citerefentry>
+    </para>
+  </refsect1>
+</refentry>
