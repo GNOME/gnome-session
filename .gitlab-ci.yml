@@ -12,7 +12,7 @@ include:
       meson-options: "-Dx11=false"
   - component: "gitlab.gnome.org/GNOME/citemplates/basic-deploy-docs@adrianvovk/basic-docs-subdir"
     inputs:
-      docs-artifact-subdir: "gnome-session/html/"
+      docs-artifact-subdir: "./gnome-session/html/"
   - component: gitlab.gnome.org/GNOME/citemplates/release-service@master
     inputs:
       dist-job-name: "build-gnomeos"
