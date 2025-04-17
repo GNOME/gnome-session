@@ -1,3 +1,5 @@
+
+
 include:
   - project: "GNOME/citemplates"
     file: "templates/default-rules.yml"
@@ -8,7 +10,9 @@ include:
     inputs:
       job-name: "build-gnomeos-no-x11"
       meson-options: "-Dx11=false"
-  - component: "gitlab.gnome.org/GNOME/citemplates/basic-deploy-docs@master"
+  - component: "gitlab.gnome.org/GNOME/citemplates/basic-deploy-docs@adrianvovk/basic-docs-subdir"
+    inputs:
+      docs-artifact-subdir: "gnome-session/html/"
   - component: gitlab.gnome.org/GNOME/citemplates/release-service@master
     inputs:
       dist-job-name: "build-gnomeos"
