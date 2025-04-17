@@ -9,26 +9,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2025-04-11 01:28+0000\n"
-"PO-Revision-Date: 2025-04-12 00:53+0200\n"
+"POT-Creation-Date: 2025-04-14 21:21+0000\n"
+"PO-Revision-Date: 2025-04-15 18:46+0200\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
-"%100==4 ? 3 : 0);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
+"n%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 2.2.1\n"
-
-#: data/gnome-custom-session.desktop.in.in:3
-msgid "Custom"
-msgstr "Po meri"
-
-#: data/gnome-custom-session.desktop.in.in:4
-msgid "This entry lets you select a saved session"
-msgstr "Možnost omogoča izbor shranjene seje"
+"X-Generator: Poedit 3.4.2\n"
 
 #: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
 msgid "GNOME"
@@ -38,10 +30,6 @@ msgstr "GNOME"
 #: data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
 msgstr "Seja omogoča prijavo v namizje GNOME."
-
-#: data/gnome-dummy.session.desktop.in.in:3
-msgid "GNOME dummy"
-msgstr "Poskusni GNOME"
 
 #: data/gnome-wayland.desktop.in.in:3
 msgid "GNOME on Wayland"
@@ -91,35 +79,11 @@ msgstr ""
 "Izbrana možnost omogoči prikaz opozorila po prijavi, če je seja samodejno "
 "povrnjena."
 
-#: data/session-selector.ui:15
-msgid "Custom Session"
-msgstr "Seja po meri"
-
-#: data/session-selector.ui:50 tools/gnome-session-selector.c:102
-msgid "Please select a custom session to run"
-msgstr "Izberite sejo po meri za zagon"
-
-#: data/session-selector.ui:105
-msgid "_New Session"
-msgstr "_Nova seja"
-
-#: data/session-selector.ui:119
-msgid "_Remove Session"
-msgstr "_Odstrani sejo"
-
-#: data/session-selector.ui:133
-msgid "Rena_me Session"
-msgstr "Pre_imenuj sejo"
-
-#: data/session-selector.ui:168
-msgid "_Continue"
-msgstr "N_adaljuj"
-
-#: gnome-session/gsm-fail-whale-dialog.c:318
-msgid "Oh no!  Something has gone wrong."
+#: gnome-session/gsm-fail-whale-dialog.c:90
+msgid "Oh no! Something has gone wrong."
 msgstr "Prišlo je do nepričakovane napake."
 
-#: gnome-session/gsm-fail-whale-dialog.c:325
+#: gnome-session/gsm-fail-whale-dialog.c:97
 msgid ""
 "A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
@@ -127,7 +91,7 @@ msgstr ""
 "Prišlo je do napake, ki je ni mogoče samodejno odpraviti. Stopite v stik s "
 "skrbnikom."
 
-#: gnome-session/gsm-fail-whale-dialog.c:327
+#: gnome-session/gsm-fail-whale-dialog.c:99
 msgid ""
 "A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
@@ -135,7 +99,7 @@ msgstr ""
 "Prišlo je do napake, ki je ni mogoče samodejno odpraviti. Priporočljivo je "
 "onemogočiti vse razširitve, dokler se napaka ne razreši."
 
-#: gnome-session/gsm-fail-whale-dialog.c:329
+#: gnome-session/gsm-fail-whale-dialog.c:101
 msgid ""
 "A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
@@ -143,23 +107,23 @@ msgstr ""
 "Prišlo je do napake, ki je ni mogoče samodejno odpraviti.\n"
 "Odjavite se in poskusite znova."
 
-#: gnome-session/gsm-fail-whale-dialog.c:344
+#: gnome-session/gsm-fail-whale-dialog.c:109
 msgid "_Log Out"
 msgstr "_Odjava"
 
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:505
+#: gnome-session/gsm-fail-whale-dialog.c:153 gnome-session/main.c:479
 msgid "Enable debugging code"
 msgstr "Omogoči razhroščevanje kode"
 
-#: gnome-session/gsm-fail-whale-dialog.c:413
+#: gnome-session/gsm-fail-whale-dialog.c:154
 msgid "Allow logout"
 msgstr "Dovoli odjavo"
 
-#: gnome-session/gsm-fail-whale-dialog.c:414
+#: gnome-session/gsm-fail-whale-dialog.c:155
 msgid "Show extension warning"
 msgstr "Pokaži opozorila razširitev"
 
-#: gnome-session/gsm-manager.c:1305 gnome-session/gsm-manager.c:2063
+#: gnome-session/gsm-manager.c:1305 gnome-session/gsm-manager.c:2054
 msgid "Not responding"
 msgstr "Ni odziva"
 
@@ -185,51 +149,51 @@ msgid ""
 "down\n"
 msgstr "Povezave z odjemalci bodo zavrnjene, ker se trenutna seja izklaplja.\n"
 
-#: gnome-session/gsm-xsmp-server.c:607
+#: gnome-session/gsm-xsmp-server.c:613
 #, c-format
 msgid "Could not create ICE listening socket: %s"
 msgstr "Ni mogoče ustvariti vtiča za prisluh ICE: %s"
 
-#: gnome-session/main.c:502
+#: gnome-session/main.c:476
 msgid "Running as systemd service"
 msgstr "Zagnano kot storitev systemd"
 
-#: gnome-session/main.c:503
+#: gnome-session/main.c:477
 msgid "Override standard autostart directories"
 msgstr "Preskoči običajne mape samodejnega zagona"
 
-#: gnome-session/main.c:503
+#: gnome-session/main.c:477
 msgid "AUTOSTART_DIR"
 msgstr "ZAČETNA_MAPA"
 
-#: gnome-session/main.c:504
+#: gnome-session/main.c:478
 msgid "Session to use"
 msgstr "Seja za uporabo"
 
-#: gnome-session/main.c:504
+#: gnome-session/main.c:478
 msgid "SESSION_NAME"
 msgstr "IME_SEJE"
 
-#: gnome-session/main.c:506
+#: gnome-session/main.c:480
 msgid "Do not load user-specified applications"
 msgstr "Ne naloži uporabniško določenih programov"
 
-#: gnome-session/main.c:507
+#: gnome-session/main.c:481
 msgid "Version of this application"
 msgstr "Različica programa"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:509
+#: gnome-session/main.c:483
 msgid "Show the fail whale dialog for testing"
-msgstr "Pokaži pogovorno okno napak med preizkušanjem."
+msgstr "Pokaži pogovorno okno napak med preizkušanjem"
 
-#: gnome-session/main.c:510
-msgid "Disable hardware acceleration check"
-msgstr "Onemogoči strojno pospeševanje"
+#: gnome-session/main.c:484
+msgid "This option is ignored"
+msgstr "Ta možnost je prezrta"
 
-#: gnome-session/main.c:542
+#: gnome-session/main.c:516
 msgid " — the GNOME session manager"
-msgstr "– upravljalnik seje GNOME"
+msgstr " – upravljalnik seje GNOME"
 
 #: tools/gnome-session-ctl.c:247
 msgid "Start gnome-session-shutdown.target"
@@ -262,75 +226,61 @@ msgstr ""
 msgid "Program needs exactly one parameter"
 msgstr "Program zahteva natanko en parameter"
 
-#: tools/gnome-session-inhibit.c:64
-#, fuzzy, c-format
+#: tools/gnome-session-inhibit.c:69
+#, c-format
 msgid "Unknown inhibit argument: %s"
-msgstr "Neznani argument za zatiranje: %s"
+msgstr "Neznani argument za oviranje: %s"
 
-#: tools/gnome-session-inhibit.c:266
+#: tools/gnome-session-inhibit.c:289
 #, c-format
-msgid "Error while creating pipe: %s\n"
-msgstr "Napaka pri ustvarjanju cevi: %s\n"
+msgid "Failed to execute %s: %m\n"
+msgstr "Napaka med izvajanjem %s: %m\n"
 
-#: tools/gnome-session-inhibit.c:283
-msgid "Failure reading pipe\n"
-msgstr "Napaka pri branju cevi\n"
-
-#: tools/gnome-session-inhibit.c:287
-#, c-format
-msgid "Failed to execute %s\n"
-msgstr "Napaka med izvajanjem %s\n"
-
-#: tools/gnome-session-inhibit.c:332
+#: tools/gnome-session-inhibit.c:361
 msgid "Show program version"
 msgstr "Pokaži različico programa"
 
-#: tools/gnome-session-inhibit.c:333
-#, fuzzy
+#: tools/gnome-session-inhibit.c:362
 msgid "The application id to use when inhibiting (optional)"
-msgstr "ID programu, ki se uporabi pri zaviranju (izbirno)"
+msgstr "ID programu, ki se uporabi pri oviranju (izbirno)"
 
-#: tools/gnome-session-inhibit.c:333
+#: tools/gnome-session-inhibit.c:362
 msgid "ID"
 msgstr "Oznaka ID"
 
-#: tools/gnome-session-inhibit.c:334
-#, fuzzy
+#: tools/gnome-session-inhibit.c:363
 msgid "The reason for inhibiting (optional)"
-msgstr "Razlog za zatiranje (neobvezno)"
+msgstr "Razlog za oviranje (neobvezno)"
 
-#: tools/gnome-session-inhibit.c:334
+#: tools/gnome-session-inhibit.c:363
 msgid "REASON"
 msgstr "RAZLOG"
 
-#: tools/gnome-session-inhibit.c:335
-#, fuzzy
+#: tools/gnome-session-inhibit.c:364
 msgid "Add action to inhibit (repeatable)"
-msgstr "Dejanje, ki naj bo zatrto (se lahko ponavlja)"
+msgstr "Dejanje, ki naj bo ovirano (se lahko ponavlja)"
 
-#: tools/gnome-session-inhibit.c:335
+#: tools/gnome-session-inhibit.c:364
 msgid "ACTION"
 msgstr "DEJANJE"
 
-#: tools/gnome-session-inhibit.c:336
+#: tools/gnome-session-inhibit.c:365
 msgid "Do not launch COMMAND and wait forever instead"
 msgstr "Ne zaženi UKAZ-a in namesto njega čakaj v nedogled"
 
-#: tools/gnome-session-inhibit.c:337
-#, fuzzy
+#: tools/gnome-session-inhibit.c:366
 msgid "List the existing inhibitions, and exit"
-msgstr "Navedi obstoječa zatiranja in zapri program"
+msgstr "Navedi obstoječa oviranja in zapri program"
 
-#: tools/gnome-session-inhibit.c:349
+#: tools/gnome-session-inhibit.c:378
 msgid "COMMAND"
 msgstr "UKAZ"
 
-#: tools/gnome-session-inhibit.c:355
-#, fuzzy
+#: tools/gnome-session-inhibit.c:384
 msgid "Execute COMMAND while inhibiting some session functionality."
-msgstr "Izvede UKAZ, medtem ko zavira nekatere funkcije seje."
+msgstr "Izvede UKAZ, medtem ko ovira nekatere funkcije seje."
 
-#: tools/gnome-session-inhibit.c:356
+#: tools/gnome-session-inhibit.c:385
 msgid ""
 "Valid ACTION values are: logout, switch-user, suspend, idle, and automount.\n"
 "If no --inhibit options are specified, idle is assumed."
@@ -339,7 +289,7 @@ msgstr ""
 "automount.\n"
 "Če ni določenih možnosti --inhibit, se predpostavi idle."
 
-#: tools/gnome-session-inhibit.c:380
+#: tools/gnome-session-inhibit.c:409
 msgid "Neither COMMAND nor --inhibit-only were specified."
 msgstr "Niti UKAZ niti --inhibit-only nista bila določena."
 
@@ -370,28 +320,3 @@ msgstr "Ni se mogoče povezati z upravljalnikom sej"
 #: tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
 msgstr "Program zagnan z nasprotujočimi si možnostmi ukaza"
-
-#: tools/gnome-session-selector.c:61
-#, c-format
-msgid "Session %d"
-msgstr "Seja %d"
-
-#: tools/gnome-session-selector.c:107
-msgid ""
-"Session names are not allowed to start with “.” or contain “/” characters"
-msgstr ""
-"Imena seje se ne smejo začeti s piko » . « in ne smejo vsebovati poševnice "
-"» / «."
-
-#: tools/gnome-session-selector.c:111
-msgid "Session names are not allowed to start with “.”"
-msgstr "Imena seje se ne smejo začeti s piko » . «."
-
-#: tools/gnome-session-selector.c:115
-msgid "Session names are not allowed to contain “/” characters"
-msgstr "Imena seje ne smejo vsebovati poševnice » / «."
-
-#: tools/gnome-session-selector.c:123
-#, c-format
-msgid "A session named “%s” already exists"
-msgstr "Seja z imenom »%s« že obstaja"
