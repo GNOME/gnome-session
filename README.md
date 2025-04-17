@@ -8,6 +8,8 @@ which xdg-desktop-portal backends to use.
 
 You may download updates to the package from: http://download.gnome.org/sources/gnome-session/
 
+You can also [view `gnome-session`'s documentation](https://gnome.pages.gitlab.gnome.org/gnome-session)
+
 ## Contributing
 
 To discuss `gnome-session`, you should use the
