@@ -904,7 +904,7 @@ inhibit_done (GObject      *source,
 
 static void
 gsm_systemd_call_inhibit (GsmSystemd *manager,
-                          char       *what)
+                          const char *what)
 {
         g_dbus_proxy_call_with_unix_fd_list (manager->priv->sd_proxy,
                                              "Inhibit",

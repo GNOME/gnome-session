@@ -109,12 +109,12 @@ void                  gsm_client_set_app_id                 (GsmClient  *client,
 void                  gsm_client_set_status                 (GsmClient  *client,
                                                              guint       status);
 
-gboolean              gsm_client_end_session                (GsmClient  *client,
-                                                             guint       flags,
-                                                             GError    **error);
-gboolean              gsm_client_query_end_session          (GsmClient  *client,
-                                                             guint       flags,
-                                                             GError    **error);
+gboolean              gsm_client_end_session                (GsmClient                *client,
+                                                             GsmClientEndSessionFlag   flags,
+                                                             GError                  **error);
+gboolean              gsm_client_query_end_session          (GsmClient               *client,
+                                                             GsmClientEndSessionFlag  flags,
+                                                             GError                  **error);
 gboolean              gsm_client_cancel_end_session         (GsmClient  *client,
                                                              GError    **error);
 
