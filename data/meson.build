@@ -190,3 +190,10 @@ install_data(
   'gnome-portals.conf',
   install_dir: session_datadir / 'xdg-desktop-portal',
 )
+
+if get_option('mimeapps')
+  install_data(
+    'gnome-mimeapps.list',
+    install_dir: session_datadir / 'applications',
+  )
+endif
