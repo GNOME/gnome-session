@@ -1,48 +1,64 @@
 # Install the .desktop files that tell GDM about the GNOME session
 
-desktops = [
+wayland_desktops = [
   'gnome',
   'gnome-wayland',
 ]
-if have_x11
-  desktops += ['gnome-xorg']
-endif
-
-foreach name: desktops
+foreach name : wayland_desktops
   desktop = name + '.desktop'
   desktop_in = configure_file(
     input: desktop + '.in.in',
     output: desktop + '.in',
     configuration: {
       'bindir': session_bindir,
+      'canrunheadless': 'true',
     },
   )
-
-  if name.endswith('-xorg') and have_x11
-    install_dir = session_datadir / 'xsessions'
-  elif name.endswith('-wayland')
-    install_dir = session_datadir / 'wayland-sessions'
-  else
-    # FIXME: The same target can not be copied into two directories.
-    #        There is a workaround in meson_post_install.py until proper
-    #        solution arises:
-    #        https://github.com/mesonbuild/meson/issues/2416
-    install_dir = session_datadir / 'xsessions'
-    #install_dir = [
-    #  join_paths(session_datadir, 'xsessions'),
-    #  join_paths(session_datadir, 'wayland-sessions')
-    #]
-  endif
-
   desktop_target = i18n.merge_file(
     type: 'desktop',
     input: desktop_in,
     output: desktop,
     po_dir: po_dir,
     install: true,
-    install_dir: install_dir
+    install_dir: session_datadir / 'wayland-sessions',
   )
 endforeach
+
+if have_x11
+  xorg_desktops = [
+    'gnome',
+    'gnome-xorg',
+  ]
+  foreach name : xorg_desktops
+    desktop = name + '.desktop'
+
+    # 'gnome' target name is already used for wayland desktop,
+    # use 'gnome-copy' and on meson_post_install
+    # modify its name to 'gnome' again
+    if name == 'gnome'
+      desktop_out = 'gnome-copy.desktop'
+    else
+      desktop_out = desktop
+    endif
+
+    desktop_in = configure_file(
+      input: desktop + '.in.in',
+      output: desktop_out + '.in',
+      configuration: {
+        'bindir': session_bindir,
+        'canrunheadless': 'false',
+      },
+    )
+    desktop_target = i18n.merge_file(
+      type: 'desktop',
+      input: desktop_in,
+      output: desktop_out,
+      po_dir: po_dir,
+      install: true,
+      install_dir: session_datadir / 'xsessions',
+    )
+  endforeach
+endif
 
 # Next, let's configure the required components for a session.
 

@@ -14,13 +14,7 @@ try:
 except IndexError:
     have_x11 = False
 
-# FIXME: Meson is unable to copy a generated target file:
-#        https://groups.google.com/forum/#!topic/mesonbuild/3iIoYPrN4P0
-dst_dir = os.path.join(install_root, 'wayland-sessions')
-if not os.path.exists(dst_dir):
-  os.makedirs(dst_dir)
-
 if have_x11:
-    src = os.path.join(install_root, 'xsessions', 'gnome.desktop')
-    dst = os.path.join(dst_dir, 'gnome.desktop')
-    shutil.copyfile(src, dst)
+    src = os.path.join(install_root, 'xsessions', 'gnome-copy.desktop')
+    dst = os.path.join(install_root, 'xsessions', 'gnome.desktop')
+    shutil.move(src, dst)
