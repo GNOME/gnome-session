@@ -12,6 +12,7 @@ foreach name : wayland_desktops
     configuration: {
       'bindir': session_bindir,
       'canrunheadless': 'true',
+      'displayregisters': 'true',
     },
   )
   desktop_target = i18n.merge_file(
@@ -47,6 +48,7 @@ if have_x11
       configuration: {
         'bindir': session_bindir,
         'canrunheadless': 'false',
+        'displayregisters': 'false',
       },
     )
     desktop_target = i18n.merge_file(
