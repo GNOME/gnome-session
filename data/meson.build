@@ -165,13 +165,13 @@ systemd_target = [
   'gnome-session-initialized.target',
   'gnome-session-shutdown.target',
   'gnome-session-failed.target',
+  'gnome-session-x11-services.target',
+  'gnome-session-x11-services-ready.target',
 ]
 if have_x11
   systemd_target += [
     'gnome-session-x11@.target',
     'gnome-session-x11.target',
-    'gnome-session-x11-services.target',
-    'gnome-session-x11-services-ready.target',
   ]
 endif
 
