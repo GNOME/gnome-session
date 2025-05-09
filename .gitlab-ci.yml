@@ -8,8 +8,8 @@ include:
       job-name: "build-gnomeos"
   - component: gitlab.gnome.org/GNOME/citemplates/gnomeos-basic-ci@master
     inputs:
-      job-name: "build-gnomeos-no-x11"
-      meson-options: "-Dx11=false"
+      job-name: "build-gnomeos-with-x11"
+      meson-options: "-Dx11=true"
   - component: "gitlab.gnome.org/GNOME/citemplates/basic-deploy-docs@adrianvovk/basic-docs-subdir"
     inputs:
       docs-artifact-subdir: "./gnome-session/html/"
@@ -66,7 +66,7 @@ build-fedora:
     - dnf install -y --setopt=install_weak_deps=false $DEPENDENCIES
   parallel:
     matrix:
-      - MESON_OPTIONS: "$FEDORA_MESON_OPTIONS"
+      - MESON_OPTIONS: "$FEDORA_MESON_OPTIONS -Dx11=true"
         DEPENDENCIES: "$DEPS_X11"
-      - MESON_OPTIONS: "$FEDORA_MESON_OPTIONS -Dx11=false"
+      - MESON_OPTIONS: "$FEDORA_MESON_OPTIONS"
         DEPENDENCIES: "$COMMON_DEPENDENCIES"
