@@ -38,13 +38,6 @@ sources = files(
   'main.c'
 )
 
-if have_x11
-  sources += [
-    'gsm-xsmp-client.c',
-    'gsm-xsmp-server.c',
-  ]
-endif
-
 dbus_ifaces = [
   'org.gnome.SessionManager',
   'org.gnome.SessionManager.Client',

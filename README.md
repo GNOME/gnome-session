@@ -43,14 +43,6 @@ Before you can build `gnome-session`, you need the following dependencies:
 - `gtk4`
 - `gnome-desktop4`
 
-If you're building with X11 support, you'll also need:
-
-- `libX11`
-- `libSM`
-- `libICE`
-- `xtrans`
-- `libXcomposite`
-
 Once you have all the necessary dependencies, you can use Meson to build
 `gnome-session`:
 

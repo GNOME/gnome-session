@@ -5,11 +5,6 @@ programs = [
 ]
 
 if have_x11
-  deps = session_deps + [
-    sm_dep,
-    ice_dep
-  ]
-
   programs += [
     # name, deps, install_dir
     ['gnome-session-quit', deps, session_bindir],

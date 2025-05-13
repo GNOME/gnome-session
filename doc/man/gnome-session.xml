@@ -54,10 +54,6 @@
       <filename>$XDG_CONFIG_DIRS/gnome-session/sessions</filename> and
       <filename>$XDG_DATA_DIRS/gnome-session/sessions</filename>.
     </para>
-    <para>
-      <command>gnome-session</command> is an X11R6 session manager. It can manage
-      GNOME applications as well as any X11R6 SM compliant application.
-    </para>
   </refsect1>
 
   <refsect1>
@@ -245,14 +241,6 @@ RequiredComponents=gnome-shell;gnome-settings-daemon;
     </para>
 
     <variablelist>
-      <varlistentry>
-        <term><varname>SESSION_MANAGER</varname></term>
-        <listitem><para>
-          This variable is used by X11R6 session-manager clients to contact
-          <command>gnome-session</command>.
-        </para></listitem>
-      </varlistentry>
-
       <varlistentry>
         <term><filename>DISPLAY</filename></term>
         <listitem><para>

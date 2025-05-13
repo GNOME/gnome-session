@@ -36,7 +36,6 @@ set_defines = [
 foreach define: set_defines
   config_h.set_quoted(define[0], define[1])
 endforeach
-config_h.set('HAVE_X11', have_x11)
 
 # compiler flags
 common_flags = ['-DHAVE_CONFIG_H']
@@ -85,12 +84,6 @@ gio_dep = dependency('gio-2.0', version: glib_req_version)
 glib_dep = dependency('glib-2.0', version: glib_req_version)
 gtk_dep = dependency('gtk4')
 
-if have_x11
-  ice_dep = dependency('ice')
-  sm_dep = dependency('sm')
-  x11_dep = dependency('x11')
-endif
-
 session_deps = [
   gio_dep,
   glib_dep,
@@ -99,14 +92,6 @@ session_deps = [
 ]
 
 session_bin_deps = session_deps
-
-if have_x11
-  session_bin_deps += [
-    dependency('xtrans'),
-    ice_dep,
-    sm_dep
-  ]
-endif
 
 session_bin_deps += dependency('gio-unix-2.0', version: glib_req_version)
 
