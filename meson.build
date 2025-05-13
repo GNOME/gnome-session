@@ -81,32 +81,30 @@ add_project_arguments(common_flags + compiler_flags, language: 'c')
 glib_req_version = '>= 2.46.0'
 
 gio_dep = dependency('gio-2.0', version: glib_req_version)
-glib_dep = dependency('glib-2.0', version: glib_req_version)
 gtk_dep = dependency('gtk4')
 
 session_deps = [
   gio_dep,
-  glib_dep,
+  dependency('glib-2.0', version: glib_req_version),
   dependency('gnome-desktop-4'),
   dependency('json-glib-1.0', version: '>= 0.10')
 ]
 
-session_bin_deps = session_deps
+libsystemd_dep = dependency('libsystemd', version: '>= 209', required: true)
+config_h.set('SYSTEMD_STRICT_ENV',
+              libsystemd_dep.version().version_compare('< 248'))
 
-session_bin_deps += dependency('gio-unix-2.0', version: glib_req_version)
+session_bin_deps = session_deps + [
+  libsystemd_dep,
+  dependency('gio-unix-2.0', version: glib_req_version),
+]
 
-# Check for systemd
 systemd_userunitdir = get_option('systemduserunitdir')
 if systemd_userunitdir == ''
   systemd_dep = dependency('systemd', version: '>= 242', required: true)
   systemd_userunitdir = systemd_dep.get_variable(pkgconfig: 'systemduserunitdir',
                                                  pkgconfig_define: ['prefix', session_prefix])
 endif
-
-libsystemd_dep = dependency('libsystemd', version: '>= 209', required: true)
-session_bin_deps += libsystemd_dep
-libsystemd_version = libsystemd_dep.version()
-config_h.set('SYSTEMD_STRICT_ENV', libsystemd_version.version_compare('< 248'))
 
 configure_file(
   output: 'config.h',

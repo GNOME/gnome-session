@@ -2,14 +2,8 @@ programs = [
   # name, deps, install_dir
   ['gnome-session-ctl', session_bin_deps, session_libexecdir],
   ['gnome-session-inhibit', session_deps, session_bindir],
+  ['gnome-session-quit', session_deps, session_bindir],
 ]
-
-if have_x11
-  programs += [
-    # name, deps, install_dir
-    ['gnome-session-quit', deps, session_bindir],
-  ]
-endif
 
 foreach program: programs
   executable(
