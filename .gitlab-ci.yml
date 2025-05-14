@@ -1,5 +1,3 @@
-
-
 include:
   - project: "GNOME/citemplates"
     file: "templates/default-rules.yml"
@@ -18,35 +16,16 @@ include:
       dist-job-name: "build-gnomeos"
       tarball-artifact-path: "_builddir/meson-dist/$CI_PROJECT_NAME-$CI_COMMIT_TAG.tar.xz"
 
-.build:
-  stage: "build"
-  variables:
-    _DEST: "$CI_PROJECT_DIR/destdir/"
-  script:
-    - meson setup _build $MESON_OPTIONS
-    - meson compile -C _build
-    - meson test -C _build --print-errorlogs --no-stdsplit --no-rebuild
-    - meson dist -C _build --no-tests
-
-    - mkdir -p $_DEST
-    - meson install -C _build --no-rebuild --destdir="$_DEST"
-  after_script:
-    # Cleanup the destdir and thus container volume once we are done
-    - rm -rvf $_DEST
-  artifacts:
-    expire_in: "2 days"
-    when: "always"
-    paths:
-      - "_build/meson-logs/"
-    reports:
-      junit: "_build/meson-logs/testlog.junit.xml"
-
 build-fedora:
-  extends: ".build"
+  stage: "build"
   image: "fedora:40"
   variables:
-    FEDORA_MESON_OPTIONS: "--prefix=/usr -Ddocbook=false -Dman=false"
-    COMMON_DEPENDENCIES: >-
+    _DEST: "$CI_PROJECT_DIR/destdir/"
+    MESON_OPTIONS: >-
+      --prefix=/usr
+      -Ddocbook=false
+      -Dman=false
+    DEPENDENCIES: >-
       gcc
       git
       json-glib-devel
@@ -55,18 +34,26 @@ build-fedora:
       systemd-devel
       gtk4-devel
       gnome-desktop4-devel
-    DEPS_X11: >-
-      $COMMON_DEPENDENCIES
-      libX11-devel
-      libSM-devel
-      libICE-devel
-      xorg-x11-xtrans-devel
-      libXcomposite-devel
   before_script:
     - dnf install -y --setopt=install_weak_deps=false $DEPENDENCIES
+  script:
+    - meson setup _build $MESON_OPTIONS $EXTRA_OPTIONS
+    - meson compile -C _build
+    - meson test -C _build --print-errorlogs --no-stdsplit --no-rebuild
+    - meson dist -C _build --no-tests
+    - mkdir -p $_DEST
+    - meson install -C _build --no-rebuild --destdir="$_DEST"
+  after_script:
+    # Cleanup the destdir and thus container volume once we are done
+    - rm -rvf $_DEST
   parallel:
     matrix:
-      - MESON_OPTIONS: "$FEDORA_MESON_OPTIONS -Dx11=true"
-        DEPENDENCIES: "$DEPS_X11"
-      - MESON_OPTIONS: "$FEDORA_MESON_OPTIONS"
-        DEPENDENCIES: "$COMMON_DEPENDENCIES"
+      - EXTRA_OPTIONS: "-Dx11=true"
+      - EXTRA_OPTIONS: ""
+  artifacts:
+    expire_in: "2 days"
+    when: "always"
+    paths:
+      - "_build/meson-logs/"
+    reports:
+      junit: "_build/meson-logs/testlog.junit.xml"
