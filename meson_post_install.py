@@ -9,12 +9,6 @@ if os.environ.get('DESTDIR'):
 else:
   install_root = sys.argv[1]
 
-try:
-    have_x11 = sys.argv[2] == 'true'
-except IndexError:
-    have_x11 = False
-
-if have_x11:
-    src = os.path.join(install_root, 'xsessions', 'gnome-copy.desktop')
-    dst = os.path.join(install_root, 'xsessions', 'gnome.desktop')
-    shutil.move(src, dst)
+src = os.path.join(install_root, 'xsessions', 'gnome-copy.desktop')
+dst = os.path.join(install_root, 'xsessions', 'gnome.desktop')
+shutil.move(src, dst)

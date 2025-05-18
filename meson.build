@@ -125,10 +125,12 @@ subdir('data')
 subdir('doc')
 subdir('po')
 
-meson.add_install_script(
-  'meson_post_install.py',
-  [session_datadir, have_x11 ? 'true' : 'false'],
-)
+if have_x11
+  meson.add_install_script(
+    'meson_post_install.py',
+    session_datadir
+  )
+endif
 
 gnome.post_install(
   glib_compile_schemas: true,
