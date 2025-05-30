@@ -14,6 +14,7 @@ xmlto_searchpath = [
 
 xmlto_command = [
   find_program('xmlto'),
+  '--skip-validation',
   '-o', '@OUTPUT@',
   '--searchpath', ':'.join(xmlto_searchpath),
   '-m', files('config.xsl'),
