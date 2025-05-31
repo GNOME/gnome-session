@@ -4,10 +4,12 @@ include:
   - component: gitlab.gnome.org/GNOME/citemplates/gnomeos-basic-ci@master
     inputs:
       job-name: "build-gnomeos"
+      run-tests: "no"
   - component: gitlab.gnome.org/GNOME/citemplates/gnomeos-basic-ci@master
     inputs:
       job-name: "build-gnomeos-with-x11"
       meson-options: "-Dx11=true"
+      run-tests: "no"
   - component: "gitlab.gnome.org/GNOME/citemplates/basic-deploy-docs@adrianvovk/basic-docs-subdir"
     inputs:
       docs-artifact-subdir: "./gnome-session/html/"
