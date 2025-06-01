@@ -58,3 +58,10 @@ build-fedora:
       - "_build/meson-logs/"
     reports:
       junit: "_build/meson-logs/testlog.junit.xml"
+
+xmllint:
+  image: "quay.io/gnome_infrastructure/gnome-build-meta:core-nightly"
+  stage: "build"
+  needs: []
+  script:
+    - find . -name "*.xml" -exec xmllint --noout {} +
