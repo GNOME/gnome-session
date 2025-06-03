@@ -577,7 +577,7 @@ main (int argc, char **argv)
         session_name = opt_session_name;
 
         gsm_util_export_user_environment (&error);
-        if (error && !g_getenv ("RUNNING_UNDER_GDM"))
+        if (error)
                 g_warning ("Failed to upload environment to systemd: %s", error->message);
         g_clear_error (&error);
 
@@ -607,7 +607,7 @@ main (int argc, char **argv)
                          * in a previous session
                          */
                         gsm_util_systemd_reset_failed (&error);
-                        if (error && !g_getenv ("RUNNING_UNDER_GDM"))
+                        if (error)
                                 g_warning ("Failed to reset failed state of units: %s", error->message);
                         g_clear_error (&error);
 
@@ -618,10 +618,7 @@ main (int argc, char **argv)
                         }
 
                         /* We could not start the unit, fall back. */
-                        if (g_getenv ("RUNNING_UNDER_GDM"))
-                                g_message ("Falling back to non-systemd startup procedure. This is expected to happen for GDM sessions.");
-                        else
-                                g_warning ("Falling back to non-systemd startup procedure due to error: %s", error->message);
+                        g_warning ("Falling back to non-systemd startup procedure due to error: %s", error->message);
                         g_clear_error (&error);
                 } else {
                         g_warning ("Session manager already running!");
