@@ -449,15 +449,6 @@ main (int argc, char **argv)
         if (!g_getenv ("DBUS_SESSION_BUS_ADDRESS"))
                 g_error ("No session bus running! Cannot continue");
 
-        /* From 3.14 GDM sets XDG_CURRENT_DESKTOP. For compatibility with
-         * older versions of GDM,  other display managers, and startx,
-         * set a fallback value if we don't find it set.
-         */
-        if (g_getenv ("XDG_CURRENT_DESKTOP") == NULL) {
-            g_setenv("XDG_CURRENT_DESKTOP", "GNOME", TRUE);
-            gsm_util_setenv ("XDG_CURRENT_DESKTOP", "GNOME");
-        }
-
         /* Make sure we initialize gio in a way that does not autostart any daemon */
         initialize_gio ();
 
