@@ -47,7 +47,6 @@
 #define GSM_DBUS_NAME "org.gnome.SessionManager"
 
 static gboolean systemd_service = FALSE;
-static gboolean failsafe = FALSE;
 static gboolean show_version = FALSE;
 static gboolean debug = FALSE;
 static gboolean disable_acceleration_check = FALSE;
@@ -147,7 +146,7 @@ create_manager (void)
         GsmStore *client_store;
 
         client_store = gsm_store_new ();
-        manager = gsm_manager_new (client_store, failsafe, systemd_service);
+        manager = gsm_manager_new (client_store, FALSE, systemd_service);
         g_object_unref (client_store);
 
         g_unix_signal_add (SIGTERM, term_or_int_signal_cb, manager);
@@ -434,7 +433,6 @@ main (int argc, char **argv)
                 { "autostart", 'a', 0, G_OPTION_ARG_STRING_ARRAY, &override_autostart_dirs, N_("Override standard autostart directories"), N_("AUTOSTART_DIR") },
                 { "session", 0, 0, G_OPTION_ARG_STRING, &opt_session_name, N_("Session to use"), N_("SESSION_NAME") },
                 { "debug", 0, 0, G_OPTION_ARG_NONE, &debug, N_("Enable debugging code"), NULL },
-                { "failsafe", 'f', 0, G_OPTION_ARG_NONE, &failsafe, N_("Do not load user-specified applications"), NULL },
                 { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
                 { "disable-acceleration-check", 0, 0, G_OPTION_ARG_NONE, &disable_acceleration_check, N_("This option is ignored"), NULL },
                 { NULL, 0, 0, 0, NULL, NULL, NULL }
