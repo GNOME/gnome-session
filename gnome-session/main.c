@@ -41,7 +41,6 @@
 #include "gsm-session-fill.h"
 #include "gsm-store.h"
 #include "gsm-system.h"
-#include "gsm-fail-whale.h"
 
 #include <systemd/sd-journal.h>
 
@@ -51,7 +50,6 @@ static gboolean systemd_service = FALSE;
 static gboolean failsafe = FALSE;
 static gboolean show_version = FALSE;
 static gboolean debug = FALSE;
-static gboolean please_fail = FALSE;
 static gboolean disable_acceleration_check = FALSE;
 static const char *session_name = NULL;
 static GsmManager *manager = NULL;
@@ -439,8 +437,6 @@ main (int argc, char **argv)
                 { "debug", 0, 0, G_OPTION_ARG_NONE, &debug, N_("Enable debugging code"), NULL },
                 { "failsafe", 'f', 0, G_OPTION_ARG_NONE, &failsafe, N_("Do not load user-specified applications"), NULL },
                 { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
-                /* Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong */
-                { "whale", 0, 0, G_OPTION_ARG_NONE, &please_fail, N_("Show the fail whale dialog for testing"), NULL },
                 { "disable-acceleration-check", 0, 0, G_OPTION_ARG_NONE, &disable_acceleration_check, N_("This option is ignored"), NULL },
                 { NULL, 0, 0, 0, NULL, NULL, NULL }
         };
@@ -494,12 +490,6 @@ main (int argc, char **argv)
 
         gdm_log_init ();
         gdm_log_set_debug (debug);
-
-        if (please_fail) {
-                gsm_fail_whale_dialog_we_failed (TRUE, TRUE, NULL);
-                gsm_main ();
-                exit (1);
-        }
 
         env_override_autostart_dirs = g_getenv ("GNOME_SESSION_AUTOSTART_DIR");
 
