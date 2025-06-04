@@ -821,6 +821,10 @@ _client_end_session (GsmClient            *client,
         gboolean ret;
         GError  *error;
 
+        // HACK, but it's temporary until we drop builtin session startup.
+        if (g_strcmp0 ("org.gnome.Shell.desktop", gsm_client_peek_app_id (client)) == 0)
+            return FALSE;
+
         error = NULL;
         ret = gsm_client_end_session (client, data->flags, &error);
         if (! ret) {
@@ -1003,6 +1007,10 @@ _client_query_end_session (const char           *id,
         GsmManagerPrivate *priv = gsm_manager_get_instance_private (data->manager);
         gboolean ret;
         GError  *error;
+
+        // HACK, but it's temporary until we drop builtin session startup.
+        if (g_strcmp0 ("org.gnome.Shell.desktop", gsm_client_peek_app_id (client)) == 0)
+            return FALSE;
 
         error = NULL;
         ret = gsm_client_query_end_session (client, data->flags, &error);
