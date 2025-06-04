@@ -187,46 +187,6 @@ acquire_name (void)
                                NULL, NULL);
 }
 
-static gboolean
-require_dbus_session (int      argc,
-                      char   **argv,
-                      GError **error)
-{
-        char **new_argv;
-        int    i;
-
-        if (g_getenv ("DBUS_SESSION_BUS_ADDRESS"))
-                return TRUE;
-
-        /* Just a sanity check to prevent infinite recursion if
-         * dbus-launch fails to set DBUS_SESSION_BUS_ADDRESS 
-         */
-        g_return_val_if_fail (!g_str_has_prefix (argv[0], "dbus-launch"),
-                              TRUE);
-
-        /* +2 for our new arguments, +1 for NULL */
-        new_argv = g_malloc ((argc + 3) * sizeof (*argv));
-
-        new_argv[0] = "dbus-launch";
-        new_argv[1] = "--exit-with-session";
-        for (i = 0; i < argc; i++) {
-                new_argv[i + 2] = argv[i];
-        }
-        new_argv[i + 2] = NULL;
-        
-        if (!execvp ("dbus-launch", new_argv)) {
-                g_set_error (error, 
-                             G_SPAWN_ERROR,
-                             G_SPAWN_ERROR_FAILED,
-                             "No session bus and could not exec dbus-launch: %s",
-                             g_strerror (errno));
-                return FALSE;
-        }
-
-        /* Should not be reached */
-        return TRUE;
-}
-
 static void
 initialize_gio (void)
 {
@@ -486,9 +446,8 @@ main (int argc, char **argv)
         };
 
         /* Make sure that we have a session bus */
-        if (!require_dbus_session (argc, argv, &error)) {
-                gsm_util_init_error (TRUE, "%s", error->message);
-        }
+        if (!g_getenv ("DBUS_SESSION_BUS_ADDRESS"))
+                g_error ("No session bus running! Cannot continue");
 
         /* From 3.14 GDM sets XDG_CURRENT_DESKTOP. For compatibility with
          * older versions of GDM,  other display managers, and startx,
