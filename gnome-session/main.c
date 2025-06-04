@@ -53,7 +53,6 @@ static gboolean debug = FALSE;
 static gboolean disable_acceleration_check = FALSE;
 static const char *session_name = NULL;
 static GsmManager *manager = NULL;
-static char *gl_renderer = NULL;
 
 static GMainLoop *loop;
 
@@ -473,6 +472,9 @@ main (int argc, char **argv)
                 g_print ("%s %s\n", argv [0], VERSION);
                 exit (0);
         }
+
+        if (disable_acceleration_check)
+                g_warning ("Wayland assumes that acceleration works, so --disable-acceleration-check is deprecated!");
 
         /* Rebind stdout/stderr to the journal explicitly, so that
          * journald picks ups the nicer "gnome-session" as the program
