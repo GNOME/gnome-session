@@ -48,15 +48,6 @@ const char * const * gsm_util_get_variable_blacklist(void);
 
 gboolean    gsm_util_export_activation_environment  (GError     **error);
 gboolean    gsm_util_export_user_environment        (GError     **error);
-gboolean    gsm_util_systemd_unit_is_active         (const char  *unit,
-                                                     GError     **error);
-gboolean    gsm_util_start_systemd_unit             (const char  *unit,
-                                                     const char  *mode,
-                                                     GError     **error);
-gboolean    gsm_util_systemd_reset_failed           (GError     **error);
-
-
-void        gsm_quit                                (void);
 
 G_END_DECLS
 

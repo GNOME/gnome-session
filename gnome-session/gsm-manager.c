@@ -82,7 +82,6 @@
 
 #define SESSION_SCHEMA            "org.gnome.desktop.session"
 #define KEY_IDLE_DELAY            "idle-delay"
-#define KEY_SESSION_NAME          "session-name"
 
 #define GSM_MANAGER_SCHEMA        "org.gnome.SessionManager"
 #define KEY_LOGOUT_PROMPT         "logout-prompt"
@@ -1469,20 +1468,6 @@ gsm_manager_start (GsmManager *manager)
         gsm_manager_set_phase (manager, GSM_MANAGER_PHASE_EARLY_INITIALIZATION);
         debug_app_summary (manager);
         start_phase (manager);
-}
-
-char *
-_gsm_manager_get_default_session (GsmManager     *manager)
-{
-        GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
-        g_autoptr(GSettings) session_settings = NULL;
-
-        if (manager)
-                session_settings = g_object_ref (priv->session_settings);
-        else
-                session_settings  = g_settings_new (SESSION_SCHEMA);
-        return g_settings_get_string (session_settings,
-                                      KEY_SESSION_NAME);
 }
 
 void
