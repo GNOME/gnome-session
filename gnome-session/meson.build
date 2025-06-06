@@ -11,11 +11,26 @@ configure_file(
   configuration: script_conf
 )
 
-libgsmutil = static_library(
-  'gsmutil',
-  sources: 'gsm-util.c',
+sources = files(
+  'gdm-log.c',
+  'gsm-util.c',
+  'leader-main.c'
+)
+
+cflags = [
+  '-DLOCALE_DIR="@0@"'.format(session_localedir),
+  '-DDATA_DIR="@0@"'.format(session_pkgdatadir),
+  '-DLIBEXECDIR="@0@"'.format(session_libexecdir)
+]
+
+executable(
+  meson.project_name() + '-leader',
+  sources,
   include_directories: top_inc,
-  dependencies: session_deps
+  dependencies: session_bin_deps,
+  c_args: cflags,
+  install: true,
+  install_dir: session_libexecdir
 )
 
 sources = files(
@@ -35,7 +50,8 @@ sources = files(
   'gsm-store.c',
   'gsm-system.c',
   'gsm-systemd.c',
-  'main.c'
+  'gsm-util.c',
+  'service-main.c'
 )
 
 dbus_ifaces = [
@@ -61,19 +77,12 @@ foreach iface: dbus_ifaces
   xml_dbus_docs += out[2] # docbook XML
 endforeach
 
-cflags = [
-  '-DLOCALE_DIR="@0@"'.format(session_localedir),
-  '-DDATA_DIR="@0@"'.format(session_pkgdatadir),
-  '-DLIBEXECDIR="@0@"'.format(session_libexecdir)
-]
-
 executable(
-  meson.project_name() + '-binary',
+  meson.project_name() + '-service',
   sources,
   include_directories: top_inc,
   dependencies: session_bin_deps,
   c_args: cflags,
-  link_with: libgsmutil,
   install: true,
   install_dir: session_libexecdir
 )
