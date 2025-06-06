@@ -671,139 +671,6 @@ gsm_util_update_user_environment (const char  *variable,
         return environment_updated;
 }
 
-gboolean
-gsm_util_systemd_unit_is_active (const char  *unit,
-                                 GError     **error)
-{
-        g_autoptr(GDBusProxy) proxy = NULL;
-        g_autoptr(GVariant) result = NULL;
-        g_autofree gchar *object_path = NULL;
-        g_autofree gchar *active_state = NULL;
-        g_autoptr(GDBusProxy) unit_proxy = NULL;
-
-        proxy = g_dbus_proxy_new_for_bus_sync (G_BUS_TYPE_SESSION,
-                                               G_DBUS_PROXY_FLAGS_NONE,
-                                               NULL,
-                                               "org.freedesktop.systemd1",
-                                               "/org/freedesktop/systemd1",
-                                               "org.freedesktop.systemd1.Manager",
-                                               NULL,
-                                               error);
-
-        if (proxy == NULL) {
-                return FALSE;
-        }
-
-        result = g_dbus_proxy_call_sync (proxy,
-                                         "GetUnit",
-                                         g_variant_new ("(s)", unit),
-                                         G_DBUS_CALL_FLAGS_NONE,
-                                         -1,
-                                         NULL,
-                                         error);
-
-        if (result == NULL) {
-                if (error && *error) {
-                        g_autofree char *remote_error = g_dbus_error_get_remote_error (*error);
-
-                        if (g_strcmp0 (remote_error, "org.freedesktop.systemd1.NoSuchUnit") == 0) {
-                                g_clear_error (error);
-                        }
-                }
-                return FALSE;
-        }
-
-        g_variant_get (result, "(o)", &object_path);
-        g_clear_pointer (&result, g_variant_unref);
-
-        unit_proxy = g_dbus_proxy_new_for_bus_sync (G_BUS_TYPE_SESSION,
-                                                    G_DBUS_PROXY_FLAGS_NONE,
-                                                    NULL,
-                                                    "org.freedesktop.systemd1",
-                                                    object_path,
-                                                    "org.freedesktop.systemd1.Unit",
-                                                    NULL,
-                                                    error);
-
-        if (unit_proxy == NULL) {
-            return FALSE;
-        }
-
-        result = g_dbus_proxy_get_cached_property (unit_proxy, "ActiveState");
-
-        if (result == NULL) {
-                g_set_error (error, G_DBUS_ERROR, G_DBUS_ERROR_UNKNOWN_PROPERTY, "Error getting ActiveState property");
-                return FALSE;
-        }
-
-        g_variant_get (result, "s", &active_state);
-
-        return g_str_equal (active_state, "active");
-}
-
-gboolean
-gsm_util_start_systemd_unit (const char  *unit,
-                             const char  *mode,
-                             GError     **error)
-{
-        g_autoptr(GDBusConnection) connection = NULL;
-        g_autoptr(GVariant)        reply = NULL;
-        GError          *bus_error = NULL;
-
-        connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, error);
-
-        if (connection == NULL)
-                return FALSE;
-
-        reply = g_dbus_connection_call_sync (connection,
-                                             "org.freedesktop.systemd1",
-                                             "/org/freedesktop/systemd1",
-                                             "org.freedesktop.systemd1.Manager",
-                                             "StartUnit",
-                                             g_variant_new ("(ss)",
-                                                            unit, mode),
-                                             NULL,
-                                             G_DBUS_CALL_FLAGS_NO_AUTO_START,
-                                             -1, NULL, &bus_error);
-
-        if (bus_error != NULL) {
-                g_propagate_error (error, bus_error);
-                return FALSE;
-        }
-
-        return TRUE;
-}
-
-gboolean
-gsm_util_systemd_reset_failed (GError **error)
-{
-        g_autoptr(GDBusConnection) connection = NULL;
-        g_autoptr(GVariant)        reply = NULL;
-        GError *bus_error = NULL;
-
-        connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, error);
-
-        if (connection == NULL)
-                return FALSE;
-
-        reply = g_dbus_connection_call_sync (connection,
-                                             "org.freedesktop.systemd1",
-                                             "/org/freedesktop/systemd1",
-                                             "org.freedesktop.systemd1.Manager",
-                                             "ResetFailed",
-                                             NULL,
-                                             NULL,
-                                             G_DBUS_CALL_FLAGS_NO_AUTO_START,
-                                             -1, NULL, &bus_error);
-
-        if (bus_error != NULL) {
-                g_propagate_error (error, bus_error);
-                return FALSE;
-        }
-
-        return TRUE;
-}
-
 void
 gsm_util_setenv (const char *variable,
                  const char *value)
@@ -837,6 +704,8 @@ gsm_util_setenv (const char *variable,
 const char * const *
 gsm_util_listenv (void)
 {
+        if (child_environment == NULL)
+                child_environment = g_listenv ();
         return (const char * const *) child_environment;
 
 }
