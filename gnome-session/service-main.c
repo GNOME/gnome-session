@@ -24,8 +24,6 @@
 #include <glib-unix.h>
 #include <gio/gio.h>
 
-#include "gdm-log.h"
-
 #include "gsm-util.h"
 #include "gsm-manager.h"
 #include "gsm-session-fill.h"
@@ -102,7 +100,7 @@ sigusr2_cb (gpointer data)
 static gboolean
 sigusr1_cb (gpointer data)
 {
-        gdm_log_toggle_debug ();
+        g_log_set_debug_enabled (!g_log_get_debug_enabled ());
         return TRUE;
 }
 
@@ -164,11 +162,9 @@ main (int argc, char **argv)
         if (!g_option_context_parse (options, &argc, &argv, &error))
                 g_error ("%s", error->message);
 
-        gdm_log_init ();
-
         debug = g_getenv ("GNOME_SESSION_DEBUG");
         if (debug != NULL)
-                gdm_log_set_debug (atoi (debug) == 1);
+                g_log_set_debug_enabled (atoi (debug) == 1);
 
         override_autostart_dirs = g_getenv ("GNOME_SESSION_AUTOSTART_DIR");
         if (!IS_STRING_EMPTY (override_autostart_dirs)) {
@@ -197,6 +193,5 @@ main (int argc, char **argv)
         g_clear_object (&manager);
         g_free (session_name);
         g_bus_unown_name (name_owner_id);
-        gdm_log_shutdown ();
         return 0;
 }
