@@ -12,7 +12,6 @@ configure_file(
 )
 
 sources = files(
-  'gdm-log.c',
   'gsm-util.c',
   'leader-main.c'
 )
@@ -40,7 +39,6 @@ sources = files(
   'gsm-dbus-client.c',
   'gsm-fail-whale.c',
   'gsm-inhibitor.c',
-  'gdm-log.c',
   'gsm-manager.c',
   'gsm-presence.c',
   'gsm-process-helper.c',

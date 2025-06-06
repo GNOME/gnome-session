@@ -24,11 +24,7 @@
 #include <glib-unix.h>
 #include <gio/gio.h>
 
-#include "gdm-log.h"
-
 #include "gsm-util.h"
-
-#include <systemd/sd-journal.h>
 
 typedef struct {
         GDBusConnection *session_bus;
@@ -427,20 +423,7 @@ main (int argc, char **argv)
                         debug = atoi (debug_string) == 1;
         }
 
-        /* Rebind stdout/stderr to the journal explicitly, so that
-         * journald picks ups the nicer "gnome-session" as the program
-         * name instead of whatever shell script GDM happened to use. */
-        if (!debug) {
-                int journalfd;
-                journalfd = sd_journal_stream_fd (PACKAGE, LOG_INFO, 0);
-                if (journalfd >= 0) {
-                        dup2(journalfd, 1);
-                        dup2(journalfd, 2);
-                }
-        }
-
-        gdm_log_init ();
-        gdm_log_set_debug (debug);
+        g_log_set_debug_enabled (debug);
 
         if (autostart_dirs) {
                 g_autofree char *joined = g_strjoinv (":", autostart_dirs);
