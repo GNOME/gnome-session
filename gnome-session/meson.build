@@ -1,16 +1,3 @@
-script_conf = configuration_data()
-script_conf.set('libexecdir', session_libexecdir)
-
-script = 'gnome-session'
-
-configure_file(
-  input: script + '.in',
-  output: script,
-  install: true,
-  install_dir: session_bindir,
-  configuration: script_conf
-)
-
 sources = files(
   'gsm-util.c',
   'leader-main.c'
@@ -23,13 +10,13 @@ cflags = [
 ]
 
 executable(
-  meson.project_name() + '-leader',
+  meson.project_name(),
   sources,
   include_directories: top_inc,
   dependencies: session_bin_deps,
   c_args: cflags,
   install: true,
-  install_dir: session_libexecdir
+  install_dir: session_bindir
 )
 
 sources = files(
