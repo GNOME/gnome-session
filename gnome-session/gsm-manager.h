@@ -40,29 +40,17 @@ struct _GsmManagerClass
 };
 
 typedef enum {
-        /* gsm's own startup/initialization phase */
-        GSM_MANAGER_PHASE_STARTUP = 0,
-        /* gnome-initial-setup */
-        GSM_MANAGER_PHASE_EARLY_INITIALIZATION,
-        /* gnome-keyring-daemon */
-        GSM_MANAGER_PHASE_PRE_DISPLAY_SERVER,
-        /* wayland compositor and XWayland */
-        GSM_MANAGER_PHASE_DISPLAY_SERVER,
-        /* xrandr setup, gnome-settings-daemon, etc */
-        GSM_MANAGER_PHASE_INITIALIZATION,
-        /* window/compositing managers */
-        GSM_MANAGER_PHASE_WINDOW_MANAGER,
-        /* apps that will create _NET_WM_WINDOW_TYPE_PANEL windows */
-        GSM_MANAGER_PHASE_PANEL,
-        /* apps that will create _NET_WM_WINDOW_TYPE_DESKTOP windows */
-        GSM_MANAGER_PHASE_DESKTOP,
-        /* everything else */
+        /* We're starting session services, the Wayland compositor, etc */
+        GSM_MANAGER_PHASE_INITIALIZATION = 0,
+        /* The session is running, but we're still launching the user's autostart apps */
         GSM_MANAGER_PHASE_APPLICATION,
-        /* done launching */
+        /* The session is running */
         GSM_MANAGER_PHASE_RUNNING,
-        /* shutting down */
+        /* Someone requested for the session to end,  */
         GSM_MANAGER_PHASE_QUERY_END_SESSION,
+        /* The session is shutting down */
         GSM_MANAGER_PHASE_END_SESSION,
+        /* The session has shut down, and gnome-session is about to exit */
         GSM_MANAGER_PHASE_EXIT
 } GsmManagerPhase;
 
