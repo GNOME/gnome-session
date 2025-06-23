@@ -77,18 +77,11 @@
  */
 #define GSM_MANAGER_PHASE_TIMEOUT 90 /* seconds */
 
-#define GDM_FLEXISERVER_COMMAND "gdmflexiserver"
-#define GDM_FLEXISERVER_ARGS    "--startnew Standard"
-
 #define SESSION_SCHEMA            "org.gnome.desktop.session"
 #define KEY_IDLE_DELAY            "idle-delay"
 
 #define GSM_MANAGER_SCHEMA        "org.gnome.SessionManager"
 #define KEY_LOGOUT_PROMPT         "logout-prompt"
-#define KEY_SHOW_FALLBACK_WARNING "show-fallback-warning"
-
-#define SCREENSAVER_SCHEMA        "org.gnome.desktop.screensaver"
-#define KEY_SLEEP_LOCK            "lock-enabled"
 
 #define LOCKDOWN_SCHEMA           "org.gnome.desktop.lockdown"
 #define KEY_DISABLE_LOG_OUT       "disable-log-out"
@@ -108,8 +101,6 @@ typedef enum
 
 typedef struct
 {
-        gboolean                failsafe;
-        gboolean                systemd_managed;
         gboolean                systemd_initialized;
         gboolean                manager_initialized;
         GsmStore               *clients;
@@ -144,7 +135,6 @@ typedef struct
 
         GSettings              *settings;
         GSettings              *session_settings;
-        GSettings              *screensaver_settings;
         GSettings              *lockdown_settings;
 
         GsmSystem              *system;
@@ -165,8 +155,6 @@ enum {
         PROP_CLIENT_STORE,
         PROP_SESSION_NAME,
         PROP_FALLBACK,
-        PROP_FAILSAFE,
-        PROP_SYSTEMD_MANAGED
 };
 
 enum {
@@ -525,8 +513,8 @@ end_phase (GsmManager *manager)
                 break;
         case GSM_MANAGER_PHASE_INITIALIZATION:
                 priv->manager_initialized = TRUE;
-                /* Wait for systemd if it isn't initialized yet*/
-                if (priv->systemd_managed && !priv->systemd_initialized) {
+                /* Wait for systemd if it isn't initialized yet */
+                if (!priv->systemd_initialized) {
                         sd_notify (0, "STATUS=GNOME Session Manager waiting for gnome-session-initialized.target (via signal)");
                         start_next_phase = FALSE;
                 }
@@ -949,39 +937,6 @@ _client_stop (const char *id,
 }
 
 static void
-maybe_restart_user_bus (GsmManager *manager)
-{
-        GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
-        GsmSystem *system;
-        g_autoptr(GVariant) reply = NULL;
-        g_autoptr(GError) error = NULL;
-
-        if (priv->dbus_disconnected)
-                return;
-
-        system = gsm_get_system ();
-
-        if (!gsm_system_is_last_session_for_user (system))
-                return;
-
-        reply = g_dbus_connection_call_sync (priv->connection,
-                                             "org.freedesktop.systemd1",
-                                             "/org/freedesktop/systemd1",
-                                             "org.freedesktop.systemd1.Manager",
-                                             "StopUnit",
-                                             g_variant_new ("(ss)", "dbus.service", "fail"),
-                                             NULL,
-                                             G_DBUS_CALL_FLAGS_NONE,
-                                             -1,
-                                             NULL,
-                                             &error);
-
-        if (error != NULL) {
-                g_debug ("GsmManager: reloading user bus failed: %s", error->message);
-        }
-}
-
-static void
 do_phase_exit (GsmManager *manager)
 {
         GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
@@ -991,9 +946,6 @@ do_phase_exit (GsmManager *manager)
                                    (GsmStoreFunc)_client_stop,
                                    NULL);
         }
-
-        if (!priv->systemd_managed)
-                maybe_restart_user_bus (manager);
 
         end_phase (manager);
 }
@@ -1782,17 +1734,6 @@ remove_clients_for_connection (GsmManager *manager,
         }
 }
 
-static void
-gsm_manager_set_failsafe (GsmManager *manager,
-                          gboolean    enabled)
-{
-        GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
-
-        g_return_if_fail (GSM_IS_MANAGER (manager));
-
-        priv->failsafe = enabled;
-}
-
 gboolean
 gsm_manager_get_dbus_disconnected (GsmManager *manager)
 {
@@ -1801,26 +1742,6 @@ gsm_manager_get_dbus_disconnected (GsmManager *manager)
         g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
 
         return priv->dbus_disconnected;
-}
-
-gboolean
-gsm_manager_get_failsafe (GsmManager *manager)
-{
-        GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
-
-        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
-
-        return priv->failsafe;
-}
-
-gboolean
-gsm_manager_get_systemd_managed (GsmManager *manager)
-{
-        GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
-
-        g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
-
-        return priv->systemd_managed;
 }
 
 static void
@@ -2030,17 +1951,11 @@ gsm_manager_set_property (GObject       *object,
         GsmManagerPrivate *priv = gsm_manager_get_instance_private (self);
 
         switch (prop_id) {
-        case PROP_FAILSAFE:
-                gsm_manager_set_failsafe (self, g_value_get_boolean (value));
-                break;
          case PROP_FALLBACK:
                 priv->is_fallback_session = g_value_get_boolean (value);
                 break;
          case PROP_CLIENT_STORE:
                 gsm_manager_set_client_store (self, g_value_get_object (value));
-                break;
-        case PROP_SYSTEMD_MANAGED:
-                priv->systemd_managed = g_value_get_boolean (value);
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -2058,9 +1973,6 @@ gsm_manager_get_property (GObject    *object,
         GsmManagerPrivate *priv = gsm_manager_get_instance_private (self);
 
         switch (prop_id) {
-        case PROP_FAILSAFE:
-                g_value_set_boolean (value, priv->failsafe);
-                break;
         case PROP_SESSION_NAME:
                 g_value_set_string (value, priv->session_name);
                 break;
@@ -2225,7 +2137,6 @@ gsm_manager_dispose (GObject *object)
         g_clear_object (&priv->presence);
         g_clear_object (&priv->settings);
         g_clear_object (&priv->session_settings);
-        g_clear_object (&priv->screensaver_settings);
         g_clear_object (&priv->lockdown_settings);
         g_clear_object (&priv->system);
         g_clear_object (&priv->shell);
@@ -2260,13 +2171,6 @@ gsm_manager_class_init (GsmManagerClass *klass)
                               G_TYPE_NONE,
                               1, G_TYPE_STRING);
 
-        g_object_class_install_property (object_class,
-                                         PROP_FAILSAFE,
-                                         g_param_spec_boolean ("failsafe",
-                                                               NULL,
-                                                               NULL,
-                                                               FALSE,
-                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
         /**
          * GsmManager::session-name
          *
@@ -2303,14 +2207,6 @@ gsm_manager_class_init (GsmManagerClass *klass)
                                                               NULL,
                                                               GSM_TYPE_STORE,
                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
-
-        g_object_class_install_property (object_class,
-                                         PROP_SYSTEMD_MANAGED,
-                                         g_param_spec_boolean ("systemd-managed",
-                                                               NULL,
-                                                               NULL,
-                                                               FALSE,
-                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 }
 
 static void
@@ -2563,12 +2459,7 @@ gsm_manager_initialized (GsmExportedManager    *skeleton,
         GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
 
         /* Signaled by helper when gnome-session-initialized.target is reached. */
-        if (!priv->systemd_managed) {
-                g_dbus_method_invocation_return_error (invocation,
-                                                       GSM_MANAGER_ERROR,
-                                                       GSM_MANAGER_ERROR_GENERAL,
-                                                       "Initialized interface is only available when gnome-session is managed by systemd");
-        } else if (priv->systemd_initialized) {
+        if (priv->systemd_initialized) {
                 g_dbus_method_invocation_return_error (invocation,
                                                        GSM_MANAGER_ERROR,
                                                        GSM_MANAGER_ERROR_NOT_IN_INITIALIZATION,
@@ -3243,7 +3134,6 @@ gsm_manager_init (GsmManager *manager)
 
         priv->settings = g_settings_new (GSM_MANAGER_SCHEMA);
         priv->session_settings = g_settings_new (SESSION_SCHEMA);
-        priv->screensaver_settings = g_settings_new (SCREENSAVER_SCHEMA);
         priv->lockdown_settings = g_settings_new (LOCKDOWN_SCHEMA);
 
         priv->inhibitors = gsm_store_new ();
@@ -3285,9 +3175,7 @@ gsm_manager_get (void)
 }
 
 GsmManager *
-gsm_manager_new (GsmStore *client_store,
-                 gboolean  failsafe,
-                 gboolean  systemd_managed)
+gsm_manager_new (GsmStore *client_store)
 {
         if (manager_object != NULL) {
                 g_object_ref (manager_object);
@@ -3296,8 +3184,6 @@ gsm_manager_new (GsmStore *client_store,
 
                 manager_object = g_object_new (GSM_TYPE_MANAGER,
                                                "client-store", client_store,
-                                               "failsafe", failsafe,
-                                               "systemd-managed", systemd_managed,
                                                NULL);
 
                 g_object_add_weak_pointer (manager_object,
@@ -3543,7 +3429,7 @@ add_autostart_app_internal (GsmManager *manager,
          * reason meaning there is already an app playing its role, then we
          * should make sure that relevant properties (like
          * provides/is_required) are set in the pre-existing app if needed. */
-        app = gsm_autostart_app_new (path, priv->systemd_managed, &error);
+        app = gsm_autostart_app_new (path, &error);
         if (app == NULL) {
                 g_warning ("%s", error->message);
                 g_clear_error (&error);
