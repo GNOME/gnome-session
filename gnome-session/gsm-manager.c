@@ -1276,9 +1276,6 @@ start_phase (GsmManager *manager)
 
         switch (priv->phase) {
         case GSM_MANAGER_PHASE_INITIALIZATION:
-                sd_notify (0, "READY=1");
-                do_phase_startup (manager);
-                break;
         case GSM_MANAGER_PHASE_APPLICATION:
                 do_phase_startup (manager);
                 break;
