@@ -37,7 +37,6 @@ struct _GsmAutostartAppClass
 };
 
 GsmApp *gsm_autostart_app_new                (const char *desktop_file,
-                                              gboolean    mask_systemd,
                                               GError    **error);
 
 void    gsm_autostart_app_add_provides       (GsmAutostartApp *aapp,

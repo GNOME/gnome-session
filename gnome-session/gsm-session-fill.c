@@ -116,25 +116,21 @@ static void
 load_standard_apps (GsmManager *manager,
                     GKeyFile   *keyfile)
 {
+        char **autostart_dirs;
+        int    i;
+
         g_debug ("fill: *** Adding required components");
         handle_required_components (keyfile,
                                     append_required_components_helper,
                                     manager);
         g_debug ("fill: *** Done adding required components");
 
-        if (!gsm_manager_get_failsafe (manager)) {
-                char **autostart_dirs;
-                int    i;
-
-                autostart_dirs = gsm_util_get_autostart_dirs ();
-
-                for (i = 0; autostart_dirs[i]; i++) {
-                        gsm_manager_add_autostart_apps_from_dir (manager,
-                                                                 autostart_dirs[i]);
-                }
-
-                g_strfreev (autostart_dirs);
+        autostart_dirs = gsm_util_get_autostart_dirs ();
+        for (i = 0; autostart_dirs[i]; i++) {
+                gsm_manager_add_autostart_apps_from_dir (manager,
+                                                         autostart_dirs[i]);
         }
+        g_strfreev (autostart_dirs);
 }
 
 static GKeyFile *
