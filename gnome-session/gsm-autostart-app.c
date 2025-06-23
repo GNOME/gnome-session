@@ -547,24 +547,14 @@ load_desktop_file (GsmAutostartApp  *app)
         phase_str = g_desktop_app_info_get_string (priv->app_info,
                                                    GSM_AUTOSTART_APP_PHASE_KEY);
         if (phase_str != NULL) {
-                if (strcmp (phase_str, "EarlyInitialization") == 0) {
-                        phase = GSM_MANAGER_PHASE_EARLY_INITIALIZATION;
-                } else if (strcmp (phase_str, "PreDisplayServer") == 0) {
-                        phase = GSM_MANAGER_PHASE_PRE_DISPLAY_SERVER;
-                } else if (strcmp (phase_str, "DisplayServer") == 0) {
-                        phase = GSM_MANAGER_PHASE_DISPLAY_SERVER;
-                } else if (strcmp (phase_str, "Initialization") == 0) {
+                if (strcmp (phase_str, "EarlyInitialization") == 0 ||
+                    strcmp (phase_str, "PreDisplayServer") == 0 ||
+                    strcmp (phase_str, "DisplayServer") == 0 ||
+                    strcmp (phase_str, "Initialization") == 0) {
                         phase = GSM_MANAGER_PHASE_INITIALIZATION;
-                } else if (strcmp (phase_str, "WindowManager") == 0) {
-                        phase = GSM_MANAGER_PHASE_WINDOW_MANAGER;
-                } else if (strcmp (phase_str, "Panel") == 0) {
-                        phase = GSM_MANAGER_PHASE_PANEL;
-                } else if (strcmp (phase_str, "Desktop") == 0) {
-                        phase = GSM_MANAGER_PHASE_DESKTOP;
                 } else {
                         phase = GSM_MANAGER_PHASE_APPLICATION;
                 }
-
                 g_free (phase_str);
         } else {
                 phase = GSM_MANAGER_PHASE_APPLICATION;

@@ -395,54 +395,22 @@ app_condition_changed (GsmApp     *app,
 static const char *
 phase_num_to_name (guint phase)
 {
-        const char *name;
-
         switch (phase) {
-        case GSM_MANAGER_PHASE_STARTUP:
-                name = "STARTUP";
-                break;
-        case GSM_MANAGER_PHASE_EARLY_INITIALIZATION:
-                name = "EARLY_INITIALIZATION";
-                break;
-        case GSM_MANAGER_PHASE_PRE_DISPLAY_SERVER:
-                name = "PRE_DISPLAY_SERVER";
-                break;
-        case GSM_MANAGER_PHASE_DISPLAY_SERVER:
-                name = "DISPLAY_SERVER";
-                break;
         case GSM_MANAGER_PHASE_INITIALIZATION:
-                name = "INITIALIZATION";
-                break;
-        case GSM_MANAGER_PHASE_WINDOW_MANAGER:
-                name = "WINDOW_MANAGER";
-                break;
-        case GSM_MANAGER_PHASE_PANEL:
-                name = "PANEL";
-                break;
-        case GSM_MANAGER_PHASE_DESKTOP:
-                name = "DESKTOP";
-                break;
+                return "INITIALIZATION";
         case GSM_MANAGER_PHASE_APPLICATION:
-                name = "APPLICATION";
-                break;
+                return "APPLICATION";
         case GSM_MANAGER_PHASE_RUNNING:
-                name = "RUNNING";
-                break;
+                return "RUNNING";
         case GSM_MANAGER_PHASE_QUERY_END_SESSION:
-                name = "QUERY_END_SESSION";
-                break;
+                return "QUERY_END_SESSION";
         case GSM_MANAGER_PHASE_END_SESSION:
-                name = "END_SESSION";
-                break;
+                return "END_SESSION";
         case GSM_MANAGER_PHASE_EXIT:
-                name = "EXIT";
-                break;
+                return "EXIT";
         default:
                 g_assert_not_reached ();
-                break;
         }
-
-        return name;
 }
 
 static void start_phase (GsmManager *manager);
@@ -506,11 +474,6 @@ end_phase (GsmManager *manager)
         }
 
         switch (priv->phase) {
-        case GSM_MANAGER_PHASE_STARTUP:
-        case GSM_MANAGER_PHASE_EARLY_INITIALIZATION:
-        case GSM_MANAGER_PHASE_PRE_DISPLAY_SERVER:
-        case GSM_MANAGER_PHASE_DISPLAY_SERVER:
-                break;
         case GSM_MANAGER_PHASE_INITIALIZATION:
                 priv->manager_initialized = TRUE;
                 /* Wait for systemd if it isn't initialized yet */
@@ -519,9 +482,6 @@ end_phase (GsmManager *manager)
                         start_next_phase = FALSE;
                 }
                 break;
-        case GSM_MANAGER_PHASE_WINDOW_MANAGER:
-        case GSM_MANAGER_PHASE_PANEL:
-        case GSM_MANAGER_PHASE_DESKTOP:
         case GSM_MANAGER_PHASE_APPLICATION:
                 break;
         case GSM_MANAGER_PHASE_RUNNING:
@@ -576,18 +536,16 @@ static gboolean
 is_app_display_server (GsmManager *manager,
                        GsmApp     *app)
 {
-        GsmManagerPhase phase;
+        const char *app_id;
 
         /* Apps can only really act as a display server if
-         * we're a wayland session.
-         */
+         * we're a wayland session. */
         if (g_strcmp0 (g_getenv ("XDG_SESSION_TYPE"), "wayland") != 0)
                 return FALSE;
 
-        phase = gsm_app_peek_phase (app);
+        app_id = gsm_app_peek_app_id (app);
 
-        return (phase == GSM_MANAGER_PHASE_DISPLAY_SERVER &&
-                is_app_required (manager, app));
+        return g_strcmp0 (app_id, "org.gnome.Shell.desktop") == 0;
 }
 
 static void
@@ -685,14 +643,7 @@ on_phase_timeout (GsmManager *manager)
         priv->phase_timeout_id = 0;
 
         switch (priv->phase) {
-        case GSM_MANAGER_PHASE_STARTUP:
-        case GSM_MANAGER_PHASE_EARLY_INITIALIZATION:
-        case GSM_MANAGER_PHASE_PRE_DISPLAY_SERVER:
-        case GSM_MANAGER_PHASE_DISPLAY_SERVER:
         case GSM_MANAGER_PHASE_INITIALIZATION:
-        case GSM_MANAGER_PHASE_WINDOW_MANAGER:
-        case GSM_MANAGER_PHASE_PANEL:
-        case GSM_MANAGER_PHASE_DESKTOP:
         case GSM_MANAGER_PHASE_APPLICATION:
                 for (a = priv->pending_apps; a; a = a->next) {
                         GsmApp *app = a->data;
@@ -703,10 +654,8 @@ on_phase_timeout (GsmManager *manager)
                 }
                 break;
         case GSM_MANAGER_PHASE_RUNNING:
-                break;
         case GSM_MANAGER_PHASE_QUERY_END_SESSION:
         case GSM_MANAGER_PHASE_END_SESSION:
-                break;
         case GSM_MANAGER_PHASE_EXIT:
                 break;
         default:
@@ -1326,19 +1275,10 @@ start_phase (GsmManager *manager)
         sd_notifyf (0, "STATUS=GNOME Session Manager phase is %s", phase_num_to_name (priv->phase));
 
         switch (priv->phase) {
-        case GSM_MANAGER_PHASE_STARTUP:
-        case GSM_MANAGER_PHASE_EARLY_INITIALIZATION:
-        case GSM_MANAGER_PHASE_PRE_DISPLAY_SERVER:
-                do_phase_startup (manager);
-                break;
-        case GSM_MANAGER_PHASE_DISPLAY_SERVER:
+        case GSM_MANAGER_PHASE_INITIALIZATION:
                 sd_notify (0, "READY=1");
                 do_phase_startup (manager);
                 break;
-        case GSM_MANAGER_PHASE_INITIALIZATION:
-        case GSM_MANAGER_PHASE_WINDOW_MANAGER:
-        case GSM_MANAGER_PHASE_PANEL:
-        case GSM_MANAGER_PHASE_DESKTOP:
         case GSM_MANAGER_PHASE_APPLICATION:
                 do_phase_startup (manager);
                 break;
@@ -1402,7 +1342,7 @@ debug_app_summary (GsmManager *manager)
         guint phase;
 
         g_debug ("GsmManager: App startup summary");
-        for (phase = GSM_MANAGER_PHASE_EARLY_INITIALIZATION; phase < GSM_MANAGER_PHASE_RUNNING; phase++) {
+        for (phase = GSM_MANAGER_PHASE_INITIALIZATION; phase < GSM_MANAGER_PHASE_RUNNING; phase++) {
                 g_debug ("GsmManager: Phase %s", phase_num_to_name (phase));
                 gsm_store_foreach (priv->apps,
                                    (GsmStoreFunc)_debug_app_for_phase,
@@ -1417,7 +1357,7 @@ gsm_manager_start (GsmManager *manager)
 
         g_return_if_fail (GSM_IS_MANAGER (manager));
 
-        gsm_manager_set_phase (manager, GSM_MANAGER_PHASE_EARLY_INITIALIZATION);
+        gsm_manager_set_phase (manager, GSM_MANAGER_PHASE_INITIALIZATION);
         debug_app_summary (manager);
         start_phase (manager);
 }
@@ -2442,7 +2382,7 @@ gsm_manager_setenv (GsmExportedManager    *skeleton,
                 g_dbus_method_invocation_return_error (invocation,
                                                        GSM_MANAGER_ERROR,
                                                        GSM_MANAGER_ERROR_NOT_IN_INITIALIZATION,
-                                                       "Setenv interface is only available during the DisplayServer and Initialization phase");
+                                                       "Setenv interface is only available during the Initialization phase");
         } else {
                 gsm_util_setenv (variable, value);
                 gsm_exported_manager_complete_setenv (skeleton, invocation);
