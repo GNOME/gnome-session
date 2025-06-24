@@ -1271,6 +1271,7 @@ start_phase (GsmManager *manager)
                 break;
         case GSM_MANAGER_PHASE_APPLICATION:
                 sd_notify (0, "STATUS=Starting applications");
+                gsm_exported_manager_emit_session_running (priv->skeleton);
                 do_phase_startup (manager);
                 break;
         case GSM_MANAGER_PHASE_RUNNING:
@@ -1283,7 +1284,6 @@ start_phase (GsmManager *manager)
                         complete_end_session_tasks (manager);
                 g_object_unref (priv->end_session_cancellable);
                 priv->end_session_cancellable = g_cancellable_new ();
-                gsm_exported_manager_emit_session_running (priv->skeleton);
                 update_idle (manager);
                 break;
         case GSM_MANAGER_PHASE_QUERY_END_SESSION:
@@ -1292,6 +1292,7 @@ start_phase (GsmManager *manager)
                 break;
         case GSM_MANAGER_PHASE_END_SESSION:
                 sd_notify (0, "STOPPING=1\nSTATUS=Logging out");
+                gsm_exported_manager_emit_session_over (priv->skeleton);
                 do_phase_end_session (manager);
                 break;
         case GSM_MANAGER_PHASE_EXIT:
@@ -2929,9 +2930,13 @@ gsm_manager_is_session_running (GsmExportedManager    *skeleton,
                                 GsmManager            *manager)
 {
         GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
+        gboolean running;
 
-        gsm_exported_manager_complete_is_session_running (skeleton, invocation,
-                                                          priv->phase == GSM_MANAGER_PHASE_RUNNING);
+        running = (priv->phase == GSM_MANAGER_PHASE_APPLICATION ||
+                   priv->phase == GSM_MANAGER_PHASE_RUNNING ||
+                   priv->phase == GSM_MANAGER_PHASE_QUERY_END_SESSION);
+
+        gsm_exported_manager_complete_is_session_running (skeleton, invocation, running);
         return TRUE;
 }
 
