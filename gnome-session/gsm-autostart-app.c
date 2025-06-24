@@ -538,27 +538,9 @@ load_desktop_file (GsmAutostartApp  *app)
         GsmAutostartAppPrivate *priv = gsm_autostart_app_get_instance_private (app);
         char    *dbus_name;
         char    *startup_id;
-        char    *phase_str;
-        int      phase;
         gboolean res;
 
         g_assert (priv->app_info != NULL);
-
-        phase_str = g_desktop_app_info_get_string (priv->app_info,
-                                                   GSM_AUTOSTART_APP_PHASE_KEY);
-        if (phase_str != NULL) {
-                if (strcmp (phase_str, "EarlyInitialization") == 0 ||
-                    strcmp (phase_str, "PreDisplayServer") == 0 ||
-                    strcmp (phase_str, "DisplayServer") == 0 ||
-                    strcmp (phase_str, "Initialization") == 0) {
-                        phase = GSM_MANAGER_PHASE_INITIALIZATION;
-                } else {
-                        phase = GSM_MANAGER_PHASE_APPLICATION;
-                }
-                g_free (phase_str);
-        } else {
-                phase = GSM_MANAGER_PHASE_APPLICATION;
-        }
 
         dbus_name = g_desktop_app_info_get_string (priv->app_info,
                                                    GSM_AUTOSTART_APP_DBUS_NAME_KEY);
@@ -601,7 +583,7 @@ load_desktop_file (GsmAutostartApp  *app)
         setup_condition_monitor (app);
 
         g_object_set (app,
-                      "phase", phase,
+                      "phase", GSM_MANAGER_PHASE_APPLICATION,
                       "startup-id", startup_id,
                       NULL);
 

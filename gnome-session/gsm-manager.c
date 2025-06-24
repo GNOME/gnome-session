@@ -102,7 +102,6 @@ typedef enum
 typedef struct
 {
         gboolean                systemd_initialized;
-        gboolean                manager_initialized;
         GsmStore               *clients;
         GsmStore               *inhibitors;
         GsmInhibitorFlag        inhibited_actions;
@@ -475,13 +474,6 @@ end_phase (GsmManager *manager)
 
         switch (priv->phase) {
         case GSM_MANAGER_PHASE_INITIALIZATION:
-                priv->manager_initialized = TRUE;
-                /* Wait for systemd if it isn't initialized yet */
-                if (!priv->systemd_initialized) {
-                        sd_notify (0, "STATUS=GNOME Session Manager waiting for gnome-session-initialized.target (via signal)");
-                        start_next_phase = FALSE;
-                }
-                break;
         case GSM_MANAGER_PHASE_APPLICATION:
                 break;
         case GSM_MANAGER_PHASE_RUNNING:
@@ -644,6 +636,7 @@ on_phase_timeout (GsmManager *manager)
 
         switch (priv->phase) {
         case GSM_MANAGER_PHASE_INITIALIZATION:
+                break;
         case GSM_MANAGER_PHASE_APPLICATION:
                 for (a = priv->pending_apps; a; a = a->next) {
                         GsmApp *app = a->data;
@@ -1272,14 +1265,16 @@ start_phase (GsmManager *manager)
                 priv->phase_timeout_id = 0;
         }
 
-        sd_notifyf (0, "STATUS=GNOME Session Manager phase is %s", phase_num_to_name (priv->phase));
-
         switch (priv->phase) {
         case GSM_MANAGER_PHASE_INITIALIZATION:
+                sd_notify (0, "STATUS=Waiting for session to start");
+                break;
         case GSM_MANAGER_PHASE_APPLICATION:
+                sd_notify (0, "STATUS=Starting applications");
                 do_phase_startup (manager);
                 break;
         case GSM_MANAGER_PHASE_RUNNING:
+                sd_notify (0, "STATUS=Running");
                 sd_journal_send ("MESSAGE_ID=%s", GSM_MANAGER_STARTUP_SUCCEEDED_MSGID,
                                  "PRIORITY=%d", 5,
                                  "MESSAGE=Entering running state",
@@ -1292,16 +1287,15 @@ start_phase (GsmManager *manager)
                 update_idle (manager);
                 break;
         case GSM_MANAGER_PHASE_QUERY_END_SESSION:
+                sd_notify (0, "STATUS=Querying end of session");
                 do_phase_query_end_session (manager);
                 break;
         case GSM_MANAGER_PHASE_END_SESSION:
-                sd_notify (0, "STOPPING=1");
-
+                sd_notify (0, "STOPPING=1\nSTATUS=Logging out");
                 do_phase_end_session (manager);
                 break;
         case GSM_MANAGER_PHASE_EXIT:
-                sd_notify (0, "STOPPING=1");
-
+                sd_notify (0, "STOPPING=1\nSTATUS=Quitting");
                 do_phase_exit (manager);
                 break;
         default:
@@ -1315,11 +1309,7 @@ _debug_app_for_phase (const char *id,
                       GsmApp     *app,
                       gpointer    data)
 {
-        guint phase;
-
-        phase = GPOINTER_TO_UINT (data);
-
-        if (gsm_app_peek_phase (app) != phase) {
+        if (gsm_app_peek_phase (app) != GSM_MANAGER_PHASE_APPLICATION) {
                 return FALSE;
         }
 
@@ -1336,25 +1326,22 @@ static void
 debug_app_summary (GsmManager *manager)
 {
         GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
-        guint phase;
-
-        g_debug ("GsmManager: App startup summary");
-        for (phase = GSM_MANAGER_PHASE_INITIALIZATION; phase < GSM_MANAGER_PHASE_RUNNING; phase++) {
-                g_debug ("GsmManager: Phase %s", phase_num_to_name (phase));
-                gsm_store_foreach (priv->apps,
-                                   (GsmStoreFunc)_debug_app_for_phase,
-                                   GUINT_TO_POINTER (phase));
-        }
+        g_debug ("GsmManager: Autostart app summary");
+        gsm_store_foreach (priv->apps,
+                           (GsmStoreFunc)_debug_app_for_phase,
+                           NULL);
 }
 
 void
 gsm_manager_start (GsmManager *manager)
 {
-        g_debug ("GsmManager: GSM starting to manage");
+        GsmManagerPrivate *priv;
+        g_debug ("GsmManager: Starting");
 
         g_return_if_fail (GSM_IS_MANAGER (manager));
+        priv = gsm_manager_get_instance_private (manager);
+        g_return_if_fail (priv->phase == GSM_MANAGER_PHASE_INITIALIZATION);
 
-        gsm_manager_set_phase (manager, GSM_MANAGER_PHASE_INITIALIZATION);
         debug_app_summary (manager);
         start_phase (manager);
 }
@@ -2409,11 +2396,9 @@ gsm_manager_initialized (GsmExportedManager    *skeleton,
         } else {
                 priv->systemd_initialized = TRUE;
 
-                if (priv->manager_initialized) {
-                        g_assert (priv->phase == GSM_MANAGER_PHASE_INITIALIZATION);
-                        priv->phase++;
-                        start_phase (manager);
-                }
+                g_assert (priv->phase == GSM_MANAGER_PHASE_INITIALIZATION);
+                priv->phase++;
+                start_phase (manager);
 
                 gsm_exported_manager_complete_initialized (skeleton, invocation);
         }
