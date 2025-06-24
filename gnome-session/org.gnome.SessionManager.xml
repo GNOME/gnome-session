@@ -282,10 +282,10 @@
 
     <!--
       IsSessionRunning:
-      @running: True if the session has entered the Running phase, false otherwise
+      @running: True if the session is running, false otherwise.
 
-      Allows the caller to determine whether the session manager has entered
-      the Running phase, in case the client missed the SessionRunning signal.
+      Allows the caller to determine whether the session is running or not.
+      Returns false if the session is initializing, or shutting down.
     -->
     <method name="IsSessionRunning">
       <arg name="running" direction="out" type="b"/>
@@ -336,7 +336,7 @@
     <!--
       SessionRunning:
 
-      Emitted when the session enters the Running phase.
+      Emitted when the session is done initializing.
     -->
     <signal name="SessionRunning"/>
 
