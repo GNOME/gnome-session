@@ -40,7 +40,7 @@ struct _GsmManagerClass
 };
 
 typedef enum {
-        /* We're starting session services, the Wayland compositor, etc */
+        /* We're waiting for systemd to start session services, the compositor, etc */
         GSM_MANAGER_PHASE_INITIALIZATION = 0,
         /* The session is running, but we're still launching the user's autostart apps */
         GSM_MANAGER_PHASE_APPLICATION,
