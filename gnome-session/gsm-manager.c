@@ -194,7 +194,7 @@ start_app_or_warn (GsmManager *manager,
         gboolean res;
         GError *error = NULL;
 
-        g_debug ("GsmManager: starting app '%s'", gsm_app_peek_id (app));
+        g_debug ("GsmManager: starting app '%s'", gsm_app_peek_app_id (app));
 
         res = gsm_app_start (app, &error);
         if (error != NULL) {
@@ -982,8 +982,7 @@ _debug_app_for_phase (const char *id,
                 return FALSE;
         }
 
-        g_debug ("GsmManager:\tID: %s\tapp-id:%s\tis-disabled:%d",
-                 gsm_app_peek_id (app),
+        g_debug ("GsmManager:\tapp-id:%s\tis-disabled:%d",
                  gsm_app_peek_app_id (app),
                  gsm_app_peek_is_disabled (app));
 
@@ -1026,30 +1025,6 @@ _gsm_manager_set_active_session (GsmManager     *manager,
         priv->is_fallback_session = is_fallback;
 
         gsm_exported_manager_set_session_name (priv->skeleton, session_name);
-}
-
-static gboolean
-_app_has_app_id (const char   *id,
-                 GsmApp       *app,
-                 const char   *app_id_a)
-{
-        const char *app_id_b;
-
-        app_id_b = gsm_app_peek_app_id (app);
-        return (app_id_b != NULL && strcmp (app_id_a, app_id_b) == 0);
-}
-
-static GsmApp *
-find_app_for_app_id (GsmManager *manager,
-                     const char *app_id)
-{
-        GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
-        GsmApp *app;
-
-        app = (GsmApp *)gsm_store_find (priv->apps,
-                                        (GsmStoreFunc)_app_has_app_id,
-                                        (char *)app_id);
-        return app;
 }
 
 static gboolean
@@ -1139,7 +1114,7 @@ _disconnect_client (GsmManager *manager,
                 app_id = gsm_client_peek_app_id (client);
                 if (! IS_STRING_EMPTY (app_id)) {
                         g_debug ("GsmManager: disconnect for app '%s'", app_id);
-                        app = find_app_for_app_id (manager, app_id);
+                        app = (GsmApp *) gsm_store_lookup (priv->apps, app_id);
                 }
         }
 
@@ -2211,7 +2186,7 @@ gsm_manager_register_client (GsmExportedManager    *skeleton,
         }
         if (app == NULL && !IS_STRING_EMPTY (app_id)) {
                 /* try to associate this app id with a known app */
-                app = find_app_for_app_id (manager, app_id);
+                app = (GsmApp *) gsm_store_lookup (priv->apps, app_id);
         }
 
         sender = g_dbus_method_invocation_get_sender (invocation);
@@ -2839,21 +2814,8 @@ append_app (GsmManager *manager,
             GsmApp     *app)
 {
         GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
-        const char *id;
         const char *app_id;
         GsmApp     *dup;
-
-        id = gsm_app_peek_id (app);
-        if (IS_STRING_EMPTY (id)) {
-                g_debug ("GsmManager: not adding app: no id");
-                return;
-        }
-
-        dup = (GsmApp *)gsm_store_lookup (priv->apps, id);
-        if (dup != NULL) {
-                g_debug ("GsmManager: not adding app: already added");
-                return;
-        }
 
         app_id = gsm_app_peek_app_id (app);
         if (IS_STRING_EMPTY (app_id)) {
@@ -2861,13 +2823,13 @@ append_app (GsmManager *manager,
                 return;
         }
 
-        dup = find_app_for_app_id (manager, app_id);
+        dup = (GsmApp *) gsm_store_lookup (priv->apps, app_id);
         if (dup != NULL) {
                 g_debug ("GsmManager: not adding app: app-id '%s' already exists", app_id);
                 return;
         }
 
-        gsm_store_add (priv->apps, id, G_OBJECT (app));
+        gsm_store_add (priv->apps, app_id, G_OBJECT (app));
 }
 
 gboolean

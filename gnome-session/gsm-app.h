@@ -56,7 +56,6 @@ typedef enum
 
 GQuark           gsm_app_error_quark                    (void);
 
-const char      *gsm_app_peek_id                        (GsmApp     *app);
 const char      *gsm_app_peek_app_id                    (GsmApp     *app);
 const char      *gsm_app_peek_startup_id                (GsmApp     *app);
 GsmManagerPhase  gsm_app_peek_phase                     (GsmApp     *app);
