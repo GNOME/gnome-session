@@ -29,7 +29,6 @@
 #include "gsm-session-fill.h"
 #include "gsm-store.h"
 #include "gsm-system.h"
-#include "gsm-fail-whale.h"
 
 static char *session_name = NULL;
 
@@ -48,12 +47,10 @@ on_name_lost (GDBusConnection *connection,
               gpointer    data)
 {
         if (connection == NULL) {
-                if (gsm_manager_get_dbus_disconnected (manager))
-                        gsm_quit ();
-                else {
-                        g_warning ("Lost name on bus: %s", name);
-                        gsm_fail_whale_dialog_we_failed (TRUE, TRUE);
-                }
+                if (!gsm_manager_get_dbus_disconnected (manager))
+                        g_log_structured (G_LOG_DOMAIN, G_LOG_LEVEL_WARNING,
+                                          "MESSAGE_ID", GSM_MANAGER_UNRECOVERABLE_FAILURE_MSGID,
+                                          "MESSAGE", "Lost bus", name);
         } else {
                 g_debug ("Calling name lost callback function");
 
@@ -64,9 +61,9 @@ on_name_lost (GDBusConnection *connection,
                  * to dispatch following the below call to gtk_main_quit.
                  */
                 gsm_manager_set_phase (manager, GSM_MANAGER_PHASE_EXIT);
-
-                gsm_quit ();
         }
+
+        gsm_quit ();
 }
 
 static gboolean
@@ -127,7 +124,10 @@ create_manager (void)
         g_unix_signal_add (SIGUSR2, sigusr2_cb, manager);
 
         if (!gsm_session_fill (manager, session_name)) {
-                gsm_fail_whale_dialog_we_failed (FALSE, TRUE);
+                g_log_structured (G_LOG_DOMAIN, G_LOG_LEVEL_WARNING,
+                                  "MESSAGE_ID", GSM_MANAGER_UNRECOVERABLE_FAILURE_MSGID,
+                                  "MESSAGE", "Failed to fill session");
+                gsm_quit ();
         }
 }
 

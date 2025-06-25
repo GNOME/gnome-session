@@ -140,7 +140,6 @@ systemd_service = [
   'gnome-session-signal-init.service',
   'gnome-session-restart-dbus.service',
   'gnome-session-monitor.service',
-  'gnome-session-failed.service',
 ]
 
 foreach service: systemd_service
@@ -164,7 +163,6 @@ systemd_target = [
   'gnome-session-manager.target',
   'gnome-session-initialized.target',
   'gnome-session-shutdown.target',
-  'gnome-session-failed.target',
   'gnome-session-x11-services.target',
   'gnome-session-x11-services-ready.target',
 ]
