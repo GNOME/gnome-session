@@ -708,31 +708,6 @@ gsm_systemd_can_stop (GsmSystem *system)
 }
 
 static gboolean
-gsm_systemd_is_login_session (GsmSystem *system)
-{
-        GsmSystemd *manager = GSM_SYSTEMD (system);
-        int res;
-        gboolean ret;
-        gchar *session_class = NULL;
-
-        ret = FALSE;
-
-        if (manager->priv->session_id == NULL) {
-                return ret;
-        }
-
-        res = sd_session_get_class (manager->priv->session_id, &session_class);
-        if (res < 0) {
-                g_warning ("Could not get session class: %s", strerror (-res));
-                return FALSE;
-        }
-        ret = (g_strcmp0 (session_class, "greeter") == 0);
-        free (session_class);
-
-        return ret;
-}
-
-static gboolean
 gsm_systemd_can_suspend (GsmSystem *system)
 {
         GsmSystemd *manager = GSM_SYSTEMD (system);
@@ -1072,7 +1047,6 @@ gsm_systemd_system_init (GsmSystemInterface *iface)
         iface->suspend = gsm_systemd_suspend;
         iface->hibernate = gsm_systemd_hibernate;
         iface->set_session_idle = gsm_systemd_set_session_idle;
-        iface->is_login_session = gsm_systemd_is_login_session;
         iface->set_inhibitors = gsm_systemd_set_inhibitors;
         iface->prepare_shutdown = gsm_systemd_prepare_shutdown;
         iface->complete_shutdown = gsm_systemd_complete_shutdown;
