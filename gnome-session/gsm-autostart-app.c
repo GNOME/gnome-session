@@ -31,9 +31,6 @@
 #define GNOME_DESKTOP_USE_UNSTABLE_API
 #include <libgnome-desktop/gnome-systemd.h>
 
-#include <systemd/sd-journal.h>
-#include <systemd/sd-daemon.h>
-
 #include "gsm-autostart-app.h"
 #include "gsm-util.h"
 
@@ -263,33 +260,6 @@ app_launched (GAppLaunchContext *ctx,
                                    NULL, NULL, NULL);
 }
 
-static void
-on_child_setup (GsmAutostartApp *app)
-{
-        GsmAutostartAppPrivate *priv = gsm_autostart_app_get_instance_private (app);
-        int standard_output, standard_error;
-
-        /* The FALSE means programs aren't expected to prefix each
-         * line with <n> prefix to specify priority.
-         */
-        standard_output = sd_journal_stream_fd (priv->desktop_id,
-                                                LOG_INFO,
-                                                FALSE);
-        standard_error = sd_journal_stream_fd (priv->desktop_id,
-                                               LOG_WARNING,
-                                               FALSE);
-
-        if (standard_output >= 0) {
-                dup2 (standard_output, STDOUT_FILENO);
-                close (standard_output);
-        }
-
-        if (standard_error >= 0) {
-                dup2 (standard_error, STDERR_FILENO);
-                close (standard_error);
-        }
-}
-
 static gboolean
 autostart_app_start_spawn (GsmAutostartApp *app,
                            GError         **error)
@@ -302,8 +272,6 @@ autostart_app_start_spawn (GsmAutostartApp *app,
         const char * const *child_environment;
         int i;
         GAppLaunchContext *ctx;
-        GSpawnChildSetupFunc child_setup_func = NULL;
-        gpointer             child_setup_data = NULL;
         guint handler;
 
         startup_id = gsm_app_peek_startup_id (GSM_APP (app));
@@ -339,18 +307,12 @@ autostart_app_start_spawn (GsmAutostartApp *app,
                 g_app_launch_context_setenv (ctx, "DESKTOP_AUTOSTART_ID", startup_id);
         }
 
-        if (sd_booted () > 0) {
-                child_setup_func = (GSpawnChildSetupFunc) on_child_setup;
-                child_setup_data = app;
-        }
-
         handler = g_signal_connect (ctx, "launched", G_CALLBACK (app_launched), app);
         success = g_desktop_app_info_launch_uris_as_manager (priv->app_info,
                                                              NULL,
                                                              ctx,
                                                              G_SPAWN_DO_NOT_REAP_CHILD | G_SPAWN_SEARCH_PATH,
-                                                             child_setup_func, child_setup_data,
-                                                             NULL, NULL,
+                                                             NULL, NULL, NULL, NULL,
                                                              &local_error);
         g_signal_handler_disconnect (ctx, handler);
 
