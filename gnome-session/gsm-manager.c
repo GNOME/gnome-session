@@ -250,57 +250,6 @@ _client_has_startup_id (const char *id,
         return (strcmp (startup_id_a, startup_id_b) == 0);
 }
 
-static void
-app_condition_changed (GsmApp     *app,
-                       gboolean    condition,
-                       GsmManager *manager)
-{
-        GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
-        GsmClient *client;
-
-        g_debug ("GsmManager: app:%s condition changed condition:%d",
-                 gsm_app_peek_id (app),
-                 condition);
-
-        client = (GsmClient *)gsm_store_find (priv->clients,
-                                              (GsmStoreFunc)_client_has_startup_id,
-                                              (char *)gsm_app_peek_startup_id (app));
-
-        if (condition) {
-                if (!gsm_app_is_running (app) && client == NULL) {
-                        start_app_or_warn (manager, app);
-                } else {
-                        g_debug ("GsmManager: not starting - app still running '%s'", gsm_app_peek_id (app));
-                }
-        } else {
-                GError  *error;
-                gboolean res;
-
-                if (client != NULL) {
-                        g_debug ("GsmManager: stopping client %s for app", gsm_client_peek_id (client));
-
-                        error = NULL;
-                        res = gsm_client_stop (client, &error);
-                        if (! res) {
-                                g_warning ("Not able to stop app client from its condition: %s",
-                                           error->message);
-                                g_error_free (error);
-                        }
-                } else {
-                        g_debug ("GsmManager: stopping app %s", gsm_app_peek_id (app));
-
-                        /* If we don't have a client then we should try to kill the app */
-                        error = NULL;
-                        res = gsm_app_stop (app, &error);
-                        if (! res) {
-                                g_warning ("Not able to stop app from its condition: %s",
-                                           error->message);
-                                g_error_free (error);
-                        }
-                }
-        }
-}
-
 static const char *
 phase_num_to_name (guint phase)
 {
@@ -421,15 +370,7 @@ _start_app (const char *id,
                 goto out;
         }
 
-        /* Keep track of app autostart condition in order to react
-         * accordingly in the future. */
-        g_signal_connect (app,
-                          "condition-changed",
-                          G_CALLBACK (app_condition_changed),
-                          manager);
-
-        if (gsm_app_peek_is_disabled (app)
-            || gsm_app_peek_is_conditionally_disabled (app)) {
+        if (gsm_app_peek_is_disabled (app)) {
                 g_debug ("GsmManager: Skipping disabled app: %s", id);
                 goto out;
         }
@@ -1041,11 +982,10 @@ _debug_app_for_phase (const char *id,
                 return FALSE;
         }
 
-        g_debug ("GsmManager:\tID: %s\tapp-id:%s\tis-disabled:%d\tis-conditionally-disabled:%d",
+        g_debug ("GsmManager:\tID: %s\tapp-id:%s\tis-disabled:%d",
                  gsm_app_peek_id (app),
                  gsm_app_peek_app_id (app),
-                 gsm_app_peek_is_disabled (app),
-                 gsm_app_peek_is_conditionally_disabled (app));
+                 gsm_app_peek_is_disabled (app));
 
         return FALSE;
 }
@@ -2532,45 +2472,6 @@ gsm_manager_get_inhibitors (GsmExportedManager    *skeleton,
 }
 
 static gboolean
-_app_has_autostart_condition (const char *id,
-                              GsmApp     *app,
-                              const char *condition)
-{
-        gboolean has;
-        gboolean disabled;
-
-        has = gsm_app_has_autostart_condition (app, condition);
-        disabled = gsm_app_peek_is_disabled (app);
-
-        return has && !disabled;
-}
-
-static gboolean
-gsm_manager_is_autostart_condition_handled (GsmExportedManager    *skeleton,
-                                            GDBusMethodInvocation *invocation,
-                                            const char            *condition,
-                                            GsmManager            *manager)
-{
-        GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
-        GsmApp *app;
-        gboolean handled;
-
-        app = (GsmApp *) gsm_store_find (priv->apps,(
-                                         GsmStoreFunc) _app_has_autostart_condition,
-                                         (char *)condition);
-
-        if (app != NULL) {
-                handled = TRUE;
-        } else {
-                handled = FALSE;
-        }
-
-        gsm_exported_manager_complete_is_autostart_condition_handled (skeleton, invocation, handled);
-
-        return TRUE;
-}
-
-static gboolean
 gsm_manager_is_session_running (GsmExportedManager    *skeleton,
                                 GDBusMethodInvocation *invocation,
                                 GsmManager            *manager)
@@ -2646,8 +2547,6 @@ register_manager (GsmManager *manager)
                           G_CALLBACK (gsm_manager_inhibit), manager);
         g_signal_connect (skeleton, "handle-initialization-error",
                           G_CALLBACK (gsm_manager_initialization_error), manager);
-        g_signal_connect (skeleton, "handle-is-autostart-condition-handled",
-                          G_CALLBACK (gsm_manager_is_autostart_condition_handled), manager);
         g_signal_connect (skeleton, "handle-is-inhibited",
                           G_CALLBACK (gsm_manager_is_inhibited), manager);
         g_signal_connect (skeleton, "handle-is-session-running",

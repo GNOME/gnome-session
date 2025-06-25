@@ -42,16 +42,6 @@ enum {
         AUTOSTART_LAUNCH_ACTIVATE
 };
 
-enum {
-        GSM_CONDITION_NONE           = 0,
-        GSM_CONDITION_IF_EXISTS      = 1,
-        GSM_CONDITION_UNLESS_EXISTS  = 2,
-        GSM_CONDITION_GSETTINGS      = 3,
-        GSM_CONDITION_IF_SESSION     = 4,
-        GSM_CONDITION_UNLESS_SESSION = 5,
-        GSM_CONDITION_UNKNOWN        = 6
-};
-
 #define GSM_SESSION_CLIENT_DBUS_INTERFACE "org.gnome.SessionClient"
 
 typedef struct
@@ -62,31 +52,16 @@ typedef struct
 
         GDesktopAppInfo      *app_info;
 
-        /* desktop file state */
-        char                 *condition_string;
-        gboolean              condition;
-
-        GFileMonitor         *condition_monitor;
-        guint                 condition_notify_id;
-        GSettings            *condition_settings;
-
         int                   launch_type;
         GPid                  pid;
         guint                 child_watch_id;
 } GsmAutostartAppPrivate;
-
-enum {
-        CONDITION_CHANGED,
-        LAST_SIGNAL
-};
 
 typedef enum {
         PROP_DESKTOP_FILENAME = 1,
 } GsmAutostartAppProperty;
 
 static GParamSpec *props[PROP_DESKTOP_FILENAME + 1] = { NULL, };
-
-static guint signals[LAST_SIGNAL] = { 0 };
 
 static void gsm_autostart_app_initable_iface_init (GInitableIface  *iface);
 
@@ -100,8 +75,6 @@ gsm_autostart_app_init (GsmAutostartApp *app)
         GsmAutostartAppPrivate *priv = gsm_autostart_app_get_instance_private (app);
 
         priv->pid = -1;
-        priv->condition_monitor = NULL;
-        priv->condition = FALSE;
 }
 
 static gboolean
@@ -143,390 +116,7 @@ is_disabled (GsmApp *app)
                 return TRUE;
         }
 
-        /* Do not check AutostartCondition - this method is only to determine
-         if the app is unconditionally disabled */
-
         return FALSE;
-}
-
-static gboolean
-parse_condition_string (const char *condition_string,
-                        guint      *condition_kindp,
-                        char      **keyp)
-{
-        const char *space;
-        const char *key;
-        int         len;
-        guint       kind;
-
-        space = condition_string + strcspn (condition_string, " ");
-        len = space - condition_string;
-        key = space;
-        while (isspace ((unsigned char)*key)) {
-                key++;
-        }
-
-        kind = GSM_CONDITION_UNKNOWN;
-
-        if (!g_ascii_strncasecmp (condition_string, "if-exists", len) && key) {
-                kind = GSM_CONDITION_IF_EXISTS;
-        } else if (!g_ascii_strncasecmp (condition_string, "unless-exists", len) && key) {
-                kind = GSM_CONDITION_UNLESS_EXISTS;
-        } else if (!g_ascii_strncasecmp (condition_string, "GSettings", len)) {
-                kind = GSM_CONDITION_GSETTINGS;
-        } else if (!g_ascii_strncasecmp (condition_string, "GNOME3", len)) {
-                condition_string = key;
-                space = condition_string + strcspn (condition_string, " ");
-                len = space - condition_string;
-                key = space;
-                while (isspace ((unsigned char)*key)) {
-                        key++;
-                }
-                if (!g_ascii_strncasecmp (condition_string, "if-session", len) && key) {
-                        kind = GSM_CONDITION_IF_SESSION;
-                } else if (!g_ascii_strncasecmp (condition_string, "unless-session", len) && key) {
-                        kind = GSM_CONDITION_UNLESS_SESSION;
-                }
-        }
-
-        if (kind == GSM_CONDITION_UNKNOWN) {
-                key = NULL;
-        }
-
-        if (keyp != NULL) {
-                *keyp = g_strdup (key);
-        }
-
-        if (condition_kindp != NULL) {
-                *condition_kindp = kind;
-        }
-
-        return (kind != GSM_CONDITION_UNKNOWN);
-}
-
-static void
-if_exists_condition_cb (GFileMonitor     *monitor,
-                        GFile            *file,
-                        GFile            *other_file,
-                        GFileMonitorEvent event,
-                        GsmApp           *app)
-{
-        GsmAutostartAppPrivate *priv = gsm_autostart_app_get_instance_private (GSM_AUTOSTART_APP (app));
-        gboolean                condition = FALSE;
-
-        switch (event) {
-        case G_FILE_MONITOR_EVENT_CREATED:
-                condition = TRUE;
-                break;
-        case G_FILE_MONITOR_EVENT_DELETED:
-                condition = FALSE;
-                break;
-        default:
-                /* Ignore any other monitor event */
-                return;
-        }
-
-        /* Emit only if the condition actually changed */
-        if (condition != priv->condition) {
-                priv->condition = condition;
-                g_signal_emit (app, signals[CONDITION_CHANGED], 0, condition);
-        }
-}
-
-static void
-unless_exists_condition_cb (GFileMonitor     *monitor,
-                            GFile            *file,
-                            GFile            *other_file,
-                            GFileMonitorEvent event,
-                            GsmApp           *app)
-{
-        GsmAutostartAppPrivate *priv = gsm_autostart_app_get_instance_private (GSM_AUTOSTART_APP (app));
-        gboolean                condition = FALSE;
-
-        switch (event) {
-        case G_FILE_MONITOR_EVENT_CREATED:
-                condition = FALSE;
-                break;
-        case G_FILE_MONITOR_EVENT_DELETED:
-                condition = TRUE;
-                break;
-        default:
-                /* Ignore any other monitor event */
-                return;
-        }
-
-        /* Emit only if the condition actually changed */
-        if (condition != priv->condition) {
-                priv->condition = condition;
-                g_signal_emit (app, signals[CONDITION_CHANGED], 0, condition);
-        }
-}
-
-static void
-gsettings_condition_cb (GSettings  *settings,
-                        const char *key,
-                        gpointer    user_data)
-{
-        GsmApp *app = GSM_APP (user_data);
-        GsmAutostartAppPrivate *priv = gsm_autostart_app_get_instance_private (GSM_AUTOSTART_APP (app));
-        gboolean                condition;
-
-        g_return_if_fail (GSM_IS_APP (user_data));
-
-        condition = g_settings_get_boolean (settings, key);
-
-        g_debug ("GsmAutostartApp: app:%s condition changed condition:%d",
-                 gsm_app_peek_id (app),
-                 condition);
-
-        /* Emit only if the condition actually changed */
-        if (condition != priv->condition) {
-                priv->condition = condition;
-                g_signal_emit (app, signals[CONDITION_CHANGED], 0, condition);
-        }
-}
-
-static gboolean
-setup_gsettings_condition_monitor (GsmAutostartApp *app,
-                                   const char      *key)
-{
-        GsmAutostartAppPrivate *priv = gsm_autostart_app_get_instance_private (app);
-        GSettingsSchemaSource *source;
-        GSettingsSchema *schema;
-        GSettings *settings;
-        GSettingsSchemaKey *schema_key;
-        const GVariantType *key_type;
-        char **elems;
-        gboolean retval = FALSE;
-        char *signal;
-
-        retval = FALSE;
-
-        schema = NULL;
-
-        elems = g_strsplit (key, " ", 2);
-
-        if (elems == NULL)
-                goto out;
-
-        if (elems[0] == NULL || elems[1] == NULL)
-                goto out;
-
-        source = g_settings_schema_source_get_default ();
-
-        schema = g_settings_schema_source_lookup (source, elems[0], TRUE);
-
-        if (schema == NULL)
-                goto out;
-
-        if (!g_settings_schema_has_key (schema, elems[1]))
-                goto out;
-
-        schema_key = g_settings_schema_get_key (schema, elems[1]);
-
-        g_assert (schema_key != NULL);
-
-        key_type = g_settings_schema_key_get_value_type (schema_key);
-
-        g_settings_schema_key_unref (schema_key);
-
-        g_assert (key_type != NULL);
-
-        if (!g_variant_type_equal (key_type, G_VARIANT_TYPE_BOOLEAN))
-                goto out;
-
-        settings = g_settings_new_full (schema, NULL, NULL);
-        retval = g_settings_get_boolean (settings, elems[1]);
-
-        signal = g_strdup_printf ("changed::%s", elems[1]);
-        g_signal_connect (G_OBJECT (settings), signal,
-                          G_CALLBACK (gsettings_condition_cb), app);
-        g_free (signal);
-
-        priv->condition_settings = settings;
-
-out:
-        if (schema)
-                g_settings_schema_unref (schema);
-        g_strfreev (elems);
-
-        return retval;
-}
-
-static void
-if_session_condition_cb (GObject    *object,
-                         GParamSpec *pspec,
-                         gpointer    user_data)
-{
-        GsmApp *app = GSM_APP (user_data);
-        GsmAutostartAppPrivate *priv = gsm_autostart_app_get_instance_private (GSM_AUTOSTART_APP (app));
-        char                   *session_name;
-        char                   *key;
-        gboolean                condition;
-
-        g_return_if_fail (GSM_IS_APP (user_data));
-
-        parse_condition_string (priv->condition_string, NULL, &key);
-
-        g_object_get (object, "session-name", &session_name, NULL);
-        condition = strcmp (session_name, key) == 0;
-        g_free (session_name);
-
-        g_free (key);
-
-        g_debug ("GsmAutostartApp: app:%s condition changed condition:%d",
-                 gsm_app_peek_id (app),
-                 condition);
-
-        /* Emit only if the condition actually changed */
-        if (condition != priv->condition) {
-                priv->condition = condition;
-                g_signal_emit (app, signals[CONDITION_CHANGED], 0, condition);
-        }
-}
-
-static void
-unless_session_condition_cb (GObject    *object,
-                             GParamSpec *pspec,
-                             gpointer    user_data)
-{
-        GsmApp *app = GSM_APP (user_data);
-        GsmAutostartAppPrivate *priv = gsm_autostart_app_get_instance_private (GSM_AUTOSTART_APP (app));
-        char                   *session_name;
-        char                   *key;
-        gboolean                condition;
-
-        g_return_if_fail (GSM_IS_APP (user_data));
-
-        parse_condition_string (priv->condition_string, NULL, &key);
-
-        g_object_get (object, "session-name", &session_name, NULL);
-        condition = strcmp (session_name, key) != 0;
-        g_free (session_name);
-
-        g_free (key);
-
-        g_debug ("GsmAutostartApp: app:%s condition changed condition:%d",
-                 gsm_app_peek_id (app),
-                 condition);
-
-        /* Emit only if the condition actually changed */
-        if (condition != priv->condition) {
-                priv->condition = condition;
-                g_signal_emit (app, signals[CONDITION_CHANGED], 0, condition);
-        }
-}
-
-static char *
-resolve_conditional_file_path (const char *file)
-{
-        if (g_path_is_absolute (file))
-                return g_strdup (file);
-        return g_build_filename (g_get_user_config_dir (), file, NULL);
-}
-
-static void
-setup_condition_monitor (GsmAutostartApp *app)
-{
-        GsmAutostartAppPrivate *priv = gsm_autostart_app_get_instance_private (app);
-        guint    kind;
-        char    *key;
-        gboolean res;
-        gboolean disabled;
-
-        if (priv->condition_monitor != NULL) {
-                g_file_monitor_cancel (priv->condition_monitor);
-        }
-
-        if (priv->condition_string == NULL) {
-                return;
-        }
-
-        /* if it is disabled outright there is no point in monitoring */
-        if (is_disabled (GSM_APP (app))) {
-                return;
-        }
-
-        key = NULL;
-        res = parse_condition_string (priv->condition_string, &kind, &key);
-        if (! res) {
-                g_free (key);
-                return;
-        }
-
-        if (key == NULL) {
-                return;
-        }
-
-        if (kind == GSM_CONDITION_IF_EXISTS) {
-                char  *file_path;
-                GFile *file;
-
-                file_path = resolve_conditional_file_path (key);
-                disabled = !g_file_test (file_path, G_FILE_TEST_EXISTS);
-
-                file = g_file_new_for_path (file_path);
-                priv->condition_monitor = g_file_monitor_file (file, 0, NULL, NULL);
-
-                g_signal_connect (priv->condition_monitor, "changed",
-                                  G_CALLBACK (if_exists_condition_cb),
-                                  app);
-
-                g_object_unref (file);
-                g_free (file_path);
-        } else if (kind == GSM_CONDITION_UNLESS_EXISTS) {
-                char  *file_path;
-                GFile *file;
-
-                file_path = resolve_conditional_file_path (key);
-                disabled = g_file_test (file_path, G_FILE_TEST_EXISTS);
-
-                file = g_file_new_for_path (file_path);
-                priv->condition_monitor = g_file_monitor_file (file, 0, NULL, NULL);
-
-                g_signal_connect (priv->condition_monitor, "changed",
-                                  G_CALLBACK (unless_exists_condition_cb),
-                                  app);
-
-                g_object_unref (file);
-                g_free (file_path);
-        } else if (kind == GSM_CONDITION_GSETTINGS) {
-                disabled = !setup_gsettings_condition_monitor (app, key);
-        } else if (kind == GSM_CONDITION_IF_SESSION) {
-                GsmManager *manager;
-                char *session_name;
-
-                /* get the singleton */
-                manager = gsm_manager_get ();
-
-                g_object_get (manager, "session-name", &session_name, NULL);
-                disabled = strcmp (session_name, key) != 0;
-
-                g_signal_connect (manager, "notify::session-name",
-                                  G_CALLBACK (if_session_condition_cb), app);
-                g_free (session_name);
-        } else if (kind == GSM_CONDITION_UNLESS_SESSION) {
-                GsmManager *manager;
-                char *session_name;
-
-                /* get the singleton */
-                manager = gsm_manager_get ();
-
-                g_object_get (manager, "session-name", &session_name, NULL);
-                disabled = strcmp (session_name, key) == 0;
-
-                g_signal_connect (manager, "notify::session-name",
-                                  G_CALLBACK (unless_session_condition_cb), app);
-                g_free (session_name);
-        } else {
-                disabled = TRUE;
-        }
-
-        g_free (key);
-
-        if (disabled) {
-                /* FIXME: cache the disabled value? */
-        }
 }
 
 static void
@@ -563,11 +153,6 @@ load_desktop_file (GsmAutostartApp  *app)
         default:
                 g_assert_not_reached ();
         }
-
-        g_free (priv->condition_string);
-        priv->condition_string = g_desktop_app_info_get_string (priv->app_info,
-                                                                   "AutostartCondition");
-        setup_condition_monitor (app);
 
         g_object_set (app,
                       "phase", GSM_MANAGER_PHASE_APPLICATION,
@@ -649,8 +234,6 @@ gsm_autostart_app_dispose (GObject *object)
 
         g_clear_pointer (&priv->startup_id, g_free);
 
-        g_clear_pointer (&priv->condition_string, g_free);
-        g_clear_object (&priv->condition_settings);
         g_clear_object (&priv->app_info);
         g_clear_pointer (&priv->desktop_filename, g_free);
         g_clear_pointer (&priv->desktop_id, g_free);
@@ -658,10 +241,6 @@ gsm_autostart_app_dispose (GObject *object)
         if (priv->child_watch_id > 0) {
                 g_source_remove (priv->child_watch_id);
                 priv->child_watch_id = 0;
-        }
-
-        if (priv->condition_monitor) {
-                g_file_monitor_cancel (priv->condition_monitor);
         }
 
         G_OBJECT_CLASS (gsm_autostart_app_parent_class)->dispose (object);
@@ -680,81 +259,6 @@ is_running (GsmApp *app)
         is = (priv->pid != -1);
 
         return is;
-}
-
-static gboolean
-is_conditionally_disabled (GsmApp *app)
-{
-        GsmAutostartAppPrivate *priv = gsm_autostart_app_get_instance_private (GSM_AUTOSTART_APP (app));
-        gboolean                res;
-        gboolean                disabled;
-        char                   *key;
-        guint                   kind;
-
-        /* Check AutostartCondition */
-        if (priv->condition_string == NULL) {
-                return FALSE;
-        }
-
-        key = NULL;
-        res = parse_condition_string (priv->condition_string, &kind, &key);
-        if (! res) {
-                g_free (key);
-                return TRUE;
-        }
-
-        if (key == NULL) {
-                return TRUE;
-        }
-
-        if (kind == GSM_CONDITION_IF_EXISTS) {
-                char *file_path;
-
-                file_path = resolve_conditional_file_path (key);
-                disabled = !g_file_test (file_path, G_FILE_TEST_EXISTS);
-                g_free (file_path);
-        } else if (kind == GSM_CONDITION_UNLESS_EXISTS) {
-                char *file_path;
-
-                file_path = resolve_conditional_file_path (key);
-                disabled = g_file_test (file_path, G_FILE_TEST_EXISTS);
-                g_free (file_path);
-        } else if (kind == GSM_CONDITION_GSETTINGS &&
-                   priv->condition_settings != NULL) {
-                char **elems;
-                elems = g_strsplit (key, " ", 2);
-                disabled = !g_settings_get_boolean (priv->condition_settings, elems[1]);
-                g_strfreev (elems);
-        } else if (kind == GSM_CONDITION_IF_SESSION) {
-                GsmManager *manager;
-                char *session_name;
-
-                /* get the singleton */
-                manager = gsm_manager_get ();
-
-                g_object_get (manager, "session-name", &session_name, NULL);
-                disabled = strcmp (session_name, key) != 0;
-                g_free (session_name);
-        } else if (kind == GSM_CONDITION_UNLESS_SESSION) {
-                GsmManager *manager;
-                char *session_name;
-
-                /* get the singleton */
-                manager = gsm_manager_get ();
-
-                g_object_get (manager, "session-name", &session_name, NULL);
-                disabled = strcmp (session_name, key) == 0;
-                g_free (session_name);
-        } else {
-                disabled = TRUE;
-        }
-
-        /* Set initial condition */
-        priv->condition = !disabled;
-
-        g_free (key);
-
-        return disabled;
 }
 
 static void
@@ -1100,27 +604,6 @@ gsm_autostart_app_start (GsmApp  *app,
         return ret;
 }
 
-static gboolean
-gsm_autostart_app_has_autostart_condition (GsmApp     *app,
-                                           const char *condition)
-{
-        GsmAutostartApp *self = GSM_AUTOSTART_APP (app);
-        GsmAutostartAppPrivate *priv = gsm_autostart_app_get_instance_private (self);
-
-        g_return_val_if_fail (GSM_IS_APP (app), FALSE);
-        g_return_val_if_fail (condition != NULL, FALSE);
-
-        if (priv->condition_string == NULL) {
-                return FALSE;
-        }
-
-        if (strcmp (priv->condition_string, condition) == 0) {
-                return TRUE;
-        }
-
-        return FALSE;
-}
-
 static const char *
 gsm_autostart_app_get_app_id (GsmApp *app)
 {
@@ -1173,11 +656,9 @@ gsm_autostart_app_class_init (GsmAutostartAppClass *klass)
         object_class->dispose = gsm_autostart_app_dispose;
 
         app_class->impl_is_disabled = is_disabled;
-        app_class->impl_is_conditionally_disabled = is_conditionally_disabled;
         app_class->impl_is_running = is_running;
         app_class->impl_start = gsm_autostart_app_start;
         app_class->impl_stop = gsm_autostart_app_stop;
-        app_class->impl_has_autostart_condition = gsm_autostart_app_has_autostart_condition;
         app_class->impl_get_app_id = gsm_autostart_app_get_app_id;
 
         props[PROP_DESKTOP_FILENAME] =
@@ -1188,16 +669,6 @@ gsm_autostart_app_class_init (GsmAutostartAppClass *klass)
                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
 
         g_object_class_install_properties (object_class, G_N_ELEMENTS (props), props);
-
-        signals[CONDITION_CHANGED] =
-                g_signal_new ("condition-changed",
-                              G_OBJECT_CLASS_TYPE (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GsmAutostartAppClass, condition_changed),
-                              NULL, NULL, NULL,
-                              G_TYPE_NONE,
-                              1,
-                              G_TYPE_BOOLEAN);
 }
 
 GsmApp *

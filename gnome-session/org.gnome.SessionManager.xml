@@ -195,19 +195,6 @@
     </method>
 
     <!--
-      IsAutostartConditionHandled:
-      @condition: The autostart condition string
-      @handled: True if condition is handled, false otherwise
-
-      Allows the caller to determine whether the session manager is handling
-      changes to the specified autostart condition.
-    -->
-    <method name="IsAutostartConditionHandled">
-      <arg name="condition" direction="in" type="s"/>
-      <arg name="handled" direction="out" type="b"/>
-    </method>
-
-    <!--
       Shutdown:
 
       Request a shutdown dialog.
