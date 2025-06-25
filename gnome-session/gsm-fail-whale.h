@@ -20,13 +20,10 @@
 
 #include <glib.h>
 
-#include "gsm-shell-extensions.h"
-
 G_BEGIN_DECLS
 
 void        gsm_fail_whale_dialog_we_failed  (gboolean            debug_mode,
-                                              gboolean            allow_logout,
-                                              GsmShellExtensions *extensions);
+                                              gboolean            allow_logout);
 
 G_END_DECLS
 

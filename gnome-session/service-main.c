@@ -52,7 +52,7 @@ on_name_lost (GDBusConnection *connection,
                         gsm_quit ();
                 else {
                         g_warning ("Lost name on bus: %s", name);
-                        gsm_fail_whale_dialog_we_failed (TRUE, TRUE, NULL);
+                        gsm_fail_whale_dialog_we_failed (TRUE, TRUE);
                 }
         } else {
                 g_debug ("Calling name lost callback function");
@@ -127,7 +127,7 @@ create_manager (void)
         g_unix_signal_add (SIGUSR2, sigusr2_cb, manager);
 
         if (!gsm_session_fill (manager, session_name)) {
-                gsm_fail_whale_dialog_we_failed (FALSE, TRUE, NULL);
+                gsm_fail_whale_dialog_we_failed (FALSE, TRUE);
         }
 }
 

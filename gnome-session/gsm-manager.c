@@ -56,7 +56,6 @@
 #include "gsm-util.h"
 #include "gsm-icon-names.h"
 #include "gsm-system.h"
-#include "gsm-shell-extensions.h"
 #include "gsm-fail-whale.h"
 
 /* UUIDs for log messages */
