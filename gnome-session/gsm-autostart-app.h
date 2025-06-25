@@ -39,13 +39,9 @@ struct _GsmAutostartAppClass
 GsmApp *gsm_autostart_app_new                (const char *desktop_file,
                                               GError    **error);
 
-void    gsm_autostart_app_add_provides       (GsmAutostartApp *aapp,
-                                              const char      *provides);
-
 #define GSM_AUTOSTART_APP_SYSTEMD_KEY     "X-GNOME-HiddenUnderSystemd"
 #define GSM_AUTOSTART_APP_ENABLED_KEY     "X-GNOME-Autostart-enabled"
 #define GSM_AUTOSTART_APP_PHASE_KEY       "X-GNOME-Autostart-Phase"
-#define GSM_AUTOSTART_APP_PROVIDES_KEY    "X-GNOME-Provides"
 #define GSM_AUTOSTART_APP_STARTUP_ID_KEY  "X-GNOME-Autostart-startup-id"
 #define GSM_AUTOSTART_APP_AUTORESTART_KEY "X-GNOME-AutoRestart"
 #define GSM_AUTOSTART_APP_DBUS_NAME_KEY   "X-GNOME-DBus-Name"

@@ -324,8 +324,6 @@ gsm_app_class_init (GsmAppClass *klass)
         klass->impl_start = NULL;
         klass->impl_get_app_id = NULL;
         klass->impl_get_autorestart = NULL;
-        klass->impl_provides = NULL;
-        klass->impl_get_provides = NULL;
         klass->impl_is_running = NULL;
 
         g_object_class_install_property (object_class,
@@ -463,26 +461,6 @@ gsm_app_peek_autorestart (GsmApp *app)
                 return GSM_APP_GET_CLASS (app)->impl_get_autorestart (app);
         } else {
                 return FALSE;
-        }
-}
-
-gboolean
-gsm_app_provides (GsmApp *app, const char *service)
-{
-        if (GSM_APP_GET_CLASS (app)->impl_provides) {
-                return GSM_APP_GET_CLASS (app)->impl_provides (app, service);
-        } else {
-                return FALSE;
-        }
-}
-
-char **
-gsm_app_get_provides (GsmApp *app)
-{
-        if (GSM_APP_GET_CLASS (app)->impl_get_provides) {
-                return GSM_APP_GET_CLASS (app)->impl_get_provides (app);
-        } else {
-                return NULL;
         }
 }
 
