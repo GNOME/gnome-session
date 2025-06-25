@@ -27,9 +27,6 @@
 #include "gsm-app.h"
 #include "org.gnome.SessionManager.App.h"
 
-/* If a component crashes twice within a minute, we count that as a fatal error */
-#define _GSM_APP_RESPAWN_RATELIMIT_USEC (60 * G_USEC_PER_SEC)
-
 typedef struct
 {
         char            *id;
@@ -37,7 +34,6 @@ typedef struct
         int              phase;
         char            *startup_id;
         gboolean         registered;
-        gint64           last_restart_time;
         GDBusConnection *connection;
         GsmExportedApp  *skeleton;
 } GsmAppPrivate;
@@ -323,7 +319,6 @@ gsm_app_class_init (GsmAppClass *klass)
 
         klass->impl_start = NULL;
         klass->impl_get_app_id = NULL;
-        klass->impl_get_autorestart = NULL;
         klass->impl_is_running = NULL;
 
         g_object_class_install_property (object_class,
@@ -453,18 +448,6 @@ gsm_app_is_running (GsmApp *app)
 }
 
 gboolean
-gsm_app_peek_autorestart (GsmApp *app)
-{
-        g_return_val_if_fail (GSM_IS_APP (app), FALSE);
-
-        if (GSM_APP_GET_CLASS (app)->impl_get_autorestart) {
-                return GSM_APP_GET_CLASS (app)->impl_get_autorestart (app);
-        } else {
-                return FALSE;
-        }
-}
-
-gboolean
 gsm_app_has_autostart_condition (GsmApp     *app,
                                  const char *condition)
 {
@@ -484,30 +467,6 @@ gsm_app_start (GsmApp  *app,
 
         g_debug ("Starting app: %s", priv->id);
         return GSM_APP_GET_CLASS (app)->impl_start (app, error);
-}
-
-gboolean
-gsm_app_restart (GsmApp  *app,
-                 GError **error)
-{
-        GsmAppPrivate *priv = gsm_app_get_instance_private (app);
-        gint64 current_time;
-        g_debug ("Re-starting app: %s", priv->id);
-
-        current_time = g_get_monotonic_time ();
-        if (priv->last_restart_time > 0
-            && (current_time - priv->last_restart_time) < _GSM_APP_RESPAWN_RATELIMIT_USEC) {
-                g_warning ("App '%s' respawning too quickly", gsm_app_peek_app_id (app));
-                g_set_error (error,
-                             GSM_APP_ERROR,
-                             GSM_APP_ERROR_RESTART_LIMIT,
-                             "Component '%s' crashing too quickly",
-                             gsm_app_peek_app_id (app));
-                return FALSE;
-        }
-        priv->last_restart_time = current_time;
-
-        return GSM_APP_GET_CLASS (app)->impl_restart (app, error);
 }
 
 gboolean

@@ -87,8 +87,6 @@
 #define KEY_DISABLE_LOG_OUT       "disable-log-out"
 #define KEY_DISABLE_USER_SWITCHING "disable-user-switching"
 
-static void app_registered (GsmApp     *app, GParamSpec *spec, GsmManager *manager);
-
 typedef enum
 {
         GSM_MANAGER_LOGOUT_NONE,
@@ -123,10 +121,6 @@ typedef struct
         GSList                 *next_query_clients;
         /* This is the action that will be done just before we exit */
         GsmManagerLogoutType    logout_type;
-
-        /* List of clients which were disconnected due to disabled condition
-         * and shouldn't be automatically restarted */
-        GSList                 *condition_clients;
 
         GSList                 *pending_end_session_tasks;
         GCancellable           *end_session_cancellable;
@@ -218,32 +212,6 @@ start_app_or_warn (GsmManager *manager,
         return res;
 }
 
-static void
-on_display_server_failure (GsmManager *manager,
-                           GsmApp     *app)
-{
-        const gchar *app_id;
-        GsmShellExtensions *extensions;
-
-        app_id = gsm_app_peek_app_id (app);
-
-        if (g_str_equal (app_id, "org.gnome.Shell.desktop")) {
-                extensions = g_object_new (GSM_TYPE_SHELL_EXTENSIONS, NULL);
-                gsm_shell_extensions_disable_all (extensions);
-
-                g_object_unref (extensions);
-        } else {
-                extensions = NULL;
-        }
-
-        sd_journal_send ("MESSAGE_ID=%s", GSM_MANAGER_UNRECOVERABLE_FAILURE_MSGID,
-                         "PRIORITY=%d", 3,
-                         "MESSAGE=Unrecoverable failure in required component %s", app_id,
-                         NULL);
-
-        gsm_quit ();
-}
-
 static gboolean
 _debug_client (const char *id,
                GsmClient  *client,
@@ -317,12 +285,6 @@ app_condition_changed (GsmApp     *app,
                 gboolean res;
 
                 if (client != NULL) {
-                        /* Kill client in case condition if false and make sure it won't
-                         * be automatically restarted by adding the client to
-                         * condition_clients */
-                        priv->condition_clients =
-                                g_slist_prepend (priv->condition_clients, client);
-
                         g_debug ("GsmManager: stopping client %s for app", gsm_client_peek_id (client));
 
                         error = NULL;
@@ -481,93 +443,6 @@ app_event_during_startup (GsmManager *manager,
 }
 
 static gboolean
-is_app_display_server (GsmManager *manager,
-                       GsmApp     *app)
-{
-        const char *app_id;
-
-        /* Apps can only really act as a display server if
-         * we're a wayland session. */
-        if (g_strcmp0 (g_getenv ("XDG_SESSION_TYPE"), "wayland") != 0)
-                return FALSE;
-
-        app_id = gsm_app_peek_app_id (app);
-
-        return g_strcmp0 (app_id, "org.gnome.Shell.desktop") == 0;
-}
-
-static void
-_restart_app (GsmManager *manager,
-              GsmApp     *app)
-{
-        GError *error = NULL;
-
-        if (is_app_display_server (manager, app)) {
-                on_display_server_failure (manager, app);
-                return;
-        }
-
-        if (!gsm_app_restart (app, &error)) {
-                g_warning ("Error on restarting session managed app: %s", error->message);
-                g_clear_error (&error);
-
-                app_event_during_startup (manager, app);
-        }
-}
-
-static void
-app_died (GsmApp     *app,
-          int         signal,
-          GsmManager *manager)
-{
-        g_warning ("Application '%s' killed by signal %d", gsm_app_peek_app_id (app), signal);
-
-        if (gsm_app_get_registered (app) && gsm_app_peek_autorestart (app)) {
-                g_debug ("Component '%s' is autorestart, ignoring died signal",
-                         gsm_app_peek_app_id (app));
-                return;
-        }
-
-        _restart_app (manager, app);
-
-        /* For now, we don't do anything with crashes from
-         * non-required apps after they hit the restart limit.
-         *
-         * Note that both required and not-required apps will be
-         * caught by ABRT/apport type infrastructure, and it'd be
-         * better to pick up the crash from there and do something
-         * un-intrusive about it generically.
-         */
-}
-
-static void
-app_exited (GsmApp     *app,
-            guchar      exit_code,
-            GsmManager *manager)
-{
-        if (exit_code != 0)
-                g_warning ("App '%s' exited with code %d", gsm_app_peek_app_id (app), exit_code);
-        else
-                g_debug ("App %s exited successfully", gsm_app_peek_app_id (app));
-
-        app_event_during_startup (manager, app);
-}
-
-static void
-app_registered (GsmApp     *app,
-                GParamSpec *spec,
-                GsmManager *manager)
-{
-        if (!gsm_app_get_registered (app)) {
-                return;
-        }
-
-        g_debug ("App %s registered", gsm_app_peek_app_id (app));
-
-        app_event_during_startup (manager, app);
-}
-
-static gboolean
 on_phase_timeout (GsmManager *manager)
 {
         GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
@@ -627,30 +502,6 @@ _start_app (const char *id,
         if (!start_app_or_warn (manager, app))
                 goto out;
 
-        if (priv->phase < GSM_MANAGER_PHASE_APPLICATION) {
-                /* Historical note - apparently,
-                 * e.g. gnome-settings-daemon used to "daemonize", and
-                 * so gnome-session assumes process exit means "ok
-                 * we're done".  Of course this is broken, we don't
-                 * even distinguish between exit code 0 versus not-0,
-                 * nor do we have any metadata which tells us a
-                 * process is going to "daemonize" or not (and
-                 * basically nothing should be anyways).
-                 */
-                g_signal_connect (app,
-                                  "exited",
-                                  G_CALLBACK (app_exited),
-                                  manager);
-                g_signal_connect (app,
-                                  "notify::registered",
-                                  G_CALLBACK (app_registered),
-                                  manager);
-                g_signal_connect (app,
-                                  "died",
-                                  G_CALLBACK (app_died),
-                                  manager);
-                priv->pending_apps = g_slist_prepend (priv->pending_apps, app);
-        }
  out:
         return FALSE;
 }
@@ -1405,12 +1256,9 @@ _disconnect_client (GsmManager *manager,
                     GsmClient  *client)
 {
         GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
-        gboolean              is_condition_client;
         GsmApp               *app;
         const char           *app_id;
         const char           *startup_id;
-        gboolean              app_restart;
-        GsmClientRestartStyle client_restart_hint;
 
         g_debug ("GsmManager: disconnect client: %s", gsm_client_peek_id (client));
 
@@ -1418,13 +1266,6 @@ _disconnect_client (GsmManager *manager,
         g_object_ref (client);
 
         gsm_client_set_status (client, GSM_CLIENT_FINISHED);
-
-        is_condition_client = FALSE;
-        if (g_slist_find (priv->condition_clients, client)) {
-                priv->condition_clients = g_slist_remove (priv->condition_clients, client);
-
-                is_condition_client = TRUE;
-        }
 
         /* remove any inhibitors for this client */
         gsm_store_foreach_remove (priv->inhibitors,
@@ -1494,41 +1335,6 @@ _disconnect_client (GsmManager *manager,
                 break;
         }
 
-        if (priv->dbus_disconnected && GSM_IS_DBUS_CLIENT (client)) {
-                g_debug ("GsmManager: dbus disconnected, not restarting application");
-                goto out;
-        }
-
-        if (app == NULL) {
-                g_debug ("GsmManager: unable to find application for client - not restarting");
-                goto out;
-        }
-
-        if (priv->phase >= GSM_MANAGER_PHASE_QUERY_END_SESSION) {
-                g_debug ("GsmManager: in shutdown, not restarting application");
-                goto out;
-        }
-
-        app_restart = gsm_app_peek_autorestart (app);
-        client_restart_hint = gsm_client_peek_restart_style_hint (client);
-
-        /* allow legacy clients to override the app info */
-        if (! app_restart
-            && client_restart_hint != GSM_CLIENT_RESTART_IMMEDIATELY) {
-                g_debug ("GsmManager: autorestart not set, not restarting application");
-                goto out;
-        }
-
-        if (is_condition_client) {
-                g_debug ("GsmManager: app conditionally disabled, not restarting application");
-                goto out;
-        }
-
-        g_debug ("GsmManager: restarting app");
-
-        _restart_app (manager, app);
-
- out:
         g_object_unref (client);
 }
 

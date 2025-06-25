@@ -65,7 +65,6 @@ typedef struct
         /* desktop file state */
         char                 *condition_string;
         gboolean              condition;
-        gboolean              autorestart;
 
         GFileMonitor         *condition_monitor;
         guint                 condition_notify_id;
@@ -536,7 +535,6 @@ load_desktop_file (GsmAutostartApp  *app)
         GsmAutostartAppPrivate *priv = gsm_autostart_app_get_instance_private (app);
         char    *dbus_name;
         char    *startup_id;
-        gboolean res;
 
         g_assert (priv->app_info != NULL);
 
@@ -564,15 +562,6 @@ load_desktop_file (GsmAutostartApp  *app)
                 break;
         default:
                 g_assert_not_reached ();
-        }
-
-        res = g_desktop_app_info_has_key (priv->app_info,
-                                          GSM_AUTOSTART_APP_AUTORESTART_KEY);
-        if (res) {
-                priv->autorestart = g_desktop_app_info_get_boolean (priv->app_info,
-                                                                         GSM_AUTOSTART_APP_AUTORESTART_KEY);
-        } else {
-                priv->autorestart = FALSE;
         }
 
         g_free (priv->condition_string);
@@ -1112,30 +1101,6 @@ gsm_autostart_app_start (GsmApp  *app,
 }
 
 static gboolean
-gsm_autostart_app_restart (GsmApp  *app,
-                           GError **error)
-{
-        GError  *local_error;
-        gboolean res;
-
-        /* ignore stop errors - it is fine if it is already stopped */
-        local_error = NULL;
-        res = gsm_app_stop (app, &local_error);
-        if (! res) {
-                g_debug ("GsmAutostartApp: Couldn't stop app: %s", local_error->message);
-                g_error_free (local_error);
-        }
-
-        res = gsm_app_start (app, &local_error);
-        if (! res) {
-                g_propagate_error (error, local_error);
-                return FALSE;
-        }
-
-        return TRUE;
-}
-
-static gboolean
 gsm_autostart_app_has_autostart_condition (GsmApp     *app,
                                            const char *condition)
 {
@@ -1154,29 +1119,6 @@ gsm_autostart_app_has_autostart_condition (GsmApp     *app,
         }
 
         return FALSE;
-}
-
-static gboolean
-gsm_autostart_app_get_autorestart (GsmApp *app)
-{
-        GsmAutostartAppPrivate *priv = gsm_autostart_app_get_instance_private (GSM_AUTOSTART_APP (app));
-        gboolean res;
-        gboolean autorestart;
-
-        if (priv->app_info == NULL) {
-                return FALSE;
-        }
-
-        autorestart = FALSE;
-
-        res = g_desktop_app_info_has_key (priv->app_info,
-                                          GSM_AUTOSTART_APP_AUTORESTART_KEY);
-        if (res) {
-                autorestart = g_desktop_app_info_get_boolean (priv->app_info,
-                                                              GSM_AUTOSTART_APP_AUTORESTART_KEY);
-        }
-
-        return autorestart;
 }
 
 static const char *
@@ -1234,11 +1176,9 @@ gsm_autostart_app_class_init (GsmAutostartAppClass *klass)
         app_class->impl_is_conditionally_disabled = is_conditionally_disabled;
         app_class->impl_is_running = is_running;
         app_class->impl_start = gsm_autostart_app_start;
-        app_class->impl_restart = gsm_autostart_app_restart;
         app_class->impl_stop = gsm_autostart_app_stop;
         app_class->impl_has_autostart_condition = gsm_autostart_app_has_autostart_condition;
         app_class->impl_get_app_id = gsm_autostart_app_get_app_id;
-        app_class->impl_get_autorestart = gsm_autostart_app_get_autorestart;
 
         props[PROP_DESKTOP_FILENAME] =
                 g_param_spec_string ("desktop-filename",
