@@ -25,7 +25,6 @@
 #include <string.h>
 
 #include "gsm-app.h"
-#include "org.gnome.SessionManager.App.h"
 
 typedef struct
 {
@@ -33,8 +32,6 @@ typedef struct
         char            *app_id;
         int              phase;
         char            *startup_id;
-        GDBusConnection *connection;
-        GsmExportedApp  *skeleton;
 } GsmAppPrivate;
 
 static guint32 app_serial = 1;
@@ -61,44 +58,6 @@ gsm_app_error_quark (void)
 
 }
 
-static gboolean
-gsm_app_get_app_id (GsmExportedApp        *skeleton,
-                    GDBusMethodInvocation *invocation,
-                    GsmApp                *app)
-{
-        const gchar *id;
-
-        id = GSM_APP_GET_CLASS (app)->impl_get_app_id (app);
-        gsm_exported_app_complete_get_app_id (skeleton, invocation, id);
-
-        return TRUE;
-}
-
-static gboolean
-gsm_app_get_startup_id (GsmExportedApp        *skeleton,
-                        GDBusMethodInvocation *invocation,
-                        GsmApp                *app)
-{
-        GsmAppPrivate *priv = gsm_app_get_instance_private (app);
-        const gchar *id;
-
-        id = g_strdup (priv->startup_id);
-        gsm_exported_app_complete_get_startup_id (skeleton, invocation, id);
-
-        return TRUE;
-}
-
-static gboolean
-gsm_app_get_phase (GsmExportedApp        *skeleton,
-                   GDBusMethodInvocation *invocation,
-                   GsmApp                *app)
-{
-        GsmAppPrivate *priv = gsm_app_get_instance_private (app);
-
-        gsm_exported_app_complete_get_phase (skeleton, invocation, priv->phase);
-        return TRUE;
-}
-
 static guint32
 get_next_app_serial (void)
 {
@@ -113,43 +72,6 @@ get_next_app_serial (void)
         return serial;
 }
 
-static gboolean
-register_app (GsmApp *app)
-{
-        GsmAppPrivate *priv = gsm_app_get_instance_private (app);
-        GError *error;
-        GsmExportedApp *skeleton;
-
-        error = NULL;
-        priv->connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &error);
-        if (error != NULL) {
-                g_critical ("error getting session bus: %s", error->message);
-                g_error_free (error);
-                return FALSE;
-        }
-
-        skeleton = gsm_exported_app_skeleton_new ();
-        priv->skeleton = skeleton;
-        g_dbus_interface_skeleton_export (G_DBUS_INTERFACE_SKELETON (skeleton),
-                                          priv->connection, priv->id,
-                                          &error);
-
-        if (error != NULL) {
-                g_critical ("error registering app on session bus: %s", error->message);
-                g_error_free (error);
-                return FALSE;
-        }
-
-        g_signal_connect (skeleton, "handle-get-app-id",
-                          G_CALLBACK (gsm_app_get_app_id), app);
-        g_signal_connect (skeleton, "handle-get-phase",
-                          G_CALLBACK (gsm_app_get_phase), app);
-        g_signal_connect (skeleton, "handle-get-startup-id",
-                          G_CALLBACK (gsm_app_get_startup_id), app);
-
-        return TRUE;
-}
-
 static GObject *
 gsm_app_constructor (GType                  type,
                      guint                  n_construct_properties,
@@ -157,7 +79,6 @@ gsm_app_constructor (GType                  type,
 {
         GsmApp    *app;
         GsmAppPrivate *priv;
-        gboolean   res;
 
         app = GSM_APP (G_OBJECT_CLASS (gsm_app_parent_class)->constructor (type,
                                                                            n_construct_properties,
@@ -166,11 +87,6 @@ gsm_app_constructor (GType                  type,
 
         g_free (priv->id);
         priv->id = g_strdup_printf ("/org/gnome/SessionManager/App%u", get_next_app_serial ());
-
-        res = register_app (app);
-        if (! res) {
-                g_warning ("Unable to register app with session bus");
-        }
 
         return G_OBJECT (app);
 }
@@ -278,14 +194,6 @@ gsm_app_dispose (GObject *object)
 
         g_free (priv->id);
         priv->id = NULL;
-
-        if (priv->skeleton != NULL) {
-                g_dbus_interface_skeleton_unexport_from_connection (G_DBUS_INTERFACE_SKELETON (priv->skeleton),
-                                                                    priv->connection);
-                g_clear_object (&priv->skeleton);
-        }
-
-        g_clear_object (&priv->connection);
 
         G_OBJECT_CLASS (gsm_app_parent_class)->dispose (object);
 }
