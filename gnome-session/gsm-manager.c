@@ -2237,7 +2237,6 @@ gsm_manager_register_client (GsmExportedManager    *skeleton,
 
         if (app != NULL) {
                 gsm_client_set_app_id (client, gsm_app_peek_app_id (app));
-                gsm_app_set_registered (app, TRUE);
         } else {
                 /* if an app id is specified store it in the client
                    so we can save it later */
