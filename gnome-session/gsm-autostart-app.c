@@ -1214,64 +1214,6 @@ gsm_autostart_app_initable_init (GInitable *initable,
         return TRUE;
 }
 
-static gboolean
-gsm_autostart_app_save_to_keyfile (GsmApp    *base_app,
-                                   GKeyFile  *keyfile,
-                                   GError   **error)
-{
-        GsmAutostartApp *app = GSM_AUTOSTART_APP (base_app);
-        GsmAutostartAppPrivate *priv = gsm_autostart_app_get_instance_private (app);
-        char    *dbus_name;
-        char    *phase;
-        gboolean res;
-
-        phase = g_desktop_app_info_get_string (priv->app_info,
-                                                   GSM_AUTOSTART_APP_PHASE_KEY);
-        if (phase != NULL) {
-                g_key_file_set_string (keyfile,
-                                       G_KEY_FILE_DESKTOP_GROUP,
-                                       GSM_AUTOSTART_APP_PHASE_KEY,
-                                       phase);
-                g_free (phase);
-        }
-
-        dbus_name = g_desktop_app_info_get_string (priv->app_info,
-                                                   GSM_AUTOSTART_APP_DBUS_NAME_KEY);
-        if (dbus_name != NULL) {
-                g_key_file_set_string (keyfile,
-                                       G_KEY_FILE_DESKTOP_GROUP,
-                                       GSM_AUTOSTART_APP_DBUS_NAME_KEY,
-                                       dbus_name);
-                g_free (dbus_name);
-        }
-
-        res = g_desktop_app_info_has_key (priv->app_info,
-                                          GSM_AUTOSTART_APP_AUTORESTART_KEY);
-        if (res) {
-                g_key_file_set_boolean (keyfile,
-                                        G_KEY_FILE_DESKTOP_GROUP,
-                                        GSM_AUTOSTART_APP_AUTORESTART_KEY,
-                                        g_desktop_app_info_get_boolean (priv->app_info,
-                                                                        GSM_AUTOSTART_APP_AUTORESTART_KEY));
-        }
-
-        res = g_desktop_app_info_has_key (priv->app_info,
-                                          GSM_AUTOSTART_APP_AUTORESTART_KEY);
-        if (res) {
-                char *autostart_condition;
-
-                autostart_condition = g_desktop_app_info_get_string (priv->app_info, "AutostartCondition");
-
-                g_key_file_set_string (keyfile,
-                                       G_KEY_FILE_DESKTOP_GROUP,
-                                       "AutostartCondition",
-                                       autostart_condition);
-                g_free (autostart_condition);
-        }
-
-        return TRUE;
-}
-
 static void
 gsm_autostart_app_initable_iface_init (GInitableIface  *iface)
 {
@@ -1297,7 +1239,6 @@ gsm_autostart_app_class_init (GsmAutostartAppClass *klass)
         app_class->impl_has_autostart_condition = gsm_autostart_app_has_autostart_condition;
         app_class->impl_get_app_id = gsm_autostart_app_get_app_id;
         app_class->impl_get_autorestart = gsm_autostart_app_get_autorestart;
-        app_class->impl_save_to_keyfile = gsm_autostart_app_save_to_keyfile;
 
         props[PROP_DESKTOP_FILENAME] =
                 g_param_spec_string ("desktop-filename",
