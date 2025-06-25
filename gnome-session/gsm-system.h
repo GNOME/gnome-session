@@ -64,7 +64,6 @@ struct _GsmSystemInterface
         void     (* hibernate)        (GsmSystem *system);
         void     (* set_session_idle) (GsmSystem *system,
                                        gboolean   is_idle);
-        gboolean (* is_login_session) (GsmSystem *system);
         void     (* set_inhibitors)   (GsmSystem        *system,
                                        GsmInhibitorFlag  flags);
         void     (* prepare_shutdown) (GsmSystem   *system,
@@ -108,8 +107,6 @@ void       gsm_system_hibernate        (GsmSystem *system);
 
 void       gsm_system_set_session_idle (GsmSystem *system,
                                         gboolean   is_idle);
-
-gboolean   gsm_system_is_login_session (GsmSystem *system);
 
 gboolean   gsm_system_is_active        (GsmSystem *system);
 
