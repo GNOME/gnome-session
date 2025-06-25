@@ -80,21 +80,21 @@ is_disabled (GsmApp *app)
             !g_desktop_app_info_get_boolean (priv->app_info,
                                              GSM_AUTOSTART_APP_ENABLED_KEY)) {
                 g_debug ("app %s is disabled by " GSM_AUTOSTART_APP_ENABLED_KEY,
-                         gsm_app_peek_id (app));
+                         gsm_app_peek_app_id (app));
                 return TRUE;
         }
 
         /* Hidden key, used by autostart spec */
         if (g_desktop_app_info_get_is_hidden (priv->app_info)) {
                 g_debug ("app %s is disabled by Hidden",
-                         gsm_app_peek_id (app));
+                         gsm_app_peek_app_id (app));
                 return TRUE;
         }
 
         /* Check OnlyShowIn/NotShowIn/TryExec */
         if (!g_desktop_app_info_get_show_in (priv->app_info, NULL)) {
                 g_debug ("app %s is not for the current desktop",
-                         gsm_app_peek_id (app));
+                         gsm_app_peek_app_id (app));
                 return TRUE;
         }
 
@@ -104,7 +104,7 @@ is_disabled (GsmApp *app)
             g_desktop_app_info_get_boolean (priv->app_info,
                                             GSM_AUTOSTART_APP_SYSTEMD_KEY)) {
                 g_debug ("app %s is disabled by " GSM_AUTOSTART_APP_SYSTEMD_KEY,
-                         gsm_app_peek_id (app));
+                         gsm_app_peek_app_id (app));
                 return TRUE;
         }
 
