@@ -41,7 +41,6 @@ dbus_ifaces = [
   'org.gnome.SessionManager',
   'org.gnome.SessionManager.Client',
   'org.gnome.SessionManager.ClientPrivate',
-  'org.gnome.SessionManager.App',
   'org.gnome.SessionManager.Inhibitor',
   'org.gnome.SessionManager.Presence',
 ]
