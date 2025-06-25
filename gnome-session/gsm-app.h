@@ -45,15 +45,12 @@ struct _GsmAppClass
         /* virtual methods */
         gboolean    (*impl_start)                     (GsmApp     *app,
                                                        GError    **error);
-        gboolean    (*impl_restart)                   (GsmApp     *app,
-                                                       GError    **error);
         gboolean    (*impl_stop)                      (GsmApp     *app,
                                                        GError    **error);
         gboolean    (*impl_has_autostart_condition)   (GsmApp     *app,
                                                        const char *service);
         gboolean    (*impl_is_running)                (GsmApp     *app);
 
-        gboolean    (*impl_get_autorestart)           (GsmApp     *app);
         const char *(*impl_get_app_id)                (GsmApp     *app);
         gboolean    (*impl_is_disabled)               (GsmApp     *app);
         gboolean    (*impl_is_conditionally_disabled) (GsmApp     *app);
@@ -62,7 +59,6 @@ struct _GsmAppClass
 typedef enum
 {
         GSM_APP_ERROR_GENERAL = 0,
-        GSM_APP_ERROR_RESTART_LIMIT,
         GSM_APP_ERROR_START,
         GSM_APP_ERROR_STOP,
         GSM_APP_NUM_ERRORS
@@ -72,8 +68,6 @@ typedef enum
 
 GQuark           gsm_app_error_quark                    (void);
 
-gboolean         gsm_app_peek_autorestart               (GsmApp     *app);
-
 const char      *gsm_app_peek_id                        (GsmApp     *app);
 const char      *gsm_app_peek_app_id                    (GsmApp     *app);
 const char      *gsm_app_peek_startup_id                (GsmApp     *app);
@@ -82,8 +76,6 @@ gboolean         gsm_app_peek_is_disabled               (GsmApp     *app);
 gboolean         gsm_app_peek_is_conditionally_disabled (GsmApp     *app);
 
 gboolean         gsm_app_start                          (GsmApp     *app,
-                                                         GError    **error);
-gboolean         gsm_app_restart                        (GsmApp     *app,
                                                          GError    **error);
 gboolean         gsm_app_stop                           (GsmApp     *app,
                                                          GError    **error);
