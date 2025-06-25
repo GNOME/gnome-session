@@ -34,22 +34,12 @@
 #include "gsm-autostart-app.h"
 #include "gsm-util.h"
 
-enum {
-        AUTOSTART_LAUNCH_SPAWN = 0,
-        AUTOSTART_LAUNCH_ACTIVATE
-};
-
-#define GSM_SESSION_CLIENT_DBUS_INTERFACE "org.gnome.SessionClient"
-
 typedef struct
 {
         char                 *desktop_filename;
         char                 *desktop_id;
         char                 *startup_id;
-
         GDesktopAppInfo      *app_info;
-
-        int                   launch_type;
 } GsmAutostartAppPrivate;
 
 typedef enum {
@@ -115,35 +105,16 @@ static void
 load_desktop_file (GsmAutostartApp  *app)
 {
         GsmAutostartAppPrivate *priv = gsm_autostart_app_get_instance_private (app);
-        char    *dbus_name;
         char    *startup_id;
 
         g_assert (priv->app_info != NULL);
 
-        dbus_name = g_desktop_app_info_get_string (priv->app_info,
-                                                   GSM_AUTOSTART_APP_DBUS_NAME_KEY);
-        if (dbus_name != NULL) {
-                priv->launch_type = AUTOSTART_LAUNCH_ACTIVATE;
-        } else {
-                priv->launch_type = AUTOSTART_LAUNCH_SPAWN;
-        }
-
         /* this must only be done on first load */
-        switch (priv->launch_type) {
-        case AUTOSTART_LAUNCH_SPAWN:
-                startup_id =
-                        g_desktop_app_info_get_string (priv->app_info,
-                                                       GSM_AUTOSTART_APP_STARTUP_ID_KEY);
-
-                if (startup_id == NULL) {
-                        startup_id = gsm_util_generate_startup_id ();
-                }
-                break;
-        case AUTOSTART_LAUNCH_ACTIVATE:
-                startup_id = g_strdup (dbus_name);
-                break;
-        default:
-                g_assert_not_reached ();
+        startup_id =
+                g_desktop_app_info_get_string (priv->app_info,
+                                               GSM_AUTOSTART_APP_STARTUP_ID_KEY);
+        if (startup_id == NULL) {
+                startup_id = gsm_util_generate_startup_id ();
         }
 
         g_object_set (app,
@@ -152,7 +123,6 @@ load_desktop_file (GsmAutostartApp  *app)
                       NULL);
 
         g_free (startup_id);
-        g_free (dbus_name);
 }
 
 static void
@@ -261,10 +231,11 @@ app_launched (GAppLaunchContext *ctx,
 }
 
 static gboolean
-autostart_app_start_spawn (GsmAutostartApp *app,
-                           GError         **error)
+gsm_autostart_app_start (GsmApp  *app,
+                         GError **error)
 {
-        GsmAutostartAppPrivate *priv = gsm_autostart_app_get_instance_private (app);
+        GsmAutostartApp *self = GSM_AUTOSTART_APP (app);
+        GsmAutostartAppPrivate *priv = gsm_autostart_app_get_instance_private (self);
         gboolean         success;
         GError          *local_error;
         const char      *startup_id;
@@ -274,7 +245,9 @@ autostart_app_start_spawn (GsmAutostartApp *app,
         GAppLaunchContext *ctx;
         guint handler;
 
-        startup_id = gsm_app_peek_startup_id (GSM_APP (app));
+        g_return_val_if_fail (priv->app_info != NULL, FALSE);
+
+        startup_id = gsm_app_peek_startup_id (app);
         g_assert (startup_id != NULL);
 
         g_debug ("GsmAutostartApp: starting %s: command=%s startup-id=%s", priv->desktop_id, g_app_info_get_commandline (G_APP_INFO (priv->app_info)), startup_id);
@@ -307,7 +280,7 @@ autostart_app_start_spawn (GsmAutostartApp *app,
                 g_app_launch_context_setenv (ctx, "DESKTOP_AUTOSTART_ID", startup_id);
         }
 
-        handler = g_signal_connect (ctx, "launched", G_CALLBACK (app_launched), app);
+        handler = g_signal_connect (ctx, "launched", G_CALLBACK (app_launched), self);
         success = g_desktop_app_info_launch_uris_as_manager (priv->app_info,
                                                              NULL,
                                                              ctx,
@@ -325,99 +298,6 @@ autostart_app_start_spawn (GsmAutostartApp *app,
         }
 
         return success;
-}
-
-static void
-start_notify (GObject      *source,
-              GAsyncResult *result,
-              gpointer      user_data)
-{
-        GError          *error;
-        GsmAutostartApp *app = GSM_AUTOSTART_APP (user_data);
-        GsmAutostartAppPrivate *priv = gsm_autostart_app_get_instance_private (app);
-
-        error = NULL;
-
-        g_dbus_connection_call_finish (G_DBUS_CONNECTION (source), result, &error);
-
-        if (error != NULL) {
-                g_warning ("GsmAutostartApp: Error starting application: %s", error->message);
-                g_error_free (error);
-        } else {
-                g_debug ("GsmAutostartApp: Started application %s", priv->desktop_id);
-        }
-}
-
-static gboolean
-autostart_app_start_activate (GsmAutostartApp  *app,
-                              GError          **error)
-{
-        GsmAutostartAppPrivate *priv = gsm_autostart_app_get_instance_private (app);
-        const char      *name;
-        char            *path;
-        char            *arguments;
-        GDBusConnection *bus;
-        GError          *local_error;
-
-        local_error = NULL;
-        bus = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, &local_error);
-        if (local_error != NULL) {
-                g_warning ("error getting session bus: %s", local_error->message);
-                g_propagate_error (error, local_error);
-                return FALSE;
-        }
-
-        name = gsm_app_peek_startup_id (GSM_APP (app));
-        g_assert (name != NULL);
-
-        path = g_desktop_app_info_get_string (priv->app_info,
-                                              GSM_AUTOSTART_APP_DBUS_PATH_KEY);
-        if (path == NULL) {
-                /* just pick one? */
-                path = g_strdup ("/");
-        }
-
-        arguments = g_desktop_app_info_get_string (priv->app_info,
-                                                   GSM_AUTOSTART_APP_DBUS_ARGS_KEY);
-
-        g_dbus_connection_call (bus,
-                                name,
-                                path,
-                                GSM_SESSION_CLIENT_DBUS_INTERFACE,
-                                "Start",
-                                g_variant_new ("(s)", arguments),
-                                NULL,
-                                G_DBUS_CALL_FLAGS_NONE,
-                                -1, NULL,
-                                start_notify, app);
-        g_object_unref (bus);
-
-        return TRUE;
-}
-
-static gboolean
-gsm_autostart_app_start (GsmApp  *app,
-                         GError **error)
-{
-        GsmAutostartApp *self = GSM_AUTOSTART_APP (app);
-        GsmAutostartAppPrivate *priv = gsm_autostart_app_get_instance_private (self);
-        gboolean         ret;
-
-        g_return_val_if_fail (priv->app_info != NULL, FALSE);
-
-        switch (priv->launch_type) {
-        case AUTOSTART_LAUNCH_SPAWN:
-                ret = autostart_app_start_spawn (self, error);
-                break;
-        case AUTOSTART_LAUNCH_ACTIVATE:
-                ret = autostart_app_start_activate (self, error);
-                break;
-        default:
-                g_assert_not_reached ();
-                break;
-        }
-
-        return ret;
 }
 
 static const char *

@@ -43,9 +43,6 @@ GsmApp *gsm_autostart_app_new                (const char *desktop_file,
 #define GSM_AUTOSTART_APP_ENABLED_KEY     "X-GNOME-Autostart-enabled"
 #define GSM_AUTOSTART_APP_PHASE_KEY       "X-GNOME-Autostart-Phase"
 #define GSM_AUTOSTART_APP_STARTUP_ID_KEY  "X-GNOME-Autostart-startup-id"
-#define GSM_AUTOSTART_APP_DBUS_NAME_KEY   "X-GNOME-DBus-Name"
-#define GSM_AUTOSTART_APP_DBUS_PATH_KEY   "X-GNOME-DBus-Path"
-#define GSM_AUTOSTART_APP_DBUS_ARGS_KEY   "X-GNOME-DBus-Start-Arguments"
 
 /* This comment is a record of keys that were previously used but are not used
  * anymore. We keep this so that we don't accidentally redefine these keys in
@@ -54,6 +51,9 @@ GsmApp *gsm_autostart_app_new                (const char *desktop_file,
  * X-GNOME-AutoRestart
  * X-GNOME-Autostart-discard-exec
  * AutostartCondition
+ * X-GNOME-DBus-Name
+ * X-GNOME-DBus-Path
+ * X-GNOME-DBus-Start-Arguments
  * */
 
 G_END_DECLS
