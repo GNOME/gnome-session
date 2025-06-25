@@ -76,8 +76,6 @@ gboolean            gsm_manager_get_dbus_disconnected          (GsmManager *mana
 
 gboolean            gsm_manager_add_autostart_app              (GsmManager     *manager,
                                                                 const char     *path);
-gboolean            gsm_manager_add_required_app               (GsmManager     *manager,
-                                                                const char     *path);
 gboolean            gsm_manager_add_autostart_apps_from_dir    (GsmManager     *manager,
                                                                 const char     *path);
 gboolean            gsm_manager_add_legacy_session_apps        (GsmManager     *manager,
