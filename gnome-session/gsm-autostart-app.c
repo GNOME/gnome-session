@@ -53,8 +53,6 @@ typedef struct
         GDesktopAppInfo      *app_info;
 
         int                   launch_type;
-        GPid                  pid;
-        guint                 child_watch_id;
 } GsmAutostartAppPrivate;
 
 typedef enum {
@@ -72,9 +70,6 @@ G_DEFINE_TYPE_WITH_CODE (GsmAutostartApp, gsm_autostart_app, GSM_TYPE_APP,
 static void
 gsm_autostart_app_init (GsmAutostartApp *app)
 {
-        GsmAutostartAppPrivate *priv = gsm_autostart_app_get_instance_private (app);
-
-        priv->pid = -1;
 }
 
 static gboolean
@@ -238,141 +233,7 @@ gsm_autostart_app_dispose (GObject *object)
         g_clear_pointer (&priv->desktop_filename, g_free);
         g_clear_pointer (&priv->desktop_id, g_free);
 
-        if (priv->child_watch_id > 0) {
-                g_source_remove (priv->child_watch_id);
-                priv->child_watch_id = 0;
-        }
-
         G_OBJECT_CLASS (gsm_autostart_app_parent_class)->dispose (object);
-}
-
-static gboolean
-is_running (GsmApp *app)
-{
-        GsmAutostartAppPrivate *priv = gsm_autostart_app_get_instance_private (GSM_AUTOSTART_APP (app));
-        gboolean                is;
-
-        /* is running if pid is still valid or
-         * or a client is connected
-         */
-        /* FIXME: check client */
-        is = (priv->pid != -1);
-
-        return is;
-}
-
-static void
-app_exited (GPid             pid,
-            int              status,
-            GsmAutostartApp *app)
-{
-        GsmAutostartAppPrivate *priv = gsm_autostart_app_get_instance_private (app);
-
-        g_debug ("GsmAutostartApp: (pid:%d) done (%s:%d)",
-                 (int) pid,
-                 WIFEXITED (status) ? "status"
-                 : WIFSIGNALED (status) ? "signal"
-                 : "unknown",
-                 WIFEXITED (status) ? WEXITSTATUS (status)
-                 : WIFSIGNALED (status) ? WTERMSIG (status)
-                 : -1);
-
-        g_spawn_close_pid (priv->pid);
-        priv->pid = -1;
-        priv->child_watch_id = 0;
-
-        if (WIFEXITED (status)) {
-                gsm_app_exited (GSM_APP (app), WEXITSTATUS (status));
-        } else if (WIFSIGNALED (status)) {
-                gsm_app_died (GSM_APP (app), WTERMSIG (status));
-        }
-}
-
-static int
-_signal_pid (int pid,
-             int signal)
-{
-        int status;
-
-        /* perhaps block sigchld */
-        g_debug ("GsmAutostartApp: sending signal %d to process %d", signal, pid);
-        errno = 0;
-        status = kill (pid, signal);
-
-        if (status < 0) {
-                if (errno == ESRCH) {
-                        g_warning ("Child process %d was already dead.",
-                                   (int)pid);
-                } else {
-                        g_warning ("Couldn't kill child process %d: %s",
-                                   pid,
-                                   g_strerror (errno));
-                }
-        }
-
-        /* perhaps unblock sigchld */
-
-        return status;
-}
-
-static gboolean
-autostart_app_stop_spawn (GsmAutostartApp *app,
-                          GError         **error)
-{
-        GsmAutostartAppPrivate *priv = gsm_autostart_app_get_instance_private (app);
-        int res;
-
-        if (priv->pid < 1) {
-                g_set_error (error,
-                             GSM_APP_ERROR,
-                             GSM_APP_ERROR_STOP,
-                             "Not running");
-                return FALSE;
-        }
-
-        res = _signal_pid (priv->pid, SIGTERM);
-        if (res != 0) {
-                g_set_error (error,
-                             GSM_APP_ERROR,
-                             GSM_APP_ERROR_STOP,
-                             "Unable to stop: %s",
-                             g_strerror (errno));
-                return FALSE;
-        }
-
-        return TRUE;
-}
-
-static gboolean
-autostart_app_stop_activate (GsmAutostartApp *app,
-                             GError         **error)
-{
-        return TRUE;
-}
-
-static gboolean
-gsm_autostart_app_stop (GsmApp  *app,
-                        GError **error)
-{
-        GsmAutostartApp *self = GSM_AUTOSTART_APP (app);
-        GsmAutostartAppPrivate *priv = gsm_autostart_app_get_instance_private (self);
-        gboolean         ret;
-
-        g_return_val_if_fail (priv->app_info != NULL, FALSE);
-
-        switch (priv->launch_type) {
-        case AUTOSTART_LAUNCH_SPAWN:
-                ret = autostart_app_stop_spawn (self, error);
-                break;
-        case AUTOSTART_LAUNCH_ACTIVATE:
-                ret = autostart_app_stop_activate (self, error);
-                break;
-        default:
-                g_assert_not_reached ();
-                break;
-        }
-
-        return ret;
 }
 
 static void
@@ -391,7 +252,7 @@ app_launched (GAppLaunchContext *ctx,
 
         g_variant_lookup (platform_data, "pid", "i", &pid);
         g_variant_lookup (platform_data, "startup-notification-id", "s", &sn_id);
-        priv->pid = pid;
+
         priv->startup_id = sn_id;
 
         /* We are not interested in the result. */
@@ -493,14 +354,7 @@ autostart_app_start_spawn (GsmAutostartApp *app,
                                                              &local_error);
         g_signal_handler_disconnect (ctx, handler);
 
-        if (success) {
-                if (priv->pid > 0) {
-                        g_debug ("GsmAutostartApp: started pid:%d", priv->pid);
-                        priv->child_watch_id = g_child_watch_add (priv->pid,
-                                                                       (GChildWatchFunc)app_exited,
-                                                                       app);
-                }
-        } else {
+        if (!success) {
                 g_set_error (error,
                              GSM_APP_ERROR,
                              GSM_APP_ERROR_START,
@@ -656,9 +510,7 @@ gsm_autostart_app_class_init (GsmAutostartAppClass *klass)
         object_class->dispose = gsm_autostart_app_dispose;
 
         app_class->impl_is_disabled = is_disabled;
-        app_class->impl_is_running = is_running;
         app_class->impl_start = gsm_autostart_app_start;
-        app_class->impl_stop = gsm_autostart_app_stop;
         app_class->impl_get_app_id = gsm_autostart_app_get_app_id;
 
         props[PROP_DESKTOP_FILENAME] =
