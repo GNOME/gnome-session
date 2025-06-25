@@ -1,7 +1,7 @@
 [Unit]
 Description=GNOME X11 Session (session: %i)
-OnFailure=gnome-session-failed.target
-OnFailureJobMode=replace
+OnFailure=gnome-session-shutdown.target
+OnFailureJobMode=replace-irreversibly
 DefaultDependencies=no
 # Start happens explicitly
 RefuseManualStart=no

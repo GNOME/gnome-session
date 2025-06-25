@@ -28,6 +28,10 @@
 
 G_BEGIN_DECLS
 
+/* UUIDs for log messages */
+#define GSM_MANAGER_STARTUP_SUCCEEDED_MSGID     "0ce153587afa4095832d233c17a88001"
+#define GSM_MANAGER_UNRECOVERABLE_FAILURE_MSGID "10dd2dc188b54a5e98970f56499d1f73"
+
 #define GSM_TYPE_MANAGER         (gsm_manager_get_type ())
 G_DECLARE_DERIVABLE_TYPE (GsmManager, gsm_manager, GSM, MANAGER, GObject)
 

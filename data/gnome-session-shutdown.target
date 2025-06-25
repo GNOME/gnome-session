@@ -14,8 +14,8 @@ After=graphical-session.target graphical-session-pre.target
 Conflicts=gnome-session.target gnome-session-manager.target
 After=gnome-session.target gnome-session-manager.target
 
-Conflicts=gnome-session-pre.target gnome-session-initialized.target gnome-session-failed.target
-After=gnome-session-pre.target gnome-session-initialized.target gnome-session-failed.target
+Conflicts=gnome-session-pre.target gnome-session-initialized.target
+After=gnome-session-pre.target gnome-session-initialized.target
 
 # We need to make sure this unit is stopped; primarily so that the tree of
 # units that we created is completely cleaned.

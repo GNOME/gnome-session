@@ -24,7 +24,6 @@ sources = files(
   'gsm-autostart-app.c',
   'gsm-client.c',
   'gsm-dbus-client.c',
-  'gsm-fail-whale.c',
   'gsm-inhibitor.c',
   'gsm-manager.c',
   'gsm-presence.c',
@@ -66,20 +65,6 @@ executable(
   sources,
   include_directories: top_inc,
   dependencies: session_bin_deps,
-  c_args: cflags,
-  install: true,
-  install_dir: session_libexecdir
-)
-
-sources = files('gsm-fail-whale-dialog.c')
-
-cflags = '-DLOCALE_DIR="@0@"'.format(session_localedir)
-
-executable(
-  meson.project_name() + '-failed',
-  sources,
-  include_directories: top_inc,
-  dependencies: gtk_dep,
   c_args: cflags,
   install: true,
   install_dir: session_libexecdir
