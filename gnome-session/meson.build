@@ -30,7 +30,6 @@ sources = files(
   'gsm-presence.c',
   'gsm-process-helper.c',
   'gsm-session-fill.c',
-  'gsm-shell-extensions.c',
   'gsm-shell.c',
   'gsm-store.c',
   'gsm-system.c',
