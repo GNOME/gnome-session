@@ -53,6 +53,7 @@ GsmApp *gsm_autostart_app_new                (const char *desktop_file,
  *
  * X-GNOME-AutoRestart
  * X-GNOME-Autostart-discard-exec
+ * AutostartCondition
  * */
 
 G_END_DECLS

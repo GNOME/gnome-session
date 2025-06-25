@@ -424,36 +424,12 @@ gsm_app_peek_is_disabled (GsmApp *app)
 }
 
 gboolean
-gsm_app_peek_is_conditionally_disabled (GsmApp *app)
-{
-        g_return_val_if_fail (GSM_IS_APP (app), FALSE);
-
-        if (GSM_APP_GET_CLASS (app)->impl_is_conditionally_disabled) {
-                return GSM_APP_GET_CLASS (app)->impl_is_conditionally_disabled (app);
-        } else {
-                return FALSE;
-        }
-}
-
-gboolean
 gsm_app_is_running (GsmApp *app)
 {
         g_return_val_if_fail (GSM_IS_APP (app), FALSE);
 
         if (GSM_APP_GET_CLASS (app)->impl_is_running) {
                 return GSM_APP_GET_CLASS (app)->impl_is_running (app);
-        } else {
-                return FALSE;
-        }
-}
-
-gboolean
-gsm_app_has_autostart_condition (GsmApp     *app,
-                                 const char *condition)
-{
-
-        if (GSM_APP_GET_CLASS (app)->impl_has_autostart_condition) {
-                return GSM_APP_GET_CLASS (app)->impl_has_autostart_condition (app, condition);
         } else {
                 return FALSE;
         }

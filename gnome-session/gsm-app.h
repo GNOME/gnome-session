@@ -47,13 +47,10 @@ struct _GsmAppClass
                                                        GError    **error);
         gboolean    (*impl_stop)                      (GsmApp     *app,
                                                        GError    **error);
-        gboolean    (*impl_has_autostart_condition)   (GsmApp     *app,
-                                                       const char *service);
         gboolean    (*impl_is_running)                (GsmApp     *app);
 
         const char *(*impl_get_app_id)                (GsmApp     *app);
         gboolean    (*impl_is_disabled)               (GsmApp     *app);
-        gboolean    (*impl_is_conditionally_disabled) (GsmApp     *app);
 };
 
 typedef enum
@@ -73,7 +70,6 @@ const char      *gsm_app_peek_app_id                    (GsmApp     *app);
 const char      *gsm_app_peek_startup_id                (GsmApp     *app);
 GsmManagerPhase  gsm_app_peek_phase                     (GsmApp     *app);
 gboolean         gsm_app_peek_is_disabled               (GsmApp     *app);
-gboolean         gsm_app_peek_is_conditionally_disabled (GsmApp     *app);
 
 gboolean         gsm_app_start                          (GsmApp     *app,
                                                          GError    **error);
@@ -85,8 +81,6 @@ void             gsm_app_exited                         (GsmApp     *app,
                                                          guchar      exit_code);
 void             gsm_app_died                           (GsmApp     *app,
                                                          int         signal);
-gboolean         gsm_app_has_autostart_condition        (GsmApp     *app,
-                                                         const char *condition);
 gboolean         gsm_app_get_registered                 (GsmApp     *app);
 void             gsm_app_set_registered                 (GsmApp     *app,
                                                          gboolean  registered);
