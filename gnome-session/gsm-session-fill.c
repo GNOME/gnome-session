@@ -29,88 +29,9 @@
 #define GSM_KEYFILE_SESSION_GROUP "GNOME Session"
 #define GSM_KEYFILE_RUNNABLE_KEY "IsRunnableHelper"
 #define GSM_KEYFILE_FALLBACK_KEY "FallbackSession"
-#define GSM_KEYFILE_REQUIRED_COMPONENTS_KEY "RequiredComponents"
 
 /* See https://bugzilla.gnome.org/show_bug.cgi?id=641992 for discussion */
 #define GSM_RUNNABLE_HELPER_TIMEOUT 3000 /* ms */
-
-typedef void (*GsmFillHandleComponent) (const char *component,
-                                        const char *app_path,
-                                        gpointer    user_data);
-
-static void
-handle_required_components (GKeyFile               *keyfile,
-                            GsmFillHandleComponent  callback,
-                            gpointer                user_data)
-{
-        char **required_components;
-        int    i;
-
-        g_assert (keyfile != NULL);
-        g_assert (callback != NULL);
-
-        required_components = g_key_file_get_string_list (keyfile,
-                                                          GSM_KEYFILE_SESSION_GROUP,
-                                                          GSM_KEYFILE_REQUIRED_COMPONENTS_KEY,
-                                                          NULL, NULL);
-
-        if (!required_components)
-                return;
-
-        for (i = 0; required_components[i] != NULL; i++) {
-                char *app_path;
-
-                app_path = gsm_util_find_desktop_file_for_app_name (required_components[i],
-                                                                    TRUE);
-                callback (required_components[i], app_path, user_data);
-                g_free (app_path);
-        }
-
-        g_strfreev (required_components);
-}
-
-static void
-check_required_components_helper (const char *component,
-                                  const char *app_path,
-                                  gpointer    user_data)
-{
-        gboolean *error = user_data;
-
-        if (app_path == NULL) {
-                g_warning ("Unable to find required component '%s'", component);
-                *error = TRUE;
-        }
-}
-
-static gboolean
-check_required (GKeyFile *keyfile)
-{
-        gboolean error = FALSE;
-
-        g_debug ("fill: *** Checking required components");
-
-        handle_required_components (keyfile,
-                                    check_required_components_helper,
-                                    &error);
-
-        g_debug ("fill: *** Done checking required components");
-
-        return !error;
-}
-
-static void
-append_required_components_helper (const char *component,
-                                   const char *app_path,
-                                   gpointer    user_data)
-{
-        GsmManager *manager = user_data;
-
-        if (app_path == NULL)
-                g_warning ("Unable to find required component '%s'", component);
-        else
-                gsm_manager_add_required_app (manager, app_path);
-}
-
 
 static void
 load_standard_apps (GsmManager *manager,
@@ -118,12 +39,6 @@ load_standard_apps (GsmManager *manager,
 {
         char **autostart_dirs;
         int    i;
-
-        g_debug ("fill: *** Adding required components");
-        handle_required_components (keyfile,
-                                    append_required_components_helper,
-                                    manager);
-        g_debug ("fill: *** Done adding required components");
 
         autostart_dirs = gsm_util_get_autostart_dirs ();
         for (i = 0; autostart_dirs[i]; i++) {
@@ -137,8 +52,6 @@ static GKeyFile *
 get_session_keyfile_if_valid (const char *path)
 {
         GKeyFile  *keyfile;
-        gsize      len;
-        char     **list;
 
         g_debug ("fill: *** Looking if %s is a valid session file", path);
 
@@ -153,15 +66,6 @@ get_session_keyfile_if_valid (const char *path)
                 g_warning ("Cannot use session '%s': no '%s' group.", path, GSM_KEYFILE_SESSION_GROUP);
                 goto error;
         }
-
-        list = g_key_file_get_string_list (keyfile,
-                                           GSM_KEYFILE_SESSION_GROUP,
-                                           GSM_KEYFILE_REQUIRED_COMPONENTS_KEY,
-                                           &len, NULL);
-        if (list)
-                g_strfreev (list);
-        if (len == 0)
-                g_warning ("Session '%s': no component in the session.", path);
 
         return keyfile;
 
@@ -252,10 +156,6 @@ get_session_keyfile (const char *session,
                 }
         }
         g_free (value);
-
-        if (session_runnable) {
-                session_runnable = check_required (keyfile);
-        }
 
         if (session_runnable) {
                 *actual_session = g_strdup (session);

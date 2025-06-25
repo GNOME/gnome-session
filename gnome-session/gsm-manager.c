@@ -113,7 +113,6 @@ typedef struct
         /* Current status */
         GsmManagerPhase         phase;
         guint                   phase_timeout_id;
-        GSList                 *required_apps;
         GSList                 *pending_apps;
         GsmManagerLogoutMode    logout_mode;
         GSList                 *query_clients;
@@ -217,49 +216,6 @@ start_app_or_warn (GsmManager *manager,
                 g_clear_error (&error);
         }
         return res;
-}
-
-static gboolean
-is_app_required (GsmManager *manager,
-                 GsmApp     *app)
-{
-        GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
-
-        return g_slist_find (priv->required_apps, app) != NULL;
-}
-
-static void
-on_required_app_failure (GsmManager  *manager,
-                         GsmApp      *app)
-{
-        GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
-        const gchar *app_id;
-        gboolean allow_logout;
-        GsmShellExtensions *extensions;
-
-        app_id = gsm_app_peek_app_id (app);
-
-        if (g_str_equal (app_id, "org.gnome.Shell.desktop")) {
-                extensions = g_object_new (GSM_TYPE_SHELL_EXTENSIONS, NULL);
-                gsm_shell_extensions_disable_all (extensions);
-        } else {
-                extensions = NULL;
-        }
-
-        if (gsm_system_is_login_session (priv->system)) {
-                allow_logout = FALSE;
-        } else {
-                allow_logout = !_log_out_is_locked_down (manager);
-        }
-
-        sd_journal_send ("MESSAGE_ID=%s", GSM_MANAGER_UNRECOVERABLE_FAILURE_MSGID,
-                         "PRIORITY=%d", 3,
-                         "MESSAGE=Unrecoverable failure in required component %s", app_id,
-                         NULL);
-
-        gsm_fail_whale_dialog_we_failed (FALSE,
-                                         allow_logout,
-                                         extensions);
 }
 
 static void
@@ -552,11 +508,7 @@ _restart_app (GsmManager *manager,
         }
 
         if (!gsm_app_restart (app, &error)) {
-                if (is_app_required (manager, app)) {
-                        on_required_app_failure (manager, app);
-                } else {
-                        g_warning ("Error on restarting session managed app: %s", error->message);
-                }
+                g_warning ("Error on restarting session managed app: %s", error->message);
                 g_clear_error (&error);
 
                 app_event_during_startup (manager, app);
@@ -598,18 +550,7 @@ app_exited (GsmApp     *app,
         else
                 g_debug ("App %s exited successfully", gsm_app_peek_app_id (app));
 
-        /* Consider that non-success exit status means "crash" for required components */
-        if (exit_code != 0 && is_app_required (manager, app)) {
-                if (gsm_app_get_registered (app) && gsm_app_peek_autorestart (app)) {
-                        g_debug ("Component '%s' is autorestart, ignoring non-successful exit",
-                                 gsm_app_peek_app_id (app));
-                        return;
-                }
-
-                _restart_app (manager, app);
-        } else {
-                app_event_during_startup (manager, app);
-        }
+        app_event_during_startup (manager, app);
 }
 
 static void
@@ -642,8 +583,6 @@ on_phase_timeout (GsmManager *manager)
                         GsmApp *app = a->data;
                         g_warning ("Application '%s' failed to register before timeout",
                                    gsm_app_peek_app_id (app));
-                        if (is_app_required (manager, app))
-                                on_required_app_failure (manager, app);
                 }
                 break;
         case GSM_MANAGER_PHASE_RUNNING:
@@ -2042,8 +1981,6 @@ gsm_manager_dispose (GObject *object)
         }
 
         g_clear_object (&priv->apps);
-        g_slist_free (priv->required_apps);
-        priv->required_apps = NULL;
         g_slist_free (priv->pending_apps);
         priv->pending_apps = NULL;
 
@@ -3292,8 +3229,7 @@ gsm_manager_set_phase (GsmManager      *manager,
 
 static void
 append_app (GsmManager *manager,
-            GsmApp     *app,
-            gboolean    is_required)
+            GsmApp     *app)
 {
         GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
         const char *id;
@@ -3321,27 +3257,15 @@ append_app (GsmManager *manager,
         dup = find_app_for_app_id (manager, app_id);
         if (dup != NULL) {
                 g_debug ("GsmManager: not adding app: app-id '%s' already exists", app_id);
-
-                if (is_required &&
-                    !g_slist_find (priv->required_apps, dup)) {
-                        g_debug ("GsmManager: making app '%s' required", gsm_app_peek_app_id (dup));
-                        priv->required_apps = g_slist_prepend (priv->required_apps, dup);
-                }
-
                 return;
         }
 
         gsm_store_add (priv->apps, id, G_OBJECT (app));
-        if (is_required) {
-                g_debug ("GsmManager: adding required app %s", gsm_app_peek_app_id (app));
-                priv->required_apps = g_slist_prepend (priv->required_apps, app);
-        }
 }
 
-static gboolean
-add_autostart_app_internal (GsmManager *manager,
-                            const char *path,
-                            gboolean    is_required)
+gboolean
+gsm_manager_add_autostart_app (GsmManager *manager,
+                               const char *path)
 {
         GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
         GsmApp  *app;
@@ -3355,7 +3279,7 @@ add_autostart_app_internal (GsmManager *manager,
          * provided, because its app-id is taken, or because of any other
          * reason meaning there is already an app playing its role, then we
          * should make sure that relevant properties (like
-         * provides/is_required) are set in the pre-existing app if needed. */
+         * provides) are set in the pre-existing app if needed. */
         app = gsm_autostart_app_new (path, &error);
         if (app == NULL) {
                 g_warning ("%s", error->message);
@@ -3376,13 +3300,6 @@ add_autostart_app_internal (GsmManager *manager,
                                                         (char *)internal_provides[i]);
                         if (dup != NULL) {
                                 g_debug ("GsmManager: service '%s' is already provided", internal_provides[i]);
-
-                                if (is_required &&
-                                    !g_slist_find (priv->required_apps, dup)) {
-                                        g_debug ("GsmManager: making app '%s' required", gsm_app_peek_app_id (dup));
-                                        priv->required_apps = g_slist_prepend (priv->required_apps, dup);
-                                }
-
                                 provided = TRUE;
                                 break;
                         }
@@ -3397,36 +3314,11 @@ add_autostart_app_internal (GsmManager *manager,
         }
 
         g_debug ("GsmManager: read %s", path);
-        append_app (manager, app, is_required);
+        append_app (manager, app);
         g_object_unref (app);
 
         return TRUE;
 }
-
-gboolean
-gsm_manager_add_autostart_app (GsmManager *manager,
-                               const char *path)
-{
-        return add_autostart_app_internal (manager, path, FALSE);
-}
-
-/**
- * gsm_manager_add_required_app:
- * @manager: a #GsmManager
- * @path: Path to desktop file
- *
- * Similar to gsm_manager_add_autostart_app(), except marks the
- * component as being required; we then try harder to ensure
- * it's running and inform the user if we can't.
- *
- */
-gboolean
-gsm_manager_add_required_app (GsmManager *manager,
-                              const char *path)
-{
-        return add_autostart_app_internal (manager, path, TRUE);
-}
-
 
 gboolean
 gsm_manager_add_autostart_apps_from_dir (GsmManager *manager,
