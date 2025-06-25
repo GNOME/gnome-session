@@ -65,10 +65,6 @@ gboolean         gsm_app_peek_is_disabled               (GsmApp     *app);
 gboolean         gsm_app_start                          (GsmApp     *app,
                                                          GError    **error);
 
-gboolean         gsm_app_get_registered                 (GsmApp     *app);
-void             gsm_app_set_registered                 (GsmApp     *app,
-                                                         gboolean  registered);
-
 G_END_DECLS
 
 #endif /* __GSM_APP_H__ */

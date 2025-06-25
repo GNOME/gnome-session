@@ -33,7 +33,6 @@ typedef struct
         char            *app_id;
         int              phase;
         char            *startup_id;
-        gboolean         registered;
         GDBusConnection *connection;
         GsmExportedApp  *skeleton;
 } GsmAppPrivate;
@@ -45,7 +44,6 @@ enum {
         PROP_ID,
         PROP_STARTUP_ID,
         PROP_PHASE,
-        PROP_REGISTERED,
         LAST_PROP
 };
 
@@ -240,9 +238,6 @@ gsm_app_set_property (GObject      *object,
         case PROP_PHASE:
                 gsm_app_set_phase (app, g_value_get_int (value));
                 break;
-        case PROP_REGISTERED:
-                gsm_app_set_registered (app, g_value_get_boolean (value));
-                break;
         default:
                 break;
         }
@@ -266,9 +261,6 @@ gsm_app_get_property (GObject    *object,
                 break;
         case PROP_PHASE:
                 g_value_set_int (value, priv->phase);
-                break;
-        case PROP_REGISTERED:
-                g_value_set_boolean (value, priv->registered);
                 break;
         default:
                 break;
@@ -334,14 +326,6 @@ gsm_app_class_init (GsmAppClass *klass)
                                                               "Session management startup ID",
                                                               NULL,
                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
-
-        g_object_class_install_property (object_class,
-                                         PROP_REGISTERED,
-                                         g_param_spec_boolean ("registered",
-                                                               "Registered",
-                                                               "Registered",
-                                                               FALSE,
-                                                               G_PARAM_READWRITE));
 }
 
 const char *
@@ -406,26 +390,3 @@ gsm_app_start (GsmApp  *app,
         return GSM_APP_GET_CLASS (app)->impl_start (app, error);
 }
 
-gboolean
-gsm_app_get_registered (GsmApp *app)
-{
-        GsmAppPrivate *priv = gsm_app_get_instance_private (app);
-
-        g_return_val_if_fail (GSM_IS_APP (app), FALSE);
-
-        return priv->registered;
-}
-
-void
-gsm_app_set_registered (GsmApp   *app,
-                        gboolean  registered)
-{
-        GsmAppPrivate *priv = gsm_app_get_instance_private (app);
-
-        g_return_if_fail (GSM_IS_APP (app));
-
-        if (priv->registered != registered) {
-                priv->registered = registered;
-                g_object_notify (G_OBJECT (app), "registered");
-        }
-}
