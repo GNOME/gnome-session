@@ -1852,14 +1852,6 @@ gsm_manager_get_property (GObject    *object,
         }
 }
 
-static gboolean
-_find_app_provides (const char *id,
-                    GsmApp     *app,
-                    const char *service)
-{
-        return gsm_app_provides (app, service);
-}
-
 static GObject *
 gsm_manager_constructor (GType                  type,
                          guint                  n_construct_properties,
@@ -3267,50 +3259,17 @@ gboolean
 gsm_manager_add_autostart_app (GsmManager *manager,
                                const char *path)
 {
-        GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
         GsmApp  *app;
-        char   **internal_provides;
         GError *error = NULL;
 
         g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
         g_return_val_if_fail (path != NULL, FALSE);
 
-        /* Note: if we cannot add the app because its service is already
-         * provided, because its app-id is taken, or because of any other
-         * reason meaning there is already an app playing its role, then we
-         * should make sure that relevant properties (like
-         * provides) are set in the pre-existing app if needed. */
         app = gsm_autostart_app_new (path, &error);
         if (app == NULL) {
                 g_warning ("%s", error->message);
                 g_clear_error (&error);
                 return FALSE;
-        }
-
-        internal_provides = gsm_app_get_provides (app);
-        if (internal_provides) {
-                int i;
-                gboolean provided = FALSE;
-
-                for (i = 0; internal_provides[i] != NULL; i++) {
-                        GsmApp *dup;
-
-                        dup = (GsmApp *)gsm_store_find (priv->apps,
-                                                        (GsmStoreFunc)_find_app_provides,
-                                                        (char *)internal_provides[i]);
-                        if (dup != NULL) {
-                                g_debug ("GsmManager: service '%s' is already provided", internal_provides[i]);
-                                provided = TRUE;
-                                break;
-                        }
-                }
-
-                g_strfreev (internal_provides);
-
-                if (provided) {
-                        g_object_unref (app);
-                        return FALSE;
-                }
         }
 
         g_debug ("GsmManager: read %s", path);

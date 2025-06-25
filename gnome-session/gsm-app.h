@@ -49,9 +49,6 @@ struct _GsmAppClass
                                                        GError    **error);
         gboolean    (*impl_stop)                      (GsmApp     *app,
                                                        GError    **error);
-        gboolean    (*impl_provides)                  (GsmApp     *app,
-                                                       const char *service);
-        char **     (*impl_get_provides)              (GsmApp     *app);
         gboolean    (*impl_has_autostart_condition)   (GsmApp     *app,
                                                        const char *service);
         gboolean    (*impl_is_running)                (GsmApp     *app);
@@ -100,10 +97,6 @@ void             gsm_app_exited                         (GsmApp     *app,
                                                          guchar      exit_code);
 void             gsm_app_died                           (GsmApp     *app,
                                                          int         signal);
-
-gboolean         gsm_app_provides                       (GsmApp     *app,
-                                                         const char *service);
-char           **gsm_app_get_provides                   (GsmApp     *app);
 gboolean         gsm_app_has_autostart_condition        (GsmApp     *app,
                                                          const char *condition);
 gboolean         gsm_app_get_registered                 (GsmApp     *app);
