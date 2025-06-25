@@ -111,7 +111,6 @@ typedef struct
         /* Current status */
         GsmManagerPhase         phase;
         guint                   phase_timeout_id;
-        GSList                 *pending_apps;
         GsmManagerLogoutMode    logout_mode;
         GSList                 *query_clients;
         guint                   query_timeout_id;
@@ -372,9 +371,6 @@ end_phase (GsmManager *manager)
         g_debug ("GsmManager: ending phase %s",
                  phase_num_to_name (priv->phase));
 
-        g_slist_free (priv->pending_apps);
-        priv->pending_apps = NULL;
-
         g_slist_free (priv->query_clients);
         priv->query_clients = NULL;
 
@@ -421,60 +417,6 @@ end_phase (GsmManager *manager)
         }
 }
 
-static void
-app_event_during_startup (GsmManager *manager,
-                          GsmApp     *app)
-{
-        GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
-
-        if (!(priv->phase < GSM_MANAGER_PHASE_APPLICATION))
-                return;
-
-        priv->pending_apps = g_slist_remove (priv->pending_apps, app);
-
-        if (priv->pending_apps == NULL) {
-                if (priv->phase_timeout_id > 0) {
-                        g_source_remove (priv->phase_timeout_id);
-                        priv->phase_timeout_id = 0;
-                }
-
-                end_phase (manager);
-        }
-}
-
-static gboolean
-on_phase_timeout (GsmManager *manager)
-{
-        GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
-        GSList *a;
-
-        priv->phase_timeout_id = 0;
-
-        switch (priv->phase) {
-        case GSM_MANAGER_PHASE_INITIALIZATION:
-                break;
-        case GSM_MANAGER_PHASE_APPLICATION:
-                for (a = priv->pending_apps; a; a = a->next) {
-                        GsmApp *app = a->data;
-                        g_warning ("Application '%s' failed to register before timeout",
-                                   gsm_app_peek_app_id (app));
-                }
-                break;
-        case GSM_MANAGER_PHASE_RUNNING:
-        case GSM_MANAGER_PHASE_QUERY_END_SESSION:
-        case GSM_MANAGER_PHASE_END_SESSION:
-        case GSM_MANAGER_PHASE_EXIT:
-                break;
-        default:
-                g_assert_not_reached ();
-                break;
-        }
-
-        end_phase (manager);
-
-        return FALSE;
-}
-
 static gboolean
 _start_app (const char *id,
             GsmApp     *app,
@@ -515,15 +457,7 @@ do_phase_startup (GsmManager *manager)
                            (GsmStoreFunc)_start_app,
                            manager);
 
-        if (priv->pending_apps != NULL) {
-                if (priv->phase < GSM_MANAGER_PHASE_APPLICATION) {
-                        priv->phase_timeout_id = g_timeout_add_seconds (GSM_MANAGER_PHASE_TIMEOUT,
-                                                                                 (GSourceFunc)on_phase_timeout,
-                                                                                 manager);
-                }
-        } else {
-                end_phase (manager);
-        }
+        end_phase (manager);
 }
 
 typedef struct {
@@ -583,6 +517,18 @@ complete_end_session_tasks (GsmManager *manager)
         g_slist_free_full (priv->pending_end_session_tasks,
                            (GDestroyNotify) g_object_unref);
         priv->pending_end_session_tasks = NULL;
+}
+
+static gboolean
+on_phase_timeout (GsmManager *manager)
+{
+        GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
+
+        priv->phase_timeout_id = 0;
+
+        end_phase (manager);
+
+        return FALSE;
 }
 
 static void
@@ -1039,8 +985,6 @@ start_phase (GsmManager *manager)
                  phase_num_to_name (priv->phase));
 
         /* reset state */
-        g_slist_free (priv->pending_apps);
-        priv->pending_apps = NULL;
         g_slist_free (priv->query_clients);
         priv->query_clients = NULL;
         g_slist_free (priv->next_query_clients);
@@ -1220,34 +1164,10 @@ find_app_for_startup_id (GsmManager *manager,
 {
         GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
         GsmApp *found_app;
-        GSList *a;
 
-        found_app = NULL;
-
-        /* If we're starting up the session, try to match the new client
-         * with one pending apps for the current phase. If not, try to match
-         * with any of the autostarted apps. */
-        if (priv->phase < GSM_MANAGER_PHASE_APPLICATION) {
-                for (a = priv->pending_apps; a != NULL; a = a->next) {
-                        GsmApp *app = GSM_APP (a->data);
-
-                        if (strcmp (startup_id, gsm_app_peek_startup_id (app)) == 0) {
-                                found_app = app;
-                                goto out;
-                        }
-                }
-        } else {
-                GsmApp *app;
-
-                app = (GsmApp *)gsm_store_find (priv->apps,
-                                                (GsmStoreFunc)_app_has_startup_id,
-                                                (char *)startup_id);
-                if (app != NULL) {
-                        found_app = app;
-                        goto out;
-                }
-        }
- out:
+        found_app = (GsmApp *) gsm_store_find (priv->apps,
+                                               (GsmStoreFunc)_app_has_startup_id,
+                                               (char *)startup_id);
         return found_app;
 }
 
@@ -1779,8 +1699,6 @@ gsm_manager_dispose (GObject *object)
         }
 
         g_clear_object (&priv->apps);
-        g_slist_free (priv->pending_apps);
-        priv->pending_apps = NULL;
 
         if (priv->inhibitors != NULL) {
                 g_signal_handlers_disconnect_by_func (priv->inhibitors,
