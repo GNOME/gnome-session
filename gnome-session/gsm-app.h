@@ -36,16 +36,8 @@ struct _GsmAppClass
 {
         GObjectClass parent_class;
 
-        /* signals */
-        void        (*exited)       (GsmApp *app,
-                                     guchar  exit_code);
-        void        (*died)         (GsmApp *app,
-                                     int     signal);
-
         /* virtual methods */
         gboolean    (*impl_start)                     (GsmApp     *app,
-                                                       GError    **error);
-        gboolean    (*impl_stop)                      (GsmApp     *app,
                                                        GError    **error);
         gboolean    (*impl_is_running)                (GsmApp     *app);
 
@@ -57,7 +49,6 @@ typedef enum
 {
         GSM_APP_ERROR_GENERAL = 0,
         GSM_APP_ERROR_START,
-        GSM_APP_ERROR_STOP,
         GSM_APP_NUM_ERRORS
 } GsmAppError;
 
@@ -73,14 +64,7 @@ gboolean         gsm_app_peek_is_disabled               (GsmApp     *app);
 
 gboolean         gsm_app_start                          (GsmApp     *app,
                                                          GError    **error);
-gboolean         gsm_app_stop                           (GsmApp     *app,
-                                                         GError    **error);
-gboolean         gsm_app_is_running                     (GsmApp     *app);
 
-void             gsm_app_exited                         (GsmApp     *app,
-                                                         guchar      exit_code);
-void             gsm_app_died                           (GsmApp     *app,
-                                                         int         signal);
 gboolean         gsm_app_get_registered                 (GsmApp     *app);
 void             gsm_app_set_registered                 (GsmApp     *app,
                                                          gboolean  registered);

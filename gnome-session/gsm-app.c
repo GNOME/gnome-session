@@ -38,16 +38,7 @@ typedef struct
         GsmExportedApp  *skeleton;
 } GsmAppPrivate;
 
-
-enum {
-        EXITED,
-        DIED,
-        LAST_SIGNAL
-};
-
 static guint32 app_serial = 1;
-
-static guint signals[LAST_SIGNAL] = { 0 };
 
 enum {
         PROP_0,
@@ -319,7 +310,6 @@ gsm_app_class_init (GsmAppClass *klass)
 
         klass->impl_start = NULL;
         klass->impl_get_app_id = NULL;
-        klass->impl_is_running = NULL;
 
         g_object_class_install_property (object_class,
                                          PROP_PHASE,
@@ -352,23 +342,6 @@ gsm_app_class_init (GsmAppClass *klass)
                                                                "Registered",
                                                                FALSE,
                                                                G_PARAM_READWRITE));
-
-        signals[EXITED] =
-                g_signal_new ("exited",
-                              G_OBJECT_CLASS_TYPE (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GsmAppClass, exited),
-                              NULL, NULL, NULL,
-                              G_TYPE_NONE,
-                              1, G_TYPE_UCHAR);
-        signals[DIED] =
-                g_signal_new ("died",
-                              G_OBJECT_CLASS_TYPE (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GsmAppClass, died),
-                              NULL, NULL, NULL,
-                              G_TYPE_NONE,
-                              1, G_TYPE_INT);
 }
 
 const char *
@@ -424,18 +397,6 @@ gsm_app_peek_is_disabled (GsmApp *app)
 }
 
 gboolean
-gsm_app_is_running (GsmApp *app)
-{
-        g_return_val_if_fail (GSM_IS_APP (app), FALSE);
-
-        if (GSM_APP_GET_CLASS (app)->impl_is_running) {
-                return GSM_APP_GET_CLASS (app)->impl_is_running (app);
-        } else {
-                return FALSE;
-        }
-}
-
-gboolean
 gsm_app_start (GsmApp  *app,
                GError **error)
 {
@@ -443,31 +404,6 @@ gsm_app_start (GsmApp  *app,
 
         g_debug ("Starting app: %s", priv->id);
         return GSM_APP_GET_CLASS (app)->impl_start (app, error);
-}
-
-gboolean
-gsm_app_stop (GsmApp  *app,
-              GError **error)
-{
-        return GSM_APP_GET_CLASS (app)->impl_stop (app, error);
-}
-
-void
-gsm_app_exited (GsmApp *app,
-                guchar  exit_code)
-{
-        g_return_if_fail (GSM_IS_APP (app));
-
-        g_signal_emit (app, signals[EXITED], 0, exit_code);
-}
-
-void
-gsm_app_died (GsmApp *app,
-              int     signal)
-{
-        g_return_if_fail (GSM_IS_APP (app));
-
-        g_signal_emit (app, signals[DIED], 0, signal);
 }
 
 gboolean
