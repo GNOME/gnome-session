@@ -41,13 +41,6 @@ typedef enum {
 } GsmClientStatus;
 
 typedef enum {
-        GSM_CLIENT_RESTART_NEVER = 0,
-        GSM_CLIENT_RESTART_IF_RUNNING,
-        GSM_CLIENT_RESTART_ANYWAY,
-        GSM_CLIENT_RESTART_IMMEDIATELY
-} GsmClientRestartStyle;
-
-typedef enum {
         GSM_CLIENT_END_SESSION_FLAG_FORCEFUL = 1 << 0,
         GSM_CLIENT_END_SESSION_FLAG_SAVE     = 1 << 1,
         GSM_CLIENT_END_SESSION_FLAG_LAST     = 1 << 2
@@ -67,7 +60,6 @@ struct _GsmClientClass
 
         /* virtual methods */
         char *                (*impl_get_app_name)           (GsmClient *client);
-        GsmClientRestartStyle (*impl_get_restart_style_hint) (GsmClient *client);
         guint                 (*impl_get_unix_process_id)    (GsmClient *client);
         gboolean              (*impl_query_end_session)      (GsmClient *client,
                                                               GsmClientEndSessionFlag flags,
@@ -96,7 +88,6 @@ const char           *gsm_client_peek_id                    (GsmClient  *client)
 
 const char *          gsm_client_peek_startup_id            (GsmClient  *client);
 const char *          gsm_client_peek_app_id                (GsmClient  *client);
-guint                 gsm_client_peek_restart_style_hint    (GsmClient  *client);
 guint                 gsm_client_peek_status                (GsmClient  *client);
 
 

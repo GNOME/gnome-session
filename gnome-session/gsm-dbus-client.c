@@ -42,7 +42,6 @@ struct _GsmDBusClient
 
         char                 *bus_name;
         GPid                  caller_pid;
-        GsmClientRestartStyle restart_style_hint;
 
         GDBusConnection      *connection;
         GsmExportedClientPrivate *skeleton;
@@ -327,12 +326,6 @@ dbus_client_get_app_name (GsmClient *client)
         return NULL;
 }
 
-static GsmClientRestartStyle
-dbus_client_get_restart_style_hint (GsmClient *client)
-{
-        return (GSM_DBUS_CLIENT (client)->restart_style_hint);
-}
-
 static guint
 dbus_client_get_unix_process_id (GsmClient *client)
 {
@@ -396,7 +389,6 @@ gsm_dbus_client_class_init (GsmDBusClientClass *klass)
         client_class->impl_end_session            = dbus_client_end_session;
         client_class->impl_cancel_end_session     = dbus_client_cancel_end_session;
         client_class->impl_get_app_name           = dbus_client_get_app_name;
-        client_class->impl_get_restart_style_hint = dbus_client_get_restart_style_hint;
         client_class->impl_get_unix_process_id    = dbus_client_get_unix_process_id;
 
         props[PROP_BUS_NAME] =
