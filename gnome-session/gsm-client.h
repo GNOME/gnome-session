@@ -79,9 +79,6 @@ struct _GsmClientClass
                                                               GError   **error);
         gboolean              (*impl_stop)                   (GsmClient *client,
                                                               GError   **error);
-        GKeyFile *            (*impl_save)                   (GsmClient *client,
-                                                              GsmApp    *app,
-                                                              GError   **error);
 };
 
 typedef enum
@@ -119,10 +116,6 @@ gboolean              gsm_client_cancel_end_session         (GsmClient  *client,
                                                              GError    **error);
 
 void                  gsm_client_disconnected               (GsmClient  *client);
-
-GKeyFile             *gsm_client_save                       (GsmClient  *client,
-                                                             GsmApp     *app,
-                                                             GError    **error);
 
 gboolean              gsm_client_stop                       (GsmClient  *client,
                                                              GError    **error);
