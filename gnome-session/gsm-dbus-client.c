@@ -82,9 +82,7 @@ handle_end_session_response (GsmExportedClientPrivate *skeleton,
                              GsmDBusClient            *client)
 {
         g_debug ("GsmDBusClient: got EndSessionResponse is-ok:%d reason=%s", is_ok, reason);
-        gsm_client_end_session_response (GSM_CLIENT (client),
-                                         is_ok, FALSE, FALSE, reason);
-
+        gsm_client_end_session_response (GSM_CLIENT (client), is_ok, reason);
         gsm_exported_client_private_complete_end_session_response (skeleton, invocation);
         return TRUE;
 }
