@@ -339,14 +339,6 @@ dbus_client_query_end_session (GsmClient                *client,
 {
         GsmDBusClient  *dbus_client = (GsmDBusClient *) client;
 
-        if (dbus_client->bus_name == NULL) {
-                g_set_error (error,
-                             GSM_CLIENT_ERROR,
-                             GSM_CLIENT_ERROR_NOT_REGISTERED,
-                             "Client is not registered");
-                return FALSE;
-        }
-
         g_debug ("GsmDBusClient: sending QueryEndSession signal to %s", dbus_client->bus_name);
 
         gsm_exported_client_private_emit_query_end_session (dbus_client->skeleton, flags);

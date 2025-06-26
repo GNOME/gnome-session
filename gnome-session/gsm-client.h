@@ -73,16 +73,6 @@ struct _GsmClientClass
                                                               GError   **error);
 };
 
-typedef enum
-{
-        GSM_CLIENT_ERROR_GENERAL = 0,
-        GSM_CLIENT_ERROR_NOT_REGISTERED,
-        GSM_CLIENT_NUM_ERRORS
-} GsmClientError;
-
-#define GSM_CLIENT_ERROR gsm_client_error_quark ()
-GQuark                gsm_client_error_quark                (void);
-
 const char           *gsm_client_peek_id                    (GsmClient  *client);
 
 
