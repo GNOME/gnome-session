@@ -34,13 +34,6 @@ typedef struct _GsmClient        GsmClient;
 typedef struct _GsmClientClass   GsmClientClass;
 
 typedef enum {
-        GSM_CLIENT_UNREGISTERED = 0,
-        GSM_CLIENT_REGISTERED,
-        GSM_CLIENT_FINISHED,
-        GSM_CLIENT_FAILED
-} GsmClientStatus;
-
-typedef enum {
         GSM_CLIENT_END_SESSION_FLAG_FORCEFUL = 1 << 0,
         GSM_CLIENT_END_SESSION_FLAG_SAVE     = 1 << 1,
         GSM_CLIENT_END_SESSION_FLAG_LAST     = 1 << 2
@@ -78,14 +71,11 @@ const char           *gsm_client_peek_id                    (GsmClient  *client)
 
 const char *          gsm_client_peek_startup_id            (GsmClient  *client);
 const char *          gsm_client_peek_app_id                (GsmClient  *client);
-guint                 gsm_client_peek_status                (GsmClient  *client);
 
 
 char                 *gsm_client_get_app_name               (GsmClient  *client);
 void                  gsm_client_set_app_id                 (GsmClient  *client,
                                                              const char *app_id);
-void                  gsm_client_set_status                 (GsmClient  *client,
-                                                             guint       status);
 
 gboolean              gsm_client_end_session                (GsmClient                *client,
                                                              GsmClientEndSessionFlag   flags,

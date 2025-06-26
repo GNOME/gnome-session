@@ -1090,8 +1090,6 @@ _disconnect_client (GsmManager *manager,
         /* take a ref so it doesn't get finalized */
         g_object_ref (client);
 
-        gsm_client_set_status (client, GSM_CLIENT_FINISHED);
-
         /* remove any inhibitors for this client */
         gsm_store_foreach_remove (priv->inhibitors,
                                   (GsmStoreFunc)inhibitor_has_client_id,
@@ -2215,8 +2213,6 @@ gsm_manager_register_client (GsmExportedManager    *skeleton,
                 gsm_client_set_app_id (client, app_id);
         }
 
-        gsm_client_set_status (client, GSM_CLIENT_REGISTERED);
-
         g_assert (new_startup_id != NULL);
         g_free (new_startup_id);
 
@@ -2231,28 +2227,8 @@ gsm_manager_unregister_client (GsmExportedManager    *skeleton,
                                const char            *client_id,
                                GsmManager            *manager)
 {
-        GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
-        GsmClient *client;
-
-        g_debug ("GsmManager: UnregisterClient %s", client_id);
-
-        client = (GsmClient *)gsm_store_lookup (priv->clients, client_id);
-        if (client == NULL) {
-                g_debug ("Unable to unregister client: not registered");
-
-                g_dbus_method_invocation_return_error (invocation,
-                                                       GSM_MANAGER_ERROR,
-                                                       GSM_MANAGER_ERROR_NOT_REGISTERED,
-                                                       "Unable to unregister client");
-                return TRUE;
-        }
-
-        /* don't disconnect client here, only change the status.
-           Wait until it leaves the bus before disconnecting it */
-        gsm_client_set_status (client, GSM_CLIENT_UNREGISTERED);
-
+        g_debug ("GsmManager: UnregisterClient %s (ignoring)", client_id);
         gsm_exported_manager_complete_unregister_client (skeleton, invocation);
-
         return TRUE;
 }
 

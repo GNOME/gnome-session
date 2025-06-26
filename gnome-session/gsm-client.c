@@ -28,16 +28,14 @@ typedef struct
         char            *id;
         char            *startup_id;
         char            *app_id;
-        guint            status;
 } GsmClientPrivate;
 
 typedef enum {
         PROP_STARTUP_ID = 1,
         PROP_APP_ID,
-        PROP_STATUS,
 } GsmClientProperty;
 
-static GParamSpec *props[PROP_STATUS + 1] = { NULL, };
+static GParamSpec *props[PROP_APP_ID + 1] = { NULL, };
 
 enum {
         DISCONNECTED,
@@ -108,19 +106,6 @@ gsm_client_finalize (GObject *object)
         G_OBJECT_CLASS (gsm_client_parent_class)->finalize (object);
 }
 
-void
-gsm_client_set_status (GsmClient *client,
-                       guint      status)
-{
-        GsmClientPrivate *priv = gsm_client_get_instance_private (client);
-
-        g_return_if_fail (GSM_IS_CLIENT (client));
-        if (priv->status != status) {
-                priv->status = status;
-                g_object_notify_by_pspec (G_OBJECT (client), props[PROP_STATUS]);
-        }
-}
-
 static void
 gsm_client_set_startup_id (GsmClient  *client,
                            const char *startup_id)
@@ -174,9 +159,6 @@ gsm_client_set_property (GObject       *object,
         case PROP_APP_ID:
                 gsm_client_set_app_id (self, g_value_get_string (value));
                 break;
-        case PROP_STATUS:
-                gsm_client_set_status (self, g_value_get_uint (value));
-                break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                 break;
@@ -198,9 +180,6 @@ gsm_client_get_property (GObject    *object,
                 break;
         case PROP_APP_ID:
                 g_value_set_string (value, priv->app_id);
-                break;
-        case PROP_STATUS:
-                g_value_set_uint (value, priv->status);
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -278,14 +257,6 @@ gsm_client_class_init (GsmClientClass *klass)
                                      "app-id",
                                      "",
                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
-        props[PROP_STATUS] =
-                g_param_spec_uint ("status",
-                                   "status",
-                                   "status",
-                                   0,
-                                   G_MAXINT,
-                                   GSM_CLIENT_UNREGISTERED,
-                                   G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY);
 
         g_object_class_install_properties (object_class, G_N_ELEMENTS (props), props);
 }
@@ -328,16 +299,6 @@ gsm_client_peek_startup_id (GsmClient *client)
         g_return_val_if_fail (GSM_IS_CLIENT (client), NULL);
 
         return priv->startup_id;
-}
-
-guint
-gsm_client_peek_status (GsmClient *client)
-{
-        GsmClientPrivate *priv = gsm_client_get_instance_private (client);
-
-        g_return_val_if_fail (GSM_IS_CLIENT (client), GSM_CLIENT_UNREGISTERED);
-
-        return priv->status;
 }
 
 /**
