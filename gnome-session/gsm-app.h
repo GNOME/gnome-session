@@ -21,41 +21,20 @@
 #define __GSM_APP_H__
 
 #include <glib-object.h>
+#include <gio/gdesktopappinfo.h>
 #include <sys/types.h>
-
 
 #include "gsm-manager.h"
 #include "gsm-client.h"
 
 G_BEGIN_DECLS
 
-#define GSM_TYPE_APP            (gsm_app_get_type ())
-G_DECLARE_DERIVABLE_TYPE (GsmApp, gsm_app, GSM, APP, GObject)
+#define GSM_TYPE_APP (gsm_app_get_type ())
+G_DECLARE_FINAL_TYPE (GsmApp, gsm_app, GSM, APP, GObject)
 
-struct _GsmAppClass
-{
-        GObjectClass parent_class;
-
-        /* virtual methods */
-        gboolean    (*impl_start)                     (GsmApp     *app,
-                                                       GError    **error);
-        gboolean    (*impl_is_running)                (GsmApp     *app);
-
-        const char *(*impl_get_app_id)                (GsmApp     *app);
-        gboolean    (*impl_is_disabled)               (GsmApp     *app);
-};
-
-typedef enum
-{
-        GSM_APP_ERROR_GENERAL = 0,
-        GSM_APP_ERROR_START,
-        GSM_APP_NUM_ERRORS
-} GsmAppError;
-
-#define GSM_APP_ERROR gsm_app_error_quark ()
-
-GQuark           gsm_app_error_quark                    (void);
-
+GsmApp          *gsm_app_new                            (GDesktopAppInfo *info);
+GsmApp          *gsm_app_new_for_path                   (const char  *path,
+                                                         GError     **error);
 const char      *gsm_app_peek_app_id                    (GsmApp     *app);
 const char      *gsm_app_peek_startup_id                (GsmApp     *app);
 GsmManagerPhase  gsm_app_peek_phase                     (GsmApp     *app);

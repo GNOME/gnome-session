@@ -21,37 +21,53 @@
 #include "config.h"
 #endif
 
-#include <glib.h>
 #include <string.h>
 
-#include "gsm-app.h"
+#include <glib.h>
+#include <gio/gio.h>
+#include <gio/gdesktopappinfo.h>
 
-typedef struct
+#define GNOME_DESKTOP_USE_UNSTABLE_API
+#include <libgnome-desktop/gnome-systemd.h>
+
+#include "gsm-app.h"
+#include "gsm-util.h"
+
+#define GSM_APP_SYSTEMD_KEY     "X-GNOME-HiddenUnderSystemd"
+#define GSM_APP_ENABLED_KEY     "X-GNOME-Autostart-enabled"
+#define GSM_APP_PHASE_KEY       "X-GNOME-Autostart-Phase"
+#define GSM_APP_STARTUP_ID_KEY  "X-GNOME-Autostart-startup-id"
+
+/* This comment is a record of keys that were previously used but are not used
+ * anymore. We keep this so that we don't accidentally redefine these keys in
+ * the future, to be used in some incompatible way.
+ *
+ * X-GNOME-AutoRestart
+ * X-GNOME-Autostart-discard-exec
+ * AutostartCondition
+ * X-GNOME-DBus-Name
+ * X-GNOME-DBus-Path
+ * X-GNOME-DBus-Start-Arguments
+ * */
+
+struct _GsmApp
 {
+        GObject          parent;
+        GDesktopAppInfo *inner;
+
         int              phase;
         char            *startup_id;
-} GsmAppPrivate;
+};
 
 enum {
         PROP_0,
+        PROP_INNER,
         PROP_STARTUP_ID,
         PROP_PHASE,
         LAST_PROP
 };
 
-G_DEFINE_TYPE_WITH_PRIVATE (GsmApp, gsm_app, G_TYPE_OBJECT)
-
-GQuark
-gsm_app_error_quark (void)
-{
-        static GQuark ret = 0;
-        if (ret == 0) {
-                ret = g_quark_from_static_string ("gsm_app_error");
-        }
-
-        return ret;
-
-}
+G_DEFINE_TYPE (GsmApp, gsm_app, G_TYPE_OBJECT)
 
 static void
 gsm_app_init (GsmApp *app)
@@ -59,29 +75,37 @@ gsm_app_init (GsmApp *app)
 }
 
 static void
+gsm_app_set_inner (GsmApp          *app,
+                   GDesktopAppInfo *app_info)
+{
+        g_return_if_fail (GSM_IS_APP (app));
+        g_return_if_fail (app_info == NULL || G_IS_DESKTOP_APP_INFO (app_info));
+
+        g_set_object (&app->inner, app_info);
+}
+
+static void
 gsm_app_set_phase (GsmApp *app,
                    int     phase)
 {
-        GsmAppPrivate *priv = gsm_app_get_instance_private (app);
-
         g_return_if_fail (GSM_IS_APP (app));
 
-        priv->phase = phase;
+        app->phase = phase;
 }
 
 static void
 gsm_app_set_startup_id (GsmApp     *app,
                         const char *startup_id)
 {
-        GsmAppPrivate *priv = gsm_app_get_instance_private (app);
-
         g_return_if_fail (GSM_IS_APP (app));
 
-        g_free (priv->startup_id);
+        if (g_strcmp0 (app->startup_id, startup_id) == 0)
+                return;
 
-        priv->startup_id = g_strdup (startup_id);
+        g_free (app->startup_id);
+        app->startup_id = g_strdup (startup_id);
+
         g_object_notify (G_OBJECT (app), "startup-id");
-
 }
 
 static void
@@ -93,6 +117,9 @@ gsm_app_set_property (GObject      *object,
         GsmApp *app = GSM_APP (object);
 
         switch (prop_id) {
+        case PROP_INNER:
+                gsm_app_set_inner (app, g_value_get_object (value));
+                break;
         case PROP_STARTUP_ID:
                 gsm_app_set_startup_id (app, g_value_get_string (value));
                 break;
@@ -111,14 +138,16 @@ gsm_app_get_property (GObject    *object,
                       GParamSpec *pspec)
 {
         GsmApp *app = GSM_APP (object);
-        GsmAppPrivate *priv = gsm_app_get_instance_private (app);
 
         switch (prop_id) {
+        case PROP_INNER:
+                g_value_set_object (value, app->inner);
+                break;
         case PROP_STARTUP_ID:
-                g_value_set_string (value, priv->startup_id);
+                g_value_set_string (value, app->startup_id);
                 break;
         case PROP_PHASE:
-                g_value_set_int (value, priv->phase);
+                g_value_set_int (value, app->phase);
                 break;
         default:
                 break;
@@ -129,10 +158,9 @@ static void
 gsm_app_dispose (GObject *object)
 {
         GsmApp *app = GSM_APP (object);
-        GsmAppPrivate *priv = gsm_app_get_instance_private (app);
 
-        g_free (priv->startup_id);
-        priv->startup_id = NULL;
+        g_clear_object (&app->inner);
+        g_clear_pointer (&app->startup_id, g_free);
 
         G_OBJECT_CLASS (gsm_app_parent_class)->dispose (object);
 }
@@ -146,9 +174,13 @@ gsm_app_class_init (GsmAppClass *klass)
         object_class->get_property = gsm_app_get_property;
         object_class->dispose = gsm_app_dispose;
 
-        klass->impl_start = NULL;
-        klass->impl_get_app_id = NULL;
-
+        g_object_class_install_property (object_class,
+                                         PROP_INNER,
+                                         g_param_spec_object ("inner",
+                                                              "Inner",
+                                                              "Inner",
+                                                              G_TYPE_DESKTOP_APP_INFO,
+                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
         g_object_class_install_property (object_class,
                                          PROP_PHASE,
                                          g_param_spec_int ("phase",
@@ -157,7 +189,7 @@ gsm_app_class_init (GsmAppClass *klass)
                                                            -1,
                                                            G_MAXINT,
                                                            -1,
-                                                           G_PARAM_READWRITE));
+                                                           G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
         g_object_class_install_property (object_class,
                                          PROP_STARTUP_ID,
                                          g_param_spec_string ("startup-id",
@@ -170,15 +202,17 @@ gsm_app_class_init (GsmAppClass *klass)
 const char *
 gsm_app_peek_app_id (GsmApp *app)
 {
-        return GSM_APP_GET_CLASS (app)->impl_get_app_id (app);
+        g_return_val_if_fail (GSM_IS_APP (app), NULL);
+
+        return g_app_info_get_id (G_APP_INFO (app->inner));
 }
 
 const char *
 gsm_app_peek_startup_id (GsmApp *app)
 {
-        GsmAppPrivate *priv = gsm_app_get_instance_private (app);
+        g_return_val_if_fail (GSM_IS_APP (app), NULL);
 
-        return priv->startup_id;
+        return app->startup_id;
 }
 
 /**
@@ -192,11 +226,9 @@ gsm_app_peek_startup_id (GsmApp *app)
 GsmManagerPhase
 gsm_app_peek_phase (GsmApp *app)
 {
-        GsmAppPrivate *priv = gsm_app_get_instance_private (app);
-
         g_return_val_if_fail (GSM_IS_APP (app), GSM_MANAGER_PHASE_APPLICATION);
 
-        return priv->phase;
+        return app->phase;
 }
 
 gboolean
@@ -204,18 +236,152 @@ gsm_app_peek_is_disabled (GsmApp *app)
 {
         g_return_val_if_fail (GSM_IS_APP (app), FALSE);
 
-        if (GSM_APP_GET_CLASS (app)->impl_is_disabled) {
-                return GSM_APP_GET_CLASS (app)->impl_is_disabled (app);
-        } else {
-                return FALSE;
+        /* GSM_AUTOSTART_APP_ENABLED_KEY key, used by old gnome-session */
+        if (g_desktop_app_info_has_key (app->inner, GSM_APP_ENABLED_KEY) &&
+            !g_desktop_app_info_get_boolean (app->inner, GSM_APP_ENABLED_KEY)) {
+                g_debug ("App %s is disabled by " GSM_APP_ENABLED_KEY,
+                         gsm_app_peek_app_id (app));
+                return TRUE;
         }
+
+        /* Hidden key, used by fdo Desktop Entry spec */
+        if (g_desktop_app_info_get_is_hidden (app->inner)) {
+                g_debug ("App %s is disabled by Hidden",
+                         gsm_app_peek_app_id (app));
+                return TRUE;
+        }
+
+        /* Check OnlyShowIn/NotShowIn/TryExec */
+        if (!g_desktop_app_info_get_show_in (app->inner, NULL)) {
+                g_debug ("App %s is not for the current desktop",
+                         gsm_app_peek_app_id (app));
+                return TRUE;
+        }
+
+        /* Check if app is systemd enabled */
+        if (g_desktop_app_info_get_boolean (app->inner, GSM_APP_SYSTEMD_KEY)) {
+                g_debug ("App %s is disabled by " GSM_APP_SYSTEMD_KEY,
+                         gsm_app_peek_app_id (app));
+                return TRUE;
+        }
+
+        return FALSE;
+}
+
+static void
+app_launched (GAppLaunchContext *ctx,
+              GAppInfo          *appinfo,
+              GVariant          *platform_data,
+              gpointer           data)
+{
+        GsmApp *app = data;
+
+        gint pid = 0;
+        gchar *sn_id = NULL;
+
+        g_variant_lookup (platform_data, "pid", "i", &pid);
+        g_variant_lookup (platform_data, "startup-notification-id", "s", &sn_id);
+
+        gsm_app_set_startup_id (app, sn_id);
+
+        /* If pid == 0 the application was launched through D-Bus
+         * activation, therefore it's already in its own unit */
+        if (pid == 0)
+                return;
+
+        /* We are not interested in the result. */
+        gnome_start_systemd_scope (gsm_app_peek_app_id (app),
+                                   pid,
+                                   NULL,
+                                   NULL,
+                                   NULL, NULL, NULL);
 }
 
 gboolean
 gsm_app_start (GsmApp  *app,
                GError **error)
 {
-        g_debug ("Starting app: %s", gsm_app_peek_app_id (app));
-        return GSM_APP_GET_CLASS (app)->impl_start (app, error);
+        g_autoptr (GAppLaunchContext) ctx = NULL;
+        GError *local_error = NULL;
+        const char * const *variable_denylist;
+        const char * const *child_environment;
+        guint handler;
+        gboolean success;
+
+        g_debug ("GsmApp: starting %s: command=%s startup-id=%s",
+                 gsm_app_peek_app_id (app),
+                 g_app_info_get_commandline (G_APP_INFO (app->inner)),
+                 app->startup_id);
+
+        ctx = g_app_launch_context_new ();
+
+        variable_denylist = gsm_util_get_variable_blacklist ();
+        for (size_t i = 0; variable_denylist[i] != NULL; i++)
+                g_app_launch_context_unsetenv (ctx, variable_denylist[i]);
+
+        child_environment = gsm_util_listenv ();
+        for (size_t i = 0; child_environment[i] != NULL; i++) {
+                g_auto (GStrv) split = g_strsplit (child_environment[i], "=", 2);
+                if (split[1] != NULL)
+                        g_app_launch_context_setenv (ctx, split[0], split[1]);
+        }
+
+        if (app->startup_id != NULL)
+                g_app_launch_context_setenv (ctx, "DESKTOP_AUTOSTART_ID", app->startup_id);
+
+        handler = g_signal_connect (ctx, "launched", G_CALLBACK (app_launched), app);
+        success = g_desktop_app_info_launch_uris_as_manager (app->inner,
+                                                             NULL,
+                                                             ctx,
+                                                             G_SPAWN_DO_NOT_REAP_CHILD | G_SPAWN_SEARCH_PATH,
+                                                             NULL, NULL, NULL, NULL,
+                                                             &local_error);
+        if (!success)
+                g_propagate_prefixed_error (error, local_error,
+                                            "Unable to start app (%s): ",
+                                            gsm_app_peek_app_id (app));
+
+        g_signal_handler_disconnect (ctx, handler);
+
+        return success;
 }
 
+GsmApp *
+gsm_app_new (GDesktopAppInfo  *info)
+{
+        g_return_val_if_fail (info != NULL, NULL);
+
+        return g_object_new (GSM_TYPE_APP,
+                             "inner", info,
+                             "phase", GSM_MANAGER_PHASE_APPLICATION,
+                             NULL);
+}
+
+GsmApp *
+gsm_app_new_for_path (const char  *path,
+                      GError     **error)
+{
+        g_autoptr (GDesktopAppInfo) info = NULL;
+        g_autofree char *startup_id = NULL;
+        GsmApp *app = NULL;
+
+        g_return_val_if_fail (path != NULL, NULL);
+
+        info = g_desktop_app_info_new_from_filename (path);
+        if (info == NULL) {
+                g_set_error (error, G_IO_ERROR, G_IO_ERROR_FAILED,
+                             "Desktop file %s couldn't be parsed, or references a missing TryExec binary",
+                             path);
+                return NULL;
+        }
+
+        app = gsm_app_new (info);
+
+        /* this must only be done on first load */
+        startup_id = g_desktop_app_info_get_string (info, GSM_APP_STARTUP_ID_KEY);
+        if (startup_id == NULL)
+                startup_id = gsm_util_generate_startup_id ();
+        gsm_app_set_startup_id (app, startup_id);
+
+        return app;
+}

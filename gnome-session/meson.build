@@ -21,7 +21,6 @@ executable(
 
 sources = files(
   'gsm-app.c',
-  'gsm-autostart-app.c',
   'gsm-client.c',
   'gsm-dbus-client.c',
   'gsm-inhibitor.c',
