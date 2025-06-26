@@ -108,18 +108,6 @@ gsm_client_get_app_id (GsmExportedClient     *skeleton,
 }
 
 static gboolean
-gsm_client_get_restart_style_hint (GsmExportedClient     *skeleton,
-                                   GDBusMethodInvocation *invocation,
-                                   GsmClient             *client)
-{
-        guint hint;
-
-        hint = GSM_CLIENT_GET_CLASS (client)->impl_get_restart_style_hint (client);
-        gsm_exported_client_complete_get_restart_style_hint (skeleton, invocation, hint);
-        return TRUE;
-}
-
-static gboolean
 gsm_client_get_status (GsmExportedClient     *skeleton,
                        GDBusMethodInvocation *invocation,
                        GsmClient             *client)
@@ -188,8 +176,6 @@ register_client (GsmClient *client)
 
         g_signal_connect (skeleton, "handle-get-app-id",
                           G_CALLBACK (gsm_client_get_app_id), client);
-        g_signal_connect (skeleton, "handle-get-restart-style-hint",
-                          G_CALLBACK (gsm_client_get_restart_style_hint), client);
         g_signal_connect (skeleton, "handle-get-startup-id",
                           G_CALLBACK (gsm_client_get_startup_id), client);
         g_signal_connect (skeleton, "handle-get-status",
@@ -491,14 +477,6 @@ gsm_client_peek_status (GsmClient *client)
         g_return_val_if_fail (GSM_IS_CLIENT (client), GSM_CLIENT_UNREGISTERED);
 
         return priv->status;
-}
-
-guint
-gsm_client_peek_restart_style_hint (GsmClient *client)
-{
-        g_return_val_if_fail (GSM_IS_CLIENT (client), GSM_CLIENT_RESTART_NEVER);
-
-        return GSM_CLIENT_GET_CLASS (client)->impl_get_restart_style_hint (client);
 }
 
 /**
