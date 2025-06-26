@@ -2401,27 +2401,6 @@ listify_store_ids (char       *id,
 }
 
 static gboolean
-gsm_manager_get_clients (GsmExportedManager    *skeleton,
-                         GDBusMethodInvocation *invocation,
-                         GsmManager            *manager)
-{
-        GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
-        GPtrArray *clients;
-
-        clients = g_ptr_array_new_with_free_func (g_free);
-        gsm_store_foreach (priv->clients,
-                           (GsmStoreFunc) listify_store_ids,
-                           &clients);
-        g_ptr_array_add (clients, NULL);
-
-        gsm_exported_manager_complete_get_clients (skeleton, invocation,
-                                                   (const gchar * const *) clients->pdata);
-        g_ptr_array_unref (clients);
-
-        return TRUE;
-}
-
-static gboolean
 gsm_manager_get_inhibitors (GsmExportedManager    *skeleton,
                             GDBusMethodInvocation *invocation,
                             GsmManager            *manager)
@@ -2508,8 +2487,6 @@ register_manager (GsmManager *manager)
                           G_CALLBACK (gsm_manager_can_reboot_to_firmware_setup), manager);
         g_signal_connect (skeleton, "handle-can-shutdown",
                           G_CALLBACK (gsm_manager_can_shutdown), manager);
-        g_signal_connect (skeleton, "handle-get-clients",
-                          G_CALLBACK (gsm_manager_get_clients), manager);
         g_signal_connect (skeleton, "handle-get-inhibitors",
                           G_CALLBACK (gsm_manager_get_inhibitors), manager);
         g_signal_connect (skeleton, "handle-get-locale",
