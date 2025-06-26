@@ -169,19 +169,6 @@
     </method>
 
     <!--
-      GetClients:
-      @clients: an array of client IDs
-
-      This gets a list of all the clients that are currently known to the
-      session manager. Each client ID is a D-Bus object path to the object
-      that implements the <link linkend='gdbus-org.gnome.SessionManager.ClientPrivate'>
-      Private Client interface</link>
-    -->
-    <method name="GetClients">
-      <arg name="clients" direction="out" type="ao"/>
-    </method>
-
-    <!--
       GetInhibitors:
       @inhibitors: an array of inhibitor IDs
 
