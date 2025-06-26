@@ -44,17 +44,14 @@
 
 #include <systemd/sd-daemon.h>
 
-#include "gsm-store.h"
+#include "gsm-app.h"
+#include "gsm-dbus-client.h"
 #include "gsm-inhibitor.h"
 #include "gsm-presence.h"
 #include "gsm-shell.h"
-
-#include "gsm-dbus-client.h"
-
-#include "gsm-autostart-app.h"
-
-#include "gsm-util.h"
+#include "gsm-store.h"
 #include "gsm-system.h"
+#include "gsm-util.h"
 
 #define GSM_MANAGER_DBUS_PATH "/org/gnome/SessionManager"
 #define GSM_MANAGER_DBUS_NAME "org.gnome.SessionManager"
@@ -2842,7 +2839,7 @@ gsm_manager_add_autostart_app (GsmManager *manager,
         g_return_val_if_fail (GSM_IS_MANAGER (manager), FALSE);
         g_return_val_if_fail (path != NULL, FALSE);
 
-        app = gsm_autostart_app_new (path, &error);
+        app = gsm_app_new_for_path (path, &error);
         if (app == NULL) {
                 g_warning ("%s", error->message);
                 g_clear_error (&error);
