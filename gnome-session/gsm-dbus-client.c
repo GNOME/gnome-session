@@ -311,20 +311,6 @@ gsm_dbus_client_finalize (GObject *object)
         G_OBJECT_CLASS (gsm_dbus_client_parent_class)->finalize (object);
 }
 
-static GKeyFile *
-dbus_client_save (GsmClient *client,
-                  GsmApp    *app,
-                  GError   **error)
-{
-        g_debug ("GsmDBusClient: saving client with id %s",
-                 gsm_client_peek_id (client));
-
-        /* FIXME: We still don't support client saving for D-Bus
-         * session clients */
-
-        return NULL;
-}
-
 static gboolean
 dbus_client_stop (GsmClient *client,
                   GError   **error)
@@ -405,7 +391,6 @@ gsm_dbus_client_class_init (GsmDBusClientClass *klass)
         object_class->get_property         = gsm_dbus_client_get_property;
         object_class->set_property         = gsm_dbus_client_set_property;
 
-        client_class->impl_save                   = dbus_client_save;
         client_class->impl_stop                   = dbus_client_stop;
         client_class->impl_query_end_session      = dbus_client_query_end_session;
         client_class->impl_end_session            = dbus_client_end_session;
