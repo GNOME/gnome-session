@@ -243,7 +243,7 @@ gsm_client_class_init (GsmClientClass *klass)
                               G_STRUCT_OFFSET (GsmClientClass, end_session_response),
                               NULL, NULL, NULL,
                               G_TYPE_NONE,
-                              4, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN, G_TYPE_STRING);
+                              2, G_TYPE_BOOLEAN, G_TYPE_STRING);
 
         props[PROP_STARTUP_ID] =
                 g_param_spec_string ("startup-id",
@@ -364,10 +364,7 @@ gsm_client_disconnected (GsmClient *client)
 void
 gsm_client_end_session_response (GsmClient  *client,
                                  gboolean    is_ok,
-                                 gboolean    do_last,
-                                 gboolean    cancel,
                                  const char *reason)
 {
-        g_signal_emit (client, signals[END_SESSION_RESPONSE], 0,
-                       is_ok, do_last, cancel, reason);
+        g_signal_emit (client, signals[END_SESSION_RESPONSE], 0, is_ok, reason);
 }

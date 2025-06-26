@@ -34,9 +34,8 @@ typedef struct _GsmClient        GsmClient;
 typedef struct _GsmClientClass   GsmClientClass;
 
 typedef enum {
+        GSM_CLIENT_END_SESSION_FLAG_NONE = 0,
         GSM_CLIENT_END_SESSION_FLAG_FORCEFUL = 1 << 0,
-        GSM_CLIENT_END_SESSION_FLAG_SAVE     = 1 << 1,
-        GSM_CLIENT_END_SESSION_FLAG_LAST     = 1 << 2
 } GsmClientEndSessionFlag;
 
 struct _GsmClientClass
@@ -47,8 +46,6 @@ struct _GsmClientClass
         void         (*disconnected)               (GsmClient  *client);
         void         (*end_session_response)       (GsmClient  *client,
                                                     gboolean    ok,
-                                                    gboolean    do_last,
-                                                    gboolean    cancel,
                                                     const char *reason);
 
         /* virtual methods */
@@ -95,8 +92,6 @@ gboolean              gsm_client_stop                       (GsmClient  *client,
 
 void                  gsm_client_end_session_response       (GsmClient  *client,
                                                              gboolean    is_ok,
-                                                             gboolean    do_last,
-                                                             gboolean    cancel,
                                                              const char *reason);
 
 G_END_DECLS
