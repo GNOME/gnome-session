@@ -33,12 +33,7 @@ G_BEGIN_DECLS
 #define GSM_MANAGER_UNRECOVERABLE_FAILURE_MSGID "10dd2dc188b54a5e98970f56499d1f73"
 
 #define GSM_TYPE_MANAGER         (gsm_manager_get_type ())
-G_DECLARE_DERIVABLE_TYPE (GsmManager, gsm_manager, GSM, MANAGER, GObject)
-
-struct _GsmManagerClass
-{
-        GObjectClass   parent_class;
-};
+G_DECLARE_FINAL_TYPE (GsmManager, gsm_manager, GSM, MANAGER, GObject)
 
 typedef enum {
         /* We're waiting for systemd to start session services, the compositor, etc */
