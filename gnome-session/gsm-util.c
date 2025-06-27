@@ -83,65 +83,6 @@ static const char * const variable_unsetlist[] = {
     NULL
 };
 
-char *
-gsm_util_find_desktop_file_for_app_name (const char *name,
-                                         gboolean    autostart_first)
-{
-        char     *app_path;
-        char    **app_dirs;
-        GKeyFile *key_file;
-        char     *desktop_file;
-        int       i;
-
-        app_path = NULL;
-
-        app_dirs = gsm_util_get_desktop_dirs (autostart_first);
-
-        key_file = g_key_file_new ();
-
-        desktop_file = g_strdup_printf ("%s.desktop", name);
-
-        g_debug ("GsmUtil: Looking for file '%s'", desktop_file);
-
-        for (i = 0; app_dirs[i] != NULL; i++) {
-                g_debug ("GsmUtil: Looking in '%s'", app_dirs[i]);
-        }
-
-        g_key_file_load_from_dirs (key_file,
-                                   desktop_file,
-                                   (const char **) app_dirs,
-                                   &app_path,
-                                   G_KEY_FILE_NONE,
-                                   NULL);
-
-        if (app_path != NULL) {
-                g_debug ("GsmUtil: found in XDG dirs: '%s'", app_path);
-        }
-
-        /* look for gnome vendor prefix */
-        if (app_path == NULL) {
-                g_free (desktop_file);
-                desktop_file = g_strdup_printf ("gnome-%s.desktop", name);
-
-                g_key_file_load_from_dirs (key_file,
-                                           desktop_file,
-                                           (const char **) app_dirs,
-                                           &app_path,
-                                           G_KEY_FILE_NONE,
-                                           NULL);
-                if (app_path != NULL) {
-                        g_debug ("GsmUtil: found in XDG dirs: '%s'", app_path);
-                }
-        }
-
-        g_free (desktop_file);
-        g_key_file_free (key_file);
-
-        g_strfreev (app_dirs);
-
-        return app_path;
-}
-
 static char ** autostart_dirs;
 
 void

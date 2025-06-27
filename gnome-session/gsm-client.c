@@ -374,20 +374,6 @@ gsm_client_peek_startup_id (GsmClient *client)
         return client->startup_id;
 }
 
-/**
- * gsm_client_get_app_name:
- * @client: a #GsmClient.
- *
- * Returns: a copy of the application name of the client, or %NULL if no such
- * name is known.
- **/
-char *
-gsm_client_get_app_name (GsmClient *client)
-{
-        /* Always use app-id instead */
-        return NULL;
-}
-
 gboolean
 gsm_client_cancel_end_session (GsmClient *client,
                                GError   **error)
