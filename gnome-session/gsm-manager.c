@@ -773,10 +773,7 @@ _on_query_end_session_timeout (GsmManager *manager)
         g_debug ("GsmManager: query end session timed out");
 
         for (l = priv->query_clients; l != NULL; l = l->next) {
-                guint         cookie;
                 GsmInhibitor *inhibitor;
-                const char   *bus_name;
-                char         *app_id;
 
                 g_warning ("Client '%s' failed to reply before timeout",
                            gsm_client_peek_id (l->data));
@@ -788,16 +785,12 @@ _on_query_end_session_timeout (GsmManager *manager)
                 }
 
                 /* Add JIT inhibit for unresponsive client */
-                bus_name = gsm_client_peek_bus_name (l->data);
-                app_id = g_strdup (gsm_client_peek_app_id (l->data));
-                cookie = _generate_unique_cookie (manager);
                 inhibitor = gsm_inhibitor_new_for_client (gsm_client_peek_id (l->data),
-                                                          app_id,
+                                                          gsm_client_peek_app_id (l->data),
                                                           GSM_INHIBITOR_FLAG_LOGOUT,
                                                           _("Not responding"),
-                                                          bus_name,
-                                                          cookie);
-                g_free (app_id);
+                                                          gsm_client_peek_bus_name (l->data),
+                                                          _generate_unique_cookie (manager));
                 gsm_store_add (priv->inhibitors, gsm_inhibitor_peek_id (inhibitor), G_OBJECT (inhibitor));
                 g_object_unref (inhibitor);
         }
@@ -1202,24 +1195,17 @@ on_client_end_session_response (GsmClient  *client,
         priv->query_clients = g_slist_remove (priv->query_clients, client);
 
         if (! is_ok && priv->logout_mode != GSM_MANAGER_LOGOUT_MODE_FORCE) {
-                guint         cookie;
                 GsmInhibitor *inhibitor;
-                char         *app_id;
-                const char   *bus_name;
 
                 /* FIXME: do we support updating the reason? */
 
                 /* Create JIT inhibit */
-                bus_name = gsm_client_peek_bus_name (client);
-                app_id = g_strdup (gsm_client_peek_app_id (client));
-                cookie = _generate_unique_cookie (manager);
                 inhibitor = gsm_inhibitor_new_for_client (gsm_client_peek_id (client),
-                                                          app_id,
+                                                          gsm_client_peek_app_id (client),
                                                           GSM_INHIBITOR_FLAG_LOGOUT,
                                                           reason != NULL ? reason : _("Not responding"),
-                                                          bus_name,
-                                                          cookie);
-                g_free (app_id);
+                                                          gsm_client_peek_bus_name (client),
+                                                          _generate_unique_cookie (manager));
                 gsm_store_add (priv->inhibitors, gsm_inhibitor_peek_id (inhibitor), G_OBJECT (inhibitor));
                 g_object_unref (inhibitor);
         } else {
@@ -2122,42 +2108,26 @@ gsm_manager_inhibit (GsmExportedManager    *skeleton,
                      GsmManager            *manager)
 {
         GsmManagerPrivate *priv = gsm_manager_get_instance_private (manager);
+        const char *validation_error = NULL;
         GsmInhibitor *inhibitor;
         guint         cookie;
 
         g_debug ("GsmManager: Inhibit app_id=%s reason=%s flags=%u",
                  app_id, reason, flags);
 
-        if (priv->logout_mode == GSM_MANAGER_LOGOUT_MODE_FORCE) {
-                GError *new_error;
+        if (priv->logout_mode == GSM_MANAGER_LOGOUT_MODE_FORCE)
+                validation_error = "Forced logout cannot be inhibited";
+        else if (IS_STRING_EMPTY (reason))
+                validation_error = "Reason not specified";
+        else if (flags == 0)
+                validation_error = "Invalid inhibit flags";
 
-                new_error = g_error_new (GSM_MANAGER_ERROR,
-                                         GSM_MANAGER_ERROR_GENERAL,
-                                         "Forced logout cannot be inhibited");
-                g_debug ("GsmManager: Unable to inhibit: %s", new_error->message);
-                g_dbus_method_invocation_take_error (invocation, new_error);
-                return TRUE;
-        }
-
-        if (IS_STRING_EMPTY (reason)) {
-                GError *new_error;
-
-                new_error = g_error_new (GSM_MANAGER_ERROR,
-                                         GSM_MANAGER_ERROR_GENERAL,
-                                         "Reason not specified");
-                g_debug ("GsmManager: Unable to inhibit: %s", new_error->message);
-                g_dbus_method_invocation_take_error (invocation, new_error);
-                return TRUE;
-        }
-
-        if (flags == 0) {
-                GError *new_error;
-
-                new_error = g_error_new (GSM_MANAGER_ERROR,
-                                         GSM_MANAGER_ERROR_GENERAL,
-                                         "Invalid inhibit flags");
-                g_debug ("GsmManager: Unable to inhibit: %s", new_error->message);
-                g_dbus_method_invocation_take_error (invocation, new_error);
+        if (validation_error != NULL) {
+                g_debug ("GsmManager: Unable to inhibit: %s", validation_error);
+                g_dbus_method_invocation_return_error (invocation,
+                                                       GSM_MANAGER_ERROR,
+                                                       GSM_MANAGER_ERROR_GENERAL,
+                                                       "%s", validation_error);
                 return TRUE;
         }
 
