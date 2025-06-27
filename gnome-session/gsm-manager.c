@@ -45,7 +45,7 @@
 #include <systemd/sd-daemon.h>
 
 #include "gsm-app.h"
-#include "gsm-dbus-client.h"
+#include "gsm-client.h"
 #include "gsm-inhibitor.h"
 #include "gsm-presence.h"
 #include "gsm-shell.h"
@@ -788,11 +788,7 @@ _on_query_end_session_timeout (GsmManager *manager)
                 }
 
                 /* Add JIT inhibit for unresponsive client */
-                if (GSM_IS_DBUS_CLIENT (l->data)) {
-                        bus_name = gsm_dbus_client_get_bus_name (l->data);
-                } else {
-                        bus_name = NULL;
-                }
+                bus_name = gsm_client_peek_bus_name (l->data);
 
                 app_id = g_strdup (gsm_client_peek_app_id (l->data));
                 if (IS_STRING_EMPTY (app_id)) {
@@ -1119,17 +1115,13 @@ _disconnect_dbus_client (const char       *id,
 {
         const char *name;
 
-        if (! GSM_IS_DBUS_CLIENT (client)) {
-                return FALSE;
-        }
-
         /* If no service name, then we simply disconnect all clients */
         if (!data->service_name) {
                 _disconnect_client (data->manager, client);
                 return TRUE;
         }
 
-        name = gsm_dbus_client_get_bus_name (GSM_DBUS_CLIENT (client));
+        name = gsm_client_peek_bus_name (client);
         if (IS_STRING_EMPTY (name)) {
                 return FALSE;
         }
@@ -1212,7 +1204,7 @@ on_client_end_session_response (GsmClient  *client,
                 return;
         }
 
-        g_debug ("GsmManager: Response from end session request: is-ok=%d reason=%s", is_ok, reason ? reason : "");
+        g_debug ("GsmManager: Response from end session request: is-ok=%d reason=%s", is_ok, reason ?: "(none)");
 
         priv->query_clients = g_slist_remove (priv->query_clients, client);
 
@@ -1225,11 +1217,7 @@ on_client_end_session_response (GsmClient  *client,
                 /* FIXME: do we support updating the reason? */
 
                 /* Create JIT inhibit */
-                if (GSM_IS_DBUS_CLIENT (client)) {
-                        bus_name = gsm_dbus_client_get_bus_name (GSM_DBUS_CLIENT (client));
-                } else {
-                        bus_name = NULL;
-                }
+                bus_name = gsm_client_peek_bus_name (client);
 
                 app_id = g_strdup (gsm_client_peek_app_id (client));
                 if (IS_STRING_EMPTY (app_id)) {
@@ -2091,7 +2079,7 @@ gsm_manager_register_client (GsmExportedManager    *skeleton,
         }
 
         sender = g_dbus_method_invocation_get_sender (invocation);
-        client = gsm_dbus_client_new (new_startup_id, sender);
+        client = gsm_client_new (new_startup_id, sender);
         if (client == NULL) {
                 g_debug ("Unable to create client");
 
