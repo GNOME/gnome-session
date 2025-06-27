@@ -57,16 +57,6 @@
 #define GSM_MANAGER_DBUS_NAME "org.gnome.SessionManager"
 #define GSM_MANAGER_DBUS_IFACE "org.gnome.SessionManager"
 
-/* Probably about the longest amount of time someone could reasonably
- * want to wait, at least for something happening more than once.
- * We can get deployed on very slow media though like CDROM devices,
- * often with complex stacking/compressing filesystems on top, which
- * is not a recipie for speed.   Particularly now that we throw up
- * a fail whale if required components don't show up quickly enough,
- * let's make this fairly long.
- */
-#define GSM_MANAGER_PHASE_TIMEOUT 90 /* seconds */
-
 #define SESSION_SCHEMA            "org.gnome.desktop.session"
 #define KEY_IDLE_DELAY            "idle-delay"
 
@@ -105,7 +95,6 @@ struct _GsmManager
         guint                   phase_timeout_id;
         GsmManagerLogoutMode    logout_mode;
         GSList                 *query_clients;
-        guint                   query_timeout_id;
         /* This is the action that will be done just before we exit */
         GsmManagerLogoutType    logout_type;
 
@@ -298,14 +287,7 @@ end_phase (GsmManager *manager)
         g_slist_free (manager->query_clients);
         manager->query_clients = NULL;
 
-        if (manager->query_timeout_id > 0) {
-                g_source_remove (manager->query_timeout_id);
-                manager->query_timeout_id = 0;
-        }
-        if (manager->phase_timeout_id > 0) {
-                g_source_remove (manager->phase_timeout_id);
-                manager->phase_timeout_id = 0;
-        }
+        g_clear_handle_id (&manager->phase_timeout_id, g_source_remove);
 
         switch (manager->phase) {
         case GSM_MANAGER_PHASE_INITIALIZATION:
@@ -420,12 +402,16 @@ complete_end_session_tasks (GsmManager *manager)
 }
 
 static gboolean
-on_phase_timeout (GsmManager *manager)
+on_end_session_timeout (GsmManager *manager)
 {
         manager->phase_timeout_id = 0;
 
-        end_phase (manager);
+        for (GSList *l = manager->query_clients; l != NULL; l = l->next) {
+                g_warning ("Client '%s' failed to reply before timeout",
+                           gsm_client_peek_id (l->data));
+        }
 
+        end_phase (manager);
         return FALSE;
 }
 
@@ -443,14 +429,11 @@ do_phase_end_session (GsmManager *manager)
                 data.flags |= GSM_CLIENT_END_SESSION_FLAG_FORCEFUL;
         }
 
-        if (manager->phase_timeout_id > 0) {
-                g_source_remove (manager->phase_timeout_id);
-                manager->phase_timeout_id = 0;
-        }
+        g_clear_handle_id (&manager->phase_timeout_id, g_source_remove);
 
         if (gsm_store_size (manager->clients) > 0) {
-                manager->phase_timeout_id = g_timeout_add_seconds (GSM_MANAGER_PHASE_TIMEOUT,
-                                                                   (GSourceFunc)on_phase_timeout,
+                manager->phase_timeout_id = g_timeout_add_seconds (10,
+                                                                   (GSourceFunc)on_end_session_timeout,
                                                                    manager);
 
                 gsm_store_foreach (manager->clients,
@@ -702,10 +685,7 @@ query_end_session_complete (GsmManager *manager)
 
         /* Remove the timeout since this can be called from outside the timer
          * and we don't want to have it called twice */
-        if (manager->query_timeout_id > 0) {
-                g_source_remove (manager->query_timeout_id);
-                manager->query_timeout_id = 0;
-        }
+        g_clear_handle_id (&manager->phase_timeout_id, g_source_remove);
 
         end_session_or_show_shell_dialog (manager);
 }
@@ -737,7 +717,7 @@ _on_query_end_session_timeout (GsmManager *manager)
 {
         GSList *l;
 
-        manager->query_timeout_id = 0;
+        manager->phase_timeout_id = 0;
 
         g_debug ("GsmManager: query end session timed out");
 
@@ -793,9 +773,7 @@ do_phase_query_end_session (GsmManager *manager)
                            (GsmStoreFunc)_client_query_end_session,
                            &data);
 
-        /* This phase doesn't time out unless logout is forced. Typically, this
-         * separate timer is only used to show UI. */
-        manager->query_timeout_id = g_timeout_add_seconds (1, (GSourceFunc)_on_query_end_session_timeout, manager);
+        manager->phase_timeout_id = g_timeout_add_seconds (1, (GSourceFunc)_on_query_end_session_timeout, manager);
 }
 
 static void
@@ -818,14 +796,7 @@ start_phase (GsmManager *manager)
         g_slist_free (manager->query_clients);
         manager->query_clients = NULL;
 
-        if (manager->query_timeout_id > 0) {
-                g_source_remove (manager->query_timeout_id);
-                manager->query_timeout_id = 0;
-        }
-        if (manager->phase_timeout_id > 0) {
-                g_source_remove (manager->phase_timeout_id);
-                manager->phase_timeout_id = 0;
-        }
+        g_clear_handle_id (&manager->phase_timeout_id, g_source_remove);
 
         switch (manager->phase) {
         case GSM_MANAGER_PHASE_INITIALIZATION:
