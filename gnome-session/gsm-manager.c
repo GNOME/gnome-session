@@ -2116,7 +2116,7 @@ static gboolean
 gsm_manager_inhibit (GsmExportedManager    *skeleton,
                      GDBusMethodInvocation *invocation,
                      const char            *app_id,
-                     guint                  toplevel_xid,
+                     guint                  unused, /* Was an X window ID */
                      const char            *reason,
                      guint                  flags,
                      GsmManager            *manager)
@@ -2125,11 +2125,8 @@ gsm_manager_inhibit (GsmExportedManager    *skeleton,
         GsmInhibitor *inhibitor;
         guint         cookie;
 
-        g_debug ("GsmManager: Inhibit xid=%u app_id=%s reason=%s flags=%u",
-                 toplevel_xid,
-                 app_id,
-                 reason,
-                 flags);
+        g_debug ("GsmManager: Inhibit app_id=%s reason=%s flags=%u",
+                 app_id, reason, flags);
 
         if (priv->logout_mode == GSM_MANAGER_LOGOUT_MODE_FORCE) {
                 GError *new_error;
@@ -2166,7 +2163,6 @@ gsm_manager_inhibit (GsmExportedManager    *skeleton,
 
         cookie = _generate_unique_cookie (manager);
         inhibitor = gsm_inhibitor_new (app_id,
-                                       toplevel_xid,
                                        flags,
                                        reason,
                                        g_dbus_method_invocation_get_sender (invocation),
@@ -2204,9 +2200,8 @@ gsm_manager_uninhibit (GsmExportedManager    *skeleton,
                 return TRUE;
         }
 
-        g_debug ("GsmManager: removing inhibitor %s %u reason '%s' %u connection %s",
+        g_debug ("GsmManager: removing inhibitor %s reason '%s' %u connection %s",
                  gsm_inhibitor_peek_app_id (inhibitor),
-                 gsm_inhibitor_peek_toplevel_xid (inhibitor),
                  gsm_inhibitor_peek_reason (inhibitor),
                  gsm_inhibitor_peek_flags (inhibitor),
                  gsm_inhibitor_peek_bus_name (inhibitor));

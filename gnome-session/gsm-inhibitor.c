@@ -39,7 +39,6 @@ struct GsmInhibitorPrivate
         char *client_id;
         char *reason;
         guint flags;
-        guint toplevel_xid;
         guint cookie;
         GDBusConnection *connection;
         GsmExportedInhibitor *skeleton;
@@ -54,7 +53,6 @@ enum {
         PROP_APP_ID,
         PROP_CLIENT_ID,
         PROP_FLAGS,
-        PROP_TOPLEVEL_XID,
         PROP_COOKIE
 };
 
@@ -150,15 +148,6 @@ gsm_inhibitor_get_flags (GsmExportedInhibitor  *skeleton,
         return TRUE;
 }
 
-static gboolean
-gsm_inhibitor_get_toplevel_xid (GsmExportedInhibitor  *skeleton,
-                                GDBusMethodInvocation *invocation,
-                                GsmInhibitor          *inhibitor)
-{
-        gsm_exported_inhibitor_complete_get_toplevel_xid (skeleton, invocation, inhibitor->priv->toplevel_xid);
-        return TRUE;
-}
-
 static guint32
 get_next_inhibitor_serial (void)
 {
@@ -208,8 +197,6 @@ register_inhibitor (GsmInhibitor *inhibitor)
                           G_CALLBACK (gsm_inhibitor_get_flags), inhibitor);
         g_signal_connect (skeleton, "handle-get-reason",
                           G_CALLBACK (gsm_inhibitor_get_reason), inhibitor);
-        g_signal_connect (skeleton, "handle-get-toplevel-xid",
-                          G_CALLBACK (gsm_inhibitor_get_toplevel_xid), inhibitor);
 
         return TRUE;
 }
@@ -349,18 +336,6 @@ gsm_inhibitor_set_flags (GsmInhibitor  *inhibitor,
         }
 }
 
-static void
-gsm_inhibitor_set_toplevel_xid (GsmInhibitor  *inhibitor,
-                                guint          xid)
-{
-        g_return_if_fail (GSM_IS_INHIBITOR (inhibitor));
-
-        if (inhibitor->priv->toplevel_xid != xid) {
-                inhibitor->priv->toplevel_xid = xid;
-                g_object_notify (G_OBJECT (inhibitor), "toplevel-xid");
-        }
-}
-
 const char *
 gsm_inhibitor_peek_bus_name (GsmInhibitor  *inhibitor)
 {
@@ -410,14 +385,6 @@ gsm_inhibitor_peek_flags (GsmInhibitor  *inhibitor)
 }
 
 guint
-gsm_inhibitor_peek_toplevel_xid (GsmInhibitor  *inhibitor)
-{
-        g_return_val_if_fail (GSM_IS_INHIBITOR (inhibitor), 0);
-
-        return inhibitor->priv->toplevel_xid;
-}
-
-guint
 gsm_inhibitor_peek_cookie (GsmInhibitor  *inhibitor)
 {
         g_return_val_if_fail (GSM_IS_INHIBITOR (inhibitor), 0);
@@ -454,9 +421,6 @@ gsm_inhibitor_set_property (GObject       *object,
         case PROP_COOKIE:
                 gsm_inhibitor_set_cookie (self, g_value_get_uint (value));
                 break;
-        case PROP_TOPLEVEL_XID:
-                gsm_inhibitor_set_toplevel_xid (self, g_value_get_uint (value));
-                break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                 break;
@@ -491,9 +455,6 @@ gsm_inhibitor_get_property (GObject    *object,
                 break;
         case PROP_COOKIE:
                 g_value_set_uint (value, self->priv->cookie);
-                break;
-        case PROP_TOPLEVEL_XID:
-                g_value_set_uint (value, self->priv->toplevel_xid);
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -582,15 +543,6 @@ gsm_inhibitor_class_init (GsmInhibitorClass *klass)
                                                             0,
                                                             G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
         g_object_class_install_property (object_class,
-                                         PROP_TOPLEVEL_XID,
-                                         g_param_spec_uint ("toplevel-xid",
-                                                            "toplevel-xid",
-                                                            "toplevel-xid",
-                                                            0,
-                                                            G_MAXINT,
-                                                            0,
-                                                            G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
-        g_object_class_install_property (object_class,
                                          PROP_COOKIE,
                                          g_param_spec_uint ("cookie",
                                                             "cookie",
@@ -603,7 +555,6 @@ gsm_inhibitor_class_init (GsmInhibitorClass *klass)
 
 GsmInhibitor *
 gsm_inhibitor_new (const char    *app_id,
-                   guint          toplevel_xid,
                    guint          flags,
                    const char    *reason,
                    const char    *bus_name,
@@ -616,7 +567,6 @@ gsm_inhibitor_new (const char    *app_id,
                                   "reason", reason,
                                   "bus-name", bus_name,
                                   "flags", flags,
-                                  "toplevel-xid", toplevel_xid,
                                   "cookie", cookie,
                                   NULL);
 

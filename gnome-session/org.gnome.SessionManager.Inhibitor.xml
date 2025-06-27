@@ -56,16 +56,5 @@
       <arg type="u" name="flags" direction="out"/>
     </method>
 
-    <!--
-      GetToplevelXid
-      @xid: An X11 toplevel window identifier
-
-      Return the X11 toplevel window identifier associated with this inhibitor.
-      Returns zero if an XID is unavailable, such as on Wayland.
-    -->
-    <method name="GetToplevelXid">
-      <arg type="u" name="xid" direction="out"/>
-    </method>
-
   </interface>
 </node>
