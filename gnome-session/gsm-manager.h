@@ -38,9 +38,6 @@ G_DECLARE_DERIVABLE_TYPE (GsmManager, gsm_manager, GSM, MANAGER, GObject)
 struct _GsmManagerClass
 {
         GObjectClass   parent_class;
-
-        void          (* phase_changed)       (GsmManager      *manager,
-                                               const char      *phase);
 };
 
 typedef enum {

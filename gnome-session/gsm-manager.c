@@ -134,13 +134,6 @@ enum {
         PROP_FALLBACK,
 };
 
-enum {
-        PHASE_CHANGED,
-        LAST_SIGNAL
-};
-
-static guint signals [LAST_SIGNAL] = { 0 };
-
 static void     gsm_manager_class_init  (GsmManagerClass *klass);
 static void     gsm_manager_init        (GsmManager      *manager);
 
@@ -1508,15 +1501,6 @@ gsm_manager_class_init (GsmManagerClass *klass)
         object_class->set_property = gsm_manager_set_property;
         object_class->constructor = gsm_manager_constructor;
         object_class->dispose = gsm_manager_dispose;
-
-        signals [PHASE_CHANGED] =
-                g_signal_new ("phase-changed",
-                              G_TYPE_FROM_CLASS (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GsmManagerClass, phase_changed),
-                              NULL, NULL, NULL,
-                              G_TYPE_NONE,
-                              1, G_TYPE_STRING);
 
         /**
          * GsmManager::session-name
