@@ -43,8 +43,6 @@ const char *          gsm_client_peek_bus_name              (GsmClient  *client)
 const char *          gsm_client_peek_startup_id            (GsmClient  *client);
 const char *          gsm_client_peek_app_id                (GsmClient  *client);
 
-
-char                 *gsm_client_get_app_name               (GsmClient  *client);
 void                  gsm_client_set_app_id                 (GsmClient  *client,
                                                              const char *app_id);
 
