@@ -62,7 +62,6 @@ GQuark         gsm_inhibitor_error_quark          (void);
 GType          gsm_inhibitor_get_type             (void) G_GNUC_CONST;
 
 GsmInhibitor * gsm_inhibitor_new                  (const char    *app_id,
-                                                   guint          toplevel_xid,
                                                    guint          flags,
                                                    const char    *reason,
                                                    const char    *bus_name,
@@ -81,7 +80,6 @@ const char *   gsm_inhibitor_peek_reason          (GsmInhibitor  *inhibitor);
 const char *   gsm_inhibitor_peek_bus_name        (GsmInhibitor  *inhibitor);
 guint          gsm_inhibitor_peek_cookie          (GsmInhibitor  *inhibitor);
 guint          gsm_inhibitor_peek_flags           (GsmInhibitor  *inhibitor);
-guint          gsm_inhibitor_peek_toplevel_xid    (GsmInhibitor  *inhibitor);
 
 G_END_DECLS
 
