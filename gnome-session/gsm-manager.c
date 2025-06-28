@@ -72,9 +72,7 @@ typedef enum
         GSM_MANAGER_LOGOUT_NONE,
         GSM_MANAGER_LOGOUT_LOGOUT,
         GSM_MANAGER_LOGOUT_REBOOT,
-        GSM_MANAGER_LOGOUT_REBOOT_INTERACT,
         GSM_MANAGER_LOGOUT_SHUTDOWN,
-        GSM_MANAGER_LOGOUT_SHUTDOWN_INTERACT,
 } GsmManagerLogoutType;
 
 struct _GsmManager
@@ -111,11 +109,11 @@ struct _GsmManager
         gboolean                dbus_disconnected : 1;
 
         GsmShell               *shell;
-        guint                   shell_end_session_dialog_canceled_id;
-        guint                   shell_end_session_dialog_open_failed_id;
-        guint                   shell_end_session_dialog_confirmed_logout_id;
-        guint                   shell_end_session_dialog_confirmed_shutdown_id;
-        guint                   shell_end_session_dialog_confirmed_reboot_id;
+        gulong                  shell_end_session_dialog_canceled_id;
+        gulong                  shell_end_session_dialog_open_failed_id;
+        gulong                  shell_end_session_dialog_confirmed_logout_id;
+        gulong                  shell_end_session_dialog_confirmed_shutdown_id;
+        gulong                  shell_end_session_dialog_confirmed_reboot_id;
 };
 
 enum {
@@ -250,21 +248,16 @@ static void start_phase (GsmManager *manager);
 static void
 gsm_manager_quit (GsmManager *manager)
 {
-        /* See the comment in request_reboot() for some more details about how
-         * this works. */
-
         switch (manager->logout_type) {
         case GSM_MANAGER_LOGOUT_LOGOUT:
         case GSM_MANAGER_LOGOUT_NONE:
                 gsm_quit ();
                 break;
         case GSM_MANAGER_LOGOUT_REBOOT:
-        case GSM_MANAGER_LOGOUT_REBOOT_INTERACT:
                 gsm_system_complete_shutdown (manager->system);
                 gsm_quit ();
                 break;
         case GSM_MANAGER_LOGOUT_SHUTDOWN:
-        case GSM_MANAGER_LOGOUT_SHUTDOWN_INTERACT:
                 gsm_system_complete_shutdown (manager->system);
                 gsm_quit ();
                 break;
@@ -633,11 +626,9 @@ end_session_or_show_shell_dialog (GsmManager *manager)
                 type = GSM_SHELL_END_SESSION_DIALOG_TYPE_LOGOUT;
                 break;
         case GSM_MANAGER_LOGOUT_REBOOT:
-        case GSM_MANAGER_LOGOUT_REBOOT_INTERACT:
                 type = GSM_SHELL_END_SESSION_DIALOG_TYPE_RESTART;
                 break;
         case GSM_MANAGER_LOGOUT_SHUTDOWN:
-        case GSM_MANAGER_LOGOUT_SHUTDOWN_INTERACT:
                 type = GSM_SHELL_END_SESSION_DIALOG_TYPE_SHUTDOWN;
                 break;
         default:
@@ -1115,10 +1106,8 @@ on_client_end_session_response (GsmClient  *client,
 
         manager->query_clients = g_slist_remove (manager->query_clients, client);
 
-        if (! is_ok && manager->logout_mode != GSM_MANAGER_LOGOUT_MODE_FORCE) {
+        if (!is_ok && manager->logout_mode != GSM_MANAGER_LOGOUT_MODE_FORCE) {
                 GsmInhibitor *inhibitor;
-
-                /* FIXME: do we support updating the reason? */
 
                 /* Create JIT inhibit */
                 inhibitor = gsm_inhibitor_new_for_client (gsm_client_peek_id (client),
@@ -1500,43 +1489,6 @@ complete_end_session_task (GsmManager            *manager,
                 g_dbus_method_invocation_return_value (invocation, NULL);
 }
 
-static void
-request_reboot (GsmManager *manager)
-{
-        g_debug ("GsmManager: requesting reboot");
-
-        /* FIXME: We need to support a more structured shutdown here,
-         * but that's blocking on an improved ConsoleKit api.
-         *
-         * See https://bugzilla.gnome.org/show_bug.cgi?id=585614
-         */
-        manager->logout_type = GSM_MANAGER_LOGOUT_REBOOT_INTERACT;
-        end_phase (manager);
-}
-
-static void
-request_shutdown (GsmManager *manager)
-{
-        g_debug ("GsmManager: requesting shutdown");
-
-        /* See the comment in request_reboot() for some more details about
-         * what work needs to be done here. */
-        manager->logout_type = GSM_MANAGER_LOGOUT_SHUTDOWN_INTERACT;
-        end_phase (manager);
-}
-
-static void
-request_logout (GsmManager           *manager,
-                GsmManagerLogoutMode  mode)
-{
-        g_debug ("GsmManager: requesting logout");
-
-        manager->logout_mode = mode;
-        manager->logout_type = GSM_MANAGER_LOGOUT_LOGOUT;
-
-        end_phase (manager);
-}
-
 static gboolean
 gsm_manager_shutdown (GsmExportedManager    *skeleton,
                       GDBusMethodInvocation *invocation,
@@ -1567,7 +1519,10 @@ gsm_manager_shutdown (GsmExportedManager    *skeleton,
         manager->pending_end_session_tasks = g_slist_prepend (manager->pending_end_session_tasks,
                                                                     task);
 
-        request_shutdown (manager);
+        g_debug ("GsmManager: requesting shutdown");
+
+        manager->logout_type = GSM_MANAGER_LOGOUT_SHUTDOWN;
+        end_phase (manager);
 
         return TRUE;
 }
@@ -1602,7 +1557,10 @@ gsm_manager_reboot (GsmExportedManager    *skeleton,
         manager->pending_end_session_tasks = g_slist_prepend (manager->pending_end_session_tasks,
                                                                     task);
 
-        request_reboot (manager);
+        g_debug ("GsmManager: requesting reboot");
+
+        manager->logout_type = GSM_MANAGER_LOGOUT_REBOOT;
+        end_phase (manager);
 
         return TRUE;
 }
@@ -1791,19 +1749,6 @@ gsm_manager_initialization_error (GsmExportedManager    *skeleton,
         return TRUE;
 }
 
-static void
-user_logout (GsmManager           *manager,
-             GsmManagerLogoutMode  mode)
-{
-        if (manager->phase >= GSM_MANAGER_PHASE_QUERY_END_SESSION) {
-                manager->logout_mode = mode;
-                end_session_or_show_shell_dialog (manager);
-                return;
-        }
-
-        request_logout (manager, mode);
-}
-
 gboolean
 gsm_manager_logout (GsmManager *manager,
                     guint logout_mode,
@@ -1827,9 +1772,13 @@ gsm_manager_logout (GsmManager *manager,
 
         switch (logout_mode) {
         case GSM_MANAGER_LOGOUT_MODE_NORMAL:
+                g_debug ("GsmManager: requesting logout");
+                break;
         case GSM_MANAGER_LOGOUT_MODE_NO_CONFIRMATION:
+                g_debug ("GsmManager: requesting no-confirmation logout");
+                break;
         case GSM_MANAGER_LOGOUT_MODE_FORCE:
-                user_logout (manager, logout_mode);
+                g_debug ("GsmManager: requesting forced logout");
                 break;
 
         default:
@@ -1841,6 +1790,18 @@ gsm_manager_logout (GsmManager *manager,
                              "Unknown logout mode flag");
                 return FALSE;
         }
+
+        manager->logout_mode = logout_mode;
+
+        if (manager->phase >= GSM_MANAGER_PHASE_QUERY_END_SESSION) {
+                /* Someone can upgrade a normal logout to a forced logout
+                 * while we're busy prompting. In this case, re-evaluate */
+                end_session_or_show_shell_dialog (manager);
+                return TRUE;
+        }
+
+        manager->logout_type = GSM_MANAGER_LOGOUT_LOGOUT;
+        end_phase (manager);
 
         return TRUE;
 }
@@ -2301,35 +2262,16 @@ gsm_manager_new (GsmStore *client_store)
 static void
 disconnect_shell_dialog_signals (GsmManager *manager)
 {
-        if (manager->shell_end_session_dialog_canceled_id != 0) {
-                g_signal_handler_disconnect (manager->shell,
-                                             manager->shell_end_session_dialog_canceled_id);
-                manager->shell_end_session_dialog_canceled_id = 0;
-        }
-
-        if (manager->shell_end_session_dialog_confirmed_logout_id != 0) {
-                g_signal_handler_disconnect (manager->shell,
-                                             manager->shell_end_session_dialog_confirmed_logout_id);
-                manager->shell_end_session_dialog_confirmed_logout_id = 0;
-        }
-
-        if (manager->shell_end_session_dialog_confirmed_shutdown_id != 0) {
-                g_signal_handler_disconnect (manager->shell,
-                                             manager->shell_end_session_dialog_confirmed_shutdown_id);
-                manager->shell_end_session_dialog_confirmed_shutdown_id = 0;
-        }
-
-        if (manager->shell_end_session_dialog_confirmed_reboot_id != 0) {
-                g_signal_handler_disconnect (manager->shell,
-                                             manager->shell_end_session_dialog_confirmed_reboot_id);
-                manager->shell_end_session_dialog_confirmed_reboot_id = 0;
-        }
-
-        if (manager->shell_end_session_dialog_open_failed_id != 0) {
-                g_signal_handler_disconnect (manager->shell,
-                                             manager->shell_end_session_dialog_open_failed_id);
-                manager->shell_end_session_dialog_open_failed_id = 0;
-        }
+        g_clear_signal_handler (&manager->shell_end_session_dialog_canceled_id,
+                                manager->shell);
+        g_clear_signal_handler (&manager->shell_end_session_dialog_open_failed_id,
+                                manager->shell);
+        g_clear_signal_handler (&manager->shell_end_session_dialog_confirmed_logout_id,
+                                manager->shell);
+        g_clear_signal_handler (&manager->shell_end_session_dialog_confirmed_shutdown_id,
+                                manager->shell);
+        g_clear_signal_handler (&manager->shell_end_session_dialog_confirmed_reboot_id,
+                                manager->shell);
 }
 
 static void
@@ -2341,25 +2283,20 @@ on_shell_end_session_dialog_canceled (GsmShell   *shell,
 }
 
 static void
-_handle_end_session_dialog_response (GsmManager           *manager,
-                                     GsmManagerLogoutType  logout_type)
+handle_end_session_dialog_confirmation (GsmManager           *manager,
+                                        GsmManagerLogoutType  logout_type)
 {
-        /* Note we're checking for END_SESSION here and
-         * QUERY_END_SESSION in the fallback cases elsewhere.
-         *
-         * That's because they run at different times in the logout
-         * process. The shell combines the inhibit and
-         * confirmation dialogs, so it gets displayed after we've collected
-         * inhibitors. The fallback code has two distinct dialogs, once of
-         * which we can (and do show) before collecting the inhibitors.
-         */
-        if (manager->phase >= GSM_MANAGER_PHASE_END_SESSION) {
-                /* Already shutting down, nothing more to do */
-                return;
+        disconnect_shell_dialog_signals (manager);
+
+        if (manager->phase >= GSM_MANAGER_PHASE_END_SESSION)
+                return; /* Already logging out, nothing to do */
+
+        if (manager->logout_type != logout_type) {
+                g_warning ("GsmManager: Shell confirmed unexpected logout type");
+                return; /* Make it obvious that something went wrong */
         }
 
         manager->logout_mode = GSM_MANAGER_LOGOUT_MODE_FORCE;
-        manager->logout_type = logout_type;
         end_phase (manager);
 }
 
@@ -2367,24 +2304,21 @@ static void
 on_shell_end_session_dialog_confirmed_logout (GsmShell   *shell,
                                               GsmManager *manager)
 {
-        _handle_end_session_dialog_response (manager, GSM_MANAGER_LOGOUT_LOGOUT);
-        disconnect_shell_dialog_signals (manager);
+        handle_end_session_dialog_confirmation (manager, GSM_MANAGER_LOGOUT_LOGOUT);
 }
 
 static void
 on_shell_end_session_dialog_confirmed_shutdown (GsmShell   *shell,
                                                 GsmManager *manager)
 {
-        _handle_end_session_dialog_response (manager, GSM_MANAGER_LOGOUT_SHUTDOWN);
-        disconnect_shell_dialog_signals (manager);
+        handle_end_session_dialog_confirmation (manager, GSM_MANAGER_LOGOUT_SHUTDOWN);
 }
 
 static void
 on_shell_end_session_dialog_confirmed_reboot (GsmShell   *shell,
                                               GsmManager *manager)
 {
-        _handle_end_session_dialog_response (manager, GSM_MANAGER_LOGOUT_REBOOT);
-        disconnect_shell_dialog_signals (manager);
+        handle_end_session_dialog_confirmation (manager, GSM_MANAGER_LOGOUT_REBOOT);
 }
 
 static void
@@ -2431,10 +2365,11 @@ show_shell_end_session_dialog (GsmManager                   *manager,
         if (!gsm_shell_is_running (manager->shell))
                 return;
 
+        connect_shell_dialog_signals (manager);
+
         gsm_shell_open_end_session_dialog (manager->shell,
                                            type,
                                            manager->inhibitors);
-        connect_shell_dialog_signals (manager);
 }
 
 /*
@@ -2557,32 +2492,14 @@ on_shutdown_prepared (GsmSystem  *system,
 static gboolean
 do_query_end_session_exit (GsmManager *manager)
 {
-        gboolean reboot = FALSE;
-        gboolean shutdown = FALSE;
+        if (manager->logout_type != GSM_MANAGER_LOGOUT_SHUTDOWN &&
+            manager->logout_type != GSM_MANAGER_LOGOUT_REBOOT)
+                return TRUE; /* Continue to end session phase */
 
-        switch (manager->logout_type) {
-        case GSM_MANAGER_LOGOUT_LOGOUT:
-                break;
-        case GSM_MANAGER_LOGOUT_REBOOT:
-        case GSM_MANAGER_LOGOUT_REBOOT_INTERACT:
-                reboot = TRUE;
-                break;
-        case GSM_MANAGER_LOGOUT_SHUTDOWN:
-        case GSM_MANAGER_LOGOUT_SHUTDOWN_INTERACT:
-                shutdown = TRUE;
-                break;
-        default:
-                g_warning ("Unexpected logout type %d in do_query_end_session_exit()",
-                           manager->logout_type);
-                break;
-        }
+        g_signal_connect (manager->system, "shutdown-prepared",
+                          G_CALLBACK (on_shutdown_prepared), manager);
+        gsm_system_prepare_shutdown (manager->system,
+                                     manager->logout_type == GSM_MANAGER_LOGOUT_REBOOT);
 
-        if (reboot || shutdown) {
-                g_signal_connect (manager->system, "shutdown-prepared",
-                                  G_CALLBACK (on_shutdown_prepared), manager);
-                gsm_system_prepare_shutdown (manager->system, reboot);
-                return FALSE; /* don't leave query end session yet */
-        }
-
-        return TRUE; /* go to end session phase */
+        return FALSE; /* don't leave query end session yet */
 }
