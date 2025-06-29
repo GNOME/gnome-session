@@ -16,157 +16,130 @@
 # Noriko Mizumoto <noriko@fedoraproject.org>, 2012.
 # Hajime Taira <htaira@redhat.com>, 2015.
 # sicklylife <translation@sicklylife.jp>, 2019-2020.
+# Makoto Sakaguchi <ycco34vx@gmail.com>, 2025.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session master\n"
+"Project-Id-Version: gnome-session main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2020-07-31 14:02+0000\n"
-"PO-Revision-Date: 2020-08-18 18:00+0900\n"
-"Last-Translator: sicklylife <translation@sicklylife.jp>\n"
+"POT-Creation-Date: 2025-05-11 00:01+0000\n"
+"PO-Revision-Date: 2025-06-15 07:46+0900\n"
+"Last-Translator: Makoto Sakaguchi <ycco34vx@gmail.com>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-
-#: data/gnome-custom-session.desktop.in.in:3
-msgid "Custom"
-msgstr "カスタム"
-
-#: data/gnome-custom-session.desktop.in.in:4
-msgid "This entry lets you select a saved session"
-msgstr "このエントリーから保存したセッションを選択できます"
+"X-Generator: Poedit 3.6\n"
 
 #: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
-#: data/gnome-wayland.desktop.in.in:3
 msgid "GNOME"
 msgstr "GNOME"
 
 #: data/gnome.desktop.in.in:4 data/gnome-wayland.desktop.in.in:4
 #: data/gnome-xorg.desktop.in.in:4
 msgid "This session logs you into GNOME"
-msgstr "このセッションで GNOME にログインします"
+msgstr "このセッションでは GNOME にログインします"
 
-#: data/gnome-dummy.session.desktop.in.in:3
-msgid "GNOME dummy"
-msgstr "GNOME ダミー"
+#: data/gnome-wayland.desktop.in.in:3
+msgid "GNOME on Wayland"
+msgstr "GNOME on Wayland"
 
 #: data/gnome-xorg.desktop.in.in:3
 msgid "GNOME on Xorg"
 msgstr "GNOME on Xorg"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:5
+#: data/org.gnome.SessionManager.gschema.xml:5
 msgid "Save sessions"
-msgstr "セッションを保存する"
+msgstr "セッションを保存"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:6
+#: data/org.gnome.SessionManager.gschema.xml:6
 msgid "If enabled, gnome-session will save the session automatically."
 msgstr "有効にすると、gnome-session はセッションを自動的に保存します。"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:10
+#: data/org.gnome.SessionManager.gschema.xml:10
 msgid "Save this session"
-msgstr "このセッションを保存する"
+msgstr "このセッションを保存"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:11
+#: data/org.gnome.SessionManager.gschema.xml:11
 msgid ""
 "When enabled, gnome-session will automatically save the next session at log "
 "out even if auto saving is disabled."
 msgstr ""
-"有効な場合、セッションの自動保存が無効でも、gnome-session はログアウト時に"
+"有効な場合、自動保存が無効になっていても、gnome-session はログアウト時に次の"
 "セッションを自動的に保存します。"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:15
+#: data/org.gnome.SessionManager.gschema.xml:15
 msgid "Logout prompt"
 msgstr "ログアウト時に確認する"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:16
+#: data/org.gnome.SessionManager.gschema.xml:16
 msgid "If enabled, gnome-session will prompt the user before ending a session."
-msgstr "有効にすると、gnome-session はセッション終了時にユーザーに確認します。"
-
-#: data/org.gnome.SessionManager.gschema.xml.in:20
-msgid "Show the fallback warning"
 msgstr ""
+"有効にすると、gnome-session はセッションを終了する前にユーザーに確認を求めま"
+"す。"
 
-#: data/org.gnome.SessionManager.gschema.xml.in:21
+#: data/org.gnome.SessionManager.gschema.xml:20
+msgid "Show the fallback warning"
+msgstr "フォールバック警告を表示"
+
+#: data/org.gnome.SessionManager.gschema.xml:21
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
 msgstr ""
+"有効にすると、セッションが自動的にフォールバックされた場合、gnome-session は"
+"ログイン後に警告ダイアログを表示します。"
 
-#: data/session-selector.ui:15
-msgid "Custom Session"
-msgstr "カスタムセッション"
+#: gnome-session/gsm-fail-whale-dialog.c:90
+msgid "Oh no! Something has gone wrong."
+msgstr "おっと! 何か問題が発生しました。"
 
-#: data/session-selector.ui:50 tools/gnome-session-selector.c:102
-msgid "Please select a custom session to run"
-msgstr "起動するカスタムセッションを選択してください"
-
-#: data/session-selector.ui:105
-msgid "_New Session"
-msgstr "新規セッション(_N)"
-
-#: data/session-selector.ui:119
-msgid "_Remove Session"
-msgstr "セッションを削除(_R)"
-
-#: data/session-selector.ui:133
-msgid "Rena_me Session"
-msgstr "セッション名を変更(_M)"
-
-#: data/session-selector.ui:168
-msgid "_Continue"
-msgstr "続行(_C)"
-
-#: gnome-session/gsm-fail-whale-dialog.c:318
-msgid "Oh no!  Something has gone wrong."
-msgstr "あれっ! 何かおかしいです。"
-
-#: gnome-session/gsm-fail-whale-dialog.c:325
+#: gnome-session/gsm-fail-whale-dialog.c:97
 msgid ""
 "A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
 msgstr ""
-"問題が発生して、システムの復帰ができません。システム管理者に連絡してください"
+"問題が発生し、システムは回復できません。システム管理者に連絡してください"
 
-#: gnome-session/gsm-fail-whale-dialog.c:327
+#: gnome-session/gsm-fail-whale-dialog.c:99
 msgid ""
 "A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
 msgstr ""
-"問題が発生して、システムの復帰ができません。念のため、すべての拡張を無効にし"
-"ました。"
+"問題が発生し、システムは回復できません。予防措置として、すべての拡張機能が無"
+"効化されました。"
 
-#: gnome-session/gsm-fail-whale-dialog.c:329
+#: gnome-session/gsm-fail-whale-dialog.c:101
 msgid ""
 "A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
 msgstr ""
-"問題が発生して、システムの復帰ができません。\n"
+"問題が発生し、システムは回復できません。\n"
 "ログアウトして再度試してください。"
 
-#: gnome-session/gsm-fail-whale-dialog.c:344
+#: gnome-session/gsm-fail-whale-dialog.c:109
 msgid "_Log Out"
 msgstr "ログアウト(_L)"
 
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:404
+#: gnome-session/gsm-fail-whale-dialog.c:153 gnome-session/main.c:479
 msgid "Enable debugging code"
-msgstr "デバッグモードにする"
+msgstr "デバッグコードを有効にする"
 
-#: gnome-session/gsm-fail-whale-dialog.c:413
+#: gnome-session/gsm-fail-whale-dialog.c:154
 msgid "Allow logout"
 msgstr "ログアウトを許可する"
 
-#: gnome-session/gsm-fail-whale-dialog.c:414
+#: gnome-session/gsm-fail-whale-dialog.c:155
 msgid "Show extension warning"
 msgstr "拡張機能に関する警告を表示する"
 
-#: gnome-session/gsm-manager.c:1289 gnome-session/gsm-manager.c:1999
+#: gnome-session/gsm-manager.c:1305 gnome-session/gsm-manager.c:2054
 msgid "Not responding"
 msgstr "応答なし"
 
-#: gnome-session/gsm-util.c:415
+#: gnome-session/gsm-util.c:431
 msgid "_Log out"
 msgstr "ログアウト(_L)"
 
@@ -174,153 +147,169 @@ msgstr "ログアウト(_L)"
 #. * then the XSMP client already has set several XSMP
 #. * properties. But it could still be that SmProgram is not set.
 #.
-#: gnome-session/gsm-xsmp-client.c:557
+#: gnome-session/gsm-xsmp-client.c:556
 msgid "Remembered Application"
-msgstr "実行していたアプリケーション"
+msgstr "記憶されたアプリケーション"
 
-#: gnome-session/gsm-xsmp-client.c:1216
+#: gnome-session/gsm-xsmp-client.c:1213
 msgid "This program is blocking logout."
-msgstr "このプログラムがログアウトできないようにしています。"
+msgstr "このプログラムがログアウトを妨げています。"
 
 #: gnome-session/gsm-xsmp-server.c:338
 msgid ""
 "Refusing new client connection because the session is currently being shut "
 "down\n"
 msgstr ""
-"セッションがシャットダウンを実行しているため、新しいクライアントとの接続を拒"
-"否しました。\n"
+"セッションが現在シャットダウン中のため、新しいクライアント接続を拒否していま"
+"す。\n"
 
-#: gnome-session/gsm-xsmp-server.c:605
+#: gnome-session/gsm-xsmp-server.c:611
 #, c-format
 msgid "Could not create ICE listening socket: %s"
-msgstr "ICE の監視ソケットを生成できませんでした: %s"
+msgstr "ICE リスニングソケットを作成できませんでした: %s"
 
-#: gnome-session/main.c:398
+#: gnome-session/main.c:476
 msgid "Running as systemd service"
-msgstr "systemd のサービスとして実行する"
+msgstr "systemd サービスとして実行中"
 
-#: gnome-session/main.c:399
-msgid "Use systemd session management"
-msgstr ""
-
-#: gnome-session/main.c:401
-msgid "Use builtin session management (rather than the systemd based one)"
-msgstr ""
-
-#: gnome-session/main.c:402
+#: gnome-session/main.c:477
 msgid "Override standard autostart directories"
-msgstr "標準の自動起動フォルダーをオーバーライドする"
+msgstr "標準の自動起動ディレクトリをオーバーライドする"
 
-#: gnome-session/main.c:402
+#: gnome-session/main.c:477
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:478
 msgid "Session to use"
 msgstr "使用するセッション"
 
-#: gnome-session/main.c:403
+#: gnome-session/main.c:478
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: gnome-session/main.c:405
+#: gnome-session/main.c:480
 msgid "Do not load user-specified applications"
-msgstr "ユーザーが指定したアプリケーションを起動しない"
+msgstr "ユーザー指定のアプリケーションを読み込まない"
 
-#: gnome-session/main.c:406
+#: gnome-session/main.c:481
 msgid "Version of this application"
-msgstr "このアプリケーションのバージョンを表示する"
+msgstr "このアプリケーションのバージョン"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:408
+#: gnome-session/main.c:483
 msgid "Show the fail whale dialog for testing"
-msgstr "テスト用にエラー画面を表示する"
+msgstr "テスト用にエラーダイアログを表示します"
 
-#: gnome-session/main.c:409
-msgid "Disable hardware acceleration check"
-msgstr "ハードウェアアクセラレーションのチェックを無効化する"
+#: gnome-session/main.c:484
+msgid "This option is ignored"
+msgstr "このオプションは無視されます"
 
-#: gnome-session/main.c:441
+#: gnome-session/main.c:516
 msgid " — the GNOME session manager"
 msgstr " — GNOME セッションマネージャー"
 
-#: tools/gnome-session-ctl.c:245
+#: tools/gnome-session-ctl.c:247
 msgid "Start gnome-session-shutdown.target"
-msgstr "gnome-session-shutdown.target を実行する"
+msgstr "gnome-session-shutdown.target を開始する"
 
-#: tools/gnome-session-ctl.c:246
+#: tools/gnome-session-ctl.c:248
 msgid ""
 "Start gnome-session-shutdown.target when receiving EOF or a single byte on "
 "stdin"
 msgstr ""
-"stdin でシングルバイトまたは EOF を受け取ったら gnome-session-shutdown."
-"target を実行する"
-
-#: tools/gnome-session-ctl.c:247
-msgid "Signal initialization done to gnome-session"
-msgstr ""
-
-#: tools/gnome-session-ctl.c:248
-msgid "Restart dbus.service if it is running"
-msgstr "dbus.service を再起動する (実行中の場合)"
+"stdinで EOF またはシングルバイトを受信した場合、gnome-session-"
+"shutdown.target を開始する"
 
 #: tools/gnome-session-ctl.c:249
+msgid "Signal initialization done to gnome-session"
+msgstr "gnome-session に初期化完了シグナルを送信しました"
+
+#: tools/gnome-session-ctl.c:250
+msgid "Restart dbus.service if it is running"
+msgstr "dbus.service が実行中の場合、再起動する"
+
+#: tools/gnome-session-ctl.c:251
 msgid ""
 "Run from ExecStopPost to start gnome-session-failed.target on service failure"
 msgstr ""
+"サービス失敗時に gnome-session-failed.target を開始するために ExecStopPost か"
+"ら実行する"
 
-#: tools/gnome-session-ctl.c:279
+#: tools/gnome-session-ctl.c:281
 msgid "Program needs exactly one parameter"
 msgstr "引数を一つだけ指定してください"
 
-#: tools/gnome-session-inhibit.c:108
+#: tools/gnome-session-inhibit.c:69
 #, c-format
+msgid "Unknown inhibit argument: %s"
+msgstr "不明な抑制引数: %s"
+
+#: tools/gnome-session-inhibit.c:289
+#, c-format
+msgid "Failed to execute %s: %m\n"
+msgstr "%s の実行に失敗しました: %m\n"
+
+#: tools/gnome-session-inhibit.c:361
+msgid "Show program version"
+msgstr "プログラムのバージョンを表示"
+
+#: tools/gnome-session-inhibit.c:362
+msgid "The application id to use when inhibiting (optional)"
+msgstr "抑制時に使用するアプリケーション ID (オプション)"
+
+#: tools/gnome-session-inhibit.c:362
+msgid "ID"
+msgstr "ID"
+
+#: tools/gnome-session-inhibit.c:363
+msgid "The reason for inhibiting (optional)"
+msgstr "抑制の理由 (オプション)"
+
+#: tools/gnome-session-inhibit.c:363
+msgid "REASON"
+msgstr "REASON"
+
+#: tools/gnome-session-inhibit.c:364
+msgid "Add action to inhibit (repeatable)"
+msgstr "抑制用アクションを追加する (繰り返し可能)"
+
+#: tools/gnome-session-inhibit.c:364
+msgid "ACTION"
+msgstr "ACTION"
+
+#: tools/gnome-session-inhibit.c:365
+msgid "Do not launch COMMAND and wait forever instead"
+msgstr "COMMAND を起動する代わりに永続的に待機する"
+
+#: tools/gnome-session-inhibit.c:366
+msgid "List the existing inhibitions, and exit"
+msgstr "既存の抑制を一覧表示して、終了する"
+
+#: tools/gnome-session-inhibit.c:378
+msgid "COMMAND"
+msgstr "COMMAND"
+
+#: tools/gnome-session-inhibit.c:384
+msgid "Execute COMMAND while inhibiting some session functionality."
+msgstr "一部のセッション機能を抑制しながら、COMMAND を実行する。"
+
+#: tools/gnome-session-inhibit.c:385
 msgid ""
-"%s [OPTION…] COMMAND\n"
-"\n"
-"Execute COMMAND while inhibiting some session functionality.\n"
-"\n"
-"  -h, --help        Show this help\n"
-"  --version         Show program version\n"
-"  --app-id ID       The application id to use\n"
-"                    when inhibiting (optional)\n"
-"  --reason REASON   The reason for inhibiting (optional)\n"
-"  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
-"                    logout, switch-user, suspend, idle, automount\n"
-"  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
-"  -l, --list        List the existing inhibitions, and exit\n"
-"\n"
-"If no --inhibit option is specified, idle is assumed.\n"
+"Valid ACTION values are: logout, switch-user, suspend, idle, and automount.\n"
+"If no --inhibit options are specified, idle is assumed."
 msgstr ""
-"%s [OPTION…] COMMAND\n"
-"\n"
-"COMMAND を起動し、その間セッションのいくつかの機能を抑止します。\n"
-"\n"
-"  -h, --help        このヘルプを表示する\n"
-"  --version         プログラムのバージョンを表示する\n"
-"  --app-id ID       抑止時に使用するアプリケーション ID (オプション)\n"
-"  --reason REASON   抑止する理由を指定する (オプション)\n"
-"  --inhibit ARG     抑止する機能をコロン区切りで以下から指定する:\n"
-"                    logout, switch-user, suspend, idle, automount\n"
-"  --inhibit-only    COMMAND を起動せずに待機する\n"
-"  -l, --list        抑止しているものを一覧表示して終了する\n"
-"\n"
-"--inhibit オプションが無指定の場合 idle を指定したものと扱います。\n"
+"有効な ACTION 値は logout、switch-user、suspend、idle、および automount で"
+"す。\n"
+"--inhibit オプションが指定されない場合は、idle が既定値として見なされます。"
 
-#: tools/gnome-session-inhibit.c:288
-#, c-format
-msgid "Failed to execute %s\n"
-msgstr "%s を起動できませんでした。\n"
-
-#: tools/gnome-session-inhibit.c:352 tools/gnome-session-inhibit.c:362
-#: tools/gnome-session-inhibit.c:372
-#, c-format
-msgid "%s requires an argument\n"
-msgstr "%s には引数が1つ必要です。\n"
+#: tools/gnome-session-inhibit.c:409
+msgid "Neither COMMAND nor --inhibit-only were specified."
+msgstr "COMMAND も --inhibit-only も指定されませんでした。"
 
 #: tools/gnome-session-quit.c:50
 msgid "Log out"
-msgstr "ログアウトする"
+msgstr "ログアウト"
 
 #: tools/gnome-session-quit.c:51
 msgid "Power off"
@@ -332,11 +321,11 @@ msgstr "再起動"
 
 #: tools/gnome-session-quit.c:53
 msgid "Ignoring any existing inhibitors"
-msgstr "阻害するプロセスを無視する"
+msgstr "既存の抑制を無視する"
 
 #: tools/gnome-session-quit.c:54
 msgid "Don’t prompt for user confirmation"
-msgstr "ユーザーに確認しない"
+msgstr "ユーザーに確認を求めない"
 
 #: tools/gnome-session-quit.c:88 tools/gnome-session-quit.c:102
 msgid "Could not connect to the session manager"
@@ -344,30 +333,92 @@ msgstr "セッションマネージャーに接続できませんでした"
 
 #: tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
-msgstr "同時には適用できないオプションを指定しました"
+msgstr "プログラムが矛盾するオプションで呼び出されました"
 
-#: tools/gnome-session-selector.c:61
+#~ msgid "Custom"
+#~ msgstr "カスタム"
+
+#~ msgid "This entry lets you select a saved session"
+#~ msgstr "このエントリーから保存したセッションを選択できます"
+
+#~ msgid "GNOME dummy"
+#~ msgstr "GNOME ダミー"
+
+#~ msgid "Custom Session"
+#~ msgstr "カスタムセッション"
+
+#~ msgid "Please select a custom session to run"
+#~ msgstr "起動するカスタムセッションを選択してください"
+
+#~ msgid "_New Session"
+#~ msgstr "新規セッション(_N)"
+
+#~ msgid "_Remove Session"
+#~ msgstr "セッションを削除(_R)"
+
+#~ msgid "Rena_me Session"
+#~ msgstr "セッション名を変更(_M)"
+
+#~ msgid "_Continue"
+#~ msgstr "続行(_C)"
+
+#~ msgid "Disable hardware acceleration check"
+#~ msgstr "ハードウェアアクセラレーションのチェックを無効化する"
+
 #, c-format
-msgid "Session %d"
-msgstr "セッション %d"
+#~ msgid ""
+#~ "%s [OPTION…] COMMAND\n"
+#~ "\n"
+#~ "Execute COMMAND while inhibiting some session functionality.\n"
+#~ "\n"
+#~ "  -h, --help        Show this help\n"
+#~ "  --version         Show program version\n"
+#~ "  --app-id ID       The application id to use\n"
+#~ "                    when inhibiting (optional)\n"
+#~ "  --reason REASON   The reason for inhibiting (optional)\n"
+#~ "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
+#~ "                    logout, switch-user, suspend, idle, automount\n"
+#~ "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+#~ "  -l, --list        List the existing inhibitions, and exit\n"
+#~ "\n"
+#~ "If no --inhibit option is specified, idle is assumed.\n"
+#~ msgstr ""
+#~ "%s [OPTION…] COMMAND\n"
+#~ "\n"
+#~ "COMMAND を起動し、その間セッションのいくつかの機能を抑止します。\n"
+#~ "\n"
+#~ "  -h, --help        このヘルプを表示する\n"
+#~ "  --version         プログラムのバージョンを表示する\n"
+#~ "  --app-id ID       抑止時に使用するアプリケーション ID (オプション)\n"
+#~ "  --reason REASON   抑止する理由を指定する (オプション)\n"
+#~ "  --inhibit ARG     抑止する機能をコロン区切りで以下から指定する:\n"
+#~ "                    logout, switch-user, suspend, idle, automount\n"
+#~ "  --inhibit-only    COMMAND を起動せずに待機する\n"
+#~ "  -l, --list        抑止しているものを一覧表示して終了する\n"
+#~ "\n"
+#~ "--inhibit オプションが無指定の場合 idle を指定したものと扱います。\n"
 
-#: tools/gnome-session-selector.c:107
-msgid ""
-"Session names are not allowed to start with “.” or contain “/” characters"
-msgstr "セッション名は“.”から始めたり、“/”を含めることはできません"
-
-#: tools/gnome-session-selector.c:111
-msgid "Session names are not allowed to start with “.”"
-msgstr "“.”はセッション名の先頭には使用できません"
-
-#: tools/gnome-session-selector.c:115
-msgid "Session names are not allowed to contain “/” characters"
-msgstr "“/”はセッション名に含めることができません"
-
-#: tools/gnome-session-selector.c:123
 #, c-format
-msgid "A session named “%s” already exists"
-msgstr "セッション“%s”はすでに存在します"
+#~ msgid "%s requires an argument\n"
+#~ msgstr "%s には引数が1つ必要です。\n"
+
+#, c-format
+#~ msgid "Session %d"
+#~ msgstr "セッション %d"
+
+#~ msgid ""
+#~ "Session names are not allowed to start with “.” or contain “/” characters"
+#~ msgstr "セッション名は“.”から始めたり、“/”を含めることはできません"
+
+#~ msgid "Session names are not allowed to start with “.”"
+#~ msgstr "“.”はセッション名の先頭には使用できません"
+
+#~ msgid "Session names are not allowed to contain “/” characters"
+#~ msgstr "“/”はセッション名に含めることができません"
+
+#, c-format
+#~ msgid "A session named “%s” already exists"
+#~ msgstr "セッション“%s”はすでに存在します"
 
 #~ msgid "Additional startup _programs:"
 #~ msgstr "自動的に起動するプログラムの追加(_P):"
