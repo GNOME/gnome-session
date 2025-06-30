@@ -143,22 +143,16 @@ register_client (void)
 {
         GError     *error;
         GVariant   *object_path_variant;
-        const char *startup_id;
         const char *app_id;
 
         app_id = "gedit";
-
-        startup_id = g_getenv ("DESKTOP_AUTOSTART_ID");
-        if (!startup_id) {
-                startup_id = "";
-        }
 
         error = NULL;
         object_path_variant = g_dbus_proxy_call_sync (sm_proxy,
                                                       "RegisterClient",
                                                       g_variant_new ("(ss)",
                                                                      app_id,
-                                                                     startup_id),
+                                                                     ""),
                                                       G_DBUS_CALL_FLAGS_NONE,
                                                       -1, NULL, &error);
 

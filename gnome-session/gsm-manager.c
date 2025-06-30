@@ -207,21 +207,6 @@ _find_by_cookie (const char   *id,
         return (*cookie_ap == cookie_b);
 }
 
-static gboolean
-_client_has_startup_id (const char *id,
-                        GsmClient  *client,
-                        const char *startup_id_a)
-{
-        const char *startup_id_b;
-
-        startup_id_b = gsm_client_peek_startup_id (client);
-        if (IS_STRING_EMPTY (startup_id_b)) {
-                return FALSE;
-        }
-
-        return (strcmp (startup_id_a, startup_id_b) == 0);
-}
-
 static const char *
 phase_num_to_name (guint phase)
 {
@@ -901,43 +886,13 @@ inhibitor_has_client_id (gpointer      key,
         return matches;
 }
 
-static gboolean
-_app_has_startup_id (const char *id,
-                     GsmApp     *app,
-                     const char *startup_id_a)
-{
-        const char *startup_id_b;
-
-        startup_id_b = gsm_app_peek_startup_id (app);
-
-        if (IS_STRING_EMPTY (startup_id_b)) {
-                return FALSE;
-        }
-
-        return (strcmp (startup_id_a, startup_id_b) == 0);
-}
-
-static GsmApp *
-find_app_for_startup_id (GsmManager *manager,
-                        const char *startup_id)
-{
-        GsmApp *found_app;
-
-        found_app = (GsmApp *) gsm_store_find (manager->apps,
-                                               (GsmStoreFunc)_app_has_startup_id,
-                                               (char *)startup_id);
-        return found_app;
-}
-
 static void
 _disconnect_client (GsmManager *manager,
                     GsmClient  *client)
 {
-        GsmApp               *app;
-        const char           *app_id;
-        const char           *startup_id;
-
-        g_debug ("GsmManager: disconnect client: %s", gsm_client_peek_id (client));
+        g_debug ("GsmManager: disconnect client: %s (app: %s)",
+                 gsm_client_peek_id (client),
+                 gsm_client_peek_app_id (client));
 
         /* take a ref so it doesn't get finalized */
         g_object_ref (client);
@@ -946,24 +901,6 @@ _disconnect_client (GsmManager *manager,
         gsm_store_foreach_remove (manager->inhibitors,
                                   (GsmStoreFunc)inhibitor_has_client_id,
                                   (gpointer)gsm_client_peek_id (client));
-
-        app = NULL;
-
-        /* first try to match on startup ID */
-        startup_id = gsm_client_peek_startup_id (client);
-        if (! IS_STRING_EMPTY (startup_id)) {
-                app = find_app_for_startup_id (manager, startup_id);
-
-        }
-
-        /* then try to find matching app-id */
-        if (app == NULL) {
-                app_id = gsm_client_peek_app_id (client);
-                if (! IS_STRING_EMPTY (app_id)) {
-                        g_debug ("GsmManager: disconnect for app '%s'", app_id);
-                        app = (GsmApp *) gsm_store_lookup (manager->apps, app_id);
-                }
-        }
 
         switch (manager->phase) {
         case GSM_MANAGER_PHASE_QUERY_END_SESSION:
@@ -1829,18 +1766,15 @@ static gboolean
 gsm_manager_register_client (GsmExportedManager    *skeleton,
                              GDBusMethodInvocation *invocation,
                              const char            *app_id,
-                             const char            *startup_id,
+                             const char            *ignored, /* was startup_id */
                              GsmManager            *manager)
 {
-        char       *new_startup_id;
         const char *sender;
         GsmClient  *client;
-        GsmApp     *app;
 
-        app = NULL;
         client = NULL;
 
-        g_debug ("GsmManager: RegisterClient %s", startup_id);
+        g_debug ("GsmManager: RegisterClient %s", app_id);
 
         if (manager->phase >= GSM_MANAGER_PHASE_QUERY_END_SESSION) {
                 g_debug ("Unable to register client: shutting down");
@@ -1852,39 +1786,8 @@ gsm_manager_register_client (GsmExportedManager    *skeleton,
                 return TRUE;
         }
 
-        if (IS_STRING_EMPTY (startup_id)) {
-                new_startup_id = gsm_util_generate_startup_id ();
-        } else {
-
-                client = (GsmClient *)gsm_store_find (manager->clients,
-                                                      (GsmStoreFunc)_client_has_startup_id,
-                                                      (char *)startup_id);
-                /* We can't have two clients with the same startup id. */
-                if (client != NULL) {
-                        g_debug ("Unable to register client: already registered");
-
-                        g_dbus_method_invocation_return_error (invocation,
-                                                               GSM_MANAGER_ERROR,
-                                                               GSM_MANAGER_ERROR_ALREADY_REGISTERED,
-                                                               "Unable to register client");
-                        return TRUE;
-                }
-
-                new_startup_id = g_strdup (startup_id);
-        }
-
-        g_debug ("GsmManager: Adding new client %s to session", new_startup_id);
-
-        if (app == NULL && !IS_STRING_EMPTY (startup_id)) {
-                app = find_app_for_startup_id (manager, startup_id);
-        }
-        if (app == NULL && !IS_STRING_EMPTY (app_id)) {
-                /* try to associate this app id with a known app */
-                app = (GsmApp *) gsm_store_lookup (manager->apps, app_id);
-        }
-
         sender = g_dbus_method_invocation_get_sender (invocation);
-        client = gsm_client_new (new_startup_id, sender);
+        client = gsm_client_new (app_id, sender);
         if (client == NULL) {
                 g_debug ("Unable to create client");
 
@@ -1896,24 +1799,12 @@ gsm_manager_register_client (GsmExportedManager    *skeleton,
         }
 
         gsm_store_add (manager->clients, gsm_client_peek_id (client), G_OBJECT (client));
-        /* the store will own the ref */
-        g_object_unref (client);
+        g_object_unref (client); /* the store will own the ref */
 
         g_signal_connect (client,
                           "disconnected",
                           G_CALLBACK (on_client_disconnected),
                           manager);
-
-        if (app != NULL) {
-                gsm_client_set_app_id (client, gsm_app_peek_app_id (app));
-        } else {
-                /* if an app id is specified store it in the client
-                   so we can save it later */
-                gsm_client_set_app_id (client, app_id);
-        }
-
-        g_assert (new_startup_id != NULL);
-        g_free (new_startup_id);
 
         gsm_exported_manager_complete_register_client (skeleton, invocation, gsm_client_peek_id (client));
 

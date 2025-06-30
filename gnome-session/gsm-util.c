@@ -292,63 +292,6 @@ gsm_util_init_error (gboolean    fatal,
         }
 }
 
-/**
- * gsm_util_generate_startup_id:
- *
- * Generates a new SM client ID.
- *
- * Return value: an SM client ID.
- **/
-char *
-gsm_util_generate_startup_id (void)
-{
-        static int     sequence = -1;
-        static guint   rand1 = 0;
-        static guint   rand2 = 0;
-        static pid_t   pid = 0;
-        struct timeval tv;
-
-        /* The XSMP spec defines the ID as:
-         *
-         * Version: "1"
-         * Address type and address:
-         *   "1" + an IPv4 address as 8 hex digits
-         *   "2" + a DECNET address as 12 hex digits
-         *   "6" + an IPv6 address as 32 hex digits
-         * Time stamp: milliseconds since UNIX epoch as 13 decimal digits
-         * Process-ID type and process-ID:
-         *   "1" + POSIX PID as 10 decimal digits
-         * Sequence number as 4 decimal digits
-         *
-         * XSMP client IDs are supposed to be globally unique: if
-         * SmsGenerateClientID() is unable to determine a network
-         * address for the machine, it gives up and returns %NULL.
-         * GNOME and KDE have traditionally used a fourth address
-         * format in this case:
-         *   "0" + 16 random hex digits
-         *
-         * We don't even bother trying SmsGenerateClientID(), since the
-         * user's IP address is probably "192.168.1.*" anyway, so a random
-         * number is actually more likely to be globally unique.
-         */
-
-        if (!rand1) {
-                rand1 = g_random_int ();
-                rand2 = g_random_int ();
-                pid = getpid ();
-        }
-
-        sequence = (sequence + 1) % 10000;
-        gettimeofday (&tv, NULL);
-        return g_strdup_printf ("10%.04x%.04x%.10lu%.3u%.10lu%.4d",
-                                rand1,
-                                rand2,
-                                (unsigned long) tv.tv_sec,
-                                (unsigned) tv.tv_usec,
-                                (unsigned long) pid,
-                                sequence);
-}
-
 static gboolean
 gsm_util_update_activation_environment (const char  *variable,
                                         const char  *value,

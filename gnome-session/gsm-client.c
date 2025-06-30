@@ -29,7 +29,6 @@ struct _GsmClient
         GObject                   parent_instance;
 
         char                     *id;
-        char                     *startup_id;
         char                     *app_id;
         char                     *bus_name;
 
@@ -42,7 +41,6 @@ struct _GsmClient
 
 typedef enum {
         PROP_0,
-        PROP_STARTUP_ID,
         PROP_APP_ID,
         PROP_BUS_NAME,
 } GsmClientProperty;
@@ -166,21 +164,6 @@ gsm_client_init (GsmClient *client)
 {
 }
 
-static void
-gsm_client_set_startup_id (GsmClient  *client,
-                           const char *startup_id)
-{
-        g_return_if_fail (GSM_IS_CLIENT (client));
-
-        if (g_strcmp0 (client->startup_id, startup_id) == 0)
-                return;
-
-        g_free (client->startup_id);
-        client->startup_id = g_strdup (startup_id ?: "");
-
-        g_object_notify (G_OBJECT (client), "startup-id");
-}
-
 void
 gsm_client_set_app_id (GsmClient  *client,
                        const char *app_id)
@@ -221,9 +204,6 @@ gsm_client_set_property (GObject       *object,
         GsmClient *self = GSM_CLIENT (object);
 
         switch ((GsmClientProperty) prop_id) {
-        case PROP_STARTUP_ID:
-                gsm_client_set_startup_id (self, g_value_get_string (value));
-                break;
         case PROP_APP_ID:
                 gsm_client_set_app_id (self, g_value_get_string (value));
                 break;
@@ -245,9 +225,6 @@ gsm_client_get_property (GObject    *object,
         GsmClient *self = GSM_CLIENT (object);
 
         switch ((GsmClientProperty) prop_id) {
-        case PROP_STARTUP_ID:
-                g_value_set_string (value, self->startup_id);
-                break;
         case PROP_APP_ID:
                 g_value_set_string (value, self->app_id);
                 break;
@@ -270,7 +247,6 @@ gsm_client_dispose (GObject *object)
         client = GSM_CLIENT (object);
 
         g_free (client->id);
-        g_free (client->startup_id);
         g_free (client->app_id);
         g_free (client->bus_name);
 
@@ -313,13 +289,6 @@ gsm_client_class_init (GsmClientClass *klass)
                               G_TYPE_NONE,
                               2, G_TYPE_BOOLEAN, G_TYPE_STRING);
 
-        g_object_class_install_property (object_class,
-                                         PROP_STARTUP_ID,
-                                         g_param_spec_string ("startup-id",
-                                                              "startup-id",
-                                                              "startup-id",
-                                                              "",
-                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY));
         g_object_class_install_property (object_class,
                                          PROP_APP_ID,
                                          g_param_spec_string ("app-id",
@@ -365,13 +334,6 @@ gsm_client_peek_app_id (GsmClient *client)
 {
         g_return_val_if_fail (GSM_IS_CLIENT (client), NULL);
         return client->app_id;
-}
-
-const char *
-gsm_client_peek_startup_id (GsmClient *client)
-{
-        g_return_val_if_fail (GSM_IS_CLIENT (client), NULL);
-        return client->startup_id;
 }
 
 gboolean
@@ -426,11 +388,11 @@ gsm_client_stop (GsmClient *client,
 }
 
 GsmClient *
-gsm_client_new (const char *startup_id,
+gsm_client_new (const char *app_id,
                 const char *bus_name)
 {
         return g_object_new (GSM_TYPE_CLIENT,
-                             "startup-id", startup_id,
+                             "app-id", app_id,
                              "bus-name", bus_name,
                              NULL);
 }
