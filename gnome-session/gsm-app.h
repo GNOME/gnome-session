@@ -36,7 +36,6 @@ GsmApp          *gsm_app_new                            (GDesktopAppInfo *info);
 GsmApp          *gsm_app_new_for_path                   (const char  *path,
                                                          GError     **error);
 const char      *gsm_app_peek_app_id                    (GsmApp     *app);
-const char      *gsm_app_peek_startup_id                (GsmApp     *app);
 GsmManagerPhase  gsm_app_peek_phase                     (GsmApp     *app);
 gboolean         gsm_app_peek_is_disabled               (GsmApp     *app);
 

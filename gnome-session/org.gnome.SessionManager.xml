@@ -63,14 +63,14 @@
     <!--
       RegisterClient:
       @app_id: The application identifier
-      @client_startup_id: Client startup identifier
+      @ignored: An ignored parameter, which exists only to make this API backwards-compatible with older versions of GNOME
       @client_id: The object path of the newly registered client
 
       Register the caller as a Session Management client.
     -->
     <method name="RegisterClient">
       <arg type="s" name="app_id" direction="in"/>
-      <arg type="s" name="client_startup_id" direction="in"/>
+      <arg type="s" name="ignored" direction="in"/>
       <arg type="o" name="client_id" direction="out"/>
     </method>
 

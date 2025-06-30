@@ -34,13 +34,12 @@ typedef enum {
 #define GSM_TYPE_CLIENT            (gsm_client_get_type ())
 G_DECLARE_FINAL_TYPE (GsmClient, gsm_client, GSM, CLIENT, GObject)
 
-GsmClient *           gsm_client_new                        (const char *startup_id,
+GsmClient *           gsm_client_new                        (const char *app_id,
                                                              const char *bus_name);
 
 const char           *gsm_client_peek_id                    (GsmClient  *client);
 const char *          gsm_client_peek_bus_name              (GsmClient  *client);
 
-const char *          gsm_client_peek_startup_id            (GsmClient  *client);
 const char *          gsm_client_peek_app_id                (GsmClient  *client);
 
 void                  gsm_client_set_app_id                 (GsmClient  *client,
