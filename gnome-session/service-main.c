@@ -112,11 +112,7 @@ on_name_acquired (GDBusConnection *connection,
 static void
 create_manager (void)
 {
-        GsmStore *client_store;
-
-        client_store = gsm_store_new ();
-        manager = gsm_manager_new (client_store);
-        g_object_unref (client_store);
+        manager = gsm_manager_new ();
 
         g_unix_signal_add (SIGTERM, term_or_int_signal_cb, manager);
         g_unix_signal_add (SIGINT, term_or_int_signal_cb, manager);

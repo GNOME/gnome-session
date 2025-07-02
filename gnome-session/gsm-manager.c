@@ -117,7 +117,6 @@ struct _GsmManager
 
 enum {
         PROP_0,
-        PROP_CLIENT_STORE,
         PROP_SESSION_NAME,
 };
 
@@ -1101,59 +1100,12 @@ on_store_client_removed (GsmStore   *store,
 }
 
 static void
-gsm_manager_set_client_store (GsmManager *manager,
-                              GsmStore   *store)
-{
-        g_return_if_fail (GSM_IS_MANAGER (manager));
-
-        if (store != NULL) {
-                g_object_ref (store);
-        }
-
-        if (manager->clients != NULL) {
-                g_signal_handlers_disconnect_by_func (manager->clients,
-                                                      on_store_client_added,
-                                                      manager);
-                g_signal_handlers_disconnect_by_func (manager->clients,
-                                                      on_store_client_removed,
-                                                      manager);
-
-                g_object_unref (manager->clients);
-        }
-
-
-        g_debug ("GsmManager: setting client store %p", store);
-
-        manager->clients = store;
-
-        if (manager->clients != NULL) {
-                g_signal_connect (manager->clients,
-                                  "added",
-                                  G_CALLBACK (on_store_client_added),
-                                  manager);
-                g_signal_connect (manager->clients,
-                                  "removed",
-                                  G_CALLBACK (on_store_client_removed),
-                                  manager);
-        }
-}
-
-static void
 gsm_manager_set_property (GObject       *object,
                           guint          prop_id,
                           const GValue  *value,
                           GParamSpec    *pspec)
 {
-        GsmManager *self = GSM_MANAGER (object);
-
-        switch (prop_id) {
-         case PROP_CLIENT_STORE:
-                gsm_manager_set_client_store (self, g_value_get_object (value));
-                break;
-        default:
-                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-                break;
-        }
+        G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 }
 
 static void
@@ -1167,9 +1119,6 @@ gsm_manager_get_property (GObject    *object,
         switch (prop_id) {
         case PROP_SESSION_NAME:
                 g_value_set_string (value, self->session_name);
-                break;
-        case PROP_CLIENT_STORE:
-                g_value_set_object (value, self->clients);
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -1339,14 +1288,6 @@ gsm_manager_class_init (GsmManagerClass *klass)
                                                               NULL,
                                                               NULL,
                                                               G_PARAM_READABLE));
-
-        g_object_class_install_property (object_class,
-                                         PROP_CLIENT_STORE,
-                                         g_param_spec_object ("client-store",
-                                                              NULL,
-                                                              NULL,
-                                                              GSM_TYPE_STORE,
-                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 }
 
 static void
@@ -2057,6 +1998,16 @@ gsm_manager_init (GsmManager *manager)
         manager->session_settings = g_settings_new (SESSION_SCHEMA);
         manager->lockdown_settings = g_settings_new (LOCKDOWN_SCHEMA);
 
+        manager->clients = gsm_store_new ();
+        g_signal_connect (manager->clients,
+                          "added",
+                          G_CALLBACK (on_store_client_added),
+                          manager);
+        g_signal_connect (manager->clients,
+                          "removed",
+                          G_CALLBACK (on_store_client_removed),
+                          manager);
+
         manager->inhibitors = gsm_store_new ();
         g_signal_connect (manager->inhibitors,
                           "added",
@@ -2096,19 +2047,18 @@ gsm_manager_get (void)
 }
 
 GsmManager *
-gsm_manager_new (GsmStore *client_store)
+gsm_manager_new (void)
 {
         if (manager_object != NULL) {
                 g_object_ref (manager_object);
         } else {
                 gboolean res;
 
-                manager_object = g_object_new (GSM_TYPE_MANAGER,
-                                               "client-store", client_store,
-                                               NULL);
+                manager_object = g_object_new (GSM_TYPE_MANAGER, NULL);
 
                 g_object_add_weak_pointer (manager_object,
                                            (gpointer *) &manager_object);
+
                 res = register_manager (manager_object);
                 if (! res) {
                         g_object_unref (manager_object);

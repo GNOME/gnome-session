@@ -65,7 +65,7 @@ typedef enum
 #define GSM_MANAGER_ERROR gsm_manager_error_quark ()
 GQuark              gsm_manager_error_quark                    (void);
 
-GsmManager *        gsm_manager_new                            (GsmStore       *client_store);
+GsmManager *        gsm_manager_new                            (void);
 GsmManager *        gsm_manager_get                            (void);
 
 gboolean            gsm_manager_get_dbus_disconnected          (GsmManager *manager);
