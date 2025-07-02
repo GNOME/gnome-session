@@ -25,7 +25,6 @@ sources = files(
   'gsm-inhibitor.c',
   'gsm-manager.c',
   'gsm-presence.c',
-  'gsm-process-helper.c',
   'gsm-session-fill.c',
   'gsm-shell.c',
   'gsm-store.c',
@@ -68,7 +67,6 @@ executable(
 
 units = [
   ['test-client-dbus', [], [gio_dep]],
-  ['test-process-helper', files('gsm-process-helper.c'), [gio_dep]]
 ]
 
 foreach unit: units

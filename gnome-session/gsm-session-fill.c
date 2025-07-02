@@ -23,15 +23,10 @@
 
 #include "gsm-system.h"
 #include "gsm-manager.h"
-#include "gsm-process-helper.h"
 #include "gsm-util.h"
 
 #define GSM_KEYFILE_SESSION_GROUP "GNOME Session"
-#define GSM_KEYFILE_RUNNABLE_KEY "IsRunnableHelper"
 #define GSM_KEYFILE_FALLBACK_KEY "FallbackSession"
-
-/* See https://bugzilla.gnome.org/show_bug.cgi?id=641992 for discussion */
-#define GSM_RUNNABLE_HELPER_TIMEOUT 3000 /* ms */
 
 static void
 load_standard_apps (GsmManager *manager,
@@ -130,7 +125,6 @@ get_session_keyfile (const char *session,
         GKeyFile *keyfile;
         gboolean  session_runnable;
         char     *value;
-        GError *error = NULL;
 
         *actual_session = NULL;
 
@@ -142,20 +136,6 @@ get_session_keyfile (const char *session,
                 return NULL;
 
         session_runnable = TRUE;
-
-        value = g_key_file_get_string (keyfile,
-                                       GSM_KEYFILE_SESSION_GROUP, GSM_KEYFILE_RUNNABLE_KEY,
-                                       NULL);
-        if (!IS_STRING_EMPTY (value)) {
-                g_debug ("fill: *** Launching helper '%s' to know if session is runnable", value);
-                session_runnable = gsm_process_helper (value, GSM_RUNNABLE_HELPER_TIMEOUT, &error);
-                if (!session_runnable) {
-                        g_warning ("Session '%s' runnable check failed: %s", session,
-                                   error->message);
-                        g_clear_error (&error);
-                }
-        }
-        g_free (value);
 
         if (session_runnable) {
                 *actual_session = g_strdup (session);
