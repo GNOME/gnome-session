@@ -86,7 +86,6 @@ struct _GsmManager
         GsmStore               *apps;
         GsmPresence            *presence;
         char                   *session_name;
-        gboolean                is_fallback_session : 1;
 
         /* Current status */
         GsmManagerPhase         phase;
@@ -120,7 +119,6 @@ enum {
         PROP_0,
         PROP_CLIENT_STORE,
         PROP_SESSION_NAME,
-        PROP_FALLBACK,
 };
 
 static void     gsm_manager_class_init  (GsmManagerClass *klass);
@@ -853,12 +851,10 @@ gsm_manager_start (GsmManager *manager)
 
 void
 _gsm_manager_set_active_session (GsmManager     *manager,
-                                 const char     *session_name,
-                                 gboolean        is_fallback)
+                                 const char     *session_name)
 {
         g_free (manager->session_name);
         manager->session_name = g_strdup (session_name);
-        manager->is_fallback_session = is_fallback;
 
         gsm_exported_manager_set_session_name (manager->skeleton, session_name);
 }
@@ -1151,9 +1147,6 @@ gsm_manager_set_property (GObject       *object,
         GsmManager *self = GSM_MANAGER (object);
 
         switch (prop_id) {
-         case PROP_FALLBACK:
-                self->is_fallback_session = g_value_get_boolean (value);
-                break;
          case PROP_CLIENT_STORE:
                 gsm_manager_set_client_store (self, g_value_get_object (value));
                 break;
@@ -1174,9 +1167,6 @@ gsm_manager_get_property (GObject    *object,
         switch (prop_id) {
         case PROP_SESSION_NAME:
                 g_value_set_string (value, self->session_name);
-                break;
-        case PROP_FALLBACK:
-                g_value_set_boolean (value, self->is_fallback_session);
                 break;
         case PROP_CLIENT_STORE:
                 g_value_set_object (value, self->clients);
@@ -1342,13 +1332,6 @@ gsm_manager_class_init (GsmManagerClass *klass)
         object_class->constructor = gsm_manager_constructor;
         object_class->dispose = gsm_manager_dispose;
 
-        /**
-         * GsmManager::session-name
-         *
-         * Then name of the currently active session, typically "gnome" or "gnome-fallback".
-         * This may be the name of the configured default session, or the name of a fallback
-         * session in case we fell back.
-         */
         g_object_class_install_property (object_class,
                                          PROP_SESSION_NAME,
                                          g_param_spec_string ("session-name",
@@ -1356,20 +1339,6 @@ gsm_manager_class_init (GsmManagerClass *klass)
                                                               NULL,
                                                               NULL,
                                                               G_PARAM_READABLE));
-
-        /**
-         * GsmManager::fallback
-         *
-         * If %TRUE, the current session is running in the "fallback" mode;
-         * this is distinct from whether or not it was configured as default.
-         */
-        g_object_class_install_property (object_class,
-                                         PROP_FALLBACK,
-                                         g_param_spec_boolean ("fallback",
-                                                               NULL,
-                                                               NULL,
-                                                               FALSE,
-                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 
         g_object_class_install_property (object_class,
                                          PROP_CLIENT_STORE,

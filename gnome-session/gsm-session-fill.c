@@ -26,7 +26,6 @@
 #include "gsm-util.h"
 
 #define GSM_KEYFILE_SESSION_GROUP "GNOME Session"
-#define GSM_KEYFILE_FALLBACK_KEY "FallbackSession"
 
 static void
 load_standard_apps (GsmManager *manager,
@@ -118,49 +117,11 @@ find_valid_session_keyfile (const char *session)
 }
 
 static GKeyFile *
-get_session_keyfile (const char *session,
-                     char      **actual_session,
-                     gboolean   *is_fallback)
+get_session_keyfile (const char *session)
 {
         GKeyFile *keyfile;
-        gboolean  session_runnable;
-        char     *value;
-
-        *actual_session = NULL;
-
         g_debug ("fill: *** Getting session '%s'", session);
-
         keyfile = find_valid_session_keyfile (session);
-
-        if (!keyfile)
-                return NULL;
-
-        session_runnable = TRUE;
-
-        if (session_runnable) {
-                *actual_session = g_strdup (session);
-                if (is_fallback)
-                        *is_fallback = FALSE;
-                return keyfile;
-        }
-
-        g_debug ("fill: *** Session is not runnable");
-
-        /* We can't run this session, so try to use the fallback */
-        value = g_key_file_get_string (keyfile,
-                                       GSM_KEYFILE_SESSION_GROUP, GSM_KEYFILE_FALLBACK_KEY,
-                                       NULL);
-
-        g_key_file_free (keyfile);
-        keyfile = NULL;
-
-        if (!IS_STRING_EMPTY (value)) {
-                if (is_fallback)
-                        *is_fallback = TRUE;
-                keyfile = get_session_keyfile (value, actual_session, NULL);
-        }
-        g_free (value);
-
         return keyfile;
 }
 
@@ -169,17 +130,13 @@ gsm_session_fill (GsmManager  *manager,
                   const char  *session)
 {
         GKeyFile *keyfile;
-        gboolean is_fallback;
-        char *actual_session;
 
-        keyfile = get_session_keyfile (session, &actual_session, &is_fallback);
+        keyfile = get_session_keyfile (session);
 
         if (!keyfile)
                 return FALSE;
 
-        _gsm_manager_set_active_session (manager, actual_session, is_fallback);
-
-        g_free (actual_session);
+        _gsm_manager_set_active_session (manager, session);
 
         load_standard_apps (manager, keyfile);
 
