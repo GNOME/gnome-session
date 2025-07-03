@@ -11,8 +11,7 @@ application/gzip=org.gnome.Nautilus.desktop
 application/illustrator=org.gnome.Papers.desktop
 application/javascript=org.gnome.Builder.desktop
 application/json=org.gnome.Builder.desktop
-application/oxps=org.gnome.Evince.desktop
-application/pdf=org.gnome.Papers.desktop;org.gnome.Evince.desktop
+application/pdf=org.gnome.Papers.desktop
 application/pkcs10=gcr-viewer.desktop
 application/pkcs10+pem=gcr-viewer.desktop
 application/pkcs12=gcr-viewer.desktop
@@ -32,7 +31,6 @@ application/vnd.geo+json=org.gnome.Maps.desktop
 application/vnd.google-earth.kml+xml=org.gnome.Maps.desktop
 application/vnd.iccprofile=gcm-import.desktop
 application/vnd.ms-cab-compressed=gnome-software-local-file-fwupd.desktop
-application/vnd.ms-xpsdocument=org.gnome.Evince.desktop
 application/vnd.rar=org.gnome.Nautilus.desktop
 application/vnd.snap=gnome-software-local-file-snap.desktop
 application/x-7z-compressed=org.gnome.Nautilus.desktop
@@ -40,20 +38,20 @@ application/x-7z-compressed-tar=org.gnome.Nautilus.desktop
 application/x-bzip=org.gnome.Nautilus.desktop
 application/x-bzip-compressed-tar=org.gnome.Nautilus.desktop
 application/x-bzip2-compressed-tar=org.gnome.Nautilus.desktop
-application/x-bzpdf=org.gnome.Papers.desktop;org.gnome.Evince.desktop
+application/x-bzpdf=org.gnome.Papers.desktop
 application/x-cd-image=gnome-disk-image-mounter.desktop;org.gnome.Boxes.desktop
 application/x-compress=org.gnome.Nautilus.desktop
 application/x-compressed-tar=org.gnome.Nautilus.desktop
 application/x-cpio=org.gnome.Nautilus.desktop
 application/x-desktop=org.gnome.Builder.desktop
-application/x-ext-pdf=org.gnome.Papers.desktop;org.gnome.Evince.desktop
+application/x-ext-pdf=org.gnome.Papers.desktop
 application/x-font-otf=org.gnome.font-viewer.desktop
 application/x-font-pcf=org.gnome.font-viewer.desktop
 application/x-font-ttf=org.gnome.font-viewer.desktop
 application/x-font-type1=org.gnome.font-viewer.desktop
 application/x-gnome-app-info=org.gnome.Builder.desktop
 application/x-gzip=org.gnome.Nautilus.desktop
-application/x-gzpdf=org.gnome.Papers.desktop;org.gnome.Evince.desktop
+application/x-gzpdf=org.gnome.Papers.desktop
 application/x-javascript=org.gnome.Builder.desktop
 application/x-lha=org.gnome.Nautilus.desktop
 application/x-lzip=org.gnome.Nautilus.desktop
@@ -86,7 +84,7 @@ application/x-xar=org.gnome.Nautilus.desktop
 application/x-xpinstall=org.gnome.Epiphany.desktop
 application/x-xz=org.gnome.Nautilus.desktop
 application/x-xz-compressed-tar=org.gnome.Nautilus.desktop
-application/x-xzpdf=org.gnome.Papers.desktop;org.gnome.Evince.desktop
+application/x-xzpdf=org.gnome.Papers.desktop
 application/x-yaml=org.gnome.Builder.desktop
 application/x-zerosize=org.gnome.TextEditor.desktop
 application/x-zstd-compressed-tar=org.gnome.Nautilus.desktop
@@ -129,7 +127,7 @@ image/png=org.gnome.Loupe.desktop
 image/qoi=org.gnome.Loupe.desktop
 image/svg+xml=org.gnome.Loupe.desktop
 image/svg+xml-compressed=org.gnome.Loupe.desktop
-image/tiff=org.gnome.Loupe.desktop;org.gnome.Papers.desktop;org.gnome.Evince.desktop
+image/tiff=org.gnome.Loupe.desktop;org.gnome.Papers.desktop
 image/vnd-ms.dds=org.gnome.Loupe.desktop
 image/vnd.microsoft.icon=org.gnome.Loupe.desktop
 image/vnd.radiance=org.gnome.Loupe.desktop
@@ -239,6 +237,6 @@ x-scheme-handler/snap=org.gnome.Software.desktop
 x-scheme-handler/tel=org.gnome.Calls.desktop
 
 # Tracking data to catch stale overrides:
-#OVERRIDE image/tiff WAS org.gnome.Evince.desktop org.gnome.Loupe.desktop org.gnome.Papers.desktop
+#OVERRIDE image/tiff WAS org.gnome.Loupe.desktop org.gnome.Papers.desktop
 #OVERRIDE inode/directory WAS org.gnome.Nautilus.desktop org.gnome.baobab.desktop
 #OVERRIDE text/html WAS org.gnome.Builder.desktop org.gnome.Epiphany.desktop
