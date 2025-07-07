@@ -78,7 +78,7 @@ endif
 
 add_project_arguments(common_flags + compiler_flags, language: 'c')
 
-glib_req_version = '>= 2.46.0'
+glib_req_version = '>= 2.82.0'
 
 gio_dep = dependency('gio-2.0', version: glib_req_version)
 gtk_dep = dependency('gtk4')
