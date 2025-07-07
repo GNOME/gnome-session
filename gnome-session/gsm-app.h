@@ -32,7 +32,8 @@ G_BEGIN_DECLS
 #define GSM_TYPE_APP (gsm_app_get_type ())
 G_DECLARE_FINAL_TYPE (GsmApp, gsm_app, GSM, APP, GObject)
 
-GsmApp          *gsm_app_new                            (GDesktopAppInfo *info);
+GsmApp          *gsm_app_new                            (GDesktopAppInfo  *info,
+                                                         GError          **error);
 GsmApp          *gsm_app_new_for_path                   (const char  *path,
                                                          GError     **error);
 const char      *gsm_app_peek_app_id                    (GsmApp     *app);

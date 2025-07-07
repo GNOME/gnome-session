@@ -300,10 +300,6 @@ _start_app (const char *id,
             GsmApp     *app,
             GsmManager *manager)
 {
-        if (gsm_app_peek_phase (app) != manager->phase) {
-                goto out;
-        }
-
         if (gsm_app_peek_is_disabled (app)) {
                 g_debug ("GsmManager: Skipping disabled app: %s", id);
                 goto out;
@@ -816,10 +812,6 @@ _debug_app_for_phase (const char *id,
                       GsmApp     *app,
                       gpointer    data)
 {
-        if (gsm_app_peek_phase (app) != GSM_MANAGER_PHASE_APPLICATION) {
-                return FALSE;
-        }
-
         g_debug ("GsmManager:\tapp-id:%s\tis-disabled:%d",
                  gsm_app_peek_app_id (app),
                  gsm_app_peek_is_disabled (app));

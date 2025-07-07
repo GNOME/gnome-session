@@ -54,14 +54,11 @@ struct _GsmApp
 {
         GObject          parent;
         GDesktopAppInfo *inner;
-
-        int              phase;
 };
 
 enum {
         PROP_0,
         PROP_INNER,
-        PROP_PHASE,
         LAST_PROP
 };
 
@@ -83,15 +80,6 @@ gsm_app_set_inner (GsmApp          *app,
 }
 
 static void
-gsm_app_set_phase (GsmApp *app,
-                   int     phase)
-{
-        g_return_if_fail (GSM_IS_APP (app));
-
-        app->phase = phase;
-}
-
-static void
 gsm_app_set_property (GObject      *object,
                       guint         prop_id,
                       const GValue *value,
@@ -102,9 +90,6 @@ gsm_app_set_property (GObject      *object,
         switch (prop_id) {
         case PROP_INNER:
                 gsm_app_set_inner (app, g_value_get_object (value));
-                break;
-        case PROP_PHASE:
-                gsm_app_set_phase (app, g_value_get_int (value));
                 break;
         default:
                 break;
@@ -122,9 +107,6 @@ gsm_app_get_property (GObject    *object,
         switch (prop_id) {
         case PROP_INNER:
                 g_value_set_object (value, app->inner);
-                break;
-        case PROP_PHASE:
-                g_value_set_int (value, app->phase);
                 break;
         default:
                 break;
@@ -157,15 +139,6 @@ gsm_app_class_init (GsmAppClass *klass)
                                                               "Inner",
                                                               G_TYPE_DESKTOP_APP_INFO,
                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
-        g_object_class_install_property (object_class,
-                                         PROP_PHASE,
-                                         g_param_spec_int ("phase",
-                                                           "Phase",
-                                                           "Phase",
-                                                           -1,
-                                                           G_MAXINT,
-                                                           -1,
-                                                           G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 }
 
 const char *
@@ -174,22 +147,6 @@ gsm_app_peek_app_id (GsmApp *app)
         g_return_val_if_fail (GSM_IS_APP (app), NULL);
 
         return g_app_info_get_id (G_APP_INFO (app->inner));
-}
-
-/**
- * gsm_app_peek_phase:
- * @app: a %GsmApp
- *
- * Returns @app's startup phase.
- *
- * Return value: @app's startup phase
- **/
-GsmManagerPhase
-gsm_app_peek_phase (GsmApp *app)
-{
-        g_return_val_if_fail (GSM_IS_APP (app), GSM_MANAGER_PHASE_APPLICATION);
-
-        return app->phase;
 }
 
 gboolean
@@ -299,14 +256,22 @@ gsm_app_start (GsmApp  *app,
 }
 
 GsmApp *
-gsm_app_new (GDesktopAppInfo  *info)
+gsm_app_new (GDesktopAppInfo  *info,
+             GError          **error)
 {
+        g_autofree char *app_phase = NULL;
+
         g_return_val_if_fail (info != NULL, NULL);
 
-        return g_object_new (GSM_TYPE_APP,
-                             "inner", info,
-                             "phase", GSM_MANAGER_PHASE_APPLICATION,
-                             NULL);
+        app_phase = g_desktop_app_info_get_string (info, GSM_APP_PHASE_KEY);
+        if (app_phase && strcmp (app_phase, "Application") != 0) {
+                g_set_error (error, G_IO_ERROR, G_IO_ERROR_FAILED,
+                             "App %s sets " GSM_APP_PHASE_KEY ", but gnome-session no longer manages session services",
+                             g_app_info_get_id (G_APP_INFO(info)));
+                return NULL;
+        }
+
+        return g_object_new (GSM_TYPE_APP, "inner", info, NULL);
 }
 
 GsmApp *
@@ -314,7 +279,6 @@ gsm_app_new_for_path (const char  *path,
                       GError     **error)
 {
         g_autoptr (GDesktopAppInfo) info = NULL;
-        GsmApp *app = NULL;
 
         g_return_val_if_fail (path != NULL, NULL);
 
@@ -326,7 +290,5 @@ gsm_app_new_for_path (const char  *path,
                 return NULL;
         }
 
-        app = gsm_app_new (info);
-
-        return app;
+        return gsm_app_new (info, error);
 }
