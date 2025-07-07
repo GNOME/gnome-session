@@ -1,3 +1,21 @@
+==========
+Unreleased
+==========
+
+- gnome-session is no longer started via a shell script, and instead all of
+  the necessary setup is done in C.
+- gnome-session's builtin service manager has been completely removed. Service
+  management will now be handled entirely by the operating system's native
+  service manager (i.e. systemd).
+- The "fail whale" dialog has been removed
+- Various unused APIs and interfaces were removed, including:
+	- The org.gnome.SessionManager.Client and o.g.SM.App D-Bus interfaces
+	- Various D-Bus APIs related to the service manager
+	- Various .desktop and .session file keys that were used only by the
+	  builtin service manager
+	- Fallback sessions, since there's no way to fall back anymore
+- The code was significantly refactored
+
 ==================
 Version 49.alpha.1
 ==================
