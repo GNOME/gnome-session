@@ -19,7 +19,7 @@ include:
 
 build-fedora:
   stage: "build"
-  image: "fedora:40"
+  image: "fedora:42"
   variables:
     _DEST: "$CI_PROJECT_DIR/destdir/"
     MESON_OPTIONS: >-
