@@ -16,15 +16,15 @@
 # Muhammet Kara <muhammetk@gmail.com>, 2011-2015.
 # Çağatay Yiğit Şahin <cyigitsahin@outlook.com>, 2017, 2018.
 # Sabri Ünal <yakushabb@gmail.com>, 2019, 2022-2024.
-# Emin Tufan Çetin <etcetin@gmail.com>, 2017-2024.
+# Emin Tufan Çetin <etcetin@gmail.com>, 2017-2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2024-07-29 23:21+0000\n"
-"PO-Revision-Date: 2024-05-07 12:06+0300\n"
-"Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
+"POT-Creation-Date: 2025-06-23 18:48+0000\n"
+"PO-Revision-Date: 2025-07-13 08:00+0300\n"
+"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -32,14 +32,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 3.4.2\n"
-
-#: data/gnome-custom-session.desktop.in.in:3
-msgid "Custom"
-msgstr "Özel"
-
-#: data/gnome-custom-session.desktop.in.in:4
-msgid "This entry lets you select a saved session"
-msgstr "Bu girdi, kaydedilmiş oturum seçmenizi sağlar"
 
 #: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
 msgid "GNOME"
@@ -50,10 +42,6 @@ msgstr "GNOME"
 msgid "This session logs you into GNOME"
 msgstr "Bu oturum GNOME’a girmenizi sağlar"
 
-#: data/gnome-dummy.session.desktop.in.in:3
-msgid "GNOME dummy"
-msgstr "GNOME dummy"
-
 #: data/gnome-wayland.desktop.in.in:3
 msgid "GNOME on Wayland"
 msgstr "Wayland üzerinde GNOME"
@@ -63,39 +51,19 @@ msgid "GNOME on Xorg"
 msgstr "Xorg üzerinde GNOME"
 
 #: data/org.gnome.SessionManager.gschema.xml:5
-msgid "Save sessions"
-msgstr "Oturumları kaydet"
-
-#: data/org.gnome.SessionManager.gschema.xml:6
-msgid "If enabled, gnome-session will save the session automatically."
-msgstr "Etkinse, gnome-session, oturumu kendiliğinden kaydedecektir."
-
-#: data/org.gnome.SessionManager.gschema.xml:10
-msgid "Save this session"
-msgstr "Bu oturumu kaydet"
-
-#: data/org.gnome.SessionManager.gschema.xml:11
-msgid ""
-"When enabled, gnome-session will automatically save the next session at log "
-"out even if auto saving is disabled."
-msgstr ""
-"Etkinleştirildiğinde; gnome-session, kendiliğinden kaydetme devre dışı olsa "
-"bile oturum kapatıldığında sonraki oturumu kendiliğinden kaydedecektir."
-
-#: data/org.gnome.SessionManager.gschema.xml:15
 msgid "Logout prompt"
 msgstr "Oturum kapatma istemi"
 
-#: data/org.gnome.SessionManager.gschema.xml:16
+#: data/org.gnome.SessionManager.gschema.xml:6
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 "Etkinse, gnome-session, oturumu bitirmeden önce kullanıcıya soracaktır."
 
-#: data/org.gnome.SessionManager.gschema.xml:20
+#: data/org.gnome.SessionManager.gschema.xml:10
 msgid "Show the fallback warning"
 msgstr "Yedeğe dönüş uyarısını göster"
 
-#: data/org.gnome.SessionManager.gschema.xml:21
+#: data/org.gnome.SessionManager.gschema.xml:11
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
@@ -103,42 +71,18 @@ msgstr ""
 "Etkinse, gnome-session, oturum kendiliğinden yedeğe düşmüşse girişin "
 "ardından uyarı penceresi gösterecektir."
 
-#: data/session-selector.ui:15
-msgid "Custom Session"
-msgstr "Özel Oturum"
+#: gnome-session/gsm-fail-whale-dialog.c:90
+msgid "Oh no! Something has gone wrong."
+msgstr "Hayda! Bir şeyler yanlış gitti."
 
-#: data/session-selector.ui:50 tools/gnome-session-selector.c:102
-msgid "Please select a custom session to run"
-msgstr "Lütfen çalıştırılacak özel oturum seçin"
-
-#: data/session-selector.ui:105
-msgid "_New Session"
-msgstr "_Yeni Oturum"
-
-#: data/session-selector.ui:119
-msgid "_Remove Session"
-msgstr "Oturumu _Kaldır"
-
-#: data/session-selector.ui:133
-msgid "Rena_me Session"
-msgstr "Oturumu Yeniden _Adlandır"
-
-#: data/session-selector.ui:168
-msgid "_Continue"
-msgstr "_Sürdür"
-
-#: gnome-session/gsm-fail-whale-dialog.c:318
-msgid "Oh no!  Something has gone wrong."
-msgstr "Hayda!  Bir şeyler yanlış gitti."
-
-#: gnome-session/gsm-fail-whale-dialog.c:325
+#: gnome-session/gsm-fail-whale-dialog.c:97
 msgid ""
 "A problem has occurred and the system can’t recover. Please contact a system "
 "administrator"
 msgstr ""
 "Sorun oluştu ve sistem kurtarılamıyor. Lütfen sistem yöneticisine başvurun"
 
-#: gnome-session/gsm-fail-whale-dialog.c:327
+#: gnome-session/gsm-fail-whale-dialog.c:99
 msgid ""
 "A problem has occurred and the system can’t recover. All extensions have "
 "been disabled as a precaution."
@@ -146,7 +90,7 @@ msgstr ""
 "Sorun oluştu ve sistem kurtarılamıyor. Önlem olarak tüm uzantılar devre dışı "
 "bırakıldı."
 
-#: gnome-session/gsm-fail-whale-dialog.c:329
+#: gnome-session/gsm-fail-whale-dialog.c:101
 msgid ""
 "A problem has occurred and the system can’t recover.\n"
 "Please log out and try again."
@@ -154,91 +98,68 @@ msgstr ""
 "Sorun oluştu ve sistem kurtarılamıyor.\n"
 "Lütfen oturumu kapatıp yeniden deneyin."
 
-#: gnome-session/gsm-fail-whale-dialog.c:344
+#: gnome-session/gsm-fail-whale-dialog.c:109
 msgid "_Log Out"
 msgstr "_Oturumu Kapat"
 
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:505
+#: gnome-session/gsm-fail-whale-dialog.c:153 gnome-session/main.c:479
 msgid "Enable debugging code"
 msgstr "Kod hatası ayıklamayı etkinleştir"
 
-#: gnome-session/gsm-fail-whale-dialog.c:413
+#: gnome-session/gsm-fail-whale-dialog.c:154
 msgid "Allow logout"
 msgstr "Oturumu kapatmaya izin ver"
 
-#: gnome-session/gsm-fail-whale-dialog.c:414
+#: gnome-session/gsm-fail-whale-dialog.c:155
 msgid "Show extension warning"
 msgstr "Uzantı uyarısını göster"
 
-#: gnome-session/gsm-manager.c:1301 gnome-session/gsm-manager.c:2050
+#: gnome-session/gsm-manager.c:1292 gnome-session/gsm-manager.c:1907
 msgid "Not responding"
 msgstr "Yanıtlamıyor"
 
-#: gnome-session/gsm-util.c:431
+#: gnome-session/gsm-util.c:342
 msgid "_Log out"
 msgstr "_Oturumu kapat"
 
-#. It'd be really surprising to reach this code: if we're here,
-#. * then the XSMP client already has set several XSMP
-#. * properties. But it could still be that SmProgram is not set.
-#.
-#: gnome-session/gsm-xsmp-client.c:557
-msgid "Remembered Application"
-msgstr "Anımsanan Uygulama"
-
-#: gnome-session/gsm-xsmp-client.c:1216
-msgid "This program is blocking logout."
-msgstr "Bu program, oturumu kapatmayı engelliyor."
-
-#: gnome-session/gsm-xsmp-server.c:340
-msgid ""
-"Refusing new client connection because the session is currently being shut "
-"down\n"
-msgstr "Oturum şu anda kapatıldığından yeni istemci bağlantısı reddediliyor\n"
-
-#: gnome-session/gsm-xsmp-server.c:607
-#, c-format
-msgid "Could not create ICE listening socket: %s"
-msgstr "ICE dinleme soketi oluşturulamadı: %s"
-
-#: gnome-session/main.c:502
+#: gnome-session/main.c:476
 msgid "Running as systemd service"
 msgstr "systemd hizmeti olarak çalışıyor"
 
-#: gnome-session/main.c:503
+#: gnome-session/main.c:477
 msgid "Override standard autostart directories"
 msgstr "Standart kendiliğinden başlat dizinlerinin yerine geç"
 
-#: gnome-session/main.c:503
+#: gnome-session/main.c:477
 msgid "AUTOSTART_DIR"
 msgstr "KENDILIGINDANBASLAT_DIZINI"
 
-#: gnome-session/main.c:504
+#: gnome-session/main.c:478
 msgid "Session to use"
 msgstr "Kullanılacak oturum"
 
-#: gnome-session/main.c:504
+#: gnome-session/main.c:478
 msgid "SESSION_NAME"
 msgstr "OTURUM_ADI"
 
-#: gnome-session/main.c:506
+#: gnome-session/main.c:480
 msgid "Do not load user-specified applications"
 msgstr "Kullanıcıya özel programları yükleme"
 
-#: gnome-session/main.c:507
+#: gnome-session/main.c:481
 msgid "Version of this application"
 msgstr "Bu uygulamanın sürümü"
 
 #. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:509
+#: gnome-session/main.c:483
 msgid "Show the fail whale dialog for testing"
 msgstr "Sınama için büyük hata iletişim penceresini göster"
 
-#: gnome-session/main.c:510
-msgid "Disable hardware acceleration check"
-msgstr "Donanım hızlandırma denetimini devre dışı bırak"
+#: gnome-session/main.c:484
+msgid "This option is ignored"
+msgstr "Bu seçenek yok sayıldı"
 
-#: gnome-session/main.c:542
+#: gnome-session/main.c:516
 msgid " — the GNOME session manager"
 msgstr " — GNOME oturum yöneticisi"
 
@@ -270,60 +191,72 @@ msgstr "Hizmet hatasında gnome-session-failed.target’ı ExecStopPost’tan ba
 msgid "Program needs exactly one parameter"
 msgstr "Program tam olarak bir parametreye gereksiniyor"
 
-#: tools/gnome-session-inhibit.c:108
+#: tools/gnome-session-inhibit.c:69
 #, c-format
+msgid "Unknown inhibit argument: %s"
+msgstr "Bilinmeyen önleme argümanı: %s"
+
+#: tools/gnome-session-inhibit.c:289
+#, c-format
+msgid "Failed to execute %s: %m\n"
+msgstr "%s çalıştırılamadı: %m\n"
+
+#: tools/gnome-session-inhibit.c:361
+msgid "Show program version"
+msgstr "Program sürümünü göster"
+
+#: tools/gnome-session-inhibit.c:362
+msgid "The application id to use when inhibiting (optional)"
+msgstr "Önlenirken kullanılacak uygulama kimliği (isteğe bağlı)"
+
+#: tools/gnome-session-inhibit.c:362
+msgid "ID"
+msgstr "KİMLİK"
+
+#: tools/gnome-session-inhibit.c:363
+msgid "The reason for inhibiting (optional)"
+msgstr "Önleme nedeni (isteğe bağlı)"
+
+#: tools/gnome-session-inhibit.c:363
+msgid "REASON"
+msgstr "NEDEN"
+
+#: tools/gnome-session-inhibit.c:364
+msgid "Add action to inhibit (repeatable)"
+msgstr "Önlemeye eylem ekle (yinelenebilir)"
+
+#: tools/gnome-session-inhibit.c:364
+msgid "ACTION"
+msgstr "EYLEM"
+
+#: tools/gnome-session-inhibit.c:365
+msgid "Do not launch COMMAND and wait forever instead"
+msgstr "KOMUTU çalıştırma ve bunun yerine sonsuza dek bekle"
+
+#: tools/gnome-session-inhibit.c:366
+msgid "List the existing inhibitions, and exit"
+msgstr "Var olan önlemeleri listele ve çık"
+
+#: tools/gnome-session-inhibit.c:378
+msgid "COMMAND"
+msgstr "KOMUT"
+
+#: tools/gnome-session-inhibit.c:384
+msgid "Execute COMMAND while inhibiting some session functionality."
+msgstr "Bazı oturum işlevselliğini önlerken KOMUTU çalıştır"
+
+#: tools/gnome-session-inhibit.c:385
 msgid ""
-"%s [OPTION…] COMMAND\n"
-"\n"
-"Execute COMMAND while inhibiting some session functionality.\n"
-"\n"
-"  -h, --help        Show this help\n"
-"  --version         Show program version\n"
-"  --app-id ID       The application id to use\n"
-"                    when inhibiting (optional)\n"
-"  --reason REASON   The reason for inhibiting (optional)\n"
-"  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
-"                    logout, switch-user, suspend, idle, automount\n"
-"  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
-"  -l, --list        List the existing inhibitions, and exit\n"
-"\n"
-"If no --inhibit option is specified, idle is assumed.\n"
+"Valid ACTION values are: logout, switch-user, suspend, idle, and automount.\n"
+"If no --inhibit options are specified, idle is assumed."
 msgstr ""
-"%s [SEÇENEK…] KOMUT\n"
-"\n"
-"Bazı oturum işlevlerini kısıtlayarak KOMUT çalıştır.\n"
-"\n"
-"  -h, --help        Bu yardımı göster\n"
-"  --version         Program sürümünü göster\n"
-"  --app-id ID       Kısıtlama yapılırken kullanılacak\n"
-"                    uygulama ID’si (isteğe bağlı)\n"
-"  --reason REASON   Kısıtlama nedeni (isteğe bağlı)\n"
-"  --inhibit ARG     Kısıtlamaların virgülle ayrılmış listesi:\n"
-"                    logout, switch-user, suspend, idle, automount\n"
-"  --inhibit-only    KOMUT’u çalıştırmak yerine sürekli bekle\n"
-"  -l, --list        Var olan kısıtlamaları göster ve çık\n"
-"\n"
-"Eğer hiç --inhibit seçeneği verilmediyse, idle kısıtı kabul edilir.\n"
+"Geçerli EYLEM değerleri şunlardır: logout (oturumu kapat), switch-user (kullanıcı değiştir), "
+"suspend (askıya al), idle (boşta) ve automount (kendiliğinden bağla).\n"
+"Eğer herhangi bir --inhibit seçeneği belirtilmezse idle (boşta) kullanılır."
 
-#: tools/gnome-session-inhibit.c:282
-#, c-format
-msgid "Error while creating pipe: %s\n"
-msgstr "Boru oluşturulurken hata: %s\n"
-
-#: tools/gnome-session-inhibit.c:299
-msgid "Failure reading pipe\n"
-msgstr "Boru okuma hatası\n"
-
-#: tools/gnome-session-inhibit.c:303
-#, c-format
-msgid "Failed to execute %s\n"
-msgstr "%s çalıştırılamadı\n"
-
-#: tools/gnome-session-inhibit.c:376 tools/gnome-session-inhibit.c:386
-#: tools/gnome-session-inhibit.c:396
-#, c-format
-msgid "%s requires an argument\n"
-msgstr "%s için parametre eksik\n"
+#: tools/gnome-session-inhibit.c:409
+msgid "Neither COMMAND nor --inhibit-only were specified."
+msgstr "Ne KOMUT ne de --inhibit-only belirtildi."
 
 #: tools/gnome-session-quit.c:50
 msgid "Log out"
@@ -335,11 +268,11 @@ msgstr "Bilgisayarı kapat"
 
 #: tools/gnome-session-quit.c:52
 msgid "Reboot"
-msgstr "Yeniden Başlat"
+msgstr "Yeniden başlat"
 
 #: tools/gnome-session-quit.c:53
 msgid "Ignoring any existing inhibitors"
-msgstr "Var olan tüm engelleyiciler yok sayılıyor"
+msgstr "Var olan tüm önleyiciler yok sayılıyor"
 
 #: tools/gnome-session-quit.c:54
 msgid "Don’t prompt for user confirmation"
@@ -352,26 +285,3 @@ msgstr "Oturum yöneticisine bağlanılamadı"
 #: tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
 msgstr "Program çakışan seçeneklerle çağırıldı"
-
-#: tools/gnome-session-selector.c:61
-#, c-format
-msgid "Session %d"
-msgstr "%d Oturumu"
-
-#: tools/gnome-session-selector.c:107
-msgid ""
-"Session names are not allowed to start with “.” or contain “/” characters"
-msgstr "Oturum adları “.” ile başlayamaz ve “/” karakterini içeremez"
-
-#: tools/gnome-session-selector.c:111
-msgid "Session names are not allowed to start with “.”"
-msgstr "Oturum adları “.” ile başlayamaz"
-
-#: tools/gnome-session-selector.c:115
-msgid "Session names are not allowed to contain “/” characters"
-msgstr "Oturum adları “/” karakterini içeremez"
-
-#: tools/gnome-session-selector.c:123
-#, c-format
-msgid "A session named “%s” already exists"
-msgstr "“%s” adında oturum var"
