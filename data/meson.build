@@ -60,51 +60,12 @@ if have_x11
   endforeach
 endif
 
-# Next, let's configure the required components for a session.
+# Next, let's install the necessary systemd scaffolding
 
-required_components = [
-  'org.gnome.Shell',
-]
-
-wanted_components = [
-  'org.gnome.SettingsDaemon.A11ySettings',
-  'org.gnome.SettingsDaemon.Color',
-  'org.gnome.SettingsDaemon.Datetime',
-  'org.gnome.SettingsDaemon.Housekeeping',
-  'org.gnome.SettingsDaemon.Keyboard',
-  'org.gnome.SettingsDaemon.MediaKeys',
-  'org.gnome.SettingsDaemon.Power',
-  'org.gnome.SettingsDaemon.PrintNotifications',
-  'org.gnome.SettingsDaemon.Rfkill',
-  'org.gnome.SettingsDaemon.ScreensaverProxy',
-  'org.gnome.SettingsDaemon.Sharing',
-  'org.gnome.SettingsDaemon.Smartcard',
-  'org.gnome.SettingsDaemon.Sound',
-  'org.gnome.SettingsDaemon.UsbProtection',
-  'org.gnome.SettingsDaemon.Wwan',
-]
-
-wanted_targets = []
-foreach component: wanted_components
-  wanted_targets += 'Wants=@0@.target'.format(component)
-endforeach
-
-required_targets = []
-foreach component: required_components
-  wanted_targets += 'Requires=@0@.target'.format(component)
-endforeach
-
-configure_file(
-  input: 'gnome.session.conf.in',
-  output: 'gnome.session.conf',
-  configuration: {
-    'wants_components': '\n'.join(wanted_targets),
-    'requires_components': '\n'.join(required_targets),
-  },
-  install_dir: systemd_userunitdir / 'gnome-session@gnome.target.d',
+install_data(
+    'gnome.session.conf',
+    install_dir: systemd_userunitdir / 'gnome-session@gnome.target.d',
 )
-
-# Install the other necessary systemd scaffolding
 
 systemd_service = [
   'gnome-session-manager@.service',
