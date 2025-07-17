@@ -84,35 +84,6 @@ wanted_components = [
   'org.gnome.SettingsDaemon.Wwan',
 ]
 
-# Generate the legacy "builtin" session configuration. In this mode, gnome-session
-# parses <session>.session files that list other .desktop files to start and
-# manage. gnome-session then does this management on its own.
-
-builtin_required = required_components + wanted_components
-desktop = 'gnome.session.desktop'
-desktop_in = configure_file(
-  input: desktop + '.in.in',
-  output: desktop + '.in',
-  configuration: {
-    'libexecdir': session_libexecdir,
-    'required_components': ';'.join(builtin_required),
-  }
-)
-
-i18n.merge_file(
-  type: 'desktop',
-  input: desktop_in,
-  output: 'gnome.session',
-  po_dir: po_dir,
-  install: true,
-  install_dir: join_paths(session_pkgdatadir, 'sessions')
-)
-
-# Generate the systemd session configuration. In this mode, gnome-session lets
-# systemd start and manage the necessary session components. These are defined
-# via systemd unit files. The list of required components to start comes via a
-# drop-in file for gnome-session@<session>.target
-
 wanted_targets = []
 foreach component: wanted_components
   wanted_targets += 'Wants=@0@.target'.format(component)
@@ -194,6 +165,15 @@ install_data(
 )
 
 # Install some other misc. configuration files
+
+i18n.merge_file(
+  type: 'desktop',
+  input: 'gnome.session.desktop',
+  output: 'gnome.session',
+  po_dir: po_dir,
+  install: true,
+  install_dir: join_paths(session_pkgdatadir, 'sessions')
+)
 
 install_data(
   'org.gnome.SessionManager.gschema.xml',
