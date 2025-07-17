@@ -1,0 +1,47 @@
+[Unit]
+Description=GNOME basic session services
+OnFailure=gnome-session-shutdown.target
+OnFailureJobMode=replace-irreversibly
+DefaultDependencies=no
+RefuseManualStart=yes
+RefuseManualStop=yes
+
+Requisite=gnome-session-initialized.target
+After=gnome-session-initialized.target
+PartOf=gnome-session-initialized.target
+
+Requisite=gnome-session.target
+PartOf=gnome-session.target
+Before=gnome-session.target
+
+Requires=org.gnome.Shell.target
+
+# Manages a11y settings, starts Orca when needed
+Wants=org.gnome.SettingsDaemon.A11ySettings.target
+
+# Migrates some input-method settings from previous
+# versions of GNOME
+Wants=org.gnome.SettingsDaemon.Keyboard.target
+
+# Handles keyboard keybindings
+Wants=org.gnome.SettingsDaemon.MediaKeys.target
+
+# Power management service: auto-suspend, display
+# brightness, screensaver, etc
+Wants=org.gnome.SettingsDaemon.Power.target
+
+# Service to shutdown radio hardware (wifi, bt, wwan)
+Wants=org.gnome.SettingsDaemon.Rfkill.target
+
+# org.freedesktop.ScreenSaver API
+Wants=org.gnome.SettingsDaemon.ScreensaverProxy.target
+
+# File/media sharing services, and remote desktop
+# (Manages remote desktop handover on login screen)
+Wants=org.gnome.SettingsDaemon.Sharing.target
+
+# Handles smart card insertion/removal
+Wants=org.gnome.SettingsDaemon.Smartcard.target
+
+# USBGuard integration
+Wants=org.gnome.SettingsDaemon.UsbProtection.target
