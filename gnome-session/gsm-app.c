@@ -33,9 +33,10 @@
 #include "gsm-app.h"
 #include "gsm-util.h"
 
-#define GSM_APP_SYSTEMD_KEY     "X-GNOME-HiddenUnderSystemd"
-#define GSM_APP_ENABLED_KEY     "X-GNOME-Autostart-enabled"
-#define GSM_APP_PHASE_KEY       "X-GNOME-Autostart-Phase"
+#define GSM_APP_SYSTEMD_SKIP_KEY   "X-systemd-skip"
+#define GSM_APP_SYSTEMD_HIDDEN_KEY "X-GNOME-HiddenUnderSystemd"
+#define GSM_APP_ENABLED_KEY        "X-GNOME-Autostart-enabled"
+#define GSM_APP_PHASE_KEY          "X-GNOME-Autostart-Phase"
 
 /* This comment is a record of keys that were previously used but are not used
  * anymore. We keep this so that we don't accidentally redefine these keys in
@@ -177,8 +178,13 @@ gsm_app_peek_is_disabled (GsmApp *app)
         }
 
         /* Check if app is systemd enabled */
-        if (g_desktop_app_info_get_boolean (app->inner, GSM_APP_SYSTEMD_KEY)) {
-                g_debug ("App %s is disabled by " GSM_APP_SYSTEMD_KEY,
+        if (g_desktop_app_info_get_boolean (app->inner, GSM_APP_SYSTEMD_HIDDEN_KEY)) {
+                g_debug ("App %s is disabled by " GSM_APP_SYSTEMD_HIDDEN_KEY,
+                         gsm_app_peek_app_id (app));
+                return TRUE;
+        }
+        if (g_desktop_app_info_get_boolean (app->inner, GSM_APP_SYSTEMD_SKIP_KEY)) {
+                g_debug ("App %s is disabled by " GSM_APP_SYSTEMD_SKIP_KEY,
                          gsm_app_peek_app_id (app));
                 return TRUE;
         }
