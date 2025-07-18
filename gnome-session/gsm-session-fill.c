@@ -34,6 +34,9 @@ load_standard_apps (GsmManager *manager,
         char **autostart_dirs;
         int    i;
 
+        if (g_key_file_get_boolean (keyfile, GSM_KEYFILE_SESSION_GROUP, "Kiosk", NULL))
+                return;
+
         autostart_dirs = gsm_util_get_autostart_dirs ();
         for (i = 0; autostart_dirs[i]; i++) {
                 gsm_manager_add_autostart_apps_from_dir (manager,
