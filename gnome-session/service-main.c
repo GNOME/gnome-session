@@ -141,7 +141,6 @@ main (int argc, char **argv)
         g_autoptr (GError) error = NULL;
         g_autoptr (GOptionContext) options = NULL;
         const char *debug = NULL;
-        const char *override_autostart_dirs = NULL;
         guint name_owner_id;
         static GOptionEntry entries[] = {
                 { "session", 0, 0, G_OPTION_ARG_STRING, &session_name, N_("Session to use"), N_("SESSION_NAME") },
@@ -161,13 +160,6 @@ main (int argc, char **argv)
         debug = g_getenv ("GNOME_SESSION_DEBUG");
         if (debug != NULL)
                 g_log_set_debug_enabled (atoi (debug) == 1);
-
-        override_autostart_dirs = g_getenv ("GNOME_SESSION_AUTOSTART_DIR");
-        if (!IS_STRING_EMPTY (override_autostart_dirs)) {
-                g_auto(GStrv) split = NULL;
-                split = g_strsplit (override_autostart_dirs, ":", 0);
-                gsm_util_set_autostart_dirs (split);
-        }
 
         /* Talk to logind before acquiring a name, since it does synchronous
          * calls at initialization time that invoke a main loop and if we

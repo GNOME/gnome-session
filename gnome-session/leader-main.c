@@ -520,7 +520,6 @@ int
 main (int argc, char **argv)
 {
         g_autoptr (GError) error = NULL;
-        g_auto (GStrv) autostart_dirs = NULL;
         g_autofree char *session_name = NULL;
         gboolean debug = FALSE;
         gboolean show_version = FALSE;
@@ -531,7 +530,6 @@ main (int argc, char **argv)
         g_auto (GStrv) argv_dup = NULL;
 
         GOptionEntry entries[] = {
-                { "autostart", 'a', 0, G_OPTION_ARG_STRING_ARRAY, &autostart_dirs, N_("Override standard autostart directories"), N_("AUTOSTART_DIR") },
                 { "session", 0, 0, G_OPTION_ARG_STRING, &session_name, N_("Session to use"), N_("SESSION_NAME") },
                 { "debug", 0, 0, G_OPTION_ARG_NONE, &debug, N_("Enable debugging code"), NULL },
                 { "version", 0, 0, G_OPTION_ARG_NONE, &show_version, N_("Version of this application"), NULL },
@@ -581,11 +579,6 @@ main (int argc, char **argv)
 
         if (disable_acceleration_check)
                 g_warning ("Wayland assumes that acceleration works, so --disable-acceleration-check is deprecated!");
-
-        if (autostart_dirs) {
-                g_autofree char *joined = g_strjoinv (":", autostart_dirs);
-                g_setenv ("GNOME_SESSION_AUTOSTART_DIR", joined, TRUE);
-        }
 
         set_up_environment ();
 

@@ -26,11 +26,6 @@ G_BEGIN_DECLS
 
 gchar**     gsm_util_get_app_dirs                   (void);
 
-gchar**     gsm_util_get_autostart_dirs             (void);
-void        gsm_util_set_autostart_dirs             (char **dirs);
-
-gchar **    gsm_util_get_desktop_dirs               (gboolean autostart_first);
-
 gboolean    gsm_util_text_is_blank                  (const char *str);
 
 void        gsm_util_init_error                     (gboolean    fatal,

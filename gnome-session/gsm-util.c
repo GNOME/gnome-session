@@ -83,57 +83,6 @@ static const char * const variable_unsetlist[] = {
     NULL
 };
 
-static char ** autostart_dirs;
-
-void
-gsm_util_set_autostart_dirs (char ** dirs)
-{
-        autostart_dirs = g_strdupv (dirs);
-}
-
-static char **
-gsm_util_get_standard_autostart_dirs (void)
-{
-        GPtrArray          *dirs;
-        const char * const *system_config_dirs;
-        const char * const *system_data_dirs;
-        int                 i;
-
-        dirs = g_ptr_array_new ();
-
-        g_ptr_array_add (dirs,
-                         g_build_filename (g_get_user_config_dir (),
-                                           "autostart", NULL));
-
-        system_data_dirs = g_get_system_data_dirs ();
-        for (i = 0; system_data_dirs[i]; i++) {
-                g_ptr_array_add (dirs,
-                                 g_build_filename (system_data_dirs[i],
-                                                   "gnome", "autostart", NULL));
-        }
-
-        system_config_dirs = g_get_system_config_dirs ();
-        for (i = 0; system_config_dirs[i]; i++) {
-                g_ptr_array_add (dirs,
-                                 g_build_filename (system_config_dirs[i],
-                                                   "autostart", NULL));
-        }
-
-        g_ptr_array_add (dirs, NULL);
-
-        return (char **) g_ptr_array_free (dirs, FALSE);
-}
-
-char **
-gsm_util_get_autostart_dirs ()
-{
-        if (autostart_dirs) {
-                return g_strdupv ((char **)autostart_dirs);
-        }
-
-        return gsm_util_get_standard_autostart_dirs ();
-}
-
 char **
 gsm_util_get_app_dirs ()
 {
@@ -159,71 +108,6 @@ gsm_util_get_app_dirs ()
         g_ptr_array_add (dirs, NULL);
 
         return (char **) g_ptr_array_free (dirs, FALSE);
-}
-
-char **
-gsm_util_get_desktop_dirs (gboolean autostart_first)
-{
-        char **apps;
-        char **autostart;
-        char **standard_autostart;
-        char **result;
-        int    size;
-        int    i;
-
-        apps = gsm_util_get_app_dirs ();
-        autostart = gsm_util_get_autostart_dirs ();
-
-        /* Still, check the standard autostart dirs for things like fulfilling session reqs,
-         * if using a non-standard autostart dir for autostarting */
-        if (autostart_dirs != NULL)
-                standard_autostart = gsm_util_get_standard_autostart_dirs ();
-        else
-                standard_autostart = NULL;
-
-        size = 0;
-        for (i = 0; apps[i] != NULL; i++) { size++; }
-        for (i = 0; autostart[i] != NULL; i++) { size++; }
-        if (standard_autostart != NULL)
-                for (i = 0; standard_autostart[i] != NULL; i++) { size++; }
-
-        result = g_new (char *, size + 1); /* including last NULL */
-
-        size = 0;
-
-        if (autostart_first) {
-                for (i = 0; autostart[i] != NULL; i++, size++) {
-                        result[size] = autostart[i];
-                }
-                if (standard_autostart != NULL) {
-                        for (i = 0; standard_autostart[i] != NULL; i++, size++) {
-                                result[size] = standard_autostart[i];
-                        }
-                }
-                for (i = 0; apps[i] != NULL; i++, size++) {
-                        result[size] = apps[i];
-                }
-        } else {
-                for (i = 0; apps[i] != NULL; i++, size++) {
-                        result[size] = apps[i];
-                }
-                if (standard_autostart != NULL) {
-                        for (i = 0; standard_autostart[i] != NULL; i++, size++) {
-                                result[size] = standard_autostart[i];
-                        }
-                }
-                for (i = 0; autostart[i] != NULL; i++, size++) {
-                        result[size] = autostart[i];
-                }
-        }
-
-        g_free (apps);
-        g_free (autostart);
-        g_free (standard_autostart);
-
-        result[size] = NULL;
-
-        return result;
 }
 
 gboolean

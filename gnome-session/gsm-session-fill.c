@@ -23,7 +23,6 @@
 
 #include "gsm-system.h"
 #include "gsm-manager.h"
-#include "gsm-util.h"
 
 #define GSM_KEYFILE_SESSION_GROUP "GNOME Session"
 
@@ -31,18 +30,30 @@ static void
 load_standard_apps (GsmManager *manager,
                     GKeyFile   *keyfile)
 {
-        char **autostart_dirs;
+        char *dir;
+        const char * const *system_dirs;
         int    i;
 
         if (g_key_file_get_boolean (keyfile, GSM_KEYFILE_SESSION_GROUP, "Kiosk", NULL))
                 return;
 
-        autostart_dirs = gsm_util_get_autostart_dirs ();
-        for (i = 0; autostart_dirs[i]; i++) {
-                gsm_manager_add_autostart_apps_from_dir (manager,
-                                                         autostart_dirs[i]);
+        dir = g_build_filename (g_get_user_config_dir (), "autostart", NULL);
+        gsm_manager_add_autostart_apps_from_dir (manager, dir);
+        g_free (dir);
+
+        system_dirs = g_get_system_data_dirs ();
+        for (i = 0; system_dirs[i]; i++) {
+                dir = g_build_filename (system_dirs[i], "gnome", "autostart", NULL);
+                gsm_manager_add_autostart_apps_from_dir (manager, dir);
+                g_free (dir);
         }
-        g_strfreev (autostart_dirs);
+
+        system_dirs = g_get_system_config_dirs ();
+        for (i = 0; system_dirs[i]; i++) {
+                dir = g_build_filename (system_dirs[i], "autostart", NULL);
+                gsm_manager_add_autostart_apps_from_dir (manager, dir);
+                g_free (dir);
+        }
 }
 
 static GKeyFile *
