@@ -9,18 +9,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2025-04-14 21:21+0000\n"
-"PO-Revision-Date: 2025-04-15 18:46+0200\n"
+"POT-Creation-Date: 2025-07-18 19:39+0000\n"
+"PO-Revision-Date: 2025-07-19 11:32+0200\n"
 "Last-Translator: Martin Srebotnjak <miles@filmsi.net>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || "
-"n%100==4 ? 3 : 0);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
+"%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 2.2.1\n"
 
 #: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
 msgid "GNOME"
@@ -40,38 +40,18 @@ msgid "GNOME on Xorg"
 msgstr "GNOME na sistemu Xorg"
 
 #: data/org.gnome.SessionManager.gschema.xml:5
-msgid "Save sessions"
-msgstr "Shrani seje"
-
-#: data/org.gnome.SessionManager.gschema.xml:6
-msgid "If enabled, gnome-session will save the session automatically."
-msgstr "Izbrana možnost omogoči samodejno shranjevanje seje."
-
-#: data/org.gnome.SessionManager.gschema.xml:10
-msgid "Save this session"
-msgstr "Shrani sejo"
-
-#: data/org.gnome.SessionManager.gschema.xml:11
-msgid ""
-"When enabled, gnome-session will automatically save the next session at log "
-"out even if auto saving is disabled."
-msgstr ""
-"Izbrana možnost omogoči samodejno shranjevanje seje ob odjavi, neglede na "
-"nastavitev samodejnega shranjevanja."
-
-#: data/org.gnome.SessionManager.gschema.xml:15
 msgid "Logout prompt"
 msgstr "Vnosno polje odjave"
 
-#: data/org.gnome.SessionManager.gschema.xml:16
+#: data/org.gnome.SessionManager.gschema.xml:6
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr "Izbrana možnost omogoči prikaz vnosnega polja pred koncem seje."
 
-#: data/org.gnome.SessionManager.gschema.xml:20
+#: data/org.gnome.SessionManager.gschema.xml:10
 msgid "Show the fallback warning"
 msgstr "Pokaži opozorila programske povrnitve"
 
-#: data/org.gnome.SessionManager.gschema.xml:21
+#: data/org.gnome.SessionManager.gschema.xml:11
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
@@ -79,119 +59,47 @@ msgstr ""
 "Izbrana možnost omogoči prikaz opozorila po prijavi, če je seja samodejno "
 "povrnjena."
 
-#: gnome-session/gsm-fail-whale-dialog.c:90
-msgid "Oh no! Something has gone wrong."
-msgstr "Prišlo je do nepričakovane napake."
-
-#: gnome-session/gsm-fail-whale-dialog.c:97
-msgid ""
-"A problem has occurred and the system can’t recover. Please contact a system "
-"administrator"
-msgstr ""
-"Prišlo je do napake, ki je ni mogoče samodejno odpraviti. Stopite v stik s "
-"skrbnikom."
-
-#: gnome-session/gsm-fail-whale-dialog.c:99
-msgid ""
-"A problem has occurred and the system can’t recover. All extensions have "
-"been disabled as a precaution."
-msgstr ""
-"Prišlo je do napake, ki je ni mogoče samodejno odpraviti. Priporočljivo je "
-"onemogočiti vse razširitve, dokler se napaka ne razreši."
-
-#: gnome-session/gsm-fail-whale-dialog.c:101
-msgid ""
-"A problem has occurred and the system can’t recover.\n"
-"Please log out and try again."
-msgstr ""
-"Prišlo je do napake, ki je ni mogoče samodejno odpraviti.\n"
-"Odjavite se in poskusite znova."
-
-#: gnome-session/gsm-fail-whale-dialog.c:109
-msgid "_Log Out"
-msgstr "_Odjava"
-
-#: gnome-session/gsm-fail-whale-dialog.c:153 gnome-session/main.c:479
-msgid "Enable debugging code"
-msgstr "Omogoči razhroščevanje kode"
-
-#: gnome-session/gsm-fail-whale-dialog.c:154
-msgid "Allow logout"
-msgstr "Dovoli odjavo"
-
-#: gnome-session/gsm-fail-whale-dialog.c:155
-msgid "Show extension warning"
-msgstr "Pokaži opozorila razširitev"
-
-#: gnome-session/gsm-manager.c:1305 gnome-session/gsm-manager.c:2054
+#: gnome-session/gsm-manager.c:709 gnome-session/gsm-manager.c:1040
 msgid "Not responding"
 msgstr "Ni odziva"
 
-#: gnome-session/gsm-util.c:431
+#: gnome-session/gsm-util.c:283
 msgid "_Log out"
 msgstr "_Odjavi"
 
-#. It'd be really surprising to reach this code: if we're here,
-#. * then the XSMP client already has set several XSMP
-#. * properties. But it could still be that SmProgram is not set.
-#.
-#: gnome-session/gsm-xsmp-client.c:557
-msgid "Remembered Application"
-msgstr "Zapomnjeni programi"
-
-#: gnome-session/gsm-xsmp-client.c:1216
-msgid "This program is blocking logout."
-msgstr "Program zavira postopek odjave."
-
-#: gnome-session/gsm-xsmp-server.c:340
-msgid ""
-"Refusing new client connection because the session is currently being shut "
-"down\n"
-msgstr "Povezave z odjemalci bodo zavrnjene, ker se trenutna seja izklaplja.\n"
-
-#: gnome-session/gsm-xsmp-server.c:613
-#, c-format
-msgid "Could not create ICE listening socket: %s"
-msgstr "Ni mogoče ustvariti vtiča za prisluh ICE: %s"
-
-#: gnome-session/main.c:476
-msgid "Running as systemd service"
-msgstr "Zagnano kot storitev systemd"
-
-#: gnome-session/main.c:477
+#: gnome-session/leader-main.c:534
 msgid "Override standard autostart directories"
 msgstr "Preskoči običajne mape samodejnega zagona"
 
-#: gnome-session/main.c:477
+#: gnome-session/leader-main.c:534
 msgid "AUTOSTART_DIR"
 msgstr "ZAČETNA_MAPA"
 
-#: gnome-session/main.c:478
+#: gnome-session/leader-main.c:535 gnome-session/service-main.c:147
 msgid "Session to use"
 msgstr "Seja za uporabo"
 
-#: gnome-session/main.c:478
+#: gnome-session/leader-main.c:535 gnome-session/service-main.c:147
 msgid "SESSION_NAME"
 msgstr "IME_SEJE"
 
-#: gnome-session/main.c:480
-msgid "Do not load user-specified applications"
-msgstr "Ne naloži uporabniško določenih programov"
+#: gnome-session/leader-main.c:536
+msgid "Enable debugging code"
+msgstr "Omogoči razhroščevanje kode"
 
-#: gnome-session/main.c:481
+#: gnome-session/leader-main.c:537
 msgid "Version of this application"
 msgstr "Različica programa"
 
-#. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:483
-msgid "Show the fail whale dialog for testing"
-msgstr "Pokaži pogovorno okno napak med preizkušanjem"
-
-#: gnome-session/main.c:484
+#: gnome-session/leader-main.c:538
 msgid "This option is ignored"
 msgstr "Ta možnost je prezrta"
 
-#: gnome-session/main.c:516
+#: gnome-session/leader-main.c:539
+msgid "Don't re-exec into a login shell"
+msgstr "Ne izvedi ponovno v lupini za prijavo"
+
+#: gnome-session/leader-main.c:560 gnome-session/service-main.c:156
 msgid " — the GNOME session manager"
 msgstr " – upravljalnik seje GNOME"
 
@@ -217,10 +125,11 @@ msgstr "Ponovno zaženi storitev dbus.service, če je že zagnana"
 
 #: tools/gnome-session-ctl.c:251
 msgid ""
-"Run from ExecStopPost to start gnome-session-failed.target on service failure"
+"Run from ExecStopPost to start gnome-session-shutdown.target on service "
+"failure"
 msgstr ""
 "Zaženi iz ExecStopPost za zagon gnome-session-failed.target ob spodleteli "
-"seji"
+"storitvi"
 
 #: tools/gnome-session-ctl.c:281
 msgid "Program needs exactly one parameter"
