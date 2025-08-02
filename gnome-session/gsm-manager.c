@@ -769,7 +769,7 @@ start_phase (GsmManager *manager)
 
         switch (manager->phase) {
         case GSM_MANAGER_PHASE_INITIALIZATION:
-                sd_notify (0, "STATUS=Waiting for session to start");
+                sd_notify (0, "READY=1\nSTATUS=Waiting for session to start");
                 break;
         case GSM_MANAGER_PHASE_APPLICATION:
                 sd_notify (0, "STATUS=Starting applications");
