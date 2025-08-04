@@ -1,6 +1,6 @@
-==========
-Unreleased
-==========
+===============
+Version 49.beta
+===============
 
 - gnome-session is no longer started via a shell script, and instead all of
   the necessary setup is done in C.
@@ -16,6 +16,13 @@ Unreleased
 	  builtin service manager
 	- Fallback sessions, since there's no way to fall back anymore
 - The code was significantly refactored
+- gnome-session now provides a gnome-session-basic-services.target, that sessions
+  like the GDM greeter and gnome-initial-setup can use to avoid listing all of
+  the basic GNOME session services (like all the gnome-settings-daemon plugins)
+- The --autostart command line option was removed, and instead kiosk sessions
+  should set Kiosk=true in their session definition file.
+- Updated GNOME's mimetype defaults to drop Evince (which was replaced with Papers)
+- Translation updates
 
 ==================
 Version 49.alpha.1
