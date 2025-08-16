@@ -7,14 +7,14 @@
 # Meelad Zakaria <meelad@farsiweb.info>, 2006.
 # Mahyar Moghimi <mahyar.moqimi@gmail.com>, 2010.
 # Arash Mousavi <mousavi.arash@gmail.com>, 2011-2017.
-# Danial Behzadi <dani.behzi@gmail.com>, 2013-2024.
+# Danial Behzadi <dani.behzi@gmail.com>, 2013-2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session 2.10.0\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2024-01-08 21:02+0000\n"
-"PO-Revision-Date: 2024-01-10 16:42+0330\n"
+"POT-Creation-Date: 2025-08-10 18:51+0000\n"
+"PO-Revision-Date: 2025-08-16 13:54+0330\n"
 "Last-Translator: Danial Behzadi <dani.behzi@ubuntu.com>\n"
 "Language-Team: Persian\n"
 "Language: fa\n"
@@ -23,301 +23,177 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.6\n"
 
-#: data/gnome-custom-session.desktop.in.in:3
-msgid "Custom"
-msgstr "سفارشی"
-
-#: data/gnome-custom-session.desktop.in.in:4
-msgid "This entry lets you select a saved session"
-msgstr "این ورودی می‌گذارد نشست ذخیره‌شده‌ای را برگزینید"
-
-#: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
+#: data/gnome.desktop.in.in:2 data/gnome.session.desktop:2
 msgid "GNOME"
 msgstr "گنوم"
 
-#: data/gnome.desktop.in.in:4 data/gnome-wayland.desktop.in.in:4
-#: data/gnome-xorg.desktop.in.in:4
+#: data/gnome.desktop.in.in:3 data/gnome-wayland.desktop.in.in:3
+#: data/gnome-xorg.desktop.in.in:3
 msgid "This session logs you into GNOME"
 msgstr "این نشست شما را به گنوم وارد می‌کند"
 
-#: data/gnome-dummy.session.desktop.in.in:3
-msgid "GNOME dummy"
-msgstr "گنوم ساختگی"
-
-#: data/gnome-wayland.desktop.in.in:3
+#: data/gnome-wayland.desktop.in.in:2
 msgid "GNOME on Wayland"
 msgstr "گنوم روی وی‌لند"
 
-#: data/gnome-xorg.desktop.in.in:3
+#: data/gnome-xorg.desktop.in.in:2
 msgid "GNOME on Xorg"
 msgstr "گنوم روی زورگ"
 
 #: data/org.gnome.SessionManager.gschema.xml:5
-msgid "Save sessions"
-msgstr "_ذخیرهٔ نشست‌ها"
-
-#: data/org.gnome.SessionManager.gschema.xml:6
-msgid "If enabled, gnome-session will save the session automatically."
-msgstr "در صورت فعّال بودن، گنوم به صورت خودکار، نشست را ذخیره می‌کند."
-
-#: data/org.gnome.SessionManager.gschema.xml:10
-msgid "Save this session"
-msgstr "ذخیرهٔ این نشست"
-
-#: data/org.gnome.SessionManager.gschema.xml:11
-msgid ""
-"When enabled, gnome-session will automatically save the next session at log "
-"out even if auto saving is disabled."
-msgstr ""
-"هنگام فعّال بودن، gnome-session به صورت خودکار، نشست بعدی را هنگام خروج ذخیره "
-"می‌کند، حتا اگر ذخیرهٔ خودکار غیرفعّال باشد."
-
-#: data/org.gnome.SessionManager.gschema.xml:15
 msgid "Logout prompt"
 msgstr "اعلان خروج"
 
-#: data/org.gnome.SessionManager.gschema.xml:16
+#: data/org.gnome.SessionManager.gschema.xml:6
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
-"در صورت فعّال بودن، gnome-session پیش از اتمام یک نشست، به کاربر اعلان می‌دهد."
+"اگر به کار افتاده باشد gnome-sesion پیش از پایان دادن نشست به کاربر اعلان "
+"می‌دهد."
 
-#: data/org.gnome.SessionManager.gschema.xml:20
+#: data/org.gnome.SessionManager.gschema.xml:10
 msgid "Show the fallback warning"
 msgstr "نمایش هشدار جایگزینی"
 
-#: data/org.gnome.SessionManager.gschema.xml:21
+#: data/org.gnome.SessionManager.gschema.xml:11
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
 msgstr ""
-"در صورت فعّال بودن، اگر نشست به صورت خودکار به عقب افتاده باشد، gnome-session "
-"یک پنجرهٔ هشدار پس از ورود نمایش خواهد داد."
+"اگر به کار افتاده باشد gnome-session در صورت عقب افتادن خودکار، گفت‌وگوی "
+"هشداری را پس از ورود نمایش خواهد داد."
 
-#: data/session-selector.ui:15
-msgid "Custom Session"
-msgstr "نشست سفارشی"
-
-#: data/session-selector.ui:50 tools/gnome-session-selector.c:102
-msgid "Please select a custom session to run"
-msgstr "لطفاً یک نشست سفارشی را برای اجرا برگزینید"
-
-#: data/session-selector.ui:105
-msgid "_New Session"
-msgstr "نشست _جدید"
-
-#: data/session-selector.ui:119
-msgid "_Remove Session"
-msgstr "_برداشتن نشست"
-
-#: data/session-selector.ui:133
-msgid "Rena_me Session"
-msgstr "_تغییرنام نشست"
-
-#: data/session-selector.ui:168
-msgid "_Continue"
-msgstr "_ادامه"
-
-#: gnome-session/gsm-fail-whale-dialog.c:318
-msgid "Oh no!  Something has gone wrong."
-msgstr "وای نه!  اشتباهی رخ داد."
-
-#: gnome-session/gsm-fail-whale-dialog.c:325
-msgid ""
-"A problem has occurred and the system can’t recover. Please contact a system "
-"administrator"
-msgstr ""
-"مشکلی رخ داده و سامانه نمی‌تواند بازیابی شود. لطفاً با یک مدیر سامانه تماس "
-"بگیرید"
-
-#: gnome-session/gsm-fail-whale-dialog.c:327
-msgid ""
-"A problem has occurred and the system can’t recover. All extensions have been "
-"disabled as a precaution."
-msgstr ""
-"مشکلی رخ داده و سامانه نمی‌تواند بازیابی شود. تمام افزونه‌ها جهت احتیاط غیرفعال "
-"شده‌اند."
-
-#: gnome-session/gsm-fail-whale-dialog.c:329
-msgid ""
-"A problem has occurred and the system can’t recover.\n"
-"Please log out and try again."
-msgstr ""
-"مشکلی رخ داده و سامانه نمی‌تواند بازیابی شود.\n"
-"لطفاً خارج شده و دوباره بیازمایید."
-
-#: gnome-session/gsm-fail-whale-dialog.c:344
-msgid "_Log Out"
-msgstr "_خروج"
-
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:403
-msgid "Enable debugging code"
-msgstr "کد اشکال‌زدایی به کار انداخته شود"
-
-#: gnome-session/gsm-fail-whale-dialog.c:413
-msgid "Allow logout"
-msgstr "اجازهٔ خروج"
-
-#: gnome-session/gsm-fail-whale-dialog.c:414
-msgid "Show extension warning"
-msgstr "نمایش هشدار افزونه"
-
-#: gnome-session/gsm-manager.c:1301 gnome-session/gsm-manager.c:2050
+#: gnome-session/gsm-manager.c:709 gnome-session/gsm-manager.c:1040
 msgid "Not responding"
 msgstr "ناپاسخگو"
 
-#: gnome-session/gsm-util.c:431
+#: gnome-session/gsm-util.c:167
 msgid "_Log out"
 msgstr "_خروج"
 
-#. It'd be really surprising to reach this code: if we're here,
-#. * then the XSMP client already has set several XSMP
-#. * properties. But it could still be that SmProgram is not set.
-#.
-#: gnome-session/gsm-xsmp-client.c:557
-msgid "Remembered Application"
-msgstr "به خاطر سپردن برنامه"
-
-#: gnome-session/gsm-xsmp-client.c:1216
-msgid "This program is blocking logout."
-msgstr "این برنامه جلوی خروج را گرفته است."
-
-#: gnome-session/gsm-xsmp-server.c:340
-msgid ""
-"Refusing new client connection because the session is currently being shut "
-"down\n"
-msgstr "چون سامانه در حال خاموش شدن است، درخواست اتصال کارخواه رد می‌شود\n"
-
-#: gnome-session/gsm-xsmp-server.c:607
-#, c-format
-msgid "Could not create ICE listening socket: %s"
-msgstr "ایجاد سوکت شنود ICE ممکن نبود: %s"
-
-#: gnome-session/main.c:400
-msgid "Running as systemd service"
-msgstr "در حال اجرا به عنوان خدمت سیستم‌دی"
-
-#: gnome-session/main.c:401
-msgid "Override standard autostart directories"
-msgstr "شاخه‌های استاندارد آغاز خودکار، نادیده گرفته شود"
-
-#: gnome-session/main.c:401
-msgid "AUTOSTART_DIR"
-msgstr "AUTOSTART_DIR"
-
-#: gnome-session/main.c:402
+#: gnome-session/leader-main.c:535 gnome-session/service-main.c:148
 msgid "Session to use"
-msgstr "نشست مورد استفاده"
+msgstr "نشست استفاده شده"
 
-#: gnome-session/main.c:402
+#: gnome-session/leader-main.c:535 gnome-session/service-main.c:148
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: gnome-session/main.c:404
-msgid "Do not load user-specified applications"
-msgstr "بار نکردن برنامه‌های مختص کاربر"
+#: gnome-session/leader-main.c:536
+msgid "Enable debugging code"
+msgstr "به کار انداختن کد اشکال‌زدایی"
 
-#: gnome-session/main.c:405
+#: gnome-session/leader-main.c:537
 msgid "Version of this application"
 msgstr "نگارش این برنامه"
 
-#. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:407
-msgid "Show the fail whale dialog for testing"
-msgstr "نمایش بالن محاوره شکست جهت آزمایش"
+#: gnome-session/leader-main.c:538
+msgid "This option is ignored"
+msgstr "از این گزینه چشم‌پوشی می‌شود"
 
-#: gnome-session/main.c:408
-msgid "Disable hardware acceleration check"
-msgstr "غیرفعال‌سازی بررسی شتابدهنده سخت‌افزاری"
+#: gnome-session/leader-main.c:539
+msgid "Don't re-exec into a login shell"
+msgstr "دوباره اجرا نشدن در پوستهٔ ورودی"
 
-#: gnome-session/main.c:440
+#: gnome-session/leader-main.c:560 gnome-session/service-main.c:157
 msgid " — the GNOME session manager"
 msgstr " — مدیر نشست گنوم"
 
-#: tools/gnome-session-ctl.c:245
+#: tools/gnome-session-ctl.c:247
 msgid "Start gnome-session-shutdown.target"
 msgstr "شروع gnome-session-shutdown.target"
 
-#: tools/gnome-session-ctl.c:246
+#: tools/gnome-session-ctl.c:248
 msgid ""
 "Start gnome-session-shutdown.target when receiving EOF or a single byte on "
 "stdin"
 msgstr "شروع gnome-session-shutdown.target هنگام دریافت EOF یا تک‌بایت روی stdin"
 
-#: tools/gnome-session-ctl.c:247
+#: tools/gnome-session-ctl.c:249
 msgid "Signal initialization done to gnome-session"
 msgstr "آغازش سیگنال به gnome-session انجام شد"
 
-#: tools/gnome-session-ctl.c:248
+#: tools/gnome-session-ctl.c:250
 msgid "Restart dbus.service if it is running"
 msgstr "شروع دوبارهٔ dbus.service در صورت اجرا"
 
-#: tools/gnome-session-ctl.c:249
+#: tools/gnome-session-ctl.c:251
 msgid ""
-"Run from ExecStopPost to start gnome-session-failed.target on service failure"
+"Run from ExecStopPost to start gnome-session-shutdown.target on service "
+"failure"
 msgstr ""
-"برای آغاز gnome-session-failed.target هنگام شکست خدمت، از ExecStopPost اجرا "
-"کنید"
+"اجرا از ExecStopPost برای آغاز gnome-session-shutdown.target هنگام شکست خدمت"
 
-#: tools/gnome-session-ctl.c:279
+#: tools/gnome-session-ctl.c:281
 msgid "Program needs exactly one parameter"
 msgstr "برنامه دقیقاً به یک پارامتر نیاز دارد"
 
-#: tools/gnome-session-inhibit.c:108
+#: tools/gnome-session-inhibit.c:69
 #, c-format
+msgid "Unknown inhibit argument: %s"
+msgstr "آرگومان مهاری ناشناخته: %s"
+
+#: tools/gnome-session-inhibit.c:289
+#, c-format
+msgid "Failed to execute %s: %m\n"
+msgstr "شکست در اجرای %s: ‏%m\n"
+
+#: tools/gnome-session-inhibit.c:361
+msgid "Show program version"
+msgstr "نمایش نگارش برنامه"
+
+#: tools/gnome-session-inhibit.c:362
+msgid "The application id to use when inhibiting (optional)"
+msgstr "شناسهٔ برنامهٔ استفاده شده هنگام مهار کردن (اختیاری)"
+
+#: tools/gnome-session-inhibit.c:362
+msgid "ID"
+msgstr "شناسه"
+
+#: tools/gnome-session-inhibit.c:363
+msgid "The reason for inhibiting (optional)"
+msgstr "دلیل مهار کردن (اختیاری)"
+
+#: tools/gnome-session-inhibit.c:363
+msgid "REASON"
+msgstr "REASON"
+
+#: tools/gnome-session-inhibit.c:364
+msgid "Add action to inhibit (repeatable)"
+msgstr "افزودن کنش به مهار (تکرارپذیر)"
+
+#: tools/gnome-session-inhibit.c:364
+msgid "ACTION"
+msgstr "ACTION"
+
+#: tools/gnome-session-inhibit.c:365
+msgid "Do not launch COMMAND and wait forever instead"
+msgstr "اجرا نکردن COMMAND و انتظار"
+
+#: tools/gnome-session-inhibit.c:366
+msgid "List the existing inhibitions, and exit"
+msgstr "سیاهه کردن مهارهای موجود و خروج"
+
+#: tools/gnome-session-inhibit.c:378
+msgid "COMMAND"
+msgstr "COMMAND"
+
+#: tools/gnome-session-inhibit.c:384
+msgid "Execute COMMAND while inhibiting some session functionality."
+msgstr "اجرای COMMAND هنگام مهار کردن قابلیت‌های از نشست."
+
+#: tools/gnome-session-inhibit.c:385
 msgid ""
-"%s [OPTION…] COMMAND\n"
-"\n"
-"Execute COMMAND while inhibiting some session functionality.\n"
-"\n"
-"  -h, --help        Show this help\n"
-"  --version         Show program version\n"
-"  --app-id ID       The application id to use\n"
-"                    when inhibiting (optional)\n"
-"  --reason REASON   The reason for inhibiting (optional)\n"
-"  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
-"                    logout, switch-user, suspend, idle, automount\n"
-"  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
-"  -l, --list        List the existing inhibitions, and exit\n"
-"\n"
-"If no --inhibit option is specified, idle is assumed.\n"
+"Valid ACTION values are: logout, switch-user, suspend, idle, and automount.\n"
+"If no --inhibit options are specified, idle is assumed."
 msgstr ""
-"%s [گزینه…] دستور\n"
-"\n"
-"اجرای دستور هنگام منع برخی قابلیت‌های نشست.\n"
-"\n"
-"  -h, --help        نمایش این راهنما\n"
-"  --version         نمایش نگارش برنامه\n"
-"  --app-id ID       شناسهٔ برنامه برای استفاده\n"
-"                    هنگام منع (اختیاری)\n"
-"  --reason REASON   دلیل منع (اختیاری)\n"
-"  --inhibit ARG     دلیل منع، فهرستی جداشده با دونقطه از:\n"
-"                    logout, switch-user, suspend, idle, automount\n"
-"  --inhibit-only    دستور COMMAND اجرا نشود و به جایش تا ابد منتظر شود\n"
-"  -l, --list        فهرست کردن منع‌های موجود و خروج\n"
-"\n"
-"اگر گزینهٔ no --inhibit مشخّص شود، idle در نظر گرفته می‌شود.\n"
+"مقدارهای معتبر ACTION این‌هایند: logout، ‏switch-user، ‏suspend و automount.\n"
+"اگر هیچ گزینهٔ ‪--inhibit‬ ای مشخّص نشده باشد idle در نظر گرفته می‌شود."
 
-#: tools/gnome-session-inhibit.c:282
-#, c-format
-msgid "Error while creating pipe: %s\n"
-msgstr "خطا هنگام ایجاد لوله: %s\n"
-
-#: tools/gnome-session-inhibit.c:299
-msgid "Failure reading pipe\n"
-msgstr "شکست در خواندن لوله\n"
-
-#: tools/gnome-session-inhibit.c:303
-#, c-format
-msgid "Failed to execute %s\n"
-msgstr "اجرای %s شکست خورد\n"
-
-#: tools/gnome-session-inhibit.c:376 tools/gnome-session-inhibit.c:386
-#: tools/gnome-session-inhibit.c:396
-#, c-format
-msgid "%s requires an argument\n"
-msgstr "دستور %s احتیاج به یک آرگومان دارد\n"
+#: tools/gnome-session-inhibit.c:409
+msgid "Neither COMMAND nor --inhibit-only were specified."
+msgstr "نه COMMAND مشخّص شده و نه ‪--inhibit-only‬."
 
 #: tools/gnome-session-quit.c:50
 msgid "Log out"
@@ -347,28 +223,177 @@ msgstr "اتصال به مدیر نشست ممکن نیست"
 msgid "Program called with conflicting options"
 msgstr "برنامه با گزینه‌های ناسازگار فراخوانده شده است"
 
-#: tools/gnome-session-selector.c:61
+#~ msgid "Custom"
+#~ msgstr "سفارشی"
+
+#~ msgid "This entry lets you select a saved session"
+#~ msgstr "این ورودی می‌گذارد نشست ذخیره‌شده‌ای را برگزینید"
+
+#~ msgid "GNOME dummy"
+#~ msgstr "گنوم ساختگی"
+
+#~ msgid "Save sessions"
+#~ msgstr "_ذخیرهٔ نشست‌ها"
+
+#~ msgid "If enabled, gnome-session will save the session automatically."
+#~ msgstr "در صورت فعّال بودن، گنوم به صورت خودکار، نشست را ذخیره می‌کند."
+
+#~ msgid "Save this session"
+#~ msgstr "ذخیرهٔ این نشست"
+
+#~ msgid ""
+#~ "When enabled, gnome-session will automatically save the next session at "
+#~ "log out even if auto saving is disabled."
+#~ msgstr ""
+#~ "هنگام فعّال بودن، gnome-session به صورت خودکار، نشست بعدی را هنگام خروج "
+#~ "ذخیره می‌کند، حتا اگر ذخیرهٔ خودکار غیرفعّال باشد."
+
+#~ msgid "Custom Session"
+#~ msgstr "نشست سفارشی"
+
+#~ msgid "Please select a custom session to run"
+#~ msgstr "لطفاً یک نشست سفارشی را برای اجرا برگزینید"
+
+#~ msgid "_New Session"
+#~ msgstr "نشست _جدید"
+
+#~ msgid "_Remove Session"
+#~ msgstr "_برداشتن نشست"
+
+#~ msgid "Rena_me Session"
+#~ msgstr "_تغییرنام نشست"
+
+#~ msgid "_Continue"
+#~ msgstr "_ادامه"
+
+#~ msgid "Oh no!  Something has gone wrong."
+#~ msgstr "وای نه!  اشتباهی رخ داد."
+
+#~ msgid ""
+#~ "A problem has occurred and the system can’t recover. Please contact a "
+#~ "system administrator"
+#~ msgstr ""
+#~ "مشکلی رخ داده و سامانه نمی‌تواند بازیابی شود. لطفاً با یک مدیر سامانه تماس "
+#~ "بگیرید"
+
+#~ msgid ""
+#~ "A problem has occurred and the system can’t recover. All extensions have "
+#~ "been disabled as a precaution."
+#~ msgstr ""
+#~ "مشکلی رخ داده و سامانه نمی‌تواند بازیابی شود. تمام افزونه‌ها جهت احتیاط "
+#~ "غیرفعال شده‌اند."
+
+#~ msgid ""
+#~ "A problem has occurred and the system can’t recover.\n"
+#~ "Please log out and try again."
+#~ msgstr ""
+#~ "مشکلی رخ داده و سامانه نمی‌تواند بازیابی شود.\n"
+#~ "لطفاً خارج شده و دوباره بیازمایید."
+
+#~ msgid "_Log Out"
+#~ msgstr "_خروج"
+
+#~ msgid "Allow logout"
+#~ msgstr "اجازهٔ خروج"
+
+#~ msgid "Show extension warning"
+#~ msgstr "نمایش هشدار افزونه"
+
+#~ msgid "Remembered Application"
+#~ msgstr "به خاطر سپردن برنامه"
+
+#~ msgid "This program is blocking logout."
+#~ msgstr "این برنامه جلوی خروج را گرفته است."
+
+#~ msgid ""
+#~ "Refusing new client connection because the session is currently being shut "
+#~ "down\n"
+#~ msgstr "چون سامانه در حال خاموش شدن است، درخواست اتصال کارخواه رد می‌شود\n"
+
 #, c-format
-msgid "Session %d"
-msgstr "نشست %Id"
+#~ msgid "Could not create ICE listening socket: %s"
+#~ msgstr "ایجاد سوکت شنود ICE ممکن نبود: %s"
 
-#: tools/gnome-session-selector.c:107
-msgid ""
-"Session names are not allowed to start with “.” or contain “/” characters"
-msgstr "نام نشست‌ها نمی‌توانند با «.» شروع شده یا شامل نویسهٔ «/» باشند"
+#~ msgid "Running as systemd service"
+#~ msgstr "در حال اجرا به عنوان خدمت سیستم‌دی"
 
-#: tools/gnome-session-selector.c:111
-msgid "Session names are not allowed to start with “.”"
-msgstr "نام نشست‌ها نمی‌توانند با «.» شروع شوند"
+#~ msgid "Override standard autostart directories"
+#~ msgstr "شاخه‌های استاندارد آغاز خودکار، نادیده گرفته شود"
 
-#: tools/gnome-session-selector.c:115
-msgid "Session names are not allowed to contain “/” characters"
-msgstr "نام نشست‌ها نمی‌توانند شامل نویسهٔ «/» باشند"
+#~ msgid "AUTOSTART_DIR"
+#~ msgstr "AUTOSTART_DIR"
 
-#: tools/gnome-session-selector.c:123
+#~ msgid "Do not load user-specified applications"
+#~ msgstr "بار نکردن برنامه‌های مختص کاربر"
+
+#~ msgid "Show the fail whale dialog for testing"
+#~ msgstr "نمایش بالن محاوره شکست جهت آزمایش"
+
+#~ msgid "Disable hardware acceleration check"
+#~ msgstr "غیرفعال‌سازی بررسی شتابدهنده سخت‌افزاری"
+
 #, c-format
-msgid "A session named “%s” already exists"
-msgstr "نشستی با نام «%s» از پیش وجود دارد"
+#~ msgid ""
+#~ "%s [OPTION…] COMMAND\n"
+#~ "\n"
+#~ "Execute COMMAND while inhibiting some session functionality.\n"
+#~ "\n"
+#~ "  -h, --help        Show this help\n"
+#~ "  --version         Show program version\n"
+#~ "  --app-id ID       The application id to use\n"
+#~ "                    when inhibiting (optional)\n"
+#~ "  --reason REASON   The reason for inhibiting (optional)\n"
+#~ "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
+#~ "                    logout, switch-user, suspend, idle, automount\n"
+#~ "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+#~ "  -l, --list        List the existing inhibitions, and exit\n"
+#~ "\n"
+#~ "If no --inhibit option is specified, idle is assumed.\n"
+#~ msgstr ""
+#~ "%s [گزینه…] دستور\n"
+#~ "\n"
+#~ "اجرای دستور هنگام منع برخی قابلیت‌های نشست.\n"
+#~ "\n"
+#~ "  -h, --help        نمایش این راهنما\n"
+#~ "  --version         نمایش نگارش برنامه\n"
+#~ "  --app-id ID       شناسهٔ برنامه برای استفاده\n"
+#~ "                    هنگام منع (اختیاری)\n"
+#~ "  --reason REASON   دلیل منع (اختیاری)\n"
+#~ "  --inhibit ARG     دلیل منع، فهرستی جداشده با دونقطه از:\n"
+#~ "                    logout, switch-user, suspend, idle, automount\n"
+#~ "  --inhibit-only    دستور COMMAND اجرا نشود و به جایش تا ابد منتظر شود\n"
+#~ "  -l, --list        فهرست کردن منع‌های موجود و خروج\n"
+#~ "\n"
+#~ "اگر گزینهٔ no --inhibit مشخّص شود، idle در نظر گرفته می‌شود.\n"
+
+#, c-format
+#~ msgid "Error while creating pipe: %s\n"
+#~ msgstr "خطا هنگام ایجاد لوله: %s\n"
+
+#~ msgid "Failure reading pipe\n"
+#~ msgstr "شکست در خواندن لوله\n"
+
+#, c-format
+#~ msgid "%s requires an argument\n"
+#~ msgstr "دستور %s احتیاج به یک آرگومان دارد\n"
+
+#, c-format
+#~ msgid "Session %d"
+#~ msgstr "نشست %Id"
+
+#~ msgid ""
+#~ "Session names are not allowed to start with “.” or contain “/” characters"
+#~ msgstr "نام نشست‌ها نمی‌توانند با «.» شروع شده یا شامل نویسهٔ «/» باشند"
+
+#~ msgid "Session names are not allowed to start with “.”"
+#~ msgstr "نام نشست‌ها نمی‌توانند با «.» شروع شوند"
+
+#~ msgid "Session names are not allowed to contain “/” characters"
+#~ msgstr "نام نشست‌ها نمی‌توانند شامل نویسهٔ «/» باشند"
+
+#, c-format
+#~ msgid "A session named “%s” already exists"
+#~ msgstr "نشستی با نام «%s» از پیش وجود دارد"
 
 #~ msgid "Use systemd session management"
 #~ msgstr "استفاده از مدیریت نشست سیستم‌دی"
@@ -478,9 +503,6 @@ msgstr "نشستی با نام «%s» از پیش وجود دارد"
 
 #~ msgid "FILE"
 #~ msgstr "پرونده"
-
-#~ msgid "ID"
-#~ msgstr "شناسه"
 
 #~ msgid "Session management options:"
 #~ msgstr "گزینه‌های مدیریت نشست:"
