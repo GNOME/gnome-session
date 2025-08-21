@@ -20,6 +20,7 @@ executable(
 )
 
 sources = files(
+    'gsm-util.c',
     'leader-systemd.c',
 )
 
