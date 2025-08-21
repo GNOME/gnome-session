@@ -127,34 +127,6 @@ maybe_reexec_with_login_shell (GStrv argv)
 }
 
 static void
-initialize_gio (void)
-{
-        char *disable_fuse = NULL;
-        char *use_vfs = NULL;
-
-        disable_fuse = g_strdup (g_getenv ("GVFS_DISABLE_FUSE"));
-        use_vfs = g_strdup (g_getenv ("GIO_USE_VFS"));
-
-        g_setenv ("GVFS_DISABLE_FUSE", "1", TRUE);
-        g_setenv ("GIO_USE_VFS", "local", TRUE);
-        g_vfs_get_default ();
-
-        if (use_vfs) {
-                g_setenv ("GIO_USE_VFS", use_vfs, TRUE);
-                g_free (use_vfs);
-        } else {
-                g_unsetenv ("GIO_USE_VFS");
-        }
-
-        if (disable_fuse) {
-                g_setenv ("GVFS_DISABLE_FUSE", disable_fuse, TRUE);
-                g_free (disable_fuse);
-        } else {
-                g_unsetenv ("GVFS_DISABLE_FUSE");
-        }
-}
-
-static void
 set_up_environment (void)
 {
         g_autoptr (GSettings) locale_settings = NULL;
@@ -543,9 +515,6 @@ main (int argc, char **argv)
         /* Make sure that we have a session bus */
         if (!g_getenv ("DBUS_SESSION_BUS_ADDRESS"))
                 g_error ("No session bus running! Cannot continue");
-
-        /* Make sure we initialize gio in a way that does not autostart any daemon */
-        initialize_gio ();
 
         setlocale (LC_ALL, "");
         bindtextdomain (GETTEXT_PACKAGE, LOCALE_DIR);
