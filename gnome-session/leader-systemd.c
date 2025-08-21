@@ -23,6 +23,8 @@
 #include <glib-unix.h>
 #include <gio/gio.h>
 
+#include "gsm-util.h"
+
 typedef struct {
         GDBusConnection *session_bus;
         GMainLoop *loop;
@@ -287,6 +289,11 @@ main (int argc, char **argv)
         debug_string = g_getenv ("GNOME_SESSION_DEBUG");
         if (debug_string != NULL)
             g_log_set_debug_enabled (atoi (debug_string) == 1);
+
+        gsm_util_export_user_environment (&error);
+        if (error)
+                g_warning ("Failed to upload environment to systemd: %s", error->message);
+        g_clear_error (&error);
 
         ctx.loop = g_main_loop_new (NULL, TRUE);
 

@@ -118,7 +118,6 @@ set_up_environment (void)
         g_autoptr (GSettings) locale_settings = NULL;
         g_autofree char *region = NULL;
         g_autofree char *ibus_path = NULL;
-        GError *error = NULL;
 
         locale_settings = g_settings_new ("org.gnome.system.locale");
         region = g_settings_get_string (locale_settings, "region");
@@ -163,16 +162,6 @@ set_up_environment (void)
 
         /* We want to use the GNOME menus which has the designed categories. */
         g_setenv ("XDG_MENU_PREFIX", "gnome-", TRUE);
-
-        gsm_util_export_activation_environment (&error);
-        if (error)
-                g_warning ("Failed to upload environment to DBus: %s", error->message);
-        g_clear_error (&error);
-
-        gsm_util_export_user_environment (&error);
-        if (error)
-                g_warning ("Failed to upload environment to systemd: %s", error->message);
-        g_clear_error (&error);
 }
 
 int
@@ -237,6 +226,11 @@ main (int argc, char **argv)
                 g_warning ("Wayland assumes that acceleration works, so --disable-acceleration-check is deprecated!");
 
         set_up_environment ();
+
+        gsm_util_export_activation_environment (&error);
+        if (error)
+                g_warning ("Failed to upload environment to DBus: %s", error->message);
+        g_clear_error (&error);
 
         if (IS_STRING_EMPTY (session_name)) {
                 g_autoptr (GSettings) settings = NULL;
