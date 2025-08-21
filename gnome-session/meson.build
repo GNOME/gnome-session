@@ -20,6 +20,20 @@ executable(
 )
 
 sources = files(
+    'leader-systemd.c',
+)
+
+executable(
+  meson.project_name() + '-init-worker',
+  sources,
+  include_directories: top_inc,
+  dependencies: session_bin_deps,
+  c_args: cflags,
+  install: true,
+  install_dir: session_libexecdir
+)
+
+sources = files(
   'gsm-app.c',
   'gsm-client.c',
   'gsm-inhibitor.c',
