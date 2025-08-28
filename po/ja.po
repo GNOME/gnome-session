@@ -22,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session main\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2025-05-11 00:01+0000\n"
-"PO-Revision-Date: 2025-06-15 07:46+0900\n"
+"POT-Creation-Date: 2025-07-18 19:39+0000\n"
+"PO-Revision-Date: 2025-07-19 05:06+0900\n"
 "Last-Translator: Makoto Sakaguchi <ycco34vx@gmail.com>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
@@ -51,40 +51,20 @@ msgid "GNOME on Xorg"
 msgstr "GNOME on Xorg"
 
 #: data/org.gnome.SessionManager.gschema.xml:5
-msgid "Save sessions"
-msgstr "セッションを保存"
-
-#: data/org.gnome.SessionManager.gschema.xml:6
-msgid "If enabled, gnome-session will save the session automatically."
-msgstr "有効にすると、gnome-session はセッションを自動的に保存します。"
-
-#: data/org.gnome.SessionManager.gschema.xml:10
-msgid "Save this session"
-msgstr "このセッションを保存"
-
-#: data/org.gnome.SessionManager.gschema.xml:11
-msgid ""
-"When enabled, gnome-session will automatically save the next session at log "
-"out even if auto saving is disabled."
-msgstr ""
-"有効な場合、自動保存が無効になっていても、gnome-session はログアウト時に次の"
-"セッションを自動的に保存します。"
-
-#: data/org.gnome.SessionManager.gschema.xml:15
 msgid "Logout prompt"
 msgstr "ログアウト時に確認する"
 
-#: data/org.gnome.SessionManager.gschema.xml:16
+#: data/org.gnome.SessionManager.gschema.xml:6
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 "有効にすると、gnome-session はセッションを終了する前にユーザーに確認を求めま"
 "す。"
 
-#: data/org.gnome.SessionManager.gschema.xml:20
+#: data/org.gnome.SessionManager.gschema.xml:10
 msgid "Show the fallback warning"
 msgstr "フォールバック警告を表示"
 
-#: data/org.gnome.SessionManager.gschema.xml:21
+#: data/org.gnome.SessionManager.gschema.xml:11
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
@@ -92,120 +72,47 @@ msgstr ""
 "有効にすると、セッションが自動的にフォールバックされた場合、gnome-session は"
 "ログイン後に警告ダイアログを表示します。"
 
-#: gnome-session/gsm-fail-whale-dialog.c:90
-msgid "Oh no! Something has gone wrong."
-msgstr "おっと! 何か問題が発生しました。"
-
-#: gnome-session/gsm-fail-whale-dialog.c:97
-msgid ""
-"A problem has occurred and the system can’t recover. Please contact a system "
-"administrator"
-msgstr ""
-"問題が発生し、システムは回復できません。システム管理者に連絡してください"
-
-#: gnome-session/gsm-fail-whale-dialog.c:99
-msgid ""
-"A problem has occurred and the system can’t recover. All extensions have "
-"been disabled as a precaution."
-msgstr ""
-"問題が発生し、システムは回復できません。予防措置として、すべての拡張機能が無"
-"効化されました。"
-
-#: gnome-session/gsm-fail-whale-dialog.c:101
-msgid ""
-"A problem has occurred and the system can’t recover.\n"
-"Please log out and try again."
-msgstr ""
-"問題が発生し、システムは回復できません。\n"
-"ログアウトして再度試してください。"
-
-#: gnome-session/gsm-fail-whale-dialog.c:109
-msgid "_Log Out"
-msgstr "ログアウト(_L)"
-
-#: gnome-session/gsm-fail-whale-dialog.c:153 gnome-session/main.c:479
-msgid "Enable debugging code"
-msgstr "デバッグコードを有効にする"
-
-#: gnome-session/gsm-fail-whale-dialog.c:154
-msgid "Allow logout"
-msgstr "ログアウトを許可する"
-
-#: gnome-session/gsm-fail-whale-dialog.c:155
-msgid "Show extension warning"
-msgstr "拡張機能に関する警告を表示する"
-
-#: gnome-session/gsm-manager.c:1305 gnome-session/gsm-manager.c:2054
+#: gnome-session/gsm-manager.c:709 gnome-session/gsm-manager.c:1040
 msgid "Not responding"
 msgstr "応答なし"
 
-#: gnome-session/gsm-util.c:431
+#: gnome-session/gsm-util.c:283
 msgid "_Log out"
 msgstr "ログアウト(_L)"
 
-#. It'd be really surprising to reach this code: if we're here,
-#. * then the XSMP client already has set several XSMP
-#. * properties. But it could still be that SmProgram is not set.
-#.
-#: gnome-session/gsm-xsmp-client.c:556
-msgid "Remembered Application"
-msgstr "記憶されたアプリケーション"
-
-#: gnome-session/gsm-xsmp-client.c:1213
-msgid "This program is blocking logout."
-msgstr "このプログラムがログアウトを妨げています。"
-
-#: gnome-session/gsm-xsmp-server.c:338
-msgid ""
-"Refusing new client connection because the session is currently being shut "
-"down\n"
-msgstr ""
-"セッションが現在シャットダウン中のため、新しいクライアント接続を拒否していま"
-"す。\n"
-
-#: gnome-session/gsm-xsmp-server.c:611
-#, c-format
-msgid "Could not create ICE listening socket: %s"
-msgstr "ICE リスニングソケットを作成できませんでした: %s"
-
-#: gnome-session/main.c:476
-msgid "Running as systemd service"
-msgstr "systemd サービスとして実行中"
-
-#: gnome-session/main.c:477
+#: gnome-session/leader-main.c:534
 msgid "Override standard autostart directories"
 msgstr "標準の自動起動ディレクトリをオーバーライドする"
 
-#: gnome-session/main.c:477
+#: gnome-session/leader-main.c:534
 msgid "AUTOSTART_DIR"
 msgstr "AUTOSTART_DIR"
 
-#: gnome-session/main.c:478
+#: gnome-session/leader-main.c:535 gnome-session/service-main.c:147
 msgid "Session to use"
 msgstr "使用するセッション"
 
-#: gnome-session/main.c:478
+#: gnome-session/leader-main.c:535 gnome-session/service-main.c:147
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: gnome-session/main.c:480
-msgid "Do not load user-specified applications"
-msgstr "ユーザー指定のアプリケーションを読み込まない"
+#: gnome-session/leader-main.c:536
+msgid "Enable debugging code"
+msgstr "デバッグコードを有効にする"
 
-#: gnome-session/main.c:481
+#: gnome-session/leader-main.c:537
 msgid "Version of this application"
 msgstr "このアプリケーションのバージョン"
 
-#. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:483
-msgid "Show the fail whale dialog for testing"
-msgstr "テスト用にエラーダイアログを表示します"
-
-#: gnome-session/main.c:484
+#: gnome-session/leader-main.c:538
 msgid "This option is ignored"
 msgstr "このオプションは無視されます"
 
-#: gnome-session/main.c:516
+#: gnome-session/leader-main.c:539
+msgid "Don't re-exec into a login shell"
+msgstr "ログインシェルへの再実行を行わない"
+
+#: gnome-session/leader-main.c:560 gnome-session/service-main.c:156
 msgid " — the GNOME session manager"
 msgstr " — GNOME セッションマネージャー"
 
@@ -231,10 +138,10 @@ msgstr "dbus.service が実行中の場合、再起動する"
 
 #: tools/gnome-session-ctl.c:251
 msgid ""
-"Run from ExecStopPost to start gnome-session-failed.target on service failure"
+"Run from ExecStopPost to start gnome-session-shutdown.target on service "
+"failure"
 msgstr ""
-"サービス失敗時に gnome-session-failed.target を開始するために ExecStopPost か"
-"ら実行する"
+"サービス失敗時に ExecStopPost から gnome-session-shutdown.target を開始する"
 
 #: tools/gnome-session-ctl.c:281
 msgid "Program needs exactly one parameter"
@@ -334,6 +241,80 @@ msgstr "セッションマネージャーに接続できませんでした"
 #: tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
 msgstr "プログラムが矛盾するオプションで呼び出されました"
+
+#~ msgid "Save sessions"
+#~ msgstr "セッションを保存"
+
+#~ msgid "If enabled, gnome-session will save the session automatically."
+#~ msgstr "有効にすると、gnome-session はセッションを自動的に保存します。"
+
+#~ msgid "Save this session"
+#~ msgstr "このセッションを保存"
+
+#~ msgid ""
+#~ "When enabled, gnome-session will automatically save the next session at "
+#~ "log out even if auto saving is disabled."
+#~ msgstr ""
+#~ "有効な場合、自動保存が無効になっていても、gnome-session はログアウト時に次"
+#~ "のセッションを自動的に保存します。"
+
+#~ msgid "Oh no! Something has gone wrong."
+#~ msgstr "おっと! 何か問題が発生しました。"
+
+#~ msgid ""
+#~ "A problem has occurred and the system can’t recover. Please contact a "
+#~ "system administrator"
+#~ msgstr ""
+#~ "問題が発生し、システムは回復できません。システム管理者に連絡してください"
+
+#~ msgid ""
+#~ "A problem has occurred and the system can’t recover. All extensions have "
+#~ "been disabled as a precaution."
+#~ msgstr ""
+#~ "問題が発生し、システムは回復できません。予防措置として、すべての拡張機能が"
+#~ "無効化されました。"
+
+#~ msgid ""
+#~ "A problem has occurred and the system can’t recover.\n"
+#~ "Please log out and try again."
+#~ msgstr ""
+#~ "問題が発生し、システムは回復できません。\n"
+#~ "ログアウトして再度試してください。"
+
+#~ msgid "_Log Out"
+#~ msgstr "ログアウト(_L)"
+
+#~ msgid "Allow logout"
+#~ msgstr "ログアウトを許可する"
+
+#~ msgid "Show extension warning"
+#~ msgstr "拡張機能に関する警告を表示する"
+
+#~ msgid "Remembered Application"
+#~ msgstr "記憶されたアプリケーション"
+
+#~ msgid "This program is blocking logout."
+#~ msgstr "このプログラムがログアウトを妨げています。"
+
+#~ msgid ""
+#~ "Refusing new client connection because the session is currently being "
+#~ "shut down\n"
+#~ msgstr ""
+#~ "セッションが現在シャットダウン中のため、新しいクライアント接続を拒否してい"
+#~ "ます。\n"
+
+#, c-format
+#~ msgid "Could not create ICE listening socket: %s"
+#~ msgstr "ICE リスニングソケットを作成できませんでした: %s"
+
+#~ msgid "Running as systemd service"
+#~ msgstr "systemd サービスとして実行中"
+
+#~ msgid "Do not load user-specified applications"
+#~ msgstr "ユーザー指定のアプリケーションを読み込まない"
+
+#~ msgid "Show the fail whale dialog for testing"
+#~ msgstr "テスト用にエラーダイアログを表示します"
 
 #~ msgid "Custom"
 #~ msgstr "カスタム"
