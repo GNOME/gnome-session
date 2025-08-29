@@ -1,3 +1,14 @@
+=============
+Version 49.rc
+=============
+
+- Disabled the org.freedesktop.ScreenSaver proxy service on the login screen
+- Separated out the systemd-specific code from the gnome-session leader process
+  into a dedicated executable. This makes it easier to integrate distributions
+  that use alternative init systems with gnome-session (though note that this
+  is still a usecase we don't officially support upstream)
+- Translation updates
+
 ===============
 Version 49.beta
 ===============
