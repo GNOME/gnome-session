@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2025-04-10 21:00+0000\n"
-"PO-Revision-Date: 2025-04-10 23:32+0200\n"
+"POT-Creation-Date: 2025-09-02 17:14+0000\n"
+"PO-Revision-Date: 2025-09-04 11:29+0200\n"
 "Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: \n"
 "Language: ka\n"
@@ -16,70 +16,38 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.7\n"
 
-#: data/gnome-custom-session.desktop.in.in:3
-msgid "Custom"
-msgstr "ხელით"
-
-#: data/gnome-custom-session.desktop.in.in:4
-msgid "This entry lets you select a saved session"
-msgstr "აქ შეგიძლიათ აირჩიოთ ჩაწერილი სესია"
-
-#: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
+#: data/gnome.desktop.in.in:2 data/gnome.session.desktop:2
 msgid "GNOME"
 msgstr "GNOME"
 
-#: data/gnome.desktop.in.in:4 data/gnome-wayland.desktop.in.in:4
-#: data/gnome-xorg.desktop.in.in:4
+#: data/gnome.desktop.in.in:3 data/gnome-wayland.desktop.in.in:3
+#: data/gnome-xorg.desktop.in.in:3
 msgid "This session logs you into GNOME"
 msgstr "აქედან შეხვალთ GNOME-ში"
 
-#: data/gnome-dummy.session.desktop.in.in:3
-msgid "GNOME dummy"
-msgstr "GNOME ცარიელზე"
-
-#: data/gnome-wayland.desktop.in.in:3
+#: data/gnome-wayland.desktop.in.in:2
 msgid "GNOME on Wayland"
 msgstr "GNOME Wayland-ზე"
 
-#: data/gnome-xorg.desktop.in.in:3
+#: data/gnome-xorg.desktop.in.in:2
 msgid "GNOME on Xorg"
 msgstr "GNOME Xorg-ზე"
 
 #: data/org.gnome.SessionManager.gschema.xml:5
-msgid "Save sessions"
-msgstr "სესიების შენახვა"
-
-#: data/org.gnome.SessionManager.gschema.xml:6
-msgid "If enabled, gnome-session will save the session automatically."
-msgstr "თუ ჩართულია, gnome-session სესიას ავტომატურად შეინახავს."
-
-#: data/org.gnome.SessionManager.gschema.xml:10
-msgid "Save this session"
-msgstr "ამ სესიის შენახვა"
-
-#: data/org.gnome.SessionManager.gschema.xml:11
-msgid ""
-"When enabled, gnome-session will automatically save the next session at log "
-"out even if auto saving is disabled."
-msgstr ""
-"თუ ჩართულია, gnome-session გამოსვლისას შეინახავს სესიას იმის მიუხედავად, "
-"გამორთულია თუ არა ავტომატური შენახვა."
-
-#: data/org.gnome.SessionManager.gschema.xml:15
 msgid "Logout prompt"
 msgstr "გასვლის ფანჯარა"
 
-#: data/org.gnome.SessionManager.gschema.xml:16
+#: data/org.gnome.SessionManager.gschema.xml:6
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr "თუ ჩართულია, gnome-session სთხოვს მომხმარებელს სესიის დასრულებამდე."
 
-#: data/org.gnome.SessionManager.gschema.xml:20
+#: data/org.gnome.SessionManager.gschema.xml:10
 msgid "Show the fallback warning"
 msgstr "თუ არჩეული არ მუშაობს, უკან გადართვისას გაფრთხილების ჩვენება"
 
-#: data/org.gnome.SessionManager.gschema.xml:21
+#: data/org.gnome.SessionManager.gschema.xml:11
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
@@ -87,145 +55,39 @@ msgstr ""
 "თუ ჩართულია, სესიის გაშვების შეცდომის შემთხვევაში gnome-session მომხმარებელს "
 "გააფრთხილებს ძირითად პარამეტრებზე დაბრუნების შესახებ."
 
-#: data/session-selector.ui:15
-msgid "Custom Session"
-msgstr "მომხმარებლის მორგებული სესია"
-
-#: data/session-selector.ui:50 tools/gnome-session-selector.c:102
-msgid "Please select a custom session to run"
-msgstr "აირჩიეთ მომხმარებლის მიერ მორგებული სესია"
-
-#: data/session-selector.ui:105
-msgid "_New Session"
-msgstr "_ახალი სესია"
-
-#: data/session-selector.ui:119
-msgid "_Remove Session"
-msgstr "_სესიის წაშლა"
-
-#: data/session-selector.ui:133
-msgid "Rena_me Session"
-msgstr "სე_სიის სახელის გადარქმევა"
-
-#: data/session-selector.ui:168
-msgid "_Continue"
-msgstr "_გაგრძელება"
-
-#: gnome-session/gsm-fail-whale-dialog.c:318
-msgid "Oh no!  Something has gone wrong."
-msgstr "რაღაც გაფუჭდა."
-
-#: gnome-session/gsm-fail-whale-dialog.c:325
-msgid ""
-"A problem has occurred and the system can’t recover. Please contact a system "
-"administrator"
-msgstr ""
-"მოუგვარებელი პროგრამის გამო სისტემა ვერ აღდგება. დაუკავშირდით თქვენს "
-"სისტემურ ადმინისტრატორს"
-
-#: gnome-session/gsm-fail-whale-dialog.c:327
-msgid ""
-"A problem has occurred and the system can’t recover. All extensions have "
-"been disabled as a precaution."
-msgstr ""
-"მოუგვარებელი პროგრამის გამო სისტემა ვერ აღდგება. სიფრთხილის გამო ყველა "
-"გაფართოება გაითიშა."
-
-#: gnome-session/gsm-fail-whale-dialog.c:329
-msgid ""
-"A problem has occurred and the system can’t recover.\n"
-"Please log out and try again."
-msgstr ""
-"მოუგვარებელი პროგრამის გამო სისტემა ვერ აღდგება.\n"
-"გადით და სცადეთ თავიდან."
-
-#: gnome-session/gsm-fail-whale-dialog.c:344
-msgid "_Log Out"
-msgstr "_გასვლა"
-
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:505
-msgid "Enable debugging code"
-msgstr "გამართვის კოდის ჩართვა"
-
-#: gnome-session/gsm-fail-whale-dialog.c:413
-msgid "Allow logout"
-msgstr "გასვლის ნების დართვა"
-
-#: gnome-session/gsm-fail-whale-dialog.c:414
-msgid "Show extension warning"
-msgstr "გაფართოების გაფრთხილების ჩვენება"
-
-#: gnome-session/gsm-manager.c:1305 gnome-session/gsm-manager.c:2063
+#: gnome-session/gsm-manager.c:709 gnome-session/gsm-manager.c:1040
 msgid "Not responding"
 msgstr "არ პასუხობს"
 
-#: gnome-session/gsm-util.c:431
+#: gnome-session/gsm-util.c:167
 msgid "_Log out"
 msgstr "_გასვლა"
 
-#. It'd be really surprising to reach this code: if we're here,
-#. * then the XSMP client already has set several XSMP
-#. * properties. But it could still be that SmProgram is not set.
-#.
-#: gnome-session/gsm-xsmp-client.c:557
-msgid "Remembered Application"
-msgstr "დამახსოვრებული აპლიკაციები"
-
-#: gnome-session/gsm-xsmp-client.c:1216
-msgid "This program is blocking logout."
-msgstr "ეს პროგრამა ბლოკავს გასვლას."
-
-#: gnome-session/gsm-xsmp-server.c:340
-msgid ""
-"Refusing new client connection because the session is currently being shut "
-"down\n"
-msgstr ""
-"მიმდინარეობს სესიის გათიშვა. დაელოდეთ დასრულებას და მხოლოდ შემდეგ სცადეთ "
-"თავიდან დაუკავშირდეთ\n"
-
-#: gnome-session/gsm-xsmp-server.c:607
-#, c-format
-msgid "Could not create ICE listening socket: %s"
-msgstr "ICE მოსასმენი სოკეტის გახსნის შეცდომა: %s"
-
-#: gnome-session/main.c:502
-msgid "Running as systemd service"
-msgstr "გაშვებულია, როგორც systemd-ის სერვისი"
-
-#: gnome-session/main.c:503
-msgid "Override standard autostart directories"
-msgstr "ავტოსტარტის ნაგულისხმევი საქაღალდეების თავის არიდება"
-
-#: gnome-session/main.c:503
-msgid "AUTOSTART_DIR"
-msgstr "AUTOSTART_DIR"
-
-#: gnome-session/main.c:504
+#: gnome-session/leader-main.c:181 gnome-session/service-main.c:148
 msgid "Session to use"
 msgstr "სესია"
 
-#: gnome-session/main.c:504
+#: gnome-session/leader-main.c:181 gnome-session/service-main.c:148
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: gnome-session/main.c:506
-msgid "Do not load user-specified applications"
-msgstr "არ ჩატვირთო მომხმარებლის მიერ გაშვებული პროგრამები"
+#: gnome-session/leader-main.c:182
+msgid "Enable debugging code"
+msgstr "გამართვის კოდის ჩართვა"
 
-#: gnome-session/main.c:507
+#: gnome-session/leader-main.c:183
 msgid "Version of this application"
 msgstr "ამ აპლიკაციის ვერსია"
 
-#. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:509
-msgid "Show the fail whale dialog for testing"
-msgstr "გამართვის სრული ფანჯრის ჩვენება"
+#: gnome-session/leader-main.c:184
+msgid "This option is ignored"
+msgstr "ეს პარამეტრი გამოტოვებულია"
 
-#: gnome-session/main.c:510
-msgid "Disable hardware acceleration check"
-msgstr "აპარატურული აჩქარების შემოწმების გათიშვა"
+#: gnome-session/leader-main.c:185
+msgid "Don't re-exec into a login shell"
+msgstr "არ გაუშვა შესვლის გარსში თავიდან"
 
-#: gnome-session/main.c:542
+#: gnome-session/leader-main.c:203 gnome-session/service-main.c:157
 msgid " — the GNOME session manager"
 msgstr " — GNOME-ის სესიების მმართველი"
 
@@ -251,78 +113,73 @@ msgstr "\"dbus.service\"-ის გაშვება, თუ არაა გ�
 
 #: tools/gnome-session-ctl.c:251
 msgid ""
-"Run from ExecStopPost to start gnome-session-failed.target on service failure"
+"Run from ExecStopPost to start gnome-session-shutdown.target on service "
+"failure"
 msgstr ""
-"სერვისის სიკვტილისას gnome-session-failed.target-ის ExecStopPost-ის გაშვება"
+"სერვისის სიკვტილისას gnome-session-shutdown.target-ის gასაშვებად "
+"ExecStopPost-დან გაშვება"
 
 #: tools/gnome-session-ctl.c:281
 msgid "Program needs exactly one parameter"
 msgstr "პროგრამას ზუსტად ერთი პარამეტრი სჭირდება"
 
-#: tools/gnome-session-inhibit.c:64
+#: tools/gnome-session-inhibit.c:69
 #, c-format
 msgid "Unknown inhibit argument: %s"
 msgstr "უცნობი ჩახშობის არგუმენტი: %s"
 
-#: tools/gnome-session-inhibit.c:266
+#: tools/gnome-session-inhibit.c:289
 #, c-format
-msgid "Error while creating pipe: %s\n"
-msgstr "ფაიფის შექმნის შეცდომა: %s\n"
+msgid "Failed to execute %s: %m\n"
+msgstr ""
+"%s-ის გაშვების შეცდომა: %m\n"
+"\n"
 
-#: tools/gnome-session-inhibit.c:283
-msgid "Failure reading pipe\n"
-msgstr "ფაიფიდან წაკითხვა ჩავარდა\n"
-
-#: tools/gnome-session-inhibit.c:287
-#, c-format
-msgid "Failed to execute %s\n"
-msgstr "%s-ის გაშვების შეცდომა\n"
-
-#: tools/gnome-session-inhibit.c:332
+#: tools/gnome-session-inhibit.c:361
 msgid "Show program version"
 msgstr "პროგრამის ვერსიის ჩვენება"
 
-#: tools/gnome-session-inhibit.c:333
+#: tools/gnome-session-inhibit.c:362
 msgid "The application id to use when inhibiting (optional)"
 msgstr "ჩახშობისას გამოყენებული აპლიკაციის id (არასავალდებულო)"
 
-#: tools/gnome-session-inhibit.c:333
+#: tools/gnome-session-inhibit.c:362
 msgid "ID"
 msgstr "ID"
 
-#: tools/gnome-session-inhibit.c:334
+#: tools/gnome-session-inhibit.c:363
 msgid "The reason for inhibiting (optional)"
 msgstr "ჩახშობის მიზეზი (არასავალდებულო)"
 
-#: tools/gnome-session-inhibit.c:334
+#: tools/gnome-session-inhibit.c:363
 msgid "REASON"
 msgstr "მიზეზი"
 
-#: tools/gnome-session-inhibit.c:335
+#: tools/gnome-session-inhibit.c:364
 msgid "Add action to inhibit (repeatable)"
 msgstr "ქმედების დამატება ჩახშობისთვის (გამეორებადი)"
 
-#: tools/gnome-session-inhibit.c:335
+#: tools/gnome-session-inhibit.c:364
 msgid "ACTION"
 msgstr "ქმედება"
 
-#: tools/gnome-session-inhibit.c:336
+#: tools/gnome-session-inhibit.c:365
 msgid "Do not launch COMMAND and wait forever instead"
 msgstr "ბრძანების არგაშვება და მისთვის სამუდამოდ დალოდება"
 
-#: tools/gnome-session-inhibit.c:337
+#: tools/gnome-session-inhibit.c:366
 msgid "List the existing inhibitions, and exit"
 msgstr "არსებული ჩამხშობების ჩამოთვლის გამოტანა და გასვლა"
 
-#: tools/gnome-session-inhibit.c:349
+#: tools/gnome-session-inhibit.c:378
 msgid "COMMAND"
 msgstr "ბრძანება"
 
-#: tools/gnome-session-inhibit.c:355
+#: tools/gnome-session-inhibit.c:384
 msgid "Execute COMMAND while inhibiting some session functionality."
 msgstr "ბრძანებების გაშვება რომელიმე სესიის ფუნქციონალის ჩახშობისას."
 
-#: tools/gnome-session-inhibit.c:356
+#: tools/gnome-session-inhibit.c:385
 msgid ""
 "Valid ACTION values are: logout, switch-user, suspend, idle, and automount.\n"
 "If no --inhibit options are specified, idle is assumed."
@@ -332,7 +189,7 @@ msgstr ""
 "automount (ავტომიმაგრება).\n"
 "თუ არაა მითითებული პარამეტრი --inhibit, ითვლება, რომ მითითებულია idle."
 
-#: tools/gnome-session-inhibit.c:380
+#: tools/gnome-session-inhibit.c:409
 msgid "Neither COMMAND nor --inhibit-only were specified."
 msgstr "მითითებულია არც ბრძანება, არც პარამეტრი --inhibit-only."
 
@@ -364,29 +221,143 @@ msgstr "არ დაუკავშირდე სესიების მმ
 msgid "Program called with conflicting options"
 msgstr "პროგრამის პარამეტრები ერთმანეთს ეწინააღდმეგებიან"
 
-#: tools/gnome-session-selector.c:61
+#~ msgid "Custom"
+#~ msgstr "ხელით"
+
+#~ msgid "This entry lets you select a saved session"
+#~ msgstr "აქ შეგიძლიათ აირჩიოთ ჩაწერილი სესია"
+
+#~ msgid "GNOME dummy"
+#~ msgstr "GNOME ცარიელზე"
+
+#~ msgid "Save sessions"
+#~ msgstr "სესიების შენახვა"
+
+#~ msgid "If enabled, gnome-session will save the session automatically."
+#~ msgstr "თუ ჩართულია, gnome-session სესიას ავტომატურად შეინახავს."
+
+#~ msgid "Save this session"
+#~ msgstr "ამ სესიის შენახვა"
+
+#~ msgid ""
+#~ "When enabled, gnome-session will automatically save the next session at "
+#~ "log out even if auto saving is disabled."
+#~ msgstr ""
+#~ "თუ ჩართულია, gnome-session გამოსვლისას შეინახავს სესიას იმის მიუხედავად, "
+#~ "გამორთულია თუ არა ავტომატური შენახვა."
+
+#~ msgid "Custom Session"
+#~ msgstr "მომხმარებლის მორგებული სესია"
+
+#~ msgid "Please select a custom session to run"
+#~ msgstr "აირჩიეთ მომხმარებლის მიერ მორგებული სესია"
+
+#~ msgid "_New Session"
+#~ msgstr "_ახალი სესია"
+
+#~ msgid "_Remove Session"
+#~ msgstr "_სესიის წაშლა"
+
+#~ msgid "Rena_me Session"
+#~ msgstr "სე_სიის სახელის გადარქმევა"
+
+#~ msgid "_Continue"
+#~ msgstr "_გაგრძელება"
+
+#~ msgid "Oh no!  Something has gone wrong."
+#~ msgstr "რაღაც გაფუჭდა."
+
+#~ msgid ""
+#~ "A problem has occurred and the system can’t recover. Please contact a "
+#~ "system administrator"
+#~ msgstr ""
+#~ "მოუგვარებელი პროგრამის გამო სისტემა ვერ აღდგება. დაუკავშირდით თქვენს "
+#~ "სისტემურ ადმინისტრატორს"
+
+#~ msgid ""
+#~ "A problem has occurred and the system can’t recover. All extensions have "
+#~ "been disabled as a precaution."
+#~ msgstr ""
+#~ "მოუგვარებელი პროგრამის გამო სისტემა ვერ აღდგება. სიფრთხილის გამო ყველა "
+#~ "გაფართოება გაითიშა."
+
+#~ msgid ""
+#~ "A problem has occurred and the system can’t recover.\n"
+#~ "Please log out and try again."
+#~ msgstr ""
+#~ "მოუგვარებელი პროგრამის გამო სისტემა ვერ აღდგება.\n"
+#~ "გადით და სცადეთ თავიდან."
+
+#~ msgid "_Log Out"
+#~ msgstr "_გასვლა"
+
+#~ msgid "Allow logout"
+#~ msgstr "გასვლის ნების დართვა"
+
+#~ msgid "Show extension warning"
+#~ msgstr "გაფართოების გაფრთხილების ჩვენება"
+
+#~ msgid "Remembered Application"
+#~ msgstr "დამახსოვრებული აპლიკაციები"
+
+#~ msgid "This program is blocking logout."
+#~ msgstr "ეს პროგრამა ბლოკავს გასვლას."
+
+#~ msgid ""
+#~ "Refusing new client connection because the session is currently being "
+#~ "shut down\n"
+#~ msgstr ""
+#~ "მიმდინარეობს სესიის გათიშვა. დაელოდეთ დასრულებას და მხოლოდ შემდეგ სცადეთ "
+#~ "თავიდან დაუკავშირდეთ\n"
+
 #, c-format
-msgid "Session %d"
-msgstr "სესია %d"
+#~ msgid "Could not create ICE listening socket: %s"
+#~ msgstr "ICE მოსასმენი სოკეტის გახსნის შეცდომა: %s"
 
-#: tools/gnome-session-selector.c:107
-msgid ""
-"Session names are not allowed to start with “.” or contain “/” characters"
-msgstr ""
-"არ შეიძლება, რომ სესიის სახელი იწყებოდეს წერტილით ან შეიცავდეს \"/\" სიმბოლოს"
+#~ msgid "Running as systemd service"
+#~ msgstr "გაშვებულია, როგორც systemd-ის სერვისი"
 
-#: tools/gnome-session-selector.c:111
-msgid "Session names are not allowed to start with “.”"
-msgstr "არ შეიძლება, რომ სესიის სახელი იწყებოდეს წერტილით"
+#~ msgid "Override standard autostart directories"
+#~ msgstr "ავტოსტარტის ნაგულისხმევი საქაღალდეების თავის არიდება"
 
-#: tools/gnome-session-selector.c:115
-msgid "Session names are not allowed to contain “/” characters"
-msgstr "არ შეიძლება, რომ სესიის სახელი შეიცავდეს \"/\" სიმბოლოს"
+#~ msgid "AUTOSTART_DIR"
+#~ msgstr "AUTOSTART_DIR"
 
-#: tools/gnome-session-selector.c:123
+#~ msgid "Do not load user-specified applications"
+#~ msgstr "არ ჩატვირთო მომხმარებლის მიერ გაშვებული პროგრამები"
+
+#~ msgid "Show the fail whale dialog for testing"
+#~ msgstr "გამართვის სრული ფანჯრის ჩვენება"
+
+#~ msgid "Disable hardware acceleration check"
+#~ msgstr "აპარატურული აჩქარების შემოწმების გათიშვა"
+
 #, c-format
-msgid "A session named “%s” already exists"
-msgstr "სესია სახელად \"%s\" უკვე არსებობს"
+#~ msgid "Error while creating pipe: %s\n"
+#~ msgstr "ფაიფის შექმნის შეცდომა: %s\n"
+
+#~ msgid "Failure reading pipe\n"
+#~ msgstr "ფაიფიდან წაკითხვა ჩავარდა\n"
+
+#, c-format
+#~ msgid "Session %d"
+#~ msgstr "სესია %d"
+
+#~ msgid ""
+#~ "Session names are not allowed to start with “.” or contain “/” characters"
+#~ msgstr ""
+#~ "არ შეიძლება, რომ სესიის სახელი იწყებოდეს წერტილით ან შეიცავდეს \"/\" "
+#~ "სიმბოლოს"
+
+#~ msgid "Session names are not allowed to start with “.”"
+#~ msgstr "არ შეიძლება, რომ სესიის სახელი იწყებოდეს წერტილით"
+
+#~ msgid "Session names are not allowed to contain “/” characters"
+#~ msgstr "არ შეიძლება, რომ სესიის სახელი შეიცავდეს \"/\" სიმბოლოს"
+
+#, c-format
+#~ msgid "A session named “%s” already exists"
+#~ msgstr "სესია სახელად \"%s\" უკვე არსებობს"
 
 #, c-format
 #~ msgid ""
