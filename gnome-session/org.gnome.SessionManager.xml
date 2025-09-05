@@ -85,6 +85,103 @@
     </method>
 
     <!--
+      RegisterRestore:
+      @app_id: The application identifier
+      @dbus_name: The app's dbus unique name, for crash monitoring
+      @reason: The app's restore reason, see below
+      @instance_id: A stable ID for this instance of this app
+      @cleanup_ids: A list of instance IDs the session manager wishes to discard
+
+      Register the specified app for session save/restore functionality. Apps
+      that register here will be relaunched on next login, and can restore their
+      saved state.
+
+      The restore @reason communicates to an app how much state it should restore.
+      See the following table:
+
+      <itemizedlist>
+        <listitem><para>
+          <emphasis>0</emphasis>:
+          The app shouldn't restore any state
+        </para></listitem>
+        <listitem><para>
+          <emphasis>1</emphasis>:
+          This is a normal app launch. The app should restore as much state
+          as is reasonable. For instance: an app like GNOME Calculator may
+          restore the last-used mode (Basic/Advanced/Programmer/...) but won't
+          restore the history.
+        </para></listitem>
+        <listitem><para>
+          <emphasis>2</emphasis>:
+          This is an app restore after a crash. The app should restore as much
+          state as is possible, but should be careful about causing the crash
+          again. For instance, an app like GNOME Web might immediately load all
+          of its tabs after a normal restore, but only show the "This page may
+          have caused Web to crash" page in each tab after a crash restore. This
+          is also returned if the entire session crashed
+        </para></listitem>
+        <listitem><para>
+          <emphasis>3</emphasis>:
+          This is a normal app restore. The app was shut down due to logout or
+          some other reason, and the session was cleanly ended. The app should
+          restore as much state as is possible.
+        </para></listitem>
+      </itemizedlist>
+
+      The @instance_id incorporates a string that identifies this session. This
+      means that the app can safely assume that there will never be an instance
+      ID collision with other session managers from other desktop environments,
+      or even other sessions managed by gnome-session.
+
+      The instance IDs returned in @cleanup_ids will never be reused, and the
+      app should delete any data associated with these IDs from disk. When
+      complete, the app should notify the session manager via
+      #org.gnome.SessionManager.DeletedInstanceIds()
+
+      This is a private interface between gnome-session and xdg-desktop-portal.
+      Apps should talk to the portal directly for this functionality.
+    -->
+    <method name="RegisterRestore">
+      <arg type="s" name="app_id" direction="in"/>
+      <arg type="s" name="dbus_name" direction="in"/>
+      <arg type="u" name="reason" direction="out"/>
+      <arg type="s" name="instance_id" direction="out"/>
+      <arg type="as" name="cleanup_ids" direction="out"/>
+    </method>
+
+    <!--
+      DeletedInstanceIds:
+      @app_id: The application identifier
+      @ids: List of instance IDs the application deleted
+
+      Used to notify the session manager that the app has successfully deleted
+      the instance IDs, and that the manager is now free to forget them for good.
+
+      This is a private interface between gnome-session and xdg-desktop-portal.
+      Apps should talk to the portal directly for this functionality.
+    -->
+    <method name="DeletedInstanceIds">
+      <arg type="s" name="app_id" direction="in"/>
+      <arg type="as" name="ids" direction="in"/>
+    </method>
+
+    <!--
+      UnregisterRestore:
+      @app_id: The application identifier
+      @instance_id: The application's instance_id
+
+      Un-registers the app from the session save/restore functionality. This
+      should be called whenever the app exits cleanly.
+
+      This is a private interface between gnome-session and xdg-desktop-portal.
+      Apps should talk to the portal directly for this functionality.
+    -->
+    <method name="UnregisterRestore">
+      <arg type="s" name="app_id" direction="in"/>
+      <arg type="s" name="instance_id" direction="in"/>
+    </method>
+
+    <!--
       Inhibit:
       @app_id: The application identifier, optional
       @ignored: An ignored parameter, which exists only to make this API backwards-compatible with older versions of GNOME

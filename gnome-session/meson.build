@@ -41,6 +41,7 @@ sources = files(
   'gsm-manager.c',
   'gsm-presence.c',
   'gsm-session-fill.c',
+  'gsm-session-save.c',
   'gsm-shell.c',
   'gsm-store.c',
   'gsm-system.c',

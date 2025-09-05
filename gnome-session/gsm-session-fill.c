@@ -34,9 +34,6 @@ load_standard_apps (GsmManager *manager,
         const char * const *system_dirs;
         int    i;
 
-        if (g_key_file_get_boolean (keyfile, GSM_KEYFILE_SESSION_GROUP, "Kiosk", NULL))
-                return;
-
         dir = g_build_filename (g_get_user_config_dir (), "autostart", NULL);
         gsm_manager_add_autostart_apps_from_dir (manager, dir);
         g_free (dir);
@@ -143,18 +140,20 @@ gboolean
 gsm_session_fill (GsmManager  *manager,
                   const char  *session)
 {
-        GKeyFile *keyfile;
+        g_autoptr (GKeyFile) keyfile = NULL;
+        gboolean is_kiosk;
 
         keyfile = get_session_keyfile (session);
-
         if (!keyfile)
                 return FALSE;
 
-        _gsm_manager_set_active_session (manager, session);
+        is_kiosk = g_key_file_get_boolean (keyfile, GSM_KEYFILE_SESSION_GROUP,
+                                           "Kiosk", NULL);
 
-        load_standard_apps (manager, keyfile);
+        _gsm_manager_set_active_session (manager, session, is_kiosk);
 
-        g_key_file_free (keyfile);
+        if (!is_kiosk)
+                load_standard_apps (manager, keyfile);
 
         return TRUE;
 }
