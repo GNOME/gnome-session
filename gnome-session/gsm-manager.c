@@ -48,6 +48,7 @@
 #include "gsm-client.h"
 #include "gsm-inhibitor.h"
 #include "gsm-presence.h"
+#include "gsm-session-save.h"
 #include "gsm-shell.h"
 #include "gsm-store.h"
 #include "gsm-system.h"
@@ -85,6 +86,7 @@ struct _GsmManager
         GsmInhibitorFlag        inhibited_actions;
         GsmStore               *apps;
         GsmPresence            *presence;
+        GsmSessionSave         *session_save;
         char                   *session_name;
 
         /* Current status */
@@ -315,9 +317,12 @@ _start_app (const char *id,
 static void
 do_phase_startup (GsmManager *manager)
 {
-        gsm_store_foreach (manager->apps,
-                           (GsmStoreFunc)_start_app,
-                           manager);
+        if (manager->session_save && gsm_session_save_restore (manager->session_save))
+                g_info ("Restored from save, skipping normal autostart apps.");
+        else
+                gsm_store_foreach (manager->apps,
+                                   (GsmStoreFunc)_start_app,
+                                   manager);
 
         end_phase (manager);
 }
@@ -589,6 +594,9 @@ cancel_end_session (GsmManager *manager)
                            (GsmStoreFunc)_client_cancel_end_session,
                            NULL);
 
+        if (manager->session_save)
+                gsm_session_save_unseal (manager->session_save);
+
         start_phase (manager);
 }
 
@@ -841,11 +849,15 @@ gsm_manager_start (GsmManager *manager)
 }
 
 void
-_gsm_manager_set_active_session (GsmManager     *manager,
-                                 const char     *session_name)
+_gsm_manager_set_active_session (GsmManager *manager,
+                                 const char *session_name,
+                                 gboolean    is_kiosk)
 {
         g_free (manager->session_name);
         manager->session_name = g_strdup (session_name);
+
+        if (!is_kiosk)
+                manager->session_save = gsm_session_save_new (session_name);
 
         gsm_exported_manager_set_session_name (manager->skeleton, session_name);
 }
@@ -1353,6 +1365,9 @@ gsm_manager_shutdown (GsmExportedManager    *skeleton,
                 return TRUE;
         }
 
+        if (manager->session_save)
+                gsm_session_save_seal (manager->session_save);
+
         task = g_task_new (manager, manager->end_session_cancellable, (GAsyncReadyCallback) complete_end_session_task, invocation);
 
         manager->pending_end_session_tasks = g_slist_prepend (manager->pending_end_session_tasks,
@@ -1390,6 +1405,9 @@ gsm_manager_reboot (GsmExportedManager    *skeleton,
                                                        "Logout has been locked down");
                 return TRUE;
         }
+
+        if (manager->session_save)
+                gsm_session_save_seal (manager->session_save);
 
         task = g_task_new (manager, manager->end_session_cancellable, (GAsyncReadyCallback) complete_end_session_task, invocation);
 
@@ -1630,6 +1648,9 @@ gsm_manager_logout (GsmManager *manager,
                 return FALSE;
         }
 
+        if (manager->session_save && logout_mode != GSM_MANAGER_LOGOUT_MODE_FORCE)
+                gsm_session_save_seal (manager->session_save);
+
         manager->logout_mode = logout_mode;
 
         if (manager->phase >= GSM_MANAGER_PHASE_QUERY_END_SESSION) {
@@ -1721,6 +1742,57 @@ gsm_manager_unregister_client (GsmExportedManager    *skeleton,
 {
         g_debug ("GsmManager: UnregisterClient %s (ignoring)", client_id);
         gsm_exported_manager_complete_unregister_client (skeleton, invocation);
+        return TRUE;
+}
+
+static gboolean
+gsm_manager_register_restore (GsmExportedManager    *skeleton,
+                              GDBusMethodInvocation *invocation,
+                              const char            *app_id,
+                              const char            *dbus_name,
+                              GsmManager            *manager)
+{
+        GsmRestoreReason reason;
+        char *instance_id = NULL;
+        g_autofree char *sm_id = NULL;
+
+        if (IS_STRING_EMPTY (dbus_name))
+                dbus_name = g_dbus_method_invocation_get_sender (invocation);
+
+        if (manager->session_save) {
+                g_debug ("GsmManager: RegisterRestore %s", app_id);
+                gsm_session_save_register (manager->session_save, app_id,
+                                           dbus_name, &reason, &instance_id);
+        } else {
+                g_debug ("GsmManager: RegisterRestore %s (ignoring due to kiosk session)",
+                         app_id);
+                reason = GSM_RESTORE_REASON_PRISTINE;
+                instance_id = "";
+        }
+
+        sm_id = g_strdup_printf ("gnome-session:%s", manager->session_name);
+
+        gsm_exported_manager_complete_register_restore (skeleton, invocation,
+                                                        reason, instance_id,
+                                                        sm_id);
+        return TRUE;
+}
+
+static gboolean
+gsm_manager_unregister_restore (GsmExportedManager    *skeleton,
+                                GDBusMethodInvocation *invocation,
+                                const char            *app_id,
+                                const char            *instance_id,
+                                GsmManager            *manager)
+{
+        if (manager->session_save) {
+                g_debug ("GsmManager: UnregisterRestore (%s, instance %s)", app_id, instance_id);
+                gsm_session_save_unregister (manager->session_save, app_id, instance_id);
+        } else {
+                g_debug ("GsmManager: UnregisterRestore (ignoring due to kiosk session)");
+        }
+
+        gsm_exported_manager_complete_unregister_restore (skeleton, invocation);
         return TRUE;
 }
 
@@ -1941,6 +2013,8 @@ register_manager (GsmManager *manager)
                           G_CALLBACK (gsm_manager_reboot), manager);
         g_signal_connect (skeleton, "handle-register-client",
                           G_CALLBACK (gsm_manager_register_client), manager);
+        g_signal_connect (skeleton, "handle-register-restore",
+                          G_CALLBACK (gsm_manager_register_restore), manager);
         g_signal_connect (skeleton, "handle-set-reboot-to-firmware-setup",
                           G_CALLBACK (gsm_manager_set_reboot_to_firmware_setup), manager);
         g_signal_connect (skeleton, "handle-setenv",
@@ -1953,6 +2027,8 @@ register_manager (GsmManager *manager)
                           G_CALLBACK (gsm_manager_uninhibit), manager);
         g_signal_connect (skeleton, "handle-unregister-client",
                           G_CALLBACK (gsm_manager_unregister_client), manager);
+        g_signal_connect (skeleton, "handle-unregister-restore",
+                          G_CALLBACK (gsm_manager_unregister_restore), manager);
 
         manager->dbus_disconnected = FALSE;
         g_signal_connect (connection, "closed",
