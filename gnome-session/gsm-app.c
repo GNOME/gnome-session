@@ -27,9 +27,6 @@
 #include <gio/gio.h>
 #include <gio/gdesktopappinfo.h>
 
-#define GNOME_DESKTOP_USE_UNSTABLE_API
-#include <libgnome-desktop/gnome-systemd.h>
-
 #include "gsm-app.h"
 #include "gsm-util.h"
 
@@ -192,73 +189,14 @@ gsm_app_peek_is_disabled (GsmApp *app)
         return FALSE;
 }
 
-static void
-app_launched (GAppLaunchContext *ctx,
-              GAppInfo          *appinfo,
-              GVariant          *platform_data,
-              gpointer           data)
-{
-        GsmApp *app = data;
-
-        gint pid = 0;
-        g_variant_lookup (platform_data, "pid", "i", &pid);
-
-        /* If pid == 0 the application was launched through D-Bus
-         * activation, therefore it's already in its own unit */
-        if (pid == 0)
-                return;
-
-        /* We are not interested in the result. */
-        gnome_start_systemd_scope (gsm_app_peek_app_id (app),
-                                   pid,
-                                   NULL,
-                                   NULL,
-                                   NULL, NULL, NULL);
-}
-
 gboolean
 gsm_app_start (GsmApp  *app,
                GError **error)
 {
-        g_autoptr (GAppLaunchContext) ctx = NULL;
-        GError *local_error = NULL;
-        const char * const *variable_denylist;
-        const char * const *child_environment;
-        guint handler;
-        gboolean success;
-
         g_debug ("GsmApp: starting %s (command=%s)",
                  gsm_app_peek_app_id (app),
                  g_app_info_get_commandline (G_APP_INFO (app->inner)));
-
-        ctx = g_app_launch_context_new ();
-
-        variable_denylist = gsm_util_get_variable_blacklist ();
-        for (size_t i = 0; variable_denylist[i] != NULL; i++)
-                g_app_launch_context_unsetenv (ctx, variable_denylist[i]);
-
-        child_environment = gsm_util_listenv ();
-        for (size_t i = 0; child_environment[i] != NULL; i++) {
-                g_auto (GStrv) split = g_strsplit (child_environment[i], "=", 2);
-                if (split[1] != NULL)
-                        g_app_launch_context_setenv (ctx, split[0], split[1]);
-        }
-
-        handler = g_signal_connect (ctx, "launched", G_CALLBACK (app_launched), app);
-        success = g_desktop_app_info_launch_uris_as_manager (app->inner,
-                                                             NULL,
-                                                             ctx,
-                                                             G_SPAWN_DO_NOT_REAP_CHILD | G_SPAWN_SEARCH_PATH,
-                                                             NULL, NULL, NULL, NULL,
-                                                             &local_error);
-        if (!success)
-                g_propagate_prefixed_error (error, local_error,
-                                            "Unable to start app (%s): ",
-                                            gsm_app_peek_app_id (app));
-
-        g_signal_handler_disconnect (ctx, handler);
-
-        return success;
+        return gsm_util_launch_app (app->inner, error);
 }
 
 GsmApp *
