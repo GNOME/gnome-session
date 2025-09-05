@@ -19,6 +19,8 @@
 #define __GSM_UTIL_H__
 
 #include <glib.h>
+#include <gio/gio.h>
+#include <gio/gdesktopappinfo.h>
 
 G_BEGIN_DECLS
 
@@ -38,6 +40,9 @@ const char * const * gsm_util_get_variable_blacklist(void);
 
 gboolean    gsm_util_export_activation_environment  (GError     **error);
 gboolean    gsm_util_export_user_environment        (GError     **error);
+
+gboolean    gsm_util_launch_app                     (GDesktopAppInfo  *app,
+                                                     GError          **error);
 
 G_END_DECLS
 
