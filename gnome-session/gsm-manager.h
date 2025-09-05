@@ -80,7 +80,8 @@ gboolean            gsm_manager_add_legacy_session_apps        (GsmManager     *
 void                gsm_manager_start                          (GsmManager     *manager);
 
 void                _gsm_manager_set_active_session            (GsmManager     *manager,
-                                                                const char     *session_name);
+                                                                const char     *session_name,
+                                                                gboolean        is_kiosk);
 
 gboolean            gsm_manager_logout                         (GsmManager     *manager,
                                                                 guint           logout_mode,
