@@ -3,7 +3,7 @@
 #
 # Updated by Sung-Hyun Nam <namsh@kldp.org>, 2000
 # Updated by Young-Ho Cha <ganadist@chollian.net>, 2000,2001,2006,2007
-# Changwoo Ryu <cwryu@debian.org>, 1998, 2002-2013, 2015-2020, 2022, 2024.
+# Changwoo Ryu <cwryu@debian.org>, 1998, 2002-2013, 2015-2020, 2022, 2024-2025.
 #
 #
 # 용어:
@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2024-01-13 12:21+0000\n"
-"PO-Revision-Date: 2024-03-10 21:34+0900\n"
+"POT-Creation-Date: 2025-09-02 10:08+0000\n"
+"PO-Revision-Date: 2025-09-02 21:40+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
 "Language: ko\n"
@@ -24,68 +24,36 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: data/gnome-custom-session.desktop.in.in:3
-msgid "Custom"
-msgstr "사용자 지정"
-
-#: data/gnome-custom-session.desktop.in.in:4
-msgid "This entry lets you select a saved session"
-msgstr "이 항목으로 저장한 세션을 지정합니다"
-
-#: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
+#: data/gnome.desktop.in.in:2 data/gnome.session.desktop:2
 msgid "GNOME"
 msgstr "그놈"
 
-#: data/gnome.desktop.in.in:4 data/gnome-wayland.desktop.in.in:4
-#: data/gnome-xorg.desktop.in.in:4
+#: data/gnome.desktop.in.in:3 data/gnome-wayland.desktop.in.in:3
+#: data/gnome-xorg.desktop.in.in:3
 msgid "This session logs you into GNOME"
 msgstr "이 세션을 사용하면 그놈에 로그인합니다"
 
-#: data/gnome-dummy.session.desktop.in.in:3
-msgid "GNOME dummy"
-msgstr "그놈 더미"
-
-#: data/gnome-wayland.desktop.in.in:3
+#: data/gnome-wayland.desktop.in.in:2
 msgid "GNOME on Wayland"
 msgstr "그놈 (웨일랜드)"
 
-#: data/gnome-xorg.desktop.in.in:3
+#: data/gnome-xorg.desktop.in.in:2
 msgid "GNOME on Xorg"
 msgstr "그놈 (Xorg)"
 
 #: data/org.gnome.SessionManager.gschema.xml:5
-msgid "Save sessions"
-msgstr "세션 저장"
-
-#: data/org.gnome.SessionManager.gschema.xml:6
-msgid "If enabled, gnome-session will save the session automatically."
-msgstr "참이면, gnome-session에서 자동으로 세션을 저장합니다."
-
-#: data/org.gnome.SessionManager.gschema.xml:10
-msgid "Save this session"
-msgstr "이 세션 저장"
-
-#: data/org.gnome.SessionManager.gschema.xml:11
-msgid ""
-"When enabled, gnome-session will automatically save the next session at log "
-"out even if auto saving is disabled."
-msgstr ""
-"참이면, gnome-session에서 자동 저장을 껐더라도 로그아웃할 때 다음 세션을 자동"
-"으로 저장합니다."
-
-#: data/org.gnome.SessionManager.gschema.xml:15
 msgid "Logout prompt"
 msgstr "로그아웃 확인"
 
-#: data/org.gnome.SessionManager.gschema.xml:16
+#: data/org.gnome.SessionManager.gschema.xml:6
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr "참이면, 세션을 끝낼 때 사용자에게 물어봅니다."
 
-#: data/org.gnome.SessionManager.gschema.xml:20
+#: data/org.gnome.SessionManager.gschema.xml:10
 msgid "Show the fallback warning"
 msgstr "대체 모드 경고 표시"
 
-#: data/org.gnome.SessionManager.gschema.xml:21
+#: data/org.gnome.SessionManager.gschema.xml:11
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
@@ -93,149 +61,47 @@ msgstr ""
 "참이면, gnome-session에서 대체 모드로 자동 진입하는 경우 로그인한 다음 경고 "
 "대화 상자를 표시합니다."
 
-#: data/session-selector.ui:15
-msgid "Custom Session"
-msgstr "사용자 지정 세션"
-
-#: data/session-selector.ui:50 tools/gnome-session-selector.c:102
-msgid "Please select a custom session to run"
-msgstr "실행할 세션을 직접 지정하십시오"
-
-#: data/session-selector.ui:105
-msgid "_New Session"
-msgstr "새 세션(_N)"
-
-#: data/session-selector.ui:119
-msgid "_Remove Session"
-msgstr "세션 제거(_R)"
-
-#: data/session-selector.ui:133
-msgid "Rena_me Session"
-msgstr "세션 이름 바꾸기(_M)"
-
-#: data/session-selector.ui:168
-msgid "_Continue"
-msgstr "계속(_C)"
-
-#: gnome-session/gsm-fail-whale-dialog.c:318
-msgid "Oh no!  Something has gone wrong."
-msgstr "아, 뭔가 문제가 생겼습니다."
-
-#: gnome-session/gsm-fail-whale-dialog.c:325
-msgid ""
-"A problem has occurred and the system can’t recover. Please contact a system "
-"administrator"
-msgstr "문제가 발생했지만 복구하지 못했습니다. 시스템 관리자에게 문의하십시오"
-
-#: gnome-session/gsm-fail-whale-dialog.c:327
-msgid ""
-"A problem has occurred and the system can’t recover. All extensions have "
-"been disabled as a precaution."
-msgstr ""
-"문제가 발생했지만 복구하지 못했습니다. 안전을 위해 모든 확장 기능을 사용하지 "
-"않도록 만듭니다."
-
-#: gnome-session/gsm-fail-whale-dialog.c:329
-msgid ""
-"A problem has occurred and the system can’t recover.\n"
-"Please log out and try again."
-msgstr ""
-"문제가 발생했지만 복구하지 못했습니다.\n"
-"로그아웃하고 다시 시도하십시오."
-
-#: gnome-session/gsm-fail-whale-dialog.c:344
-msgid "_Log Out"
-msgstr "로그아웃(_L)"
-
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:403
-msgid "Enable debugging code"
-msgstr "디버깅 코드를 사용합니다"
-
-#: gnome-session/gsm-fail-whale-dialog.c:413
-msgid "Allow logout"
-msgstr "로그아웃 허용"
-
-#: gnome-session/gsm-fail-whale-dialog.c:414
-msgid "Show extension warning"
-msgstr "확장 경고 표시"
-
-#: gnome-session/gsm-manager.c:1301 gnome-session/gsm-manager.c:2050
+#: gnome-session/gsm-manager.c:709 gnome-session/gsm-manager.c:1040
 msgid "Not responding"
 msgstr "응답 없음"
 
-#: gnome-session/gsm-util.c:431
+#: gnome-session/gsm-util.c:167
 msgid "_Log out"
 msgstr "로그아웃(_L)"
 
-#. It'd be really surprising to reach this code: if we're here,
-#. * then the XSMP client already has set several XSMP
-#. * properties. But it could still be that SmProgram is not set.
-#.
-#: gnome-session/gsm-xsmp-client.c:557
-msgid "Remembered Application"
-msgstr "기억한 프로그램"
-
-#: gnome-session/gsm-xsmp-client.c:1216
-msgid "This program is blocking logout."
-msgstr "이 프로그램이 로그아웃을 막고 있습니다."
-
-#: gnome-session/gsm-xsmp-server.c:340
-msgid ""
-"Refusing new client connection because the session is currently being shut "
-"down\n"
-msgstr "지금 세션을 끝내는 중이므로 새 클라이언트 연결을 거부합니다.\n"
-
-#: gnome-session/gsm-xsmp-server.c:607
-#, c-format
-msgid "Could not create ICE listening socket: %s"
-msgstr "ICE 리스닝 소켓을 만들 수 없습니다: %s"
-
-#: gnome-session/main.c:400
-msgid "Running as systemd service"
-msgstr "systemd 서비스로 실행"
-
-#: gnome-session/main.c:401
-msgid "Override standard autostart directories"
-msgstr "기본 자동 시작 디렉토리 대신 사용합니다"
-
-#: gnome-session/main.c:401
-msgid "AUTOSTART_DIR"
-msgstr "<자동시작_폴더>"
-
-#: gnome-session/main.c:402
+#: gnome-session/leader-main.c:181 gnome-session/service-main.c:148
 msgid "Session to use"
 msgstr "사용할 세션"
 
-#: gnome-session/main.c:402
+#: gnome-session/leader-main.c:181 gnome-session/service-main.c:148
 msgid "SESSION_NAME"
 msgstr "<세션_이름>"
 
-#: gnome-session/main.c:404
-msgid "Do not load user-specified applications"
-msgstr "사용자가 지정한 프로그램을 읽어들이지 않습니다"
+#: gnome-session/leader-main.c:182
+msgid "Enable debugging code"
+msgstr "디버깅 코드를 사용합니다"
 
-#: gnome-session/main.c:405
+#: gnome-session/leader-main.c:183
 msgid "Version of this application"
 msgstr "이 프로그램의 버전"
 
-#. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:407
-msgid "Show the fail whale dialog for testing"
-msgstr "테스트 용도로 고래 대화창을 표시합니다"
+#: gnome-session/leader-main.c:184
+msgid "This option is ignored"
+msgstr "이 옵션은 무시됩니다"
 
-#: gnome-session/main.c:408
-msgid "Disable hardware acceleration check"
-msgstr "하드웨어 가속 기능을 검사 하지 않습니다"
+#: gnome-session/leader-main.c:185
+msgid "Don't re-exec into a login shell"
+msgstr "로그인 쉘을 다시 실행하지 않습니다"
 
-#: gnome-session/main.c:440
+#: gnome-session/leader-main.c:203 gnome-session/service-main.c:157
 msgid " — the GNOME session manager"
 msgstr " — 그놈 세션 관리자"
 
-#: tools/gnome-session-ctl.c:245
+#: tools/gnome-session-ctl.c:247
 msgid "Start gnome-session-shutdown.target"
 msgstr "gnome-session-shutdown.target 시작"
 
-#: tools/gnome-session-ctl.c:246
+#: tools/gnome-session-ctl.c:248
 msgid ""
 "Start gnome-session-shutdown.target when receiving EOF or a single byte on "
 "stdin"
@@ -243,78 +109,91 @@ msgstr ""
 "표준 입력에서 EOF 또는 한 바이트를 받으면 gnome-session-shutdown.target을 시"
 "작합니다"
 
-#: tools/gnome-session-ctl.c:247
+#: tools/gnome-session-ctl.c:249
 msgid "Signal initialization done to gnome-session"
 msgstr "gnome-session에 시그널 초기화 완료"
 
-#: tools/gnome-session-ctl.c:248
+#: tools/gnome-session-ctl.c:250
 msgid "Restart dbus.service if it is running"
 msgstr "dbus.service가 실행 중이면 다시 시작"
 
-#: tools/gnome-session-ctl.c:249
+#: tools/gnome-session-ctl.c:251
 msgid ""
-"Run from ExecStopPost to start gnome-session-failed.target on service failure"
+"Run from ExecStopPost to start gnome-session-shutdown.target on service "
+"failure"
 msgstr ""
-"ExecStopPost에서 실행, 서비스 실패할 때 gnome-session-failed.target을 시작합"
-"니다"
+"ExecStopPost에서 실행, 서비스 실패할 때 gnome-session-shutdown.target을 시작"
+"합니다"
 
-#: tools/gnome-session-ctl.c:279
+#: tools/gnome-session-ctl.c:281
 msgid "Program needs exactly one parameter"
 msgstr "프로그램에 정확히 하나의 인수가 필요합니다"
 
-#: tools/gnome-session-inhibit.c:108
+#: tools/gnome-session-inhibit.c:69
 #, c-format
+msgid "Unknown inhibit argument: %s"
+msgstr "알 수 없는 금지 옵션 인자: %s"
+
+#: tools/gnome-session-inhibit.c:289
+#, c-format
+msgid "Failed to execute %s: %m\n"
+msgstr "%s 실행 실패: %m\n"
+
+#: tools/gnome-session-inhibit.c:361
+msgid "Show program version"
+msgstr "프로그램 버전을 표시합니다"
+
+#: tools/gnome-session-inhibit.c:362
+msgid "The application id to use when inhibiting (optional)"
+msgstr "금지 상태에서 앱 ID (옵션)"
+
+#: tools/gnome-session-inhibit.c:362
+msgid "ID"
+msgstr "ID"
+
+#: tools/gnome-session-inhibit.c:363
+msgid "The reason for inhibiting (optional)"
+msgstr "금지 이유 (옵션)"
+
+#: tools/gnome-session-inhibit.c:363
+msgid "REASON"
+msgstr "<이유>"
+
+#: tools/gnome-session-inhibit.c:364
+msgid "Add action to inhibit (repeatable)"
+msgstr "금지 동작 추가 (반복 가능)"
+
+#: tools/gnome-session-inhibit.c:364
+msgid "ACTION"
+msgstr "<동작>"
+
+#: tools/gnome-session-inhibit.c:365
+msgid "Do not launch COMMAND and wait forever instead"
+msgstr "<명령>을 실행하지 않고 그 대신 영원히 기다립니다"
+
+#: tools/gnome-session-inhibit.c:366
+msgid "List the existing inhibitions, and exit"
+msgstr "현재의 금지 목록을 표시하고 끝납니다"
+
+#: tools/gnome-session-inhibit.c:378
+msgid "COMMAND"
+msgstr "<명령>"
+
+#: tools/gnome-session-inhibit.c:384
+msgid "Execute COMMAND while inhibiting some session functionality."
+msgstr "일부 세션 기능을 금지하면서 <명령>을 실행합니다."
+
+#: tools/gnome-session-inhibit.c:385
 msgid ""
-"%s [OPTION…] COMMAND\n"
-"\n"
-"Execute COMMAND while inhibiting some session functionality.\n"
-"\n"
-"  -h, --help        Show this help\n"
-"  --version         Show program version\n"
-"  --app-id ID       The application id to use\n"
-"                    when inhibiting (optional)\n"
-"  --reason REASON   The reason for inhibiting (optional)\n"
-"  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
-"                    logout, switch-user, suspend, idle, automount\n"
-"  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
-"  -l, --list        List the existing inhibitions, and exit\n"
-"\n"
-"If no --inhibit option is specified, idle is assumed.\n"
+"Valid ACTION values are: logout, switch-user, suspend, idle, and automount.\n"
+"If no --inhibit options are specified, idle is assumed."
 msgstr ""
-"%s [옵션...] <명령>\n"
-"\n"
-"일부 그놈 세션 기능을 금지하면서 <명령>을 실행합니다.\n"
-"\n"
-"  -h, --help        이 도움말 표시\n"
-"  --version         프로그램 버전 표시\n"
-"  --app-id <ID>     금지할 때 사용하려는 프로그램 아이디(옵션)\n"
-"  --reason <이유>   금지하는 이유(옵션)\n"
-"  --inhibit <항목>  금지할 항목의 쉼표로 구분한 목록:\n"
-"                    logout, switch-user, suspend, idle, automount\n"
-"  --inhibit-only    <명령>을 실행하지 않고 계속 대기\n"
-"  -l, --list        현재 금지 목록을 표시하고, 끝납니다\n"
-"\n"
-"--inhibit 옵션을 지정하지 않았다면, idle이라고 가정합니다.\n"
+"올바른 <동작> 값은: logout, switch-user, suspend, idle, 그리고 automount.\n"
+"--inhibit 옵션을 지정하지 않으면, idle을 가정합니다."
 
-#: tools/gnome-session-inhibit.c:282
-#, c-format
-msgid "Error while creating pipe: %s\n"
-msgstr "파이프를 만드는 중 오류: %s\n"
-
-#: tools/gnome-session-inhibit.c:299
-msgid "Failure reading pipe\n"
-msgstr "파이프를 읽는 중 실패\n"
-
-#: tools/gnome-session-inhibit.c:303
-#, c-format
-msgid "Failed to execute %s\n"
-msgstr "%s 실행 실패\n"
-
-#: tools/gnome-session-inhibit.c:376 tools/gnome-session-inhibit.c:386
-#: tools/gnome-session-inhibit.c:396
-#, c-format
-msgid "%s requires an argument\n"
-msgstr "%s requires an argument\n"
+#: tools/gnome-session-inhibit.c:409
+msgid "Neither COMMAND nor --inhibit-only were specified."
+msgstr "<명령>이나 --inhibit-only 옵션 모두 지정하지 않았습니다."
 
 #: tools/gnome-session-quit.c:50
 msgid "Log out"
@@ -343,32 +222,3 @@ msgstr "세션 관리자에 연결할 수 없습니다"
 #: tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
 msgstr "함께 사용할 수 없는 옵션을 같이 사용했습니다"
-
-#: tools/gnome-session-selector.c:61
-#, c-format
-msgid "Session %d"
-msgstr "세션 %d"
-
-#: tools/gnome-session-selector.c:107
-msgid ""
-"Session names are not allowed to start with “.” or contain “/” characters"
-msgstr "“.”으로 시작하거나 “/”가 들어간 세션 이름은 허용하지 않습니다"
-
-#: tools/gnome-session-selector.c:111
-msgid "Session names are not allowed to start with “.”"
-msgstr "“.”으로 시작하는 세션 이름은 허용하지 않습니다"
-
-#: tools/gnome-session-selector.c:115
-msgid "Session names are not allowed to contain “/” characters"
-msgstr "“/”가 들어간 세션 이름은 허용하지 않습니다"
-
-#: tools/gnome-session-selector.c:123
-#, c-format
-msgid "A session named “%s” already exists"
-msgstr "이름이 “%s”인 세션이 이미 있습니다"
-
-#~ msgid "Use systemd session management"
-#~ msgstr "systemd 세션 관리 사용"
-
-#~ msgid "Use builtin session management (rather than the systemd based one)"
-#~ msgstr "내장 세션 관리 기능 사용 (systemd 기반 세션 아님)"
