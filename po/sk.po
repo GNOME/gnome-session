@@ -15,87 +15,51 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2024-03-30 03:44+0000\n"
-"PO-Revision-Date: 2024-06-13 23:41+0200\n"
+"POT-Creation-Date: 2025-09-08 16:57+0000\n"
+"PO-Revision-Date: 2025-09-08 20:28+0200\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0\n"
-"X-Generator: Gtranslator 40.0\n"
-
-# desktop entry name
-#: data/gnome-custom-session.desktop.in.in:3
-msgid "Custom"
-msgstr "Vlastná relácia"
-
-# desktop entry comment
-#: data/gnome-custom-session.desktop.in.in:4
-msgid "This entry lets you select a saved session"
-msgstr "Táto položka vám umožní vybrať uloženú reláciu"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
+"X-Generator: Poedit 3.6\n"
 
 # desktop entry name; gnome session name
-#: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
+#: data/gnome.desktop.in.in:2 data/gnome.session.desktop:2
 msgid "GNOME"
 msgstr "GNOME"
 
 # desktop entry comment
-#: data/gnome.desktop.in.in:4 data/gnome-wayland.desktop.in.in:4
-#: data/gnome-xorg.desktop.in.in:4
+#: data/gnome.desktop.in.in:3 data/gnome-wayland.desktop.in.in:3
+#: data/gnome-xorg.desktop.in.in:3
 msgid "This session logs you into GNOME"
 msgstr "Táto relácia vás prihlási do GNOME"
 
-# desktop entry name
-#: data/gnome-dummy.session.desktop.in.in:3
-msgid "GNOME dummy"
-msgstr "Fingované GNOME"
-
-#: data/gnome-wayland.desktop.in.in:3
+#: data/gnome-wayland.desktop.in.in:2
 msgid "GNOME on Wayland"
 msgstr "GNOME cez Wayland"
 
-#: data/gnome-xorg.desktop.in.in:3
+#: data/gnome-xorg.desktop.in.in:2
 msgid "GNOME on Xorg"
 msgstr "GNOME cez Xorg"
 
-# GtkButton label
 #: data/org.gnome.SessionManager.gschema.xml:5
-msgid "Save sessions"
-msgstr "Ukladanie relácie"
-
-#: data/org.gnome.SessionManager.gschema.xml:6
-msgid "If enabled, gnome-session will save the session automatically."
-msgstr "Ak je povolené, gnome-session bude reláciu ukladať automaticky."
-
-#: data/org.gnome.SessionManager.gschema.xml:10
-msgid "Save this session"
-msgstr "Uloženie tejto relácie"
-
-#: data/org.gnome.SessionManager.gschema.xml:11
-msgid ""
-"When enabled, gnome-session will automatically save the next session at log "
-"out even if auto saving is disabled."
-msgstr ""
-"Keď je povolené, gnome-session automaticky uloží nasledujúcu reláciu pri "
-"odhlásení, aj keď je automatické ukladanie zakázané."
-
-#: data/org.gnome.SessionManager.gschema.xml:15
 msgid "Logout prompt"
 msgstr "Výzvna na odhlásenie"
 
-#: data/org.gnome.SessionManager.gschema.xml:16
+#: data/org.gnome.SessionManager.gschema.xml:6
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 "Ak je povolené, gnome-session vyzve používateľa pred ukončením relácie."
 
 # cmd desc
-#: data/org.gnome.SessionManager.gschema.xml:20
+#: data/org.gnome.SessionManager.gschema.xml:10
 msgid "Show the fallback warning"
 msgstr "Zobrazí upozornenie záchranného režimu"
 
-#: data/org.gnome.SessionManager.gschema.xml:21
+#: data/org.gnome.SessionManager.gschema.xml:11
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
@@ -103,162 +67,43 @@ msgstr ""
 "Ak je povolené, gnome-session zobrazí po prihlásení upozornenie, ak sa "
 "automaticky použije záchranný režim."
 
-# GtkWindow title
-#: data/session-selector.ui:15
-msgid "Custom Session"
-msgstr "Vlastná relácia"
-
-# GtkLabel label
-#: data/session-selector.ui:50 tools/gnome-session-selector.c:102
-msgid "Please select a custom session to run"
-msgstr "Prosím, vyberte vlastnú reláciu, ktorá sa má spustiť"
-
-# GtkButton label
-#: data/session-selector.ui:105
-msgid "_New Session"
-msgstr "_Nová relácia"
-
-# GtkButton label
-#: data/session-selector.ui:119
-msgid "_Remove Session"
-msgstr "_Odstrániť reláciu"
-
-# GtkButton label
-#: data/session-selector.ui:133
-msgid "Rena_me Session"
-msgstr "Pre_menovať reláciu"
-
-# GtkButton label
-#: data/session-selector.ui:168
-msgid "_Continue"
-msgstr "_Pokračovať"
-
-#: gnome-session/gsm-fail-whale-dialog.c:318
-msgid "Oh no!  Something has gone wrong."
-msgstr "Ale nie! Niekde sa stala chyba."
-
-#: gnome-session/gsm-fail-whale-dialog.c:325
-msgid ""
-"A problem has occurred and the system can’t recover. Please contact a system "
-"administrator"
-msgstr ""
-"Vyskytla sa chyba a systém sa nedokáže obnoviť. Prosím, kontaktuje správcu "
-"systému"
-
-# PK: extensions asi zasuvne moduly
-# DK: zasuvne moduly su "plugins".tu sa jedna o rozsirenia Shellu.mam overene v praxi.
-#: gnome-session/gsm-fail-whale-dialog.c:327
-msgid ""
-"A problem has occurred and the system can’t recover. All extensions have "
-"been disabled as a precaution."
-msgstr ""
-"Vyskytla sa chyba a systém sa nedokáže obnoviť. Všetky rozšírenia boli "
-"preventívne zakázané."
-
-#: gnome-session/gsm-fail-whale-dialog.c:329
-msgid ""
-"A problem has occurred and the system can’t recover.\n"
-"Please log out and try again."
-msgstr ""
-"Vyskytla sa chyba a systém sa nedokáže obnoviť.\n"
-"Prosím, odhláste sa a skúste to znovu."
-
-# button
-#: gnome-session/gsm-fail-whale-dialog.c:344
-msgid "_Log Out"
-msgstr "_Odhlásiť sa"
-
-# cmd desc
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:505
-msgid "Enable debugging code"
-msgstr "Povolí ladiaci kód"
-
-# cmd desc
-#: gnome-session/gsm-fail-whale-dialog.c:413
-msgid "Allow logout"
-msgstr "Povolí odhlásenie"
-
-# cmd desc
-#: gnome-session/gsm-fail-whale-dialog.c:414
-msgid "Show extension warning"
-msgstr "Zobrazí upozornenie rozšírenia"
-
-#: gnome-session/gsm-manager.c:1301 gnome-session/gsm-manager.c:2050
+#: gnome-session/gsm-manager.c:709 gnome-session/gsm-manager.c:1040
 msgid "Not responding"
 msgstr "Neodpovedá"
 
 # button
-#: gnome-session/gsm-util.c:431
+#: gnome-session/gsm-util.c:167
 msgid "_Log out"
 msgstr "Odh_lásiť sa"
 
-#. It'd be really surprising to reach this code: if we're here,
-#. * then the XSMP client already has set several XSMP
-#. * properties. But it could still be that SmProgram is not set.
-#.
-#: gnome-session/gsm-xsmp-client.c:557
-msgid "Remembered Application"
-msgstr "Zapamätaná aplikácia"
-
-#: gnome-session/gsm-xsmp-client.c:1216
-msgid "This program is blocking logout."
-msgstr "Tento program blokuje odhlásenie."
-
-#: gnome-session/gsm-xsmp-server.c:340
-msgid ""
-"Refusing new client connection because the session is currently being shut "
-"down\n"
-msgstr "Nové pripojenie klienta odmietnuté, pretože sa relácia práve vypína\n"
-
-#: gnome-session/gsm-xsmp-server.c:607
-#, c-format
-msgid "Could not create ICE listening socket: %s"
-msgstr "Nepodarilo sa vytvoriť načúvajúci soket ICE: %s"
-
-#: gnome-session/main.c:502
-msgid "Running as systemd service"
-msgstr "Pobeží ako služba systemd"
-
 # cmd desc
-#: gnome-session/main.c:503
-msgid "Override standard autostart directories"
-msgstr "Preváži predvolené adresáre automatického spúšťania"
-
-#: gnome-session/main.c:503
-msgid "AUTOSTART_DIR"
-msgstr "ADRESÁR_AUTOSPUSTENIA"
-
-# cmd desc
-#: gnome-session/main.c:504
+#: gnome-session/leader-main.c:181 gnome-session/service-main.c:148
 msgid "Session to use"
 msgstr "Relácia, ktorá bude použitá"
 
-#: gnome-session/main.c:504
+#: gnome-session/leader-main.c:181 gnome-session/service-main.c:148
 msgid "SESSION_NAME"
 msgstr "NÁZOV_RELÁCIE"
 
 # cmd desc
-#: gnome-session/main.c:506
-msgid "Do not load user-specified applications"
-msgstr "Nenačíta aplikácie špecifikované používateľom"
+#: gnome-session/leader-main.c:182
+msgid "Enable debugging code"
+msgstr "Povolí ladiaci kód"
 
 # cmd desc
-#: gnome-session/main.c:507
+#: gnome-session/leader-main.c:183
 msgid "Version of this application"
 msgstr "Verzia tejto aplikácie"
 
-# cmd desc
-#. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:509
-msgid "Show the fail whale dialog for testing"
-msgstr "Zobrazí dialógové okno s chybou slúžiace na testovanie"
+#: gnome-session/leader-main.c:184
+msgid "This option is ignored"
+msgstr "Táto voľba je ignorovaná"
 
-# cmd desc
-#: gnome-session/main.c:510
-msgid "Disable hardware acceleration check"
-msgstr "Zakáže kontrolu hardvérovej akcelerácie"
+#: gnome-session/leader-main.c:185
+msgid "Don't re-exec into a login shell"
+msgstr ""
 
-#: gnome-session/main.c:542
+#: gnome-session/leader-main.c:203 gnome-session/service-main.c:157
 msgid " — the GNOME session manager"
 msgstr " — správca relácie GNOME"
 
@@ -284,73 +129,80 @@ msgstr "Reštartuje dbus.service, ak beží"
 
 #: tools/gnome-session-ctl.c:251
 msgid ""
-"Run from ExecStopPost to start gnome-session-failed.target on service failure"
+"Run from ExecStopPost to start gnome-session-shutdown.target on service "
+"failure"
 msgstr ""
-"Spustením z ExecStopPost spustíte gnome-session-failed.target pri zlyhaní "
+"Spustením z ExecStopPost spustíte gnome-session-shutdown.target pri zlyhaní "
 "služby"
 
 #: tools/gnome-session-ctl.c:281
 msgid "Program needs exactly one parameter"
 msgstr "Program vyžaduje presne jeden parameter"
 
-#: tools/gnome-session-inhibit.c:108
+#: tools/gnome-session-inhibit.c:69
 #, c-format
-msgid ""
-"%s [OPTION…] COMMAND\n"
-"\n"
-"Execute COMMAND while inhibiting some session functionality.\n"
-"\n"
-"  -h, --help        Show this help\n"
-"  --version         Show program version\n"
-"  --app-id ID       The application id to use\n"
-"                    when inhibiting (optional)\n"
-"  --reason REASON   The reason for inhibiting (optional)\n"
-"  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
-"                    logout, switch-user, suspend, idle, automount\n"
-"  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
-"  -l, --list        List the existing inhibitions, and exit\n"
-"\n"
-"If no --inhibit option is specified, idle is assumed.\n"
+msgid "Unknown inhibit argument: %s"
+msgstr "Neznámy parameter potlačenia: %s"
+
+#: tools/gnome-session-inhibit.c:289
+#, c-format
+msgid "Failed to execute %s: %m\n"
+msgstr "Zlyhalo spustenie príkazu %s: %m\n"
+
+#: tools/gnome-session-inhibit.c:361
+msgid "Show program version"
+msgstr "Zobrazí verziu programu"
+
+#: tools/gnome-session-inhibit.c:362
+msgid "The application id to use when inhibiting (optional)"
 msgstr ""
-"%s [VOĽBA...] PRÍKAZ\n"
-"\n"
-"Spustenie PRÍKAZU počas potlačenia niektorých funkcií relácie.\n"
-"\n"
-"  -h, --help        Zobrazí tohoto pomocníka\n"
-"  --version         Zobrazí verziu programu\n"
-"  --app-id ID       Identifikátor aplikácie, ktorá sa použije\n"
-"                    pri potlačení (voliteľné)\n"
-"  --reason PRÍČINA  Príčina, kvôli ktorej sa uskutoční potlačenie "
-"(voliteľné)\n"
-"  --inhibit ARG   Dvojbodkou oddelené súčasti na potlačenie, z možností:\n"
-"                    logout (odhlásenie), switch-user (prepnutie "
-"používateľa), suspend (uspatie), idle (nečinnosť), automount (automatické "
-"pripojenie)\n"
-"  --inhibit-only    Nespustí PRÍKAZ, ale bude miesto toho čakať donekonečna\n"
-"  -l, --list        Vypíše existujúce potláčania, a ukončí sa\n"
-"\n"
-"Ak nie je určená žiadna voľba typu --inhibit, bude sa predpokladať "
-"nečinnosť.\n"
+"Identifikátor aplikácie, ktorý sa má použiť počas potláčania (voliteľný)"
 
-#: tools/gnome-session-inhibit.c:282
-#, c-format
-msgid "Error while creating pipe: %s\n"
-msgstr "Chyba pri vytváraní rúry (pipe): %s\n"
+#: tools/gnome-session-inhibit.c:362
+msgid "ID"
+msgstr "IDENTIFIKÁTOR"
 
-#: tools/gnome-session-inhibit.c:299
-msgid "Failure reading pipe\n"
-msgstr "Chyba pri čítaní z rúry (pipe)\n"
+#: tools/gnome-session-inhibit.c:363
+msgid "The reason for inhibiting (optional)"
+msgstr "Dôvod potlačenia (voliteľný)"
 
-#: tools/gnome-session-inhibit.c:303
-#, c-format
-msgid "Failed to execute %s\n"
-msgstr "Zlyhalo spustenie príkazu %s\n"
+#: tools/gnome-session-inhibit.c:363
+msgid "REASON"
+msgstr "DÔVOD"
 
-#: tools/gnome-session-inhibit.c:376 tools/gnome-session-inhibit.c:386
-#: tools/gnome-session-inhibit.c:396
-#, c-format
-msgid "%s requires an argument\n"
-msgstr "Príkaz %s vyžaduje parameter\n"
+#: tools/gnome-session-inhibit.c:364
+msgid "Add action to inhibit (repeatable)"
+msgstr ""
+
+#: tools/gnome-session-inhibit.c:364
+msgid "ACTION"
+msgstr "AKCIA"
+
+#: tools/gnome-session-inhibit.c:365
+msgid "Do not launch COMMAND and wait forever instead"
+msgstr ""
+
+#: tools/gnome-session-inhibit.c:366
+msgid "List the existing inhibitions, and exit"
+msgstr ""
+
+#: tools/gnome-session-inhibit.c:378
+msgid "COMMAND"
+msgstr "PRÍKAZ"
+
+#: tools/gnome-session-inhibit.c:384
+msgid "Execute COMMAND while inhibiting some session functionality."
+msgstr ""
+
+#: tools/gnome-session-inhibit.c:385
+msgid ""
+"Valid ACTION values are: logout, switch-user, suspend, idle, and automount.\n"
+"If no --inhibit options are specified, idle is assumed."
+msgstr ""
+
+#: tools/gnome-session-inhibit.c:409
+msgid "Neither COMMAND nor --inhibit-only were specified."
+msgstr ""
 
 # cmd desc
 #: tools/gnome-session-quit.c:50
@@ -385,29 +237,203 @@ msgstr "Nepodarilo sa pripojiť k správcovi relácií"
 msgid "Program called with conflicting options"
 msgstr "Program volaný s konfliktnými voľbami"
 
+# desktop entry name
+#~ msgid "Custom"
+#~ msgstr "Vlastná relácia"
+
+# desktop entry comment
+#~ msgid "This entry lets you select a saved session"
+#~ msgstr "Táto položka vám umožní vybrať uloženú reláciu"
+
+# desktop entry name
+#~ msgid "GNOME dummy"
+#~ msgstr "Fingované GNOME"
+
+# GtkButton label
+#~ msgid "Save sessions"
+#~ msgstr "Ukladanie relácie"
+
+#~ msgid "If enabled, gnome-session will save the session automatically."
+#~ msgstr "Ak je povolené, gnome-session bude reláciu ukladať automaticky."
+
+#~ msgid "Save this session"
+#~ msgstr "Uloženie tejto relácie"
+
+#~ msgid ""
+#~ "When enabled, gnome-session will automatically save the next session at "
+#~ "log out even if auto saving is disabled."
+#~ msgstr ""
+#~ "Keď je povolené, gnome-session automaticky uloží nasledujúcu reláciu pri "
+#~ "odhlásení, aj keď je automatické ukladanie zakázané."
+
+# GtkWindow title
+#~ msgid "Custom Session"
+#~ msgstr "Vlastná relácia"
+
+# GtkLabel label
+#~ msgid "Please select a custom session to run"
+#~ msgstr "Prosím, vyberte vlastnú reláciu, ktorá sa má spustiť"
+
+# GtkButton label
+#~ msgid "_New Session"
+#~ msgstr "_Nová relácia"
+
+# GtkButton label
+#~ msgid "_Remove Session"
+#~ msgstr "_Odstrániť reláciu"
+
+# GtkButton label
+#~ msgid "Rena_me Session"
+#~ msgstr "Pre_menovať reláciu"
+
+# GtkButton label
+#~ msgid "_Continue"
+#~ msgstr "_Pokračovať"
+
+#~ msgid "Oh no!  Something has gone wrong."
+#~ msgstr "Ale nie! Niekde sa stala chyba."
+
+#~ msgid ""
+#~ "A problem has occurred and the system can’t recover. Please contact a "
+#~ "system administrator"
+#~ msgstr ""
+#~ "Vyskytla sa chyba a systém sa nedokáže obnoviť. Prosím, kontaktuje "
+#~ "správcu systému"
+
+# PK: extensions asi zasuvne moduly
+# DK: zasuvne moduly su "plugins".tu sa jedna o rozsirenia Shellu.mam overene v praxi.
+#~ msgid ""
+#~ "A problem has occurred and the system can’t recover. All extensions have "
+#~ "been disabled as a precaution."
+#~ msgstr ""
+#~ "Vyskytla sa chyba a systém sa nedokáže obnoviť. Všetky rozšírenia boli "
+#~ "preventívne zakázané."
+
+#~ msgid ""
+#~ "A problem has occurred and the system can’t recover.\n"
+#~ "Please log out and try again."
+#~ msgstr ""
+#~ "Vyskytla sa chyba a systém sa nedokáže obnoviť.\n"
+#~ "Prosím, odhláste sa a skúste to znovu."
+
+# button
+#~ msgid "_Log Out"
+#~ msgstr "_Odhlásiť sa"
+
 # cmd desc
-#: tools/gnome-session-selector.c:61
+#~ msgid "Allow logout"
+#~ msgstr "Povolí odhlásenie"
+
+# cmd desc
+#~ msgid "Show extension warning"
+#~ msgstr "Zobrazí upozornenie rozšírenia"
+
+#~ msgid "Remembered Application"
+#~ msgstr "Zapamätaná aplikácia"
+
+#~ msgid "This program is blocking logout."
+#~ msgstr "Tento program blokuje odhlásenie."
+
+#~ msgid ""
+#~ "Refusing new client connection because the session is currently being "
+#~ "shut down\n"
+#~ msgstr ""
+#~ "Nové pripojenie klienta odmietnuté, pretože sa relácia práve vypína\n"
+
 #, c-format
-msgid "Session %d"
-msgstr "Relácia č. %d"
+#~ msgid "Could not create ICE listening socket: %s"
+#~ msgstr "Nepodarilo sa vytvoriť načúvajúci soket ICE: %s"
 
-#: tools/gnome-session-selector.c:107
-msgid ""
-"Session names are not allowed to start with “.” or contain “/” characters"
-msgstr "Názvy relácií nesmú začínať s „.“ ani obsahovať znaky „/“"
+#~ msgid "Running as systemd service"
+#~ msgstr "Pobeží ako služba systemd"
 
-#: tools/gnome-session-selector.c:111
-msgid "Session names are not allowed to start with “.”"
-msgstr "Názvy relácií nesmú začínať s „.“"
+# cmd desc
+#~ msgid "Override standard autostart directories"
+#~ msgstr "Preváži predvolené adresáre automatického spúšťania"
 
-#: tools/gnome-session-selector.c:115
-msgid "Session names are not allowed to contain “/” characters"
-msgstr "Názvy relácií nesmú obsahovať znaky „/“"
+#~ msgid "AUTOSTART_DIR"
+#~ msgstr "ADRESÁR_AUTOSPUSTENIA"
 
-#: tools/gnome-session-selector.c:123
+# cmd desc
+#~ msgid "Do not load user-specified applications"
+#~ msgstr "Nenačíta aplikácie špecifikované používateľom"
+
+# cmd desc
+#~ msgid "Show the fail whale dialog for testing"
+#~ msgstr "Zobrazí dialógové okno s chybou slúžiace na testovanie"
+
+# cmd desc
+#~ msgid "Disable hardware acceleration check"
+#~ msgstr "Zakáže kontrolu hardvérovej akcelerácie"
+
 #, c-format
-msgid "A session named “%s” already exists"
-msgstr "Relácia s názvom „%s“ už existuje"
+#~ msgid ""
+#~ "%s [OPTION…] COMMAND\n"
+#~ "\n"
+#~ "Execute COMMAND while inhibiting some session functionality.\n"
+#~ "\n"
+#~ "  -h, --help        Show this help\n"
+#~ "  --version         Show program version\n"
+#~ "  --app-id ID       The application id to use\n"
+#~ "                    when inhibiting (optional)\n"
+#~ "  --reason REASON   The reason for inhibiting (optional)\n"
+#~ "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
+#~ "                    logout, switch-user, suspend, idle, automount\n"
+#~ "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+#~ "  -l, --list        List the existing inhibitions, and exit\n"
+#~ "\n"
+#~ "If no --inhibit option is specified, idle is assumed.\n"
+#~ msgstr ""
+#~ "%s [VOĽBA...] PRÍKAZ\n"
+#~ "\n"
+#~ "Spustenie PRÍKAZU počas potlačenia niektorých funkcií relácie.\n"
+#~ "\n"
+#~ "  -h, --help        Zobrazí tohoto pomocníka\n"
+#~ "  --version         Zobrazí verziu programu\n"
+#~ "  --app-id ID       Identifikátor aplikácie, ktorá sa použije\n"
+#~ "                    pri potlačení (voliteľné)\n"
+#~ "  --reason PRÍČINA  Príčina, kvôli ktorej sa uskutoční potlačenie "
+#~ "(voliteľné)\n"
+#~ "  --inhibit ARG   Dvojbodkou oddelené súčasti na potlačenie, z možností:\n"
+#~ "                    logout (odhlásenie), switch-user (prepnutie "
+#~ "používateľa), suspend (uspatie), idle (nečinnosť), automount (automatické "
+#~ "pripojenie)\n"
+#~ "  --inhibit-only    Nespustí PRÍKAZ, ale bude miesto toho čakať "
+#~ "donekonečna\n"
+#~ "  -l, --list        Vypíše existujúce potláčania, a ukončí sa\n"
+#~ "\n"
+#~ "Ak nie je určená žiadna voľba typu --inhibit, bude sa predpokladať "
+#~ "nečinnosť.\n"
+
+#, c-format
+#~ msgid "Error while creating pipe: %s\n"
+#~ msgstr "Chyba pri vytváraní rúry (pipe): %s\n"
+
+#~ msgid "Failure reading pipe\n"
+#~ msgstr "Chyba pri čítaní z rúry (pipe)\n"
+
+#, c-format
+#~ msgid "%s requires an argument\n"
+#~ msgstr "Príkaz %s vyžaduje parameter\n"
+
+# cmd desc
+#, c-format
+#~ msgid "Session %d"
+#~ msgstr "Relácia č. %d"
+
+#~ msgid ""
+#~ "Session names are not allowed to start with “.” or contain “/” characters"
+#~ msgstr "Názvy relácií nesmú začínať s „.“ ani obsahovať znaky „/“"
+
+#~ msgid "Session names are not allowed to start with “.”"
+#~ msgstr "Názvy relácií nesmú začínať s „.“"
+
+#~ msgid "Session names are not allowed to contain “/” characters"
+#~ msgstr "Názvy relácií nesmú obsahovať znaky „/“"
+
+#, c-format
+#~ msgid "A session named “%s” already exists"
+#~ msgstr "Relácia s názvom „%s“ už existuje"
 
 # cmd desc
 #~ msgid "Use systemd session management"
@@ -526,8 +552,8 @@ msgstr "Relácia s názvom „%s“ už existuje"
 
 #~ msgid "Can't pass document URIs to a 'Type=Link' desktop entry"
 #~ msgstr ""
-#~ "Nie je možné odovzdať URI dokumentov do položky „Type=Link“ súboru ."
-#~ "desktop "
+#~ "Nie je možné odovzdať URI dokumentov do položky „Type=Link“ "
+#~ "súboru .desktop "
 
 #~ msgid "Not a launchable item"
 #~ msgstr "Nespustiteľná položka"
@@ -542,9 +568,6 @@ msgstr "Relácia s názvom „%s“ už existuje"
 
 #~ msgid "FILE"
 #~ msgstr "SÚBOR"
-
-#~ msgid "ID"
-#~ msgstr "IDENTIFIKÁTOR"
 
 #~ msgid "Session management options:"
 #~ msgstr "Voľby pre správu relácie:"
