@@ -22,31 +22,31 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2025-06-23 18:48+0000\n"
-"PO-Revision-Date: 2025-07-13 08:00+0300\n"
-"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
+"POT-Creation-Date: 2025-08-27 22:11+0000\n"
+"PO-Revision-Date: 2025-08-28 14:07+0300\n"
+"Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.6\n"
 
-#: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
+#: data/gnome.desktop.in.in:2 data/gnome.session.desktop:2
 msgid "GNOME"
 msgstr "GNOME"
 
-#: data/gnome.desktop.in.in:4 data/gnome-wayland.desktop.in.in:4
-#: data/gnome-xorg.desktop.in.in:4
+#: data/gnome.desktop.in.in:3 data/gnome-wayland.desktop.in.in:3
+#: data/gnome-xorg.desktop.in.in:3
 msgid "This session logs you into GNOME"
 msgstr "Bu oturum GNOME’a girmenizi sağlar"
 
-#: data/gnome-wayland.desktop.in.in:3
+#: data/gnome-wayland.desktop.in.in:2
 msgid "GNOME on Wayland"
 msgstr "Wayland üzerinde GNOME"
 
-#: data/gnome-xorg.desktop.in.in:3
+#: data/gnome-xorg.desktop.in.in:2
 msgid "GNOME on Xorg"
 msgstr "Xorg üzerinde GNOME"
 
@@ -71,95 +71,39 @@ msgstr ""
 "Etkinse, gnome-session, oturum kendiliğinden yedeğe düşmüşse girişin "
 "ardından uyarı penceresi gösterecektir."
 
-#: gnome-session/gsm-fail-whale-dialog.c:90
-msgid "Oh no! Something has gone wrong."
-msgstr "Hayda! Bir şeyler yanlış gitti."
-
-#: gnome-session/gsm-fail-whale-dialog.c:97
-msgid ""
-"A problem has occurred and the system can’t recover. Please contact a system "
-"administrator"
-msgstr ""
-"Sorun oluştu ve sistem kurtarılamıyor. Lütfen sistem yöneticisine başvurun"
-
-#: gnome-session/gsm-fail-whale-dialog.c:99
-msgid ""
-"A problem has occurred and the system can’t recover. All extensions have "
-"been disabled as a precaution."
-msgstr ""
-"Sorun oluştu ve sistem kurtarılamıyor. Önlem olarak tüm uzantılar devre dışı "
-"bırakıldı."
-
-#: gnome-session/gsm-fail-whale-dialog.c:101
-msgid ""
-"A problem has occurred and the system can’t recover.\n"
-"Please log out and try again."
-msgstr ""
-"Sorun oluştu ve sistem kurtarılamıyor.\n"
-"Lütfen oturumu kapatıp yeniden deneyin."
-
-#: gnome-session/gsm-fail-whale-dialog.c:109
-msgid "_Log Out"
-msgstr "_Oturumu Kapat"
-
-#: gnome-session/gsm-fail-whale-dialog.c:153 gnome-session/main.c:479
-msgid "Enable debugging code"
-msgstr "Kod hatası ayıklamayı etkinleştir"
-
-#: gnome-session/gsm-fail-whale-dialog.c:154
-msgid "Allow logout"
-msgstr "Oturumu kapatmaya izin ver"
-
-#: gnome-session/gsm-fail-whale-dialog.c:155
-msgid "Show extension warning"
-msgstr "Uzantı uyarısını göster"
-
-#: gnome-session/gsm-manager.c:1292 gnome-session/gsm-manager.c:1907
+#: gnome-session/gsm-manager.c:709 gnome-session/gsm-manager.c:1040
 msgid "Not responding"
 msgstr "Yanıtlamıyor"
 
-#: gnome-session/gsm-util.c:342
+#: gnome-session/gsm-util.c:167
 msgid "_Log out"
 msgstr "_Oturumu kapat"
 
-#: gnome-session/main.c:476
-msgid "Running as systemd service"
-msgstr "systemd hizmeti olarak çalışıyor"
-
-#: gnome-session/main.c:477
-msgid "Override standard autostart directories"
-msgstr "Standart kendiliğinden başlat dizinlerinin yerine geç"
-
-#: gnome-session/main.c:477
-msgid "AUTOSTART_DIR"
-msgstr "KENDILIGINDANBASLAT_DIZINI"
-
-#: gnome-session/main.c:478
+#: gnome-session/leader-main.c:181 gnome-session/service-main.c:148
 msgid "Session to use"
 msgstr "Kullanılacak oturum"
 
-#: gnome-session/main.c:478
+#: gnome-session/leader-main.c:181 gnome-session/service-main.c:148
 msgid "SESSION_NAME"
 msgstr "OTURUM_ADI"
 
-#: gnome-session/main.c:480
-msgid "Do not load user-specified applications"
-msgstr "Kullanıcıya özel programları yükleme"
+#: gnome-session/leader-main.c:182
+msgid "Enable debugging code"
+msgstr "Kod hatası ayıklamayı etkinleştir"
 
-#: gnome-session/main.c:481
+#: gnome-session/leader-main.c:183
 msgid "Version of this application"
 msgstr "Bu uygulamanın sürümü"
 
-#. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:483
-msgid "Show the fail whale dialog for testing"
-msgstr "Sınama için büyük hata iletişim penceresini göster"
-
-#: gnome-session/main.c:484
+#: gnome-session/leader-main.c:184
 msgid "This option is ignored"
 msgstr "Bu seçenek yok sayıldı"
 
-#: gnome-session/main.c:516
+#: gnome-session/leader-main.c:185
+msgid "Don't re-exec into a login shell"
+msgstr "Oturum açma kabuğuna yeniden girme"
+
+#: gnome-session/leader-main.c:203 gnome-session/service-main.c:157
 msgid " — the GNOME session manager"
 msgstr " — GNOME oturum yöneticisi"
 
@@ -184,8 +128,10 @@ msgstr "Çalışıyorsa dbus.service’i yeniden başlat"
 
 #: tools/gnome-session-ctl.c:251
 msgid ""
-"Run from ExecStopPost to start gnome-session-failed.target on service failure"
-msgstr "Hizmet hatasında gnome-session-failed.target’ı ExecStopPost’tan başlat"
+"Run from ExecStopPost to start gnome-session-shutdown.target on service "
+"failure"
+msgstr ""
+"Hizmet hatasında gnome-session-shutdown.target’ı ExecStopPost’tan başlat"
 
 #: tools/gnome-session-ctl.c:281
 msgid "Program needs exactly one parameter"
@@ -250,8 +196,9 @@ msgid ""
 "Valid ACTION values are: logout, switch-user, suspend, idle, and automount.\n"
 "If no --inhibit options are specified, idle is assumed."
 msgstr ""
-"Geçerli EYLEM değerleri şunlardır: logout (oturumu kapat), switch-user (kullanıcı değiştir), "
-"suspend (askıya al), idle (boşta) ve automount (kendiliğinden bağla).\n"
+"Geçerli EYLEM değerleri şunlardır: logout (oturumu kapat), switch-user "
+"(kullanıcı değiştir), suspend (askıya al), idle (boşta) ve automount "
+"(kendiliğinden bağla).\n"
 "Eğer herhangi bir --inhibit seçeneği belirtilmezse idle (boşta) kullanılır."
 
 #: tools/gnome-session-inhibit.c:409
@@ -285,3 +232,50 @@ msgstr "Oturum yöneticisine bağlanılamadı"
 #: tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
 msgstr "Program çakışan seçeneklerle çağırıldı"
+
+#~ msgid "Oh no! Something has gone wrong."
+#~ msgstr "Hayda! Bir şeyler yanlış gitti."
+
+#~ msgid ""
+#~ "A problem has occurred and the system can’t recover. Please contact a "
+#~ "system administrator"
+#~ msgstr ""
+#~ "Sorun oluştu ve sistem kurtarılamıyor. Lütfen sistem yöneticisine başvurun"
+
+#~ msgid ""
+#~ "A problem has occurred and the system can’t recover. All extensions have "
+#~ "been disabled as a precaution."
+#~ msgstr ""
+#~ "Sorun oluştu ve sistem kurtarılamıyor. Önlem olarak tüm uzantılar devre "
+#~ "dışı bırakıldı."
+
+#~ msgid ""
+#~ "A problem has occurred and the system can’t recover.\n"
+#~ "Please log out and try again."
+#~ msgstr ""
+#~ "Sorun oluştu ve sistem kurtarılamıyor.\n"
+#~ "Lütfen oturumu kapatıp yeniden deneyin."
+
+#~ msgid "_Log Out"
+#~ msgstr "_Oturumu Kapat"
+
+#~ msgid "Allow logout"
+#~ msgstr "Oturumu kapatmaya izin ver"
+
+#~ msgid "Show extension warning"
+#~ msgstr "Uzantı uyarısını göster"
+
+#~ msgid "Running as systemd service"
+#~ msgstr "systemd hizmeti olarak çalışıyor"
+
+#~ msgid "Override standard autostart directories"
+#~ msgstr "Standart kendiliğinden başlat dizinlerinin yerine geç"
+
+#~ msgid "AUTOSTART_DIR"
+#~ msgstr "KENDILIGINDANBASLAT_DIZINI"
+
+#~ msgid "Do not load user-specified applications"
+#~ msgstr "Kullanıcıya özel programları yükleme"
+
+#~ msgid "Show the fail whale dialog for testing"
+#~ msgstr "Sınama için büyük hata iletişim penceresini göster"
