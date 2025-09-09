@@ -162,6 +162,11 @@ set_up_environment (void)
 
         /* We want to use the GNOME menus which has the designed categories. */
         g_setenv ("XDG_MENU_PREFIX", "gnome-", TRUE);
+
+        /* TODO: Remove */
+        g_setenv ("MUTTER_DEBUG_SESSION_MANAGEMENT_PROTOCOL", "1", TRUE);
+        g_setenv ("GDK_DEBUG", "session-mgmt", TRUE);
+        g_setenv ("GTK_DEBUG", "session-mgmt", TRUE);
 }
 
 int
