@@ -153,6 +153,11 @@ set_up_environment (void)
 
         ibus_path = g_find_program_in_path ("ibus-daemon");
         if (ibus_path) {
+                /* For Qt 6.8 and newer */
+                if (IS_STRING_EMPTY (g_getenv ("QT_IM_MODULES")))
+                        g_setenv ("QT_IM_MODULES", "wayland;ibus", TRUE);
+
+                /* For Qt 6.7 and older */
                 if (IS_STRING_EMPTY (g_getenv ("QT_IM_MODULE")))
                         g_setenv ("QT_IM_MODULE", "ibus", TRUE);
 
