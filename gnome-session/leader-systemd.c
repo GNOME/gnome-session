@@ -149,9 +149,10 @@ leader_term_or_int_signal_cb (gpointer data)
 }
 
 static void
-graphical_session_pre_state_changed_cb (GDBusProxy *proxy,
-                                        GVariant   *changed_properties,
-                                        gpointer    data)
+graphical_session_pre_state_changed_cb (GDBusProxy  *proxy,
+                                        GVariant    *changed_properties,
+                                        char       **invalidated_properties,
+                                        gpointer     data)
 {
         Leader *ctx = data;
         g_autoptr (GVariant) value = NULL;
