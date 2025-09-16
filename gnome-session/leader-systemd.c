@@ -35,7 +35,7 @@ static void
 leader_clear (Leader *ctx)
 {
         g_clear_object (&ctx->session_bus);
-        g_clear_object (&ctx->loop);
+        g_clear_pointer (&ctx->loop, g_main_loop_unref);
         g_close (ctx->fifo_fd, NULL);
 }
 
