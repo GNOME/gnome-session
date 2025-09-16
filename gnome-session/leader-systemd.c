@@ -29,6 +29,7 @@ typedef struct {
         GDBusConnection *session_bus;
         GMainLoop *loop;
         int fifo_fd;
+        GDBusProxy *awaiting_shutdown;
 } Leader;
 
 static void
@@ -37,6 +38,7 @@ leader_clear (Leader *ctx)
         g_clear_object (&ctx->session_bus);
         g_clear_pointer (&ctx->loop, g_main_loop_unref);
         g_close (ctx->fifo_fd, NULL);
+        g_clear_object (&ctx->awaiting_shutdown);
 }
 
 G_DEFINE_AUTO_CLEANUP_CLEAR_FUNC (Leader, leader_clear);
@@ -174,7 +176,7 @@ monitor_hangup_cb (int          fd,
         Leader *ctx = user_data;
         g_autoptr (GVariant) unit = NULL;
         const char *unit_path = NULL;
-        GDBusProxy *proxy = NULL;
+        g_autoptr (GDBusProxy) proxy = NULL;
         g_autoptr (GVariant) value = NULL;
         g_autoptr (GError) error = NULL;
 
@@ -234,6 +236,8 @@ monitor_hangup_cb (int          fd,
                           "g-properties-changed",
                           G_CALLBACK (graphical_session_pre_state_changed_cb),
                           ctx);
+
+        ctx->awaiting_shutdown = g_steal_pointer (&proxy);
 
         return G_SOURCE_REMOVE;
 }
