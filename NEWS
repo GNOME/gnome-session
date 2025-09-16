@@ -1,3 +1,15 @@
+============
+Version 49.0
+============
+
+- Translation updates
+- Fixed build with musl libc
+- Fixed some memory corruption bugs that led to gnome-session-init-worker
+  crashing on logout
+- Fixed a memory leak in gnome-session-init-worker
+- Allowed Qt apps to use the Wayland text-input protocol, instead of forcing
+  them to use the direct ibus integration plugin
+
 =============
 Version 49.rc
 =============
