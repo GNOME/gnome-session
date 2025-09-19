@@ -714,6 +714,37 @@ gsm_session_save_unregister (GsmSessionSave *save,
         return TRUE;
 }
 
+static gboolean
+free_if_not_crashed (SavedAppInstance *instance,
+                     SavedApp *app)
+{
+        /* Remember instances of crashed apps, so that we communicate the right
+         * restore reason on next launch */
+        if (instance->crash_state == CRASH_STATE_INSTANCE_CRASHED)
+                return FALSE;
+
+        saved_app_discard_instance (app, instance);
+        saved_app_instance_free (instance);
+        return TRUE;
+}
+
+void
+gsm_session_save_discard (GsmSessionSave *save)
+{
+        GHashTableIter iter;
+        gpointer value;
+
+        g_hash_table_iter_init (&iter, save->apps);
+        while (g_hash_table_iter_next (&iter, NULL, &value)) {
+                SavedApp *app = value;
+                app->instances = remove_all_predicate (app->instances,
+                                                       (DestroyPredicate) free_if_not_crashed,
+                                                       app);
+        }
+
+        flush_to_disk (save);
+}
+
 GsmSessionSave *
 gsm_session_save_new (const char *session_id)
 {

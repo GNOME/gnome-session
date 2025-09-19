@@ -60,6 +60,7 @@
 
 #define SESSION_SCHEMA            "org.gnome.desktop.session"
 #define KEY_IDLE_DELAY            "idle-delay"
+#define KEY_SAVE_RESTORE          "save-restore"
 
 #define GSM_MANAGER_SCHEMA        "org.gnome.SessionManager"
 #define KEY_LOGOUT_PROMPT         "logout-prompt"
@@ -859,6 +860,7 @@ _gsm_manager_set_active_session (GsmManager *manager,
         if (!is_kiosk)
                 manager->session_save = gsm_session_save_new (session_name);
 
+        gsm_exported_manager_set_restore_supported (manager->skeleton, manager->session_save != NULL);
         gsm_exported_manager_set_session_name (manager->skeleton, session_name);
 }
 
@@ -2214,6 +2216,10 @@ handle_end_session_dialog_confirmation (GsmManager           *manager,
                 g_info ("GsmManager: Shell converted shutdown into reboot (offline update?)");
         else if (manager->logout_type != confirmed_logout_type)
                 g_warning ("GsmManager: Shell confirmed unexpected logout type");
+
+        if (manager->session_save &&
+            !g_settings_get_boolean (manager->session_settings, KEY_SAVE_RESTORE))
+                gsm_session_save_discard (manager->session_save);
 
         manager->logout_mode = GSM_MANAGER_LOGOUT_MODE_FORCE;
         manager->logout_type = confirmed_logout_type;

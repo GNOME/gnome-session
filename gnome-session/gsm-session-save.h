@@ -34,5 +34,6 @@ void            gsm_session_save_deleted_ids (GsmSessionSave     *save,
 gboolean        gsm_session_save_unregister  (GsmSessionSave     *save,
                                               const char         *app_id,
                                               const char         *instance_id);
+void     gsm_session_save_discard            (GsmSessionSave *save);
 
 G_END_DECLS
