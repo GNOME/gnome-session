@@ -43,6 +43,7 @@ struct _GsmShellPrivate
 {
         GDBusProxy      *end_session_dialog_proxy;
         GsmStore        *inhibitors;
+        GsmShellEndSessionDialogRestoreMode restore_mode;
 
         guint32          is_running : 1;
 
@@ -66,6 +67,7 @@ enum {
         END_SESSION_DIALOG_CONFIRMED_LOGOUT,
         END_SESSION_DIALOG_CONFIRMED_SHUTDOWN,
         END_SESSION_DIALOG_CONFIRMED_REBOOT,
+        END_SESSION_DIALOG_DISCARD_SAVED_SESSION,
         NUMBER_OF_SIGNALS
 };
 
@@ -174,6 +176,14 @@ gsm_shell_class_init (GsmShellClass *shell_class)
                               G_OBJECT_CLASS_TYPE (object_class),
                               G_SIGNAL_RUN_LAST,
                               G_STRUCT_OFFSET (GsmShellClass, end_session_dialog_confirmed_reboot),
+                              NULL, NULL, NULL,
+                              G_TYPE_NONE, 0);
+
+        signals [END_SESSION_DIALOG_DISCARD_SAVED_SESSION] =
+                g_signal_new ("end-session-dialog-discard-saved-session",
+                              G_OBJECT_CLASS_TYPE (object_class),
+                              G_SIGNAL_RUN_LAST,
+                              G_STRUCT_OFFSET (GsmShellClass, end_session_dialog_discard_saved_session),
                               NULL, NULL, NULL,
                               G_TYPE_NONE, 0);
 }
@@ -333,20 +343,24 @@ on_end_session_dialog_dbus_signal (GDBusProxy *proxy,
         struct {
                 const char *name;
                 int         index;
+                gboolean    dismiss;
         } signal_map[] = {
-                { "Closed", END_SESSION_DIALOG_CLOSED },
-                { "Canceled", END_SESSION_DIALOG_CANCELED },
-                { "ConfirmedLogout", END_SESSION_DIALOG_CONFIRMED_LOGOUT },
-                { "ConfirmedReboot", END_SESSION_DIALOG_CONFIRMED_REBOOT },
-                { "ConfirmedShutdown", END_SESSION_DIALOG_CONFIRMED_SHUTDOWN },
-                { NULL, -1 }
+                { "Closed", END_SESSION_DIALOG_CLOSED, TRUE },
+                { "Canceled", END_SESSION_DIALOG_CANCELED, TRUE },
+                { "ConfirmedLogout", END_SESSION_DIALOG_CONFIRMED_LOGOUT, TRUE },
+                { "ConfirmedReboot", END_SESSION_DIALOG_CONFIRMED_REBOOT, TRUE },
+                { "ConfirmedShutdown", END_SESSION_DIALOG_CONFIRMED_SHUTDOWN, TRUE },
+                { "DiscardSavedSession", END_SESSION_DIALOG_DISCARD_SAVED_SESSION, FALSE },
+                { NULL, -1, FALSE }
         };
+        gboolean dismiss = FALSE;
         int signal_index = -1;
         int i;
 
         for (i = 0; signal_map[i].name != NULL; i++) {
                 if (g_strcmp0 (signal_map[i].name, signal_name) == 0) {
                         signal_index = signal_map[i].index;
+                        dismiss = signal_map[i].dismiss;
                         break;
                 }
         }
@@ -354,16 +368,18 @@ on_end_session_dialog_dbus_signal (GDBusProxy *proxy,
         if (signal_index == -1)
                 return;
 
-        shell->priv->dialog_is_open = FALSE;
+        if (dismiss) {
+                shell->priv->dialog_is_open = FALSE;
 
-        if (shell->priv->update_idle_id != 0) {
-                g_source_remove (shell->priv->update_idle_id);
-                shell->priv->update_idle_id = 0;
+                if (shell->priv->update_idle_id != 0) {
+                        g_source_remove (shell->priv->update_idle_id);
+                        shell->priv->update_idle_id = 0;
+                }
+
+                g_signal_handlers_disconnect_by_func (shell->priv->inhibitors,
+                                                      G_CALLBACK (queue_end_session_dialog_update),
+                                                      shell);
         }
-
-        g_signal_handlers_disconnect_by_func (shell->priv->inhibitors,
-                                              G_CALLBACK (queue_end_session_dialog_update),
-                                              shell);
 
         g_signal_emit (G_OBJECT (shell), signals[signal_index], 0);
 }
@@ -394,7 +410,8 @@ on_need_end_session_dialog_update (GsmShell *shell)
 
         gsm_shell_open_end_session_dialog (shell,
                                            shell->priv->end_session_dialog_type,
-                                           shell->priv->inhibitors);
+                                           shell->priv->inhibitors,
+                                           shell->priv->restore_mode);
         return FALSE;
 }
 
@@ -411,7 +428,8 @@ queue_end_session_dialog_update (GsmShell *shell)
 gboolean
 gsm_shell_open_end_session_dialog (GsmShell *shell,
                                    GsmShellEndSessionDialogType type,
-                                   GsmStore *inhibitors)
+                                   GsmStore *inhibitors,
+                                   GsmShellEndSessionDialogRestoreMode restore_mode)
 {
         GDBusProxy *proxy;
         GError *error;
@@ -453,11 +471,12 @@ gsm_shell_open_end_session_dialog (GsmShell *shell,
 
         g_dbus_proxy_call (shell->priv->end_session_dialog_proxy,
                            "Open",
-                           g_variant_new ("(uuu@ao)",
+                           g_variant_new ("(uuu@aou)",
                                           type,
                                           0,
                                           AUTOMATIC_ACTION_TIMEOUT,
-                                          get_array_from_store (inhibitors)),
+                                          get_array_from_store (inhibitors),
+                                          restore_mode),
                            G_DBUS_CALL_FLAGS_NONE,
                            G_MAXINT, NULL,
                            on_open_finished, shell);
@@ -481,6 +500,7 @@ gsm_shell_open_end_session_dialog (GsmShell *shell,
                                   G_CALLBACK (queue_end_session_dialog_update),
                                   shell);
 
+        shell->priv->restore_mode = restore_mode;
         shell->priv->dialog_is_open = TRUE;
         shell->priv->end_session_dialog_type = type;
 

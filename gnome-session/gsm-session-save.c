@@ -27,6 +27,8 @@ struct _GsmSessionSave
         char *session_id;
         char *file_path;
         gboolean sealed;
+        gboolean is_discarded;
+        gboolean was_discarded;
         GHashTable *apps;
 };
 
@@ -234,6 +236,8 @@ flush_to_disk (GsmSessionSave *save)
                                g_variant_new_uint32 (1));
         g_variant_builder_add (&builder, "{sv}", "dirty",
                                g_variant_new_boolean (!save->sealed));
+        g_variant_builder_add (&builder, "{sv}", "discarded",
+                               g_variant_new_boolean (save->is_discarded));
 
         g_variant_builder_init_static (&instances, G_VARIANT_TYPE ("a{s(a{sv}aa{sv})}"));
         g_hash_table_iter_init (&app_iter, save->apps);
@@ -373,6 +377,7 @@ load_from_disk (GsmSessionSave  *save,
         g_autoptr (GVariant) instances = NULL;
         guint32 version = 0;
         gboolean dirty = TRUE;
+        gboolean discarded = FALSE;
         g_autoptr (GVariantIter) instances_iter = NULL;
         g_autoptr (GHashTable) apps = NULL;
         SavedApp *deserialized_app;
@@ -415,6 +420,9 @@ load_from_disk (GsmSessionSave  *save,
         if (!g_variant_dict_lookup (dict, "dirty", "b", &dirty))
                 return malformed_save_error (error, "Missing 'dirty' field");
 
+        if (!g_variant_dict_lookup (dict, "discarded", "b", &discarded))
+                return malformed_save_error (error, "Missing 'discarded' field");
+
         if (!g_variant_dict_lookup (dict, "instances", "@a{s(a{sv}aa{sv})}", &instances))
                 return malformed_save_error (error, "Missing 'instances' field");
 
@@ -427,6 +435,7 @@ load_from_disk (GsmSessionSave  *save,
                                              deserialized_app);
 
         save->apps = g_steal_pointer (&apps);
+        save->was_discarded = discarded;
 
         if (g_log_get_debug_enabled ())
                 g_debug ("GsmSessionSave: Loaded %s saved session from disk:\n%s",
@@ -712,6 +721,45 @@ gsm_session_save_unregister (GsmSessionSave *save,
                 flush_to_disk (save);
 
         return TRUE;
+}
+
+static gboolean
+free_if_not_crashed (SavedAppInstance *instance,
+                     SavedApp *app)
+{
+        /* Remember instances of crashed apps, so that we communicate the right
+         * restore reason on next launch */
+        if (instance->crash_state == CRASH_STATE_INSTANCE_CRASHED)
+                return FALSE;
+
+        saved_app_discard_instance (app, instance);
+        saved_app_instance_free (instance);
+        return TRUE;
+}
+
+void
+gsm_session_save_discard (GsmSessionSave *save)
+{
+        GHashTableIter iter;
+        gpointer value;
+
+        g_hash_table_iter_init (&iter, save->apps);
+        while (g_hash_table_iter_next (&iter, NULL, &value)) {
+                SavedApp *app = value;
+                app->instances = remove_all_predicate (app->instances,
+                                                       (DestroyPredicate) free_if_not_crashed,
+                                                       app);
+        }
+
+        save->is_discarded = TRUE;
+        save->was_discarded = TRUE;
+        flush_to_disk (save);
+}
+
+gboolean
+gsm_session_save_was_discarded (GsmSessionSave *save)
+{
+        return save->was_discarded;
 }
 
 GsmSessionSave *

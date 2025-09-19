@@ -48,6 +48,13 @@ typedef enum
     GSM_SHELL_END_SESSION_DIALOG_TYPE_RESTART,
 } GsmShellEndSessionDialogType;
 
+typedef enum
+{
+    GSM_SHELL_END_SESSION_DIALOG_RESTORE_MODE_UNSUPPORTED = 0,
+    GSM_SHELL_END_SESSION_DIALOG_RESTORE_MODE_SUPPORTED,
+    GSM_SHELL_END_SESSION_DIALOG_RESTORE_MODE_ENABLED,
+} GsmShellEndSessionDialogRestoreMode;
+
 struct _GsmShell
 {
         GObject               parent;
@@ -68,6 +75,7 @@ struct _GsmShellClass
         void (* end_session_dialog_confirmed_shutdown) (GsmShell *shell);
         void (* end_session_dialog_confirmed_reboot)   (GsmShell *shell);
 
+        void (* end_session_dialog_discard_saved_session) (GsmShell *shell);
 };
 
 GType            gsm_shell_get_type           (void);
@@ -79,7 +87,8 @@ gboolean         gsm_shell_is_running         (GsmShell *shell);
 
 gboolean         gsm_shell_open_end_session_dialog (GsmShell *shell,
                                                     GsmShellEndSessionDialogType type,
-                                                    GsmStore *inhibitors);
+                                                    GsmStore *inhibitors,
+                                                    GsmShellEndSessionDialogRestoreMode restore_mode);
 void             gsm_shell_close_end_session_dialog (GsmShell *shell);
 
 G_END_DECLS

@@ -115,6 +115,7 @@ struct _GsmManager
         gulong                  shell_end_session_dialog_confirmed_logout_id;
         gulong                  shell_end_session_dialog_confirmed_shutdown_id;
         gulong                  shell_end_session_dialog_confirmed_reboot_id;
+        gulong                  shell_end_session_dialog_discard_saved_session_id;
 };
 
 enum {
@@ -2187,6 +2188,8 @@ disconnect_shell_dialog_signals (GsmManager *manager)
                                 manager->shell);
         g_clear_signal_handler (&manager->shell_end_session_dialog_confirmed_reboot_id,
                                 manager->shell);
+        g_clear_signal_handler (&manager->shell_end_session_dialog_discard_saved_session_id,
+                                manager->shell);
 }
 
 static void
@@ -2237,6 +2240,16 @@ on_shell_end_session_dialog_confirmed_reboot (GsmShell   *shell,
 }
 
 static void
+on_shell_end_session_dialog_discard_saved_session (GsmShell   *shell,
+                                                   GsmManager *manager)
+{
+        if (manager->session_save)
+                gsm_session_save_discard (manager->session_save);
+        else
+                g_warning ("GsmManager: Shell asked us to discard session save when it's unsupported");
+}
+
+static void
 connect_shell_dialog_signals (GsmManager *manager)
 {
         if (manager->shell_end_session_dialog_canceled_id != 0)
@@ -2271,20 +2284,36 @@ connect_shell_dialog_signals (GsmManager *manager)
                                   "end-session-dialog-confirmed-reboot",
                                   G_CALLBACK (on_shell_end_session_dialog_confirmed_reboot),
                                   manager);
+
+        manager->shell_end_session_dialog_discard_saved_session_id =
+                g_signal_connect (manager->shell,
+                                  "end-session-dialog-discard-saved-session",
+                                  G_CALLBACK (on_shell_end_session_dialog_discard_saved_session),
+                                  manager);
 }
 
 static void
 show_shell_end_session_dialog (GsmManager                   *manager,
                                GsmShellEndSessionDialogType  type)
 {
+        GsmShellEndSessionDialogRestoreMode restore_mode;
+
         if (!gsm_shell_is_running (manager->shell))
                 return;
 
         connect_shell_dialog_signals (manager);
 
+        if (!manager->session_save)
+                restore_mode = GSM_SHELL_END_SESSION_DIALOG_RESTORE_MODE_UNSUPPORTED;
+        else if (gsm_session_save_was_discarded (manager->session_save))
+                restore_mode = GSM_SHELL_END_SESSION_DIALOG_RESTORE_MODE_SUPPORTED;
+        else
+                restore_mode = GSM_SHELL_END_SESSION_DIALOG_RESTORE_MODE_ENABLED;
+
         gsm_shell_open_end_session_dialog (manager->shell,
                                            type,
-                                           manager->inhibitors);
+                                           manager->inhibitors,
+                                           restore_mode);
 }
 
 /*
