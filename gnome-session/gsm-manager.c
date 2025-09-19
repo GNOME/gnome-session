@@ -60,6 +60,7 @@
 
 #define SESSION_SCHEMA            "org.gnome.desktop.session"
 #define KEY_IDLE_DELAY            "idle-delay"
+#define KEY_RESTORE               "restore"
 
 #define GSM_MANAGER_SCHEMA        "org.gnome.SessionManager"
 #define KEY_LOGOUT_PROMPT         "logout-prompt"
@@ -859,6 +860,7 @@ _gsm_manager_set_active_session (GsmManager *manager,
         if (!is_kiosk)
                 manager->session_save = gsm_session_save_new (session_name);
 
+        gsm_exported_manager_set_restore_supported (manager->skeleton, manager->session_save != NULL);
         gsm_exported_manager_set_session_name (manager->skeleton, session_name);
 }
 
@@ -2210,6 +2212,10 @@ handle_end_session_dialog_confirmation (GsmManager           *manager,
                 g_warning ("GsmManager: Shell confirmed unexpected logout type");
                 return; /* Make it obvious that something went wrong */
         }
+
+        if (manager->session_save &&
+            !g_settings_get_boolean (manager->session_settings, KEY_RESTORE))
+                gsm_session_save_discard (manager->session_save);
 
         manager->logout_mode = GSM_MANAGER_LOGOUT_MODE_FORCE;
         end_phase (manager);
