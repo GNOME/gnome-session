@@ -1,6 +1,6 @@
 # Turkish translation of gnome-session.
 # Copyright (C) 2001-2003, 2004, 2008, 2011 Free Software Foundation, Inc.
-# Copyright (C) 2012-2024 gnome-session's COPYRIGHT HOLDER
+# Copyright (C) 2012-2025 gnome-session's COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-session package.
 #
 # Sinan İmamoğlu <sinan@myrealbox.com>, 2002-2003.
@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2025-08-27 22:11+0000\n"
+"POT-Creation-Date: 2025-09-18 10:58+0000\n"
 "PO-Revision-Date: 2025-08-28 14:07+0300\n"
 "Last-Translator: Sabri Ünal <yakushabb@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
@@ -79,31 +79,31 @@ msgstr "Yanıtlamıyor"
 msgid "_Log out"
 msgstr "_Oturumu kapat"
 
-#: gnome-session/leader-main.c:181 gnome-session/service-main.c:148
+#: gnome-session/leader-main.c:186 gnome-session/service-main.c:148
 msgid "Session to use"
 msgstr "Kullanılacak oturum"
 
-#: gnome-session/leader-main.c:181 gnome-session/service-main.c:148
+#: gnome-session/leader-main.c:186 gnome-session/service-main.c:148
 msgid "SESSION_NAME"
 msgstr "OTURUM_ADI"
 
-#: gnome-session/leader-main.c:182
+#: gnome-session/leader-main.c:187
 msgid "Enable debugging code"
 msgstr "Kod hatası ayıklamayı etkinleştir"
 
-#: gnome-session/leader-main.c:183
+#: gnome-session/leader-main.c:188
 msgid "Version of this application"
 msgstr "Bu uygulamanın sürümü"
 
-#: gnome-session/leader-main.c:184
+#: gnome-session/leader-main.c:189
 msgid "This option is ignored"
 msgstr "Bu seçenek yok sayıldı"
 
-#: gnome-session/leader-main.c:185
+#: gnome-session/leader-main.c:190
 msgid "Don't re-exec into a login shell"
 msgstr "Oturum açma kabuğuna yeniden girme"
 
-#: gnome-session/leader-main.c:203 gnome-session/service-main.c:157
+#: gnome-session/leader-main.c:208 gnome-session/service-main.c:157
 msgid " — the GNOME session manager"
 msgstr " — GNOME oturum yöneticisi"
 
@@ -137,61 +137,61 @@ msgstr ""
 msgid "Program needs exactly one parameter"
 msgstr "Program tam olarak bir parametreye gereksiniyor"
 
-#: tools/gnome-session-inhibit.c:69
+#: tools/gnome-session-inhibit.c:68
 #, c-format
 msgid "Unknown inhibit argument: %s"
 msgstr "Bilinmeyen önleme argümanı: %s"
 
-#: tools/gnome-session-inhibit.c:289
+#: tools/gnome-session-inhibit.c:288
 #, c-format
 msgid "Failed to execute %s: %m\n"
 msgstr "%s çalıştırılamadı: %m\n"
 
-#: tools/gnome-session-inhibit.c:361
+#: tools/gnome-session-inhibit.c:360
 msgid "Show program version"
 msgstr "Program sürümünü göster"
 
-#: tools/gnome-session-inhibit.c:362
+#: tools/gnome-session-inhibit.c:361
 msgid "The application id to use when inhibiting (optional)"
 msgstr "Önlenirken kullanılacak uygulama kimliği (isteğe bağlı)"
 
-#: tools/gnome-session-inhibit.c:362
+#: tools/gnome-session-inhibit.c:361
 msgid "ID"
 msgstr "KİMLİK"
 
-#: tools/gnome-session-inhibit.c:363
+#: tools/gnome-session-inhibit.c:362
 msgid "The reason for inhibiting (optional)"
 msgstr "Önleme nedeni (isteğe bağlı)"
 
-#: tools/gnome-session-inhibit.c:363
+#: tools/gnome-session-inhibit.c:362
 msgid "REASON"
 msgstr "NEDEN"
 
-#: tools/gnome-session-inhibit.c:364
+#: tools/gnome-session-inhibit.c:363
 msgid "Add action to inhibit (repeatable)"
 msgstr "Önlemeye eylem ekle (yinelenebilir)"
 
-#: tools/gnome-session-inhibit.c:364
+#: tools/gnome-session-inhibit.c:363
 msgid "ACTION"
 msgstr "EYLEM"
 
-#: tools/gnome-session-inhibit.c:365
+#: tools/gnome-session-inhibit.c:364
 msgid "Do not launch COMMAND and wait forever instead"
 msgstr "KOMUTU çalıştırma ve bunun yerine sonsuza dek bekle"
 
-#: tools/gnome-session-inhibit.c:366
+#: tools/gnome-session-inhibit.c:365
 msgid "List the existing inhibitions, and exit"
 msgstr "Var olan önlemeleri listele ve çık"
 
-#: tools/gnome-session-inhibit.c:378
+#: tools/gnome-session-inhibit.c:377
 msgid "COMMAND"
 msgstr "KOMUT"
 
-#: tools/gnome-session-inhibit.c:384
+#: tools/gnome-session-inhibit.c:383
 msgid "Execute COMMAND while inhibiting some session functionality."
 msgstr "Bazı oturum işlevselliğini önlerken KOMUTU çalıştır"
 
-#: tools/gnome-session-inhibit.c:385
+#: tools/gnome-session-inhibit.c:384
 msgid ""
 "Valid ACTION values are: logout, switch-user, suspend, idle, and automount.\n"
 "If no --inhibit options are specified, idle is assumed."
@@ -201,7 +201,7 @@ msgstr ""
 "(kendiliğinden bağla).\n"
 "Eğer herhangi bir --inhibit seçeneği belirtilmezse idle (boşta) kullanılır."
 
-#: tools/gnome-session-inhibit.c:409
+#: tools/gnome-session-inhibit.c:408
 msgid "Neither COMMAND nor --inhibit-only were specified."
 msgstr "Ne KOMUT ne de --inhibit-only belirtildi."
 
@@ -232,50 +232,3 @@ msgstr "Oturum yöneticisine bağlanılamadı"
 #: tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
 msgstr "Program çakışan seçeneklerle çağırıldı"
-
-#~ msgid "Oh no! Something has gone wrong."
-#~ msgstr "Hayda! Bir şeyler yanlış gitti."
-
-#~ msgid ""
-#~ "A problem has occurred and the system can’t recover. Please contact a "
-#~ "system administrator"
-#~ msgstr ""
-#~ "Sorun oluştu ve sistem kurtarılamıyor. Lütfen sistem yöneticisine başvurun"
-
-#~ msgid ""
-#~ "A problem has occurred and the system can’t recover. All extensions have "
-#~ "been disabled as a precaution."
-#~ msgstr ""
-#~ "Sorun oluştu ve sistem kurtarılamıyor. Önlem olarak tüm uzantılar devre "
-#~ "dışı bırakıldı."
-
-#~ msgid ""
-#~ "A problem has occurred and the system can’t recover.\n"
-#~ "Please log out and try again."
-#~ msgstr ""
-#~ "Sorun oluştu ve sistem kurtarılamıyor.\n"
-#~ "Lütfen oturumu kapatıp yeniden deneyin."
-
-#~ msgid "_Log Out"
-#~ msgstr "_Oturumu Kapat"
-
-#~ msgid "Allow logout"
-#~ msgstr "Oturumu kapatmaya izin ver"
-
-#~ msgid "Show extension warning"
-#~ msgstr "Uzantı uyarısını göster"
-
-#~ msgid "Running as systemd service"
-#~ msgstr "systemd hizmeti olarak çalışıyor"
-
-#~ msgid "Override standard autostart directories"
-#~ msgstr "Standart kendiliğinden başlat dizinlerinin yerine geç"
-
-#~ msgid "AUTOSTART_DIR"
-#~ msgstr "KENDILIGINDANBASLAT_DIZINI"
-
-#~ msgid "Do not load user-specified applications"
-#~ msgstr "Kullanıcıya özel programları yükleme"
-
-#~ msgid "Show the fail whale dialog for testing"
-#~ msgstr "Sınama için büyük hata iletişim penceresini göster"
