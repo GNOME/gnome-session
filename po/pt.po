@@ -1,5 +1,5 @@
 # gnome-session's Portuguese translation
-# Copyright © 1999 2024 gnome-session
+# Copyright © 1999 2025 gnome-session
 # Distributed under the same licence as the gnome-session package
 # Nuno Ferreira <nmrf@rnl.ist.utl.pt>, 1999
 # Duarte Loreto <happyguy_pt@hotmail.com>, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013.
@@ -8,15 +8,15 @@
 # Sérgio Cardeira <cardeira.sergio@gmail.com>, 2016.
 # Juliano Camargo <julianosc@pm.me>, 2020.
 # José Vieira <jvieira33@sapo.pt>, 2020-2021.
-# Hugo Carvalho <hugokarvalho@hotmail.com>, 2020, 2021, 2022, 2023, 2024.
-# João Carvalhinho <joao.carvalhinho@gmail.com>, 2024.
+# Hugo Carvalho <hugokarvalho@hotmail.com>, 2020, 2021, 2022, 2023, 2024, 2025.
+# João Carvalhinho <joao.carvalhinho@gmail.com>, 2024, 2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 3.18\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2024-04-12 08:04+0000\n"
-"PO-Revision-Date: 2024-05-05 00:01+0100\n"
+"POT-Creation-Date: 2025-09-16 01:29+0000\n"
+"PO-Revision-Date: 2025-09-22 15:13+0100\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Português <https://l10n.gnome.org/teams/pt/>\n"
 "Language: pt\n"
@@ -24,75 +24,43 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.7\n"
 "X-Project-Style: gnome\n"
 "X-Language: pt_PT\n"
 "X-Source-Language: C\n"
 
-#: data/gnome-custom-session.desktop.in.in:3
-msgid "Custom"
-msgstr "Personalizado"
-
-#: data/gnome-custom-session.desktop.in.in:4
-msgid "This entry lets you select a saved session"
-msgstr "Esta entrada permite selecionar uma sessão gravada"
-
-#: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
+#: data/gnome.desktop.in.in:2 data/gnome.session.desktop:2
 msgid "GNOME"
 msgstr "GNOME"
 
-#: data/gnome.desktop.in.in:4 data/gnome-wayland.desktop.in.in:4
-#: data/gnome-xorg.desktop.in.in:4
+#: data/gnome.desktop.in.in:3 data/gnome-wayland.desktop.in.in:3
+#: data/gnome-xorg.desktop.in.in:3
 msgid "This session logs you into GNOME"
 msgstr "Esta sessão usa o GNOME"
 
-#: data/gnome-dummy.session.desktop.in.in:3
-msgid "GNOME dummy"
-msgstr "GNOME de teste"
-
-#: data/gnome-wayland.desktop.in.in:3
+#: data/gnome-wayland.desktop.in.in:2
 msgid "GNOME on Wayland"
 msgstr "GNOME em Wayland"
 
-#: data/gnome-xorg.desktop.in.in:3
+#: data/gnome-xorg.desktop.in.in:2
 msgid "GNOME on Xorg"
 msgstr "GNOME em Xorg"
 
 #: data/org.gnome.SessionManager.gschema.xml:5
-msgid "Save sessions"
-msgstr "Guardar sessões"
-
-#: data/org.gnome.SessionManager.gschema.xml:6
-msgid "If enabled, gnome-session will save the session automatically."
-msgstr "Se ativo, o \"gnome-session\" irá guardar a sessão automaticamente."
-
-#: data/org.gnome.SessionManager.gschema.xml:10
-msgid "Save this session"
-msgstr "Guardar esta sessão"
-
-#: data/org.gnome.SessionManager.gschema.xml:11
-msgid ""
-"When enabled, gnome-session will automatically save the next session at log "
-"out even if auto saving is disabled."
-msgstr ""
-"Se ativado, \"gnome-session\" irá guardar automaticamente a próxima sessão "
-"ao terminar a sessão se o guardar automático estiver desativado."
-
-#: data/org.gnome.SessionManager.gschema.xml:15
 msgid "Logout prompt"
 msgstr "Perguntar ao sair"
 
-#: data/org.gnome.SessionManager.gschema.xml:16
+#: data/org.gnome.SessionManager.gschema.xml:6
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 "Se ativo, o \"gnome-session\" questionará o utilizador antes de terminar uma "
 "sessão."
 
-#: data/org.gnome.SessionManager.gschema.xml:20
+#: data/org.gnome.SessionManager.gschema.xml:10
 msgid "Show the fallback warning"
 msgstr "Mostrar aviso do modo de recurso"
 
-#: data/org.gnome.SessionManager.gschema.xml:21
+#: data/org.gnome.SessionManager.gschema.xml:11
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
@@ -100,145 +68,39 @@ msgstr ""
 "Se ativado e se a sessão foi recuperada automaticamente, o \"gnome-session\" "
 "irá exibir uma janela de aviso depois de entrar."
 
-#: data/session-selector.ui:15
-msgid "Custom Session"
-msgstr "Sessão Personalizada"
-
-#: data/session-selector.ui:50 tools/gnome-session-selector.c:102
-msgid "Please select a custom session to run"
-msgstr "Selecione uma sessão personalizada para executar"
-
-#: data/session-selector.ui:105
-msgid "_New Session"
-msgstr "_Nova Sessão"
-
-#: data/session-selector.ui:119
-msgid "_Remove Session"
-msgstr "_Remover Sessão"
-
-#: data/session-selector.ui:133
-msgid "Rena_me Session"
-msgstr "Renomear _Sessão"
-
-#: data/session-selector.ui:168
-msgid "_Continue"
-msgstr "_Continuar"
-
-#: gnome-session/gsm-fail-whale-dialog.c:318
-msgid "Oh no!  Something has gone wrong."
-msgstr "Ocorreu algo de errado."
-
-#: gnome-session/gsm-fail-whale-dialog.c:325
-msgid ""
-"A problem has occurred and the system can’t recover. Please contact a system "
-"administrator"
-msgstr ""
-"Ocorreu um problema e o sistema não consegue recuperar. Contacte um "
-"administrador do sistema"
-
-#: gnome-session/gsm-fail-whale-dialog.c:327
-msgid ""
-"A problem has occurred and the system can’t recover. All extensions have "
-"been disabled as a precaution."
-msgstr ""
-"Ocorreu um problema e o sistema não consegue recuperar. Por precaução, foram "
-"desativadas todas as extensões."
-
-#: gnome-session/gsm-fail-whale-dialog.c:329
-msgid ""
-"A problem has occurred and the system can’t recover.\n"
-"Please log out and try again."
-msgstr ""
-"Ocorreu um problema e o sistema não consegue recuperar.\n"
-"Termine a sessão e tente novamente."
-
-#: gnome-session/gsm-fail-whale-dialog.c:344
-msgid "_Log Out"
-msgstr "_Sair"
-
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:505
-msgid "Enable debugging code"
-msgstr "Ativar o código de depuração"
-
-#: gnome-session/gsm-fail-whale-dialog.c:413
-msgid "Allow logout"
-msgstr "Permitir a saída"
-
-#: gnome-session/gsm-fail-whale-dialog.c:414
-msgid "Show extension warning"
-msgstr "Mostrar aviso de extensão"
-
-#: gnome-session/gsm-manager.c:1301 gnome-session/gsm-manager.c:2050
+#: gnome-session/gsm-manager.c:709 gnome-session/gsm-manager.c:1040
 msgid "Not responding"
 msgstr "Não está a responder"
 
-#: gnome-session/gsm-util.c:431
+#: gnome-session/gsm-util.c:167
 msgid "_Log out"
 msgstr "_Sair"
 
-#. It'd be really surprising to reach this code: if we're here,
-#. * then the XSMP client already has set several XSMP
-#. * properties. But it could still be that SmProgram is not set.
-#.
-#: gnome-session/gsm-xsmp-client.c:557
-msgid "Remembered Application"
-msgstr "Aplicação Memorizada"
-
-#: gnome-session/gsm-xsmp-client.c:1216
-msgid "This program is blocking logout."
-msgstr "Esta aplicação está a impedir a saída."
-
-#: gnome-session/gsm-xsmp-server.c:340
-msgid ""
-"Refusing new client connection because the session is currently being shut "
-"down\n"
-msgstr ""
-"A recusar uma nova ligação de cliente porque a sessão está atualmente a ser "
-"terminada\n"
-
-#: gnome-session/gsm-xsmp-server.c:607
-#, c-format
-msgid "Could not create ICE listening socket: %s"
-msgstr "Não foi possível criar tomada de escuta ICE: %s"
-
-#: gnome-session/main.c:502
-msgid "Running as systemd service"
-msgstr "A executar como serviço do \"systemd\""
-
-#: gnome-session/main.c:503
-msgid "Override standard autostart directories"
-msgstr "Ignorar os diretórios de arranque automático padrão"
-
-#: gnome-session/main.c:503
-msgid "AUTOSTART_DIR"
-msgstr "AUTOSTART_DIR"
-
-#: gnome-session/main.c:504
+#: gnome-session/leader-main.c:186 gnome-session/service-main.c:148
 msgid "Session to use"
 msgstr "Sessão a utilizar"
 
-#: gnome-session/main.c:504
+#: gnome-session/leader-main.c:186 gnome-session/service-main.c:148
 msgid "SESSION_NAME"
 msgstr "NOME_DA_SESSAO"
 
-#: gnome-session/main.c:506
-msgid "Do not load user-specified applications"
-msgstr "Não carregar aplicações especificadas pelo utilizador"
+#: gnome-session/leader-main.c:187
+msgid "Enable debugging code"
+msgstr "Ativar o código de depuração"
 
-#: gnome-session/main.c:507
+#: gnome-session/leader-main.c:188
 msgid "Version of this application"
 msgstr "Versão desta aplicação"
 
-#. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:509
-msgid "Show the fail whale dialog for testing"
-msgstr "Mostrar a janela de falha total para testar"
+#: gnome-session/leader-main.c:189
+msgid "This option is ignored"
+msgstr "Esta opção é ignorada"
 
-#: gnome-session/main.c:510
-msgid "Disable hardware acceleration check"
-msgstr "Desativar a verificação de aceleração de hardware"
+#: gnome-session/leader-main.c:190
+msgid "Don't re-exec into a login shell"
+msgstr "Não execute novamente num shell de login"
 
-#: gnome-session/main.c:542
+#: gnome-session/leader-main.c:208 gnome-session/service-main.c:157
 msgid " — the GNOME session manager"
 msgstr " — o gestor de sessões do GNOME"
 
@@ -264,70 +126,82 @@ msgstr "Reiniciar \"dbus.service\" se estiver em execução"
 
 #: tools/gnome-session-ctl.c:251
 msgid ""
-"Run from ExecStopPost to start gnome-session-failed.target on service failure"
+"Run from ExecStopPost to start gnome-session-shutdown.target on service "
+"failure"
 msgstr ""
-"Na falha do serviço, executar a partir de ExecStopPost para iniciar o "
-"\"gnome-session-failed.target\""
+"Na falha do serviço, executar a partir de ExecStopPost para o \"gnome-"
+"session-shutdown.target”"
 
 #: tools/gnome-session-ctl.c:281
 msgid "Program needs exactly one parameter"
 msgstr "O programa precisa exatamente de um parâmetro"
 
-#: tools/gnome-session-inhibit.c:108
+#: tools/gnome-session-inhibit.c:68
 #, c-format
+msgid "Unknown inhibit argument: %s"
+msgstr "Argumento de inibição desconhecido: %s"
+
+#: tools/gnome-session-inhibit.c:288
+#, c-format
+msgid "Failed to execute %s: %m\n"
+msgstr "Falha ao executar %s: %m\n"
+
+#: tools/gnome-session-inhibit.c:360
+msgid "Show program version"
+msgstr "Mostrar versão de programa"
+
+#: tools/gnome-session-inhibit.c:361
+msgid "The application id to use when inhibiting (optional)"
+msgstr "O id da aplicação a usar aquando da inibição (opcional)"
+
+#: tools/gnome-session-inhibit.c:361
+msgid "ID"
+msgstr "ID"
+
+#: tools/gnome-session-inhibit.c:362
+msgid "The reason for inhibiting (optional)"
+msgstr "A razão de inibição (opcional)"
+
+#: tools/gnome-session-inhibit.c:362
+msgid "REASON"
+msgstr "RAZÃO"
+
+#: tools/gnome-session-inhibit.c:363
+msgid "Add action to inhibit (repeatable)"
+msgstr "Adicionar ação a inibir (repetível)"
+
+#: tools/gnome-session-inhibit.c:363
+msgid "ACTION"
+msgstr "AÇÃO"
+
+#: tools/gnome-session-inhibit.c:364
+msgid "Do not launch COMMAND and wait forever instead"
+msgstr "Não lançar COMMAND e em vez ficar à espera para sempre"
+
+#: tools/gnome-session-inhibit.c:365
+msgid "List the existing inhibitions, and exit"
+msgstr "Listar as inibições existentes, e sair"
+
+#: tools/gnome-session-inhibit.c:377
+msgid "COMMAND"
+msgstr "COMMAND"
+
+#: tools/gnome-session-inhibit.c:383
+msgid "Execute COMMAND while inhibiting some session functionality."
+msgstr "Executar COMMAND enquanto inibe algumas funcionalidades da sessão."
+
+#: tools/gnome-session-inhibit.c:384
 msgid ""
-"%s [OPTION…] COMMAND\n"
-"\n"
-"Execute COMMAND while inhibiting some session functionality.\n"
-"\n"
-"  -h, --help        Show this help\n"
-"  --version         Show program version\n"
-"  --app-id ID       The application id to use\n"
-"                    when inhibiting (optional)\n"
-"  --reason REASON   The reason for inhibiting (optional)\n"
-"  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
-"                    logout, switch-user, suspend, idle, automount\n"
-"  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
-"  -l, --list        List the existing inhibitions, and exit\n"
-"\n"
-"If no --inhibit option is specified, idle is assumed.\n"
+"Valid ACTION values are: logout, switch-user, suspend, idle, and automount.\n"
+"If no --inhibit options are specified, idle is assumed."
 msgstr ""
-"%s [OPÇÃO...] COMANDO\n"
-"\n"
-"Executar 'COMANDO' enquanto inibe alguma funcionalidade da sessão.\n"
-"\n"
-"  -h, --help        Mostrar esta ajuda\n"
-"  --version         Mostrar a versão do programa\n"
-"  --app-id ID       A id de aplicação a utilizar\n"
-"                    quando inibir (opcional)\n"
-"  --reason REASON   O motivo para inibir (opcional)\n"
-"  --inhibit ARG     Funcionalidades a inibir, lista separada por vírgulas "
-"de:\n"
-"                    logout, switch-user, suspend, idle, automount\n"
-"  --inhibit-only    Não iniciar 'COMANDO' e esperar indefinidamente\n"
-"  -l, --list        Listar as inibições existentes e sair\n"
-"\n"
-"Se não for especificada nenhuma opção --inhibit, é assumida idle.\n"
+"As AÇÕES válidas são: logout, switch-user, suspend, idle, e automount..\n"
+"Se nenhuma opção for especificada para o --inhibit, será assumido o estado "
+"ide."
 
-#: tools/gnome-session-inhibit.c:282
-#, c-format
-msgid "Error while creating pipe: %s\n"
-msgstr "Erro ao criar o ligação: %s\n"
-
-#: tools/gnome-session-inhibit.c:299
-msgid "Failure reading pipe\n"
-msgstr "Erro na leitura da ligação\n"
-
-#: tools/gnome-session-inhibit.c:303
-#, c-format
-msgid "Failed to execute %s\n"
-msgstr "Falha ao executar %s\n"
-
-#: tools/gnome-session-inhibit.c:376 tools/gnome-session-inhibit.c:386
-#: tools/gnome-session-inhibit.c:396
-#, c-format
-msgid "%s requires an argument\n"
-msgstr "%s requer um argumento\n"
+#: tools/gnome-session-inhibit.c:408
+msgid "Neither COMMAND nor --inhibit-only were specified."
+msgstr "Nem COMMAND nem --inhibit-only foram especificados."
 
 #: tools/gnome-session-quit.c:50
 msgid "Log out"
@@ -357,30 +231,182 @@ msgstr "Não foi possível ligar ao gestor de sessões"
 msgid "Program called with conflicting options"
 msgstr "O programa foi invocado com conflito de opções"
 
-#: tools/gnome-session-selector.c:61
+#~ msgid "Custom"
+#~ msgstr "Personalizado"
+
+#~ msgid "This entry lets you select a saved session"
+#~ msgstr "Esta entrada permite selecionar uma sessão gravada"
+
+#~ msgid "GNOME dummy"
+#~ msgstr "GNOME de teste"
+
+#~ msgid "Save sessions"
+#~ msgstr "Guardar sessões"
+
+#~ msgid "If enabled, gnome-session will save the session automatically."
+#~ msgstr "Se ativo, o \"gnome-session\" irá guardar a sessão automaticamente."
+
+#~ msgid "Save this session"
+#~ msgstr "Guardar esta sessão"
+
+#~ msgid ""
+#~ "When enabled, gnome-session will automatically save the next session at "
+#~ "log out even if auto saving is disabled."
+#~ msgstr ""
+#~ "Se ativado, \"gnome-session\" irá guardar automaticamente a próxima "
+#~ "sessão ao terminar a sessão se o guardar automático estiver desativado."
+
+#~ msgid "Custom Session"
+#~ msgstr "Sessão Personalizada"
+
+#~ msgid "Please select a custom session to run"
+#~ msgstr "Selecione uma sessão personalizada para executar"
+
+#~ msgid "_New Session"
+#~ msgstr "_Nova Sessão"
+
+#~ msgid "_Remove Session"
+#~ msgstr "_Remover Sessão"
+
+#~ msgid "Rena_me Session"
+#~ msgstr "Renomear _Sessão"
+
+#~ msgid "_Continue"
+#~ msgstr "_Continuar"
+
+#~ msgid "Oh no!  Something has gone wrong."
+#~ msgstr "Ocorreu algo de errado."
+
+#~ msgid ""
+#~ "A problem has occurred and the system can’t recover. Please contact a "
+#~ "system administrator"
+#~ msgstr ""
+#~ "Ocorreu um problema e o sistema não consegue recuperar. Contacte um "
+#~ "administrador do sistema"
+
+#~ msgid ""
+#~ "A problem has occurred and the system can’t recover. All extensions have "
+#~ "been disabled as a precaution."
+#~ msgstr ""
+#~ "Ocorreu um problema e o sistema não consegue recuperar. Por precaução, "
+#~ "foram desativadas todas as extensões."
+
+#~ msgid ""
+#~ "A problem has occurred and the system can’t recover.\n"
+#~ "Please log out and try again."
+#~ msgstr ""
+#~ "Ocorreu um problema e o sistema não consegue recuperar.\n"
+#~ "Termine a sessão e tente novamente."
+
+#~ msgid "_Log Out"
+#~ msgstr "_Sair"
+
+#~ msgid "Allow logout"
+#~ msgstr "Permitir a saída"
+
+#~ msgid "Show extension warning"
+#~ msgstr "Mostrar aviso de extensão"
+
+#~ msgid "Remembered Application"
+#~ msgstr "Aplicação Memorizada"
+
+#~ msgid "This program is blocking logout."
+#~ msgstr "Esta aplicação está a impedir a saída."
+
+#~ msgid ""
+#~ "Refusing new client connection because the session is currently being "
+#~ "shut down\n"
+#~ msgstr ""
+#~ "A recusar uma nova ligação de cliente porque a sessão está atualmente a "
+#~ "ser terminada\n"
+
 #, c-format
-msgid "Session %d"
-msgstr "Sessão %d"
+#~ msgid "Could not create ICE listening socket: %s"
+#~ msgstr "Não foi possível criar tomada de escuta ICE: %s"
 
-#: tools/gnome-session-selector.c:107
-msgid ""
-"Session names are not allowed to start with “.” or contain “/” characters"
-msgstr ""
-"Não são permitidos nomes de sessão que comecem por \".\" ou contenham o "
-"caráter \"/\""
+#~ msgid "Running as systemd service"
+#~ msgstr "A executar como serviço do \"systemd\""
 
-#: tools/gnome-session-selector.c:111
-msgid "Session names are not allowed to start with “.”"
-msgstr "Não são permitidos os nomes de sessão que comecem por \".\""
+#~ msgid "Override standard autostart directories"
+#~ msgstr "Ignorar os diretórios de arranque automático padrão"
 
-#: tools/gnome-session-selector.c:115
-msgid "Session names are not allowed to contain “/” characters"
-msgstr "Não são permitidos os nomes de sessão que contenham o caráter \"/\""
+#~ msgid "AUTOSTART_DIR"
+#~ msgstr "AUTOSTART_DIR"
 
-#: tools/gnome-session-selector.c:123
+#~ msgid "Do not load user-specified applications"
+#~ msgstr "Não carregar aplicações especificadas pelo utilizador"
+
+#~ msgid "Show the fail whale dialog for testing"
+#~ msgstr "Mostrar a janela de falha total para testar"
+
+#~ msgid "Disable hardware acceleration check"
+#~ msgstr "Desativar a verificação de aceleração de hardware"
+
 #, c-format
-msgid "A session named “%s” already exists"
-msgstr "Já existe uma sessão designada \"%s\""
+#~ msgid ""
+#~ "%s [OPTION…] COMMAND\n"
+#~ "\n"
+#~ "Execute COMMAND while inhibiting some session functionality.\n"
+#~ "\n"
+#~ "  -h, --help        Show this help\n"
+#~ "  --version         Show program version\n"
+#~ "  --app-id ID       The application id to use\n"
+#~ "                    when inhibiting (optional)\n"
+#~ "  --reason REASON   The reason for inhibiting (optional)\n"
+#~ "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
+#~ "                    logout, switch-user, suspend, idle, automount\n"
+#~ "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+#~ "  -l, --list        List the existing inhibitions, and exit\n"
+#~ "\n"
+#~ "If no --inhibit option is specified, idle is assumed.\n"
+#~ msgstr ""
+#~ "%s [OPÇÃO...] COMANDO\n"
+#~ "\n"
+#~ "Executar 'COMANDO' enquanto inibe alguma funcionalidade da sessão.\n"
+#~ "\n"
+#~ "  -h, --help        Mostrar esta ajuda\n"
+#~ "  --version         Mostrar a versão do programa\n"
+#~ "  --app-id ID       A id de aplicação a utilizar\n"
+#~ "                    quando inibir (opcional)\n"
+#~ "  --reason REASON   O motivo para inibir (opcional)\n"
+#~ "  --inhibit ARG     Funcionalidades a inibir, lista separada por vírgulas "
+#~ "de:\n"
+#~ "                    logout, switch-user, suspend, idle, automount\n"
+#~ "  --inhibit-only    Não iniciar 'COMANDO' e esperar indefinidamente\n"
+#~ "  -l, --list        Listar as inibições existentes e sair\n"
+#~ "\n"
+#~ "Se não for especificada nenhuma opção --inhibit, é assumida idle.\n"
+
+#, c-format
+#~ msgid "Error while creating pipe: %s\n"
+#~ msgstr "Erro ao criar o ligação: %s\n"
+
+#~ msgid "Failure reading pipe\n"
+#~ msgstr "Erro na leitura da ligação\n"
+
+#, c-format
+#~ msgid "%s requires an argument\n"
+#~ msgstr "%s requer um argumento\n"
+
+#, c-format
+#~ msgid "Session %d"
+#~ msgstr "Sessão %d"
+
+#~ msgid ""
+#~ "Session names are not allowed to start with “.” or contain “/” characters"
+#~ msgstr ""
+#~ "Não são permitidos nomes de sessão que comecem por \".\" ou contenham o "
+#~ "caráter \"/\""
+
+#~ msgid "Session names are not allowed to start with “.”"
+#~ msgstr "Não são permitidos os nomes de sessão que comecem por \".\""
+
+#~ msgid "Session names are not allowed to contain “/” characters"
+#~ msgstr "Não são permitidos os nomes de sessão que contenham o caráter \"/\""
+
+#, c-format
+#~ msgid "A session named “%s” already exists"
+#~ msgstr "Já existe uma sessão designada \"%s\""
 
 #~ msgid "Use systemd session management"
 #~ msgstr "Utilizar a gestão de sessões do \"systemd\""
@@ -493,9 +519,6 @@ msgstr "Já existe uma sessão designada \"%s\""
 
 #~ msgid "FILE"
 #~ msgstr "FICHEIRO"
-
-#~ msgid "ID"
-#~ msgstr "ID"
 
 #~ msgid "Session management options:"
 #~ msgstr "Opções de gestão de sessões:"
@@ -996,9 +1019,6 @@ msgstr "Já existe uma sessão designada \"%s\""
 
 #~ msgid "The Settings Daemon restarted too many times."
 #~ msgstr "O Daemon de Definições reiniciou-se demasiadas vezes."
-
-#~ msgid "List registered clients, then exit"
-#~ msgstr "Listar os clientes registados, depois sair"
 
 #~ msgid "PROGRAM..."
 #~ msgstr "APLICAÇÃO..."
