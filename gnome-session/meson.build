@@ -47,6 +47,7 @@ sources = files(
   'gsm-system.c',
   'gsm-systemd.c',
   'gsm-util.c',
+  'gsm-xdp-session.c',
   'service-main.c'
 )
 
@@ -69,6 +70,19 @@ foreach iface: dbus_ifaces
   )
   sources += [out[0], out[1]] # .c/.h sources
   xml_dbus_docs += out[2] # docbook XML
+endforeach
+
+portal_ifaces = [
+	'org.freedesktop.impl.portal.Session',
+]
+
+foreach iface: portal_ifaces
+  sources += gnome.gdbus_codegen(
+    iface,
+    xdg_desktop_portal_interfaces_dir / '@0@.xml'.format(iface),
+    interface_prefix: 'org.freedesktop.impl.portal.',
+    namespace: 'XdpImpl',
+  )
 endforeach
 
 executable(

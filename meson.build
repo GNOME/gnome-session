@@ -102,6 +102,9 @@ if systemd_userunitdir == ''
                                                  pkgconfig_define: ['prefix', session_prefix])
 endif
 
+xdg_desktop_portal_dep = dependency('xdg-desktop-portal', version: '>= 1.20.3') # TODO: Update to first release that includes SaveRestore portal
+xdg_desktop_portal_interfaces_dir = xdg_desktop_portal_dep.get_variable(pkgconfig: 'interfaces_dir')
+
 configure_file(
   output: 'config.h',
   configuration: config_h
