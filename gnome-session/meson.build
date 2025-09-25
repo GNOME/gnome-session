@@ -80,7 +80,8 @@ portal_ifaces = [
 foreach iface: portal_ifaces
   sources += gnome.gdbus_codegen(
     iface,
-    xdg_desktop_portal_interfaces_dir / '@0@.xml'.format(iface),
+    files('@0@.xml'.format(iface)),
+    #xdg_desktop_portal_interfaces_dir / '@0@.xml'.format(iface), # TODO: Not in XDP yet!
     interface_prefix: 'org.freedesktop.impl.portal.',
     namespace: 'XdpImpl',
   )
