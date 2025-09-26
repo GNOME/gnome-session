@@ -12,6 +12,9 @@
 
 #include "gsm-session-save.h"
 #include "gsm-util.h"
+#include "gsm-xdp-session.h"
+
+#include "org.freedesktop.impl.portal.SaveRestore.h"
 
 /* We're not generating quite so many instance IDs that we'll actually need the
  * entire length of the SHA 256 hash. So let's follow in git's footsteps and
@@ -23,6 +26,8 @@
 struct _GsmSessionSave
 {
         GObject          parent;
+
+        XdpImplSaveRestore *skeleton;
 
         char *session_id;
         char *file_path;
@@ -37,6 +42,13 @@ enum {
 };
 
 G_DEFINE_TYPE (GsmSessionSave, gsm_session_save, G_TYPE_OBJECT);
+
+typedef enum {
+        RESTORE_REASON_PRISTINE,
+        RESTORE_REASON_LAUNCH,
+        RESTORE_REASON_RECOVER,
+        RESTORE_REASON_RESTORE,
+} RestoreReason;
 
 typedef struct {
         char *app_id;
@@ -56,8 +68,7 @@ typedef enum {
 
 typedef struct {
         char *instance_id;
-        char *dbus_name;
-        guint watch_id;
+        GsmXdpSession *session;
         CrashState crash_state;
 } SavedAppInstance;
 
@@ -87,9 +98,8 @@ saved_app_instance_new (char *instance_id)
         SavedAppInstance *instance = g_new (SavedAppInstance, 1);
         *instance = (SavedAppInstance) {
                 .instance_id = instance_id,
-                .dbus_name = NULL,
+                .session = NULL,
                 .crash_state = CRASH_STATE_NO_CRASH,
-                .watch_id = 0,
         };
         return instance;
 }
@@ -97,11 +107,8 @@ saved_app_instance_new (char *instance_id)
 static void
 saved_app_instance_free (SavedAppInstance *instance)
 {
-        if (instance->watch_id != 0)
-                g_bus_unwatch_name (instance->watch_id);
-
         g_free (instance->instance_id);
-        g_free (instance->dbus_name);
+        g_clear_object (&instance->session);
         g_free (instance);
 }
 
@@ -185,38 +192,6 @@ gsm_session_save_get_property (GObject    *object,
         default:
                 break;
         }
-}
-
-static void
-gsm_session_save_dispose (GObject *object)
-{
-        GsmSessionSave *save = GSM_SESSION_SAVE (object);
-
-        g_clear_pointer (&save->file_path, g_free);
-        g_clear_pointer (&save->apps, g_hash_table_unref);
-
-        G_OBJECT_CLASS (gsm_session_save_parent_class)->dispose (object);
-}
-
-static void gsm_session_save_constructed (GObject*);
-
-static void
-gsm_session_save_class_init (GsmSessionSaveClass *klass)
-{
-        GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-        object_class->set_property = gsm_session_save_set_property;
-        object_class->get_property = gsm_session_save_get_property;
-        object_class->constructed = gsm_session_save_constructed;
-        object_class->dispose = gsm_session_save_dispose;
-
-        g_object_class_install_property (object_class,
-                                         PROP_SESSION_ID,
-                                         g_param_spec_string ("session-id",
-                                                              "session-id",
-                                                              "session-id",
-                                                              "gnome",
-                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 }
 
 static void
@@ -436,25 +411,6 @@ load_from_disk (GsmSessionSave  *save,
         return TRUE;
 }
 
-static void
-gsm_session_save_constructed (GObject *object)
-{
-        GsmSessionSave *save = GSM_SESSION_SAVE (object);
-        GError *error = NULL;
-
-        if (g_mkdir_with_parents (g_get_user_state_dir (), 0755) < 0)
-                g_warning ("GsmSessionSave: Failed to ensure state dir exists: %m");
-
-        if (!load_from_disk (save, &error)) {
-                g_warning ("GsmSessionSave: Failed to load from disk, discarding: %s",
-                           error->message);
-                g_clear_error (&error);
-        }
-
-        if (!save->apps)
-                save->apps = make_hash_table ();
-}
-
 static gboolean
 launch_app_instance (SavedApp         *app,
                      SavedAppInstance *instance)
@@ -515,20 +471,6 @@ gsm_session_save_unseal (GsmSessionSave *save)
         flush_to_disk (save);
 }
 
-static void
-on_instance_vanished (GDBusConnection *connection,
-                      const gchar     *name,
-                      gpointer         user_data)
-{
-        SavedAppInstance *instance = user_data;
-
-        g_bus_unwatch_name (instance->watch_id);
-        instance->watch_id = 0;
-
-        instance->crash_state = CRASH_STATE_INSTANCE_CRASHED;
-        g_clear_pointer (&instance->dbus_name, g_free);
-}
-
 static char *
 next_instance_id (GsmSessionSave *save,
                   SavedApp       *app)
@@ -569,29 +511,81 @@ next_instance_id (GsmSessionSave *save,
         }
 }
 
-gboolean
-gsm_session_save_register (GsmSessionSave    *save,
-                           const char        *app_id,
-                           const char        *dbus_name,
-                           GsmRestoreReason  *out_restore_reason,
-                           char             **out_instance_id,
-                           GStrv             *out_cleanup_ids)
+static void
+on_session_closed (GsmXdpSession  *session,
+                   gboolean        voluntary,
+                   GsmSessionSave *save)
 {
-        g_autoptr (GStrvBuilder) cleanup_builder = NULL;
-        SavedApp *app;
+        const char *app_id = NULL;
+        SavedApp *app = NULL;
         SavedAppInstance *instance = NULL;
+
+        app_id = gsm_xdp_session_get_app_id (session);
+        app = g_hash_table_lookup (save->apps, app_id);
+        if (!app) {
+                g_critical ("GsmSessionSave: Session closed for app we couldn't find");
+                return;
+        }
+
+        for (const GSList *iter = app->instances; iter; iter = iter->next) {
+                SavedAppInstance *candidate = iter->data;
+                if (candidate->session == session) {
+                        instance = candidate;
+                        break;
+                }
+        }
+        if (!instance) {
+                g_critical ("GsmSessionSave: Session closed for instance we couldn't find");
+                return;
+        }
+
+        if (voluntary) { /* App is voluntarily un-registering */
+                saved_app_discard_instance (app, instance);
+                app->instances = g_slist_remove (app->instances, instance);
+                saved_app_instance_free (instance);
+        } else {
+                instance->crash_state = CRASH_STATE_INSTANCE_CRASHED;
+                g_clear_object (&instance->session);
+        }
+
+        if (!save->sealed)
+                flush_to_disk (save);
+}
+
+static gboolean
+handle_register (XdpImplSaveRestore    *skeleton,
+                 GDBusMethodInvocation *invocation,
+                 const char            *session_handle,
+                 const char            *app_id,
+                 GVariant              *options,
+                 GsmSessionSave        *save)
+{
+        g_autoptr (GError) error = NULL;
+        g_autoptr (GsmXdpSession) session = NULL;
+        g_auto (GVariantBuilder) out_builder =
+                G_VARIANT_BUILDER_INIT (G_VARIANT_TYPE_VARDICT);
+        g_auto (GVariantBuilder) discard_ids_builder =
+                G_VARIANT_BUILDER_INIT (G_VARIANT_TYPE ("as"));
+        SavedApp *app = NULL;
+        SavedAppInstance *instance = NULL;
+        RestoreReason reason = RESTORE_REASON_PRISTINE;
 
         app = g_hash_table_lookup (save->apps, app_id);
         if (!app) {
                 app = saved_app_new (app_id);
-                if (!app)
-                        return FALSE;
+                if (!app) {
+                        g_dbus_method_invocation_return_error (invocation,
+                                                               G_DBUS_ERROR,
+                                                               G_DBUS_ERROR_INVALID_ARGS,
+                                                               "Invalid app id");
+                        return G_DBUS_METHOD_INVOCATION_HANDLED;
+                }
                 g_hash_table_insert (save->apps, app->app_id, app);
         }
 
         for (const GSList *iter = app->instances; iter; iter = iter->next) {
                 SavedAppInstance *candidate = iter->data;
-                if (!candidate->dbus_name) { /* Check if the instance is running */
+                if (!candidate->session) { /* Check if the instance is running */
                         instance = candidate;
                         break;
                 }
@@ -601,33 +595,40 @@ gsm_session_save_register (GsmSessionSave    *save,
                 char *instance_id = next_instance_id (save, app);
                 instance = saved_app_instance_new (instance_id);
                 app->instances = g_slist_prepend (app->instances, instance);
-                *out_restore_reason = GSM_RESTORE_REASON_LAUNCH;
+                reason = RESTORE_REASON_LAUNCH;
         } else if (instance->crash_state != CRASH_STATE_NO_CRASH) {
                 instance->crash_state = CRASH_STATE_NO_CRASH;
-                *out_restore_reason = GSM_RESTORE_REASON_RECOVER;
+                reason = RESTORE_REASON_RECOVER;
         } else
-                *out_restore_reason = GSM_RESTORE_REASON_RESTORE;
+                reason = RESTORE_REASON_RESTORE;
 
-        instance->dbus_name = g_strdup (dbus_name);
-        instance->watch_id = g_bus_watch_name (G_BUS_TYPE_SESSION,
-                                               dbus_name,
-                                               G_BUS_NAME_WATCHER_FLAGS_NONE,
-                                               NULL,
-                                               on_instance_vanished,
-                                               instance,
-                                               NULL);
+        session = gsm_xdp_session_new (session_handle,
+                                       app_id,
+                                       g_dbus_method_invocation_get_connection (invocation),
+                                       &error);
+        if (!session) {
+                g_dbus_method_invocation_return_gerror (invocation, error);
+                return G_DBUS_METHOD_INVOCATION_HANDLED;
+        }
+        g_signal_connect (session, "closed", G_CALLBACK (on_session_closed), save);
+        instance->session = g_steal_pointer (&session);
 
-        *out_instance_id = instance->instance_id;
+        g_variant_builder_add (&out_builder, "{sv}", "instance-id",
+                               g_variant_new_string (instance->instance_id));
+        g_variant_builder_add (&out_builder, "{sv}", "restore-reason",
+                               g_variant_new_uint32 (reason));
 
-        cleanup_builder = g_strv_builder_new ();
         for (const GSList *iter = app->discarded_ids; iter; iter = iter->next)
-                g_strv_builder_add (cleanup_builder, iter->data);
-        *out_cleanup_ids = g_strv_builder_end (cleanup_builder);
+                g_variant_builder_add (&discard_ids_builder, "s", iter->data);
+        g_variant_builder_add (&out_builder, "{sv}", "discard-instance-ids",
+                               g_variant_builder_end (&discard_ids_builder));
 
         if (!save->sealed)
                 flush_to_disk (save);
 
-        return TRUE;
+        xdp_impl_save_restore_complete_register (skeleton, invocation,
+                                                 g_variant_builder_end (&out_builder));
+        return G_DBUS_METHOD_INVOCATION_HANDLED;
 }
 
 typedef gboolean (*DestroyPredicate)(void *obj, void *userdata);
@@ -664,54 +665,57 @@ free_if_streq (char       *obj,
         return TRUE;
 }
 
-void
-gsm_session_save_deleted_ids (GsmSessionSave    *save,
-                              const char        *app_id,
-                              const char *const *ids)
+static gboolean
+handle_discarded_instance_ids (XdpImplSaveRestore    *skeleton,
+                               GDBusMethodInvocation *invocation,
+                               const char            *session_handle,
+                               const char *const     *arg_instance_ids,
+                               GsmSessionSave        *save)
 {
-        SavedApp *app = g_hash_table_lookup (save->apps, app_id);
-        if (!app)
-                return;
+        GsmXdpSession *session = NULL;
+        const char *app_id = NULL;
+        SavedApp *app = NULL;
 
-        for (; *ids; ids++)
+        session = gsm_xdp_session_find (session_handle);
+        if (!session) {
+                g_dbus_method_invocation_return_error (invocation,
+                                                       G_DBUS_ERROR,
+                                                       G_DBUS_ERROR_INVALID_ARGS,
+                                                       "Unknown session handle");
+                return G_DBUS_METHOD_INVOCATION_HANDLED;
+        }
+
+        app_id = gsm_xdp_session_get_app_id (session);
+        app = g_hash_table_lookup (save->apps, app_id);
+        if (!app) {
+                g_critical ("GsmSessionStore: DiscardedInstanceIds called for session with app we couldn't find");
+                xdp_impl_save_restore_complete_discarded_instance_ids (skeleton, invocation);
+                return G_DBUS_METHOD_INVOCATION_HANDLED;
+        }
+
+        for (; *arg_instance_ids; arg_instance_ids++)
                 app->discarded_ids = remove_all_predicate (app->discarded_ids,
                                                            (DestroyPredicate) free_if_streq,
-                                                           (void*) *ids);
+                                                           (void*) *arg_instance_ids);
 
         if (!save->sealed)
                 flush_to_disk (save);
+
+        xdp_impl_save_restore_complete_discarded_instance_ids (skeleton, invocation);
+        return G_DBUS_METHOD_INVOCATION_HANDLED;
 }
 
-gboolean
-gsm_session_save_unregister (GsmSessionSave *save,
-                             const char     *app_id,
-                             const char     *instance_id)
+static gboolean
+handle_save_hint_response (XdpImplSaveRestore    *skeleton,
+                           GDBusMethodInvocation *invocation,
+                           const char            *session_handle,
+                           GsmSessionSave        *save)
 {
-        SavedApp *app;
-        SavedAppInstance *instance = NULL;
-
-        app = g_hash_table_lookup (save->apps, app_id);
-        if (!app)
-                return FALSE;
-
-        for (const GSList *iter = app->instances; iter; iter = iter->next) {
-                SavedAppInstance *candidate = iter->data;
-                if (g_str_equal (instance_id, candidate->instance_id)) {
-                        instance = candidate;
-                        break;
-                }
-        }
-        if (!instance)
-                return FALSE;
-
-        saved_app_discard_instance (app, instance);
-        app->instances = g_slist_remove (app->instances, instance);
-        saved_app_instance_free (g_steal_pointer (&instance));
-
-        if (!save->sealed)
-                flush_to_disk (save);
-
-        return TRUE;
+        /* We don't ever emit Save() and so apps should never be calling SaveHintResponse */
+        g_warning ("GsmSessionStore: Unexpected call to SaveHintResponse by %s",
+                   gsm_xdp_session_get_app_id (gsm_xdp_session_find (session_handle)));
+        xdp_impl_save_restore_complete_save_hint_response (skeleton, invocation);
+        return G_DBUS_METHOD_INVOCATION_HANDLED;
 }
 
 static gboolean
@@ -743,6 +747,100 @@ gsm_session_save_discard (GsmSessionSave *save)
         }
 
         flush_to_disk (save);
+}
+
+static gboolean
+portal_export (GsmSessionSave   *save,
+               GError          **error)
+{
+        g_autoptr (GDBusConnection) connection = NULL;
+        g_autoptr (XdpImplSaveRestore) skeleton = NULL;
+
+        connection = g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, error);
+        if (!connection)
+                return FALSE;
+
+        skeleton = xdp_impl_save_restore_skeleton_new ();
+
+        g_signal_connect (skeleton, "handle-register",
+                          G_CALLBACK (handle_register),
+                          save);
+        g_signal_connect (skeleton, "handle-discarded-instance-ids",
+                          G_CALLBACK (handle_discarded_instance_ids),
+                          save);
+        g_signal_connect (skeleton, "handle-save-hint-response",
+                          G_CALLBACK (handle_save_hint_response),
+                          save);
+
+        xdp_impl_save_restore_set_version (skeleton, 1);
+
+        if (!g_dbus_interface_skeleton_export (G_DBUS_INTERFACE_SKELETON (skeleton),
+                                               connection, XDP_IMPL_OBJECT_PATH,
+                                               error))
+                return FALSE;
+
+        save->skeleton = g_steal_pointer (&skeleton);
+        return TRUE;
+}
+
+static void
+gsm_session_save_constructed (GObject *object)
+{
+        GsmSessionSave *save = GSM_SESSION_SAVE (object);
+        GError *error = NULL;
+
+        if (g_mkdir_with_parents (g_get_user_state_dir (), 0755) < 0)
+                g_warning ("GsmSessionSave: Failed to ensure state dir exists: %m");
+
+        if (!load_from_disk (save, &error)) {
+                g_warning ("GsmSessionSave: Failed to load from disk, discarding: %s",
+                           error->message);
+                g_clear_error (&error);
+        }
+
+        if (!save->apps)
+                save->apps = make_hash_table ();
+
+        if (!portal_export (save, &error)) {
+                g_warning ("GsmSessionSave: Failed to export save/restore portal impl: %s",
+                           error->message);
+                g_clear_error (&error);
+        }
+}
+
+static void
+gsm_session_save_dispose (GObject *object)
+{
+        GsmSessionSave *save = GSM_SESSION_SAVE (object);
+
+        g_clear_pointer (&save->file_path, g_free);
+        g_clear_pointer (&save->apps, g_hash_table_unref);
+
+        if (save->skeleton) {
+                g_dbus_interface_skeleton_unexport (G_DBUS_INTERFACE_SKELETON (save->skeleton));
+                g_clear_object (&save->skeleton);
+        }
+
+        G_OBJECT_CLASS (gsm_session_save_parent_class)->dispose (object);
+}
+
+static void
+gsm_session_save_class_init (GsmSessionSaveClass *klass)
+{
+        GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
+        object_class->constructed = gsm_session_save_constructed;
+        object_class->dispose = gsm_session_save_dispose;
+        object_class->set_property = gsm_session_save_set_property;
+        object_class->get_property = gsm_session_save_get_property;
+
+        g_object_class_install_property (object_class,
+                                         PROP_SESSION_ID,
+                                         g_param_spec_string ("session-id",
+                                                              "session-id",
+                                                              "session-id",
+                                                              "gnome",
+                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 }
 
 GsmSessionSave *
