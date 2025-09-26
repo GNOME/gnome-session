@@ -1748,92 +1748,6 @@ gsm_manager_unregister_client (GsmExportedManager    *skeleton,
 }
 
 static gboolean
-gsm_manager_register_restore (GsmExportedManager    *skeleton,
-                              GDBusMethodInvocation *invocation,
-                              const char            *app_id,
-                              const char            *dbus_name,
-                              GsmManager            *manager)
-{
-        GsmRestoreReason reason;
-        char *instance_id = NULL;
-        g_auto (GStrv) cleanup_ids = NULL;
-        gboolean valid = TRUE;
-
-        if (IS_STRING_EMPTY (dbus_name))
-                dbus_name = g_dbus_method_invocation_get_sender (invocation);
-
-        if (manager->session_save) {
-                g_debug ("GsmManager: RegisterRestore %s", app_id);
-                valid = gsm_session_save_register (manager->session_save, app_id,
-                                                   dbus_name, &reason, &instance_id,
-                                                   &cleanup_ids);
-        } else {
-                g_debug ("GsmManager: RegisterRestore %s (ignoring due to kiosk session)",
-                         app_id);
-                reason = GSM_RESTORE_REASON_PRISTINE;
-                instance_id = "";
-        }
-
-        if (valid) {
-                const char *const *cleanup = (const char**) cleanup_ids ?:
-                                             (const char *[]) { NULL };
-                gsm_exported_manager_complete_register_restore (skeleton, invocation,
-                                                                reason, instance_id,
-                                                                cleanup);
-        } else
-                g_dbus_method_invocation_return_error (invocation,
-                                                       G_DBUS_ERROR,
-                                                       G_DBUS_ERROR_INVALID_ARGS,
-                                                       "Invalid app id specified");
-        return TRUE;
-}
-
-static gboolean
-gsm_manager_deleted_instance_ids (GsmExportedManager    *skeleton,
-                                  GDBusMethodInvocation *invocation,
-                                  const char            *app_id,
-                                  const char *const     *ids,
-                                  GsmManager            *manager)
-{
-        if (manager->session_save) {
-                g_debug ("GsmManager: DeletedInstanceIds (%s, ...)", app_id);
-                gsm_session_save_deleted_ids (manager->session_save, app_id, ids);
-        } else {
-                g_debug ("GsmManager: DeletedInstanceIds (ignoring due to kiosk session)");
-        }
-
-        gsm_exported_manager_complete_deleted_instance_ids (skeleton, invocation);
-        return TRUE;
-}
-
-static gboolean
-gsm_manager_unregister_restore (GsmExportedManager    *skeleton,
-                                GDBusMethodInvocation *invocation,
-                                const char            *app_id,
-                                const char            *instance_id,
-                                GsmManager            *manager)
-{
-        gboolean found;
-
-        if (manager->session_save) {
-                g_debug ("GsmManager: UnregisterRestore (%s, instance %s)", app_id, instance_id);
-                found = gsm_session_save_unregister (manager->session_save, app_id, instance_id);
-        } else {
-                g_debug ("GsmManager: UnregisterRestore (ignoring due to kiosk session)");
-                found = TRUE; /* Not an error for an app to try and use save/restore in a kiosk session */
-        }
-
-        if (found)
-                gsm_exported_manager_complete_unregister_restore (skeleton, invocation);
-        else
-                g_dbus_method_invocation_return_error (invocation,
-                                                       GSM_MANAGER_ERROR,
-                                                       GSM_MANAGER_ERROR_NOT_REGISTERED,
-                                                       "Provided instance not found");
-        return TRUE;
-}
-
-static gboolean
 gsm_manager_inhibit (GsmExportedManager    *skeleton,
                      GDBusMethodInvocation *invocation,
                      const char            *app_id,
@@ -2050,10 +1964,6 @@ register_manager (GsmManager *manager)
                           G_CALLBACK (gsm_manager_reboot), manager);
         g_signal_connect (skeleton, "handle-register-client",
                           G_CALLBACK (gsm_manager_register_client), manager);
-        g_signal_connect (skeleton, "handle-register-restore",
-                          G_CALLBACK (gsm_manager_register_restore), manager);
-        g_signal_connect (skeleton, "handle-deleted-instance-ids",
-                          G_CALLBACK (gsm_manager_deleted_instance_ids), manager);
         g_signal_connect (skeleton, "handle-set-reboot-to-firmware-setup",
                           G_CALLBACK (gsm_manager_set_reboot_to_firmware_setup), manager);
         g_signal_connect (skeleton, "handle-setenv",
@@ -2066,8 +1976,6 @@ register_manager (GsmManager *manager)
                           G_CALLBACK (gsm_manager_uninhibit), manager);
         g_signal_connect (skeleton, "handle-unregister-client",
                           G_CALLBACK (gsm_manager_unregister_client), manager);
-        g_signal_connect (skeleton, "handle-unregister-restore",
-                          G_CALLBACK (gsm_manager_unregister_restore), manager);
 
         manager->dbus_disconnected = FALSE;
         g_signal_connect (connection, "closed",

@@ -91,6 +91,11 @@ install_data(
 )
 
 install_data(
+  'gnome-session.portal',
+  install_dir: session_datadir / 'xdg-desktop-portal' / 'portals',
+)
+
+install_data(
   'gnome-portals.conf',
   install_dir: session_datadir / 'xdg-desktop-portal',
 )

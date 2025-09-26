@@ -24,6 +24,8 @@
 
 G_BEGIN_DECLS
 
+#define XDP_IMPL_OBJECT_PATH "/org/freedesktop/portal/desktop"
+
 #define IS_STRING_EMPTY(x) ((x)==NULL||(x)[0]=='\0')
 
 gchar**     gsm_util_get_app_dirs                   (void);

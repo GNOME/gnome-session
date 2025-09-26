@@ -73,6 +73,7 @@ foreach iface: dbus_ifaces
 endforeach
 
 portal_ifaces = [
+	'org.freedesktop.impl.portal.SaveRestore',
 	'org.freedesktop.impl.portal.Session',
 ]
 
