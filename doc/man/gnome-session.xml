@@ -114,28 +114,13 @@
           Name of the session. This can be localized.
         </para></listitem>
       </varlistentry>
-
-      <varlistentry>
-        <term><varname>RequiredComponents</varname></term>
-        <listitem><para>
-          List of component identifiers (desktop files) that are required by
-          the session. The required components will always run in the session.
-        </para></listitem>
-      </varlistentry>
     </variablelist>
 
     <para>Here is an example of a session definition:</para>
 
     <programlisting>[GNOME Session]
 Name=GNOME
-RequiredComponents=gnome-shell;gnome-settings-daemon;
 </programlisting>
-
-    <para>
-      In <command>systemd</command> managed sessions, the RequiredComponents may
-      be provided by systemd units instead. See the systemd section for more
-      information on how this works.
-    </para>
 
     <para>
       The <filename>.session</filename> files are looked for in
