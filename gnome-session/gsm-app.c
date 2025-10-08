@@ -248,7 +248,7 @@ gsm_app_start (GsmApp  *app,
         success = g_desktop_app_info_launch_uris_as_manager (app->inner,
                                                              NULL,
                                                              ctx,
-                                                             G_SPAWN_DO_NOT_REAP_CHILD | G_SPAWN_SEARCH_PATH,
+                                                             G_SPAWN_SEARCH_PATH,
                                                              NULL, NULL, NULL, NULL,
                                                              &local_error);
         if (!success)
