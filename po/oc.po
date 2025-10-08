@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session.HEAD\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2025-09-15 08:21+0000\n"
-"PO-Revision-Date: 2025-09-15 13:27+0200\n"
+"POT-Creation-Date: 2025-09-26 00:44+0000\n"
+"PO-Revision-Date: 2025-10-08 07:57+0200\n"
 "Last-Translator: Quentin PAGÈS\n"
 "Language-Team: Tot En Òc\n"
 "Language: oc\n"
@@ -58,39 +58,39 @@ msgstr ""
 "Se activat, gnome-session aficha una bóstia de dialòg d’avertiment aprèp la "
 "connexion se la session de secors a degut èsser activada."
 
-#: gnome-session/gsm-manager.c:709 gnome-session/gsm-manager.c:1040
+#: gnome-session/gsm-manager.c:717 gnome-session/gsm-manager.c:1052
 msgid "Not responding"
 msgstr "Abséncia de responsa"
 
-#: gnome-session/gsm-util.c:167
+#: gnome-session/gsm-util.c:170
 msgid "_Log out"
 msgstr "_Se desconnectar"
 
-#: gnome-session/leader-main.c:181 gnome-session/service-main.c:148
+#: gnome-session/leader-main.c:186 gnome-session/service-main.c:148
 msgid "Session to use"
 msgstr "Session d'utilizar"
 
-#: gnome-session/leader-main.c:181 gnome-session/service-main.c:148
+#: gnome-session/leader-main.c:186 gnome-session/service-main.c:148
 msgid "SESSION_NAME"
 msgstr "NOM_SESSION"
 
-#: gnome-session/leader-main.c:182
+#: gnome-session/leader-main.c:187
 msgid "Enable debugging code"
 msgstr "Activa lo còdi de desbugatge"
 
-#: gnome-session/leader-main.c:183
+#: gnome-session/leader-main.c:188
 msgid "Version of this application"
 msgstr "Version d'aquesta aplicacion"
 
-#: gnome-session/leader-main.c:184
+#: gnome-session/leader-main.c:189
 msgid "This option is ignored"
 msgstr "Aquesta opcion es ignorada"
 
-#: gnome-session/leader-main.c:185
+#: gnome-session/leader-main.c:190
 msgid "Don't re-exec into a login shell"
-msgstr ""
+msgstr "Tornar pas executar dins una consòla de session"
 
-#: gnome-session/leader-main.c:203 gnome-session/service-main.c:157
+#: gnome-session/leader-main.c:208 gnome-session/service-main.c:157
 msgid " — the GNOME session manager"
 msgstr " — lo gestionari de sessions de GNOME"
 
@@ -123,6 +123,7 @@ msgstr ""
 "cas de fracàs del servici"
 
 #: tools/gnome-session-ctl.c:281
+#, c-format
 msgid "Program needs exactly one parameter"
 msgstr "Lo programa demanda exactament un paramètre"
 
@@ -144,7 +145,7 @@ msgstr "Afichar la version del programa"
 
 #: tools/gnome-session-inhibit.c:361
 msgid "The application id to use when inhibiting (optional)"
-msgstr ""
+msgstr "L'identificant de l'aplicacion d'utilizar per l'inibicion (opcional)"
 
 #: tools/gnome-session-inhibit.c:361
 msgid "ID"
@@ -152,7 +153,7 @@ msgstr "ID"
 
 #: tools/gnome-session-inhibit.c:362
 msgid "The reason for inhibiting (optional)"
-msgstr ""
+msgstr "Lo motiu de l’inibicion (opcional)"
 
 #: tools/gnome-session-inhibit.c:362
 msgid "REASON"
@@ -160,7 +161,7 @@ msgstr "RASON"
 
 #: tools/gnome-session-inhibit.c:363
 msgid "Add action to inhibit (repeatable)"
-msgstr ""
+msgstr "Apondre una accion d’inibir (repetible)"
 
 #: tools/gnome-session-inhibit.c:363
 msgid "ACTION"
@@ -168,11 +169,11 @@ msgstr "ACCION"
 
 #: tools/gnome-session-inhibit.c:364
 msgid "Do not launch COMMAND and wait forever instead"
-msgstr ""
+msgstr "Lançar pas la COMANDA e espèrar indefinidament a la plaça"
 
 #: tools/gnome-session-inhibit.c:365
 msgid "List the existing inhibitions, and exit"
-msgstr ""
+msgstr "Listar las inibicions existentas e quitar"
 
 #: tools/gnome-session-inhibit.c:377
 msgid "COMMAND"
@@ -181,16 +182,20 @@ msgstr "COMANDA"
 #: tools/gnome-session-inhibit.c:383
 msgid "Execute COMMAND while inhibiting some session functionality."
 msgstr ""
+"Executar la COMANDA pendent que s'inibisson d’unas foncionalitats de session."
 
 #: tools/gnome-session-inhibit.c:384
 msgid ""
 "Valid ACTION values are: logout, switch-user, suspend, idle, and automount.\n"
 "If no --inhibit options are specified, idle is assumed."
 msgstr ""
+"Las valors validas d'ACCION son : logout, switch-user, suspend, idle, e "
+"automount.\n"
+"Se cap d’opcions --inhibit son pas especificadas, mesa en velha assumida."
 
 #: tools/gnome-session-inhibit.c:408
 msgid "Neither COMMAND nor --inhibit-only were specified."
-msgstr ""
+msgstr "Cap de COMANDA nimai --inhibit-only son pas estats especificadas."
 
 #: tools/gnome-session-quit.c:50
 msgid "Log out"
