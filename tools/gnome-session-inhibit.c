@@ -382,6 +382,7 @@ int main (int argc, char *argv[])
   g_option_context_set_main_group (opts, main_opts);
   g_option_context_set_summary (opts, N_("Execute COMMAND while inhibiting some session functionality."));
   g_option_context_set_description (opts, N_("Valid ACTION values are: logout, switch-user, suspend, idle, and automount.\nIf no --inhibit options are specified, idle is assumed."));
+  g_option_context_set_strict_posix (opts, TRUE);
 
   if (!g_option_context_parse (opts, &argc, &argv, &error))
     {
