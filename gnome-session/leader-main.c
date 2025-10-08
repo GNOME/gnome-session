@@ -115,9 +115,15 @@ maybe_reexec_with_login_shell (GStrv argv)
 static void
 set_up_environment (void)
 {
+        g_autofree char *dbus_address = NULL;
         g_autoptr (GSettings) locale_settings = NULL;
         g_autofree char *region = NULL;
         g_autofree char *ibus_path = NULL;
+
+        dbus_address = g_dbus_address_get_for_bus_sync (G_BUS_TYPE_SESSION, NULL, NULL);
+        if (!dbus_address)
+                g_error ("No session bus running!");
+        g_setenv ("DBUS_SESSION_BUS_ADDRESS", dbus_address, TRUE);
 
         locale_settings = g_settings_new ("org.gnome.system.locale");
         region = g_settings_get_string (locale_settings, "region");
@@ -190,10 +196,6 @@ main (int argc, char **argv)
                 { "no-reexec", 0, 0, G_OPTION_ARG_NONE, &no_reexec, N_("Don't re-exec into a login shell"), NULL },
                 { NULL, 0, 0, 0, NULL, NULL, NULL }
         };
-
-        /* Make sure that we have a session bus */
-        if (!g_getenv ("DBUS_SESSION_BUS_ADDRESS"))
-                g_error ("No session bus running! Cannot continue");
 
         setlocale (LC_ALL, "");
         bindtextdomain (GETTEXT_PACKAGE, LOCALE_DIR);
