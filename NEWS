@@ -1,4 +1,18 @@
 ============
+Version 49.1
+============
+
+- Translation updates
+- Updated documentation to reflect GNOME 49 changes
+- Fixed bug where gnome-session would fail to reap the processes of the apps
+  it launched, leaving around zombie processes
+- Fixed option parsing regression in gnome-session-inhibit
+- Reworked logic to find DBUS_SESSION_BUS_ADDRESS, which should make gnome-session
+  work better in non-systemd environments (and unblock some cleanups in systemd,
+  potentially)
+- Added null check before using $XDG_SESSION_TYPE environment variable
+
+============
 Version 49.0
 ============
 
