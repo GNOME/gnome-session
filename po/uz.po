@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session-2.0\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2024-07-29 23:21+0000\n"
-"PO-Revision-Date: 2025-03-27 20:10+0500\n"
-"Last-Translator: Nurali Abdurahmonov <mavnur@gmail.com>\n"
+"POT-Creation-Date: 2025-10-10 22:03+0000\n"
+"PO-Revision-Date: 2025-10-13 18:51+0500\n"
+"Last-Translator: Baxrom Raxmatov <https://t.me/bahrom04>\n"
 "Language-Team: Uzbek\n"
 "Language: uz\n"
 "MIME-Version: 1.0\n"
@@ -18,71 +18,38 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 3.5\n"
 
-#: data/gnome-custom-session.desktop.in.in:3
-msgid "Custom"
-msgstr "Maxsus"
-
-#: data/gnome-custom-session.desktop.in.in:4
-msgid "This entry lets you select a saved session"
-msgstr "Ushbu yozuv saqlangan seansni tanlash imkonini beradi"
-
-#: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
+#: data/gnome.desktop.in.in:2 data/gnome.session.desktop:2
 msgid "GNOME"
 msgstr "GNOME"
 
-#: data/gnome.desktop.in.in:4 data/gnome-wayland.desktop.in.in:4
-#: data/gnome-xorg.desktop.in.in:4
+#: data/gnome.desktop.in.in:3 data/gnome-wayland.desktop.in.in:3
+#: data/gnome-xorg.desktop.in.in:3
 msgid "This session logs you into GNOME"
 msgstr "Ushbu seans GNOME'ga kirishingizni taʼminlaydi"
 
-#: data/gnome-dummy.session.desktop.in.in:3
-msgid "GNOME dummy"
-msgstr "GNOME qo'g'irchoq"
-
-#: data/gnome-wayland.desktop.in.in:3
+#: data/gnome-wayland.desktop.in.in:2
 msgid "GNOME on Wayland"
 msgstr "Waylanddagi GNOME"
 
-#: data/gnome-xorg.desktop.in.in:3
+#: data/gnome-xorg.desktop.in.in:2
 msgid "GNOME on Xorg"
-msgstr "Xorg-da GNOME"
+msgstr "Xorgʼda GNOME"
 
 #: data/org.gnome.SessionManager.gschema.xml:5
-msgid "Save sessions"
-msgstr "Seanslarni saqlash"
-
-#: data/org.gnome.SessionManager.gschema.xml:6
-msgid "If enabled, gnome-session will save the session automatically."
-msgstr ""
-"Agar yoqilgan bo'lsa, gnome-session seansni avtomatik ravishda saqlaydi."
-
-#: data/org.gnome.SessionManager.gschema.xml:10
-msgid "Save this session"
-msgstr "Ushbu seansni saqlang"
-
-#: data/org.gnome.SessionManager.gschema.xml:11
-msgid ""
-"When enabled, gnome-session will automatically save the next session at log "
-"out even if auto saving is disabled."
-msgstr ""
-"Agar yoqilgan bo’lsa, gnome-session avtomatik saqlash o’chirilgan bo’lsa "
-"ham, tizimdan chiqishda keyingi seansni avtomatik ravishda saqlaydi."
-
-#: data/org.gnome.SessionManager.gschema.xml:15
 msgid "Logout prompt"
 msgstr "Chiqish so’rovi"
 
-#: data/org.gnome.SessionManager.gschema.xml:16
+#: data/org.gnome.SessionManager.gschema.xml:6
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr ""
 "Agar yoqilgan bo’lsa, gnome-session seansni tugatishdan oldin "
 "foydalanuvchini so’raydi."
 
-#: data/org.gnome.SessionManager.gschema.xml:20
+#: data/org.gnome.SessionManager.gschema.xml:10
 msgid "Show the fallback warning"
 msgstr "Qayta tiklash ogohlantirishini ko’rsating"
 
-#: data/org.gnome.SessionManager.gschema.xml:21
+#: data/org.gnome.SessionManager.gschema.xml:11
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the "
 "session was automatically fallen back."
@@ -90,143 +57,39 @@ msgstr ""
 "Agar yoqilgan bo’lsa, gnome-session tizimga kirgandan so’ng, agar seans "
 "avtomatik ravishda orqaga qaytsa, ogohlantirish oynasini ko’rsatadi."
 
-#: data/session-selector.ui:15
-msgid "Custom Session"
-msgstr "Maxsus seans"
-
-#: data/session-selector.ui:50 tools/gnome-session-selector.c:102
-msgid "Please select a custom session to run"
-msgstr "Iltimos, ishga tushirish uchun maxsus seansni tanlang"
-
-#: data/session-selector.ui:105
-msgid "_New Session"
-msgstr "_Yangi sessiya"
-
-#: data/session-selector.ui:119
-msgid "_Remove Session"
-msgstr "_Seansni olib tashlash"
-
-#: data/session-selector.ui:133
-msgid "Rena_me Session"
-msgstr ""
-
-#: data/session-selector.ui:168
-msgid "_Continue"
-msgstr "_Davom etish"
-
-#: gnome-session/gsm-fail-whale-dialog.c:318
-msgid "Oh no!  Something has gone wrong."
-msgstr "Yo’q! Nimadir xato ketdi."
-
-#: gnome-session/gsm-fail-whale-dialog.c:325
-msgid ""
-"A problem has occurred and the system can’t recover. Please contact a system "
-"administrator"
-msgstr ""
-"Muammo yuz berdi va tizim tiklana olmadi. Tizim administratoriga murojaat "
-"qiling"
-
-#: gnome-session/gsm-fail-whale-dialog.c:327
-msgid ""
-"A problem has occurred and the system can’t recover. All extensions have "
-"been disabled as a precaution."
-msgstr ""
-"Muammo yuz berdi va tizim tiklana olmadi. Ehtiyotkorlik maqsadida barcha "
-"kengaytmalar oʻchirib qoʻyilgan."
-
-#: gnome-session/gsm-fail-whale-dialog.c:329
-msgid ""
-"A problem has occurred and the system can’t recover.\n"
-"Please log out and try again."
-msgstr ""
-"Muammo yuz berdi va tizim tiklana olmadi.\n"
-"Iltimos, tizimdan chiqing va qaytadan urining."
-
-#: gnome-session/gsm-fail-whale-dialog.c:344
-msgid "_Log Out"
-msgstr "_Chiqish"
-
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:505
-msgid "Enable debugging code"
-msgstr "Nosozliklarni tuzatish kodini yoqing"
-
-#: gnome-session/gsm-fail-whale-dialog.c:413
-msgid "Allow logout"
-msgstr "Chiqishga ruxsat bering"
-
-#: gnome-session/gsm-fail-whale-dialog.c:414
-msgid "Show extension warning"
-msgstr "Kengaytma haqida ogohlantirishni ko’rsatish"
-
-#: gnome-session/gsm-manager.c:1301 gnome-session/gsm-manager.c:2050
+#: gnome-session/gsm-manager.c:717 gnome-session/gsm-manager.c:1052
 msgid "Not responding"
 msgstr "Javob bermayapti"
 
-#: gnome-session/gsm-util.c:431
+#: gnome-session/gsm-util.c:170
 msgid "_Log out"
-msgstr "_Chiqish"
+msgstr "Chiqish"
 
-#. It'd be really surprising to reach this code: if we're here,
-#. * then the XSMP client already has set several XSMP
-#. * properties. But it could still be that SmProgram is not set.
-#.
-#: gnome-session/gsm-xsmp-client.c:557
-msgid "Remembered Application"
-msgstr "Eslab qolingan dastur"
-
-#: gnome-session/gsm-xsmp-client.c:1216
-msgid "This program is blocking logout."
-msgstr "Ushbu dastur tizimdan chiqishni bloklamoqda."
-
-#: gnome-session/gsm-xsmp-server.c:340
-msgid ""
-"Refusing new client connection because the session is currently being shut "
-"down\n"
-msgstr "Seans hozirda yopilganligi sababli yangi mijoz ulanishini rad etish\n"
-
-#: gnome-session/gsm-xsmp-server.c:607
-#, c-format
-msgid "Could not create ICE listening socket: %s"
-msgstr "ICE tinglash socket yaratib bo‘lmadi: %s"
-
-#: gnome-session/main.c:502
-msgid "Running as systemd service"
-msgstr "Systemd xizmati sifatida ishlaydi"
-
-#: gnome-session/main.c:503
-msgid "Override standard autostart directories"
-msgstr "Standart avtomatik ishga tushirish kataloglarini bekor qilish"
-
-#: gnome-session/main.c:503
-msgid "AUTOSTART_DIR"
-msgstr "AUTOSTART_DIR"
-
-#: gnome-session/main.c:504
+#: gnome-session/leader-main.c:192 gnome-session/service-main.c:148
 msgid "Session to use"
-msgstr "Foydalanish uchun seans"
+msgstr "Ishlatiladigan sessiya"
 
-#: gnome-session/main.c:504
+#: gnome-session/leader-main.c:192 gnome-session/service-main.c:148
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: gnome-session/main.c:506
-msgid "Do not load user-specified applications"
-msgstr "Foydalanuvchi tomonidan belgilangan ilovalarni yuklamang"
+#: gnome-session/leader-main.c:193
+msgid "Enable debugging code"
+msgstr "Nosozliklarni tuzatish kodini yoqing"
 
-#: gnome-session/main.c:507
+#: gnome-session/leader-main.c:194
 msgid "Version of this application"
 msgstr "Dastur versiyasi"
 
-#. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:509
-msgid "Show the fail whale dialog for testing"
-msgstr "Sinov uchun muvaffaqiyatsiz kit dialogini ko’rsating"
+#: gnome-session/leader-main.c:195
+msgid "This option is ignored"
+msgstr "Bu parametr e’tiborsiz qoldirildi"
 
-#: gnome-session/main.c:510
-msgid "Disable hardware acceleration check"
-msgstr "Uskuna tezlashuvini tekshirishni o’chiring"
+#: gnome-session/leader-main.c:196
+msgid "Don't re-exec into a login shell"
+msgstr "Login shell qayta kirishni amalga oshirmang"
 
-#: gnome-session/main.c:542
+#: gnome-session/leader-main.c:210 gnome-session/service-main.c:157
 msgid " — the GNOME session manager"
 msgstr " — GNOME seans menejeri"
 
@@ -252,72 +115,86 @@ msgstr "Agar dbus.service ishlayotgan bo’lsa, uni qayta ishga tushiring"
 
 #: tools/gnome-session-ctl.c:251
 msgid ""
-"Run from ExecStopPost to start gnome-session-failed.target on service failure"
+"Run from ExecStopPost to start gnome-session-shutdown.target on service "
+"failure"
 msgstr ""
-"Xizmat ishlamay qolganda gnome-session-failed.target-ni ishga tushirish "
-"uchun ExecStopPost-dan ishga tushiring"
+"Xizmat muvaffaqiyatsizligida gnome-session-shutdown.targetni ishga tushirish "
+"uchun ExecStopPost orqali ishga tushiring"
 
 #: tools/gnome-session-ctl.c:281
+#, c-format
 msgid "Program needs exactly one parameter"
 msgstr "Dasturga aynan bitta parametr kerak"
 
-#: tools/gnome-session-inhibit.c:108
+#: tools/gnome-session-inhibit.c:68
 #, c-format
-msgid ""
-"%s [OPTION…] COMMAND\n"
-"\n"
-"Execute COMMAND while inhibiting some session functionality.\n"
-"\n"
-"  -h, --help        Show this help\n"
-"  --version         Show program version\n"
-"  --app-id ID       The application id to use\n"
-"                    when inhibiting (optional)\n"
-"  --reason REASON   The reason for inhibiting (optional)\n"
-"  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
-"                    logout, switch-user, suspend, idle, automount\n"
-"  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
-"  -l, --list        List the existing inhibitions, and exit\n"
-"\n"
-"If no --inhibit option is specified, idle is assumed.\n"
-msgstr ""
-"%s [OPTION…] BUYRUQ\n"
-"\n"
-"Ba'zi seans funksiyalarini inhibe qilgan holda COMMANDni bajaring.\n"
-"\n"
-" -h, --help Ushbu yordamni ko'rsating\n"
-" --version Dastur versiyasini ko'rsatish\n"
-" --app-id ID Foydalanish uchun ilova identifikatori\n"
-" inhibe qilganda (ixtiyoriy)\n"
-" --reason REASON Inhibe qilish sababi (ixtiyoriy)\n"
-" —inhibit ARG inhibe qilinishi kerak bo’lgan narsalar, yo’g’on ichak bilan "
-"ajratilgan ro’yxati:\n"
-" chiqish, foydalanuvchini almashtirish, to’xtatib turish, bo’sh turish, "
-"avtomatik o’rnatish\n"
-" —inhibit-only COMMAND-ni ishga tushirmang va uning o’rniga abadiy kuting\n"
-" -l, —list Mavjud taqiqlarni sanab chiqing va chiqing\n"
-"\n"
-"Agar —inhibit opsiyasi ko’rsatilmagan bo’lsa, ishlamay qolgan deb "
-"hisoblanadi.\n"
+msgid "Unknown inhibit argument: %s"
+msgstr "Noma’lum bloklash argumenti: %s"
 
-#: tools/gnome-session-inhibit.c:282
+#: tools/gnome-session-inhibit.c:288
 #, c-format
-msgid "Error while creating pipe: %s\n"
-msgstr "Quvurni yaratishda xatolik yuz berdi: %s\n"
-
-#: tools/gnome-session-inhibit.c:299
-msgid "Failure reading pipe\n"
-msgstr "O’qish trubkasi noto’g’ri\n"
-
-#: tools/gnome-session-inhibit.c:303
-#, c-format
-msgid "Failed to execute %s\n"
+msgid "Failed to execute %s: %m\n"
 msgstr "%s bajarilmadi\n"
 
-#: tools/gnome-session-inhibit.c:376 tools/gnome-session-inhibit.c:386
-#: tools/gnome-session-inhibit.c:396
-#, c-format
-msgid "%s requires an argument\n"
-msgstr "%s argument talab qiladi\n"
+#: tools/gnome-session-inhibit.c:360
+msgid "Show program version"
+msgstr "Dastur versiyasini koʻrsatish"
+
+#: tools/gnome-session-inhibit.c:361
+msgid "The application id to use when inhibiting (optional)"
+msgstr ""
+"Taqiqlash (ingibirlash) uchun foydalaniladigan dastur identifikatori "
+"(ixtiyoriy)"
+
+#: tools/gnome-session-inhibit.c:361
+msgid "ID"
+msgstr "ID"
+
+#: tools/gnome-session-inhibit.c:362
+msgid "The reason for inhibiting (optional)"
+msgstr "To‘xtatish (yoki taqiqlash) sababi (ixtiyoriy)"
+
+#: tools/gnome-session-inhibit.c:362
+msgid "REASON"
+msgstr "SABAB"
+
+#: tools/gnome-session-inhibit.c:363
+msgid "Add action to inhibit (repeatable)"
+msgstr "To‘xtatish uchun harakat qo‘shish (takrorlanuvchi)"
+
+#: tools/gnome-session-inhibit.c:363
+msgid "ACTION"
+msgstr "HARAKAT"
+
+#: tools/gnome-session-inhibit.c:364
+msgid "Do not launch COMMAND and wait forever instead"
+msgstr "BUYRUQni ishga tushirmang va abadiy kuting"
+
+#: tools/gnome-session-inhibit.c:365
+msgid "List the existing inhibitions, and exit"
+msgstr "Mavjud taqiqlarni kiriting va chiqing"
+
+#: tools/gnome-session-inhibit.c:377
+msgid "COMMAND"
+msgstr "BUYRUQ"
+
+#: tools/gnome-session-inhibit.c:383
+msgid "Execute COMMAND while inhibiting some session functionality."
+msgstr "Sessiyaning ba’zi funksiyalarini tormozlagan holda BUYRUQni bajaring."
+
+#: tools/gnome-session-inhibit.c:384
+msgid ""
+"Valid ACTION values are: logout, switch-user, suspend, idle, and automount.\n"
+"If no --inhibit options are specified, idle is assumed."
+msgstr ""
+"Yaroqli HARAKAT qiymatlari: chiqish, almashtirish-foydalanuvchi, to‘xtatib "
+"turish, bekor turish va automount.\n"
+"Agar --inhibit variantlari ko‘rsatilmagan bo‘lsa, bekor turibdi deb "
+"hisoblanadi."
+
+#: tools/gnome-session-inhibit.c:409
+msgid "Neither COMMAND nor --inhibit-only were specified."
+msgstr "COMMAND ham, --inhibit-only ham belgilanmagan."
 
 #: tools/gnome-session-quit.c:50
 msgid "Log out"
@@ -333,7 +210,7 @@ msgstr "Qayta ishga tushirish"
 
 #: tools/gnome-session-quit.c:53
 msgid "Ignoring any existing inhibitors"
-msgstr "Mavjud inhibitorlarga e’tibor bermaslik"
+msgstr "Mavjud to‘siqlarni e’tiborga olmaslik"
 
 #: tools/gnome-session-quit.c:54
 msgid "Don’t prompt for user confirmation"
@@ -345,31 +222,184 @@ msgstr "Seans boshqaruvchisiga ulanib bo‘lmadi"
 
 #: tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
-msgstr "Qarama-qarshi variantlar bilan chaqirilgan dastur"
+msgstr "Bir-biriga zid variantlar bilan chaqirilgan dastur"
 
-#: tools/gnome-session-selector.c:61
+#~ msgid "Custom"
+#~ msgstr "Maxsus"
+
+#~ msgid "This entry lets you select a saved session"
+#~ msgstr "Ushbu yozuv saqlangan seansni tanlash imkonini beradi"
+
+#~ msgid "GNOME dummy"
+#~ msgstr "GNOME qo'g'irchoq"
+
+#~ msgid "Save sessions"
+#~ msgstr "Seanslarni saqlash"
+
+#~ msgid "If enabled, gnome-session will save the session automatically."
+#~ msgstr ""
+#~ "Agar yoqilgan bo'lsa, gnome-session seansni avtomatik ravishda saqlaydi."
+
+#~ msgid "Save this session"
+#~ msgstr "Ushbu seansni saqlang"
+
+#~ msgid ""
+#~ "When enabled, gnome-session will automatically save the next session at "
+#~ "log out even if auto saving is disabled."
+#~ msgstr ""
+#~ "Agar yoqilgan bo’lsa, gnome-session avtomatik saqlash o’chirilgan bo’lsa "
+#~ "ham, tizimdan chiqishda keyingi seansni avtomatik ravishda saqlaydi."
+
+#~ msgid "Custom Session"
+#~ msgstr "Maxsus seans"
+
+#~ msgid "Please select a custom session to run"
+#~ msgstr "Iltimos, ishga tushirish uchun maxsus seansni tanlang"
+
+#~ msgid "_New Session"
+#~ msgstr "_Yangi sessiya"
+
+#~ msgid "_Remove Session"
+#~ msgstr "_Seansni olib tashlash"
+
+#~ msgid "_Continue"
+#~ msgstr "_Davom etish"
+
+#~ msgid "Oh no!  Something has gone wrong."
+#~ msgstr "Yo’q! Nimadir xato ketdi."
+
+#~ msgid ""
+#~ "A problem has occurred and the system can’t recover. Please contact a "
+#~ "system administrator"
+#~ msgstr ""
+#~ "Muammo yuz berdi va tizim tiklana olmadi. Tizim administratoriga murojaat "
+#~ "qiling"
+
+#~ msgid ""
+#~ "A problem has occurred and the system can’t recover. All extensions have "
+#~ "been disabled as a precaution."
+#~ msgstr ""
+#~ "Muammo yuz berdi va tizim tiklana olmadi. Ehtiyotkorlik maqsadida barcha "
+#~ "kengaytmalar oʻchirib qoʻyilgan."
+
+#~ msgid ""
+#~ "A problem has occurred and the system can’t recover.\n"
+#~ "Please log out and try again."
+#~ msgstr ""
+#~ "Muammo yuz berdi va tizim tiklana olmadi.\n"
+#~ "Iltimos, tizimdan chiqing va qaytadan urining."
+
+#~ msgid "_Log Out"
+#~ msgstr "_Chiqish"
+
+#~ msgid "Allow logout"
+#~ msgstr "Chiqishga ruxsat bering"
+
+#~ msgid "Show extension warning"
+#~ msgstr "Kengaytma haqida ogohlantirishni ko’rsatish"
+
+#~ msgid "Remembered Application"
+#~ msgstr "Eslab qolingan dastur"
+
+#~ msgid "This program is blocking logout."
+#~ msgstr "Ushbu dastur tizimdan chiqishni bloklamoqda."
+
+#~ msgid ""
+#~ "Refusing new client connection because the session is currently being "
+#~ "shut down\n"
+#~ msgstr ""
+#~ "Seans hozirda yopilganligi sababli yangi mijoz ulanishini rad etish\n"
+
 #, c-format
-msgid "Session %d"
-msgstr "Seans %d"
+#~ msgid "Could not create ICE listening socket: %s"
+#~ msgstr "ICE tinglash socket yaratib bo‘lmadi: %s"
 
-#: tools/gnome-session-selector.c:107
-msgid ""
-"Session names are not allowed to start with “.” or contain “/” characters"
-msgstr ""
-"Seans nomlarini “.” bilan boshlash mumkin emas. yoki “/” belgilaridan iborat"
+#~ msgid "Running as systemd service"
+#~ msgstr "Systemd xizmati sifatida ishlaydi"
 
-#: tools/gnome-session-selector.c:111
-msgid "Session names are not allowed to start with “.”"
-msgstr "Seans nomlarini “.” bilan boshlash mumkin emas."
+#~ msgid "Override standard autostart directories"
+#~ msgstr "Standart avtomatik ishga tushirish kataloglarini bekor qilish"
 
-#: tools/gnome-session-selector.c:115
-msgid "Session names are not allowed to contain “/” characters"
-msgstr "Seans nomlarida “/” belgilari bo‘lishi mumkin emas"
+#~ msgid "AUTOSTART_DIR"
+#~ msgstr "AUTOSTART_DIR"
 
-#: tools/gnome-session-selector.c:123
+#~ msgid "Do not load user-specified applications"
+#~ msgstr "Foydalanuvchi tomonidan belgilangan ilovalarni yuklamang"
+
+#~ msgid "Show the fail whale dialog for testing"
+#~ msgstr "Sinov uchun muvaffaqiyatsiz kit dialogini ko’rsating"
+
+#~ msgid "Disable hardware acceleration check"
+#~ msgstr "Uskuna tezlashuvini tekshirishni o’chiring"
+
 #, c-format
-msgid "A session named “%s” already exists"
-msgstr "“%s” nomli sessiya allaqachon mavjud"
+#~ msgid ""
+#~ "%s [OPTION…] COMMAND\n"
+#~ "\n"
+#~ "Execute COMMAND while inhibiting some session functionality.\n"
+#~ "\n"
+#~ "  -h, --help        Show this help\n"
+#~ "  --version         Show program version\n"
+#~ "  --app-id ID       The application id to use\n"
+#~ "                    when inhibiting (optional)\n"
+#~ "  --reason REASON   The reason for inhibiting (optional)\n"
+#~ "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
+#~ "                    logout, switch-user, suspend, idle, automount\n"
+#~ "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+#~ "  -l, --list        List the existing inhibitions, and exit\n"
+#~ "\n"
+#~ "If no --inhibit option is specified, idle is assumed.\n"
+#~ msgstr ""
+#~ "%s [OPTION…] BUYRUQ\n"
+#~ "\n"
+#~ "Ba'zi seans funksiyalarini inhibe qilgan holda COMMANDni bajaring.\n"
+#~ "\n"
+#~ " -h, --help Ushbu yordamni ko'rsating\n"
+#~ " --version Dastur versiyasini ko'rsatish\n"
+#~ " --app-id ID Foydalanish uchun ilova identifikatori\n"
+#~ " inhibe qilganda (ixtiyoriy)\n"
+#~ " --reason REASON Inhibe qilish sababi (ixtiyoriy)\n"
+#~ " —inhibit ARG inhibe qilinishi kerak bo’lgan narsalar, yo’g’on ichak "
+#~ "bilan ajratilgan ro’yxati:\n"
+#~ " chiqish, foydalanuvchini almashtirish, to’xtatib turish, bo’sh turish, "
+#~ "avtomatik o’rnatish\n"
+#~ " —inhibit-only COMMAND-ni ishga tushirmang va uning o’rniga abadiy "
+#~ "kuting\n"
+#~ " -l, —list Mavjud taqiqlarni sanab chiqing va chiqing\n"
+#~ "\n"
+#~ "Agar —inhibit opsiyasi ko’rsatilmagan bo’lsa, ishlamay qolgan deb "
+#~ "hisoblanadi.\n"
+
+#, c-format
+#~ msgid "Error while creating pipe: %s\n"
+#~ msgstr "Quvurni yaratishda xatolik yuz berdi: %s\n"
+
+#~ msgid "Failure reading pipe\n"
+#~ msgstr "O’qish trubkasi noto’g’ri\n"
+
+#, c-format
+#~ msgid "%s requires an argument\n"
+#~ msgstr "%s argument talab qiladi\n"
+
+#, c-format
+#~ msgid "Session %d"
+#~ msgstr "Seans %d"
+
+#~ msgid ""
+#~ "Session names are not allowed to start with “.” or contain “/” characters"
+#~ msgstr ""
+#~ "Seans nomlarini “.” bilan boshlash mumkin emas. yoki “/” belgilaridan "
+#~ "iborat"
+
+#~ msgid "Session names are not allowed to start with “.”"
+#~ msgstr "Seans nomlarini “.” bilan boshlash mumkin emas."
+
+#~ msgid "Session names are not allowed to contain “/” characters"
+#~ msgstr "Seans nomlarida “/” belgilari bo‘lishi mumkin emas"
+
+#, c-format
+#~ msgid "A session named “%s” already exists"
+#~ msgstr "“%s” nomli sessiya allaqachon mavjud"
 
 #~ msgid "Select Command"
 #~ msgstr "Buyruqni tanlash"
@@ -468,9 +498,6 @@ msgstr "“%s” nomli sessiya allaqachon mavjud"
 
 #~ msgid "Specify session management ID"
 #~ msgstr "Seans boshqaruvi ID'ni koʻrsating"
-
-#~ msgid "ID"
-#~ msgstr "ID"
 
 #~ msgid "Session Management Options"
 #~ msgstr "Seans boshqaruvi parametrlari"
