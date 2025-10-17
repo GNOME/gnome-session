@@ -7,7 +7,6 @@ project(
 )
 
 session_version = meson.project_version()
-session_api_name = '@0@-@1@'.format(meson.project_name(), session_version.split('.')[0])
 
 session_prefix = get_option('prefix')
 session_bindir = join_paths(session_prefix, get_option('bindir'))
@@ -30,7 +29,7 @@ set_defines = [
   ['PACKAGE_VERSION', session_version],
   ['VERSION', session_version],
   # i18n
-  ['GETTEXT_PACKAGE', session_api_name]
+  ['GETTEXT_PACKAGE', meson.project_name()]
 ]
 
 foreach define: set_defines

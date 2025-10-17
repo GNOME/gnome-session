@@ -1,1 +1,1 @@
-i18n.gettext(session_api_name, preset: 'glib')
+i18n.gettext(meson.project_name(), preset: 'glib')
