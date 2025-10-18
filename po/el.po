@@ -36,7 +36,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2025-10-16 16:20+0000\n"
+"POT-Creation-Date: 2025-10-18 20:18+0000\n"
 "PO-Revision-Date: 2023-08-01 23:42+0300\n"
 "Last-Translator: Giannis Antypas <gianni.antypas@gmail.com>\n"
 "Language-Team: Greek, Modern (1453-) <gnome-el-list@gnome.org>\n"
@@ -119,10 +119,49 @@ msgstr "Αυτή η επιλογή αγνοείται"
 msgid "Don't re-exec into a login shell"
 msgstr "Να μην εκτελεστεί ξανά σε κέλυφος σύνδεσης"
 
-#: tools/gnome-session-inhibit.c:68
+#: gnome-session/leader-main.c:210 gnome-session/service-main.c:157
+#, fuzzy
+#| msgid "Could not connect to the session manager"
+msgid " — the GNOME session manager"
+msgstr "Αδυναμία σύνδεσης με το διαχειριστή συνεδρίας"
+
+#: tools/gnome-session-ctl.c:247
+msgid "Start gnome-session-shutdown.target"
+msgstr "Εκκίνηση του gnome-session-shutdown.target"
+
+#: tools/gnome-session-ctl.c:248
+msgid ""
+"Start gnome-session-shutdown.target when receiving EOF or a single byte on "
+"stdin"
+msgstr ""
+"Εκκίνηση του gnome-session-shutdown.target όταν λαμβάνεται EOF ή ένα μόνο "
+"byte στο stdin"
+
+#: tools/gnome-session-ctl.c:249
+msgid "Signal initialization done to gnome-session"
+msgstr "Η αρχικοποίηση του σήματος ολοκληρώθηκε στο gnome-session"
+
+#: tools/gnome-session-ctl.c:250
+msgid "Restart dbus.service if it is running"
+msgstr "Επανεκκίνηση της υπηρεσίας dbus εάν εκτελείται"
+
+#: tools/gnome-session-ctl.c:251
+msgid ""
+"Run from ExecStopPost to start gnome-session-shutdown.target on service "
+"failure"
+msgstr ""
+"Εκτέλεση από το ExecStopPost για εκκίνηση του gnome-session-shutdown.target "
+"σε περίπτωση αποτυχίας υπηρεσίας"
+
+#: tools/gnome-session-ctl.c:281
 #, c-format
-msgid "Unknown inhibit argument: %s"
-msgstr "Άγνωστο όρισμα αναστολής: %s"
+msgid "Program needs exactly one parameter"
+msgstr "Το πρόγραμμα χρειάζεται ακριβώς μία παράμετρο"
+
+#: tools/gnome-session-inhibit.c:288
+#, c-format
+msgid "Failed to execute %s: %m\n"
+msgstr "Αποτυχία εκτέλεσης του %s: %m\n"
 
 #: tools/gnome-session-inhibit.c:360
 msgid "Show program version"
@@ -130,7 +169,13 @@ msgstr "Εμφάνιση έκδοσης προγράμματος"
 
 #: tools/gnome-session-inhibit.c:361
 msgid "The application id to use when inhibiting (optional)"
-msgstr "Το αναγνωριστικό εφαρμογής που θα χρησιμοποιηθεί κατά την αναστολή (προαιρετικό)"
+msgstr ""
+"Το αναγνωριστικό εφαρμογής που θα χρησιμοποιηθεί κατά την αναστολή "
+"(προαιρετικό)"
+
+#: tools/gnome-session-inhibit.c:361
+msgid "ID"
+msgstr "ID"
 
 #: tools/gnome-session-inhibit.c:362
 msgid "The reason for inhibiting (optional)"
@@ -169,7 +214,8 @@ msgid ""
 "Valid ACTION values are: logout, switch-user, suspend, idle, and automount.\n"
 "If no --inhibit options are specified, idle is assumed."
 msgstr ""
-"Έγκυρες τιμές ΕΝΕΡΓΕΙΑΣ είναι: logout, switch-user, suspend, idle και automount.\n"
+"Έγκυρες τιμές ΕΝΕΡΓΕΙΑΣ είναι: logout, switch-user, suspend, idle και "
+"automount.\n"
 "Εάν δεν καθοριστούν επιλογές --inhibit, υποτίθεται η idle."
 
 #: tools/gnome-session-inhibit.c:409
