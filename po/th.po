@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2025-01-12 21:19+0000\n"
-"PO-Revision-Date: 2025-01-28 17:18+0700\n"
+"POT-Creation-Date: 2025-10-22 17:58+0000\n"
+"PO-Revision-Date: 2025-10-23 16:42+0700\n"
 "Last-Translator: Akom Chotiphantawanon <knight2000@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "Language: th\n"
@@ -20,201 +20,75 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.8\n"
 
-#: data/gnome-custom-session.desktop.in.in:3
-msgid "Custom"
-msgstr "กำหนดเอง"
-
-#: data/gnome-custom-session.desktop.in.in:4
-msgid "This entry lets you select a saved session"
-msgstr "รายการนี้จะให้คุณเลือกเซสชันที่บันทึกไว้"
-
-#: data/gnome.desktop.in.in:3 data/gnome.session.desktop.in.in:3
+#: data/gnome.desktop.in.in:2 data/gnome.session.desktop:2
 msgid "GNOME"
 msgstr "GNOME"
 
-#: data/gnome.desktop.in.in:4 data/gnome-wayland.desktop.in.in:4 data/gnome-xorg.desktop.in.in:4
+#: data/gnome.desktop.in.in:3 data/gnome-wayland.desktop.in.in:3 data/gnome-xorg.desktop.in.in:3
 msgid "This session logs you into GNOME"
 msgstr "เซสชันนี้จะเข้าสู่ GNOME"
 
-#: data/gnome-dummy.session.desktop.in.in:3
-msgid "GNOME dummy"
-msgstr "หุ่นตัวอย่าง GNOME"
-
-#: data/gnome-wayland.desktop.in.in:3
+#: data/gnome-wayland.desktop.in.in:2
 msgid "GNOME on Wayland"
 msgstr "GNOME ใน Wayland"
 
-#: data/gnome-xorg.desktop.in.in:3
+#: data/gnome-xorg.desktop.in.in:2
 msgid "GNOME on Xorg"
 msgstr "GNOME ใน Xorg"
 
 #: data/org.gnome.SessionManager.gschema.xml:5
-msgid "Save sessions"
-msgstr "บันทึกเซสชัน"
-
-#: data/org.gnome.SessionManager.gschema.xml:6
-msgid "If enabled, gnome-session will save the session automatically."
-msgstr "ถ้าเลือก gnome-session จะบันทึกเซสชันให้โดยอัตโนมัติ"
-
-#: data/org.gnome.SessionManager.gschema.xml:10
-msgid "Save this session"
-msgstr "บันทึกเซสชันนี้"
-
-#: data/org.gnome.SessionManager.gschema.xml:11
-msgid ""
-"When enabled, gnome-session will automatically save the next session at log out even if auto "
-"saving is disabled."
-msgstr "ถ้าเลือก gnome-session จะบันทึกเซสชันถัดไปให้โดยอัตโนมัติเมื่อออกจากระบบ แม้จะปิดการบันทึกอัตโนมัติก็ตาม"
-
-#: data/org.gnome.SessionManager.gschema.xml:15
 msgid "Logout prompt"
 msgstr "ถามก่อนจะออกจากระบบ"
 
-#: data/org.gnome.SessionManager.gschema.xml:16
+#: data/org.gnome.SessionManager.gschema.xml:6
 msgid "If enabled, gnome-session will prompt the user before ending a session."
 msgstr "ถ้าเลือก gnome-session จะถามผู้ใช้ก่อนจะออกจากการใช้งาน"
 
-#: data/org.gnome.SessionManager.gschema.xml:20
+#: data/org.gnome.SessionManager.gschema.xml:10
 msgid "Show the fallback warning"
 msgstr "แสดงคำเตือนสำรอง"
 
-#: data/org.gnome.SessionManager.gschema.xml:21
+#: data/org.gnome.SessionManager.gschema.xml:11
 msgid ""
 "If enabled, gnome-session will display a warning dialog after login if the session was "
 "automatically fallen back."
 msgstr "ถ้าเลือก gnome-session จะแสดงกล่องโต้ตอบคำเตือนหลังจากเข้าระบบถ้ามีการใช้เซสชันสำรองโดยอัตโนมัติ"
 
-#: data/session-selector.ui:15
-msgid "Custom Session"
-msgstr "เซสชันที่กำหนดเอง"
-
-#: data/session-selector.ui:50 tools/gnome-session-selector.c:102
-msgid "Please select a custom session to run"
-msgstr "กรุณาเลือกเซสชันที่กำหนดเองที่จะเรียกทำงาน"
-
-#: data/session-selector.ui:105
-msgid "_New Session"
-msgstr "เซสชันใ_หม่"
-
-#: data/session-selector.ui:119
-msgid "_Remove Session"
-msgstr "_ลบเซสชัน"
-
-#: data/session-selector.ui:133
-msgid "Rena_me Session"
-msgstr "เ_ปลี่ยนชื่อเซสชัน"
-
-#: data/session-selector.ui:168
-msgid "_Continue"
-msgstr "เข้าระบบ_ต่อไป"
-
-#: gnome-session/gsm-fail-whale-dialog.c:318
-msgid "Oh no!  Something has gone wrong."
-msgstr "คุณพระ!  มีอะไรผิดพลาดสักอย่าง"
-
-#: gnome-session/gsm-fail-whale-dialog.c:325
-msgid "A problem has occurred and the system can’t recover. Please contact a system administrator"
-msgstr "เกิดปัญหาบางอย่างขึ้น โดยระบบไม่สามารถฟื้นคืนได้ กรุณาติดต่อผู้ดูแลระบบ"
-
-#: gnome-session/gsm-fail-whale-dialog.c:327
-msgid ""
-"A problem has occurred and the system can’t recover. All extensions have been disabled as a "
-"precaution."
-msgstr "เกิดปัญหาบางอย่างขึ้น โดยระบบไม่สามารถฟื้นคืนได้ ระบบได้ปิดการใช้ส่วนขยายทั้งหมดเพื่อเป็นการป้องกันแล้ว"
-
-#: gnome-session/gsm-fail-whale-dialog.c:329
-msgid ""
-"A problem has occurred and the system can’t recover.\n"
-"Please log out and try again."
-msgstr ""
-"เกิดปัญหาบางอย่างขึ้น โดยระบบไม่สามารถฟื้นคืนได้\n"
-"กรุณาออกจากระบบ แล้วลองเข้ามาใหม่"
-
-#: gnome-session/gsm-fail-whale-dialog.c:344
-msgid "_Log Out"
-msgstr "_ออกจากระบบ"
-
-#: gnome-session/gsm-fail-whale-dialog.c:412 gnome-session/main.c:505
-msgid "Enable debugging code"
-msgstr "เปิดใช้โค้ดส่วนดีบั๊ก"
-
-#: gnome-session/gsm-fail-whale-dialog.c:413
-msgid "Allow logout"
-msgstr "อนุญาตให้ออกจากระบบ"
-
-#: gnome-session/gsm-fail-whale-dialog.c:414
-msgid "Show extension warning"
-msgstr "แสดงคำเตือนของส่วนขยาย"
-
-#: gnome-session/gsm-manager.c:1305 gnome-session/gsm-manager.c:2063
+#: gnome-session/gsm-manager.c:709 gnome-session/gsm-manager.c:1040
 msgid "Not responding"
 msgstr "ไม่ตอบสนอง"
 
-#: gnome-session/gsm-util.c:431
+#: gnome-session/gsm-util.c:167
 msgid "_Log out"
 msgstr "_ออกจากระบบ"
 
-#. It'd be really surprising to reach this code: if we're here,
-#. * then the XSMP client already has set several XSMP
-#. * properties. But it could still be that SmProgram is not set.
-#.
-#: gnome-session/gsm-xsmp-client.c:557
-msgid "Remembered Application"
-msgstr "แอปพลิเคชันที่จำไว้"
-
-#: gnome-session/gsm-xsmp-client.c:1216
-msgid "This program is blocking logout."
-msgstr "โปรแกรมนี้ขัดขวางการออกจากระบบอยู่"
-
-#: gnome-session/gsm-xsmp-server.c:340
-msgid "Refusing new client connection because the session is currently being shut down\n"
-msgstr "ไม่รับการเชื่อมต่อใหม่จากลูกข่าย เพราะเซสชันกำลังปิดตัว\n"
-
-#: gnome-session/gsm-xsmp-server.c:607
-#, c-format
-msgid "Could not create ICE listening socket: %s"
-msgstr "ไม่สามารถสร้างซ็อกเก็ตรอรับการเชื่อมต่อ ICE: %s"
-
-#: gnome-session/main.c:502
-msgid "Running as systemd service"
-msgstr "กำลังเรียกทำงานในแบบบริการ systemd"
-
-#: gnome-session/main.c:503
-msgid "Override standard autostart directories"
-msgstr "กำหนดค่าไดเรกทอรีเริ่มต้นอัตโนมัติทับค่ามาตรฐาน"
-
-#: gnome-session/main.c:503
-msgid "AUTOSTART_DIR"
-msgstr "AUTOSTART_DIR"
-
-#: gnome-session/main.c:504
+#: gnome-session/leader-main.c:192 gnome-session/service-main.c:148
 msgid "Session to use"
 msgstr "เซสชันที่จะใช้"
 
-#: gnome-session/main.c:504
+#: gnome-session/leader-main.c:192 gnome-session/service-main.c:148
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: gnome-session/main.c:506
-msgid "Do not load user-specified applications"
-msgstr "ไม่ต้องโหลดแอปพลิเคชันที่ผู้ใช้ระบุไว้"
+#: gnome-session/leader-main.c:193
+msgid "Enable debugging code"
+msgstr "เปิดใช้โค้ดส่วนดีบั๊ก"
 
-#: gnome-session/main.c:507
+#: gnome-session/leader-main.c:194
 msgid "Version of this application"
 msgstr "รุ่นของแอปพลิเคชันนี้"
 
-#. Translators: the 'fail whale' is the black dialog we show when something goes seriously wrong
-#: gnome-session/main.c:509
-msgid "Show the fail whale dialog for testing"
-msgstr "แสดงกล่องแจ้งพังเพื่อทดสอบ"
+#: gnome-session/leader-main.c:195
+msgid "This option is ignored"
+msgstr "ตัวเลือกนี้ถูกเพิกเฉย"
 
-#: gnome-session/main.c:510
-msgid "Disable hardware acceleration check"
-msgstr "ปิดใช้การตรวจสอบการเร่งความเร็วด้วยฮาร์ดแวร์"
+#: gnome-session/leader-main.c:196
+msgid "Don't re-exec into a login shell"
+msgstr "ไม่ต้องเรียกใช้ใหม่ในฐานะ login shell"
 
-#: gnome-session/main.c:542
+#: gnome-session/leader-main.c:210 gnome-session/service-main.c:157
 msgid " — the GNOME session manager"
 msgstr " — โปรแกรมจัดการเซสชัน GNOME"
 
@@ -235,67 +109,79 @@ msgid "Restart dbus.service if it is running"
 msgstr "เริ่ม dbus.service ใหม่ถ้าไม่ได้ทำงาน"
 
 #: tools/gnome-session-ctl.c:251
-msgid "Run from ExecStopPost to start gnome-session-failed.target on service failure"
-msgstr "เรียกใช้จาก ExecStopPost เพื่อเริ่ม gnome-session-failed.target เมื่อบริการเกิดความขัดข้อง"
+msgid "Run from ExecStopPost to start gnome-session-shutdown.target on service failure"
+msgstr "เรียกใช้จาก ExecStopPost เพื่อเริ่ม gnome-session-shutdown.target เมื่อบริการเกิดความขัดข้อง"
 
 #: tools/gnome-session-ctl.c:281
+#, c-format
 msgid "Program needs exactly one parameter"
 msgstr "โปรแกรมต้องการพารามิเตอร์เพียงตัวเดียวเท่านั้น"
 
-#: tools/gnome-session-inhibit.c:108
+#: tools/gnome-session-inhibit.c:68
 #, c-format
+msgid "Unknown inhibit argument: %s"
+msgstr "ไม่รู้จักอาร์กิวเมนต์ระงับ: %s"
+
+#: tools/gnome-session-inhibit.c:288
+#, c-format
+msgid "Failed to execute %s: %m\n"
+msgstr "เรียกทำงาน %s ไม่สำเร็จ: %m\n"
+
+#: tools/gnome-session-inhibit.c:360
+msgid "Show program version"
+msgstr "แสดงรุ่นของโปรแกรม"
+
+#: tools/gnome-session-inhibit.c:361
+msgid "The application id to use when inhibiting (optional)"
+msgstr "ID ของแอปพลิเคชันที่จะใช้เมื่อระงับ (ไม่บังคับ)"
+
+#: tools/gnome-session-inhibit.c:361
+msgid "ID"
+msgstr "ID"
+
+#: tools/gnome-session-inhibit.c:362
+msgid "The reason for inhibiting (optional)"
+msgstr "เหตุผลในการระงับ (ไม่บังคับ)"
+
+#: tools/gnome-session-inhibit.c:362
+msgid "REASON"
+msgstr "REASON"
+
+#: tools/gnome-session-inhibit.c:363
+msgid "Add action to inhibit (repeatable)"
+msgstr "เพิ่มการกระทำที่จะระงับ (ซ้ำกันได้)"
+
+#: tools/gnome-session-inhibit.c:363
+msgid "ACTION"
+msgstr "ACTION"
+
+#: tools/gnome-session-inhibit.c:364
+msgid "Do not launch COMMAND and wait forever instead"
+msgstr "ไม่ต้องเรียก COMMAND และรอไปตลอดกาลแทน"
+
+#: tools/gnome-session-inhibit.c:365
+msgid "List the existing inhibitions, and exit"
+msgstr "แสดงรายการการระงับที่มีอยู่ แล้วออก"
+
+#: tools/gnome-session-inhibit.c:377
+msgid "COMMAND"
+msgstr "COMMAND"
+
+#: tools/gnome-session-inhibit.c:383
+msgid "Execute COMMAND while inhibiting some session functionality."
+msgstr "เรียกทำงาน COMMAND ขณะที่ระงับฟังก์ชันการทำงานบางอย่างของเซสชัน"
+
+#: tools/gnome-session-inhibit.c:384
 msgid ""
-"%s [OPTION…] COMMAND\n"
-"\n"
-"Execute COMMAND while inhibiting some session functionality.\n"
-"\n"
-"  -h, --help        Show this help\n"
-"  --version         Show program version\n"
-"  --app-id ID       The application id to use\n"
-"                    when inhibiting (optional)\n"
-"  --reason REASON   The reason for inhibiting (optional)\n"
-"  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
-"                    logout, switch-user, suspend, idle, automount\n"
-"  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
-"  -l, --list        List the existing inhibitions, and exit\n"
-"\n"
-"If no --inhibit option is specified, idle is assumed.\n"
+"Valid ACTION values are: logout, switch-user, suspend, idle, and automount.\n"
+"If no --inhibit options are specified, idle is assumed."
 msgstr ""
-"%s [ตัวเลือก...] คำสั่ง\n"
-"\n"
-"เรียก \"คำสั่ง\" ขณะระงับการทำงานบางส่วนของเซสชัน\n"
-"\n"
-"  -h, --help        แสดงวิธีใช้นี้\n"
-"  --version         แสดงรุ่นของโปรแกรม\n"
-"  --app-id ID       ID ของโปรแกรมที่ใช้\n"
-"                    เมื่อจะระงับ (ระบุหรือไม่ก็ได้)\n"
-"  --reason REASON   เหตุผลของการระงับ (ระบุหรือไม่ก็ได้)\n"
-"  --inhibit ARG     สิ่งที่จะระงับ, เป็นรายชื่อที่คั่นด้วยทวิภาคของ:\n"
-"                    logout, switch-user, suspend, idle, automount\n"
-"  --inhibit-only    ไม่ต้องเรียก \"คำสั่ง\" และหยุดรอแทน\n"
-"  -l, --list        แสดงรายการระงับที่มีอยู่ทั้งหมด และจบการทำงาน\n"
-"\n"
-"ถ้าไม่ระบุตัวเลือก --inhibit จะถือเป็นการเดินเครื่องเปล่า\n"
+"ค่าของ ACTION ที่ใช้ได้คือ: logout, switch-user, suspend, idle, and automount.\n"
+"ถ้าไม่ได้ระบุตัวเลือก --inhibit ไว้ ก็จะถือว่าใช้ค่า idle"
 
-#: tools/gnome-session-inhibit.c:282
-#, c-format
-msgid "Error while creating pipe: %s\n"
-msgstr "เกิดข้อผิดพลาดขณะสร้างไพป์: %s\n"
-
-#: tools/gnome-session-inhibit.c:299
-msgid "Failure reading pipe\n"
-msgstr "เกิดความขัดข้องขณะอ่านไพป์\n"
-
-#: tools/gnome-session-inhibit.c:303
-#, c-format
-msgid "Failed to execute %s\n"
-msgstr "เรียกทำงาน %s ไม่สำเร็จ\n"
-
-#: tools/gnome-session-inhibit.c:376 tools/gnome-session-inhibit.c:386
-#: tools/gnome-session-inhibit.c:396
-#, c-format
-msgid "%s requires an argument\n"
-msgstr "%s ต้องมีอาร์กิวเมนต์\n"
+#: tools/gnome-session-inhibit.c:409
+msgid "Neither COMMAND nor --inhibit-only were specified."
+msgstr "ไม่ได้ระบุ COMMAND หรือ --inhibit-only"
 
 #: tools/gnome-session-quit.c:50
 msgid "Log out"
@@ -325,27 +211,167 @@ msgstr "ติดต่อโปรแกรมจัดการเซสชั
 msgid "Program called with conflicting options"
 msgstr "โปรแกรมถูกเรียกด้วยตัวเลือกที่ขัดแย้งกันเอง"
 
-#: tools/gnome-session-selector.c:61
+#~ msgid "Custom"
+#~ msgstr "กำหนดเอง"
+
+#~ msgid "This entry lets you select a saved session"
+#~ msgstr "รายการนี้จะให้คุณเลือกเซสชันที่บันทึกไว้"
+
+#~ msgid "GNOME dummy"
+#~ msgstr "หุ่นตัวอย่าง GNOME"
+
+#~ msgid "Save sessions"
+#~ msgstr "บันทึกเซสชัน"
+
+#~ msgid "If enabled, gnome-session will save the session automatically."
+#~ msgstr "ถ้าเลือก gnome-session จะบันทึกเซสชันให้โดยอัตโนมัติ"
+
+#~ msgid "Save this session"
+#~ msgstr "บันทึกเซสชันนี้"
+
+#~ msgid ""
+#~ "When enabled, gnome-session will automatically save the next session at log out even if auto "
+#~ "saving is disabled."
+#~ msgstr "ถ้าเลือก gnome-session จะบันทึกเซสชันถัดไปให้โดยอัตโนมัติเมื่อออกจากระบบ แม้จะปิดการบันทึกอัตโนมัติก็ตาม"
+
+#~ msgid "Custom Session"
+#~ msgstr "เซสชันที่กำหนดเอง"
+
+#~ msgid "Please select a custom session to run"
+#~ msgstr "กรุณาเลือกเซสชันที่กำหนดเองที่จะเรียกทำงาน"
+
+#~ msgid "_New Session"
+#~ msgstr "เซสชันใ_หม่"
+
+#~ msgid "_Remove Session"
+#~ msgstr "_ลบเซสชัน"
+
+#~ msgid "Rena_me Session"
+#~ msgstr "เ_ปลี่ยนชื่อเซสชัน"
+
+#~ msgid "_Continue"
+#~ msgstr "เข้าระบบ_ต่อไป"
+
+#~ msgid "Oh no!  Something has gone wrong."
+#~ msgstr "คุณพระ!  มีอะไรผิดพลาดสักอย่าง"
+
+#~ msgid ""
+#~ "A problem has occurred and the system can’t recover. Please contact a system administrator"
+#~ msgstr "เกิดปัญหาบางอย่างขึ้น โดยระบบไม่สามารถฟื้นคืนได้ กรุณาติดต่อผู้ดูแลระบบ"
+
+#~ msgid ""
+#~ "A problem has occurred and the system can’t recover. All extensions have been disabled as a "
+#~ "precaution."
+#~ msgstr "เกิดปัญหาบางอย่างขึ้น โดยระบบไม่สามารถฟื้นคืนได้ ระบบได้ปิดการใช้ส่วนขยายทั้งหมดเพื่อเป็นการป้องกันแล้ว"
+
+#~ msgid ""
+#~ "A problem has occurred and the system can’t recover.\n"
+#~ "Please log out and try again."
+#~ msgstr ""
+#~ "เกิดปัญหาบางอย่างขึ้น โดยระบบไม่สามารถฟื้นคืนได้\n"
+#~ "กรุณาออกจากระบบ แล้วลองเข้ามาใหม่"
+
+#~ msgid "_Log Out"
+#~ msgstr "_ออกจากระบบ"
+
+#~ msgid "Allow logout"
+#~ msgstr "อนุญาตให้ออกจากระบบ"
+
+#~ msgid "Show extension warning"
+#~ msgstr "แสดงคำเตือนของส่วนขยาย"
+
+#~ msgid "Remembered Application"
+#~ msgstr "แอปพลิเคชันที่จำไว้"
+
+#~ msgid "This program is blocking logout."
+#~ msgstr "โปรแกรมนี้ขัดขวางการออกจากระบบอยู่"
+
+#~ msgid "Refusing new client connection because the session is currently being shut down\n"
+#~ msgstr "ไม่รับการเชื่อมต่อใหม่จากลูกข่าย เพราะเซสชันกำลังปิดตัว\n"
+
 #, c-format
-msgid "Session %d"
-msgstr "เซสชัน %d"
+#~ msgid "Could not create ICE listening socket: %s"
+#~ msgstr "ไม่สามารถสร้างซ็อกเก็ตรอรับการเชื่อมต่อ ICE: %s"
 
-#: tools/gnome-session-selector.c:107
-msgid "Session names are not allowed to start with “.” or contain “/” characters"
-msgstr "ชื่อเซสชันห้ามขึ้นต้นด้วย “.” หรือมีอักขระ “/”"
+#~ msgid "Running as systemd service"
+#~ msgstr "กำลังเรียกทำงานในแบบบริการ systemd"
 
-#: tools/gnome-session-selector.c:111
-msgid "Session names are not allowed to start with “.”"
-msgstr "ชื่อเซสชันห้ามขึ้นต้นด้วย “.”"
+#~ msgid "Override standard autostart directories"
+#~ msgstr "กำหนดค่าไดเรกทอรีเริ่มต้นอัตโนมัติทับค่ามาตรฐาน"
 
-#: tools/gnome-session-selector.c:115
-msgid "Session names are not allowed to contain “/” characters"
-msgstr "ชื่อเซสชันห้ามมีอักขระ “/”"
+#~ msgid "AUTOSTART_DIR"
+#~ msgstr "AUTOSTART_DIR"
 
-#: tools/gnome-session-selector.c:123
+#~ msgid "Do not load user-specified applications"
+#~ msgstr "ไม่ต้องโหลดแอปพลิเคชันที่ผู้ใช้ระบุไว้"
+
+#~ msgid "Show the fail whale dialog for testing"
+#~ msgstr "แสดงกล่องแจ้งพังเพื่อทดสอบ"
+
+#~ msgid "Disable hardware acceleration check"
+#~ msgstr "ปิดใช้การตรวจสอบการเร่งความเร็วด้วยฮาร์ดแวร์"
+
 #, c-format
-msgid "A session named “%s” already exists"
-msgstr "มีเซสชันชื่อ “%s” อยู่ก่อนแล้ว"
+#~ msgid ""
+#~ "%s [OPTION…] COMMAND\n"
+#~ "\n"
+#~ "Execute COMMAND while inhibiting some session functionality.\n"
+#~ "\n"
+#~ "  -h, --help        Show this help\n"
+#~ "  --version         Show program version\n"
+#~ "  --app-id ID       The application id to use\n"
+#~ "                    when inhibiting (optional)\n"
+#~ "  --reason REASON   The reason for inhibiting (optional)\n"
+#~ "  --inhibit ARG     Things to inhibit, colon-separated list of:\n"
+#~ "                    logout, switch-user, suspend, idle, automount\n"
+#~ "  --inhibit-only    Do not launch COMMAND and wait forever instead\n"
+#~ "  -l, --list        List the existing inhibitions, and exit\n"
+#~ "\n"
+#~ "If no --inhibit option is specified, idle is assumed.\n"
+#~ msgstr ""
+#~ "%s [ตัวเลือก...] คำสั่ง\n"
+#~ "\n"
+#~ "เรียก \"คำสั่ง\" ขณะระงับการทำงานบางส่วนของเซสชัน\n"
+#~ "\n"
+#~ "  -h, --help        แสดงวิธีใช้นี้\n"
+#~ "  --version         แสดงรุ่นของโปรแกรม\n"
+#~ "  --app-id ID       ID ของโปรแกรมที่ใช้\n"
+#~ "                    เมื่อจะระงับ (ระบุหรือไม่ก็ได้)\n"
+#~ "  --reason REASON   เหตุผลของการระงับ (ระบุหรือไม่ก็ได้)\n"
+#~ "  --inhibit ARG     สิ่งที่จะระงับ, เป็นรายชื่อที่คั่นด้วยทวิภาคของ:\n"
+#~ "                    logout, switch-user, suspend, idle, automount\n"
+#~ "  --inhibit-only    ไม่ต้องเรียก \"คำสั่ง\" และหยุดรอแทน\n"
+#~ "  -l, --list        แสดงรายการระงับที่มีอยู่ทั้งหมด และจบการทำงาน\n"
+#~ "\n"
+#~ "ถ้าไม่ระบุตัวเลือก --inhibit จะถือเป็นการเดินเครื่องเปล่า\n"
+
+#, c-format
+#~ msgid "Error while creating pipe: %s\n"
+#~ msgstr "เกิดข้อผิดพลาดขณะสร้างไพป์: %s\n"
+
+#~ msgid "Failure reading pipe\n"
+#~ msgstr "เกิดความขัดข้องขณะอ่านไพป์\n"
+
+#, c-format
+#~ msgid "%s requires an argument\n"
+#~ msgstr "%s ต้องมีอาร์กิวเมนต์\n"
+
+#, c-format
+#~ msgid "Session %d"
+#~ msgstr "เซสชัน %d"
+
+#~ msgid "Session names are not allowed to start with “.” or contain “/” characters"
+#~ msgstr "ชื่อเซสชันห้ามขึ้นต้นด้วย “.” หรือมีอักขระ “/”"
+
+#~ msgid "Session names are not allowed to start with “.”"
+#~ msgstr "ชื่อเซสชันห้ามขึ้นต้นด้วย “.”"
+
+#~ msgid "Session names are not allowed to contain “/” characters"
+#~ msgstr "ชื่อเซสชันห้ามมีอักขระ “/”"
+
+#, c-format
+#~ msgid "A session named “%s” already exists"
+#~ msgstr "มีเซสชันชื่อ “%s” อยู่ก่อนแล้ว"
 
 #~ msgid "Additional startup _programs:"
 #~ msgstr "โ_ปรแกรมเริ่มวาระเพิ่มเติม:"
@@ -458,9 +484,6 @@ msgstr "มีเซสชันชื่อ “%s” อยู่ก่อน�
 
 #~ msgid "Specify session management ID"
 #~ msgstr "ระบุหมายเลขการจัดการวาระ"
-
-#~ msgid "ID"
-#~ msgstr "ID"
 
 #~ msgid "Session management options:"
 #~ msgstr "ตัวเลือกเกี่ยวกับการจัดการวาระ:"
@@ -845,9 +868,6 @@ msgstr "มีเซสชันชื่อ “%s” อยู่ก่อน�
 
 #~ msgid "The Settings Daemon restarted too many times."
 #~ msgstr "ดีมอนจัดการค่าตั้งถูกเริ่มทำงานใหม่หลายครั้งจนผิดปกติ"
-
-#~ msgid "List registered clients, then exit"
-#~ msgstr "แสดงรายการไคลเอนต์ที่ลงทะเบียนไว้ แล้วออกจากโปรแกรม"
 
 #~ msgid ""
 #~ "You must specify at least one program to remove. You can list the programs with --list.\n"
