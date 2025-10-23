@@ -282,6 +282,7 @@ main (int argc, char **argv)
         g_autoptr (GError) error = NULL;
         g_auto (Leader) ctx = { .fifo_fd = -1 };
         const char *session_name = NULL;
+        const char *session_type = NULL;
         const char *debug_string = NULL;
         g_autofree char *target = NULL;
         g_autofree char *fifo_path = NULL;
@@ -290,6 +291,8 @@ main (int argc, char **argv)
         if (argc < 2)
             g_error ("No session name was specified");
         session_name = argv[1];
+
+        session_type = g_getenv ("XDG_SESSION_TYPE");
 
         debug_string = g_getenv ("GNOME_SESSION_DEBUG");
         if (debug_string != NULL)
@@ -308,7 +311,7 @@ main (int argc, char **argv)
 
         /* We don't escape the name (i.e. we leave any '-' intact). */
         target = g_strdup_printf ("gnome-session-%s@%s.target",
-                                  g_getenv ("XDG_SESSION_TYPE"), session_name);
+                                  session_type, session_name);
 
         if (systemd_unit_is_active (ctx.session_bus, target, &error))
                 g_error ("Session manager is already running!");
@@ -326,8 +329,12 @@ main (int argc, char **argv)
 
         g_message ("Starting GNOME session target: %s", target);
 
-        if (!systemd_start_unit (ctx.session_bus, target, "fail", &error))
+        if (!systemd_start_unit (ctx.session_bus, target, "fail", &error)) {
+                g_autofree char *remote_error = g_dbus_error_get_remote_error (error);
+                if (g_strcmp0 (remote_error, "org.freedesktop.systemd1.NoSuchUnit") == 0)
+                        g_error ("Unsupported $XDG_SESSION_TYPE: %s", session_type);
                 g_error ("Failed to start unit %s: %s", target, error->message);
+        }
 
         fifo_path = g_build_filename (g_get_user_runtime_dir (),
                                       "gnome-session-leader-fifo",
