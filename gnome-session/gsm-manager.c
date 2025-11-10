@@ -2086,19 +2086,24 @@ on_shell_end_session_dialog_canceled (GsmShell   *shell,
 
 static void
 handle_end_session_dialog_confirmation (GsmManager           *manager,
-                                        GsmManagerLogoutType  logout_type)
+                                        GsmManagerLogoutType  confirmed_logout_type)
 {
         disconnect_shell_dialog_signals (manager);
 
         if (manager->phase >= GSM_MANAGER_PHASE_END_SESSION)
                 return; /* Already logging out, nothing to do */
 
-        if (manager->logout_type != logout_type) {
+        if (manager->logout_type == GSM_MANAGER_LOGOUT_SHUTDOWN &&
+            confirmed_logout_type == GSM_MANAGER_LOGOUT_REBOOT)
+                /* When triggering an offline update, gnome-shell will promote a
+                 * shutdown to a reboot. The offline update occurs after the reboot,
+                 * and then once that's done the shutdown will occur. */
+                g_info ("GsmManager: Shell converted shutdown into reboot (offline update?)");
+        else if (manager->logout_type != confirmed_logout_type)
                 g_warning ("GsmManager: Shell confirmed unexpected logout type");
-                return; /* Make it obvious that something went wrong */
-        }
 
         manager->logout_mode = GSM_MANAGER_LOGOUT_MODE_FORCE;
+        manager->logout_type = confirmed_logout_type;
         end_phase (manager);
 }
 
