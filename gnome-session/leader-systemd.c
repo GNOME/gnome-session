@@ -309,15 +309,11 @@ main (int argc, char **argv)
         if (ctx.session_bus == NULL)
                 g_error ("Failed to obtain session bus: %s", error->message);
 
-        /* We don't escape the name (i.e. we leave any '-' intact). */
-        target = g_strdup_printf ("gnome-session-%s@%s.target",
-                                  session_type, session_name);
-
-        if (systemd_unit_is_active (ctx.session_bus, target, &error))
-                g_error ("Session manager is already running!");
+        if (systemd_unit_is_active (ctx.session_bus, "graphical-session.target", &error))
+                g_error ("A graphical session is already running!");
         if (error != NULL)
-                g_warning ("Failed to check if unit %s is active: %s",
-                           target, error->message);
+                g_warning ("Failed to check if a graphical session is running: %s",
+                           error->message);
         g_clear_error (&error);
 
         /* Reset all failed units; we are going to start a lot of things and
@@ -327,6 +323,9 @@ main (int argc, char **argv)
                 g_warning ("Failed to reset failed state of units: %s", error->message);
         g_clear_error (&error);
 
+        /* We don't escape the name (i.e. we leave any '-' intact). */
+        target = g_strdup_printf ("gnome-session-%s@%s.target",
+                                  session_type, session_name);
         g_message ("Starting GNOME session target: %s", target);
 
         if (!systemd_start_unit (ctx.session_bus, target, "fail", &error)) {
