@@ -19,7 +19,6 @@ session_pkgdatadir = join_paths(session_datadir, meson.project_name())
 
 cc = meson.get_compiler('c')
 
-have_x11 = get_option('x11')
 config_h = configuration_data()
 
 # defines
@@ -123,13 +122,6 @@ subdir('tools')
 subdir('data')
 subdir('doc')
 subdir('po')
-
-if have_x11
-  meson.add_install_script(
-    'meson_post_install.py',
-    session_datadir
-  )
-endif
 
 gnome.post_install(
   glib_compile_schemas: true,
