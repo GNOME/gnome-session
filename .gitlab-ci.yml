@@ -5,11 +5,6 @@ include:
     inputs:
       job-name: "build-gnomeos"
       run-tests: "no"
-  - component: gitlab.gnome.org/GNOME/citemplates/gnomeos-basic-ci@master
-    inputs:
-      job-name: "build-gnomeos-with-x11"
-      meson-options: "-Dx11=true"
-      run-tests: "no"
   - component: "gitlab.gnome.org/GNOME/citemplates/basic-deploy-docs@adrianvovk/basic-docs-subdir"
     inputs:
       docs-artifact-subdir: "./gnome-session/html/"
@@ -38,7 +33,7 @@ build-fedora:
   before_script:
     - dnf install -y --setopt=install_weak_deps=false $DEPENDENCIES
   script:
-    - meson setup _build $MESON_OPTIONS $EXTRA_OPTIONS
+    - meson setup _build $MESON_OPTIONS
     - meson compile -C _build
     - meson test -C _build --print-errorlogs --no-stdsplit --no-rebuild
     - meson dist -C _build --no-tests
@@ -47,10 +42,6 @@ build-fedora:
   after_script:
     # Cleanup the destdir and thus container volume once we are done
     - rm -rvf $_DEST
-  parallel:
-    matrix:
-      - EXTRA_OPTIONS: "-Dx11=true"
-      - EXTRA_OPTIONS: ""
   artifacts:
     expire_in: "2 days"
     when: "always"
