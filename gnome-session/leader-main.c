@@ -78,7 +78,8 @@ maybe_reexec_with_login_shell (GStrv argv)
         if (g_strcmp0 (g_getenv ("XDG_SESSION_CLASS"), "greeter") == 0)
                 return;
 
-        /* Or with X (it has a mess of scripts that do this for us) */
+        /* We only need to run this on Wayland. On X11 the Xsession script will
+         * do this for us, and on the TTY we'd be launched from a login shell */
         if (g_strcmp0 (g_getenv ("XDG_SESSION_TYPE"), "wayland") != 0)
                 return;
 
@@ -231,6 +232,11 @@ main (int argc, char **argv)
          * that the user's shell profiles are sourced when logging into GNOME */
         if (!no_reexec)
                 maybe_reexec_with_login_shell (argv_dup);
+
+        if (g_strcmp0 (g_getenv ("XDG_SESSION_TYPE"), "tty") == 0) {
+                g_warning ("Launched from the TTY. Launching a Wayland session");
+                g_setenv ("XDG_SESSION_TYPE", "wayland", TRUE);
+        }
 
         if (disable_acceleration_check)
                 g_warning ("Wayland assumes that acceleration works, so --disable-acceleration-check is deprecated!");
