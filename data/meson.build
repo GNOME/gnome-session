@@ -42,8 +42,6 @@ foreach service: systemd_service
 endforeach
 
 systemd_target = [
-  'gnome-session-wayland@.target',
-  'gnome-session-wayland.target',
   'gnome-session@.target',
   'gnome-session.target',
   'gnome-session-basic-services.target',

@@ -1,16 +1,21 @@
 [Unit]
 Description=GNOME Session (session: %i)
+DefaultDependencies=no
+# Start happens explicitly
+RefuseManualStart=no
+# Stop happens by starting gnome-session-shutdown.target
+RefuseManualStop=yes
+
 OnFailure=gnome-session-shutdown.target
 OnFailureJobMode=replace-irreversibly
-DefaultDependencies=no
-RefuseManualStart=yes
-RefuseManualStop=yes
+
+Conflicts=shutdown.target gnome-session-shutdown.target
+PartOf=graphical-session.target
 
 Requires=gnome-session-initialized.target
 After=gnome-session-initialized.target
 
-Requisite=gnome-session.target
+Requires=gnome-session.target
 PartOf=gnome-session.target
-Before=gnome-session.target
 
 Requires=gnome-session-manager@.service

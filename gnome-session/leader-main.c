@@ -225,9 +225,6 @@ main (int argc, char **argv)
                 return 0;
         }
 
-        if (!g_getenv ("XDG_SESSION_TYPE"))
-                g_error ("XDG_SESSION_TYPE= is unset!");
-
         /* Make sure that we were launched through a login shell. This ensures
          * that the user's shell profiles are sourced when logging into GNOME */
         if (!no_reexec)
