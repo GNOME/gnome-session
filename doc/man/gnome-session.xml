@@ -101,31 +101,10 @@
       </varlistentry>
 
       <varlistentry>
-        <term>
-          <filename>gnome-session-x11@SESSION.target</filename>,
-          <filename>gnome-session-wayland@SESSION.target</filename>
-        </term>
-        <listitem><para>
-          Main unit started for X11/wayland based session.
-          <varname>SESSION</varname> is set according to the session that is
-          passed in via <option>--session</option>.
-        </para></listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>
-          <filename>gnome-session-x11.target</filename>,
-          <filename>gnome-session-wayland.target</filename>
-        </term>
-        <listitem><para>
-            Convenience units without the session embedded into the target.
-        </para></listitem>
-      </varlistentry>
-
-      <varlistentry>
         <term><filename>gnome-session@SESSION.target</filename></term>
         <listitem><para>
-          Convenience unit with just the <varname>SESSION</varname> information embedded.
+          Main unit started for the session. <varname>SESSION</varname> is set
+          according to the session that is passed in via <option>--session</option>.
         </para></listitem>
       </varlistentry>
 
