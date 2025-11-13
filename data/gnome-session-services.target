@@ -1,0 +1,63 @@
+[Unit]
+Description=GNOME session services
+OnFailure=gnome-session-shutdown.target
+OnFailureJobMode=replace-irreversibly
+DefaultDependencies=no
+RefuseManualStart=yes
+RefuseManualStop=yes
+
+Requisite=gnome-session-initialized.target
+After=gnome-session-initialized.target
+PartOf=gnome-session-initialized.target
+
+Requisite=gnome-session.target
+PartOf=gnome-session.target
+Before=gnome-session.target
+
+# Basic services required by any GNOME session
+Requires=gnome-session-basic-services.target
+
+# Manages monitor color calibration and night-light
+Wants=org.gnome.SettingsDaemon.Color.target
+
+# Manages location-based timezone
+Wants=org.gnome.SettingsDaemon.Datetime.target
+
+# Notifies when disk is full, notifies when RAM is full,
+# cleans up trash and temp files, donation reminders
+Wants=org.gnome.SettingsDaemon.Housekeeping.target
+
+# Notifies when events happen with printers: low on ink,
+# jammed, job cancelled, etc etc etc
+Wants=org.gnome.SettingsDaemon.PrintNotifications.target
+
+# org.freedesktop.ScreenSaver API
+Wants=org.gnome.SettingsDaemon.ScreensaverProxy.target
+
+# Flushes PulseAudio sample cache whenever the
+# sound theme changes
+Wants=org.gnome.SettingsDaemon.Sound.target
+
+# Manages SIM cards (unlocking, etc)
+Wants=org.gnome.SettingsDaemon.Wwan.target
+
+# Monitors disks for SMART errors, and notifies
+# the user if their disk is about to fail
+Wants=gnome-disk-utility-notify.service
+
+# Filesystem indexer
+Wants=localsearch-3.service
+
+# Graphical wrapper around ssh-agent
+Wants=gcr-ssh-agent.socket
+
+# Checking for automatic updates, etc
+Wants=gnome-software.service
+
+# Translates the user's standard directories
+# (Downloads/, Documents/, Music/, etc) whenever
+# the user's locale changes
+Wants=user-dirs-update-gtk.service
+
+# Notifies the user about their calendar events
+Wants=evolution-alarm-notify.service

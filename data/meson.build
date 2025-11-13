@@ -45,6 +45,7 @@ systemd_target = [
   'gnome-session@.target',
   'gnome-session.target',
   'gnome-session-basic-services.target',
+  'gnome-session-services.target',
   'gnome-session-pre.target',
   'gnome-session-manager.target',
   'gnome-session-initialized.target',
