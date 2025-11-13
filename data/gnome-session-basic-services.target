@@ -14,8 +14,6 @@ Requisite=gnome-session.target
 PartOf=gnome-session.target
 Before=gnome-session.target
 
-Requires=org.gnome.Shell.target
-
 # Manages a11y settings, starts Orca when needed
 Wants=org.gnome.SettingsDaemon.A11ySettings.target
 
