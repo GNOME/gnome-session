@@ -38,9 +38,7 @@ Before you can build `gnome-session`, you need the following dependencies:
 - A C compiler
 - Meson
 - Ninja
-- `json-glib`
 - `systemd`
-- `gtk4`
 - `gnome-desktop4`
 
 Once you have all the necessary dependencies, you can use Meson to build

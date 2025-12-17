@@ -24,11 +24,9 @@ build-fedora:
     DEPENDENCIES: >-
       gcc
       git
-      json-glib-devel
       meson
       systemd
       systemd-devel
-      gtk4-devel
       gnome-desktop4-devel
   before_script:
     - dnf install -y --setopt=install_weak_deps=false $DEPENDENCIES

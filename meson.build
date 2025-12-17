@@ -79,13 +79,11 @@ add_project_arguments(common_flags + compiler_flags, language: 'c')
 glib_req_version = '>= 2.82.0'
 
 gio_dep = dependency('gio-2.0', version: glib_req_version)
-gtk_dep = dependency('gtk4')
 
 session_deps = [
   gio_dep,
   dependency('glib-2.0', version: glib_req_version),
   dependency('gnome-desktop-4'),
-  dependency('json-glib-1.0', version: '>= 0.10')
 ]
 
 libsystemd_dep = dependency('libsystemd', version: '>= 209', required: true)
