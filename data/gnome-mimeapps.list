@@ -68,8 +68,8 @@ application/x-php-source=org.gnome.Builder.desktop
 application/x-pkcs12=gcr-viewer.desktop
 application/x-pkcs7-certificates=gcr-viewer.desktop
 application/x-python=org.gnome.Builder.desktop
-application/x-raw-disk-image=gnome-disk-image-mounter.desktop
-application/x-raw-disk-image-xz-compressed=gnome-disk-image-mounter.desktop
+application/x-raw-disk-image=gnome-disk-image-writer.desktop;gnome-disk-image-mounter.desktop
+application/x-raw-disk-image-xz-compressed=gnome-disk-image-writer.desktop;gnome-disk-image-mounter.desktop
 application/x-ruby=org.gnome.Builder.desktop
 application/x-shellscript=org.gnome.Builder.desktop
 application/x-spkac=gcr-viewer.desktop
@@ -237,6 +237,8 @@ x-scheme-handler/snap=org.gnome.Software.desktop
 x-scheme-handler/tel=org.gnome.Calls.desktop
 
 # Tracking data to catch stale overrides:
+#OVERRIDE application/x-raw-disk-image WAS gnome-disk-image-mounter.desktop
+#OVERRIDE application/x-raw-disk-image-xz-compressed WAS gnome-disk-image-mounter.desktop
 #OVERRIDE image/tiff WAS org.gnome.Loupe.desktop org.gnome.Papers.desktop
 #OVERRIDE inode/directory WAS org.gnome.Nautilus.desktop org.gnome.baobab.desktop
 #OVERRIDE text/html WAS org.gnome.Builder.desktop org.gnome.Epiphany.desktop
