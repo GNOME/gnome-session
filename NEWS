@@ -1,3 +1,30 @@
+================
+Version 50.alpha
+================
+
+- Updated documentation to reflect the major changes in GNOME 49
+- Fixed bug where gnome-session would fail to reap the processes of the apps
+  it launched, leaving around zombie processes
+- Fixed option parsing regression in gnome-session-inhibit
+- Reworked logic to find DBUS_SESSION_BUS_ADDRESS, which should make gnome-session
+  work better in non-systemd environments
+- Removed version number from gettext POT name, which should make translations
+  easier on services like launchpad.net
+- Fixed bug with offline updates that prevented gnome-shell from converting a
+  shutdown into a reboot
+- Improved safety check that enforces only one active graphical session per user by
+  checking for any running graphical session, not just another GNOME session
+- Dropped support for running X11 sessions. Note that this dropped all display server
+  specific unit files, since the generic gnome-session*.target units are now Wayland-only
+- Implemented initial plumbing for session save/restore
+- Reworked unit files to adapt to new changes where gnome-shell's unit file takes
+  the gnome-shell mode as its argument. This makes it easier for kiosk sessions or
+  other special/custom sessions to use gnome-shell modes
+- Dropped unused dependencies: json-glib and gtk4
+- Updates to mimeapps.list: Added Shaper (new GTK icon editor tool) and fixed bugs
+  with GNOME Disk Utility
+- Translation Updates
+
 ============
 Version 49.0
 ============
