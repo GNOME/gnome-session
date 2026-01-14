@@ -23,6 +23,7 @@
 
 #include <errno.h>
 #include <string.h>
+#include <stdint.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/types.h>
@@ -796,9 +797,9 @@ gsm_systemd_prepare_shutdown (GsmSystem *system,
         drop_strong_system_inhibitor (systemd);
 
         g_dbus_proxy_call (systemd->priv->sd_proxy,
-                           restart ? "Reboot" : "PowerOff",
-                           g_variant_new ("(b)", TRUE),
-                           0,
+                           restart ? "RebootWithFlags" : "PowerOffWithFlags",
+                           g_variant_new ("(t)", SD_LOGIND_SKIP_INHIBITORS),
+                           G_DBUS_CALL_FLAGS_ALLOW_INTERACTIVE_AUTHORIZATION,
                            G_MAXINT,
                            NULL,
                            reboot_or_poweroff_done,
