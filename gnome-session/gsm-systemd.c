@@ -23,6 +23,7 @@
 
 #include <errno.h>
 #include <string.h>
+#include <stdint.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/types.h>
@@ -45,6 +46,8 @@
 #define SD_SESSION_INTERFACE "org.freedesktop.login1.Session"
 
 #define SYSTEMD_SESSION_REQUIRE_ONLINE 0 /* active or online sessions only */
+
+#define SD_LOGIND_SKIP_INHIBITORS (UINT64_C(1) << 4)
 
 struct _GsmSystemdPrivate
 {
@@ -1010,9 +1013,9 @@ gsm_systemd_prepare_shutdown (GsmSystem *system,
         systemd->priv->prepare_for_shutdown_expected = TRUE;
 
         g_dbus_proxy_call (systemd->priv->sd_proxy,
-                           restart ? "Reboot" : "PowerOff",
-                           g_variant_new ("(b)", TRUE),
-                           0,
+                           restart ? "RebootWithFlags" : "PowerOffWithFlags",
+                           g_variant_new ("(t)", SD_LOGIND_SKIP_INHIBITORS),
+                           G_DBUS_CALL_FLAGS_ALLOW_INTERACTIVE_AUTHORIZATION,
                            G_MAXINT,
                            NULL,
                            reboot_or_poweroff_done,
