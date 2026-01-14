@@ -44,7 +44,7 @@ struct _GsmSystemInterface
         GTypeInterface base_interface;
 
         void (* shutdown_prepared)    (GsmSystem *system,
-                                       gboolean   success);
+                                       GError    *error);
 
         GsmActionAvailability (* can_shutdown) (GsmSystem *system);
         GsmActionAvailability (* can_restart)  (GsmSystem *system);

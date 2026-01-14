@@ -28,6 +28,7 @@ build-fedora:
       systemd
       systemd-devel
       gnome-desktop4-devel
+      libnotify-devel
   before_script:
     - dnf install -y --setopt=install_weak_deps=false $DEPENDENCIES
   script:

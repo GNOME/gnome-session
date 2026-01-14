@@ -40,6 +40,7 @@ Before you can build `gnome-session`, you need the following dependencies:
 - Ninja
 - `systemd`
 - `gnome-desktop4`
+- `libnotify`
 
 Once you have all the necessary dependencies, you can use Meson to build
 `gnome-session`:

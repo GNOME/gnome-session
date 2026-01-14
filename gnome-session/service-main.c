@@ -25,6 +25,7 @@
 #include <glib.h>
 #include <glib-unix.h>
 #include <gio/gio.h>
+#include <libnotify/notify.h>
 
 #include "gsm-util.h"
 #include "gsm-manager.h"
@@ -158,6 +159,8 @@ main (int argc, char **argv)
         g_option_context_add_main_entries (options, entries, GETTEXT_PACKAGE);
         if (!g_option_context_parse (options, &argc, &argv, &error))
                 g_error ("%s", error->message);
+
+        notify_init ("gnome-session");
 
         debug = g_getenv ("GNOME_SESSION_DEBUG");
         if (debug != NULL)
