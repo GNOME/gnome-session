@@ -36,6 +36,7 @@
 #include <glib/gstdio.h>
 #include <glib-object.h>
 #include <gio/gio.h>
+#include <libnotify/notify.h>
 
 #include "gsm-manager.h"
 #include "org.gnome.SessionManager.h"
@@ -116,6 +117,7 @@ struct _GsmManager
         gulong                  shell_end_session_dialog_confirmed_logout_id;
         gulong                  shell_end_session_dialog_confirmed_shutdown_id;
         gulong                  shell_end_session_dialog_confirmed_reboot_id;
+        NotifyNotification     *notification;
 };
 
 enum {
@@ -1265,6 +1267,7 @@ gsm_manager_dispose (GObject *object)
         g_clear_object (&manager->lockdown_settings);
         g_clear_object (&manager->system);
         g_clear_object (&manager->shell);
+        g_clear_object (&manager->notification);
 
         if (manager->skeleton != NULL) {
                 g_dbus_interface_skeleton_unexport_from_connection (G_DBUS_INTERFACE_SKELETON (manager->skeleton),
@@ -2395,24 +2398,98 @@ gsm_manager_add_autostart_apps_from_dir (GsmManager *manager,
 }
 
 static void
+notification_closed_cb (NotifyNotification *notification,
+                        GsmManager         *manager)
+{
+        g_assert (notification == manager->notification);
+        g_clear_object (&manager->notification);
+}
+
+static void
+notify_shutdown_failure (GsmManager *manager)
+{
+        g_autoptr (NotifyNotification) notification = NULL;
+        g_autoptr (GError) error = NULL;
+        const char *title, *subtitle;
+
+        if (manager->notification) {
+                g_signal_handlers_disconnect_by_func (manager->notification,
+                                                      notification_closed_cb,
+                                                      manager);
+
+                if (!notify_notification_close (manager->notification, &error)) {
+                        g_warning ("GsmManager: Failed to close notification: %s",
+                                   error->message);
+                        g_clear_error (&error);
+                }
+
+                g_clear_object (&manager->notification);
+        }
+
+        switch (manager->logout_type) {
+        case GSM_MANAGER_LOGOUT_SHUTDOWN:
+                title = _("Power Off Failed");
+                break;
+        case GSM_MANAGER_LOGOUT_REBOOT:
+                title = _("Restart Failed");
+                break;
+        default:
+                g_assert_not_reached ();
+        }
+
+        subtitle = _("Try again or contact your system administrator");
+
+        notification = notify_notification_new (title, subtitle, NULL);
+        notify_notification_set_app_name (notification, _("Power"));
+        notify_notification_set_app_icon (notification,
+                                          "system-shutdown-symbolic");
+        notify_notification_set_hint (notification, "transient",
+                                      g_variant_new_boolean (TRUE));
+        notify_notification_set_hint (notification, "x-gnome-privacy-scope",
+                                      g_variant_new_string ("system"));
+        notify_notification_set_category (notification, "device");
+
+        g_signal_connect (notification, "closed",
+                          G_CALLBACK (notification_closed_cb), manager);
+
+        if (!notify_notification_show (notification, &error)) {
+                g_warning ("Failed to show shutdown failure notification: %s",
+                           error->message);
+                return;
+        }
+
+        manager->notification = g_steal_pointer (&notification);
+}
+
+static void
 on_shutdown_prepared (GsmSystem  *system,
-                      gboolean    success,
+                      GError     *error,
                       GsmManager *manager)
 {
-        g_debug ("GsmManager: on_shutdown_prepared, success: %d", success);
         g_signal_handlers_disconnect_by_func (system, on_shutdown_prepared, manager);
 
-        if (success) {
-                /* move to end-session phase */
-                g_assert (manager->phase == GSM_MANAGER_PHASE_QUERY_END_SESSION);
-                manager->phase++;
-                start_phase (manager);
-        } else {
+        if (error) {
+                g_warning ("GsmManager: Failed to prepare shutdown: %s",
+                           error->message);
+
                 disconnect_shell_dialog_signals (manager);
                 gsm_shell_close_end_session_dialog (manager->shell);
-                /* back to running phase */
+
+                /* AccessDenied happens if the user presses "Cancel" on the
+                 * Polkit permission dialog. No need to send the notification in
+                 * this case because the failure is caused by the user's action */
+                if (!g_error_matches (error, G_DBUS_ERROR, G_DBUS_ERROR_ACCESS_DENIED))
+                        notify_shutdown_failure (manager);
+
                 cancel_end_session (manager);
+                return;
         }
+
+        /* Success! Move to end-session phase */
+        g_debug ("GsmManager: Shutdown prepared");
+        g_assert (manager->phase == GSM_MANAGER_PHASE_QUERY_END_SESSION);
+        manager->phase++;
+        start_phase (manager);
 }
 
 static gboolean

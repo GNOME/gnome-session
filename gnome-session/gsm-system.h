@@ -48,7 +48,7 @@ struct _GsmSystemInterface
                                        GError    *error);
 
         void (* shutdown_prepared)    (GsmSystem *system,
-                                       gboolean   success);
+                                       GError    *error);
 
         gboolean (* can_switch_user)  (GsmSystem *system);
         gboolean (* can_stop)         (GsmSystem *system);

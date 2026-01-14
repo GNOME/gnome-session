@@ -951,14 +951,10 @@ reboot_or_poweroff_done (GObject      *source,
                                            &error);
 
         if (result == NULL) {
-                if (!g_error_matches (error, G_DBUS_ERROR, G_DBUS_ERROR_ACCESS_DENIED)) {
-                        g_warning ("Shutdown failed: %s", error->message);
-                }
-                g_error_free (error);
                 drop_delay_inhibitor (systemd);
-                g_debug ("GsmSystemd: shutdown preparation failed");
                 systemd->priv->prepare_for_shutdown_expected = FALSE;
-                g_signal_emit_by_name (systemd, "shutdown-prepared", FALSE);
+                g_signal_emit_by_name (systemd, "shutdown-prepared", error);
+                g_error_free (error);
                 gsm_systemd_reacquire_inhibitors (systemd);
         } else {
                 g_variant_unref (result);
@@ -995,9 +991,9 @@ gsm_systemd_prepare_shutdown (GsmSystem *system,
                                                         NULL,
                                                         &error);
         if (res == NULL) {
-                g_warning ("Failed to get delay inhibitor: %s", error->message);
+                g_prefix_error_literal (&error, "Failed to get delay inhibitor: ");
+                g_signal_emit_by_name (systemd, "shutdown-prepared", error);
                 g_error_free (error);
-                g_signal_emit_by_name (systemd, "shutdown-prepared", FALSE);
                 gsm_systemd_reacquire_inhibitors (systemd);
                 return;
         }
@@ -1091,7 +1087,7 @@ sd_proxy_signal_cb (GDBusProxy  *proxy,
 
         if (systemd->priv->prepare_for_shutdown_expected) {
                 g_debug ("GsmSystemd: shutdown successfully prepared");
-                g_signal_emit_by_name (systemd, "shutdown-prepared", TRUE);
+                g_signal_emit_by_name (systemd, "shutdown-prepared", NULL);
                 systemd->priv->prepare_for_shutdown_expected = FALSE;
         }
 }

@@ -60,7 +60,7 @@ gsm_system_default_init (GsmSystemInterface *iface)
                                G_STRUCT_OFFSET (GsmSystemInterface, shutdown_prepared),
                                NULL, NULL, NULL,
                                G_TYPE_NONE,
-                               1, G_TYPE_BOOLEAN);
+                               1, G_TYPE_ERROR);
         pspec = g_param_spec_boolean ("active",
                                       "Active",
                                       "Whether or not session is active",

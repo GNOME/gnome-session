@@ -93,6 +93,7 @@ config_h.set('SYSTEMD_STRICT_ENV',
 session_bin_deps = session_deps + [
   libsystemd_dep,
   dependency('gio-unix-2.0', version: glib_req_version),
+  dependency('libnotify')
 ]
 
 systemd_userunitdir = get_option('systemduserunitdir')
