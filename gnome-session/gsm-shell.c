@@ -46,7 +46,6 @@ struct _GsmShellPrivate
 
         guint32          is_running : 1;
 
-        gboolean         dialog_is_open;
         GsmShellEndSessionDialogType end_session_dialog_type;
 
         guint            update_idle_id;
@@ -295,35 +294,6 @@ get_array_from_store (GsmStore *inhibitors)
 }
 
 static void
-on_open_finished (GObject *source,
-                  GAsyncResult *result,
-                  gpointer user_data)
-{
-        GsmShell *shell = user_data;
-        GError   *error;
-
-        if (shell->priv->update_idle_id != 0) {
-                g_source_remove (shell->priv->update_idle_id);
-                shell->priv->update_idle_id = 0;
-        }
-
-        shell->priv->dialog_is_open = FALSE;
-
-        error = NULL;
-        g_dbus_proxy_call_finish (G_DBUS_PROXY (source), result, &error);
-
-        if (error != NULL) {
-                g_warning ("Unable to open shell end session dialog: %s", error->message);
-                g_error_free (error);
-
-                g_signal_emit (G_OBJECT (shell), signals[END_SESSION_DIALOG_OPEN_FAILED], 0);
-                return;
-        }
-
-        g_signal_emit (G_OBJECT (shell), signals[END_SESSION_DIALOG_OPENED], 0);
-}
-
-static void
 on_end_session_dialog_dbus_signal (GDBusProxy *proxy,
                                    gchar      *sender_name,
                                    gchar      *signal_name,
@@ -353,8 +323,6 @@ on_end_session_dialog_dbus_signal (GDBusProxy *proxy,
 
         if (signal_index == -1)
                 return;
-
-        shell->priv->dialog_is_open = FALSE;
 
         if (shell->priv->update_idle_id != 0) {
                 g_source_remove (shell->priv->update_idle_id);
@@ -414,16 +382,7 @@ gsm_shell_open_end_session_dialog (GsmShell *shell,
                                    GsmStore *inhibitors)
 {
         GDBusProxy *proxy;
-        GError *error;
-
-        error = NULL;
-
-        if (shell->priv->dialog_is_open) {
-                g_return_val_if_fail (shell->priv->end_session_dialog_type == type,
-                                      FALSE);
-
-                return TRUE;
-        }
+        g_autoptr (GError) error = NULL;
 
         if (shell->priv->end_session_dialog_proxy == NULL) {
                 proxy = g_dbus_proxy_new_for_bus_sync (G_BUS_TYPE_SESSION,
@@ -437,7 +396,6 @@ gsm_shell_open_end_session_dialog (GsmShell *shell,
                 if (error != NULL) {
                         g_critical ("Could not connect to the shell: %s",
                                     error->message);
-                        g_error_free (error);
                         return FALSE;
                 }
 
@@ -451,16 +409,23 @@ gsm_shell_open_end_session_dialog (GsmShell *shell,
                                   shell);
         }
 
-        g_dbus_proxy_call (shell->priv->end_session_dialog_proxy,
-                           "Open",
-                           g_variant_new ("(uuu@ao)",
-                                          type,
-                                          0,
-                                          AUTOMATIC_ACTION_TIMEOUT,
-                                          get_array_from_store (inhibitors)),
-                           G_DBUS_CALL_FLAGS_NONE,
-                           G_MAXINT, NULL,
-                           on_open_finished, shell);
+        g_dbus_proxy_call_sync (shell->priv->end_session_dialog_proxy,
+                                "Open",
+                                g_variant_new ("(uuu@ao)",
+                                               type,
+                                               0,
+                                               AUTOMATIC_ACTION_TIMEOUT,
+                                               get_array_from_store (inhibitors)),
+                                G_DBUS_CALL_FLAGS_NONE,
+                                -1, NULL, &error);
+        if (error != NULL) {
+                g_warning ("Unable to open shell end session dialog: %s", error->message);
+                g_signal_emit (G_OBJECT (shell), signals[END_SESSION_DIALOG_OPEN_FAILED], 0);
+                return FALSE;
+        }
+
+        g_signal_emit (G_OBJECT (shell), signals[END_SESSION_DIALOG_OPENED], 0);
+        shell->priv->end_session_dialog_type = type;
 
         g_object_ref (inhibitors);
 
@@ -481,9 +446,6 @@ gsm_shell_open_end_session_dialog (GsmShell *shell,
                                   G_CALLBACK (queue_end_session_dialog_update),
                                   shell);
 
-        shell->priv->dialog_is_open = TRUE;
-        shell->priv->end_session_dialog_type = type;
-
         return TRUE;
 }
 
@@ -492,8 +454,6 @@ gsm_shell_close_end_session_dialog (GsmShell *shell)
 {
         if (!shell->priv->end_session_dialog_proxy)
                 return;
-
-        shell->priv->dialog_is_open = FALSE;
 
         g_dbus_proxy_call (shell->priv->end_session_dialog_proxy,
                            "Close",
