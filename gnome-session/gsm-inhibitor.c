@@ -24,6 +24,8 @@
 #include <time.h>
 #include <unistd.h>
 
+#include <glib/gi18n.h>
+
 #include "gsm-inhibitor.h"
 #include "org.gnome.SessionManager.Inhibitor.h"
 
@@ -36,6 +38,8 @@ struct GsmInhibitorPrivate
         char *id;
         char *bus_name;
         char *app_id;
+        GDesktopAppInfo *app_info;
+        char *display_name;
         char *client_id;
         char *reason;
         guint flags;
@@ -51,6 +55,7 @@ enum {
         PROP_BUS_NAME,
         PROP_REASON,
         PROP_APP_ID,
+        PROP_DISPLAY_NAME,
         PROP_CLIENT_ID,
         PROP_FLAGS,
         PROP_COOKIE
@@ -99,6 +104,17 @@ gsm_inhibitor_get_app_id (GsmExportedInhibitor  *skeleton,
 
         gsm_exported_inhibitor_complete_get_app_id (skeleton, invocation, id);
 
+        return TRUE;
+}
+
+static gboolean
+gsm_inhibitor_get_display_name (GsmExportedInhibitor  *skeleton,
+                                GDBusMethodInvocation *invocation,
+                                GsmInhibitor          *inhibitor)
+{
+        const gchar *display_name;
+        display_name = gsm_inhibitor_peek_display_name (inhibitor);
+        gsm_exported_inhibitor_complete_get_display_name (skeleton, invocation, display_name);
         return TRUE;
 }
 
@@ -191,6 +207,8 @@ register_inhibitor (GsmInhibitor *inhibitor)
 
         g_signal_connect (skeleton, "handle-get-app-id",
                           G_CALLBACK (gsm_inhibitor_get_app_id), inhibitor);
+        g_signal_connect (skeleton, "handle-get-display-name",
+                          G_CALLBACK (gsm_inhibitor_get_display_name), inhibitor);
         g_signal_connect (skeleton, "handle-get-client-id",
                           G_CALLBACK (gsm_inhibitor_get_client_id), inhibitor);
         g_signal_connect (skeleton, "handle-get-flags",
@@ -270,12 +288,29 @@ static void
 gsm_inhibitor_set_app_id (GsmInhibitor  *inhibitor,
                           const char    *app_id)
 {
+        g_autofree char *appended = NULL;
+        g_autoptr (GDesktopAppInfo) app_info = NULL;
+
         g_return_if_fail (GSM_IS_INHIBITOR (inhibitor));
 
-        g_free (inhibitor->priv->app_id);
+        if (!g_set_str (&inhibitor->priv->app_id, app_id))
+                return;
 
-        inhibitor->priv->app_id = g_strdup (app_id);
+        if (!g_str_has_suffix (app_id, ".desktop"))
+                appended = g_strconcat (app_id, ".desktop", NULL);
+        app_info = g_desktop_app_info_new (appended ?: app_id);
+        g_set_object (&inhibitor->priv->app_info, app_info);
+
         g_object_notify (G_OBJECT (inhibitor), "app-id");
+}
+
+static void
+gsm_inhibitor_set_display_name (GsmInhibitor *inhibitor,
+                                const char   *display_name)
+{
+        g_return_if_fail (GSM_IS_INHIBITOR (inhibitor));
+        if (g_set_str (&inhibitor->priv->display_name, display_name))
+                g_object_notify (G_OBJECT (inhibitor), "display-name");
 }
 
 static void
@@ -361,6 +396,23 @@ gsm_inhibitor_peek_app_id (GsmInhibitor  *inhibitor)
 }
 
 const char *
+gsm_inhibitor_peek_display_name (GsmInhibitor  *inhibitor)
+{
+        g_return_val_if_fail (GSM_IS_INHIBITOR (inhibitor), NULL);
+
+        if (!IS_STRING_EMPTY (inhibitor->priv->display_name))
+                return inhibitor->priv->display_name;
+
+        if (inhibitor->priv->app_info)
+                return g_app_info_get_name (G_APP_INFO (inhibitor->priv->app_info));
+
+        if (!IS_STRING_EMPTY (inhibitor->priv->app_id))
+                return inhibitor->priv->app_id;
+
+        return _("Unknown");
+}
+
+const char *
 gsm_inhibitor_peek_client_id (GsmInhibitor  *inhibitor)
 {
         g_return_val_if_fail (GSM_IS_INHIBITOR (inhibitor), NULL);
@@ -409,6 +461,9 @@ gsm_inhibitor_set_property (GObject       *object,
         case PROP_APP_ID:
                 gsm_inhibitor_set_app_id (self, g_value_get_string (value));
                 break;
+        case PROP_DISPLAY_NAME:
+                gsm_inhibitor_set_display_name (self, g_value_get_string (value));
+                break;
         case PROP_CLIENT_ID:
                 gsm_inhibitor_set_client_id (self, g_value_get_string (value));
                 break;
@@ -444,6 +499,9 @@ gsm_inhibitor_get_property (GObject    *object,
         case PROP_APP_ID:
                 g_value_set_string (value, self->priv->app_id);
                 break;
+        case PROP_DISPLAY_NAME:
+                g_value_set_string (value, gsm_inhibitor_peek_display_name (self));
+                break;
         case PROP_CLIENT_ID:
                 g_value_set_string (value, self->priv->client_id);
                 break;
@@ -470,6 +528,7 @@ gsm_inhibitor_finalize (GObject *object)
         g_free (inhibitor->priv->id);
         g_free (inhibitor->priv->bus_name);
         g_free (inhibitor->priv->app_id);
+        g_clear_object (&inhibitor->priv->app_info);
         g_free (inhibitor->priv->client_id);
         g_free (inhibitor->priv->reason);
 
@@ -510,7 +569,7 @@ gsm_inhibitor_class_init (GsmInhibitorClass *klass)
                                          g_param_spec_string ("bus-name",
                                                               "bus-name",
                                                               "bus-name",
-                                                              "",
+                                                              NULL,
                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
         g_object_class_install_property (object_class,
                                          PROP_APP_ID,
@@ -518,6 +577,13 @@ gsm_inhibitor_class_init (GsmInhibitorClass *klass)
                                                               "app-id",
                                                               "app-id",
                                                               "",
+                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+        g_object_class_install_property (object_class,
+                                         PROP_DISPLAY_NAME,
+                                         g_param_spec_string ("display-name",
+                                                              "display-name",
+                                                              "display-name",
+                                                              NULL,
                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
         g_object_class_install_property (object_class,
                                          PROP_CLIENT_ID,
@@ -590,6 +656,22 @@ gsm_inhibitor_new_for_client (const char    *client_id,
                                   "bus-name", bus_name,
                                   "flags", flags,
                                   "cookie", cookie,
+                                  NULL);
+
+        return inhibitor;
+}
+
+GsmInhibitor *
+gsm_inhibitor_new_for_system (const char    *display_name,
+                              guint          flags,
+                              const char    *reason)
+{
+        GsmInhibitor *inhibitor;
+
+        inhibitor = g_object_new (GSM_TYPE_INHIBITOR,
+                                  "display-name", display_name,
+                                  "reason", reason,
+                                  "flags", flags,
                                   NULL);
 
         return inhibitor;

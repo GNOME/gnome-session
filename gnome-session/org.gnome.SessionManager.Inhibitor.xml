@@ -20,10 +20,21 @@
       GetAppId:
       @app_id: The identifier for the associated application
 
-      Return the application ID associated with this inhibitor.
+      Return the application ID associated with this inhibitor. This ID isn't
+      necessarily usable - in that case the inhibitor is being held by a service
     -->
     <method name="GetAppId">
       <arg type="s" name="app_id" direction="out"/>
+    </method>
+
+    <!--
+      GetDisplayName:
+      @display_name: Display name of the associated app/service
+
+      Return the display name of this inhibitor.
+    -->
+    <method name="GetDisplayName">
+      <arg type="s" name="display_name" direction="out"/>
     </method>
 
     <!--

@@ -40,6 +40,8 @@ typedef struct
         GsmStorePrivate *priv;
 } GsmStore;
 
+G_DEFINE_AUTOPTR_CLEANUP_FUNC (GsmStore, g_object_unref);
+
 typedef struct
 {
         GObjectClass   parent_class;

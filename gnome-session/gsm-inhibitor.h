@@ -36,6 +36,8 @@ G_BEGIN_DECLS
 typedef struct _GsmInhibitor        GsmInhibitor;
 typedef struct _GsmInhibitorClass   GsmInhibitorClass;
 
+G_DEFINE_AUTOPTR_CLEANUP_FUNC (GsmInhibitor, g_object_unref);
+
 typedef struct GsmInhibitorPrivate GsmInhibitorPrivate;
 
 struct _GsmInhibitor
@@ -72,9 +74,13 @@ GsmInhibitor * gsm_inhibitor_new_for_client       (const char    *client_id,
                                                    const char    *reason,
                                                    const char    *bus_name,
                                                    guint          cookie);
+GsmInhibitor * gsm_inhibitor_new_for_system       (const char    *display_name,
+                                                   guint          flags,
+                                                   const char    *reason);
 
 const char *   gsm_inhibitor_peek_id              (GsmInhibitor  *inhibitor);
 const char *   gsm_inhibitor_peek_app_id          (GsmInhibitor  *inhibitor);
+const char *   gsm_inhibitor_peek_display_name    (GsmInhibitor  *inhibitor);
 const char *   gsm_inhibitor_peek_client_id       (GsmInhibitor  *inhibitor);
 const char *   gsm_inhibitor_peek_reason          (GsmInhibitor  *inhibitor);
 const char *   gsm_inhibitor_peek_bus_name        (GsmInhibitor  *inhibitor);

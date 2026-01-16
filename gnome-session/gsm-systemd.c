@@ -58,6 +58,8 @@ struct _GsmSystemdPrivate
 
         const gchar     *inhibit_locks;
         gint             inhibit_fd;
+        GsmStore        *inhibitor_store;
+        guint            inhibitor_monitor;
 
         gboolean         is_active;
 
@@ -105,6 +107,8 @@ gsm_systemd_finalize (GObject *object)
         g_clear_object (&systemd->priv->sd_proxy);
         free (systemd->priv->session_id);
         g_free (systemd->priv->session_path);
+
+        g_clear_handle_id (&systemd->priv->inhibitor_monitor, g_source_remove);
 
         if (systemd->priv->sd_source) {
                 g_source_destroy (systemd->priv->sd_source);
@@ -365,6 +369,115 @@ gsm_systemd_find_session (char **session_id)
         return TRUE;
 }
 
+static GsmInhibitorFlag
+inhibitor_flags_from_logind (const char *what)
+{
+        GsmInhibitorFlag flags = 0;
+
+        while (TRUE) {
+                const char *sep = strchr(what, ':');
+                size_t n = sep ? (sep - what) : strlen(what);
+
+                if (strncmp (what, "shutdown", n) == 0)
+                        flags |= GSM_INHIBITOR_FLAG_POWEROFF;
+                else if (strncmp (what, "sleep", n) == 0)
+                        flags |= GSM_INHIBITOR_FLAG_SUSPEND;
+                else if (strncmp (what, "idle", n) == 0)
+                        flags |= GSM_INHIBITOR_FLAG_IDLE;
+
+                if (!sep)
+                        break;
+                what = sep + 1;
+        }
+
+        return flags;
+}
+
+static void
+load_logind_inhibitors (GsmSystemd *manager)
+{
+        g_autoptr (GVariant) inhibitors = NULL;
+        g_autoptr (GError) error = NULL;
+        g_autoptr (GVariantIter) iter = NULL;
+        pid_t self;
+
+        /* There's nothing using the inhibitor store right now, so we've got
+         * nothing to do! */
+        if (!manager->priv->inhibitor_store)
+                return;
+
+        g_debug ("Querying logind inhibitors");
+
+        inhibitors = g_dbus_proxy_call_sync (manager->priv->sd_proxy,
+                                             "ListInhibitors",
+                                             NULL,
+                                             0,
+                                             G_MAXINT,
+                                             NULL,
+                                             &error);
+        if (!inhibitors) {
+                g_warning ("Failed to query logind for systemd inhibitors: %s",
+                           error->message);
+                return;
+        }
+
+        g_variant_get (inhibitors, "(a(ssssuu))", &iter);
+
+        gsm_store_clear (manager->priv->inhibitor_store);
+
+        self = getpid ();
+        while (TRUE) {
+                g_autofree char *what = NULL;
+                g_autofree char *who = NULL;
+                g_autofree char *why = NULL;
+                g_autofree char *mode = NULL;
+                pid_t pid;
+                GsmInhibitorFlag flags;
+                g_autoptr (GsmInhibitor) inhibitor = NULL;
+
+                if (!g_variant_iter_next (iter, "(ssssuu)",
+                                          &what, &who, &why, &mode,
+                                          /* uid */ NULL, &pid))
+                        return;
+
+                if (pid == self)
+                        continue; /* Skip our own inhibitors */
+
+                flags = inhibitor_flags_from_logind (what);
+                if (flags == 0)
+                        continue; /* Doesn't inhibit anything we care about */
+
+                if (g_strcmp0 (mode, "delay") == 0)
+                        continue; /* Ignore delay inhibitors */
+                else if (g_strcmp0 (mode, "block-weak") != 0)
+                        flags |= GSM_INHIBITOR_FLAG_STRONG;
+
+                g_debug ("Found logind inhibitor: what=\"%s\", who=\"%s\", "
+                         "why=\"%s\", mode=\"%s\" -> flags=0x%02x", what, who,
+                         why, mode, flags);
+
+                inhibitor = gsm_inhibitor_new_for_system (who, flags, why);
+                gsm_store_add (manager->priv->inhibitor_store,
+                               gsm_inhibitor_peek_id (inhibitor),
+                               G_OBJECT (inhibitor));
+        }
+}
+
+static void
+sd_proxy_prop_change_cb (GDBusProxy  *sd_proxy,
+                         GVariant    *changed_properties,
+                         char       **invalidated_properties,
+                         GsmSystemd  *manager)
+{
+        g_auto (GVariantDict) changed = G_VARIANT_DICT_INIT (changed_properties);
+
+        /* Note that systemd v259 and older simply never emit this! It's not the
+         * end of the world... we just won't immediately be updating the
+         * gnome-shell dialog in response to changes. */
+        if (g_variant_dict_contains (&changed, "NCurrentInhibitors"))
+                load_logind_inhibitors (manager);
+}
+
 static void
 gsm_systemd_init (GsmSystemd *manager)
 {
@@ -398,6 +511,8 @@ gsm_systemd_init (GsmSystemd *manager)
 
         g_signal_connect (manager->priv->sd_proxy, "g-signal",
                           G_CALLBACK (sd_proxy_signal_cb), manager);
+        g_signal_connect (manager->priv->sd_proxy, "g-properties-changed",
+                          G_CALLBACK (sd_proxy_prop_change_cb), manager);
 
         gsm_systemd_find_session (&manager->priv->session_id);
 
@@ -940,6 +1055,31 @@ gsm_systemd_reacquire_inhibitors (GsmSystemd *manager)
         }
 }
 
+static GsmStore *
+gsm_systemd_get_inhibitors (GsmSystem *system)
+{
+        GsmSystemd *manager = GSM_SYSTEMD (system);
+        g_autoptr (GsmStore) store = NULL;
+
+        if (manager->priv->inhibitor_store)
+                return g_object_ref (manager->priv->inhibitor_store);
+
+        /* Create the store on demand. There's no need for gnome-session to keep
+         * the store up-to-date (including a dbus conversation with logind) if
+         * there's nothing actually using the store */
+        store = gsm_store_new ();
+        /* Once the store goes unused, the variable is set to NULL and we ignore
+         * the inhibitors again. */
+        manager->priv->inhibitor_store = store;
+        g_object_add_weak_pointer (G_OBJECT (store),
+                                   (gpointer) &manager->priv->inhibitor_store);
+
+        load_logind_inhibitors (manager);
+
+        return g_steal_pointer (&store);
+}
+
+
 static void
 reboot_or_poweroff_done (GObject      *source,
                          GAsyncResult *res,
@@ -1047,6 +1187,7 @@ gsm_systemd_system_init (GsmSystemInterface *iface)
         iface->hibernate = gsm_systemd_hibernate;
         iface->set_session_idle = gsm_systemd_set_session_idle;
         iface->set_inhibitors = gsm_systemd_set_inhibitors;
+        iface->get_inhibitors = gsm_systemd_get_inhibitors;
         iface->prepare_shutdown = gsm_systemd_prepare_shutdown;
         iface->complete_shutdown = gsm_systemd_complete_shutdown;
 }

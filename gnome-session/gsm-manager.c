@@ -500,23 +500,42 @@ inhibitor_has_flag (gpointer      key,
 static gboolean
 gsm_manager_is_logout_inhibited (GsmManager *manager)
 {
-        GsmInhibitor *inhibitor;
+        GsmInhibitor *inhibitor = NULL;
 
-        if (manager->logout_mode == GSM_MANAGER_LOGOUT_MODE_FORCE) {
+        if (manager->logout_mode == GSM_MANAGER_LOGOUT_MODE_FORCE)
                 return FALSE;
-        }
 
-        if (manager->inhibitors == NULL) {
+        if (!manager->inhibitors)
                 return FALSE;
-        }
 
         inhibitor = (GsmInhibitor *)gsm_store_find (manager->inhibitors,
                                                     (GsmStoreFunc)inhibitor_has_flag,
                                                     GUINT_TO_POINTER (GSM_INHIBITOR_FLAG_LOGOUT));
-        if (inhibitor == NULL) {
+        return inhibitor != NULL;
+}
+
+static gboolean
+gsm_manager_is_logout_or_poweroff_inhibited (GsmManager *manager)
+{
+        g_autoptr (GsmStore) system_inhibitors = NULL;
+        GsmInhibitor *inhibitor = NULL;
+
+        if (manager->logout_mode == GSM_MANAGER_LOGOUT_MODE_FORCE)
                 return FALSE;
-        }
-        return TRUE;
+
+        system_inhibitors = gsm_system_get_inhibitors (manager->system);
+
+        if (manager->inhibitors)
+                inhibitor = (GsmInhibitor *)gsm_store_find (manager->inhibitors,
+                                                            (GsmStoreFunc)inhibitor_has_flag,
+                                                            GUINT_TO_POINTER (GSM_INHIBITOR_FLAG_LOGOUT|GSM_INHIBITOR_FLAG_POWEROFF));
+
+        if (!inhibitor && system_inhibitors)
+                inhibitor = (GsmInhibitor *)gsm_store_find (system_inhibitors,
+                                                            (GsmStoreFunc)inhibitor_has_flag,
+                                                            GUINT_TO_POINTER (GSM_INHIBITOR_FLAG_LOGOUT|GSM_INHIBITOR_FLAG_POWEROFF));
+
+        return inhibitor != NULL;
 }
 
 static gboolean
@@ -608,17 +627,20 @@ end_session_or_show_shell_dialog (GsmManager *manager)
 {
         gboolean logout_prompt;
         GsmShellEndSessionDialogType type;
-        gboolean logout_inhibited;
+        gboolean inhibited;
 
         switch (manager->logout_type) {
         case GSM_MANAGER_LOGOUT_LOGOUT:
                 type = GSM_SHELL_END_SESSION_DIALOG_TYPE_LOGOUT;
+                inhibited = gsm_manager_is_logout_inhibited (manager);
                 break;
         case GSM_MANAGER_LOGOUT_REBOOT:
                 type = GSM_SHELL_END_SESSION_DIALOG_TYPE_RESTART;
+                inhibited = gsm_manager_is_logout_or_poweroff_inhibited (manager);
                 break;
         case GSM_MANAGER_LOGOUT_SHUTDOWN:
                 type = GSM_SHELL_END_SESSION_DIALOG_TYPE_SHUTDOWN;
+                inhibited = gsm_manager_is_logout_or_poweroff_inhibited (manager);
                 break;
         default:
                 g_warning ("Unexpected logout type %d when creating end session dialog",
@@ -627,13 +649,12 @@ end_session_or_show_shell_dialog (GsmManager *manager)
                 break;
         }
 
-        logout_inhibited = gsm_manager_is_logout_inhibited (manager);
         logout_prompt = g_settings_get_boolean (manager->settings,
                                                 KEY_LOGOUT_PROMPT);
 
         switch (manager->logout_mode) {
         case GSM_MANAGER_LOGOUT_MODE_NORMAL:
-                if (logout_inhibited || logout_prompt) {
+                if (inhibited || logout_prompt) {
                         show_shell_end_session_dialog (manager, type);
                 } else {
                         end_phase (manager);
@@ -641,7 +662,7 @@ end_session_or_show_shell_dialog (GsmManager *manager)
                 break;
 
         case GSM_MANAGER_LOGOUT_MODE_NO_CONFIRMATION:
-                if (logout_inhibited) {
+                if (inhibited) {
                         show_shell_end_session_dialog (manager, type);
                 } else {
                         end_phase (manager);
@@ -2291,14 +2312,19 @@ static void
 show_shell_end_session_dialog (GsmManager                   *manager,
                                GsmShellEndSessionDialogType  type)
 {
+        g_autoptr (GsmStore) system_inhibitors = NULL;
+
         if (!gsm_shell_is_running (manager->shell))
                 return;
+
+        system_inhibitors = gsm_system_get_inhibitors (manager->system);
 
         connect_shell_dialog_signals (manager);
 
         gsm_shell_open_end_session_dialog (manager->shell,
                                            type,
-                                           manager->inhibitors);
+                                           manager->inhibitors,
+                                           system_inhibitors);
 }
 
 /*
