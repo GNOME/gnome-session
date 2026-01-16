@@ -46,7 +46,7 @@ struct _GsmShellPrivate
 
         guint32          is_running : 1;
 
-        gboolean         dialog_is_open;
+        gboolean         dialog_is_opening;
         GsmShellEndSessionDialogType end_session_dialog_type;
 
         guint            update_idle_id;
@@ -307,7 +307,7 @@ on_open_finished (GObject *source,
                 shell->priv->update_idle_id = 0;
         }
 
-        shell->priv->dialog_is_open = FALSE;
+        shell->priv->dialog_is_opening = FALSE;
 
         error = NULL;
         g_dbus_proxy_call_finish (G_DBUS_PROXY (source), result, &error);
@@ -354,7 +354,7 @@ on_end_session_dialog_dbus_signal (GDBusProxy *proxy,
         if (signal_index == -1)
                 return;
 
-        shell->priv->dialog_is_open = FALSE;
+        shell->priv->dialog_is_opening = FALSE;
 
         if (shell->priv->update_idle_id != 0) {
                 g_source_remove (shell->priv->update_idle_id);
@@ -418,7 +418,7 @@ gsm_shell_open_end_session_dialog (GsmShell *shell,
 
         error = NULL;
 
-        if (shell->priv->dialog_is_open) {
+        if (shell->priv->dialog_is_opening) {
                 g_return_val_if_fail (shell->priv->end_session_dialog_type == type,
                                       FALSE);
 
@@ -481,7 +481,7 @@ gsm_shell_open_end_session_dialog (GsmShell *shell,
                                   G_CALLBACK (queue_end_session_dialog_update),
                                   shell);
 
-        shell->priv->dialog_is_open = TRUE;
+        shell->priv->dialog_is_opening = TRUE;
         shell->priv->end_session_dialog_type = type;
 
         return TRUE;
@@ -493,7 +493,7 @@ gsm_shell_close_end_session_dialog (GsmShell *shell)
         if (!shell->priv->end_session_dialog_proxy)
                 return;
 
-        shell->priv->dialog_is_open = FALSE;
+        shell->priv->dialog_is_opening = FALSE;
 
         g_dbus_proxy_call (shell->priv->end_session_dialog_proxy,
                            "Close",
