@@ -26,6 +26,7 @@
 #include <glib-object.h>
 
 #include "gsm-inhibitor.h"
+#include "gsm-store.h"
 
 G_BEGIN_DECLS
 
@@ -57,8 +58,11 @@ struct _GsmSystemInterface
                                               gboolean   enable);
         void     (* set_session_idle) (GsmSystem *system,
                                        gboolean   is_idle);
-        void     (* set_inhibitors)   (GsmSystem        *system,
+
+        void      (* set_inhibitors)  (GsmSystem        *system,
                                        GsmInhibitorFlag  flags);
+        GsmStore* (* get_inhibitors)  (GsmSystem *system);
+
         void     (* prepare_shutdown) (GsmSystem   *system,
                                        gboolean     restart);
         void     (* complete_shutdown)(GsmSystem   *system);
@@ -98,6 +102,7 @@ gboolean   gsm_system_is_active        (GsmSystem *system);
 
 void       gsm_system_set_inhibitors   (GsmSystem        *system,
                                         GsmInhibitorFlag  flags);
+GsmStore  *gsm_system_get_inhibitors   (GsmSystem *system);
 
 void       gsm_system_prepare_shutdown  (GsmSystem  *system,
                                          gboolean    restart);

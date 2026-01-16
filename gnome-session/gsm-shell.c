@@ -43,6 +43,7 @@ struct _GsmShellPrivate
 {
         GDBusProxy      *end_session_dialog_proxy;
         GsmStore        *inhibitors;
+        GsmStore        *system_inhibitors;
 
         guint32          is_running : 1;
 
@@ -223,6 +224,7 @@ gsm_shell_finalize (GObject *object)
         parent_class = G_OBJECT_CLASS (gsm_shell_parent_class);
 
         g_object_unref (shell->priv->inhibitors);
+        g_object_unref (shell->priv->system_inhibitors);
 
         if (shell->priv->watch_id != 0) {
                 g_bus_unwatch_name (shell->priv->watch_id);
@@ -274,12 +276,16 @@ add_inhibitor_to_array (const char      *id,
 }
 
 static GVariant *
-get_array_from_store (GsmStore *inhibitors)
+get_array_from_stores (GsmStore *inhibitors,
+                       GsmStore *system_inhibitors)
 {
         GVariantBuilder builder;
 
         g_variant_builder_init (&builder, G_VARIANT_TYPE ("ao"));
         gsm_store_foreach (inhibitors,
+                           (GsmStoreFunc) add_inhibitor_to_array,
+                           &builder);
+        gsm_store_foreach (system_inhibitors,
                            (GsmStoreFunc) add_inhibitor_to_array,
                            &builder);
 
@@ -345,9 +351,19 @@ on_end_session_dialog_dbus_signal (GDBusProxy *proxy,
 
         g_clear_handle_id (&shell->priv->update_idle_id, g_source_remove);
 
-        g_signal_handlers_disconnect_by_func (shell->priv->inhibitors,
-                                              G_CALLBACK (queue_end_session_dialog_update),
-                                              shell);
+        if (shell->priv->inhibitors) {
+                g_signal_handlers_disconnect_by_func (shell->priv->inhibitors,
+                                                      G_CALLBACK (queue_end_session_dialog_update),
+                                                      shell);
+                g_clear_object (&shell->priv->inhibitors);
+        }
+
+        if (shell->priv->system_inhibitors) {
+                g_signal_handlers_disconnect_by_func (shell->priv->system_inhibitors,
+                                                      G_CALLBACK (queue_end_session_dialog_update),
+                                                      shell);
+                g_clear_object (&shell->priv->system_inhibitors);
+        }
 
         g_signal_emit (G_OBJECT (shell), signals[signal_index], 0);
 }
@@ -375,7 +391,8 @@ on_need_end_session_dialog_update (GsmShell *shell)
 
         gsm_shell_open_end_session_dialog (shell,
                                            shell->priv->end_session_dialog_type,
-                                           shell->priv->inhibitors);
+                                           shell->priv->inhibitors,
+                                           shell->priv->system_inhibitors);
         return G_SOURCE_REMOVE;
 }
 
@@ -389,15 +406,44 @@ queue_end_session_dialog_update (GsmShell *shell)
                                                   shell);
 }
 
+static void
+watch_inhibitors (GsmShell  *shell,
+                  GsmStore  *inhibitors,
+                  GsmStore **dest)
+{
+        if (inhibitors) {
+                if (*dest == inhibitors)
+                        return;
+                g_object_ref (inhibitors);
+        } else
+                inhibitors = gsm_store_new ();
+
+        if (*dest != NULL) {
+                g_signal_handlers_disconnect_by_func (*dest,
+                                                      G_CALLBACK (queue_end_session_dialog_update),
+                                                      shell);
+                g_object_unref (*dest);
+        }
+
+        *dest = inhibitors;
+
+        g_signal_connect_swapped (inhibitors, "added",
+                                  G_CALLBACK (queue_end_session_dialog_update),
+                                  shell);
+        g_signal_connect_swapped (inhibitors, "removed",
+                                  G_CALLBACK (queue_end_session_dialog_update),
+                                  shell);
+}
+
 gboolean
 gsm_shell_open_end_session_dialog (GsmShell *shell,
                                    GsmShellEndSessionDialogType type,
-                                   GsmStore *inhibitors)
+                                   GsmStore *inhibitors,
+                                   GsmStore *system_inhibitors)
 {
         GDBusProxy *proxy;
-        GError *error;
-
-        error = NULL;
+        g_autoptr (GError) error = NULL;
+        GVariant *inhibitors_array;
 
         if (shell->priv->dialog_is_opening) {
                 g_return_val_if_fail (shell->priv->end_session_dialog_type == type,
@@ -415,10 +461,9 @@ gsm_shell_open_end_session_dialog (GsmShell *shell,
                                                        SHELL_END_SESSION_DIALOG_INTERFACE,
                                                        NULL, &error);
 
-                if (error != NULL) {
+                if (proxy == NULL) {
                         g_critical ("Could not connect to the shell: %s",
                                     error->message);
-                        g_error_free (error);
                         return FALSE;
                 }
 
@@ -432,35 +477,21 @@ gsm_shell_open_end_session_dialog (GsmShell *shell,
                                   shell);
         }
 
+        inhibitors_array = get_array_from_stores (inhibitors, system_inhibitors);
+
         g_dbus_proxy_call (shell->priv->end_session_dialog_proxy,
                            "Open",
                            g_variant_new ("(uuu@ao)",
                                           type,
                                           0,
                                           AUTOMATIC_ACTION_TIMEOUT,
-                                          get_array_from_store (inhibitors)),
+                                          inhibitors_array),
                            G_DBUS_CALL_FLAGS_NONE,
                            G_MAXINT, NULL,
                            on_open_finished, shell);
 
-        g_object_ref (inhibitors);
-
-        if (shell->priv->inhibitors != NULL) {
-                g_signal_handlers_disconnect_by_func (shell->priv->inhibitors,
-                                                      G_CALLBACK (queue_end_session_dialog_update),
-                                                      shell);
-                g_object_unref (shell->priv->inhibitors);
-        }
-
-        shell->priv->inhibitors = inhibitors;
-
-        g_signal_connect_swapped (inhibitors, "added",
-                                  G_CALLBACK (queue_end_session_dialog_update),
-                                  shell);
-
-        g_signal_connect_swapped (inhibitors, "removed",
-                                  G_CALLBACK (queue_end_session_dialog_update),
-                                  shell);
+        watch_inhibitors (shell, inhibitors, &shell->priv->inhibitors);
+        watch_inhibitors (shell, system_inhibitors, &shell->priv->system_inhibitors);
 
         shell->priv->dialog_is_opening = TRUE;
         shell->priv->end_session_dialog_type = type;

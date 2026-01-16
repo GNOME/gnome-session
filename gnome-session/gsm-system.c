@@ -66,6 +66,7 @@ typedef GObjectClass GsmSystemNullClass;
 static void do_nothing (void) { }
 static gboolean return_false (void) { return FALSE; }
 static GsmActionAvailability return_unavailable (void) { return GSM_ACTION_UNAVAILABLE; }
+static void *return_null(void) { return NULL; }
 
 static void
 gsm_system_null_init_iface (GsmSystemInterface *iface)
@@ -79,6 +80,7 @@ gsm_system_null_init_iface (GsmSystemInterface *iface)
         iface->set_restart_to_firmware_setup = (void *) do_nothing;
         iface->set_session_idle  = (void *) do_nothing;
         iface->set_inhibitors    = (void *) do_nothing;
+        iface->get_inhibitors    = (void *) return_null;
         iface->prepare_shutdown  = (void *) do_nothing;
         iface->complete_shutdown = (void *) do_nothing;
 }
@@ -163,6 +165,12 @@ gsm_system_set_inhibitors (GsmSystem        *system,
                            GsmInhibitorFlag  flags)
 {
         GSM_SYSTEM_GET_IFACE (system)->set_inhibitors (system, flags);
+}
+
+GsmStore *
+gsm_system_get_inhibitors (GsmSystem *system)
+{
+        return GSM_SYSTEM_GET_IFACE (system)->get_inhibitors (system);
 }
 
 /**

@@ -28,7 +28,9 @@ typedef enum {
         GSM_INHIBITOR_FLAG_SWITCH_USER = 1 << 1,
         GSM_INHIBITOR_FLAG_SUSPEND     = 1 << 2,
         GSM_INHIBITOR_FLAG_IDLE        = 1 << 3,
-        GSM_INHIBITOR_FLAG_AUTOMOUNT   = 1 << 4
+        GSM_INHIBITOR_FLAG_AUTOMOUNT   = 1 << 4,
+        GSM_INHIBITOR_FLAG_POWEROFF    = 1 << 5,
+        GSM_INHIBITOR_FLAG_STRONG      = 1 << 6,
 } GsmInhibitorFlag;
 
 G_END_DECLS
