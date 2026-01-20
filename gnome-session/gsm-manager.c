@@ -2217,10 +2217,6 @@ handle_end_session_dialog_confirmation (GsmManager           *manager,
         else if (manager->logout_type != confirmed_logout_type)
                 g_warning ("GsmManager: Shell confirmed unexpected logout type");
 
-        if (manager->session_save &&
-            !g_settings_get_boolean (manager->session_settings, KEY_SAVE_RESTORE))
-                gsm_session_save_discard (manager->session_save);
-
         manager->logout_mode = GSM_MANAGER_LOGOUT_MODE_FORCE;
         manager->logout_type = confirmed_logout_type;
         end_phase (manager);
@@ -2418,6 +2414,10 @@ on_shutdown_prepared (GsmSystem  *system,
 static gboolean
 do_query_end_session_exit (GsmManager *manager)
 {
+        if (manager->session_save &&
+            !g_settings_get_boolean (manager->session_settings, KEY_SAVE_RESTORE))
+                gsm_session_save_discard (manager->session_save);
+
         if (manager->logout_type != GSM_MANAGER_LOGOUT_SHUTDOWN &&
             manager->logout_type != GSM_MANAGER_LOGOUT_REBOOT)
                 return TRUE; /* Continue to end session phase */
