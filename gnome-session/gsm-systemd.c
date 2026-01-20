@@ -56,8 +56,9 @@ struct _GsmSystemdPrivate
         char            *session_id;
         gchar           *session_path;
 
-        const gchar     *inhibit_locks;
-        gint             inhibit_fd;
+        GsmInhibitorFlag inhibited;
+        gint             strong_inhibit_fd;
+        gint             weak_inhibit_fd;
         GsmStore        *inhibitor_store;
         guint            inhibitor_monitor;
 
@@ -80,12 +81,22 @@ G_DEFINE_TYPE_WITH_CODE (GsmSystemd, gsm_systemd, G_TYPE_OBJECT,
 			 G_ADD_PRIVATE (GsmSystemd))
 
 static void
-drop_system_inhibitor (GsmSystemd *manager)
+drop_strong_system_inhibitor (GsmSystemd *manager)
 {
-        if (manager->priv->inhibit_fd != -1) {
-                g_debug ("GsmSystemd: Dropping system inhibitor fd %d", manager->priv->inhibit_fd);
-                close (manager->priv->inhibit_fd);
-                manager->priv->inhibit_fd = -1;
+        if (manager->priv->strong_inhibit_fd != -1) {
+                g_debug ("GsmSystemd: Dropping strong system inhibitor fd %d", manager->priv->strong_inhibit_fd);
+                close (manager->priv->strong_inhibit_fd);
+                manager->priv->strong_inhibit_fd = -1;
+        }
+}
+
+static void
+drop_weak_system_inhibitor (GsmSystemd *manager)
+{
+        if (manager->priv->weak_inhibit_fd != -1) {
+                g_debug ("GsmSystemd: Dropping weak system inhibitor fd %d", manager->priv->weak_inhibit_fd);
+                close (manager->priv->weak_inhibit_fd);
+                manager->priv->weak_inhibit_fd = -1;
         }
 }
 
@@ -114,7 +125,8 @@ gsm_systemd_finalize (GObject *object)
                 g_source_destroy (systemd->priv->sd_source);
         }
 
-        drop_system_inhibitor (systemd);
+        drop_strong_system_inhibitor (systemd);
+        drop_weak_system_inhibitor (systemd);
         drop_delay_inhibitor (systemd);
 
         G_OBJECT_CLASS (gsm_systemd_parent_class)->finalize (object);
@@ -487,7 +499,8 @@ gsm_systemd_init (GsmSystemd *manager)
 
         manager->priv = gsm_systemd_get_instance_private (manager);
 
-        manager->priv->inhibit_fd = -1;
+        manager->priv->strong_inhibit_fd = -1;
+        manager->priv->weak_inhibit_fd = -1;
         manager->priv->delay_inhibit_fd = -1;
 
         bus = g_bus_get_sync (G_BUS_TYPE_SYSTEM, NULL, &error);
@@ -961,60 +974,95 @@ gsm_systemd_hibernate (GsmSystem *system)
                            manager);
 }
 
-static void
-inhibit_done (GObject      *source,
-              GAsyncResult *result,
-              gpointer      user_data)
+static int
+get_system_inhibitor_finish (GObject      *source,
+                             GAsyncResult *result)
 {
         GDBusProxy *proxy = G_DBUS_PROXY (source);
-        GsmSystemd *manager = GSM_SYSTEMD (user_data);
-        GError *error = NULL;
-        GVariant *res;
-        GUnixFDList *fd_list = NULL;
+        g_autoptr (GError) error = NULL;
+        g_autoptr (GVariant) ret = NULL;
+        g_autoptr (GUnixFDList) fd_list = NULL;
         gint idx;
+        int fd;
 
-        /* Drop any previous inhibit before recording the new one */
-        drop_system_inhibitor (manager);
+        ret = g_dbus_proxy_call_with_unix_fd_list_finish (proxy, &fd_list, result, &error);
 
-        res = g_dbus_proxy_call_with_unix_fd_list_finish (proxy, &fd_list, result, &error);
-
-        if (!res) {
+        if (!ret) {
                 g_warning ("Unable to inhibit system: %s", error->message);
-                g_error_free (error);
-        } else {
-                g_variant_get (res, "(h)", &idx);
-                manager->priv->inhibit_fd = g_unix_fd_list_get (fd_list, idx, &error);
-                if (manager->priv->inhibit_fd == -1) {
-                        g_warning ("Failed to receive system inhibitor fd: %s", error->message);
-                        g_error_free (error);
-                }
-                g_debug ("System inhibitor fd is %d", manager->priv->inhibit_fd);
-                g_object_unref (fd_list);
-                g_variant_unref (res);
+                return -EBADF;
         }
 
-        /* Handle a race condition, where locks got unset during dbus call */
-        if (manager->priv->inhibit_locks == NULL) {
-                drop_system_inhibitor (manager);
+        g_variant_get (ret, "(h)", &idx);
+
+        fd = g_unix_fd_list_get (fd_list, idx, &error);
+        if (fd < 0) {
+                g_warning ("Failed to receive system inhibitor fd: %s", error->message);
+                return -EBADF;
         }
+
+        return fd;
 }
 
 static void
-gsm_systemd_call_inhibit (GsmSystemd *manager,
-                          const char *what)
+inhibit_strong_done (GObject      *source,
+                     GAsyncResult *result,
+                     gpointer      user_data)
 {
+        GsmSystemd *manager = GSM_SYSTEMD (user_data);
+
+        /* Drop any previous inhibit before recording the new one */
+        drop_strong_system_inhibitor (manager);
+
+        manager->priv->strong_inhibit_fd = get_system_inhibitor_finish (source, result);
+        g_debug ("System strong inhibitor fd is %d", manager->priv->strong_inhibit_fd);
+
+        /* Handle a race condition, where inhibitors got unset during dbus call */
+        if (manager->priv->inhibited == 0)
+                drop_strong_system_inhibitor (manager);
+}
+
+static void
+inhibit_weak_done (GObject      *source,
+              GAsyncResult *result,
+              gpointer      user_data)
+{
+        GsmSystemd *manager = GSM_SYSTEMD (user_data);
+
+        /* Drop any previous inhibit before recording the new one */
+        drop_weak_system_inhibitor (manager);
+
+        manager->priv->weak_inhibit_fd = get_system_inhibitor_finish (source, result);
+        g_debug ("System weak inhibitor fd is %d", manager->priv->weak_inhibit_fd);
+
+        /* Handle a race condition, where inhibitors got unset during dbus call */
+        if (manager->priv->inhibited == 0)
+                drop_weak_system_inhibitor (manager);
+}
+
+static void
+gsm_systemd_call_inhibit (GsmSystemd          *manager,
+                          const char          *what,
+                          const char          *mode)
+{
+        GAsyncReadyCallback callback;
+
+        if (strcmp (mode, "block"))
+                callback = inhibit_strong_done;
+        else
+                callback = inhibit_weak_done;
+
         g_dbus_proxy_call_with_unix_fd_list (manager->priv->sd_proxy,
                                              "Inhibit",
                                              g_variant_new ("(ssss)",
                                                             what,
                                                             g_get_user_name (),
                                                             "user session inhibited",
-                                                            "block"),
+                                                            mode),
                                              0,
                                              G_MAXINT,
                                              NULL,
                                              NULL,
-                                             inhibit_done,
+                                             callback,
                                              manager);
 }
 
@@ -1023,40 +1071,33 @@ gsm_systemd_set_inhibitors (GsmSystem        *system,
                             GsmInhibitorFlag  flags)
 {
         GsmSystemd *manager = GSM_SYSTEMD (system);
-        const gchar *locks = NULL;
         gboolean inhibit_logout;
         gboolean inhibit_suspend;
 
         inhibit_logout = (flags & GSM_INHIBITOR_FLAG_LOGOUT) != 0;
         inhibit_suspend = (flags & GSM_INHIBITOR_FLAG_SUSPEND) != 0;
 
-        if (inhibit_logout && inhibit_suspend) {
-                locks = "sleep:shutdown";
-        } else if (inhibit_logout) {
-                locks = "shutdown";
-        } else if (inhibit_suspend) {
-                locks = "sleep";
-        }
-        manager->priv->inhibit_locks = locks;
+        if (inhibit_logout) {
+                g_debug ("Adding strong system inhibitor on shutdown");
+                gsm_systemd_call_inhibit (manager, "shutdown", "block");
+        } else
+                drop_strong_system_inhibitor (manager);
 
-        if (locks != NULL) {
-                g_debug ("Adding system inhibitor on %s", locks);
-                gsm_systemd_call_inhibit (manager, locks);
-        } else {
-                drop_system_inhibitor (manager);
-        }
+        if (inhibit_suspend) {
+                g_debug ("Adding weak system inhibitor on suspend");
+                gsm_systemd_call_inhibit (manager, "sleep", "block-weak");
+        } else
+                drop_weak_system_inhibitor (manager);
+
+        manager->priv->inhibited = flags;
 }
 
 static void
 gsm_systemd_reacquire_inhibitors (GsmSystemd *manager)
 {
-        const gchar *locks = manager->priv->inhibit_locks;
-        if (locks != NULL) {
-                g_debug ("Reacquiring system inhibitor on %s", locks);
-                gsm_systemd_call_inhibit (manager, locks);
-        } else {
-                drop_system_inhibitor (manager);
-        }
+        g_debug ("Reacquiring system inhibitors");
+        gsm_systemd_set_inhibitors (GSM_SYSTEM (manager),
+                                    manager->priv->inhibited);
 }
 
 static GsmStore *
@@ -1122,7 +1163,7 @@ gsm_systemd_prepare_shutdown (GsmSystem *system,
 
         /* if we're holding a blocking inhibitor to inhibit shutdown, systemd
          * will prevent us from shutting down */
-        drop_system_inhibitor (systemd);
+        drop_strong_system_inhibitor (systemd);
 
         res = g_dbus_proxy_call_with_unix_fd_list_sync (systemd->priv->sd_proxy,
                                                         "Inhibit",
