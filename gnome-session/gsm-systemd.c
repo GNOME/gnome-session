@@ -1161,10 +1161,6 @@ gsm_systemd_prepare_shutdown (GsmSystem *system,
 
         g_debug ("GsmSystemd: prepare shutdown");
 
-        /* if we're holding a blocking inhibitor to inhibit shutdown, systemd
-         * will prevent us from shutting down */
-        drop_strong_system_inhibitor (systemd);
-
         res = g_dbus_proxy_call_with_unix_fd_list_sync (systemd->priv->sd_proxy,
                                                         "Inhibit",
                                                         g_variant_new ("(ssss)",
@@ -1196,6 +1192,10 @@ gsm_systemd_prepare_shutdown (GsmSystem *system,
         g_object_unref (fd_list);
 
         systemd->priv->prepare_for_shutdown_expected = TRUE;
+
+        /* if we're holding a blocking inhibitor to inhibit shutdown, systemd
+         * will prevent us from shutting down */
+        drop_strong_system_inhibitor (systemd);
 
         g_dbus_proxy_call (systemd->priv->sd_proxy,
                            restart ? "RebootWithFlags" : "PowerOffWithFlags",
