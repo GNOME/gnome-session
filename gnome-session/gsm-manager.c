@@ -1453,17 +1453,33 @@ gsm_manager_can_shutdown (GsmExportedManager    *skeleton,
                           GDBusMethodInvocation *invocation,
                           GsmManager            *manager)
 {
-        gboolean shutdown_available;
+        gboolean available, challenge;
 
         g_debug ("GsmManager: CanShutdown called");
 
-        shutdown_available = !_log_out_is_locked_down (manager) &&
-                (gsm_system_can_stop (manager->system)
-                 || gsm_system_can_restart (manager->system)
-                 || gsm_system_can_suspend (manager->system)
-                 || gsm_system_can_hibernate (manager->system));
+        available = !_log_out_is_locked_down (manager) &&
+                gsm_system_can_shutdown (manager->system, &challenge);
 
-        gsm_exported_manager_complete_can_shutdown (skeleton, invocation, shutdown_available);
+        gsm_exported_manager_complete_can_shutdown (skeleton, invocation,
+                                                    available, challenge);
+
+        return TRUE;
+}
+
+static gboolean
+gsm_manager_can_reboot (GsmExportedManager    *skeleton,
+                        GDBusMethodInvocation *invocation,
+                        GsmManager            *manager)
+{
+        gboolean available, challenge;
+
+        g_debug ("GsmManager: CanReboot called");
+
+        available = !_log_out_is_locked_down (manager) &&
+                gsm_system_can_restart (manager->system, &challenge);
+
+        gsm_exported_manager_complete_can_reboot (skeleton, invocation,
+                                                  available, challenge);
 
         return TRUE;
 }
@@ -2056,6 +2072,8 @@ register_manager (GsmManager *manager)
                           G_CALLBACK (gsm_manager_can_reboot_to_firmware_setup), manager);
         g_signal_connect (skeleton, "handle-can-shutdown",
                           G_CALLBACK (gsm_manager_can_shutdown), manager);
+        g_signal_connect (skeleton, "handle-can-reboot",
+                          G_CALLBACK (gsm_manager_can_reboot), manager);
         g_signal_connect (skeleton, "handle-get-inhibitors",
                           G_CALLBACK (gsm_manager_get_inhibitors), manager);
         g_signal_connect (skeleton, "handle-get-locale",

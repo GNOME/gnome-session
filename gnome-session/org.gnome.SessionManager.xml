@@ -299,6 +299,19 @@
     -->
     <method name="CanShutdown">
       <arg name="is_available" direction="out" type="b"/>
+      <arg name="needs_auth" direction="out" type="b"/>
+    </method>
+
+    <!--
+      CanReboot
+      @is_available: True if reboot is available to the user, false otherwise
+
+      Allows the caller to determine whether or not it's okay to show a reboot
+      option in the UI
+    -->
+    <method name="CanReboot">
+      <arg name="is_available" direction="out" type="b"/>
+      <arg name="needs_auth" direction="out" type="b"/>
     </method>
 
     <!--

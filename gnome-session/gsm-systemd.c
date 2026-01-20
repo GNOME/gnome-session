@@ -703,7 +703,8 @@ gsm_systemd_can_switch_user (GsmSystem *system)
 }
 
 static gboolean
-gsm_systemd_can_restart (GsmSystem *system)
+gsm_systemd_can_restart (GsmSystem *system,
+                         gboolean  *challenge)
 {
         GsmSystemd *manager = GSM_SYSTEMD (system);
         gchar *rv;
@@ -726,8 +727,8 @@ gsm_systemd_can_restart (GsmSystem *system)
         g_variant_get (res, "(s)", &rv);
         g_variant_unref (res);
 
-        can_restart = g_strcmp0 (rv, "yes") == 0 ||
-                      g_strcmp0 (rv, "challenge") == 0;
+        *challenge = g_strcmp0 (rv, "challenge") == 0 || g_strcmp0 (rv, "inhibited") == 0;
+        can_restart = *challenge || g_strcmp0 (rv, "yes") == 0;
 
         g_free (rv);
 
@@ -794,12 +795,13 @@ gsm_systemd_set_restart_to_firmware_setup (GsmSystem *system,
 }
 
 static gboolean
-gsm_systemd_can_stop (GsmSystem *system)
+gsm_systemd_can_shutdown (GsmSystem *system,
+                          gboolean  *challenge)
 {
         GsmSystemd *manager = GSM_SYSTEMD (system);
         gchar *rv;
         GVariant *res;
-        gboolean can_stop;
+        gboolean can_shutdown;
 
         res = g_dbus_proxy_call_sync (manager->priv->sd_proxy,
                                       "CanPowerOff",
@@ -817,12 +819,12 @@ gsm_systemd_can_stop (GsmSystem *system)
         g_variant_get (res, "(s)", &rv);
         g_variant_unref (res);
 
-        can_stop = g_strcmp0 (rv, "yes") == 0 ||
-                   g_strcmp0 (rv, "challenge") == 0;
+        *challenge = g_strcmp0 (rv, "challenge") == 0 || g_strcmp0 (rv, "inhibited") == 0;
+        can_shutdown = *challenge || g_strcmp0 (rv, "yes") == 0;
 
         g_free (rv);
 
-        return can_stop;
+        return can_shutdown;
 }
 
 static gboolean
@@ -850,7 +852,8 @@ gsm_systemd_can_suspend (GsmSystem *system)
         g_variant_unref (res);
 
         can_suspend = g_strcmp0 (rv, "yes") == 0 ||
-                      g_strcmp0 (rv, "challenge") == 0;
+                      g_strcmp0 (rv, "challenge") == 0 ||
+                      g_strcmp0 (rv, "inhibited") == 0;
 
         g_free (rv);
 
@@ -882,7 +885,8 @@ gsm_systemd_can_hibernate (GsmSystem *system)
         g_variant_unref (res);
 
         can_hibernate = g_strcmp0 (rv, "yes") == 0 ||
-                        g_strcmp0 (rv, "challenge") == 0;
+                        g_strcmp0 (rv, "challenge") == 0 ||
+                        g_strcmp0 (rv, "inhibited") == 0;
 
         g_free (rv);
 
@@ -1175,7 +1179,7 @@ static void
 gsm_systemd_system_init (GsmSystemInterface *iface)
 {
         iface->can_switch_user = gsm_systemd_can_switch_user;
-        iface->can_stop = gsm_systemd_can_stop;
+        iface->can_shutdown = gsm_systemd_can_shutdown;
         iface->can_restart = gsm_systemd_can_restart;
         iface->can_restart_to_firmware_setup = gsm_systemd_can_restart_to_firmware_setup;
         iface->set_restart_to_firmware_setup = gsm_systemd_set_restart_to_firmware_setup;
