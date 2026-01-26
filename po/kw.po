@@ -1,0 +1,219 @@
+# Cornish translation for gnome-session.
+# Copyright (C) 2026 gnome-session's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gnome-session package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Flynn Peck <cirilla@tuta.io>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-session main\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
+"POT-Creation-Date: 2025-12-22 16:02+0000\n"
+"PO-Revision-Date: 2026-01-26 16:03+0000\n"
+"Last-Translator: Flynn Peck <cirilla@tuta.io>\n"
+"Language-Team: kw\n"
+"Language: kw\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-DL-VCS-Web: https://gitlab.gnome.org/GNOME/gnome-session/\n"
+"X-DL-Lang: kw\n"
+"X-DL-Module: gnome-session\n"
+"X-DL-Branch: main\n"
+"X-DL-Domain: po\n"
+"X-DL-State: Translating\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Gtranslator 49.0\n"
+
+#: data/gnome.desktop.in.in:2 data/gnome.session.desktop:2
+msgid "GNOME"
+msgstr "GNOME"
+
+#: data/gnome.desktop.in.in:3
+msgid "This session logs you into GNOME"
+msgstr "An esedhek ma omgelmi ty yn GNOME"
+
+#: data/org.gnome.SessionManager.gschema.xml:5
+msgid "Logout prompt"
+msgstr "Fenester ow lostleverel rag omdhigelmi"
+
+#: data/org.gnome.SessionManager.gschema.xml:6
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr ""
+"Mar gallosegys, gnome-seesion a wra lostleverel an usyer dherag ow finsya "
+"unn esedhek."
+
+#: data/org.gnome.SessionManager.gschema.xml:10
+msgid "Show the fallback warning"
+msgstr "Diskwedhes an gwarnyans omskoodhys"
+
+#: data/org.gnome.SessionManager.gschema.xml:11
+msgid ""
+"If enabled, gnome-session will display a warning dialog after login if the "
+"session was automatically fallen back."
+msgstr ""
+"Mar gallosegi, gnome-session a wra diskwedhes unn fenester gwarnyans mar an "
+"esedhek yw omskoodhys war yn awtomatek"
+
+#: gnome-session/gsm-manager.c:718 gnome-session/gsm-manager.c:1054
+msgid "Not responding"
+msgstr "Na ow gorthebi"
+
+#: gnome-session/gsm-util.c:170
+msgid "_Log out"
+msgstr "_Omdhigelmi"
+
+#: gnome-session/leader-main.c:193 gnome-session/service-main.c:148
+msgid "Session to use"
+msgstr "Esedhek rag devnydh"
+
+#: gnome-session/leader-main.c:193 gnome-session/service-main.c:148
+msgid "SESSION_NAME"
+msgstr "HANOW_ESEDHEK"
+
+#: gnome-session/leader-main.c:194
+msgid "Enable debugging code"
+msgstr "Gallosegi ow prevessa kod"
+
+#: gnome-session/leader-main.c:195
+msgid "Version of this application"
+msgstr "Versyon an app ma"
+
+#: gnome-session/leader-main.c:196
+msgid "This option is ignored"
+msgstr "An dewis ma yw skonys aswon"
+
+#: gnome-session/leader-main.c:197
+msgid "Don't re-exec into a login shell"
+msgstr "Na daseksekutya yn unn shell omgelmyans"
+
+#: gnome-session/leader-main.c:211 gnome-session/service-main.c:157
+msgid " — the GNOME session manager"
+msgstr " — an dyghtyer esedhek GNOME"
+
+#: tools/gnome-session-ctl.c:247
+msgid "Start gnome-session-shutdown.target"
+msgstr "Dalleth gnome-session-shutdown-target"
+
+#: tools/gnome-session-ctl.c:248
+msgid ""
+"Start gnome-session-shutdown.target when receiving EOF or a single byte on "
+"stdin"
+msgstr ""
+"Dalleth gnome-session-shutdown.target pan ow degemeres EOF po unn bayt unnik "
+"war stdin"
+
+#: tools/gnome-session-ctl.c:249
+msgid "Signal initialization done to gnome-session"
+msgstr "Dalleth sinell gwrys dhe gnome-session"
+
+#: tools/gnome-session-ctl.c:250
+msgid "Restart dbus.service if it is running"
+msgstr "Dastalleth dbus.service mar yth yw owth eksekutya"
+
+#: tools/gnome-session-ctl.c:251
+msgid ""
+"Run from ExecStopPost to start gnome-session-shutdown.target on service "
+"failure"
+msgstr ""
+"Eksekutya a-dhia ExecStopPost dhe dalleth gnome-session-shutdown.target dres "
+"difyk gonis"
+
+#: tools/gnome-session-ctl.c:281
+#, c-format
+msgid "Program needs exactly one parameter"
+msgstr "Towlen res unn teythien poran"
+
+#: tools/gnome-session-inhibit.c:68
+#, c-format
+msgid "Unknown inhibit argument: %s"
+msgstr "Oberadow spralla ankoth: %s"
+
+#: tools/gnome-session-inhibit.c:288
+#, c-format
+msgid "Failed to execute %s: %m\n"
+msgstr "Y fyllis eksekutya %s: %m\n"
+
+#: tools/gnome-session-inhibit.c:360
+msgid "Show program version"
+msgstr "Diskwedhes versyon towlen"
+
+#: tools/gnome-session-inhibit.c:361
+msgid "The application id to use when inhibiting (optional)"
+msgstr "An id app rag devnydh pan ow spralla (dre dhewis)"
+
+#: tools/gnome-session-inhibit.c:361
+msgid "ID"
+msgstr "ID"
+
+#: tools/gnome-session-inhibit.c:362
+msgid "The reason for inhibiting (optional)"
+msgstr "An reson rag ow spralla (dre dhewis)"
+
+#: tools/gnome-session-inhibit.c:362
+msgid "REASON"
+msgstr "RESON"
+
+#: tools/gnome-session-inhibit.c:363
+msgid "Add action to inhibit (repeatable)"
+msgstr "Addya gwrians rag ow spralla (daslevereladow)"
+
+#: tools/gnome-session-inhibit.c:363
+msgid "ACTION"
+msgstr "GWRIANS"
+
+#: tools/gnome-session-inhibit.c:364
+msgid "Do not launch COMMAND and wait forever instead"
+msgstr "Na lonchya ARGHADOW ha gortos a-vynitha yn le"
+
+#: tools/gnome-session-inhibit.c:365
+msgid "List the existing inhibitions, and exit"
+msgstr "Rolya an sprallans a'n jydh, ha kwytya"
+
+#: tools/gnome-session-inhibit.c:377
+msgid "COMMAND"
+msgstr "ARGHADOW"
+
+#: tools/gnome-session-inhibit.c:383
+msgid "Execute COMMAND while inhibiting some session functionality."
+msgstr "Eksekutya ARGHADOW pan ow spralla nebes nasyow esedhek."
+
+#: tools/gnome-session-inhibit.c:384
+msgid ""
+"Valid ACTION values are: logout, switch-user, suspend, idle, and automount.\n"
+"If no --inhibit options are specified, idle is assumed."
+msgstr ""
+"Dalgh ewn GWRIANS yw: logout, switch-user, suspend, idle, hag automount.\n"
+"Mar dewisyow --inhibit vyth yw ragnotys, idle yw desevys."
+
+#: tools/gnome-session-inhibit.c:409
+msgid "Neither COMMAND nor --inhibit-only were specified."
+msgstr "Na ARGHADOW na --inhibit-only ragnotys."
+
+#: tools/gnome-session-quit.c:50
+msgid "Log out"
+msgstr "Omdhigelmi"
+
+#: tools/gnome-session-quit.c:51
+msgid "Power off"
+msgstr "Marowhe"
+
+#: tools/gnome-session-quit.c:52
+msgid "Reboot"
+msgstr "Dastalleth"
+
+#: tools/gnome-session-quit.c:53
+msgid "Ignoring any existing inhibitors"
+msgstr "Ow skonya aswon neb spralloryon a'n jydh"
+
+#: tools/gnome-session-quit.c:54
+msgid "Don’t prompt for user confirmation"
+msgstr "Na lostleverel rag fastyans usyer"
+
+#: tools/gnome-session-quit.c:88 tools/gnome-session-quit.c:102
+msgid "Could not connect to the session manager"
+msgstr "Y fyllis junya dhe'n dyghtyer esedhek"
+
+#: tools/gnome-session-quit.c:198
+msgid "Program called with conflicting options"
+msgstr "Towlen gelwelys gans dewisyow dihaval"
