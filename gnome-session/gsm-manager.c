@@ -860,7 +860,9 @@ _gsm_manager_set_active_session (GsmManager *manager,
         if (!is_kiosk)
                 manager->session_save = gsm_session_save_new (session_name);
 
-        gsm_exported_manager_set_restore_supported (manager->skeleton, manager->session_save != NULL);
+        // TODO: For GNOME 50, we've disabled the save/restore feature.
+        gsm_exported_manager_set_restore_supported (manager->skeleton, FALSE);
+        //gsm_exported_manager_set_restore_supported (manager->skeleton, manager->session_save != NULL);
         gsm_exported_manager_set_session_name (manager->skeleton, session_name);
 }
 
