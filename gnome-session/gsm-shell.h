@@ -59,7 +59,6 @@ struct _GsmShellClass
 {
         GObjectClass parent_class;
 
-        void (* end_session_dialog_opened)        (GsmShell *shell);
         void (* end_session_dialog_open_failed)   (GsmShell *shell);
         void (* end_session_dialog_closed)        (GsmShell *shell);
         void (* end_session_dialog_canceled)      (GsmShell *shell);

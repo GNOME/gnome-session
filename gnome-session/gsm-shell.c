@@ -60,8 +60,7 @@ enum {
 };
 
 enum {
-        END_SESSION_DIALOG_OPENED = 0,
-        END_SESSION_DIALOG_OPEN_FAILED,
+        END_SESSION_DIALOG_OPEN_FAILED = 0,
         END_SESSION_DIALOG_CLOSED,
         END_SESSION_DIALOG_CANCELED,
         END_SESSION_DIALOG_CONFIRMED_LOGOUT,
@@ -121,14 +120,6 @@ gsm_shell_class_init (GsmShellClass *shell_class)
 
         g_object_class_install_property (object_class, PROP_IS_RUNNING,
                                          param_spec);
-
-        signals [END_SESSION_DIALOG_OPENED] =
-                g_signal_new ("end-session-dialog-opened",
-                              G_OBJECT_CLASS_TYPE (object_class),
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GsmShellClass, end_session_dialog_opened),
-                              NULL, NULL, NULL,
-                              G_TYPE_NONE, 0);
 
         signals [END_SESSION_DIALOG_OPEN_FAILED] =
                 g_signal_new ("end-session-dialog-open-failed",
@@ -317,8 +308,6 @@ on_open_finished (GObject *source,
                 g_signal_emit (G_OBJECT (shell), signals[END_SESSION_DIALOG_OPEN_FAILED], 0);
                 return;
         }
-
-        g_signal_emit (G_OBJECT (shell), signals[END_SESSION_DIALOG_OPENED], 0);
 }
 
 static void
