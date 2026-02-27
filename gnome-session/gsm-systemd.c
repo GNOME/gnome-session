@@ -46,6 +46,8 @@
 
 #define SYSTEMD_SESSION_REQUIRE_ONLINE 0 /* active or online sessions only */
 
+#define SD_LOGIND_SKIP_INHIBITORS (UINT64_C(1) << 4)
+
 struct _GsmSystemdPrivate
 {
         GSource         *sd_source;
@@ -547,7 +549,7 @@ gsm_systemd_suspend (GsmSystem *system)
 
         result = g_dbus_proxy_call_sync (manager->priv->sd_proxy,
                                          "SuspendWithFlags",
-                                         g_variant_new ("(t)", 0),
+                                         g_variant_new ("(t)", SD_LOGIND_SKIP_INHIBITORS),
                                          G_DBUS_CALL_FLAGS_ALLOW_INTERACTIVE_AUTHORIZATION,
                                          G_MAXINT,
                                          NULL,
