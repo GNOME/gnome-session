@@ -27,7 +27,6 @@
 
 
 enum {
-        REQUEST_COMPLETED,
         SHUTDOWN_PREPARED,
         LAST_SIGNAL
 };
@@ -45,14 +44,6 @@ static void
 gsm_system_default_init (GsmSystemInterface *iface)
 {
         GParamSpec *pspec;
-        signals [REQUEST_COMPLETED] =
-                g_signal_new ("request-completed",
-                              GSM_TYPE_SYSTEM,
-                              G_SIGNAL_RUN_LAST,
-                              G_STRUCT_OFFSET (GsmSystemInterface, request_completed),
-                              NULL, NULL, NULL,
-                              G_TYPE_NONE,
-                              1, G_TYPE_POINTER);
         signals[SHUTDOWN_PREPARED] =
                  g_signal_new ("shutdown-prepared",
                                GSM_TYPE_SYSTEM,
@@ -83,12 +74,6 @@ gsm_system_null_init_iface (GsmSystemInterface *iface)
         iface->can_restart       = (void *) return_false;
         iface->can_restart_to_firmware_setup = (void *) return_false;
         iface->set_restart_to_firmware_setup = (void *) do_nothing;
-        iface->can_suspend       = (void *) return_false;
-        iface->can_hibernate     = (void *) return_false;
-        iface->attempt_stop      = (void *) do_nothing;
-        iface->attempt_restart   = (void *) do_nothing;
-        iface->suspend           = (void *) do_nothing;
-        iface->hibernate         = (void *) do_nothing;
         iface->set_session_idle  = (void *) do_nothing;
         iface->set_inhibitors    = (void *) do_nothing;
         iface->prepare_shutdown  = (void *) do_nothing;
@@ -120,18 +105,6 @@ static GType gsm_system_null_get_type (void);
 G_DEFINE_TYPE_WITH_CODE (GsmSystemNull, gsm_system_null, G_TYPE_OBJECT,
                          G_IMPLEMENT_INTERFACE (GSM_TYPE_SYSTEM, gsm_system_null_init_iface))
 
-GQuark
-gsm_system_error_quark (void)
-{
-        static GQuark error_quark = 0;
-
-        if (error_quark == 0) {
-                error_quark = g_quark_from_static_string ("gsm-system-error");
-        }
-
-        return error_quark;
-}
-
 gboolean
 gsm_system_can_switch_user (GsmSystem *system)
 {
@@ -161,42 +134,6 @@ gsm_system_set_restart_to_firmware_setup (GsmSystem *system,
                                           gboolean   enable)
 {
         GSM_SYSTEM_GET_IFACE (system)->set_restart_to_firmware_setup (system, enable);
-}
-
-gboolean
-gsm_system_can_suspend (GsmSystem *system)
-{
-        return GSM_SYSTEM_GET_IFACE (system)->can_suspend (system);
-}
-
-gboolean
-gsm_system_can_hibernate (GsmSystem *system)
-{
-        return GSM_SYSTEM_GET_IFACE (system)->can_hibernate (system);
-}
-
-void
-gsm_system_attempt_stop (GsmSystem *system)
-{
-        GSM_SYSTEM_GET_IFACE (system)->attempt_stop (system);
-}
-
-void
-gsm_system_attempt_restart (GsmSystem *system)
-{
-        GSM_SYSTEM_GET_IFACE (system)->attempt_restart (system);
-}
-
-void
-gsm_system_suspend (GsmSystem *system)
-{
-        GSM_SYSTEM_GET_IFACE (system)->suspend (system);
-}
-
-void
-gsm_system_hibernate (GsmSystem *system)
-{
-        GSM_SYSTEM_GET_IFACE (system)->hibernate (system);
 }
 
 void

@@ -34,18 +34,13 @@ G_BEGIN_DECLS
 #define GSM_SYSTEM_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), GSM_TYPE_SYSTEM, GsmSystemInterface))
 #define GSM_IS_SYSTEM(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GSM_TYPE_SYSTEM))
 #define GSM_SYSTEM_GET_IFACE(obj)   (G_TYPE_INSTANCE_GET_INTERFACE((obj), GSM_TYPE_SYSTEM, GsmSystemInterface))
-#define GSM_SYSTEM_ERROR            (gsm_system_error_quark ())
 
 typedef struct _GsmSystem          GsmSystem;
 typedef struct _GsmSystemInterface GsmSystemInterface;
-typedef enum   _GsmSystemError     GsmSystemError;
 
 struct _GsmSystemInterface
 {
         GTypeInterface base_interface;
-
-        void (* request_completed)    (GsmSystem *system,
-                                       GError    *error);
 
         void (* shutdown_prepared)    (GsmSystem *system,
                                        gboolean   success);
@@ -56,12 +51,6 @@ struct _GsmSystemInterface
         gboolean (* can_restart_to_firmware_setup) (GsmSystem *system);
         void     (* set_restart_to_firmware_setup) (GsmSystem *system,
                                               gboolean   enable);
-        gboolean (* can_suspend)      (GsmSystem *system);
-        gboolean (* can_hibernate)    (GsmSystem *system);
-        void     (* attempt_stop)     (GsmSystem *system);
-        void     (* attempt_restart)  (GsmSystem *system);
-        void     (* suspend)          (GsmSystem *system);
-        void     (* hibernate)        (GsmSystem *system);
         void     (* set_session_idle) (GsmSystem *system,
                                        gboolean   is_idle);
         void     (* set_inhibitors)   (GsmSystem        *system,
@@ -71,14 +60,7 @@ struct _GsmSystemInterface
         void     (* complete_shutdown)(GsmSystem   *system);
 };
 
-enum _GsmSystemError {
-        GSM_SYSTEM_ERROR_RESTARTING = 0,
-        GSM_SYSTEM_ERROR_STOPPING
-};
-
 GType      gsm_system_get_type         (void);
-
-GQuark     gsm_system_error_quark      (void);
 
 GsmSystem *gsm_get_system              (void);
 
@@ -93,18 +75,6 @@ gboolean   gsm_system_can_restart_to_firmware_setup (GsmSystem *system);
 void       gsm_system_set_restart_to_firmware_setup (GsmSystem *system,
                                                      gboolean   enable);
 
-gboolean   gsm_system_can_suspend      (GsmSystem *system);
-
-gboolean   gsm_system_can_hibernate    (GsmSystem *system);
-
-void       gsm_system_attempt_stop     (GsmSystem *system);
-
-void       gsm_system_attempt_restart  (GsmSystem *system);
-
-void       gsm_system_suspend          (GsmSystem *system);
-
-void       gsm_system_hibernate        (GsmSystem *system);
-
 void       gsm_system_set_session_idle (GsmSystem *system,
                                         gboolean   is_idle);
 
@@ -116,8 +86,6 @@ void       gsm_system_set_inhibitors   (GsmSystem        *system,
 void       gsm_system_prepare_shutdown  (GsmSystem  *system,
                                          gboolean    restart);
 void       gsm_system_complete_shutdown (GsmSystem  *system);
-
-
 
 G_END_DECLS
 
