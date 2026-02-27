@@ -1436,10 +1436,8 @@ gsm_manager_can_shutdown (GsmExportedManager    *skeleton,
         g_debug ("GsmManager: CanShutdown called");
 
         shutdown_available = !_log_out_is_locked_down (manager) &&
-                (gsm_system_can_stop (manager->system)
-                 || gsm_system_can_restart (manager->system)
-                 || gsm_system_can_suspend (manager->system)
-                 || gsm_system_can_hibernate (manager->system));
+                (gsm_system_can_shutdown (manager->system) ||
+                 gsm_system_can_restart (manager->system));
 
         gsm_exported_manager_complete_can_shutdown (skeleton, invocation, shutdown_available);
 
