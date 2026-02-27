@@ -329,6 +329,21 @@
     </method>
 
     <!--
+      CanReboot
+      @availability: The current availability of reboot
+
+      Allows the caller to determine whether this system is currently able to
+      reboot. Note that this method is not suitable for non-interactive
+      callers, such as automatic power management!
+
+      See #org.gnome.SessionManager.CanShutdown() for the valid values
+      of @availability.
+    -->
+    <method name="CanReboot">
+      <arg name="availability" direction="out" type="u"/>
+    </method>
+
+    <!--
       SetRebootToFirmwareSetup:
       @enable: Whether we should reboot into setup
 

@@ -1445,6 +1445,24 @@ gsm_manager_can_shutdown (GsmExportedManager    *skeleton,
 }
 
 static gboolean
+gsm_manager_can_reboot (GsmExportedManager    *skeleton,
+                        GDBusMethodInvocation *invocation,
+                        GsmManager            *manager)
+{
+        GsmActionAvailability availability;
+
+        g_debug ("GsmManager: CanReboot called");
+
+        if (!_log_out_is_locked_down (manager))
+                availability = gsm_system_can_restart (manager->system);
+        else
+                availability = GSM_ACTION_UNAVAILABLE;
+
+        gsm_exported_manager_complete_can_reboot (skeleton, invocation, availability);
+        return TRUE;
+}
+
+static gboolean
 gsm_manager_can_reboot_to_firmware_setup (GsmExportedManager    *skeleton,
                                           GDBusMethodInvocation *invocation,
                                           GsmManager            *manager)
@@ -2032,6 +2050,8 @@ register_manager (GsmManager *manager)
                           G_CALLBACK (gsm_manager_can_reboot_to_firmware_setup), manager);
         g_signal_connect (skeleton, "handle-can-shutdown",
                           G_CALLBACK (gsm_manager_can_shutdown), manager);
+        g_signal_connect (skeleton, "handle-can-reboot",
+                          G_CALLBACK (gsm_manager_can_reboot), manager);
         g_signal_connect (skeleton, "handle-get-inhibitors",
                           G_CALLBACK (gsm_manager_get_inhibitors), manager);
         g_signal_connect (skeleton, "handle-get-locale",
