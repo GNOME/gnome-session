@@ -1455,6 +1455,7 @@ gsm_manager_suspend (GsmExportedManager    *skeleton,
                      GsmManager            *manager)
 {
         g_debug ("GsmManager: Suspend called");
+        // TODO: Check if suspend is blocked, and throw up a notification
         gsm_system_suspend (manager->system);
         gsm_exported_manager_complete_suspend (skeleton, invocation);
         return TRUE;
@@ -2555,6 +2556,13 @@ on_shutdown_prepared (GsmSystem  *system,
                  * this case because the failure is caused by the user's action */
                 if (!g_error_matches (error, G_DBUS_ERROR, G_DBUS_ERROR_ACCESS_DENIED))
                         notify_shutdown_failure (manager);
+
+                // TODO: When the action is completely blocked by an inhibitor,
+                //       we'll get an AccessDenied error. We (rightfully) ignore
+                //       this error because it's normally a direct consequence of
+                //       user action. But if the action is inhibitor-blocked, we
+                //       should send a different notification. Maybe before even
+                //       attempting the action?
 
                 cancel_end_session (manager);
                 return;
