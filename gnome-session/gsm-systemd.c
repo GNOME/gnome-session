@@ -532,6 +532,30 @@ gsm_systemd_can_restart (GsmSystem *system)
         return can_take_action (system, "CanReboot");
 }
 
+static GsmActionAvailability
+gsm_systemd_can_suspend (GsmSystem *system)
+{
+        return can_take_action (system, "CanSuspend");
+}
+
+static void
+gsm_systemd_suspend (GsmSystem *system)
+{
+        GsmSystemd *manager = GSM_SYSTEMD (system);
+        g_autoptr (GVariant) result = NULL;
+        g_autoptr (GError) error = NULL;
+
+        result = g_dbus_proxy_call_sync (manager->priv->sd_proxy,
+                                         "SuspendWithFlags",
+                                         g_variant_new ("(t)", 0),
+                                         G_DBUS_CALL_FLAGS_ALLOW_INTERACTIVE_AUTHORIZATION,
+                                         G_MAXINT,
+                                         NULL,
+                                         &error);
+        if (!result)
+                g_warning ("Failed to call Suspend(): %s", error->message);
+}
+
 static gboolean
 gsm_systemd_can_restart_to_firmware_setup (GsmSystem *system)
 {
@@ -798,6 +822,8 @@ gsm_systemd_system_init (GsmSystemInterface *iface)
         iface->can_switch_user = gsm_systemd_can_switch_user;
         iface->can_shutdown = gsm_systemd_can_shutdown;
         iface->can_restart = gsm_systemd_can_restart;
+        iface->can_suspend = gsm_systemd_can_suspend;
+        iface->suspend = gsm_systemd_suspend;
         iface->can_restart_to_firmware_setup = gsm_systemd_can_restart_to_firmware_setup;
         iface->set_restart_to_firmware_setup = gsm_systemd_set_restart_to_firmware_setup;
         iface->set_session_idle = gsm_systemd_set_session_idle;

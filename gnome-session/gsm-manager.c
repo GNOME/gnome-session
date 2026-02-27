@@ -1427,6 +1427,17 @@ gsm_manager_reboot (GsmExportedManager    *skeleton,
 }
 
 static gboolean
+gsm_manager_suspend (GsmExportedManager    *skeleton,
+                     GDBusMethodInvocation *invocation,
+                     GsmManager            *manager)
+{
+        g_debug ("GsmManager: Suspend called");
+        gsm_system_suspend (manager->system);
+        gsm_exported_manager_complete_suspend (skeleton, invocation);
+        return TRUE;
+}
+
+static gboolean
 gsm_manager_can_shutdown (GsmExportedManager    *skeleton,
                           GDBusMethodInvocation *invocation,
                           GsmManager            *manager)
@@ -1461,6 +1472,21 @@ gsm_manager_can_reboot (GsmExportedManager    *skeleton,
         gsm_exported_manager_complete_can_reboot (skeleton, invocation, availability);
         return TRUE;
 }
+
+static gboolean
+gsm_manager_can_suspend (GsmExportedManager    *skeleton,
+                         GDBusMethodInvocation *invocation,
+                         GsmManager            *manager)
+{
+        GsmActionAvailability availability;
+
+        g_debug ("GsmManager: CanSuspend called");
+
+        availability = gsm_system_can_suspend (manager->system);
+        gsm_exported_manager_complete_can_suspend (skeleton, invocation, availability);
+        return TRUE;
+}
+
 
 static gboolean
 gsm_manager_can_reboot_to_firmware_setup (GsmExportedManager    *skeleton,
@@ -2052,6 +2078,8 @@ register_manager (GsmManager *manager)
                           G_CALLBACK (gsm_manager_can_shutdown), manager);
         g_signal_connect (skeleton, "handle-can-reboot",
                           G_CALLBACK (gsm_manager_can_reboot), manager);
+        g_signal_connect (skeleton, "handle-can-suspend",
+                          G_CALLBACK (gsm_manager_can_suspend), manager);
         g_signal_connect (skeleton, "handle-get-inhibitors",
                           G_CALLBACK (gsm_manager_get_inhibitors), manager);
         g_signal_connect (skeleton, "handle-get-locale",
@@ -2068,6 +2096,8 @@ register_manager (GsmManager *manager)
                           G_CALLBACK (gsm_manager_logout_dbus), manager);
         g_signal_connect (skeleton, "handle-reboot",
                           G_CALLBACK (gsm_manager_reboot), manager);
+        g_signal_connect (skeleton, "handle-suspend",
+                          G_CALLBACK (gsm_manager_suspend), manager);
         g_signal_connect (skeleton, "handle-register-client",
                           G_CALLBACK (gsm_manager_register_client), manager);
         g_signal_connect (skeleton, "handle-register-restore",

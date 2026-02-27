@@ -291,6 +291,15 @@
     <method name="Reboot"/>
 
     <!--
+      Suspend:
+
+      Request that the system goes to suspend, or whatever other sleep states
+      are available and appropriate for the hardware. Note that this is not
+      suitible for non-interactive use-cases, like automatic power management!
+    -->
+    <method name="Suspend"/>
+
+    <!--
       CanShutdown
       @availability: The current availability of shutdown
 
@@ -340,6 +349,21 @@
       of @availability.
     -->
     <method name="CanReboot">
+      <arg name="availability" direction="out" type="u"/>
+    </method>
+
+    <!--
+      CanSuspend
+      @availability: The current availability of suspend
+
+      Allows the caller to determine whether this system is currently able to
+      suspend. Note that this method is not suitable for non-interactive
+      callers, such as automatic power management!
+
+      See #org.gnome.SessionManager.CanShutdown() for the valid values
+      of @availability.
+    -->
+    <method name="CanSuspend">
       <arg name="availability" direction="out" type="u"/>
     </method>
 

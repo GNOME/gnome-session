@@ -73,6 +73,8 @@ gsm_system_null_init_iface (GsmSystemInterface *iface)
         iface->can_switch_user   = (void *) return_false;
         iface->can_shutdown      = (void *) return_unavailable;
         iface->can_restart       = (void *) return_unavailable;
+        iface->can_suspend       = (void *) return_unavailable;
+        iface->suspend           = (void *) do_nothing;
         iface->can_restart_to_firmware_setup = (void *) return_false;
         iface->set_restart_to_firmware_setup = (void *) do_nothing;
         iface->set_session_idle  = (void *) do_nothing;
@@ -122,6 +124,18 @@ GsmActionAvailability
 gsm_system_can_restart (GsmSystem *system)
 {
         return GSM_SYSTEM_GET_IFACE (system)->can_restart (system);
+}
+
+GsmActionAvailability
+gsm_system_can_suspend (GsmSystem *system)
+{
+        return GSM_SYSTEM_GET_IFACE (system)->can_suspend (system);
+}
+
+void
+gsm_system_suspend (GsmSystem *system)
+{
+        return GSM_SYSTEM_GET_IFACE (system)->suspend (system);
 }
 
 gboolean
