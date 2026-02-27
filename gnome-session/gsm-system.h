@@ -37,6 +37,7 @@ G_BEGIN_DECLS
 
 typedef struct _GsmSystem          GsmSystem;
 typedef struct _GsmSystemInterface GsmSystemInterface;
+typedef enum _GsmActionAvailability GsmActionAvailability;
 
 struct _GsmSystemInterface
 {
@@ -45,9 +46,10 @@ struct _GsmSystemInterface
         void (* shutdown_prepared)    (GsmSystem *system,
                                        gboolean   success);
 
+        GsmActionAvailability (* can_shutdown) (GsmSystem *system);
+        GsmActionAvailability (* can_restart)  (GsmSystem *system);
+
         gboolean (* can_switch_user)  (GsmSystem *system);
-        gboolean (* can_shutdown)     (GsmSystem *system);
-        gboolean (* can_restart)      (GsmSystem *system);
         gboolean (* can_restart_to_firmware_setup) (GsmSystem *system);
         void     (* set_restart_to_firmware_setup) (GsmSystem *system,
                                               gboolean   enable);
@@ -60,15 +62,23 @@ struct _GsmSystemInterface
         void     (* complete_shutdown)(GsmSystem   *system);
 };
 
+enum _GsmActionAvailability
+{
+        GSM_ACTION_UNAVAILABLE,
+        GSM_ACTION_BLOCKED,
+        GSM_ACTION_CHALLANGE,
+        GSM_ACTION_AVAILABLE,
+};
+
 GType      gsm_system_get_type         (void);
 
 GsmSystem *gsm_get_system              (void);
 
+GsmActionAvailability gsm_system_can_shutdown (GsmSystem *system);
+
+GsmActionAvailability gsm_system_can_restart (GsmSystem *system);
+
 gboolean   gsm_system_can_switch_user  (GsmSystem *system);
-
-gboolean   gsm_system_can_shutdown     (GsmSystem *system);
-
-gboolean   gsm_system_can_restart      (GsmSystem *system);
 
 gboolean   gsm_system_can_restart_to_firmware_setup (GsmSystem *system);
 

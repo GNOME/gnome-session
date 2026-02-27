@@ -466,70 +466,65 @@ gsm_systemd_can_switch_user (GsmSystem *system)
         return TRUE;
 }
 
-static gboolean
-gsm_systemd_can_restart (GsmSystem *system)
+static GsmActionAvailability
+can_take_action (GsmSystem  *system,
+                 const char *method)
 {
-        GsmSystemd *manager = GSM_SYSTEMD (system);
-        gchar *rv;
-        GVariant *res;
-        gboolean can_restart;
+#define entry(a, ...) { a, (const char *[]) { __VA_ARGS__, NULL } }
+        const struct {
+                GsmActionAvailability availability;
+                const char **values;
+        } known_actions[] = {
+                entry (GSM_ACTION_AVAILABLE,
+                       "yes"),
+                entry (GSM_ACTION_CHALLANGE,
+                       "challenge",
+                       "inhibited"),
+                entry (GSM_ACTION_BLOCKED,
+                       "inhibitor-blocked",
+                       "challenge-inhibitor-blocked"),
+                entry (GSM_ACTION_UNAVAILABLE,
+                       "no",
+                       "na"),
+        };
+#undef entry
 
-        res = g_dbus_proxy_call_sync (manager->priv->sd_proxy,
-                                      "CanReboot",
-                                      NULL,
-                                      0,
-                                      G_MAXINT,
-                                      NULL,
-                                      NULL);
+        GsmSystemd *manager = GSM_SYSTEMD (system);
+        g_autoptr (GVariant) res = NULL;
+        gchar *availability;
+
+        res = g_dbus_proxy_call_sync (manager->priv->sd_proxy, method, NULL,
+                                      0, G_MAXINT, NULL, NULL);
         if (!res) {
-                g_warning ("Calling CanReboot failed. Check that logind is "
-                           "properly installed and pam_systemd is getting used at login.");
-                return FALSE;
+                g_warning ("Failed to call %s. Something is very wrong with logind!",
+                           method);
+                return GSM_ACTION_UNAVAILABLE;
         }
 
-        g_variant_get (res, "(s)", &rv);
-        g_variant_unref (res);
+        g_variant_get (res, "(&s)", &availability);
 
-        can_restart = g_strcmp0 (rv, "yes") == 0 ||
-                      g_strcmp0 (rv, "challenge") == 0;
+        for (size_t i = 0; i < G_N_ELEMENTS (known_actions); i++) {
+                if (g_strv_contains (known_actions[i].values, availability))
+                        return known_actions[i].availability;
+        }
 
-        g_free (rv);
+        g_warning ("GsmSystemd: Unknown action availability: %s",
+                   availability);
+        return GSM_ACTION_UNAVAILABLE;
+}
 
-        return can_restart;
+static GsmActionAvailability
+gsm_systemd_can_restart (GsmSystem *system)
+{
+        return can_take_action (system, "CanReboot");
 }
 
 static gboolean
 gsm_systemd_can_restart_to_firmware_setup (GsmSystem *system)
 {
-        GsmSystemd *manager = GSM_SYSTEMD (system);
-        const gchar *rv;
-        GVariant *res;
-        gboolean can_restart;
-        GError *error = NULL;
-
-        res = g_dbus_proxy_call_sync (manager->priv->sd_proxy,
-                                      "CanRebootToFirmwareSetup",
-                                      NULL,
-                                      G_DBUS_CALL_FLAGS_NONE,
-                                      G_MAXINT,
-                                      NULL,
-                                      &error);
-        if (!res) {
-                g_warning ("Calling CanRebootToFirmwareSetup failed. Check that logind is "
-                           "properly installed and pam_systemd is getting used at login: %s",
-                           error->message);
-                g_error_free (error);
-                return FALSE;
-        }
-
-        g_variant_get (res, "(&s)", &rv);
-
-        can_restart = g_strcmp0 (rv, "yes") == 0 ||
-                      g_strcmp0 (rv, "challenge") == 0;
-
-        g_variant_unref (res);
-
-        return can_restart;
+        GsmActionAvailability ret;
+        ret = can_take_action (system, "CanRebootToFirmwareSetup");
+        return ret == GSM_ACTION_AVAILABLE || ret == GSM_ACTION_CHALLANGE;
 }
 
 static void
@@ -557,36 +552,10 @@ gsm_systemd_set_restart_to_firmware_setup (GsmSystem *system,
         g_variant_unref (res);
 }
 
-static gboolean
+static GsmActionAvailability
 gsm_systemd_can_shutdown (GsmSystem *system)
 {
-        GsmSystemd *manager = GSM_SYSTEMD (system);
-        gchar *rv;
-        GVariant *res;
-        gboolean can_shutdown;
-
-        res = g_dbus_proxy_call_sync (manager->priv->sd_proxy,
-                                      "CanPowerOff",
-                                      NULL,
-                                      0,
-                                      G_MAXINT,
-                                      NULL,
-                                      NULL);
-        if (!res) {
-                g_warning ("Calling CanPowerOff failed. Check that logind is "
-                           "properly installed and pam_systemd is getting used at login.");
-                return FALSE;
-        }
-
-        g_variant_get (res, "(s)", &rv);
-        g_variant_unref (res);
-
-        can_shutdown = g_strcmp0 (rv, "yes") == 0 ||
-                       g_strcmp0 (rv, "challenge") == 0;
-
-        g_free (rv);
-
-        return can_shutdown;
+        return can_take_action (system, "CanPowerOff");
 }
 
 static void

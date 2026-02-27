@@ -1431,16 +1431,16 @@ gsm_manager_can_shutdown (GsmExportedManager    *skeleton,
                           GDBusMethodInvocation *invocation,
                           GsmManager            *manager)
 {
-        gboolean shutdown_available;
+        GsmActionAvailability availability;
 
         g_debug ("GsmManager: CanShutdown called");
 
-        shutdown_available = !_log_out_is_locked_down (manager) &&
-                (gsm_system_can_shutdown (manager->system) ||
-                 gsm_system_can_restart (manager->system));
+        if (!_log_out_is_locked_down (manager))
+                availability = gsm_system_can_shutdown (manager->system);
+        else
+                availability = GSM_ACTION_UNAVAILABLE;
 
-        gsm_exported_manager_complete_can_shutdown (skeleton, invocation, shutdown_available);
-
+        gsm_exported_manager_complete_can_shutdown (skeleton, invocation, availability);
         return TRUE;
 }
 

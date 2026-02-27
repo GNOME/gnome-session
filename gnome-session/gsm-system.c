@@ -65,13 +65,14 @@ typedef GObjectClass GsmSystemNullClass;
 
 static void do_nothing (void) { }
 static gboolean return_false (void) { return FALSE; }
+static GsmActionAvailability return_unavailable (void) { return GSM_ACTION_UNAVAILABLE; }
 
 static void
 gsm_system_null_init_iface (GsmSystemInterface *iface)
 {
         iface->can_switch_user   = (void *) return_false;
-        iface->can_shutdown      = (void *) return_false;
-        iface->can_restart       = (void *) return_false;
+        iface->can_shutdown      = (void *) return_unavailable;
+        iface->can_restart       = (void *) return_unavailable;
         iface->can_restart_to_firmware_setup = (void *) return_false;
         iface->set_restart_to_firmware_setup = (void *) do_nothing;
         iface->set_session_idle  = (void *) do_nothing;
@@ -111,13 +112,13 @@ gsm_system_can_switch_user (GsmSystem *system)
         return GSM_SYSTEM_GET_IFACE (system)->can_switch_user (system);
 }
 
-gboolean
+GsmActionAvailability
 gsm_system_can_shutdown (GsmSystem *system)
 {
         return GSM_SYSTEM_GET_IFACE (system)->can_shutdown (system);
 }
 
-gboolean
+GsmActionAvailability
 gsm_system_can_restart (GsmSystem *system)
 {
         return GSM_SYSTEM_GET_IFACE (system)->can_restart (system);

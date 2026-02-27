@@ -292,13 +292,40 @@
 
     <!--
       CanShutdown
-      @is_available: True if shutdown is available to the user, false otherwise
+      @availability: The current availability of shutdown
 
-      Allows the caller to determine whether or not it's okay to show a shutdown
-      option in the UI
+      Allows the caller to determine whether this system is currently able to
+      shutdown. Note that this method is not suitable for non-interactive
+      callers, such as automatic power management!
+
+      The @availability is one of:
+
+      <itemizedlist>
+        <listitem><para>
+          <emphasis>0</emphasis>:
+          This action is unavailable on this system.
+        </para></listitem>
+        <listitem><para>
+          <emphasis>1</emphasis>:
+          This action is normally available (possibly after authentication),
+          but at the moment it is completely blocked by an inhibitor.
+        </para></listitem>
+        <listitem><para>
+          <emphasis>2</emphasis>:
+          This action is available, but only after authentication. It is possible
+          that this action is normally available without authentication, and is
+          temporarily set to this availability via an inhibitor.
+        </para></listitem>
+        <listitem><para>
+          <emphasis>3</emphasis>:
+          This action is available without authentication.
+        </para></listitem>
+      </itemizedlist>
+
+      The caller can use this to decide if it should show this action in the UI.
     -->
     <method name="CanShutdown">
-      <arg name="is_available" direction="out" type="b"/>
+      <arg name="availability" direction="out" type="u"/>
     </method>
 
     <!--
