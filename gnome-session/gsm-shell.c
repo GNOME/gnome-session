@@ -47,6 +47,7 @@ struct _GsmShellPrivate
         guint32          is_running : 1;
 
         gboolean         dialog_is_opening;
+        gboolean         dialog_needs_update;
         GsmShellEndSessionDialogType end_session_dialog_type;
 
         guint            update_idle_id;
@@ -300,17 +301,14 @@ on_open_finished (GObject *source,
                   gpointer user_data)
 {
         GsmShell *shell = user_data;
-        GError   *error;
+        g_autoptr (GError) error = NULL;
 
-        if (shell->priv->update_idle_id != 0) {
-                g_source_remove (shell->priv->update_idle_id);
-                shell->priv->update_idle_id = 0;
-        }
+        g_dbus_proxy_call_finish (G_DBUS_PROXY (source), result, &error);
 
         shell->priv->dialog_is_opening = FALSE;
 
-        error = NULL;
-        g_dbus_proxy_call_finish (G_DBUS_PROXY (source), result, &error);
+        if (shell->priv->dialog_needs_update)
+                queue_end_session_dialog_update (shell);
 
         if (error != NULL) {
                 g_warning ("Unable to open shell end session dialog: %s", error->message);
@@ -356,10 +354,7 @@ on_end_session_dialog_dbus_signal (GDBusProxy *proxy,
 
         shell->priv->dialog_is_opening = FALSE;
 
-        if (shell->priv->update_idle_id != 0) {
-                g_source_remove (shell->priv->update_idle_id);
-                shell->priv->update_idle_id = 0;
-        }
+        g_clear_handle_id (&shell->priv->update_idle_id, g_source_remove);
 
         g_signal_handlers_disconnect_by_func (shell->priv->inhibitors,
                                               G_CALLBACK (queue_end_session_dialog_update),
@@ -386,16 +381,13 @@ on_end_session_dialog_name_owner_changed (GDBusProxy *proxy,
 static gboolean
 on_need_end_session_dialog_update (GsmShell *shell)
 {
-        /* No longer need an update */
-        if (shell->priv->update_idle_id == 0)
-                return FALSE;
-
         shell->priv->update_idle_id = 0;
+        shell->priv->dialog_needs_update = FALSE;
 
         gsm_shell_open_end_session_dialog (shell,
                                            shell->priv->end_session_dialog_type,
                                            shell->priv->inhibitors);
-        return FALSE;
+        return G_SOURCE_REMOVE;
 }
 
 static void
@@ -421,7 +413,7 @@ gsm_shell_open_end_session_dialog (GsmShell *shell,
         if (shell->priv->dialog_is_opening) {
                 g_return_val_if_fail (shell->priv->end_session_dialog_type == type,
                                       FALSE);
-
+                shell->priv->dialog_needs_update = TRUE;
                 return TRUE;
         }
 
@@ -493,7 +485,9 @@ gsm_shell_close_end_session_dialog (GsmShell *shell)
         if (!shell->priv->end_session_dialog_proxy)
                 return;
 
+        g_clear_handle_id (&shell->priv->update_idle_id, g_source_remove);
         shell->priv->dialog_is_opening = FALSE;
+        shell->priv->dialog_needs_update = FALSE;
 
         g_dbus_proxy_call (shell->priv->end_session_dialog_proxy,
                            "Close",
