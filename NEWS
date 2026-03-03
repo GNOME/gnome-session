@@ -1,3 +1,25 @@
+=============
+Version 50.rc
+=============
+
+- Hid availability of session save/restore support. This feature has been postponed to
+  a future release of GNOME
+- Fixed bug where inhibitors list doesn't update in end-session dialog
+- Refactored CanShutdown() to more accurately represent the availability of
+  the shutdown action, including API-incompatible changes that allow it to
+  report inhibitor status, needs-authentication status, and so on
+- Introduced CanReboot(), which enables the rest of the session to hide reboot
+  buttons if rebooting isn't actually available
+- Introduced CanSuspend() and Suspend(), for putting the system to sleep
+- GNOME's logind sleep inhibitor was downgraded from a type='block' to a
+  type='block-weak'. This restores the behavior of the inhibitor prior to
+  systemd v257
+- We now ignore sleep inhibitors when the user manually suspends the system. The
+  user will likely need to authenticate before ignoring the inhibitors. Note that
+  systemd will, by default, also automatically ignore sleep inhibitors when a
+  laptop's lid is closed.
+- Translation updates
+
 ===============
 Version 50.beta
 ===============
