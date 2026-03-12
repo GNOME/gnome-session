@@ -318,7 +318,7 @@ static void
 gsm_systemd_init (GsmSystemd *manager)
 {
         GError *error = NULL;
-        GDBusConnection *bus;
+        g_autoptr (GDBusConnection) bus = NULL;
         GVariant *res;
 
         manager->strong_inhibit_fd = -1;
@@ -380,8 +380,6 @@ gsm_systemd_init (GsmSystemd *manager)
         g_source_attach (manager->sd_source, NULL);
 
         on_sd_source_changed (manager);
-
-        g_object_unref (bus);
 }
 
 static void
