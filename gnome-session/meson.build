@@ -45,6 +45,7 @@ sources = files(
   'gsm-shell.c',
   'gsm-store.c',
   'gsm-system.c',
+  'gsm-system-null.c',
   'gsm-systemd.c',
   'gsm-util.c',
   'service-main.c'

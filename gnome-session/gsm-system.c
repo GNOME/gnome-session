@@ -23,6 +23,7 @@
 
 #include "gsm-system.h"
 
+#include "gsm-system-null.h"
 #include "gsm-systemd.h"
 
 
@@ -59,54 +60,6 @@ gsm_system_default_init (GsmSystemInterface *iface)
                                       G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
         g_object_interface_install_property (iface, pspec);
 }
-
-typedef GObject GsmSystemNull;
-typedef GObjectClass GsmSystemNullClass;
-
-static void do_nothing (void) { }
-static gboolean return_false (void) { return FALSE; }
-static GsmActionAvailability return_unavailable (void) { return GSM_ACTION_UNAVAILABLE; }
-
-static void
-gsm_system_null_init_iface (GsmSystemInterface *iface)
-{
-        iface->can_switch_user   = (void *) return_false;
-        iface->can_shutdown      = (void *) return_unavailable;
-        iface->can_restart       = (void *) return_unavailable;
-        iface->can_suspend       = (void *) return_unavailable;
-        iface->suspend           = (void *) do_nothing;
-        iface->can_restart_to_firmware_setup = (void *) return_false;
-        iface->set_restart_to_firmware_setup = (void *) do_nothing;
-        iface->set_session_idle  = (void *) do_nothing;
-        iface->set_inhibitors    = (void *) do_nothing;
-        iface->prepare_shutdown  = (void *) do_nothing;
-        iface->complete_shutdown = (void *) do_nothing;
-}
-
-static void
-gsm_system_null_init (GsmSystemNull *gsn)
-{
-}
-
-static void
-gsm_system_null_get_property (GObject *object, guint prop_id,
-                              GValue *value, GParamSpec *pspec)
-{
-        g_value_set_boolean (value, TRUE);
-}
-
-static void
-gsm_system_null_class_init (GsmSystemNullClass *class)
-{
-        class->get_property = gsm_system_null_get_property;
-        class->set_property = (void *) do_nothing;
-
-        g_object_class_override_property (class, 1, "active");
-}
-
-static GType gsm_system_null_get_type (void);
-G_DEFINE_TYPE_WITH_CODE (GsmSystemNull, gsm_system_null, G_TYPE_OBJECT,
-                         G_IMPLEMENT_INTERFACE (GSM_TYPE_SYSTEM, gsm_system_null_init_iface))
 
 gboolean
 gsm_system_can_switch_user (GsmSystem *system)
@@ -205,7 +158,7 @@ gsm_get_system (void)
         }
 
         if (system == NULL) {
-                system = g_object_new (gsm_system_null_get_type (), NULL);
+                system = gsm_system_null_new ();
                 g_warning ("Using null backend for session tracking");
         }
 
