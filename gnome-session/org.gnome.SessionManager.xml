@@ -512,6 +512,24 @@
     <property name="SessionIsActive" type="b" access="read"/>
 
     <!--
+      SessionIsLocked:
+
+      If true, the session is currently locked.
+    -->
+    <property name="SessionIsLocked" type="b" access="read"/>
+
+    <!--
+      SessionClass:
+
+      The Class of the session can be one of:
+        * "user"
+        * "greeter"
+        * "lock-screen"
+        * "background"
+    -->
+    <property name="SessionClass" type="s" access="read"/>
+
+    <!--
       InhibitedActions:
 
       A bitmask of flags to indicate which actions are inhibited. See

@@ -77,6 +77,13 @@ typedef enum
         GSM_MANAGER_LOGOUT_SHUTDOWN,
 } GsmManagerLogoutType;
 
+static const char * const session_class_strings[] = {
+        [GSM_SESSION_CLASS_USER]        = "user",
+        [GSM_SESSION_CLASS_GREETER]     = "greeter",
+        [GSM_SESSION_CLASS_LOCK_SCREEN] = "lock-screen",
+        [GSM_SESSION_CLASS_BACKGROUND]  = "background",
+};
+
 struct _GsmManager
 {
         GObject                 parent;
@@ -1311,19 +1318,6 @@ on_presence_status_changed (GsmPresence  *presence,
         g_object_unref (system);
 }
 
-static void
-on_gsm_system_active_changed (GsmSystem  *system,
-                              GParamSpec *pspec,
-                              GsmManager *manager)
-{
-        gboolean is_active;
-
-        is_active = gsm_system_is_active (manager->system);
-
-        g_debug ("emitting SessionIsActive");
-        gsm_exported_manager_set_session_is_active (manager->skeleton, is_active);
-}
-
 static gboolean
 _log_out_is_locked_down (GsmManager *manager)
 {
@@ -2045,6 +2039,18 @@ on_session_connection_closed (GDBusConnection *connection,
 }
 
 static gboolean
+session_class_to_string (GBinding     *binding,
+                         const GValue *from_value,
+                         GValue       *to_value,
+                         gpointer      user_data)
+{
+        GsmSessionClass session_class = g_value_get_enum (from_value);
+
+        g_value_set_string (to_value, session_class_strings[session_class]);
+        return TRUE;
+}
+
+static gboolean
 register_manager (GsmManager *manager)
 {
         GDBusConnection *connection;
@@ -2123,14 +2129,20 @@ register_manager (GsmManager *manager)
         g_signal_connect (connection, "closed",
                           G_CALLBACK (on_session_connection_closed), manager);
 
+        g_object_bind_property (manager->system, "active",
+                                skeleton, "session-is-active",
+                                G_BINDING_SYNC_CREATE);
+        g_object_bind_property (manager->system, "locked",
+                                skeleton, "session-is-locked",
+                                G_BINDING_SYNC_CREATE);
+        g_object_bind_property_full (manager->system, "session-class",
+                                     skeleton, "session-class",
+                                     G_BINDING_SYNC_CREATE,
+                                     session_class_to_string,
+                                     NULL, NULL, NULL);
+
         manager->connection = connection;
         manager->skeleton = skeleton;
-
-        g_signal_connect (manager->system, "notify::active",
-                          G_CALLBACK (on_gsm_system_active_changed), manager);
-
-        /* cold-plug SessionIsActive */
-        on_gsm_system_active_changed (manager->system, NULL, manager);
 
         return TRUE;
 }
