@@ -250,6 +250,39 @@ update_session_locked (GsmSystemd *manager)
                 g_object_set (manager, "locked", locked, NULL);
 }
 
+static GsmSessionClass
+session_class_from_string (const char *str)
+{
+        if (g_strcmp0 (str, "greeter") == 0)
+                return GSM_SESSION_CLASS_GREETER;
+        if (g_strcmp0 (str, "lock-screen") == 0)
+                return GSM_SESSION_CLASS_LOCK_SCREEN;
+        if (g_strcmp0 (str, "background") == 0)
+                return GSM_SESSION_CLASS_BACKGROUND;
+
+        return GSM_SESSION_CLASS_USER;
+}
+
+static void
+update_session_class (GsmSystemd *manager)
+{
+        g_autoptr (GVariant) v = NULL;
+        GsmSessionClass old_session_class;
+        GsmSessionClass session_class;
+        const char *class_str;
+
+        v = g_dbus_proxy_get_cached_property (manager->sd_session_proxy, "Class");
+        if (v == NULL)
+                return;
+
+        old_session_class = gsm_system_get_session_class (GSM_SYSTEM (manager));
+        class_str = g_variant_get_string (v, NULL);
+        session_class = session_class_from_string (class_str);
+
+        if (old_session_class != session_class)
+                g_object_set (manager, "session-class", session_class, NULL);
+}
+
 static void
 on_session_property_changed (GDBusProxy  *proxy,
                              GVariant    *changed_properties,
@@ -266,6 +299,9 @@ on_session_property_changed (GDBusProxy  *proxy,
 
         if (g_variant_dict_contains (&changed, "LockedHint"))
                 update_session_locked (manager);
+
+        if (g_variant_dict_contains (&changed, "Class"))
+                update_session_class (manager);
 }
 
 static void
@@ -350,6 +386,7 @@ gsm_systemd_init (GsmSystemd *manager)
                           G_CALLBACK (on_session_property_changed), manager);
         update_session_active (manager);
         update_session_locked (manager);
+        update_session_class (manager);
 }
 
 static void

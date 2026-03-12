@@ -37,6 +37,17 @@ typedef enum _GsmActionAvailability
         GSM_ACTION_AVAILABLE,
 } GsmActionAvailability;
 
+typedef enum _GsmSessionClass
+{
+        GSM_SESSION_CLASS_USER,
+        GSM_SESSION_CLASS_GREETER,
+        GSM_SESSION_CLASS_LOCK_SCREEN,
+        GSM_SESSION_CLASS_BACKGROUND,
+} GsmSessionClass;
+
+#define GSM_TYPE_SESSION_CLASS (gsm_session_class_get_type ())
+GType gsm_session_class_get_type (void) G_GNUC_CONST;
+
 #define GSM_TYPE_SYSTEM (gsm_system_get_type ())
 G_DECLARE_DERIVABLE_TYPE (GsmSystem, gsm_system, GSM, SYSTEM, GObject)
 
@@ -76,6 +87,7 @@ void                   gsm_system_set_session_idle              (GsmSystem *syst
                                                                  gboolean   is_idle);
 gboolean               gsm_system_is_active                     (GsmSystem *system);
 gboolean               gsm_system_is_locked                     (GsmSystem *system);
+GsmSessionClass        gsm_system_get_session_class             (GsmSystem *system);
 void                   gsm_system_set_inhibitors                (GsmSystem        *system,
                                                                  GsmInhibitorFlag  flags);
 void                   gsm_system_prepare_shutdown              (GsmSystem  *system,
