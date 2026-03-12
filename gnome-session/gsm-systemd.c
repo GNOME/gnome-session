@@ -833,18 +833,14 @@ gsm_systemd_system_init (GsmSystemInterface *iface)
         iface->complete_shutdown = gsm_systemd_complete_shutdown;
 }
 
-GsmSystemd *
+GsmSystem *
 gsm_systemd_new (void)
 {
-        GsmSystemd *manager;
-
         /* logind is not running ? */
         if (access("/run/systemd/seats/", F_OK) < 0)
                 return NULL;
 
-        manager = g_object_new (GSM_TYPE_SYSTEMD, NULL);
-
-        return manager;
+        return g_object_new (GSM_TYPE_SYSTEMD, NULL);
 }
 
 static void

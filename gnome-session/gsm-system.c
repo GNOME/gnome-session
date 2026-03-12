@@ -198,7 +198,7 @@ gsm_get_system (void)
         static GsmSystem *system = NULL;
 
         if (system == NULL) {
-                system = GSM_SYSTEM (gsm_systemd_new ());
+                system = gsm_systemd_new ();
                 if (system != NULL) {
                         g_debug ("Using systemd for session tracking");
                 }

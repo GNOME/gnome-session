@@ -22,8 +22,7 @@
 #ifndef __GSM_SYSTEMD_H__
 #define __GSM_SYSTEMD_H__
 
-#include <glib.h>
-#include <glib-object.h>
+#include "gsm-system.h"
 
 G_BEGIN_DECLS
 
@@ -52,7 +51,7 @@ struct _GsmSystemdClass
 
 GType         gsm_systemd_get_type (void);
 
-GsmSystemd   *gsm_systemd_new      (void) G_GNUC_MALLOC;
+GsmSystem *   gsm_systemd_new      (void) G_GNUC_MALLOC;
 
 G_END_DECLS
 
