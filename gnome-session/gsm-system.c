@@ -35,11 +35,13 @@ static guint signals[LAST_SIGNAL] = { 0 };
 
 typedef enum {
         PROP_ACTIVE = 1,
+        PROP_LOCKED,
 } GsmSystemdProps;
 
 typedef struct _GsmSystemPrivate
 {
         gboolean is_active;
+        gboolean is_locked;
 } GsmSystemPrivate;
 
 G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (GsmSystem, gsm_system, G_TYPE_OBJECT)
@@ -57,6 +59,9 @@ gsm_system_set_property (GObject      *object,
         case PROP_ACTIVE:
                 priv->is_active = g_value_get_boolean (value);
                 break;
+        case PROP_LOCKED:
+                priv->is_locked = g_value_get_boolean (value);
+                break;
         }
 }
 
@@ -72,6 +77,9 @@ gsm_system_get_property (GObject    *object,
         switch ((GsmSystemdProps) prop_id) {
         case PROP_ACTIVE:
                 g_value_set_boolean (value, priv->is_active);
+                break;
+        case PROP_LOCKED:
+                g_value_set_boolean (value, priv->is_locked);
                 break;
         }
 }
@@ -104,6 +112,13 @@ gsm_system_class_init (GsmSystemClass *klass)
                                                                "Active",
                                                                "Whether or not session is active",
                                                                TRUE,
+                                                               G_PARAM_READWRITE));
+        g_object_class_install_property (object_class,
+                                         PROP_LOCKED,
+                                         g_param_spec_boolean ("locked",
+                                                               "Locked",
+                                                               "Whether or not session is locked",
+                                                               FALSE,
                                                                G_PARAM_READWRITE));
 }
 
@@ -170,6 +185,14 @@ gsm_system_is_active (GsmSystem *system)
         GsmSystemPrivate *priv = gsm_system_get_instance_private (system);
 
         return priv->is_active;
+}
+
+gboolean
+gsm_system_is_locked (GsmSystem *system)
+{
+        GsmSystemPrivate *priv = gsm_system_get_instance_private (system);
+
+        return priv->is_locked;
 }
 
 void
