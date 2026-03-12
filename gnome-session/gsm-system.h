@@ -75,6 +75,7 @@ void                   gsm_system_set_restart_to_firmware_setup (GsmSystem *syst
 void                   gsm_system_set_session_idle              (GsmSystem *system,
                                                                  gboolean   is_idle);
 gboolean               gsm_system_is_active                     (GsmSystem *system);
+gboolean               gsm_system_is_locked                     (GsmSystem *system);
 void                   gsm_system_set_inhibitors                (GsmSystem        *system,
                                                                  GsmInhibitorFlag  flags);
 void                   gsm_system_prepare_shutdown              (GsmSystem  *system,

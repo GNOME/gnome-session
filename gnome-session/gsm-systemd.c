@@ -233,6 +233,24 @@ update_session_active (GsmSystemd *manager)
 }
 
 static void
+update_session_locked (GsmSystemd *manager)
+{
+        g_autoptr (GVariant) v = NULL;
+        gboolean old_locked;
+        gboolean locked;
+
+        v = g_dbus_proxy_get_cached_property (manager->sd_session_proxy, "LockedHint");
+        if (v == NULL)
+                return;
+
+        old_locked = gsm_system_is_locked (GSM_SYSTEM (manager));
+        locked = g_variant_get_boolean (v);
+
+        if (old_locked != locked)
+                g_object_set (manager, "locked", locked, NULL);
+}
+
+static void
 on_session_property_changed (GDBusProxy  *proxy,
                              GVariant    *changed_properties,
                              char       **invalidated_properties,
@@ -245,6 +263,9 @@ on_session_property_changed (GDBusProxy  *proxy,
 
         if (g_variant_dict_contains (&changed, "Active"))
                 update_session_active (manager);
+
+        if (g_variant_dict_contains (&changed, "LockedHint"))
+                update_session_locked (manager);
 }
 
 static void
@@ -328,6 +349,7 @@ gsm_systemd_init (GsmSystemd *manager)
         g_signal_connect (manager->sd_session_proxy, "g-properties-changed",
                           G_CALLBACK (on_session_property_changed), manager);
         update_session_active (manager);
+        update_session_locked (manager);
 }
 
 static void
