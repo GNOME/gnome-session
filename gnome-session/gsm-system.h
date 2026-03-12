@@ -25,9 +25,17 @@
 #include <glib.h>
 #include <glib-object.h>
 
-#include "gsm-inhibitor.h"
+#include "gsm-inhibitor-flag.h"
 
 G_BEGIN_DECLS
+
+typedef enum _GsmActionAvailability
+{
+        GSM_ACTION_UNAVAILABLE,
+        GSM_ACTION_BLOCKED,
+        GSM_ACTION_CHALLANGE,
+        GSM_ACTION_AVAILABLE,
+} GsmActionAvailability;
 
 #define GSM_TYPE_SYSTEM             (gsm_system_get_type ())
 #define GSM_SYSTEM(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), GSM_TYPE_SYSTEM, GsmSystem))
@@ -37,71 +45,48 @@ G_BEGIN_DECLS
 
 typedef struct _GsmSystem          GsmSystem;
 typedef struct _GsmSystemInterface GsmSystemInterface;
-typedef enum _GsmActionAvailability GsmActionAvailability;
 
 struct _GsmSystemInterface
 {
         GTypeInterface base_interface;
 
-        void (* shutdown_prepared)    (GsmSystem *system,
-                                       gboolean   success);
-
-        GsmActionAvailability (* can_shutdown) (GsmSystem *system);
-        GsmActionAvailability (* can_restart)  (GsmSystem *system);
-        GsmActionAvailability (* can_suspend)  (GsmSystem *system);
-
-        void     (* suspend) (GsmSystem *system);
-        gboolean (* can_switch_user)  (GsmSystem *system);
-        gboolean (* can_restart_to_firmware_setup) (GsmSystem *system);
-        void     (* set_restart_to_firmware_setup) (GsmSystem *system,
-                                              gboolean   enable);
-        void     (* set_session_idle) (GsmSystem *system,
-                                       gboolean   is_idle);
-        void     (* set_inhibitors)   (GsmSystem        *system,
-                                       GsmInhibitorFlag  flags);
-        void     (* prepare_shutdown) (GsmSystem   *system,
-                                       gboolean     restart);
-        void     (* complete_shutdown)(GsmSystem   *system);
+        void                  (* shutdown_prepared)             (GsmSystem *system,
+                                                                 gboolean   success);
+        GsmActionAvailability (* can_shutdown)                  (GsmSystem *system);
+        GsmActionAvailability (* can_restart)                   (GsmSystem *system);
+        GsmActionAvailability (* can_suspend)                   (GsmSystem *system);
+        void                  (* suspend)                       (GsmSystem *system);
+        gboolean              (* can_switch_user)               (GsmSystem *system);
+        gboolean              (* can_restart_to_firmware_setup) (GsmSystem *system);
+        void                  (* set_restart_to_firmware_setup) (GsmSystem *system,
+                                                                 gboolean   enable);
+        void                  (* set_session_idle)              (GsmSystem *system,
+                                                                 gboolean   is_idle);
+        void                  (* set_inhibitors)                (GsmSystem        *system,
+                                                                 GsmInhibitorFlag  flags);
+        void                  (* prepare_shutdown)              (GsmSystem *system,
+                                                                 gboolean   restart);
+        void                  (* complete_shutdown)             (GsmSystem *system);
 };
 
-enum _GsmActionAvailability
-{
-        GSM_ACTION_UNAVAILABLE,
-        GSM_ACTION_BLOCKED,
-        GSM_ACTION_CHALLANGE,
-        GSM_ACTION_AVAILABLE,
-};
-
-GType      gsm_system_get_type         (void);
-
-GsmSystem *gsm_get_system              (void);
-
-GsmActionAvailability gsm_system_can_shutdown (GsmSystem *system);
-
-GsmActionAvailability gsm_system_can_restart (GsmSystem *system);
-
-GsmActionAvailability gsm_system_can_suspend (GsmSystem *system);
-
-void gsm_system_suspend (GsmSystem *system);
-
-gboolean   gsm_system_can_switch_user  (GsmSystem *system);
-
-gboolean   gsm_system_can_restart_to_firmware_setup (GsmSystem *system);
-
-void       gsm_system_set_restart_to_firmware_setup (GsmSystem *system,
-                                                     gboolean   enable);
-
-void       gsm_system_set_session_idle (GsmSystem *system,
-                                        gboolean   is_idle);
-
-gboolean   gsm_system_is_active        (GsmSystem *system);
-
-void       gsm_system_set_inhibitors   (GsmSystem        *system,
-                                        GsmInhibitorFlag  flags);
-
-void       gsm_system_prepare_shutdown  (GsmSystem  *system,
-                                         gboolean    restart);
-void       gsm_system_complete_shutdown (GsmSystem  *system);
+GType                  gsm_system_get_type                      (void);
+GsmSystem *            gsm_get_system                           (void);
+GsmActionAvailability  gsm_system_can_shutdown                  (GsmSystem *system);
+GsmActionAvailability  gsm_system_can_restart                   (GsmSystem *system);
+GsmActionAvailability  gsm_system_can_suspend                   (GsmSystem *system);
+void                   gsm_system_suspend                       (GsmSystem *system);
+gboolean               gsm_system_can_switch_user               (GsmSystem *system);
+gboolean               gsm_system_can_restart_to_firmware_setup (GsmSystem *system);
+void                   gsm_system_set_restart_to_firmware_setup (GsmSystem *system,
+                                                                 gboolean   enable);
+void                   gsm_system_set_session_idle              (GsmSystem *system,
+                                                                 gboolean   is_idle);
+gboolean               gsm_system_is_active                     (GsmSystem *system);
+void                   gsm_system_set_inhibitors                (GsmSystem        *system,
+                                                                 GsmInhibitorFlag  flags);
+void                   gsm_system_prepare_shutdown              (GsmSystem  *system,
+                                                                 gboolean    restart);
+void                   gsm_system_complete_shutdown             (GsmSystem  *system);
 
 G_END_DECLS
 
