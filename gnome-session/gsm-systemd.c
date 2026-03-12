@@ -252,6 +252,32 @@ update_session_locked (GsmSystemd *manager)
 }
 
 static void
+update_session_class (GsmSystemd *manager)
+{
+        g_autoptr (GEnumClass) enum_class = NULL;
+        g_autoptr (GVariant) v = NULL;
+        GsmSessionClass old_session_class;
+        GsmSessionClass session_class;
+        GEnumValue *enum_value;
+        const char *class_str;
+
+        v = g_dbus_proxy_get_cached_property (manager->sd_session_proxy, "Class");
+        if (v == NULL)
+                return;
+
+        old_session_class = gsm_system_get_session_class (GSM_SYSTEM (manager));
+
+        class_str = g_variant_get_string (v, NULL);
+        enum_class = g_type_class_ref (GSM_TYPE_SESSION_CLASS);
+        enum_value = g_enum_get_value_by_nick (enum_class, class_str);
+        session_class =
+                enum_value != NULL ? enum_value->value : GSM_SESSION_CLASS_USER;
+
+        if (old_session_class != session_class)
+                g_object_set (manager, "session-class", session_class, NULL);
+}
+
+static void
 on_session_property_changed (GDBusProxy  *proxy,
                              GVariant    *changed_properties,
                              char       **invalidated_properties,
@@ -267,6 +293,9 @@ on_session_property_changed (GDBusProxy  *proxy,
 
         if (g_variant_dict_contains (&changed, "LockedHint"))
                 update_session_locked (manager);
+
+        if (g_variant_dict_contains (&changed, "Class"))
+                update_session_class (manager);
 }
 
 static void
@@ -351,6 +380,7 @@ gsm_systemd_init (GsmSystemd *manager)
                           G_CALLBACK (on_session_property_changed), manager);
         update_session_active (manager);
         update_session_locked (manager);
+        update_session_class (manager);
 }
 
 static void

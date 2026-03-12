@@ -36,12 +36,22 @@ static guint signals[LAST_SIGNAL] = { 0 };
 typedef enum {
         PROP_ACTIVE = 1,
         PROP_LOCKED,
+        PROP_SESSION_CLASS,
 } GsmSystemdProps;
+
+/* Nicks must match the logind Session.Class property values */
+G_DEFINE_ENUM_TYPE (GsmSessionClass, gsm_session_class,
+    G_DEFINE_ENUM_VALUE (GSM_SESSION_CLASS_USER, "user"),
+    G_DEFINE_ENUM_VALUE (GSM_SESSION_CLASS_GREETER, "greeter"),
+    G_DEFINE_ENUM_VALUE (GSM_SESSION_CLASS_LOCK_SCREEN, "lock-screen"),
+    G_DEFINE_ENUM_VALUE (GSM_SESSION_CLASS_BACKGROUND, "background")
+)
 
 typedef struct _GsmSystemPrivate
 {
-        gboolean is_active;
-        gboolean is_locked;
+        gboolean        is_active;
+        gboolean        is_locked;
+        GsmSessionClass session_class;
 } GsmSystemPrivate;
 
 G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (GsmSystem, gsm_system, G_TYPE_OBJECT)
@@ -62,6 +72,9 @@ gsm_system_set_property (GObject      *object,
         case PROP_LOCKED:
                 priv->is_locked = g_value_get_boolean (value);
                 break;
+        case PROP_SESSION_CLASS:
+                priv->session_class = g_value_get_enum (value);
+                break;
         }
 }
 
@@ -80,6 +93,9 @@ gsm_system_get_property (GObject    *object,
                 break;
         case PROP_LOCKED:
                 g_value_set_boolean (value, priv->is_locked);
+                break;
+        case PROP_SESSION_CLASS:
+                g_value_set_enum (value, priv->session_class);
                 break;
         }
 }
@@ -120,6 +136,14 @@ gsm_system_class_init (GsmSystemClass *klass)
                                                                "Whether or not session is locked",
                                                                FALSE,
                                                                G_PARAM_READWRITE));
+        g_object_class_install_property (object_class,
+                                         PROP_SESSION_CLASS,
+                                         g_param_spec_enum ("session-class",
+                                                            "Session Class",
+                                                            "The class of the session (user, greeter, lock-screen, background)",
+                                                            GSM_TYPE_SESSION_CLASS,
+                                                            GSM_SESSION_CLASS_USER,
+                                                            G_PARAM_READWRITE));
 }
 
 GsmActionAvailability
@@ -193,6 +217,14 @@ gsm_system_is_locked (GsmSystem *system)
         GsmSystemPrivate *priv = gsm_system_get_instance_private (system);
 
         return priv->is_locked;
+}
+
+GsmSessionClass
+gsm_system_get_session_class (GsmSystem *system)
+{
+        GsmSystemPrivate *priv = gsm_system_get_instance_private (system);
+
+        return priv->session_class;
 }
 
 void
