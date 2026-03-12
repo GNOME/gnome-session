@@ -47,8 +47,10 @@
 
 #define SD_LOGIND_SKIP_INHIBITORS (UINT64_C(1) << 4)
 
-struct _GsmSystemdPrivate
+struct _GsmSystemd
 {
+        GsmSystem        parent_instance;
+
         GSource         *sd_source;
         GDBusProxy      *sd_proxy;
         char            *session_id;
@@ -58,51 +60,40 @@ struct _GsmSystemdPrivate
         gint             strong_inhibit_fd;
         gint             weak_inhibit_fd;
 
-        gboolean         is_active;
-
         gint             delay_inhibit_fd;
         gboolean         prepare_for_shutdown_expected;
 };
 
-enum {
-        PROP_0,
-        PROP_ACTIVE
-};
-
-static void gsm_systemd_system_init (GsmSystemInterface *iface);
-
-G_DEFINE_TYPE_WITH_CODE (GsmSystemd, gsm_systemd, G_TYPE_OBJECT,
-                         G_IMPLEMENT_INTERFACE (GSM_TYPE_SYSTEM,
-                                                gsm_systemd_system_init)
-			 G_ADD_PRIVATE (GsmSystemd))
+G_DEFINE_FINAL_TYPE (GsmSystemd, gsm_systemd, GSM_TYPE_SYSTEM)
 
 static void
 drop_strong_system_inhibitor (GsmSystemd *manager)
 {
-        if (manager->priv->strong_inhibit_fd != -1) {
-                g_debug ("GsmSystemd: Dropping strong system inhibitor fd %d", manager->priv->strong_inhibit_fd);
-                close (manager->priv->strong_inhibit_fd);
-                manager->priv->strong_inhibit_fd = -1;
+
+        if (manager->strong_inhibit_fd != -1) {
+                g_debug ("GsmSystemd: Dropping strong system inhibitor fd %d", manager->strong_inhibit_fd);
+                close (manager->strong_inhibit_fd);
+                manager->strong_inhibit_fd = -1;
         }
 }
 
 static void
 drop_weak_system_inhibitor (GsmSystemd *manager)
 {
-        if (manager->priv->weak_inhibit_fd != -1) {
-                g_debug ("GsmSystemd: Dropping weak system inhibitor fd %d", manager->priv->weak_inhibit_fd);
-                close (manager->priv->weak_inhibit_fd);
-                manager->priv->weak_inhibit_fd = -1;
+        if (manager->weak_inhibit_fd != -1) {
+                g_debug ("GsmSystemd: Dropping weak system inhibitor fd %d", manager->weak_inhibit_fd);
+                close (manager->weak_inhibit_fd);
+                manager->weak_inhibit_fd = -1;
         }
 }
 
 static void
 drop_delay_inhibitor (GsmSystemd *manager)
 {
-        if (manager->priv->delay_inhibit_fd != -1) {
+        if (manager->delay_inhibit_fd != -1) {
                 g_debug ("GsmSystemd: Dropping delay inhibitor");
-                close (manager->priv->delay_inhibit_fd);
-                manager->priv->delay_inhibit_fd = -1;
+                close (manager->delay_inhibit_fd);
+                manager->delay_inhibit_fd = -1;
         }
 }
 
@@ -111,12 +102,12 @@ gsm_systemd_finalize (GObject *object)
 {
         GsmSystemd *systemd = GSM_SYSTEMD (object);
 
-        g_clear_object (&systemd->priv->sd_proxy);
-        free (systemd->priv->session_id);
-        g_free (systemd->priv->session_path);
+        g_clear_object (&systemd->sd_proxy);
+        free (systemd->session_id);
+        g_free (systemd->session_path);
 
-        if (systemd->priv->sd_source) {
-                g_source_destroy (systemd->priv->sd_source);
+        if (systemd->sd_source) {
+                g_source_destroy (systemd->sd_source);
         }
 
         drop_strong_system_inhibitor (systemd);
@@ -124,55 +115,6 @@ gsm_systemd_finalize (GObject *object)
         drop_delay_inhibitor (systemd);
 
         G_OBJECT_CLASS (gsm_systemd_parent_class)->finalize (object);
-}
-
-static void
-gsm_systemd_set_property (GObject      *object,
-                          guint         prop_id,
-                          const GValue *value,
-                          GParamSpec   *pspec)
-{
-        GsmSystemd *self = GSM_SYSTEMD (object);
-
-        switch (prop_id) {
-        case PROP_ACTIVE:
-                self->priv->is_active = g_value_get_boolean (value);
-                break;
-        default:
-                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-        }
-}
-
-static void
-gsm_systemd_get_property (GObject    *object,
-                          guint       prop_id,
-                          GValue     *value,
-                          GParamSpec *pspec)
-{
-        GsmSystemd *self = GSM_SYSTEMD (object);
-
-        switch (prop_id) {
-        case PROP_ACTIVE:
-                g_value_set_boolean (value, self->priv->is_active);
-                break;
-        default:
-                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-                break;
-        }
-}
-
-static void
-gsm_systemd_class_init (GsmSystemdClass *manager_class)
-{
-        GObjectClass *object_class;
-
-        object_class = G_OBJECT_CLASS (manager_class);
-
-        object_class->get_property = gsm_systemd_get_property;
-        object_class->set_property = gsm_systemd_set_property;
-        object_class->finalize = gsm_systemd_finalize;
-
-        g_object_class_override_property (object_class, PROP_ACTIVE, "active");
 }
 
 typedef struct
@@ -255,18 +197,14 @@ static gboolean
 on_sd_source_changed (gpointer user_data)
 {
         GsmSystemd *self = user_data;
-        int active_r;
+        gboolean old_active;
         gboolean active;
 
-        active_r = sd_session_is_active (self->priv->session_id);
-        if (active_r < 0)
-                active = FALSE;
-        else
-                active = active_r;
-        if (active != self->priv->is_active) {
-                self->priv->is_active = active;
-                g_object_notify (G_OBJECT (self), "active");
-        }
+        old_active = gsm_system_is_active (GSM_SYSTEM (self));
+        active = sd_session_is_active (self->session_id) == 1;
+
+        if (old_active != active)
+                g_object_set (self, "active", active, NULL);
 
         return TRUE;
 }
@@ -382,17 +320,15 @@ gsm_systemd_init (GsmSystemd *manager)
         GDBusConnection *bus;
         GVariant *res;
 
-        manager->priv = gsm_systemd_get_instance_private (manager);
-
-        manager->priv->strong_inhibit_fd = -1;
-        manager->priv->weak_inhibit_fd = -1;
-        manager->priv->delay_inhibit_fd = -1;
+        manager->strong_inhibit_fd = -1;
+        manager->weak_inhibit_fd = -1;
+        manager->delay_inhibit_fd = -1;
 
         bus = g_bus_get_sync (G_BUS_TYPE_SYSTEM, NULL, &error);
         if (bus == NULL)
                 g_error ("Failed to connect to system bus: %s",
                          error->message);
-        manager->priv->sd_proxy =
+        manager->sd_proxy =
                 g_dbus_proxy_new_sync (bus,
                                        0,
                                        NULL,
@@ -401,28 +337,28 @@ gsm_systemd_init (GsmSystemd *manager)
                                        SD_INTERFACE,
                                        NULL,
                                        &error);
-        if (manager->priv->sd_proxy == NULL) {
+        if (manager->sd_proxy == NULL) {
                 g_warning ("Failed to connect to systemd: %s",
                            error->message);
                 g_clear_error (&error);
         }
 
-        g_signal_connect (manager->priv->sd_proxy, "g-signal",
+        g_signal_connect (manager->sd_proxy, "g-signal",
                           G_CALLBACK (sd_proxy_signal_cb), manager);
 
-        gsm_systemd_find_session (&manager->priv->session_id);
+        gsm_systemd_find_session (&manager->session_id);
 
-        if (manager->priv->session_id == NULL) {
+        if (manager->session_id == NULL) {
                 g_warning ("Could not get session id for session. Check that logind is "
                            "properly installed and pam_systemd is getting used at login.");
                 return;
         }
 
-        g_debug ("Found session ID: %s", manager->priv->session_id);
+        g_debug ("Found session ID: %s", manager->session_id);
 
-        res = g_dbus_proxy_call_sync (manager->priv->sd_proxy,
+        res = g_dbus_proxy_call_sync (manager->sd_proxy,
                                       "GetSession",
-                                      g_variant_new ("(s)", manager->priv->session_id),
+                                      g_variant_new ("(s)", manager->session_id),
                                       0,
                                       G_MAXINT,
                                       NULL,
@@ -435,12 +371,12 @@ gsm_systemd_init (GsmSystemd *manager)
                 return;
         }
 
-        g_variant_get (res, "(o)", &manager->priv->session_path);
+        g_variant_get (res, "(o)", &manager->session_path);
         g_variant_unref (res);
 
-        manager->priv->sd_source = sd_source_new ();
-        g_source_set_callback (manager->priv->sd_source, on_sd_source_changed, manager, NULL);
-        g_source_attach (manager->priv->sd_source, NULL);
+        manager->sd_source = sd_source_new ();
+        g_source_set_callback (manager->sd_source, on_sd_source_changed, manager, NULL);
+        g_source_attach (manager->sd_source, NULL);
 
         on_sd_source_changed (manager);
 
@@ -454,17 +390,17 @@ gsm_systemd_set_session_idle (GsmSystem *system,
         GsmSystemd *manager = GSM_SYSTEMD (system);
         GDBusConnection *bus;
 
-        if (manager->priv->session_path == NULL) {
+        if (manager->session_path == NULL) {
                 g_warning ("Could not get session path for session. Check that logind is "
                            "properly installed and pam_systemd is getting used at login.");
                 return;
         }
 
         g_debug ("Updating systemd idle status: %d", is_idle);
-        bus = g_dbus_proxy_get_connection (manager->priv->sd_proxy);
+        bus = g_dbus_proxy_get_connection (manager->sd_proxy);
         g_dbus_connection_call (bus,
                                 SD_NAME,
-                                manager->priv->session_path,
+                                manager->session_path,
                                 SD_SESSION_INTERFACE,
                                 "SetIdleHint",
                                 g_variant_new ("(b)", is_idle),
@@ -507,7 +443,7 @@ can_take_action (GsmSystem  *system,
         g_autoptr (GVariant) res = NULL;
         gchar *availability;
 
-        res = g_dbus_proxy_call_sync (manager->priv->sd_proxy, method, NULL,
+        res = g_dbus_proxy_call_sync (manager->sd_proxy, method, NULL,
                                       0, G_MAXINT, NULL, NULL);
         if (!res) {
                 g_warning ("Failed to call %s. Something is very wrong with logind!",
@@ -546,7 +482,7 @@ gsm_systemd_suspend (GsmSystem *system)
         g_autoptr (GVariant) result = NULL;
         g_autoptr (GError) error = NULL;
 
-        result = g_dbus_proxy_call_sync (manager->priv->sd_proxy,
+        result = g_dbus_proxy_call_sync (manager->sd_proxy,
                                          "SuspendWithFlags",
                                          g_variant_new ("(t)", SD_LOGIND_SKIP_INHIBITORS),
                                          G_DBUS_CALL_FLAGS_ALLOW_INTERACTIVE_AUTHORIZATION,
@@ -573,7 +509,7 @@ gsm_systemd_set_restart_to_firmware_setup (GsmSystem *system,
         GVariant *res;
         GError *error = NULL;
 
-        res = g_dbus_proxy_call_sync (manager->priv->sd_proxy,
+        res = g_dbus_proxy_call_sync (manager->sd_proxy,
                                       "SetRebootToFirmwareSetup",
                                       g_variant_new ("(b)", enable),
                                       G_DBUS_CALL_FLAGS_NONE,
@@ -635,11 +571,11 @@ inhibit_strong_done (GObject      *source,
         /* Drop any previous inhibit before recording the new one */
         drop_strong_system_inhibitor (manager);
 
-        manager->priv->strong_inhibit_fd = get_system_inhibitor_finish (source, result);
-        g_debug ("System strong inhibitor fd is %d", manager->priv->strong_inhibit_fd);
+        manager->strong_inhibit_fd = get_system_inhibitor_finish (source, result);
+        g_debug ("System strong inhibitor fd is %d", manager->strong_inhibit_fd);
 
         /* Handle a race condition, where inhibitors got unset during dbus call */
-        if ((manager->priv->inhibited & GSM_INHIBITOR_FLAG_LOGOUT) == 0)
+        if ((manager->inhibited & GSM_INHIBITOR_FLAG_LOGOUT) == 0)
                 drop_strong_system_inhibitor (manager);
 }
 
@@ -653,11 +589,11 @@ inhibit_weak_done (GObject      *source,
         /* Drop any previous inhibit before recording the new one */
         drop_weak_system_inhibitor (manager);
 
-        manager->priv->weak_inhibit_fd = get_system_inhibitor_finish (source, result);
-        g_debug ("System weak inhibitor fd is %d", manager->priv->weak_inhibit_fd);
+        manager->weak_inhibit_fd = get_system_inhibitor_finish (source, result);
+        g_debug ("System weak inhibitor fd is %d", manager->weak_inhibit_fd);
 
         /* Handle a race condition, where inhibitors got unset during dbus call */
-        if ((manager->priv->inhibited & GSM_INHIBITOR_FLAG_SUSPEND) == 0)
+        if ((manager->inhibited & GSM_INHIBITOR_FLAG_SUSPEND) == 0)
                 drop_weak_system_inhibitor (manager);
 }
 
@@ -673,7 +609,7 @@ gsm_systemd_call_inhibit (GsmSystemd          *manager,
         else
                 callback = inhibit_weak_done;
 
-        g_dbus_proxy_call_with_unix_fd_list (manager->priv->sd_proxy,
+        g_dbus_proxy_call_with_unix_fd_list (manager->sd_proxy,
                                              "Inhibit",
                                              g_variant_new ("(ssss)",
                                                             what,
@@ -711,7 +647,7 @@ gsm_systemd_set_inhibitors (GsmSystem        *system,
         } else
                 drop_weak_system_inhibitor (manager);
 
-        manager->priv->inhibited = flags;
+        manager->inhibited = flags;
 }
 
 static void
@@ -719,7 +655,7 @@ gsm_systemd_reacquire_inhibitors (GsmSystemd *manager)
 {
         g_debug ("Reacquiring system inhibitors");
         gsm_systemd_set_inhibitors (GSM_SYSTEM (manager),
-                                    manager->priv->inhibited);
+                                    manager->inhibited);
 }
 
 static void
@@ -742,7 +678,7 @@ reboot_or_poweroff_done (GObject      *source,
                 g_error_free (error);
                 drop_delay_inhibitor (systemd);
                 g_debug ("GsmSystemd: shutdown preparation failed");
-                systemd->priv->prepare_for_shutdown_expected = FALSE;
+                systemd->prepare_for_shutdown_expected = FALSE;
                 g_signal_emit_by_name (systemd, "shutdown-prepared", FALSE);
                 gsm_systemd_reacquire_inhibitors (systemd);
         } else {
@@ -762,7 +698,7 @@ gsm_systemd_prepare_shutdown (GsmSystem *system,
 
         g_debug ("GsmSystemd: prepare shutdown");
 
-        res = g_dbus_proxy_call_with_unix_fd_list_sync (systemd->priv->sd_proxy,
+        res = g_dbus_proxy_call_with_unix_fd_list_sync (systemd->sd_proxy,
                                                         "Inhibit",
                                                         g_variant_new ("(ssss)",
                                                                        "shutdown",
@@ -785,20 +721,20 @@ gsm_systemd_prepare_shutdown (GsmSystem *system,
 
         g_variant_get (res, "(h)", &idx);
 
-        systemd->priv->delay_inhibit_fd = g_unix_fd_list_get (fd_list, idx, NULL);
+        systemd->delay_inhibit_fd = g_unix_fd_list_get (fd_list, idx, NULL);
 
-        g_debug ("GsmSystemd: got delay inhibitor, fd = %d", systemd->priv->delay_inhibit_fd);
+        g_debug ("GsmSystemd: got delay inhibitor, fd = %d", systemd->delay_inhibit_fd);
 
         g_variant_unref (res);
         g_object_unref (fd_list);
 
-        systemd->priv->prepare_for_shutdown_expected = TRUE;
+        systemd->prepare_for_shutdown_expected = TRUE;
 
         /* if we're holding a blocking inhibitor to inhibit shutdown, systemd
          * will prevent us from shutting down */
         drop_strong_system_inhibitor (systemd);
 
-        g_dbus_proxy_call (systemd->priv->sd_proxy,
+        g_dbus_proxy_call (systemd->sd_proxy,
                            restart ? "Reboot" : "PowerOff",
                            g_variant_new ("(b)", TRUE),
                            0,
@@ -818,19 +754,24 @@ gsm_systemd_complete_shutdown (GsmSystem *system)
 }
 
 static void
-gsm_systemd_system_init (GsmSystemInterface *iface)
+gsm_systemd_class_init (GsmSystemdClass *class)
 {
-        iface->can_switch_user = gsm_systemd_can_switch_user;
-        iface->can_shutdown = gsm_systemd_can_shutdown;
-        iface->can_restart = gsm_systemd_can_restart;
-        iface->can_suspend = gsm_systemd_can_suspend;
-        iface->suspend = gsm_systemd_suspend;
-        iface->can_restart_to_firmware_setup = gsm_systemd_can_restart_to_firmware_setup;
-        iface->set_restart_to_firmware_setup = gsm_systemd_set_restart_to_firmware_setup;
-        iface->set_session_idle = gsm_systemd_set_session_idle;
-        iface->set_inhibitors = gsm_systemd_set_inhibitors;
-        iface->prepare_shutdown = gsm_systemd_prepare_shutdown;
-        iface->complete_shutdown = gsm_systemd_complete_shutdown;
+        GObjectClass *object_class = G_OBJECT_CLASS (class);
+        GsmSystemClass *system_class = GSM_SYSTEM_CLASS (class);
+
+        object_class->finalize = gsm_systemd_finalize;
+
+        system_class->can_switch_user = gsm_systemd_can_switch_user;
+        system_class->can_shutdown = gsm_systemd_can_shutdown;
+        system_class->can_restart = gsm_systemd_can_restart;
+        system_class->can_suspend = gsm_systemd_can_suspend;
+        system_class->suspend = gsm_systemd_suspend;
+        system_class->can_restart_to_firmware_setup = gsm_systemd_can_restart_to_firmware_setup;
+        system_class->set_restart_to_firmware_setup = gsm_systemd_set_restart_to_firmware_setup;
+        system_class->set_session_idle = gsm_systemd_set_session_idle;
+        system_class->set_inhibitors = gsm_systemd_set_inhibitors;
+        system_class->prepare_shutdown = gsm_systemd_prepare_shutdown;
+        system_class->complete_shutdown = gsm_systemd_complete_shutdown;
 }
 
 GsmSystem *
@@ -866,11 +807,9 @@ sd_proxy_signal_cb (GDBusProxy  *proxy,
                 return;
         }
 
-        if (systemd->priv->prepare_for_shutdown_expected) {
+        if (systemd->prepare_for_shutdown_expected) {
                 g_debug ("GsmSystemd: shutdown successfully prepared");
                 g_signal_emit_by_name (systemd, "shutdown-prepared", TRUE);
-                systemd->priv->prepare_for_shutdown_expected = FALSE;
+                systemd->prepare_for_shutdown_expected = FALSE;
         }
 }
-
-

@@ -26,96 +26,148 @@
 #include "gsm-system-null.h"
 #include "gsm-systemd.h"
 
-
 enum {
         SHUTDOWN_PREPARED,
         LAST_SIGNAL
 };
 
-enum {
-        PROP_0,
-        PROP_ACTIVE
-};
-
 static guint signals[LAST_SIGNAL] = { 0 };
 
-G_DEFINE_INTERFACE (GsmSystem, gsm_system, G_TYPE_OBJECT)
+enum {
+        PROP_0,
+        PROP_ACTIVE,
+};
+
+typedef struct _GsmSystemPrivate
+{
+        gboolean is_active;
+} GsmSystemPrivate;
+
+G_DEFINE_ABSTRACT_TYPE_WITH_PRIVATE (GsmSystem, gsm_system, G_TYPE_OBJECT)
 
 static void
-gsm_system_default_init (GsmSystemInterface *iface)
+gsm_system_set_property (GObject      *object,
+                         guint         prop_id,
+                         const GValue *value,
+                         GParamSpec   *pspec)
 {
-        GParamSpec *pspec;
+        GsmSystem *system = GSM_SYSTEM (object);
+        GsmSystemPrivate *priv = gsm_system_get_instance_private (system);
+
+        switch (prop_id) {
+        case PROP_ACTIVE:
+                priv->is_active = g_value_get_boolean (value);
+                break;
+        default:
+                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+        }
+}
+
+static void
+gsm_system_get_property (GObject    *object,
+                         guint       prop_id,
+                         GValue     *value,
+                         GParamSpec *pspec)
+{
+        GsmSystem *system = GSM_SYSTEM (object);
+        GsmSystemPrivate *priv = gsm_system_get_instance_private (system);
+
+        switch (prop_id) {
+        case PROP_ACTIVE:
+                g_value_set_boolean (value, priv->is_active);
+                break;
+        default:
+                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+                break;
+        }
+}
+
+static void
+gsm_system_init (GsmSystem *system)
+{
+}
+
+static void
+gsm_system_class_init (GsmSystemClass *klass)
+{
+        GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
+        object_class->get_property = gsm_system_get_property;
+        object_class->set_property = gsm_system_set_property;
+
         signals[SHUTDOWN_PREPARED] =
                  g_signal_new ("shutdown-prepared",
                                GSM_TYPE_SYSTEM,
                                G_SIGNAL_RUN_LAST,
-                               G_STRUCT_OFFSET (GsmSystemInterface, shutdown_prepared),
+                               G_STRUCT_OFFSET (GsmSystemClass, shutdown_prepared),
                                NULL, NULL, NULL,
                                G_TYPE_NONE,
                                1, G_TYPE_BOOLEAN);
-        pspec = g_param_spec_boolean ("active",
-                                      "Active",
-                                      "Whether or not session is active",
-                                      TRUE,
-                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
-        g_object_interface_install_property (iface, pspec);
+
+        g_object_class_install_property (object_class,
+                                         PROP_ACTIVE,
+                                         g_param_spec_boolean ("active",
+                                                               "Active",
+                                                               "Whether or not session is active",
+                                                               TRUE,
+                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
 }
 
 gboolean
 gsm_system_can_switch_user (GsmSystem *system)
 {
-        return GSM_SYSTEM_GET_IFACE (system)->can_switch_user (system);
+        return GSM_SYSTEM_GET_CLASS (system)->can_switch_user (system);
 }
 
 GsmActionAvailability
 gsm_system_can_shutdown (GsmSystem *system)
 {
-        return GSM_SYSTEM_GET_IFACE (system)->can_shutdown (system);
+        return GSM_SYSTEM_GET_CLASS (system)->can_shutdown (system);
 }
 
 GsmActionAvailability
 gsm_system_can_restart (GsmSystem *system)
 {
-        return GSM_SYSTEM_GET_IFACE (system)->can_restart (system);
+        return GSM_SYSTEM_GET_CLASS (system)->can_restart (system);
 }
 
 GsmActionAvailability
 gsm_system_can_suspend (GsmSystem *system)
 {
-        return GSM_SYSTEM_GET_IFACE (system)->can_suspend (system);
+        return GSM_SYSTEM_GET_CLASS (system)->can_suspend (system);
 }
 
 void
 gsm_system_suspend (GsmSystem *system)
 {
-        return GSM_SYSTEM_GET_IFACE (system)->suspend (system);
+        GSM_SYSTEM_GET_CLASS (system)->suspend (system);
 }
 
 gboolean
 gsm_system_can_restart_to_firmware_setup (GsmSystem *system)
 {
-        return GSM_SYSTEM_GET_IFACE (system)->can_restart_to_firmware_setup (system);
+        return GSM_SYSTEM_GET_CLASS (system)->can_restart_to_firmware_setup (system);
 }
 
 void
 gsm_system_set_restart_to_firmware_setup (GsmSystem *system,
                                           gboolean   enable)
 {
-        GSM_SYSTEM_GET_IFACE (system)->set_restart_to_firmware_setup (system, enable);
+        GSM_SYSTEM_GET_CLASS (system)->set_restart_to_firmware_setup (system, enable);
 }
 
 void
 gsm_system_set_session_idle (GsmSystem *system,
                              gboolean   is_idle)
 {
-        GSM_SYSTEM_GET_IFACE (system)->set_session_idle (system, is_idle);
+        GSM_SYSTEM_GET_CLASS (system)->set_session_idle (system, is_idle);
 }
 
 void
 gsm_system_set_inhibitors (GsmSystem        *system,
                            GsmInhibitorFlag  flags)
 {
-        GSM_SYSTEM_GET_IFACE (system)->set_inhibitors (system, flags);
+        GSM_SYSTEM_GET_CLASS (system)->set_inhibitors (system, flags);
 }
 
 /**
@@ -127,22 +179,22 @@ gsm_system_set_inhibitors (GsmSystem        *system,
 gboolean
 gsm_system_is_active (GsmSystem *system)
 {
-        gboolean is_active;
-        g_object_get ((GObject*)system, "active", &is_active, NULL);
-        return is_active;
+        GsmSystemPrivate *priv = gsm_system_get_instance_private (system);
+
+        return priv->is_active;
 }
 
 void
-gsm_system_prepare_shutdown  (GsmSystem *system,
-                              gboolean   restart)
+gsm_system_prepare_shutdown (GsmSystem *system,
+                             gboolean   restart)
 {
-        GSM_SYSTEM_GET_IFACE (system)->prepare_shutdown (system, restart);
+        GSM_SYSTEM_GET_CLASS (system)->prepare_shutdown (system, restart);
 }
 
 void
 gsm_system_complete_shutdown (GsmSystem *system)
 {
-        GSM_SYSTEM_GET_IFACE (system)->complete_shutdown (system);
+        GSM_SYSTEM_GET_CLASS (system)->complete_shutdown (system);
 }
 
 GsmSystem *

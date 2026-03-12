@@ -37,18 +37,12 @@ typedef enum _GsmActionAvailability
         GSM_ACTION_AVAILABLE,
 } GsmActionAvailability;
 
-#define GSM_TYPE_SYSTEM             (gsm_system_get_type ())
-#define GSM_SYSTEM(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), GSM_TYPE_SYSTEM, GsmSystem))
-#define GSM_SYSTEM_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), GSM_TYPE_SYSTEM, GsmSystemInterface))
-#define GSM_IS_SYSTEM(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GSM_TYPE_SYSTEM))
-#define GSM_SYSTEM_GET_IFACE(obj)   (G_TYPE_INSTANCE_GET_INTERFACE((obj), GSM_TYPE_SYSTEM, GsmSystemInterface))
+#define GSM_TYPE_SYSTEM (gsm_system_get_type ())
+G_DECLARE_DERIVABLE_TYPE (GsmSystem, gsm_system, GSM, SYSTEM, GObject)
 
-typedef struct _GsmSystem          GsmSystem;
-typedef struct _GsmSystemInterface GsmSystemInterface;
-
-struct _GsmSystemInterface
+struct _GsmSystemClass
 {
-        GTypeInterface base_interface;
+        GObjectClass parent_class;
 
         void                  (* shutdown_prepared)             (GsmSystem *system,
                                                                  gboolean   success);
@@ -69,7 +63,6 @@ struct _GsmSystemInterface
         void                  (* complete_shutdown)             (GsmSystem *system);
 };
 
-GType                  gsm_system_get_type                      (void);
 GsmSystem *            gsm_get_system                           (void);
 GsmActionAvailability  gsm_system_can_shutdown                  (GsmSystem *system);
 GsmActionAvailability  gsm_system_can_restart                   (GsmSystem *system);

@@ -24,7 +24,7 @@
 G_BEGIN_DECLS
 
 #define GSM_TYPE_SYSTEM_NULL (gsm_system_null_get_type ())
-G_DECLARE_FINAL_TYPE (GsmSystemNull, gsm_system_null, GSM, SYSTEM_NULL, GObject)
+G_DECLARE_FINAL_TYPE (GsmSystemNull, gsm_system_null, GSM, SYSTEM_NULL, GsmSystem)
 
 GsmSystem *gsm_system_null_new (void) G_GNUC_MALLOC;
 
