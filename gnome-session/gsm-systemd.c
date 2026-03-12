@@ -51,10 +51,8 @@ struct _GsmSystemd
 {
         GsmSystem        parent_instance;
 
-        GSource         *sd_source;
         GDBusProxy      *sd_proxy;
-        char            *session_id;
-        gchar           *session_path;
+        GDBusProxy      *sd_session_proxy;
 
         GsmInhibitorFlag inhibited;
         gint             strong_inhibit_fd;
@@ -103,110 +101,13 @@ gsm_systemd_finalize (GObject *object)
         GsmSystemd *systemd = GSM_SYSTEMD (object);
 
         g_clear_object (&systemd->sd_proxy);
-        free (systemd->session_id);
-        g_free (systemd->session_path);
-
-        if (systemd->sd_source) {
-                g_source_destroy (systemd->sd_source);
-        }
+        g_clear_object (&systemd->sd_session_proxy);
 
         drop_strong_system_inhibitor (systemd);
         drop_weak_system_inhibitor (systemd);
         drop_delay_inhibitor (systemd);
 
         G_OBJECT_CLASS (gsm_systemd_parent_class)->finalize (object);
-}
-
-typedef struct
-{
-        GSource source;
-        GPollFD pollfd;
-        sd_login_monitor *monitor;
-} SdSource;
-
-static gboolean
-sd_source_prepare (GSource *source,
-                   gint    *timeout)
-{
-        *timeout = -1;
-        return FALSE;
-}
-
-static gboolean
-sd_source_check (GSource *source)
-{
-        SdSource *sd_source = (SdSource *)source;
-
-        return sd_source->pollfd.revents != 0;
-}
-
-static gboolean
-sd_source_dispatch (GSource     *source,
-                    GSourceFunc  callback,
-                    gpointer     user_data)
-
-{
-        SdSource *sd_source = (SdSource *)source;
-        gboolean ret;
-
-        g_warn_if_fail (callback != NULL);
-
-        ret = (*callback) (user_data);
-
-        sd_login_monitor_flush (sd_source->monitor);
-        return ret;
-}
-
-static void
-sd_source_finalize (GSource *source)
-{
-        SdSource *sd_source = (SdSource*)source;
-
-        sd_login_monitor_unref (sd_source->monitor);
-}
-
-static GSourceFuncs sd_source_funcs = {
-        sd_source_prepare,
-        sd_source_check,
-        sd_source_dispatch,
-        sd_source_finalize
-};
-
-static GSource *
-sd_source_new (void)
-{
-        GSource *source;
-        SdSource *sd_source;
-        int ret;
-
-        source = g_source_new (&sd_source_funcs, sizeof (SdSource));
-        sd_source = (SdSource *)source;
-
-        if ((ret = sd_login_monitor_new ("session", &sd_source->monitor)) < 0) {
-                g_warning ("Error getting login monitor: %d", ret);
-        } else {
-                sd_source->pollfd.fd = sd_login_monitor_get_fd (sd_source->monitor);
-                sd_source->pollfd.events = G_IO_IN;
-                g_source_add_poll (source, &sd_source->pollfd);
-        }
-
-        return source;
-}
-
-static gboolean
-on_sd_source_changed (gpointer user_data)
-{
-        GsmSystemd *self = user_data;
-        gboolean old_active;
-        gboolean active;
-
-        old_active = gsm_system_is_active (GSM_SYSTEM (self));
-        active = sd_session_is_active (self->session_id) == 1;
-
-        if (old_active != active)
-                g_object_set (self, "active", active, NULL);
-
-        return TRUE;
 }
 
 static void sd_proxy_signal_cb (GDBusProxy  *proxy,
@@ -314,10 +215,45 @@ gsm_systemd_find_session (char **session_id)
 }
 
 static void
+update_session_active (GsmSystemd *manager)
+{
+        g_autoptr (GVariant) v = NULL;
+        gboolean old_active;
+        gboolean active;
+
+        v = g_dbus_proxy_get_cached_property (manager->sd_session_proxy, "Active");
+        if (v == NULL)
+                return;
+
+        old_active = gsm_system_is_active (GSM_SYSTEM (manager));
+        active = g_variant_get_boolean (v);
+
+        if (old_active != active)
+                g_object_set (manager, "active", active, NULL);
+}
+
+static void
+on_session_property_changed (GDBusProxy  *proxy,
+                             GVariant    *changed_properties,
+                             char       **invalidated_properties,
+                             gpointer     user_data)
+{
+        GsmSystemd *manager = user_data;
+        GVariantDict changed;
+
+        g_variant_dict_init (&changed, changed_properties);
+
+        if (g_variant_dict_contains (&changed, "Active"))
+                update_session_active (manager);
+}
+
+static void
 gsm_systemd_init (GsmSystemd *manager)
 {
-        GError *error = NULL;
+        g_autoptr (GError) error = NULL;
         g_autoptr (GDBusConnection) bus = NULL;
+        g_autofree char *session_id = NULL;
+        g_autofree char *session_path = NULL;
         GVariant *res;
 
         manager->strong_inhibit_fd = -1;
@@ -325,12 +261,15 @@ gsm_systemd_init (GsmSystemd *manager)
         manager->delay_inhibit_fd = -1;
 
         bus = g_bus_get_sync (G_BUS_TYPE_SYSTEM, NULL, &error);
-        if (bus == NULL)
+        if (bus == NULL) {
                 g_error ("Failed to connect to system bus: %s",
                          error->message);
+                return;
+        }
+
         manager->sd_proxy =
                 g_dbus_proxy_new_sync (bus,
-                                       0,
+                                       G_DBUS_PROXY_FLAGS_NONE,
                                        NULL,
                                        SD_NAME,
                                        SD_PATH,
@@ -340,45 +279,55 @@ gsm_systemd_init (GsmSystemd *manager)
         if (manager->sd_proxy == NULL) {
                 g_warning ("Failed to connect to systemd: %s",
                            error->message);
-                g_clear_error (&error);
+                return;
         }
 
         g_signal_connect (manager->sd_proxy, "g-signal",
                           G_CALLBACK (sd_proxy_signal_cb), manager);
 
-        gsm_systemd_find_session (&manager->session_id);
-
-        if (manager->session_id == NULL) {
+        gsm_systemd_find_session (&session_id);
+        if (session_id == NULL) {
                 g_warning ("Could not get session id for session. Check that logind is "
                            "properly installed and pam_systemd is getting used at login.");
                 return;
         }
 
-        g_debug ("Found session ID: %s", manager->session_id);
+        g_debug ("Found session ID: %s", session_id);
 
         res = g_dbus_proxy_call_sync (manager->sd_proxy,
                                       "GetSession",
-                                      g_variant_new ("(s)", manager->session_id),
+                                      g_variant_new ("(s)", session_id),
                                       0,
                                       G_MAXINT,
                                       NULL,
                                       &error);
         if (res == NULL) {
-                g_warning ("Could not get session id for session. Check that logind is "
+                g_warning ("Could not get session path for session. Check that logind is "
                            "properly installed and pam_systemd is getting used at login: %s",
                            error->message);
-                g_error_free (error);
                 return;
         }
 
-        g_variant_get (res, "(o)", &manager->session_path);
+        g_variant_get (res, "(o)", &session_path);
         g_variant_unref (res);
 
-        manager->sd_source = sd_source_new ();
-        g_source_set_callback (manager->sd_source, on_sd_source_changed, manager, NULL);
-        g_source_attach (manager->sd_source, NULL);
+        manager->sd_session_proxy =
+                g_dbus_proxy_new_sync (bus,
+                                       G_DBUS_PROXY_FLAGS_NONE,
+                                       NULL,
+                                       SD_NAME,
+                                       session_path,
+                                       SD_SESSION_INTERFACE,
+                                       NULL,
+                                       &error);
+        if (manager->sd_session_proxy == NULL) {
+                g_warning ("Failed to create session proxy: %s", error->message);
+                return;
+        }
 
-        on_sd_source_changed (manager);
+        g_signal_connect (manager->sd_session_proxy, "g-properties-changed",
+                          G_CALLBACK (on_session_property_changed), manager);
+        update_session_active (manager);
 }
 
 static void
@@ -386,26 +335,19 @@ gsm_systemd_set_session_idle (GsmSystem *system,
                               gboolean   is_idle)
 {
         GsmSystemd *manager = GSM_SYSTEMD (system);
-        GDBusConnection *bus;
 
-        if (manager->session_path == NULL) {
-                g_warning ("Could not get session path for session. Check that logind is "
+        if (manager->sd_session_proxy == NULL) {
+                g_warning ("Could not get session proxy for session. Check that logind is "
                            "properly installed and pam_systemd is getting used at login.");
                 return;
         }
 
         g_debug ("Updating systemd idle status: %d", is_idle);
-        bus = g_dbus_proxy_get_connection (manager->sd_proxy);
-        g_dbus_connection_call (bus,
-                                SD_NAME,
-                                manager->session_path,
-                                SD_SESSION_INTERFACE,
-                                "SetIdleHint",
-                                g_variant_new ("(b)", is_idle),
-                                G_VARIANT_TYPE_BOOLEAN,
-                                0,
-                                G_MAXINT,
-                                NULL, NULL, NULL);
+        g_dbus_proxy_call (manager->sd_session_proxy,
+                           "SetIdleHint",
+                           g_variant_new ("(b)", is_idle),
+                           G_DBUS_CALL_FLAGS_NONE,
+                           -1, NULL, NULL, NULL);
 }
 
 static gboolean

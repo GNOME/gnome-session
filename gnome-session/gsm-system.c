@@ -110,7 +110,7 @@ gsm_system_class_init (GsmSystemClass *klass)
                                                                "Active",
                                                                "Whether or not session is active",
                                                                TRUE,
-                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+                                                               G_PARAM_READWRITE));
 }
 
 gboolean
