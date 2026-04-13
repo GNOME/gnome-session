@@ -303,7 +303,6 @@ on_open_finished (GObject *source,
 
         if (error != NULL) {
                 g_warning ("Unable to open shell end session dialog: %s", error->message);
-                g_error_free (error);
 
                 g_signal_emit (G_OBJECT (shell), signals[END_SESSION_DIALOG_OPEN_FAILED], 0);
                 return;
