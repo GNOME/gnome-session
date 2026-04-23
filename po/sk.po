@@ -10,14 +10,15 @@
 # Dusan B. <drunkez@gmail.com>, 2019.
 # Matej Mrenica <matejm98mthw@gmail.com>, 2021.
 # Dušan Kazik <prescott66@gmail.com>, 2012-2021.
+# Jose Riha <jose1711@gmail.com>, 2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2025-09-08 16:57+0000\n"
-"PO-Revision-Date: 2025-09-08 20:28+0200\n"
-"Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
+"POT-Creation-Date: 2026-02-27 22:48+0000\n"
+"PO-Revision-Date: 2026-04-23 16:49+0200\n"
+"Last-Translator: Jose Riha <jose1711@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
@@ -32,22 +33,13 @@ msgid "GNOME"
 msgstr "GNOME"
 
 # desktop entry comment
-#: data/gnome.desktop.in.in:3 data/gnome-wayland.desktop.in.in:3
-#: data/gnome-xorg.desktop.in.in:3
+#: data/gnome.desktop.in.in:3
 msgid "This session logs you into GNOME"
 msgstr "Táto relácia vás prihlási do GNOME"
 
-#: data/gnome-wayland.desktop.in.in:2
-msgid "GNOME on Wayland"
-msgstr "GNOME cez Wayland"
-
-#: data/gnome-xorg.desktop.in.in:2
-msgid "GNOME on Xorg"
-msgstr "GNOME cez Xorg"
-
 #: data/org.gnome.SessionManager.gschema.xml:5
 msgid "Logout prompt"
-msgstr "Výzvna na odhlásenie"
+msgstr "Výzva na odhlásenie"
 
 #: data/org.gnome.SessionManager.gschema.xml:6
 msgid "If enabled, gnome-session will prompt the user before ending a session."
@@ -67,43 +59,43 @@ msgstr ""
 "Ak je povolené, gnome-session zobrazí po prihlásení upozornenie, ak sa "
 "automaticky použije záchranný režim."
 
-#: gnome-session/gsm-manager.c:709 gnome-session/gsm-manager.c:1040
+#: gnome-session/gsm-manager.c:718 gnome-session/gsm-manager.c:1056
 msgid "Not responding"
 msgstr "Neodpovedá"
 
 # button
-#: gnome-session/gsm-util.c:167
+#: gnome-session/gsm-util.c:170
 msgid "_Log out"
 msgstr "Odh_lásiť sa"
 
 # cmd desc
-#: gnome-session/leader-main.c:181 gnome-session/service-main.c:148
+#: gnome-session/leader-main.c:193 gnome-session/service-main.c:148
 msgid "Session to use"
 msgstr "Relácia, ktorá bude použitá"
 
-#: gnome-session/leader-main.c:181 gnome-session/service-main.c:148
+#: gnome-session/leader-main.c:193 gnome-session/service-main.c:148
 msgid "SESSION_NAME"
 msgstr "NÁZOV_RELÁCIE"
 
 # cmd desc
-#: gnome-session/leader-main.c:182
+#: gnome-session/leader-main.c:194
 msgid "Enable debugging code"
 msgstr "Povolí ladiaci kód"
 
 # cmd desc
-#: gnome-session/leader-main.c:183
+#: gnome-session/leader-main.c:195
 msgid "Version of this application"
 msgstr "Verzia tejto aplikácie"
 
-#: gnome-session/leader-main.c:184
+#: gnome-session/leader-main.c:196
 msgid "This option is ignored"
 msgstr "Táto voľba je ignorovaná"
 
-#: gnome-session/leader-main.c:185
+#: gnome-session/leader-main.c:197
 msgid "Don't re-exec into a login shell"
-msgstr ""
+msgstr "Nespustí sa znova ako prihlasovací shell"
 
-#: gnome-session/leader-main.c:203 gnome-session/service-main.c:157
+#: gnome-session/leader-main.c:211 gnome-session/service-main.c:157
 msgid " — the GNOME session manager"
 msgstr " — správca relácie GNOME"
 
@@ -116,7 +108,7 @@ msgid ""
 "Start gnome-session-shutdown.target when receiving EOF or a single byte on "
 "stdin"
 msgstr ""
-"Spustí gnome-session-shutdown.target pri obdržaní EOF alebo jedného bajtu zo "
+"Spustí gnome-session-shutdown.target po prijatí EOF alebo jedného bajtu zo "
 "štandardného vstupu"
 
 #: tools/gnome-session-ctl.c:249
@@ -132,77 +124,80 @@ msgid ""
 "Run from ExecStopPost to start gnome-session-shutdown.target on service "
 "failure"
 msgstr ""
-"Spustením z ExecStopPost spustíte gnome-session-shutdown.target pri zlyhaní "
+"Spustí z ExecStopPost na aktiváciu gnome-session-shutdown.target pri zlyhaní "
 "služby"
 
 #: tools/gnome-session-ctl.c:281
+#, c-format
 msgid "Program needs exactly one parameter"
 msgstr "Program vyžaduje presne jeden parameter"
 
-#: tools/gnome-session-inhibit.c:69
+#: tools/gnome-session-inhibit.c:68
 #, c-format
 msgid "Unknown inhibit argument: %s"
 msgstr "Neznámy parameter potlačenia: %s"
 
-#: tools/gnome-session-inhibit.c:289
+#: tools/gnome-session-inhibit.c:288
 #, c-format
 msgid "Failed to execute %s: %m\n"
 msgstr "Zlyhalo spustenie príkazu %s: %m\n"
 
-#: tools/gnome-session-inhibit.c:361
+#: tools/gnome-session-inhibit.c:360
 msgid "Show program version"
 msgstr "Zobrazí verziu programu"
 
-#: tools/gnome-session-inhibit.c:362
+#: tools/gnome-session-inhibit.c:361
 msgid "The application id to use when inhibiting (optional)"
 msgstr ""
 "Identifikátor aplikácie, ktorý sa má použiť počas potláčania (voliteľný)"
 
-#: tools/gnome-session-inhibit.c:362
+#: tools/gnome-session-inhibit.c:361
 msgid "ID"
 msgstr "IDENTIFIKÁTOR"
 
-#: tools/gnome-session-inhibit.c:363
+#: tools/gnome-session-inhibit.c:362
 msgid "The reason for inhibiting (optional)"
 msgstr "Dôvod potlačenia (voliteľný)"
 
-#: tools/gnome-session-inhibit.c:363
+#: tools/gnome-session-inhibit.c:362
 msgid "REASON"
 msgstr "DÔVOD"
 
-#: tools/gnome-session-inhibit.c:364
+#: tools/gnome-session-inhibit.c:363
 msgid "Add action to inhibit (repeatable)"
-msgstr ""
+msgstr "Pridá akciu na potlačenie (opakovateľné)"
 
-#: tools/gnome-session-inhibit.c:364
+#: tools/gnome-session-inhibit.c:363
 msgid "ACTION"
 msgstr "AKCIA"
 
-#: tools/gnome-session-inhibit.c:365
+#: tools/gnome-session-inhibit.c:364
 msgid "Do not launch COMMAND and wait forever instead"
-msgstr ""
+msgstr "Nespustí PRÍKAZ, ale bude miesto toho čakať donekonečna"
 
-#: tools/gnome-session-inhibit.c:366
+#: tools/gnome-session-inhibit.c:365
 msgid "List the existing inhibitions, and exit"
-msgstr ""
+msgstr "Vypíše existujúce potláčania a ukončí sa"
 
-#: tools/gnome-session-inhibit.c:378
+#: tools/gnome-session-inhibit.c:377
 msgid "COMMAND"
 msgstr "PRÍKAZ"
 
-#: tools/gnome-session-inhibit.c:384
+#: tools/gnome-session-inhibit.c:383
 msgid "Execute COMMAND while inhibiting some session functionality."
-msgstr ""
+msgstr "Spustí PRÍKAZ počas potlačenia niektorých funkcií relácie."
 
-#: tools/gnome-session-inhibit.c:385
+#: tools/gnome-session-inhibit.c:384
 msgid ""
 "Valid ACTION values are: logout, switch-user, suspend, idle, and automount.\n"
 "If no --inhibit options are specified, idle is assumed."
 msgstr ""
+"Platné hodnoty pre AKCIA sú: logout, switch-user, suspend, idle a automount.\n"
+"Ak nie je určená žiadna voľba --inhibit, predpokladá sa idle."
 
 #: tools/gnome-session-inhibit.c:409
 msgid "Neither COMMAND nor --inhibit-only were specified."
-msgstr ""
+msgstr "Nebol zadaný ani PRÍKAZ ani --inhibit-only."
 
 # cmd desc
 #: tools/gnome-session-quit.c:50
@@ -222,7 +217,7 @@ msgstr "Uskutoční reštart"
 # cmd desc
 #: tools/gnome-session-quit.c:53
 msgid "Ignoring any existing inhibitors"
-msgstr "Budú sa ignorovať akékoľvek potlačenia"
+msgstr "Ignoruje akékoľvek potlačenia"
 
 # cmd desc
 #: tools/gnome-session-quit.c:54
@@ -236,6 +231,12 @@ msgstr "Nepodarilo sa pripojiť k správcovi relácií"
 #: tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
 msgstr "Program volaný s konfliktnými voľbami"
+
+#~ msgid "GNOME on Wayland"
+#~ msgstr "GNOME cez Wayland"
+
+#~ msgid "GNOME on Xorg"
+#~ msgstr "GNOME cez Xorg"
 
 # desktop entry name
 #~ msgid "Custom"
