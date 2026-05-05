@@ -1,0 +1,202 @@
+# Lao translation for gnome-session.
+# Copyright (C) 2026 gnome-session's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gnome-session package.
+# bone NI <bounkirdni@gmail.com>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: gnome-session gnome-50\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
+"POT-Creation-Date: 2026-02-27 22:48+0000\n"
+"PO-Revision-Date: 2026-02-27 22:48+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Lao <lo@li.org>\n"
+"Language: lo\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: data/gnome.desktop.in.in:2 data/gnome.session.desktop:2
+msgid "GNOME"
+msgstr "GNOME"
+
+#: data/gnome.desktop.in.in:3
+msgid "This session logs you into GNOME"
+msgstr "ເຊດຊັນນີ້ຈະນຳທ່ານເຂົ້າສູ່ລະບົບ GNOME"
+
+#: data/org.gnome.SessionManager.gschema.xml:5
+msgid "Logout prompt"
+msgstr "ການຖາມກ່ອນອອກຈາກລະບົບ"
+
+#: data/org.gnome.SessionManager.gschema.xml:6
+msgid "If enabled, gnome-session will prompt the user before ending a session."
+msgstr "ຖ້າເປີດໃຊ້, gnome-session ຈະຖາມຜູ້ໃຊ້ກ່ອນທີ່ຈະສິ້ນສຸດເຊດຊັນ."
+
+#: data/org.gnome.SessionManager.gschema.xml:10
+msgid "Show the fallback warning"
+msgstr "ສະແດງຄຳເຕືອນກ່ຽວກັບການໃຊ້ແບບສຳຮອງ"
+
+#: data/org.gnome.SessionManager.gschema.xml:11
+msgid ""
+"If enabled, gnome-session will display a warning dialog after login if the "
+"session was automatically fallen back."
+msgstr "ຖ້າເປີດໃຊ້, gnome-session ຈະສະແດງກ່ອງຂໍ້ຄວາມເຕືອນຫຼັງຈາກເຂົ້າສູ່ລະບົບ ຫາກເຊດຊັນຖືກປ່ຽນໄປໃຊ້ແບບສຳຮອງໂດຍອັດຕະໂນມັດ."
+
+#: gnome-session/gsm-manager.c:718 gnome-session/gsm-manager.c:1056
+msgid "Not responding"
+msgstr "ບໍ່ຕອບສະໜອງ"
+
+#: gnome-session/gsm-util.c:170
+msgid "_Log out"
+msgstr "_ອອກຈາກລະບົບ"
+
+#: gnome-session/leader-main.c:193 gnome-session/service-main.c:148
+msgid "Session to use"
+msgstr "ເຊດຊັນທີ່ຈະໃຊ້"
+
+#: gnome-session/leader-main.c:193 gnome-session/service-main.c:148
+msgid "SESSION_NAME"
+msgstr "ຊື່_ເຊດຊັນ"
+
+#: gnome-session/leader-main.c:194
+msgid "Enable debugging code"
+msgstr "ເປີດໃຊ້ລະຫັດແກ້ໄຂຈຸດບົກພ່ອງ"
+
+#: gnome-session/leader-main.c:195
+msgid "Version of this application"
+msgstr "ເວີຊັນຂອງແອັບພລິເຄຊັນນີ້"
+
+#: gnome-session/leader-main.c:196
+msgid "This option is ignored"
+msgstr "ຕົວເລືອກນີ້ຖືກລະເລີຍ"
+
+#: gnome-session/leader-main.c:197
+msgid "Don't re-exec into a login shell"
+msgstr "ຢ່າປະຕິບັດການຄືນໃໝ່ໃນ login shell"
+
+#: gnome-session/leader-main.c:211 gnome-session/service-main.c:157
+msgid " — the GNOME session manager"
+msgstr " — ຕົວຈັດການເຊດຊັນຂອງ GNOME"
+
+#: tools/gnome-session-ctl.c:247
+msgid "Start gnome-session-shutdown.target"
+msgstr "ເລີ່ມ gnome-session-shutdown.target"
+
+#: tools/gnome-session-ctl.c:248
+msgid ""
+"Start gnome-session-shutdown.target when receiving EOF or a single byte on "
+"stdin"
+msgstr "ເລີ່ມ gnome-session-shutdown.target ເມື່ອໄດ້ຮັບ EOF ຫຼື ໄບຕ໌ດຽວໃນ stdin"
+
+#: tools/gnome-session-ctl.c:249
+msgid "Signal initialization done to gnome-session"
+msgstr "ການເລີ່ມຕົ້ນສັນຍານໄປຫາ gnome-session ສຳເລັດແລ້ວ"
+
+#: tools/gnome-session-ctl.c:250
+msgid "Restart dbus.service if it is running"
+msgstr "ເລີ່ມ dbus.service ໃໝ່ ຖ້າມັນກຳລັງເຮັດວຽກຢູ່"
+
+#: tools/gnome-session-ctl.c:251
+msgid ""
+"Run from ExecStopPost to start gnome-session-shutdown.target on service "
+"failure"
+msgstr "ແລ່ນຈາກ ExecStopPost ເພື່ອເລີ່ມ gnome-session-shutdown.target ເມື່ອການບໍລິການມີຂໍ້ຜິດພາດ"
+
+#: tools/gnome-session-ctl.c:281
+#, c-format
+msgid "Program needs exactly one parameter"
+msgstr "ໂປຣແກຣມຕ້ອງການພຽງແຕ່ໜຶ່ງພາລາມິເຕີເທົ່ານັ້ນ"
+
+#: tools/gnome-session-inhibit.c:68
+#, c-format
+msgid "Unknown inhibit argument: %s"
+msgstr "ບໍ່ຮູ້ຈັກອາກິວເມນການຢັບຢັ້ງ: %s"
+
+#: tools/gnome-session-inhibit.c:288
+#, c-format
+msgid "Failed to execute %s: %m\n"
+msgstr "ບໍ່ສາມາດປະຕິບັດ %s: %m\n"
+
+#: tools/gnome-session-inhibit.c:360
+msgid "Show program version"
+msgstr "ສະແດງເວີຊັນຂອງໂປຣແກຣມ"
+
+#: tools/gnome-session-inhibit.c:361
+msgid "The application id to use when inhibiting (optional)"
+msgstr "ໄອດີຂອງແອັບພລິເຄຊັນທີ່ຈະໃຊ້ໃນການຢັບຢັ້ງ (ເປັນທາງເລືອກ)"
+
+#: tools/gnome-session-inhibit.c:361
+msgid "ID"
+msgstr "ໄອດີ"
+
+#: tools/gnome-session-inhibit.c:362
+msgid "The reason for inhibiting (optional)"
+msgstr "ເຫດຜົນໃນການຢັບຢັ້ງ (ເປັນທາງເລືອກ)"
+
+#: tools/gnome-session-inhibit.c:362
+msgid "REASON"
+msgstr "ເຫດຜົນ"
+
+#: tools/gnome-session-inhibit.c:363
+msgid "Add action to inhibit (repeatable)"
+msgstr "ເພີ່ມການກະທຳເພື່ອຢັບຢັ້ງ (ສາມາດເຮັດຊ້ຳໄດ້)"
+
+#: tools/gnome-session-inhibit.c:363
+msgid "ACTION"
+msgstr "ການກະທຳ"
+
+#: tools/gnome-session-inhibit.c:364
+msgid "Do not launch COMMAND and wait forever instead"
+msgstr "ຢ່າເປີດ COMMAND ແລະ ໃຫ້ລໍຖ້າຕະຫຼອດໄປແທນ"
+
+#: tools/gnome-session-inhibit.c:365
+msgid "List the existing inhibitions, and exit"
+msgstr "ສະແດງລາຍການການຢັບຢັ້ງທີ່ມີຢູ່ ແລະ ອອກ"
+
+#: tools/gnome-session-inhibit.c:377
+msgid "COMMAND"
+msgstr "ຄຳສັ່ງ"
+
+#: tools/gnome-session-inhibit.c:383
+msgid "Execute COMMAND while inhibiting some session functionality."
+msgstr "ປະຕິບັດຄຳສັ່ງ (COMMAND) ໃນຂະນະທີ່ຢັບຢັ້ງບາງຟັງຊັນຂອງເຊດຊັນ."
+
+#: tools/gnome-session-inhibit.c:384
+msgid ""
+"Valid ACTION values are: logout, switch-user, suspend, idle, and automount.\n"
+"If no --inhibit options are specified, idle is assumed."
+msgstr ""
+"ຄ່າ ACTION ທີ່ຖືກຕ້ອງຄື: logout, switch-user, suspend, idle, ແລະ automount.\n"
+"ຖ້າບໍ່ມີການກຳນົດຕົວເລືອກ --inhibit, ຈະຖືວ່າເປັນ idle."
+
+#: tools/gnome-session-inhibit.c:409
+msgid "Neither COMMAND nor --inhibit-only were specified."
+msgstr "ບໍ່ໄດ້ກຳນົດທັງ COMMAND ຫຼື --inhibit-only."
+
+#: tools/gnome-session-quit.c:50
+msgid "Log out"
+msgstr "ອອກຈາກລະບົບ"
+
+#: tools/gnome-session-quit.c:51
+msgid "Power off"
+msgstr "ປິດເຄື່ອງ"
+
+#: tools/gnome-session-quit.c:52
+msgid "Reboot"
+msgstr "ເລີ່ມລະບົບໃໝ່"
+
+#: tools/gnome-session-quit.c:53
+msgid "Ignoring any existing inhibitors"
+msgstr "ລະເລີຍຕົວຢັບຢັ້ງໃດໆທີ່ມີຢູ່"
+
+#: tools/gnome-session-quit.c:54
+msgid "Don’t prompt for user confirmation"
+msgstr "ບໍ່ຕ້ອງຖາມເພື່ອໃຫ້ຜູ້ໃຊ້ຢືນຢັນ"
+
+#: tools/gnome-session-quit.c:88 tools/gnome-session-quit.c:102
+msgid "Could not connect to the session manager"
+msgstr "ບໍ່ສາມາດເຊື່ອມຕໍ່ກັບຕົວຈັດການເຊດຊັນໄດ້"
+
+#: tools/gnome-session-quit.c:198
+msgid "Program called with conflicting options"
+msgstr "ໂປຣແກຣມຖືກເອີ້ນໃຊ້ດ້ວຍຕົວເລືອກທີ່ຂັດແຍ້ງກັນ"
