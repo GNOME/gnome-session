@@ -422,9 +422,6 @@ gsm_inhibitor_set_property (GObject       *object,
         case PROP_COOKIE:
                 gsm_inhibitor_set_cookie (self, g_value_get_uint (value));
                 break;
-        default:
-                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-                break;
         }
 }
 
@@ -456,9 +453,6 @@ gsm_inhibitor_get_property (GObject    *object,
                 break;
         case PROP_COOKIE:
                 g_value_set_uint (value, self->priv->cookie);
-                break;
-        default:
-                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                 break;
         }
 }

@@ -1126,9 +1126,6 @@ gsm_manager_get_property (GObject    *object,
         case PROP_SESSION_NAME:
                 g_value_set_string (value, self->session_name);
                 break;
-        default:
-                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-                break;
         }
 }
 

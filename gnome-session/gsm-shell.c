@@ -94,11 +94,6 @@ gsm_shell_get_property (GObject    *object,
                 g_value_set_boolean (value,
                                      shell->priv->is_running);
                 break;
-
-        default:
-                G_OBJECT_WARN_INVALID_PROPERTY_ID (object,
-                                                   prop_id,
-                                                   pspec);
         }
 }
 

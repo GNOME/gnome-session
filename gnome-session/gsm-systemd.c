@@ -138,8 +138,6 @@ gsm_systemd_set_property (GObject      *object,
         case PROP_ACTIVE:
                 self->priv->is_active = g_value_get_boolean (value);
                 break;
-        default:
-                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
         }
 }
 
@@ -154,9 +152,6 @@ gsm_systemd_get_property (GObject    *object,
         switch ((GsmSystemdProps) prop_id) {
         case PROP_ACTIVE:
                 g_value_set_boolean (value, self->priv->is_active);
-                break;
-        default:
-                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                 break;
         }
 }

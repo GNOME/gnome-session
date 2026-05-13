@@ -211,9 +211,6 @@ gsm_client_set_property (GObject       *object,
         case PROP_BUS_NAME:
                 gsm_client_set_bus_name (self, g_value_get_string (value));
                 break;
-        default:
-                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-                break;
         }
 }
 
@@ -231,9 +228,6 @@ gsm_client_get_property (GObject    *object,
                 break;
         case PROP_BUS_NAME:
                 g_value_set_string (value, self->bus_name);
-                break;
-        default:
-                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                 break;
         }
 }

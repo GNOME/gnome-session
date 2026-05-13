@@ -165,8 +165,6 @@ gsm_session_save_set_property (GObject      *object,
         case PROP_SESSION_ID:
                 gsm_session_save_set_session_id (save, g_value_get_string (value));
                 break;
-        default:
-                break;
         }
 }
 
@@ -181,8 +179,6 @@ gsm_session_save_get_property (GObject    *object,
         switch ((GsmSessionSaveProps) prop_id) {
         case PROP_SESSION_ID:
                 g_value_set_string (value, save->session_id);
-                break;
-        default:
                 break;
         }
 }

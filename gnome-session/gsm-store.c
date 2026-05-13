@@ -281,9 +281,6 @@ gsm_store_set_property (GObject      *object,
         case PROP_LOCKED:
                 gsm_store_set_locked (self, g_value_get_boolean (value));
                 break;
-        default:
-                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-                break;
         }
 }
 
@@ -300,9 +297,6 @@ gsm_store_get_property (GObject    *object,
         switch ((GsmStoreProps) prop_id) {
         case PROP_LOCKED:
                 g_value_set_boolean (value, self->priv->locked);
-                break;
-        default:
-                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                 break;
         }
 }

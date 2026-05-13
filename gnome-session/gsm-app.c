@@ -89,8 +89,6 @@ gsm_app_set_property (GObject      *object,
         case PROP_INNER:
                 gsm_app_set_inner (app, g_value_get_object (value));
                 break;
-        default:
-                break;
         }
 }
 
@@ -105,8 +103,6 @@ gsm_app_get_property (GObject    *object,
         switch ((GsmAppProps) prop_id) {
         case PROP_INNER:
                 g_value_set_object (value, app->inner);
-                break;
-        default:
                 break;
         }
 }

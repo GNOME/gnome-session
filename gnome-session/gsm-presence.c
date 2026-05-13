@@ -441,9 +441,6 @@ gsm_presence_set_property (GObject       *object,
         case PROP_IDLE_TIMEOUT:
                 gsm_presence_set_idle_timeout (self, g_value_get_uint (value));
                 break;
-        default:
-                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-                break;
         }
 }
 
@@ -463,9 +460,6 @@ gsm_presence_get_property (GObject    *object,
                 break;
         case PROP_IDLE_TIMEOUT:
                 g_value_set_uint (value, self->priv->idle_timeout);
-                break;
-        default:
-                G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
                 break;
         }
 }
