@@ -219,11 +219,10 @@ unregister_client (void)
         return TRUE;
 }
 
-static gboolean
+static void
 quit_test (gpointer data)
 {
         g_main_loop_quit (main_loop);
-        return FALSE;
 }
 
 int
@@ -247,7 +246,7 @@ main (int   argc,
 
         main_loop = g_main_loop_new (NULL, FALSE);
 
-        g_timeout_add_seconds (30, quit_test, NULL);
+        g_timeout_add_seconds_once (30, quit_test, NULL);
 
         g_main_loop_run (main_loop);
         g_main_loop_unref (main_loop);
