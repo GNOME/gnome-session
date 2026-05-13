@@ -73,8 +73,6 @@ gboolean            gsm_manager_add_autostart_app              (GsmManager     *
                                                                 const char     *path);
 gboolean            gsm_manager_add_autostart_apps_from_dir    (GsmManager     *manager,
                                                                 const char     *path);
-gboolean            gsm_manager_add_legacy_session_apps        (GsmManager     *manager,
-                                                                const char     *path);
 
 void                gsm_manager_start                          (GsmManager     *manager);
 
