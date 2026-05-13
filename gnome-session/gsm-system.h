@@ -83,8 +83,6 @@ GsmActionAvailability gsm_system_can_suspend (GsmSystem *system);
 
 void gsm_system_suspend (GsmSystem *system);
 
-gboolean   gsm_system_can_switch_user  (GsmSystem *system);
-
 gboolean   gsm_system_can_restart_to_firmware_setup (GsmSystem *system);
 
 void       gsm_system_set_restart_to_firmware_setup (GsmSystem *system,

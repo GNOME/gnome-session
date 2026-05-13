@@ -32,8 +32,6 @@ struct _GsmClient
         char                     *app_id;
         char                     *bus_name;
 
-        GPid                      caller_pid;
-
         GDBusConnection          *connection;
         GsmExportedClientPrivate *skeleton;
         guint                     watch_id;
@@ -125,8 +123,6 @@ on_client_vanished (GDBusConnection *connection,
 
         g_bus_unwatch_name (client->watch_id);
         client->watch_id = 0;
-
-        client->caller_pid = 0;
 
         g_signal_emit (client, signals[DISCONNECTED], 0);
 }

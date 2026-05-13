@@ -52,7 +52,6 @@ typedef enum
 {
         GSM_INHIBITOR_ERROR_GENERAL = 0,
         GSM_INHIBITOR_ERROR_NOT_SET,
-        GSM_INHIBITOR_NUM_ERRORS
 } GsmInhibitorError;
 
 #define GSM_INHIBITOR_ERROR gsm_inhibitor_error_quark ()

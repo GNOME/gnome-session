@@ -25,10 +25,6 @@ G_BEGIN_DECLS
 
 #define IS_STRING_EMPTY(x) ((x)==NULL||(x)[0]=='\0')
 
-gchar**     gsm_util_get_app_dirs                   (void);
-
-gboolean    gsm_util_text_is_blank                  (const char *str);
-
 void        gsm_util_init_error                     (gboolean    fatal,
                                                      const char *format, ...) G_GNUC_PRINTF (2, 3);
 

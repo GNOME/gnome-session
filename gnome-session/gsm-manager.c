@@ -2190,12 +2190,6 @@ gsm_manager_init (GsmManager *manager)
 }
 
 GsmManager *
-gsm_manager_get (void)
-{
-        return manager_object;
-}
-
-GsmManager *
 gsm_manager_new (void)
 {
         if (manager_object != NULL) {

@@ -172,7 +172,7 @@ gsm_systemd_class_init (GsmSystemdClass *manager_class)
 
 typedef struct
 {
-        GSource source;
+        GSource parent;
         GPollFD pollfd;
         sd_login_monitor *monitor;
 } SdSource;
@@ -871,5 +871,3 @@ sd_proxy_signal_cb (GDBusProxy  *proxy,
                 systemd->priv->prepare_for_shutdown_expected = FALSE;
         }
 }
-
-

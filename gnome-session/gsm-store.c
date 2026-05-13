@@ -58,17 +58,6 @@ static void     gsm_store_finalize      (GObject       *object);
 G_DEFINE_TYPE_WITH_CODE (GsmStore, gsm_store, G_TYPE_OBJECT,
                          G_ADD_PRIVATE (GsmStore))
 
-GQuark
-gsm_store_error_quark (void)
-{
-        static GQuark ret = 0;
-        if (ret == 0) {
-                ret = g_quark_from_static_string ("gsm_store_error");
-        }
-
-        return ret;
-}
-
 guint
 gsm_store_size (GsmStore    *store)
 {
@@ -153,7 +142,6 @@ typedef struct
 {
         GsmStoreFunc func;
         gpointer     user_data;
-        GsmStore    *store;
         GList       *removed;
 } WrapperData;
 
@@ -183,7 +171,6 @@ gsm_store_foreach_remove (GsmStore    *store,
         g_return_val_if_fail (store != NULL, 0);
         g_return_val_if_fail (func != NULL, 0);
 
-        data.store = store;
         data.user_data = user_data;
         data.func = func;
         data.removed = NULL;
@@ -257,14 +244,6 @@ gsm_store_set_locked (GsmStore *store,
         g_return_if_fail (GSM_IS_STORE (store));
 
         store->priv->locked = locked;
-}
-
-gboolean
-gsm_store_get_locked (GsmStore *store)
-{
-        g_return_val_if_fail (GSM_IS_STORE (store), FALSE);
-
-        return store->priv->locked;
 }
 
 static void

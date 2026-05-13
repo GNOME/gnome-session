@@ -54,7 +54,6 @@ struct _GsmPresenceClass
 typedef enum
 {
         GSM_PRESENCE_ERROR_GENERAL = 0,
-        GSM_PRESENCE_NUM_ERRORS
 } GsmPresenceError;
 
 #define GSM_PRESENCE_ERROR gsm_presence_error_quark ()

@@ -58,14 +58,12 @@ typedef enum
         GSM_MANAGER_ERROR_NOT_REGISTERED,
         GSM_MANAGER_ERROR_INVALID_OPTION,
         GSM_MANAGER_ERROR_LOCKED_DOWN,
-        GSM_MANAGER_NUM_ERRORS
 } GsmManagerError;
 
 #define GSM_MANAGER_ERROR gsm_manager_error_quark ()
 GQuark              gsm_manager_error_quark                    (void);
 
 GsmManager *        gsm_manager_new                            (void);
-GsmManager *        gsm_manager_get                            (void);
 
 gboolean            gsm_manager_get_dbus_disconnected          (GsmManager *manager);
 

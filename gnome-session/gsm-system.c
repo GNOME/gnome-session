@@ -108,12 +108,6 @@ static GType gsm_system_null_get_type (void);
 G_DEFINE_TYPE_WITH_CODE (GsmSystemNull, gsm_system_null, G_TYPE_OBJECT,
                          G_IMPLEMENT_INTERFACE (GSM_TYPE_SYSTEM, gsm_system_null_init_iface))
 
-gboolean
-gsm_system_can_switch_user (GsmSystem *system)
-{
-        return GSM_SYSTEM_GET_IFACE (system)->can_switch_user (system);
-}
-
 GsmActionAvailability
 gsm_system_can_shutdown (GsmSystem *system)
 {

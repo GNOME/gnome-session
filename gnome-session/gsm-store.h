@@ -49,23 +49,14 @@ typedef struct
                                     const char *id);
 } GsmStoreClass;
 
-typedef enum
-{
-         GSM_STORE_ERROR_GENERAL
-} GsmStoreError;
-
-#define GSM_STORE_ERROR gsm_store_error_quark ()
-
 typedef gboolean (*GsmStoreFunc) (const char *id,
                                   GObject    *object,
                                   gpointer    user_data);
 
-GQuark              gsm_store_error_quark              (void);
 GType               gsm_store_get_type                 (void);
 
 GsmStore *          gsm_store_new                      (void);
 
-gboolean            gsm_store_get_locked               (GsmStore    *store);
 void                gsm_store_set_locked               (GsmStore    *store,
                                                         gboolean     locked);
 

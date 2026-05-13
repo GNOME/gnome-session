@@ -86,51 +86,6 @@ static const char * const variable_unsetlist[] = {
     NULL
 };
 
-char **
-gsm_util_get_app_dirs ()
-{
-        GPtrArray          *dirs;
-        const char * const *system_data_dirs;
-        int                 i;
-
-        dirs = g_ptr_array_new ();
-
-        g_ptr_array_add (dirs,
-                         g_build_filename (g_get_user_data_dir (),
-                                           "applications",
-                                           NULL));
-
-        system_data_dirs = g_get_system_data_dirs ();
-        for (i = 0; system_data_dirs[i]; i++) {
-                g_ptr_array_add (dirs,
-                                 g_build_filename (system_data_dirs[i],
-                                                   "applications",
-                                                   NULL));
-        }
-
-        g_ptr_array_add (dirs, NULL);
-
-        return (char **) g_ptr_array_free (dirs, FALSE);
-}
-
-gboolean
-gsm_util_text_is_blank (const char *str)
-{
-        if (str == NULL) {
-                return TRUE;
-        }
-
-        while (*str) {
-                if (!isspace(*str)) {
-                        return FALSE;
-                }
-
-                str++;
-        }
-
-        return TRUE;
-}
-
 /**
  * gsm_util_init_error:
  * @fatal: whether or not the error is fatal to the login session
