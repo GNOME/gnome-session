@@ -113,10 +113,9 @@ gsm_shell_class_init (GsmShellClass *shell_class)
         object_class->get_property = gsm_shell_get_property;
 
         param_spec = g_param_spec_boolean ("is-running",
-                                           "Is running",
-                                           "Whether GNOME Shell is running in the session",
+                                           NULL, NULL,
                                            FALSE,
-                                           G_PARAM_READABLE);
+                                           G_PARAM_READABLE | G_PARAM_STATIC_NAME);
 
         g_object_class_install_property (object_class, PROP_IS_RUNNING,
                                          param_spec);

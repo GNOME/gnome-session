@@ -518,12 +518,11 @@ gsm_presence_class_init (GsmPresenceClass *klass)
         g_object_class_install_property (object_class,
                                          PROP_IDLE_TIMEOUT,
                                          g_param_spec_uint ("idle-timeout",
-                                                            "idle timeout",
-                                                            "idle timeout",
+                                                            NULL, NULL,
                                                             0,
                                                             G_MAXINT,
                                                             120000,
-                                                            G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+                                                            G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_NAME));
 }
 
 GsmPresence *

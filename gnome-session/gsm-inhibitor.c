@@ -508,49 +508,43 @@ gsm_inhibitor_class_init (GsmInhibitorClass *klass)
         g_object_class_install_property (object_class,
                                          PROP_BUS_NAME,
                                          g_param_spec_string ("bus-name",
-                                                              "bus-name",
-                                                              "bus-name",
+                                                              NULL, NULL,
                                                               "",
-                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_NAME));
         g_object_class_install_property (object_class,
                                          PROP_APP_ID,
                                          g_param_spec_string ("app-id",
-                                                              "app-id",
-                                                              "app-id",
+                                                              NULL, NULL,
                                                               "",
-                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_NAME));
         g_object_class_install_property (object_class,
                                          PROP_CLIENT_ID,
                                          g_param_spec_string ("client-id",
-                                                              "client-id",
-                                                              "client-id",
+                                                              NULL, NULL,
                                                               "",
-                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_NAME));
         g_object_class_install_property (object_class,
                                          PROP_REASON,
                                          g_param_spec_string ("reason",
-                                                              "reason",
-                                                              "reason",
+                                                              NULL, NULL,
                                                               "",
-                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_NAME));
         g_object_class_install_property (object_class,
                                          PROP_FLAGS,
                                          g_param_spec_uint ("flags",
-                                                            "flags",
-                                                            "flags",
+                                                            NULL, NULL,
                                                             0,
                                                             G_MAXINT,
                                                             0,
-                                                            G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+                                                            G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_NAME));
         g_object_class_install_property (object_class,
                                          PROP_COOKIE,
                                          g_param_spec_uint ("cookie",
-                                                            "cookie",
-                                                            "cookie",
+                                                            NULL, NULL,
                                                             0,
                                                             G_MAXINT,
                                                             0,
-                                                            G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+                                                            G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_NAME));
 }
 
 GsmInhibitor *

@@ -292,17 +292,15 @@ gsm_client_class_init (GsmClientClass *klass)
         g_object_class_install_property (object_class,
                                          PROP_APP_ID,
                                          g_param_spec_string ("app-id",
-                                                              "app-id",
-                                                              "app-id",
+                                                              NULL, NULL,
                                                               "",
-                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY));
+                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_NAME));
         g_object_class_install_property (object_class,
                                          PROP_BUS_NAME,
                                          g_param_spec_string ("bus-name",
-                                                              "bus-name",
-                                                              "bus-name",
+                                                              NULL, NULL,
                                                               NULL,
-                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_STRINGS | G_PARAM_EXPLICIT_NOTIFY));
+                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_NAME));
 }
 
 const char *
