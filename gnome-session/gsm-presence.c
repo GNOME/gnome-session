@@ -408,7 +408,7 @@ gsm_presence_set_idle_enabled (GsmPresence  *presence,
         if (presence->priv->idle_enabled != enabled) {
                 presence->priv->idle_enabled = enabled;
                 reset_idle_watch (presence);
-                g_object_notify (G_OBJECT (presence), "idle-enabled");
+                g_object_notify_by_pspec (G_OBJECT (presence), props[PROP_IDLE_ENABLED]);
 
         }
 }
@@ -422,7 +422,7 @@ gsm_presence_set_idle_timeout (GsmPresence  *presence,
         if (timeout != presence->priv->idle_timeout) {
                 presence->priv->idle_timeout = timeout;
                 reset_idle_watch (presence);
-                g_object_notify (G_OBJECT (presence), "idle-timeout");
+                g_object_notify_by_pspec (G_OBJECT (presence), props[PROP_IDLE_TIMEOUT]);
         }
 }
 

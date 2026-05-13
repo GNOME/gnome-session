@@ -266,7 +266,7 @@ gsm_inhibitor_set_bus_name (GsmInhibitor  *inhibitor,
         } else {
                 inhibitor->priv->bus_name = g_strdup ("");
         }
-        g_object_notify (G_OBJECT (inhibitor), "bus-name");
+        g_object_notify_by_pspec (G_OBJECT (inhibitor), props[PROP_BUS_NAME]);
 }
 
 static void
@@ -278,7 +278,7 @@ gsm_inhibitor_set_app_id (GsmInhibitor  *inhibitor,
         g_free (inhibitor->priv->app_id);
 
         inhibitor->priv->app_id = g_strdup (app_id);
-        g_object_notify (G_OBJECT (inhibitor), "app-id");
+        g_object_notify_by_pspec (G_OBJECT (inhibitor), props[PROP_APP_ID]);
 }
 
 static void
@@ -296,7 +296,7 @@ gsm_inhibitor_set_client_id (GsmInhibitor  *inhibitor,
         } else {
                 inhibitor->priv->client_id = g_strdup ("");
         }
-        g_object_notify (G_OBJECT (inhibitor), "client-id");
+        g_object_notify_by_pspec (G_OBJECT (inhibitor), props[PROP_CLIENT_ID]);
 }
 
 static void
@@ -312,7 +312,7 @@ gsm_inhibitor_set_reason (GsmInhibitor  *inhibitor,
         } else {
                 inhibitor->priv->reason = g_strdup ("");
         }
-        g_object_notify (G_OBJECT (inhibitor), "reason");
+        g_object_notify_by_pspec (G_OBJECT (inhibitor), props[PROP_REASON]);
 }
 
 static void
@@ -323,7 +323,7 @@ gsm_inhibitor_set_cookie (GsmInhibitor  *inhibitor,
 
         if (inhibitor->priv->cookie != cookie) {
                 inhibitor->priv->cookie = cookie;
-                g_object_notify (G_OBJECT (inhibitor), "cookie");
+                g_object_notify_by_pspec (G_OBJECT (inhibitor), props[PROP_COOKIE]);
         }
 }
 
@@ -335,7 +335,7 @@ gsm_inhibitor_set_flags (GsmInhibitor  *inhibitor,
 
         if (inhibitor->priv->flags != flags) {
                 inhibitor->priv->flags = flags;
-                g_object_notify (G_OBJECT (inhibitor), "flags");
+                g_object_notify_by_pspec (G_OBJECT (inhibitor), props[PROP_FLAGS]);
         }
 }
 

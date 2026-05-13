@@ -179,7 +179,7 @@ gsm_client_set_app_id (GsmClient  *client,
         g_free (client->app_id);
         client->app_id = g_strdup (app_id ?: "");
 
-        g_object_notify (G_OBJECT (client), "app-id");
+        g_object_notify_by_pspec (G_OBJECT (client), props[PROP_APP_ID]);
 }
 
 static void
@@ -195,7 +195,7 @@ gsm_client_set_bus_name (GsmClient  *client,
         g_free (client->bus_name);
         client->bus_name = g_strdup (bus_name);
 
-        g_object_notify (G_OBJECT (client), "bus-name");
+        g_object_notify_by_pspec (G_OBJECT (client), props[PROP_BUS_NAME]);
 }
 
 static void
