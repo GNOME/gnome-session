@@ -36,6 +36,8 @@ enum {
         LAST_PROP
 };
 
+static GParamSpec *props[LAST_PROP] = { NULL, };
+
 G_DEFINE_TYPE (GsmSessionSave, gsm_session_save, G_TYPE_OBJECT);
 
 typedef struct {
@@ -210,12 +212,12 @@ gsm_session_save_class_init (GsmSessionSaveClass *klass)
         object_class->constructed = gsm_session_save_constructed;
         object_class->dispose = gsm_session_save_dispose;
 
-        g_object_class_install_property (object_class,
-                                         PROP_SESSION_ID,
-                                         g_param_spec_string ("session-id",
-                                                              NULL, NULL,
-                                                              "gnome",
-                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_NAME));
+        props[PROP_SESSION_ID] = g_param_spec_string ("session-id",
+                                                      NULL, NULL,
+                                                      "gnome",
+                                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_NAME);
+
+        g_object_class_install_properties (object_class, LAST_PROP, props);
 }
 
 static void

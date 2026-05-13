@@ -60,6 +60,8 @@ enum {
         LAST_PROP
 };
 
+static GParamSpec *props[LAST_PROP] = { NULL, };
+
 G_DEFINE_TYPE (GsmApp, gsm_app, G_TYPE_OBJECT)
 
 static void
@@ -130,12 +132,12 @@ gsm_app_class_init (GsmAppClass *klass)
         object_class->get_property = gsm_app_get_property;
         object_class->dispose = gsm_app_dispose;
 
-        g_object_class_install_property (object_class,
-                                         PROP_INNER,
-                                         g_param_spec_object ("inner",
-                                                              NULL, NULL,
-                                                              G_TYPE_DESKTOP_APP_INFO,
-                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_NAME));
+        props[PROP_INNER] = g_param_spec_object ("inner",
+                                                 NULL, NULL,
+                                                 G_TYPE_DESKTOP_APP_INFO,
+                                                 G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_NAME);
+
+        g_object_class_install_properties (object_class, LAST_PROP, props);
 }
 
 const char *

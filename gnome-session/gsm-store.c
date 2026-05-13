@@ -45,8 +45,11 @@ enum {
 
 enum {
         PROP_0,
-        PROP_LOCKED
+        PROP_LOCKED,
+        N_PROPS
 };
+
+static GParamSpec *props[N_PROPS] = { NULL, };
 
 static guint signals [LAST_SIGNAL] = { 0 };
 
@@ -347,13 +350,13 @@ gsm_store_class_init (GsmStoreClass *klass)
                               NULL, NULL, NULL,
                               G_TYPE_NONE,
                               1, G_TYPE_STRING);
-        g_object_class_install_property (object_class,
-                                         PROP_LOCKED,
-                                         g_param_spec_boolean ("locked",
-                                                               NULL,
-                                                               NULL,
-                                                               FALSE,
-                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
+        props[PROP_LOCKED] = g_param_spec_boolean ("locked",
+                                                   NULL,
+                                                   NULL,
+                                                   FALSE,
+                                                   G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
+
+        g_object_class_install_properties (object_class, N_PROPS, props);
 }
 
 static void

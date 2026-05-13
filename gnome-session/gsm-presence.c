@@ -59,7 +59,10 @@ enum {
         PROP_0,
         PROP_IDLE_ENABLED,
         PROP_IDLE_TIMEOUT,
+        N_PROPS
 };
+
+static GParamSpec *props[N_PROPS] = { NULL, };
 
 enum {
         STATUS_CHANGED,
@@ -508,21 +511,19 @@ gsm_presence_class_init (GsmPresenceClass *klass)
                               G_TYPE_NONE,
                               1, G_TYPE_UINT);
 
-        g_object_class_install_property (object_class,
-                                         PROP_IDLE_ENABLED,
-                                         g_param_spec_boolean ("idle-enabled",
-                                                               NULL,
-                                                               NULL,
-                                                               FALSE,
-                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT));
-        g_object_class_install_property (object_class,
-                                         PROP_IDLE_TIMEOUT,
-                                         g_param_spec_uint ("idle-timeout",
-                                                            NULL, NULL,
-                                                            0,
-                                                            G_MAXINT,
-                                                            120000,
-                                                            G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_NAME));
+        props[PROP_IDLE_ENABLED] = g_param_spec_boolean ("idle-enabled",
+                                                         NULL,
+                                                         NULL,
+                                                         FALSE,
+                                                         G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
+        props[PROP_IDLE_TIMEOUT] = g_param_spec_uint ("idle-timeout",
+                                                      NULL, NULL,
+                                                      0,
+                                                      G_MAXINT,
+                                                      120000,
+                                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_NAME);
+
+        g_object_class_install_properties (object_class, N_PROPS, props);
 }
 
 GsmPresence *

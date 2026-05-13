@@ -53,8 +53,11 @@ enum {
         PROP_APP_ID,
         PROP_CLIENT_ID,
         PROP_FLAGS,
-        PROP_COOKIE
+        PROP_COOKIE,
+        N_PROPS
 };
+
+static GParamSpec *props[N_PROPS] = { NULL, };
 
 enum {
         VANISHED,
@@ -505,46 +508,36 @@ gsm_inhibitor_class_init (GsmInhibitorClass *klass)
                               0, NULL, NULL, NULL,
                               G_TYPE_NONE,
                               0);
-        g_object_class_install_property (object_class,
-                                         PROP_BUS_NAME,
-                                         g_param_spec_string ("bus-name",
-                                                              NULL, NULL,
-                                                              "",
-                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_NAME));
-        g_object_class_install_property (object_class,
-                                         PROP_APP_ID,
-                                         g_param_spec_string ("app-id",
-                                                              NULL, NULL,
-                                                              "",
-                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_NAME));
-        g_object_class_install_property (object_class,
-                                         PROP_CLIENT_ID,
-                                         g_param_spec_string ("client-id",
-                                                              NULL, NULL,
-                                                              "",
-                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_NAME));
-        g_object_class_install_property (object_class,
-                                         PROP_REASON,
-                                         g_param_spec_string ("reason",
-                                                              NULL, NULL,
-                                                              "",
-                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_NAME));
-        g_object_class_install_property (object_class,
-                                         PROP_FLAGS,
-                                         g_param_spec_uint ("flags",
-                                                            NULL, NULL,
-                                                            0,
-                                                            G_MAXINT,
-                                                            0,
-                                                            G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_NAME));
-        g_object_class_install_property (object_class,
-                                         PROP_COOKIE,
-                                         g_param_spec_uint ("cookie",
-                                                            NULL, NULL,
-                                                            0,
-                                                            G_MAXINT,
-                                                            0,
-                                                            G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_NAME));
+        props[PROP_BUS_NAME] = g_param_spec_string ("bus-name",
+                                                    NULL, NULL,
+                                                    "",
+                                                    G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_NAME);
+        props[PROP_APP_ID] = g_param_spec_string ("app-id",
+                                                  NULL, NULL,
+                                                  "",
+                                                  G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_NAME);
+        props[PROP_CLIENT_ID] = g_param_spec_string ("client-id",
+                                                     NULL, NULL,
+                                                     "",
+                                                     G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_NAME);
+        props[PROP_REASON] = g_param_spec_string ("reason",
+                                                  NULL, NULL,
+                                                  "",
+                                                  G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_NAME);
+        props[PROP_FLAGS] = g_param_spec_uint ("flags",
+                                               NULL, NULL,
+                                               0,
+                                               G_MAXINT,
+                                               0,
+                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_NAME);
+        props[PROP_COOKIE] = g_param_spec_uint ("cookie",
+                                                NULL, NULL,
+                                                0,
+                                                G_MAXINT,
+                                                0,
+                                                G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_NAME);
+
+        g_object_class_install_properties (object_class, N_PROPS, props);
 }
 
 GsmInhibitor *

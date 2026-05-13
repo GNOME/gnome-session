@@ -43,7 +43,10 @@ typedef enum {
         PROP_0,
         PROP_APP_ID,
         PROP_BUS_NAME,
+        N_PROPS
 } GsmClientProperty;
+
+static GParamSpec *props[N_PROPS] = { NULL, };
 
 enum {
         DISCONNECTED,
@@ -289,18 +292,16 @@ gsm_client_class_init (GsmClientClass *klass)
                               G_TYPE_NONE,
                               2, G_TYPE_BOOLEAN, G_TYPE_STRING);
 
-        g_object_class_install_property (object_class,
-                                         PROP_APP_ID,
-                                         g_param_spec_string ("app-id",
-                                                              NULL, NULL,
-                                                              "",
-                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_NAME));
-        g_object_class_install_property (object_class,
-                                         PROP_BUS_NAME,
-                                         g_param_spec_string ("bus-name",
-                                                              NULL, NULL,
-                                                              NULL,
-                                                              G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_NAME));
+        props[PROP_APP_ID] = g_param_spec_string ("app-id",
+                                                  NULL, NULL,
+                                                  "",
+                                                  G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_NAME);
+        props[PROP_BUS_NAME] = g_param_spec_string ("bus-name",
+                                                    NULL, NULL,
+                                                    NULL,
+                                                    G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_NAME);
+
+        g_object_class_install_properties (object_class, N_PROPS, props);
 }
 
 const char *

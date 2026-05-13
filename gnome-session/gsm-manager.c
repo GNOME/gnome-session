@@ -121,7 +121,10 @@ struct _GsmManager
 enum {
         PROP_0,
         PROP_SESSION_NAME,
+        N_PROPS
 };
+
+static GParamSpec *props[N_PROPS] = { NULL, };
 
 static void     gsm_manager_class_init  (GsmManagerClass *klass);
 static void     gsm_manager_init        (GsmManager      *manager);
@@ -1284,13 +1287,13 @@ gsm_manager_class_init (GsmManagerClass *klass)
         object_class->constructor = gsm_manager_constructor;
         object_class->dispose = gsm_manager_dispose;
 
-        g_object_class_install_property (object_class,
-                                         PROP_SESSION_NAME,
-                                         g_param_spec_string ("session-name",
-                                                              NULL,
-                                                              NULL,
-                                                              NULL,
-                                                              G_PARAM_READABLE));
+        props[PROP_SESSION_NAME] = g_param_spec_string ("session-name",
+                                                        NULL,
+                                                        NULL,
+                                                        NULL,
+                                                        G_PARAM_READABLE);
+
+        g_object_class_install_properties (object_class, N_PROPS, props);
 }
 
 static void
