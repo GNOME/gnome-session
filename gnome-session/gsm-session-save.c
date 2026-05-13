@@ -38,7 +38,7 @@ enum {
 
 static GParamSpec *props[LAST_PROP] = { NULL, };
 
-G_DEFINE_TYPE (GsmSessionSave, gsm_session_save, G_TYPE_OBJECT);
+G_DEFINE_FINAL_TYPE (GsmSessionSave, gsm_session_save, G_TYPE_OBJECT);
 
 typedef struct {
         char *app_id;

@@ -62,7 +62,7 @@ enum {
 
 static GParamSpec *props[LAST_PROP] = { NULL, };
 
-G_DEFINE_TYPE (GsmApp, gsm_app, G_TYPE_OBJECT)
+G_DEFINE_FINAL_TYPE (GsmApp, gsm_app, G_TYPE_OBJECT)
 
 static void
 gsm_app_init (GsmApp *app)

@@ -140,7 +140,7 @@ static void     show_shell_end_session_dialog (GsmManager                   *man
                                                GsmShellEndSessionDialogType  type);
 static gpointer manager_object = NULL;
 
-G_DEFINE_TYPE (GsmManager, gsm_manager, G_TYPE_OBJECT)
+G_DEFINE_FINAL_TYPE (GsmManager, gsm_manager, G_TYPE_OBJECT)
 
 static const GDBusErrorEntry gsm_manager_error_entries[] = {
         { GSM_MANAGER_ERROR_GENERAL, GSM_MANAGER_DBUS_IFACE ".GeneralError" },

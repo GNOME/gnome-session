@@ -56,7 +56,7 @@ enum {
 
 static guint signals[LAST_SIGNAL] = { 0 };
 
-G_DEFINE_TYPE (GsmClient, gsm_client, G_TYPE_OBJECT);
+G_DEFINE_FINAL_TYPE (GsmClient, gsm_client, G_TYPE_OBJECT);
 
 static guint32
 get_next_client_serial (void)
