@@ -1291,7 +1291,7 @@ gsm_manager_class_init (GsmManagerClass *klass)
                                                         NULL,
                                                         NULL,
                                                         NULL,
-                                                        G_PARAM_READABLE);
+                                                        G_PARAM_READABLE | G_PARAM_STATIC_NAME);
 
         g_object_class_install_properties (object_class, N_PROPS, props);
 }

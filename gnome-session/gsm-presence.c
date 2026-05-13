@@ -515,7 +515,7 @@ gsm_presence_class_init (GsmPresenceClass *klass)
                                                          NULL,
                                                          NULL,
                                                          FALSE,
-                                                         G_PARAM_READWRITE | G_PARAM_CONSTRUCT);
+                                                         G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_NAME);
         props[PROP_IDLE_TIMEOUT] = g_param_spec_uint ("idle-timeout",
                                                       NULL, NULL,
                                                       0,
