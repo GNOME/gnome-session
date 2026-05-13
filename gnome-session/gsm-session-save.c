@@ -453,6 +453,8 @@ gsm_session_save_constructed (GObject *object)
 
         if (!save->apps)
                 save->apps = make_hash_table ();
+
+        G_OBJECT_CLASS (gsm_session_save_parent_class)->constructed (object);
 }
 
 static gboolean
