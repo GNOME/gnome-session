@@ -852,8 +852,7 @@ _gsm_manager_set_active_session (GsmManager *manager,
                                  const char *session_name,
                                  gboolean    is_kiosk)
 {
-        g_free (manager->session_name);
-        manager->session_name = g_strdup (session_name);
+        g_set_str (&manager->session_name, session_name);
 
         if (!is_kiosk)
                 manager->session_save = gsm_session_save_new (session_name);

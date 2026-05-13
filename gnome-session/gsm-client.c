@@ -187,13 +187,8 @@ gsm_client_set_bus_name (GsmClient  *client,
         g_return_if_fail (GSM_IS_CLIENT (client));
         g_return_if_fail (bus_name != NULL);
 
-        if (g_strcmp0 (client->bus_name, bus_name) == 0)
-                return;
-
-        g_free (client->bus_name);
-        client->bus_name = g_strdup (bus_name);
-
-        g_object_notify_by_pspec (G_OBJECT (client), props[PROP_BUS_NAME]);
+        if (g_set_str (&client->bus_name, bus_name))
+                g_object_notify_by_pspec (G_OBJECT (client), props[PROP_BUS_NAME]);
 }
 
 static void

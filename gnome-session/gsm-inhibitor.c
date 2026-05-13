@@ -273,10 +273,8 @@ gsm_inhibitor_set_app_id (GsmInhibitor  *inhibitor,
 {
         g_return_if_fail (GSM_IS_INHIBITOR (inhibitor));
 
-        g_free (inhibitor->priv->app_id);
-
-        inhibitor->priv->app_id = g_strdup (app_id);
-        g_object_notify_by_pspec (G_OBJECT (inhibitor), props[PROP_APP_ID]);
+        if (g_set_str (&inhibitor->priv->app_id, app_id))
+                g_object_notify_by_pspec (G_OBJECT (inhibitor), props[PROP_APP_ID]);
 }
 
 static void
