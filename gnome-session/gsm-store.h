@@ -18,8 +18,7 @@
  */
 
 
-#ifndef __GSM_STORE_H
-#define __GSM_STORE_H
+#pragma once
 
 #include <glib-object.h>
 
@@ -92,5 +91,3 @@ GObject *           gsm_store_lookup                   (GsmStore    *store,
 
 
 G_END_DECLS
-
-#endif /* __GSM_STORE_H */

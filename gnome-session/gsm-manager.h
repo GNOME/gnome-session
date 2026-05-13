@@ -18,8 +18,7 @@
  */
 
 
-#ifndef __GSM_MANAGER_H
-#define __GSM_MANAGER_H
+#pragma once
 
 #include <glib-object.h>
 
@@ -93,5 +92,3 @@ gboolean            gsm_manager_set_phase                      (GsmManager     *
 void                gsm_quit                                   (void);
 
 G_END_DECLS
-
-#endif /* __GSM_MANAGER_H */

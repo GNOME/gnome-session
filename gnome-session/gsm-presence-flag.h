@@ -16,8 +16,7 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __GSM_PRESENCE_FLAG_H__
-#define __GSM_PRESENCE_FLAG_H__
+#pragma once
 
 G_BEGIN_DECLS
 
@@ -29,5 +28,3 @@ typedef enum {
 } GsmPresenceStatus;
 
 G_END_DECLS
-
-#endif /* __GSM_PRESENCE_FLAG_H__ */

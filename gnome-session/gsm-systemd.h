@@ -19,8 +19,7 @@
  *	Matthias Clasen <mclasen@redhat.com>
  */
 
-#ifndef __GSM_SYSTEMD_H__
-#define __GSM_SYSTEMD_H__
+#pragma once
 
 #include <glib.h>
 #include <glib-object.h>
@@ -55,5 +54,3 @@ GType         gsm_systemd_get_type (void);
 GsmSystemd   *gsm_systemd_new      (void) G_GNUC_MALLOC;
 
 G_END_DECLS
-
-#endif /* __GSM_SYSTEMD_H__ */

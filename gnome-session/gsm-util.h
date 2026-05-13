@@ -15,8 +15,7 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __GSM_UTIL_H__
-#define __GSM_UTIL_H__
+#pragma once
 
 #include <glib.h>
 #include <gio/gio.h>
@@ -45,5 +44,3 @@ gboolean    gsm_util_launch_app                     (GDesktopAppInfo  *app,
                                                      GError          **error);
 
 G_END_DECLS
-
-#endif /* __GSM_UTIL_H__ */

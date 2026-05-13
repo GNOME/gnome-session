@@ -18,8 +18,7 @@
  */
 
 
-#ifndef __GSM_MANAGER_LOGOUT_MODE_H
-#define __GSM_MANAGER_LOGOUT_MODE_H
+#pragma once
 
 G_BEGIN_DECLS
 
@@ -30,5 +29,3 @@ typedef enum {
 } GsmManagerLogoutMode;
 
 G_END_DECLS
-
-#endif /* __GSM_MANAGER_LOGOUT_MODE_H */

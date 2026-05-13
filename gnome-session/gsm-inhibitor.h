@@ -16,8 +16,7 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __GSM_INHIBITOR_H__
-#define __GSM_INHIBITOR_H__
+#pragma once
 
 #include <glib-object.h>
 #include <sys/types.h>
@@ -82,5 +81,3 @@ guint          gsm_inhibitor_peek_cookie          (GsmInhibitor  *inhibitor);
 guint          gsm_inhibitor_peek_flags           (GsmInhibitor  *inhibitor);
 
 G_END_DECLS
-
-#endif /* __GSM_INHIBITOR_H__ */

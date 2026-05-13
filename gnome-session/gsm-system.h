@@ -19,8 +19,7 @@
  *	Jon McCann <jmccann@redhat.com>
  */
 
-#ifndef __GSM_SYSTEM_H__
-#define __GSM_SYSTEM_H__
+#pragma once
 
 #include <glib.h>
 #include <glib-object.h>
@@ -104,5 +103,3 @@ void       gsm_system_prepare_shutdown  (GsmSystem  *system,
 void       gsm_system_complete_shutdown (GsmSystem  *system);
 
 G_END_DECLS
-
-#endif /* __GSM_SYSTEM_H__ */

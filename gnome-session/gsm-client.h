@@ -17,8 +17,7 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __GSM_CLIENT_H__
-#define __GSM_CLIENT_H__
+#pragma once
 
 #include <glib.h>
 #include <glib-object.h>
@@ -57,5 +56,3 @@ gboolean              gsm_client_cancel_end_session         (GsmClient  *client,
 gboolean              gsm_client_stop                       (GsmClient  *client,
                                                              GError    **error);
 G_END_DECLS
-
-#endif /* __GSM_CLIENT_H__ */

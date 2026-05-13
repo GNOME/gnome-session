@@ -19,8 +19,7 @@
  *    Ray Strode <rstrode@redhat.com>
  */
 
-#ifndef __GSM_SHELL_H__
-#define __GSM_SHELL_H__
+#pragma once
 
 #include <glib.h>
 #include <glib-object.h>
@@ -82,5 +81,3 @@ gboolean         gsm_shell_open_end_session_dialog (GsmShell *shell,
 void             gsm_shell_close_end_session_dialog (GsmShell *shell);
 
 G_END_DECLS
-
-#endif /* __GSM_SHELL_H__ */

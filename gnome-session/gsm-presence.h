@@ -16,8 +16,7 @@
  * along with this program; if not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __GSM_PRESENCE_H__
-#define __GSM_PRESENCE_H__
+#pragma once
 
 #include <glib-object.h>
 #include <sys/types.h>
@@ -71,5 +70,3 @@ void           gsm_presence_set_idle_timeout     (GsmPresence  *presence,
                                                   guint         n_seconds);
 
 G_END_DECLS
-
-#endif /* __GSM_PRESENCE_H__ */
