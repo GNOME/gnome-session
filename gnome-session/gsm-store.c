@@ -43,13 +43,11 @@ enum {
         LAST_SIGNAL
 };
 
-enum {
-        PROP_0,
-        PROP_LOCKED,
-        N_PROPS
-};
+typedef enum {
+        PROP_LOCKED = 1,
+} GsmStoreProps;
 
-static GParamSpec *props[N_PROPS] = { NULL, };
+static GParamSpec *props[PROP_LOCKED + 1] = { NULL, };
 
 static guint signals [LAST_SIGNAL] = { 0 };
 
@@ -279,7 +277,7 @@ gsm_store_set_property (GObject      *object,
 
         self = GSM_STORE (object);
 
-        switch (prop_id) {
+        switch ((GsmStoreProps) prop_id) {
         case PROP_LOCKED:
                 gsm_store_set_locked (self, g_value_get_boolean (value));
                 break;
@@ -299,7 +297,7 @@ gsm_store_get_property (GObject    *object,
 
         self = GSM_STORE (object);
 
-        switch (prop_id) {
+        switch ((GsmStoreProps) prop_id) {
         case PROP_LOCKED:
                 g_value_set_boolean (value, self->priv->locked);
                 break;
@@ -356,7 +354,7 @@ gsm_store_class_init (GsmStoreClass *klass)
                                                    FALSE,
                                                    G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_NAME);
 
-        g_object_class_install_properties (object_class, N_PROPS, props);
+        g_object_class_install_properties (object_class, G_N_ELEMENTS (props), props);
 }
 
 static void

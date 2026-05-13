@@ -40,13 +40,11 @@ struct _GsmClient
 };
 
 typedef enum {
-        PROP_0,
-        PROP_APP_ID,
+        PROP_APP_ID = 1,
         PROP_BUS_NAME,
-        N_PROPS
 } GsmClientProperty;
 
-static GParamSpec *props[N_PROPS] = { NULL, };
+static GParamSpec *props[PROP_BUS_NAME + 1] = { NULL, };
 
 enum {
         DISCONNECTED,
@@ -301,7 +299,7 @@ gsm_client_class_init (GsmClientClass *klass)
                                                     NULL,
                                                     G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_EXPLICIT_NOTIFY | G_PARAM_STATIC_NAME);
 
-        g_object_class_install_properties (object_class, N_PROPS, props);
+        g_object_class_install_properties (object_class, G_N_ELEMENTS (props), props);
 }
 
 const char *

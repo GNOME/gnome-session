@@ -55,14 +55,12 @@ struct GsmPresencePrivate
         GsmExportedPresence *skeleton;
 };
 
-enum {
-        PROP_0,
-        PROP_IDLE_ENABLED,
+typedef enum {
+        PROP_IDLE_ENABLED = 1,
         PROP_IDLE_TIMEOUT,
-        N_PROPS
-};
+} GsmPresenceProps;
 
-static GParamSpec *props[N_PROPS] = { NULL, };
+static GParamSpec *props[PROP_IDLE_TIMEOUT + 1] = { NULL, };
 
 enum {
         STATUS_CHANGED,
@@ -436,7 +434,7 @@ gsm_presence_set_property (GObject       *object,
 
         self = GSM_PRESENCE (object);
 
-        switch (prop_id) {
+        switch ((GsmPresenceProps) prop_id) {
         case PROP_IDLE_ENABLED:
                 gsm_presence_set_idle_enabled (self, g_value_get_boolean (value));
                 break;
@@ -459,7 +457,7 @@ gsm_presence_get_property (GObject    *object,
 
         self = GSM_PRESENCE (object);
 
-        switch (prop_id) {
+        switch ((GsmPresenceProps) prop_id) {
         case PROP_IDLE_ENABLED:
                 g_value_set_boolean (value, self->priv->idle_enabled);
                 break;
@@ -523,7 +521,7 @@ gsm_presence_class_init (GsmPresenceClass *klass)
                                                       120000,
                                                       G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_NAME);
 
-        g_object_class_install_properties (object_class, N_PROPS, props);
+        g_object_class_install_properties (object_class, G_N_ELEMENTS (props), props);
 }
 
 GsmPresence *

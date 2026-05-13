@@ -54,13 +54,11 @@ struct _GsmShellPrivate
         guint            watch_id;
 };
 
-enum {
-        PROP_0,
-        PROP_IS_RUNNING,
-        N_PROPS
-};
+typedef enum {
+        PROP_IS_RUNNING = 1,
+} GsmShellProps;
 
-static GParamSpec *props[N_PROPS] = { NULL, };
+static GParamSpec *props[PROP_IS_RUNNING + 1] = { NULL, };
 
 enum {
         END_SESSION_DIALOG_OPEN_FAILED = 0,
@@ -91,7 +89,7 @@ gsm_shell_get_property (GObject    *object,
 {
         GsmShell *shell = GSM_SHELL (object);
 
-        switch (prop_id) {
+        switch ((GsmShellProps) prop_id) {
         case PROP_IS_RUNNING:
                 g_value_set_boolean (value,
                                      shell->priv->is_running);
@@ -120,7 +118,7 @@ gsm_shell_class_init (GsmShellClass *shell_class)
                                                        G_PARAM_READABLE | G_PARAM_STATIC_NAME);
 
 
-        g_object_class_install_properties (object_class, N_PROPS, props);
+        g_object_class_install_properties (object_class, G_N_ELEMENTS (props), props);
 
         signals [END_SESSION_DIALOG_OPEN_FAILED] =
                 g_signal_new ("end-session-dialog-open-failed",

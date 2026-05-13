@@ -118,13 +118,11 @@ struct _GsmManager
         gulong                  shell_end_session_dialog_confirmed_reboot_id;
 };
 
-enum {
-        PROP_0,
-        PROP_SESSION_NAME,
-        N_PROPS
-};
+typedef enum {
+        PROP_SESSION_NAME = 1,
+} GsmManagerProps;
 
-static GParamSpec *props[N_PROPS] = { NULL, };
+static GParamSpec *props[PROP_SESSION_NAME + 1] = { NULL, };
 
 static void     gsm_manager_class_init  (GsmManagerClass *klass);
 static void     gsm_manager_init        (GsmManager      *manager);
@@ -1124,7 +1122,7 @@ gsm_manager_get_property (GObject    *object,
 {
         GsmManager *self = GSM_MANAGER (object);
 
-        switch (prop_id) {
+        switch ((GsmManagerProps) prop_id) {
         case PROP_SESSION_NAME:
                 g_value_set_string (value, self->session_name);
                 break;
@@ -1293,7 +1291,7 @@ gsm_manager_class_init (GsmManagerClass *klass)
                                                         NULL,
                                                         G_PARAM_READABLE | G_PARAM_STATIC_NAME);
 
-        g_object_class_install_properties (object_class, N_PROPS, props);
+        g_object_class_install_properties (object_class, G_N_ELEMENTS (props), props);
 }
 
 static void

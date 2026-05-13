@@ -65,10 +65,9 @@ struct _GsmSystemdPrivate
         gboolean         prepare_for_shutdown_expected;
 };
 
-enum {
-        PROP_0,
-        PROP_ACTIVE
-};
+typedef enum {
+        PROP_ACTIVE = 1
+} GsmSystemdProps;
 
 static void gsm_systemd_system_init (GsmSystemInterface *iface);
 
@@ -135,7 +134,7 @@ gsm_systemd_set_property (GObject      *object,
 {
         GsmSystemd *self = GSM_SYSTEMD (object);
 
-        switch (prop_id) {
+        switch ((GsmSystemdProps) prop_id) {
         case PROP_ACTIVE:
                 self->priv->is_active = g_value_get_boolean (value);
                 break;
@@ -152,7 +151,7 @@ gsm_systemd_get_property (GObject    *object,
 {
         GsmSystemd *self = GSM_SYSTEMD (object);
 
-        switch (prop_id) {
+        switch ((GsmSystemdProps) prop_id) {
         case PROP_ACTIVE:
                 g_value_set_boolean (value, self->priv->is_active);
                 break;

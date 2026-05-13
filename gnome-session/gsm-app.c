@@ -54,13 +54,11 @@ struct _GsmApp
         GDesktopAppInfo *inner;
 };
 
-enum {
-        PROP_0,
-        PROP_INNER,
-        LAST_PROP
-};
+typedef enum {
+        PROP_INNER = 1,
+} GsmAppProps;
 
-static GParamSpec *props[LAST_PROP] = { NULL, };
+static GParamSpec *props[PROP_INNER + 1] = { NULL, };
 
 G_DEFINE_FINAL_TYPE (GsmApp, gsm_app, G_TYPE_OBJECT)
 
@@ -87,7 +85,7 @@ gsm_app_set_property (GObject      *object,
 {
         GsmApp *app = GSM_APP (object);
 
-        switch (prop_id) {
+        switch ((GsmAppProps) prop_id) {
         case PROP_INNER:
                 gsm_app_set_inner (app, g_value_get_object (value));
                 break;
@@ -104,7 +102,7 @@ gsm_app_get_property (GObject    *object,
 {
         GsmApp *app = GSM_APP (object);
 
-        switch (prop_id) {
+        switch ((GsmAppProps) prop_id) {
         case PROP_INNER:
                 g_value_set_object (value, app->inner);
                 break;
@@ -137,7 +135,7 @@ gsm_app_class_init (GsmAppClass *klass)
                                                  G_TYPE_DESKTOP_APP_INFO,
                                                  G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_NAME);
 
-        g_object_class_install_properties (object_class, LAST_PROP, props);
+        g_object_class_install_properties (object_class, G_N_ELEMENTS (props), props);
 }
 
 const char *

@@ -46,18 +46,16 @@ struct GsmInhibitorPrivate
         guint                 watch_id;
 };
 
-enum {
-        PROP_0,
-        PROP_BUS_NAME,
+typedef enum {
+        PROP_BUS_NAME = 1,
         PROP_REASON,
         PROP_APP_ID,
         PROP_CLIENT_ID,
         PROP_FLAGS,
         PROP_COOKIE,
-        N_PROPS
-};
+} GsmInhibitorProps;
 
-static GParamSpec *props[N_PROPS] = { NULL, };
+static GParamSpec *props[PROP_COOKIE + 1] = { NULL, };
 
 enum {
         VANISHED,
@@ -405,7 +403,7 @@ gsm_inhibitor_set_property (GObject       *object,
 
         self = GSM_INHIBITOR (object);
 
-        switch (prop_id) {
+        switch ((GsmInhibitorProps) prop_id) {
         case PROP_BUS_NAME:
                 gsm_inhibitor_set_bus_name (self, g_value_get_string (value));
                 break;
@@ -440,7 +438,7 @@ gsm_inhibitor_get_property (GObject    *object,
 
         self = GSM_INHIBITOR (object);
 
-        switch (prop_id) {
+        switch ((GsmInhibitorProps) prop_id) {
         case PROP_BUS_NAME:
                 g_value_set_string (value, self->priv->bus_name);
                 break;
@@ -537,7 +535,7 @@ gsm_inhibitor_class_init (GsmInhibitorClass *klass)
                                                 0,
                                                 G_PARAM_READWRITE | G_PARAM_CONSTRUCT | G_PARAM_STATIC_NAME);
 
-        g_object_class_install_properties (object_class, N_PROPS, props);
+        g_object_class_install_properties (object_class, G_N_ELEMENTS (props), props);
 }
 
 GsmInhibitor *

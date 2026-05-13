@@ -30,13 +30,11 @@ struct _GsmSessionSave
         GHashTable *apps;
 };
 
-enum {
-        PROP_0,
-        PROP_SESSION_ID,
-        LAST_PROP
-};
+typedef enum {
+        PROP_SESSION_ID = 1,
+} GsmSessionSaveProps;
 
-static GParamSpec *props[LAST_PROP] = { NULL, };
+static GParamSpec *props[PROP_SESSION_ID + 1] = { NULL, };
 
 G_DEFINE_FINAL_TYPE (GsmSessionSave, gsm_session_save, G_TYPE_OBJECT);
 
@@ -163,7 +161,7 @@ gsm_session_save_set_property (GObject      *object,
 {
         GsmSessionSave *save = GSM_SESSION_SAVE (object);
 
-        switch (prop_id) {
+        switch ((GsmSessionSaveProps) prop_id) {
         case PROP_SESSION_ID:
                 gsm_session_save_set_session_id (save, g_value_get_string (value));
                 break;
@@ -180,7 +178,7 @@ gsm_session_save_get_property (GObject    *object,
 {
         GsmSessionSave *save = GSM_SESSION_SAVE (object);
 
-        switch (prop_id) {
+        switch ((GsmSessionSaveProps) prop_id) {
         case PROP_SESSION_ID:
                 g_value_set_string (value, save->session_id);
                 break;
@@ -217,7 +215,7 @@ gsm_session_save_class_init (GsmSessionSaveClass *klass)
                                                       "gnome",
                                                       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY | G_PARAM_STATIC_NAME);
 
-        g_object_class_install_properties (object_class, LAST_PROP, props);
+        g_object_class_install_properties (object_class, G_N_ELEMENTS (props), props);
 }
 
 static void
