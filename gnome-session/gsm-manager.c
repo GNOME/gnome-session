@@ -262,8 +262,7 @@ end_phase (GsmManager *manager)
         g_debug ("GsmManager: ending phase %s",
                  phase_num_to_name (manager->phase));
 
-        g_slist_free (manager->query_clients);
-        manager->query_clients = NULL;
+        g_clear_slist (&manager->query_clients, NULL);
 
         g_clear_handle_id (&manager->phase_timeout_id, g_source_remove);
 
@@ -722,8 +721,7 @@ _on_query_end_session_timeout (GsmManager *manager)
                 g_object_unref (inhibitor);
         }
 
-        g_slist_free (manager->query_clients);
-        manager->query_clients = NULL;
+        g_clear_slist (&manager->query_clients, NULL);
 
         query_end_session_complete (manager);
 
@@ -771,8 +769,7 @@ start_phase (GsmManager *manager)
                  phase_num_to_name (manager->phase));
 
         /* reset state */
-        g_slist_free (manager->query_clients);
-        manager->query_clients = NULL;
+        g_clear_slist (&manager->query_clients, NULL);
 
         g_clear_handle_id (&manager->phase_timeout_id, g_source_remove);
 
@@ -1243,8 +1240,7 @@ gsm_manager_dispose (GObject *object)
                 g_signal_handlers_disconnect_by_func (manager->clients,
                                                       on_store_client_removed,
                                                       manager);
-                g_object_unref (manager->clients);
-                manager->clients = NULL;
+                g_clear_object (&manager->clients);
         }
 
         g_clear_object (&manager->apps);
@@ -1257,8 +1253,7 @@ gsm_manager_dispose (GObject *object)
                                                       on_store_inhibitor_removed,
                                                       manager);
 
-                g_object_unref (manager->inhibitors);
-                manager->inhibitors = NULL;
+                g_clear_object (&manager->inhibitors);
         }
 
         g_clear_object (&manager->presence);

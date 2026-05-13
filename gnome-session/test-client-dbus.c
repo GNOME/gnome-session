@@ -185,10 +185,7 @@ register_client (void)
 static gboolean
 session_manager_disconnect (void)
 {
-        if (sm_proxy != NULL) {
-                g_object_unref (sm_proxy);
-                sm_proxy = NULL;
-        }
+        g_clear_object (&sm_proxy);
 
         return TRUE;
 }
@@ -211,8 +208,7 @@ unregister_client (void)
                 return FALSE;
         }
 
-        g_free (client_id);
-        client_id = NULL;
+        g_clear_pointer (&client_id, g_free);
 
         g_variant_unref (reply);
 

@@ -110,8 +110,7 @@ gsm_presence_set_status_text (GsmPresence  *presence,
 {
         g_return_val_if_fail (GSM_IS_PRESENCE (presence), FALSE);
 
-        g_free (presence->priv->status_text);
-        presence->priv->status_text = NULL;
+        g_clear_pointer (&presence->priv->status_text, g_free);
 
         /* check length */
         if (status_text != NULL && strlen (status_text) > MAX_STATUS_TEXT) {
