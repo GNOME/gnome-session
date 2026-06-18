@@ -8,38 +8,31 @@
 # Tomasz Dominikowski <dominikowski@gmail.com>, 2007-2009.
 # Piotr Drąg <piotrdrag@gmail.com>, 2010-2025.
 # Aviary.pl <community-poland@mozilla.org>, 2007-2025.
+# Victoria Niedzielska <victorian@gnome.org>, 2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2025-08-27 22:11+0000\n"
-"PO-Revision-Date: 2025-08-28 08:30+0200\n"
-"Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
-"Language-Team: Polish <community-poland@mozilla.org>\n"
+"POT-Creation-Date: 2026-06-14 16:05+0000\n"
+"PO-Revision-Date: 2026-06-18 20:17+0200\n"
+"Last-Translator: Victoria Niedzielska <victorian@gnome.org>\n"
+"Language-Team: Polish <https://l10n.gnome.org/teams/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+"X-Generator: Gtranslator 50.0\n"
 
 #: data/gnome.desktop.in.in:2 data/gnome.session.desktop:2
 msgid "GNOME"
 msgstr "GNOME"
 
-#: data/gnome.desktop.in.in:3 data/gnome-wayland.desktop.in.in:3
-#: data/gnome-xorg.desktop.in.in:3
+#: data/gnome.desktop.in.in:3
 msgid "This session logs you into GNOME"
 msgstr "Ta sesja loguje użytkownika do środowiska GNOME"
-
-#: data/gnome-wayland.desktop.in.in:2
-msgid "GNOME on Wayland"
-msgstr "GNOME (Wayland)"
-
-#: data/gnome-xorg.desktop.in.in:2
-msgid "GNOME on Xorg"
-msgstr "GNOME (Xorg)"
 
 #: data/org.gnome.SessionManager.gschema.xml:5
 msgid "Logout prompt"
@@ -63,39 +56,39 @@ msgstr ""
 "Czy gnome-session ma wyświetlać okno z ostrzeżeniem po zalogowaniu, jeśli "
 "sesja została automatycznie przywrócona do poprzedniej."
 
-#: gnome-session/gsm-manager.c:709 gnome-session/gsm-manager.c:1040
+#: gnome-session/gsm-manager.c:718 gnome-session/gsm-manager.c:1053
 msgid "Not responding"
 msgstr "Brak odpowiedzi"
 
-#: gnome-session/gsm-util.c:167
+#: gnome-session/gsm-util.c:125
 msgid "_Log out"
 msgstr "_Wyloguj się"
 
-#: gnome-session/leader-main.c:181 gnome-session/service-main.c:148
+#: gnome-session/leader-main.c:193 gnome-session/service-main.c:148
 msgid "Session to use"
 msgstr "Używana sesja"
 
-#: gnome-session/leader-main.c:181 gnome-session/service-main.c:148
+#: gnome-session/leader-main.c:193 gnome-session/service-main.c:148
 msgid "SESSION_NAME"
 msgstr "NAZWA_SESJI"
 
-#: gnome-session/leader-main.c:182
+#: gnome-session/leader-main.c:194
 msgid "Enable debugging code"
 msgstr "Uruchomienie kodu debugowania"
 
-#: gnome-session/leader-main.c:183
+#: gnome-session/leader-main.c:195
 msgid "Version of this application"
 msgstr "Wersja tego programu"
 
-#: gnome-session/leader-main.c:184
+#: gnome-session/leader-main.c:196
 msgid "This option is ignored"
 msgstr "Ta opcja jest ignorowana"
 
-#: gnome-session/leader-main.c:185
+#: gnome-session/leader-main.c:197
 msgid "Don't re-exec into a login shell"
 msgstr "Bez ponownego wchodzenia do powłoki logowania"
 
-#: gnome-session/leader-main.c:203 gnome-session/service-main.c:157
+#: gnome-session/leader-main.c:211 gnome-session/service-main.c:157
 msgid " — the GNOME session manager"
 msgstr " — menedżer sesji środowiska GNOME"
 
@@ -128,64 +121,65 @@ msgstr ""
 "niepowodzeniu usługi"
 
 #: tools/gnome-session-ctl.c:281
+#, c-format
 msgid "Program needs exactly one parameter"
 msgstr "Program wymaga dokładnie jednego parametru"
 
-#: tools/gnome-session-inhibit.c:69
+#: tools/gnome-session-inhibit.c:68
 #, c-format
 msgid "Unknown inhibit argument: %s"
 msgstr "Nieznany parametr wstrzymywania: %s"
 
-#: tools/gnome-session-inhibit.c:289
+#: tools/gnome-session-inhibit.c:288
 #, c-format
 msgid "Failed to execute %s: %m\n"
 msgstr "Wykonanie polecenia „%s” się nie powiodło: %m\n"
 
-#: tools/gnome-session-inhibit.c:361
+#: tools/gnome-session-inhibit.c:360
 msgid "Show program version"
 msgstr "Wyświetla wersję programu"
 
-#: tools/gnome-session-inhibit.c:362
+#: tools/gnome-session-inhibit.c:361
 msgid "The application id to use when inhibiting (optional)"
-msgstr "Identyfikator programu używany podczas wstrzymywania (opcjonalnie)"
+msgstr "Identyfikator aplikacji używany podczas wstrzymywania (opcjonalnie)"
 
-#: tools/gnome-session-inhibit.c:362
+#: tools/gnome-session-inhibit.c:361
 msgid "ID"
 msgstr "IDENTYFIKATOR"
 
-#: tools/gnome-session-inhibit.c:363
+#: tools/gnome-session-inhibit.c:362
 msgid "The reason for inhibiting (optional)"
 msgstr "Powód wstrzymania (opcjonalnie)"
 
-#: tools/gnome-session-inhibit.c:363
+#: tools/gnome-session-inhibit.c:362
 msgid "REASON"
 msgstr "POWÓD"
 
-#: tools/gnome-session-inhibit.c:364
+#: tools/gnome-session-inhibit.c:363
 msgid "Add action to inhibit (repeatable)"
 msgstr "Dodaje działanie do wstrzymania (można podać więcej niż jeden raz)"
 
-#: tools/gnome-session-inhibit.c:364
+#: tools/gnome-session-inhibit.c:363
 msgid "ACTION"
 msgstr "DZIAŁANIE"
 
-#: tools/gnome-session-inhibit.c:365
+#: tools/gnome-session-inhibit.c:364
 msgid "Do not launch COMMAND and wait forever instead"
 msgstr "Bez wykonywania POLECENIA i oczekiwanie bez ograniczenia"
 
-#: tools/gnome-session-inhibit.c:366
+#: tools/gnome-session-inhibit.c:365
 msgid "List the existing inhibitions, and exit"
 msgstr "Wyświetla listę istniejących wstrzymywań i kończy działanie"
 
-#: tools/gnome-session-inhibit.c:378
+#: tools/gnome-session-inhibit.c:377
 msgid "COMMAND"
 msgstr "POLECENIE"
 
-#: tools/gnome-session-inhibit.c:384
+#: tools/gnome-session-inhibit.c:383
 msgid "Execute COMMAND while inhibiting some session functionality."
 msgstr "Wykonuje POLECENIE podczas wstrzymywania części funkcjonalności sesji."
 
-#: tools/gnome-session-inhibit.c:385
+#: tools/gnome-session-inhibit.c:384
 msgid ""
 "Valid ACTION values are: logout, switch-user, suspend, idle, and automount.\n"
 "If no --inhibit options are specified, idle is assumed."
@@ -225,3 +219,9 @@ msgstr "Nie można połączyć się z menedżerem sesji"
 #: tools/gnome-session-quit.c:198
 msgid "Program called with conflicting options"
 msgstr "Wywołano program ze sprzecznymi opcjami"
+
+#~ msgid "GNOME on Wayland"
+#~ msgstr "GNOME (Wayland)"
+
+#~ msgid "GNOME on Xorg"
+#~ msgstr "GNOME (Xorg)"
