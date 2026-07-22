@@ -4,14 +4,14 @@
 # Lucian Adrian Grijincu <lucian.grijincu@gmail.com>, 2009, 2011.
 # Daniel Șerbănescu <cyber19rider@gmail.com>, 2010, 2011.
 # Daniel Șerbănescu <daniel [at] serbanescu [dot] dk>, 2015, 2017.
-# Antonio Marin <gnmer.6qxyg@slmail.me>, 2025.
+# Antonio Marin <gnmer.6qxyg@slmail.me>, 2025-2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-session-2.0\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2025-09-12 18:51+0000\n"
-"PO-Revision-Date: 2025-09-14 19:04+0200\n"
+"POT-Creation-Date: 2026-07-13 16:21+0000\n"
+"PO-Revision-Date: 2026-07-22 14:59+0200\n"
 "Last-Translator: Antonio Marin <gnmer.6qxyg@slmail.me>\n"
 "Language-Team: Romanian <gnomero-list@lists.sourceforge.net>\n"
 "Language: ro\n"
@@ -20,25 +20,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);\n"
-"X-Generator: Gtranslator 48.0\n"
+"X-Generator: Gtranslator 50.0\n"
 "X-Project-Style: gnome\n"
 
 #: data/gnome.desktop.in.in:2 data/gnome.session.desktop:2
 msgid "GNOME"
 msgstr "GNOME"
 
-#: data/gnome.desktop.in.in:3 data/gnome-wayland.desktop.in.in:3
-#: data/gnome-xorg.desktop.in.in:3
+#: data/gnome.desktop.in.in:3
 msgid "This session logs you into GNOME"
 msgstr "Această sesiune efectuează autentificarea în GNOME"
-
-#: data/gnome-wayland.desktop.in.in:2
-msgid "GNOME on Wayland"
-msgstr "GNOME pe Wayland"
-
-#: data/gnome-xorg.desktop.in.in:2
-msgid "GNOME on Xorg"
-msgstr "GNOME pe Xorg"
 
 #: data/org.gnome.SessionManager.gschema.xml:5
 msgid "Logout prompt"
@@ -62,39 +53,39 @@ msgstr ""
 "Dacă este activată, gnome-session va afișa un dialog de avertizare după "
 "autentificare dacă s-a trecut automat la sesiunea de rezervă.."
 
-#: gnome-session/gsm-manager.c:709 gnome-session/gsm-manager.c:1040
+#: gnome-session/gsm-manager.c:718 gnome-session/gsm-manager.c:1053
 msgid "Not responding"
 msgstr "Nu răspunde"
 
-#: gnome-session/gsm-util.c:167
+#: gnome-session/gsm-util.c:125
 msgid "_Log out"
 msgstr "_Termină sesiunea"
 
-#: gnome-session/leader-main.c:181 gnome-session/service-main.c:148
+#: gnome-session/leader-main.c:193 gnome-session/service-main.c:148
 msgid "Session to use"
 msgstr "Sesiunea de utilizat"
 
-#: gnome-session/leader-main.c:181 gnome-session/service-main.c:148
+#: gnome-session/leader-main.c:193 gnome-session/service-main.c:148
 msgid "SESSION_NAME"
-msgstr "NUMELE_SESIUNII"
+msgstr "SESSION_NAME"
 
-#: gnome-session/leader-main.c:182
+#: gnome-session/leader-main.c:194
 msgid "Enable debugging code"
 msgstr "Activează codul pentru depanare"
 
-#: gnome-session/leader-main.c:183
+#: gnome-session/leader-main.c:195
 msgid "Version of this application"
 msgstr "Versiunea acestei aplicații"
 
-#: gnome-session/leader-main.c:184
+#: gnome-session/leader-main.c:196
 msgid "This option is ignored"
 msgstr "Această opțiune este ignorată"
 
-#: gnome-session/leader-main.c:185
+#: gnome-session/leader-main.c:197
 msgid "Don't re-exec into a login shell"
 msgstr "Nu reporni la autentificare"
 
-#: gnome-session/leader-main.c:203 gnome-session/service-main.c:157
+#: gnome-session/leader-main.c:211 gnome-session/service-main.c:157
 msgid " — the GNOME session manager"
 msgstr " — Administratorul de sesiuni GNOME"
 
@@ -127,6 +118,7 @@ msgstr ""
 "eșecul serviciului"
 
 #: tools/gnome-session-ctl.c:281
+#, c-format
 msgid "Program needs exactly one parameter"
 msgstr "Programul necesită exact un parametru"
 
@@ -194,7 +186,7 @@ msgstr ""
 "automount.\n"
 "Dacă nu este specificată nicio opțiune --inhibit, va fi folosit idle."
 
-#: tools/gnome-session-inhibit.c:408
+#: tools/gnome-session-inhibit.c:409
 msgid "Neither COMMAND nor --inhibit-only were specified."
 msgstr "Nu au fost specificate nici COMANDA, nici --inhibit-only."
 
