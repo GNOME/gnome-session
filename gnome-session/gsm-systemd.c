@@ -24,11 +24,10 @@
 
 #include <string.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <pwd.h>
-
-#include <systemd/sd-login.h>
 
 #include <glib.h>
 #include <glib-object.h>
@@ -43,8 +42,8 @@
 #define SD_INTERFACE         "org.freedesktop.login1.Manager"
 #define SD_SEAT_INTERFACE    "org.freedesktop.login1.Seat"
 #define SD_SESSION_INTERFACE "org.freedesktop.login1.Session"
-
-#define SYSTEMD_SESSION_REQUIRE_ONLINE 0 /* active or online sessions only */
+#define SD_USER_INTERFACE    "org.freedesktop.login1.User"
+#define SD_USER_SELF_PATH    "/org/freedesktop/login1/user/self"
 
 #define SD_LOGIND_SKIP_INHIBITORS (UINT64_C(1) << 4)
 
@@ -116,104 +115,6 @@ static void sd_proxy_signal_cb (GDBusProxy  *proxy,
                                 const gchar *signal_name,
                                 GVariant    *parameters,
                                 gpointer     user_data);
-
-static gboolean
-_systemd_session_is_graphical (const char *session_id)
-{
-        const gchar * const graphical_session_types[] = { "wayland", "x11", "mir", NULL };
-        int saved_errno;
-        g_autofree gchar *type = NULL;
-
-        saved_errno = sd_session_get_type (session_id, &type);
-        if (saved_errno < 0) {
-                g_warning ("Couldn't get type for session '%s': %s",
-                           session_id,
-                           g_strerror (-saved_errno));
-                return FALSE;
-        }
-
-        if (!g_strv_contains (graphical_session_types, type)) {
-                g_debug ("Session '%s' is not a graphical session (type: '%s')",
-                         session_id,
-                         type);
-                return FALSE;
-        }
-
-        return TRUE;
-}
-
-static gboolean
-_systemd_session_is_active (const char *session_id)
-{
-        const gchar * const active_states[] = { "active", "online", NULL };
-        int saved_errno;
-        g_autofree gchar *state = NULL;
-
-        /*
-         * display sessions can be 'closing' if they are logged out but some
-         * processes are lingering; we shouldn't consider these (this is
-         * checking for a race condition since we specified
-         * SYSTEMD_SESSION_REQUIRE_ONLINE)
-         */
-        saved_errno = sd_session_get_state (session_id, &state);
-        if (saved_errno < 0) {
-                g_warning ("Couldn't get state for session '%s': %s",
-                           session_id,
-                           g_strerror (-saved_errno));
-                return FALSE;
-        }
-
-        if (!g_strv_contains (active_states, state)) {
-                g_debug ("Session '%s' is not active or online", session_id);
-                return FALSE;
-        }
-
-        return TRUE;
-}
-
-static gboolean
-gsm_systemd_find_session (char **session_id)
-{
-        char *local_session_id = NULL;
-        g_auto(GStrv) sessions = NULL;
-        int n_sessions;
-
-        g_return_val_if_fail (session_id != NULL, FALSE);
-
-        g_debug ("Finding a graphical session for user %d", getuid ());
-
-        n_sessions = sd_uid_get_sessions (getuid (),
-                                          SYSTEMD_SESSION_REQUIRE_ONLINE,
-                                          &sessions);
-
-        if (n_sessions < 0) {
-                g_critical ("Failed to get sessions for user %d", getuid ());
-                return FALSE;
-        }
-
-        for (int i = 0; i < n_sessions; ++i) {
-                g_debug ("Considering session '%s'", sessions[i]);
-
-                if (!_systemd_session_is_graphical (sessions[i]))
-                        continue;
-
-                if (!_systemd_session_is_active (sessions[i]))
-                        continue;
-
-                /*
-                 * We get the sessions from newest to oldest, so take the last
-                 * one we find that's good
-                 */
-                local_session_id = sessions[i];
-        }
-
-        if (local_session_id == NULL)
-                return FALSE;
-
-        *session_id = g_strdup (local_session_id);
-
-        return TRUE;
-}
 
 static void
 update_session_active (GsmSystemd *manager)
@@ -303,9 +204,10 @@ gsm_systemd_init (GsmSystemd *manager)
 {
         g_autoptr (GError) error = NULL;
         g_autoptr (GDBusConnection) bus = NULL;
-        g_autofree char *session_id = NULL;
-        g_autofree char *session_path = NULL;
-        GVariant *res;
+        g_autoptr (GDBusProxy) user_proxy = NULL;
+        g_autoptr (GVariant) display = NULL;
+        const char *session_id = NULL;
+        const char *session_path = NULL;
 
         manager->strong_inhibit_fd = -1;
         manager->weak_inhibit_fd = -1;
@@ -336,31 +238,44 @@ gsm_systemd_init (GsmSystemd *manager)
         g_signal_connect (manager->sd_proxy, "g-signal",
                           G_CALLBACK (sd_proxy_signal_cb), manager);
 
-        gsm_systemd_find_session (&session_id);
-        if (session_id == NULL) {
-                g_warning ("Could not get session id for session. Check that logind is "
-                           "properly installed and pam_systemd is getting used at login.");
+        /* Find the graphical session over D-Bus as it can be easily mocked
+         * for testing.
+         *
+         * We can't just look up our own session (e.g. GetSessionByPID): as a
+         * systemd user service gnome-session runs in the user manager, whose
+         * processes are not part of the graphical session's scope.
+         * Instead use the well-known "user/self" logind object (our own user,
+         * resolved by uid) and read its "Display" property, which points at
+         * the user's primary (graphical) session. */
+        user_proxy = g_dbus_proxy_new_sync (bus,
+                                            G_DBUS_PROXY_FLAGS_NONE,
+                                            NULL,
+                                            SD_NAME,
+                                            SD_USER_SELF_PATH,
+                                            SD_USER_INTERFACE,
+                                            NULL,
+                                            &error);
+        if (user_proxy == NULL) {
+                g_warning ("Failed to create user proxy: %s", error->message);
                 return;
         }
 
+        display = g_dbus_proxy_get_cached_property (user_proxy, "Display");
+        if (display == NULL) {
+                g_warning ("Could not get the graphical session for the user. "
+                           "Check that logind is properly installed and pam_systemd "
+                           "is getting used at login.");
+                return;
+        }
+
+        g_variant_get (display, "(&s&o)", &session_id, &session_path);
         g_debug ("Found session ID: %s", session_id);
+        g_assert (session_path != NULL);
 
-        res = g_dbus_proxy_call_sync (manager->sd_proxy,
-                                      "GetSession",
-                                      g_variant_new ("(s)", session_id),
-                                      0,
-                                      G_MAXINT,
-                                      NULL,
-                                      &error);
-        if (res == NULL) {
-                g_warning ("Could not get session path for session. Check that logind is "
-                           "properly installed and pam_systemd is getting used at login: %s",
-                           error->message);
+        if (*session_path == '\0') {
+                g_warning ("The user has no graphical session.");
                 return;
         }
-
-        g_variant_get (res, "(o)", &session_path);
-        g_variant_unref (res);
 
         manager->sd_session_proxy =
                 g_dbus_proxy_new_sync (bus,
