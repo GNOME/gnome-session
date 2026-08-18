@@ -235,8 +235,9 @@ gsm_systemd_init (GsmSystemd *manager)
                 return;
         }
 
-        g_signal_connect (manager->sd_proxy, "g-signal",
-                          G_CALLBACK (sd_proxy_signal_cb), manager);
+        g_signal_connect_object (manager->sd_proxy, "g-signal",
+                                 G_CALLBACK (sd_proxy_signal_cb), manager,
+                                 G_CONNECT_DEFAULT);
 
         /* Find the graphical session over D-Bus as it can be easily mocked
          * for testing.
@@ -291,8 +292,9 @@ gsm_systemd_init (GsmSystemd *manager)
                 return;
         }
 
-        g_signal_connect (manager->sd_session_proxy, "g-properties-changed",
-                          G_CALLBACK (on_session_property_changed), manager);
+        g_signal_connect_object (manager->sd_session_proxy, "g-properties-changed",
+                                 G_CALLBACK (on_session_property_changed), manager,
+                                 G_CONNECT_DEFAULT);
         update_session_active (manager);
         update_session_locked (manager);
         update_session_class (manager);
