@@ -43,6 +43,7 @@
 #define SD_INTERFACE         "org.freedesktop.login1.Manager"
 #define SD_SEAT_INTERFACE    "org.freedesktop.login1.Seat"
 #define SD_SESSION_INTERFACE "org.freedesktop.login1.Session"
+#define SD_USER_INTERFACE    "org.freedesktop.login1.User"
 
 #define SYSTEMD_SESSION_REQUIRE_ONLINE 0 /* active or online sessions only */
 
@@ -215,6 +216,47 @@ gsm_systemd_find_session (char **session_id)
         return TRUE;
 }
 
+static gboolean
+find_session_from_dbus (GDBusConnection  *bus,
+                        char            **session_id)
+{
+        g_autoptr(GVariant) display_res = NULL;
+        g_autoptr(GVariant) value = NULL;
+        const char *display_session_id;
+
+        g_return_val_if_fail (bus != NULL, FALSE);
+        g_return_val_if_fail (session_id != NULL, FALSE);
+
+        g_debug ("Trying D-Bus fallback to find session");
+
+        display_res = g_dbus_connection_call_sync (bus,
+                                                   SD_NAME,
+                                                   "/org/freedesktop/login1/user/self",
+                                                   "org.freedesktop.DBus.Properties",
+                                                   "Get",
+                                                   g_variant_new ("(ss)",
+                                                                  SD_USER_INTERFACE,
+                                                                  "Display"),
+                                                   G_VARIANT_TYPE ("(v)"),
+                                                   G_DBUS_CALL_FLAGS_NONE,
+                                                   -1,
+                                                   NULL,
+                                                   NULL);
+        if (display_res == NULL)
+                return FALSE;
+
+        g_variant_get (display_res, "(v)", &value);
+        g_variant_get (value, "(&s&o)", &display_session_id, NULL);
+
+        if (display_session_id == NULL || display_session_id[0] == '\0')
+                return FALSE;
+
+        g_debug ("Found session via D-Bus Display property: %s", display_session_id);
+        *session_id = g_strdup (display_session_id);
+
+        return TRUE;
+}
+
 static void
 update_session_active (GsmSystemd *manager)
 {
@@ -337,6 +379,9 @@ gsm_systemd_init (GsmSystemd *manager)
                           G_CALLBACK (sd_proxy_signal_cb), manager);
 
         gsm_systemd_find_session (&session_id);
+        if (session_id == NULL)
+                find_session_from_dbus (bus, &session_id);
+
         if (session_id == NULL) {
                 g_warning ("Could not get session id for session. Check that logind is "
                            "properly installed and pam_systemd is getting used at login.");
