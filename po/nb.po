@@ -5,11 +5,11 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: gnome-session 4.4\n"
+"Project-Id-Version: gnome-session 51\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-session/issues\n"
-"POT-Creation-Date: 2025-11-10 18:32+0000\n"
-"PO-Revision-Date: 2026-01-19 14:11+0100\n"
-"Last-Translator: Brage Fuglseth <bragefuglseth@gnome.org>\n"
+"POT-Creation-Date: 2026-07-13 16:21+0000\n"
+"PO-Revision-Date: 2026-08-24 19:45+0200\n"
+"Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norwegian bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: nb\n"
 "MIME-Version: 1.0\n"
@@ -22,18 +22,9 @@ msgstr ""
 msgid "GNOME"
 msgstr "GNOME"
 
-#: data/gnome.desktop.in.in:3 data/gnome-wayland.desktop.in.in:3
-#: data/gnome-xorg.desktop.in.in:3
+#: data/gnome.desktop.in.in:3
 msgid "This session logs you into GNOME"
 msgstr "Denne økten logger deg inn i GNOME"
-
-#: data/gnome-wayland.desktop.in.in:2
-msgid "GNOME on Wayland"
-msgstr "GNOME på Wayland"
-
-#: data/gnome-xorg.desktop.in.in:2
-msgid "GNOME on Xorg"
-msgstr "GNOME på Xorg"
 
 #: data/org.gnome.SessionManager.gschema.xml:5
 msgid "Logout prompt"
@@ -58,39 +49,39 @@ msgstr ""
 "advarselsvindu etter innlogging hvis en reserveløsning for økten ble tatt i "
 "bruk."
 
-#: gnome-session/gsm-manager.c:709 gnome-session/gsm-manager.c:1040
+#: gnome-session/gsm-manager.c:718 gnome-session/gsm-manager.c:1053
 msgid "Not responding"
 msgstr "Svarer ikke"
 
-#: gnome-session/gsm-util.c:167
+#: gnome-session/gsm-util.c:125
 msgid "_Log out"
 msgstr "_Logg ut"
 
-#: gnome-session/leader-main.c:192 gnome-session/service-main.c:148
+#: gnome-session/leader-main.c:193 gnome-session/service-main.c:148
 msgid "Session to use"
 msgstr "Økt som skal brukes"
 
-#: gnome-session/leader-main.c:192 gnome-session/service-main.c:148
+#: gnome-session/leader-main.c:193 gnome-session/service-main.c:148
 msgid "SESSION_NAME"
 msgstr "SESSION_NAME"
 
-#: gnome-session/leader-main.c:193
+#: gnome-session/leader-main.c:194
 msgid "Enable debugging code"
 msgstr "Slå på feilsøkingskode"
 
-#: gnome-session/leader-main.c:194
+#: gnome-session/leader-main.c:195
 msgid "Version of this application"
 msgstr "Versjon av dette programmet"
 
-#: gnome-session/leader-main.c:195
+#: gnome-session/leader-main.c:196
 msgid "This option is ignored"
 msgstr "Dette alternativet ignoreres"
 
-#: gnome-session/leader-main.c:196
+#: gnome-session/leader-main.c:197
 msgid "Don't re-exec into a login shell"
 msgstr "Ikke kjør på nytt med innloggingsskall"
 
-#: gnome-session/leader-main.c:210 gnome-session/service-main.c:157
+#: gnome-session/leader-main.c:211 gnome-session/service-main.c:157
 msgid " — the GNOME session manager"
 msgstr " — GNOME sin øktstyrer"
 
@@ -186,10 +177,12 @@ msgid ""
 "Valid ACTION values are: logout, switch-user, suspend, idle, and automount.\n"
 "If no --inhibit options are specified, idle is assumed."
 msgstr ""
+"Gyldige verdier for HANDLING er: logout, switch-user, suspend, idle og automount.\n"
+"Hvis det ikke oppgis en verdi for --inhibit blir idle brukt som standard."
 
 #: tools/gnome-session-inhibit.c:409
 msgid "Neither COMMAND nor --inhibit-only were specified."
-msgstr ""
+msgstr "Hverken KOMMANDO eller --inhibit-only ble oppgitt."
 
 #: tools/gnome-session-quit.c:50
 msgid "Log out"
