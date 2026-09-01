@@ -503,7 +503,7 @@ inhibit_weak_done (GObject      *source,
         g_debug ("System weak inhibitor fd is %d", manager->weak_inhibit_fd);
 
         /* Handle a race condition, where inhibitors got unset during dbus call */
-        if ((manager->inhibited & GSM_INHIBITOR_FLAG_SUSPEND) == 0)
+        if ((manager->inhibited & (GSM_INHIBITOR_FLAG_SUSPEND|GSM_INHIBITOR_FLAG_LOGOUT)) == 0)
                 drop_weak_system_inhibitor (manager);
 }
 
@@ -545,13 +545,13 @@ gsm_systemd_set_inhibitors (GsmSystem        *system,
         inhibit_logout = (flags & GSM_INHIBITOR_FLAG_LOGOUT) != 0;
         inhibit_suspend = (flags & GSM_INHIBITOR_FLAG_SUSPEND) != 0;
 
-        if (inhibit_logout) {
-                g_debug ("Adding strong system inhibitor on shutdown");
-                gsm_systemd_call_inhibit (manager, "shutdown", "block");
-        } else
-                drop_strong_system_inhibitor (manager);
-
-        if (inhibit_suspend) {
+        if (inhibit_logout && inhibit_suspend) {
+                g_debug ("Adding weak system inhibitor on shutdown and suspend");
+                gsm_systemd_call_inhibit (manager, "shutdown:sleep", "block-weak");
+        } else if (inhibit_logout) {
+                g_debug ("Adding weak system inhibitor on shutdown");
+                gsm_systemd_call_inhibit (manager, "shutdown", "block-weak");
+        } else if (inhibit_suspend) {
                 g_debug ("Adding weak system inhibitor on suspend");
                 gsm_systemd_call_inhibit (manager, "sleep", "block-weak");
         } else
